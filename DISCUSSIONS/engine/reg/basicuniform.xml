@@ -1,0 +1,53 @@
+<!-- 
+  $RCSfile: basicuniform.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-25 02:42:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Using <classname>BasicUniformDriver</classname> as the
+  <varname>time_stepper</varname> in <xref
+  linkend="RegisteredClass-BasicSolverMode"/> tells &oof2; to <link
+  linkend="Section-Concepts-Mesh-Solving">solve</link> a time
+  dependent problem using uniform stepping, in which all time steps
+  are the same size.
+</para>
+<para>
+  Uniform stepping requires less computation per step than <link
+  linkend="RegisteredClass-BasicAdaptiveDriver">adaptive</link>
+  stepping, but can be either much less accurate (if the step size is
+  too large) or much less efficient (if the step size is too small).
+</para>
+<para>
+  <classname>BasicAdaptiveDriver</classname> automatically uses the
+  <xref linkend="RegisteredClass-SS22"/> method with
+  <varname>theta1</varname>=<varname>theta2</varname>=<userinput>0.5</userinput>
+  if the equations contain second order <link
+  linkend="Section-Concepts-Time-Dependence">time derivatives</link>.
+  It uses <xref linkend="RegisteredClass-CrankNicolson"/> otherwise.
+</para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

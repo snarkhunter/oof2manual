@@ -1,0 +1,308 @@
+<!-- 
+  $RCSfile: anneal.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:36 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>Anneal</classname> is a &skel; <link
+    linkend="RegisteredClass-SkeletonModifier">modifier</link> that
+    moves &nodes; to random positions, accepting or rejecting moves
+    according to the given <varname>criterion</varname>.  It is
+    similar to a simulated annealing simulation in statistical
+    mechanics, from which it gets its name.  Instead of minimizing the
+    free energy of a system of particles, it minimizes the <link
+    linkend="Section-Concepts-Skeleton-Energy">effective energy</link>
+    of a &skel;.
+  </para>
+
+  <para>
+    The general procedure for a single iteration of
+    <classname>Anneal</classname> is as follows:
+    <orderedlist>
+      <listitem>
+	<para>
+	  Collect <link
+	  linkend='RegisteredClass-FiddleNodesTargets'>target
+	  nodes</link> according to the given
+	  <varname>targets</varname> parameter.  The collected &nodes;
+	  are re-ordered randomly to remove any potential artifacts
+	  from the original ordering of &nodes;.  This re-ordering is
+	  repeated at every iteration.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Give each &node; a single chance to move to a randomly
+	  assigned new position.  &oof2; computes the new position from
+	  <equation>
+	    <alt role="tex">
+	      \begin{align*}
+	      x_\mathrm{new} &amp;= x_\mathrm{old} + \delta x \\
+	      y_\mathrm{new} &amp;= y_\mathrm{old} + \delta y. \\
+	      \end{align*}
+	    </alt>
+	  </equation>
+	  <inlineequation>
+	    <alt role="tex">\(\delta x\)</alt>
+	  </inlineequation>
+	  and
+	  <inlineequation>
+	    <alt role="tex">\(\delta y\)</alt>
+	  </inlineequation>
+	   are random numbers chosen from a Gaussian distribution of
+	   width <varname>delta</varname> and mean 0.0.
+	   <varname>delta</varname> is in units of the &micro; <link
+	   linkend="Section-Concepts-Microstructure-Coordinates">pixel
+	   size</link>.
+	</para>
+	<para>
+	  <xref linkend="Figure-anneal_schematics"/>(a) shows a node
+	  (the big red dot) that is about to move to a new position.
+	  Before making the move, &oof2; computes the total effective
+	  energy of all of the neighboring elements of the node.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  After moving each &node;, the given acceptance
+	  <varname>criterion</varname> decides whether or not the move
+	  is acceptable.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If the move is unacceptable according to the acceptance
+	  <varname>criterion</varname>, &oof2; may still accept the
+	  move if the annealing is being done at a non-zero
+	  <emphasis>temperature</emphasis>.  The parameter
+	  <varname>T</varname> sets the effective temperature of the
+	  annealing process.  Unacceptable moves are accepted with a
+	  probability
+	  <equation>
+	    <alt role="tex">
+	      \[P = \exp{(-E_\mathrm{diff}/T)}\]
+	    </alt>
+	  </equation>
+	  where
+	  <inlineequation>
+	    <alt role="tex">\(E_\mathrm{diff}\)</alt>
+	  </inlineequation> is the difference between the
+	  effective energies of the new and old &elem; configurations.
+	</para>
+      </listitem>
+    </orderedlist>
+    
+    <figure id="Figure-anneal_schematics">
+      <title>Annealing</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/anneal_schematics.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/anneal_schematics.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    (a) A node moves by
+	    <inlineequation>
+	      <alt role="tex">\(\delta x\)</alt>
+	    </inlineequation>
+	     and
+	    <inlineequation>
+	      <alt role="tex">\(\delta y\)</alt>
+	    </inlineequation>.
+	    The node move affects
+	    four neighboring elements, E<subscript>0</subscript>,
+	    E<subscript>1</subscript>, E<subscript>2</subscript>, and
+	    E<subscript>3</subscript>.  (b) The node has moved to a
+	    new position. If the move doesn't satisfy the given acceptance
+	    <varname>criterion</varname> (computed based on its four
+	    affected elements), it'll be rejected and the node will
+	    move back to its original position.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+  <para>
+    Successful annealing usually requires a number of iterations.  On
+    each iteration, &oof2; makes one attempt to move each node.  The
+    number of iterations is controlled by the
+    <varname>iteration</varname> parameter, which can be set to
+    perform a fixed number of iterations or to stop after some
+    condition is satisfied.  See <xref
+    linkend="RegisteredClass-IterationManager"/> for the details.
+  </para>
+  <para>
+    Statistics for each step of the annealing process are printed in
+    the &oof2; <link linkend="Section-Windows-Messages">Message</link>
+    window.  For example,
+    <literallayout class="monospaced">
+Iteration 1: E = 1.1916e+01, deltaE=-1.2495e-01 ( 1.049%), Acceptance Rate = 19.1%
+Iteration 2: E = 1.1391e+01, deltaE=-1.7564e-01 ( 1.542%), Acceptance Rate = 25.5%
+Iteration 3: E = 1.0638e+01, deltaE=-1.1883e-01 ( 1.117%), Acceptance Rate = 22.3%
+Iteration 4: E = 1.0095e+01, deltaE=-1.4345e-01 ( 1.421%), Acceptance Rate = 21.0%
+Iteration 5: E = 9.5440e+00, deltaE=-8.3725e-02 ( 0.877%), Acceptance Rate = 21.0%
+    </literallayout>
+    The listing shows the iteration number, the total <link
+    linkend="Section-Concepts-Skeleton-Energy">energy</link>
+    (<computeroutput>E</computeroutput>) of the &skel;, the absolute
+    change in energy (<computeroutput>deltaE</computeroutput>) during
+    the iteration, the percentage change in energy, and the move <link
+    linkend="RegisteredClass-AcceptanceRate">acceptance rate</link>.
+    If the change in energy or the acceptance rate gets too small, the
+    annealing process is not being effective at improving the &skel;.
+    Using <xref linkend="RegisteredClass-ConditionalIteration"/> as
+    the <varname>iteration</varname> parameter can stop the process
+    when it becomes ineffective.
+  </para>
+
+  <para>
+    <xref linkend="Figure-anneal0"/> shows a &skel; that has been
+    <link linkend="RegisteredClass-Refine">refined</link> once.  <xref
+    linkend="Figure-anneal1"/> shows the same skeleton after <link
+    linkend="RegisteredClass-SnapNodes">snapping</link> nodes to the
+    material boundaries.  Snapping was done with a large &agr; (0.9)
+    so there are some badly misshapen elements.  Notice that the
+    border of the arrow shape does not coincide well with the element
+    edges in many spots.  Further iterations of <xref
+    linkend="RegisteredClass-SnapNodes"/> does not improve matters.
+    However, the &skel; can be improved by Annealing.  Annealing with
+    <varname>targets</varname>=<xref
+    linkend="RegisteredClass-AllNodes"/>,
+    <varname>criterion</varname>=<xref
+    linkend="RegisteredClass-AverageEnergy"/>(<varname>alpha</varname>=0.9),
+    and <varname>delta</varname>=1.0 for 20 iterations produced the
+    &skel; shown in <xref linkend="Figure-anneal2"/>.  The &skel;
+    edges match the boundary of the arrow shape much more
+    exactly. Further annealing would improve it even more, although
+    <xref linkend="RegisteredClass-SplitQuads"/> and <xref
+    linkend="RegisteredClass-Rationalize"/> should probably be used
+    first.
+  </para>
+  <figure id="Figure-anneal0">
+    <title>A Slightly Refined Skeleton</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/anneal/arrow0.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/anneal/arrow0.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; for a &micro; containing three materials.  The
+	  material boundaries do not align well with the &elem; edges.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-anneal1">
+    <title>A Snapped Skeleton</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/anneal/arrow1.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/anneal/arrow1.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The &skel; from <xref linkend="Figure-anneal0"/> after <link
+	    linkend="RegisteredClass-SnapNodes">snapping</link>
+	  &nodes;.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-anneal2">
+    <title>An Annealed Skeleton</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/anneal/arrow2.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/anneal/arrow2.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The &skel; from <xref linkend="Figure-anneal1"/> after being
+	  annealed. The resolution of the sharp corners has been much
+	  improved.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  
+
+  <tip>
+    <para>
+      Even though the example shown above concentrates on resolving
+      tricky material boundaries (meaning it puts more emphasis on
+      <link
+      linkend='Section-Concepts-Skeleton-Homog_Energy'>homogeneity</link>
+      than shape), <classname>Anneal</classname> can also be used to
+      improve the <link
+      linkend='Section-Concepts-Skeleton-Shape_Energy'>shape
+      energy</link> of &skels;. Since &oof2; isn't quite psychic, one
+      needs to let it know whether one wants to work on
+      <emphasis>homogeneity</emphasis> or <emphasis>shape
+      energy</emphasis>.  This is done by adjusting the
+      <varname>alpha</varname> parameter which is part of the
+      acceptance <varname>criterion </varname> parameter.  If
+      <varname>alpha</varname> is close to 1
+      <classname>Anneal</classname> will improve homogeneity (and
+      create ugly elements).  If <varname>alpha</varname> is close to
+      0 <classname>Anneal</classname> will improve the shape
+      energy. Keep in mind that annealing for shape energy could
+      disrupt material boundaries that have already been
+      established. To avoid this, be sure to <link
+	linkend="MenuItem-OOF.Skeleton.PinNodes">pin</link>
+      boundary nodes so that they will not move while annealing.
+    </para>
+  </tip>
+
+  <tip>
+    <para>
+      A good way to anneal efficiently is to apply it only to &nodes;
+      that are in or near the problem areas of the &skel;.  This can
+      be done by using &actives;, or by choosing the
+      <varname>targets</varname> carefully.  One way to anneal only
+      the &nodes; near material boundaries is to select the nodes on
+      interior boundaries (<xref
+      linkend="MenuItem-OOF.NodeSelection.Select_Internal_Boundaries"/>)
+      and their neighbors (<xref
+      linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/>)
+      and then <classname>Anneal</classname> with
+      <varname>targets</varname>=<xref
+	linkend="RegisteredClass-SelectedNodes"/>().
+    </para>
+  </tip>
+  
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

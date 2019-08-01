@@ -1,0 +1,132 @@
+<!--
+  $RCSfile: TB_movenodes.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:11 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<section id="Section-Graphics-MoveNodes" role="toolbox">
+  <title>Move Nodes</title>
+  <para>
+    The Move Nodes Toolbox allows the position of &skel; &nodes; to be
+    set manually.  Unless &nodes; moved in this way are subsequently
+    <link linkend="Section-Concepts-Pin">pinned</link>, other &skel;
+    modification routines may move them away from their assigned
+    spots.
+  </para>
+  <para>
+    <xref linkend="Figure-MoveNodesToolbox"/> shows the arrangement of
+    the Toolbox.  The Toolbox operates in one of two modes, set by the
+    buttons at the top marked <guilabel>Mouse</guilabel> and
+    <guilabel>Keyboard</guilabel>.  In both modes, the boxes labelled
+    <guilabel>x</guilabel> and <guilabel>y</guilabel> show the current
+    position (in <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical
+    coordinates</link>) of the &node; being moved, and the boxes
+    labelled <guilabel>shape energy</guilabel> and
+    <guilabel>homogeneity</guilabel> show the
+    <emphasis>change</emphasis> in the <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+    energy</link> and <link
+    linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>
+    of the &elems; surrounding the moving &node;.
+  </para>
+  <figure id="Figure-MoveNodesToolbox">
+    <title>The Move Nodes Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/movenodes.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/movenodes.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The Move Nodes Toolbox and a portion of the Canvas, showing
+	  a &node; in motion.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <para>
+    To move a &node; in Mouse mode, simply click on or near the &node;
+    in the Canvas, and drag it to its new position. (The &node;'s
+    &skel; must be in the topmost &skel; &layer; in the Canvas.) While
+    the &node; is being dragged, ghostly versions of the &sgmts;
+    connected to the &node; are drawn, and the displayed position,
+    shape energy, and homogeneity are continuously updated.
+  </para>
+  <para>
+    Moving a &node; in Keyboard mode allows for more precise
+    placement, if you happen to know the desired position numerically.
+    Switch to Keyboard mode and <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Move_Nodes.SelectNode">click</link>
+    on the &node; to be moved.  Its position will be entered in the
+    <guilabel>x</guilabel> and <guilabel>y</guilabel> boxes, and the
+    &node; will be highlighted in the Canvas by a pink dot.<footnote>
+      <para>
+	To change the appearance of the pink dot, use the
+	&layereditor; to modify the <xref
+	linkend="RegisteredClass-MoveNodeDisplay"/> that's assigned to
+	the topmost &skel;.  This is a predefined &layer;.  It will be
+	necessary to enable <link
+	linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+	All Layers</command></link> in the <link
+	linkend="Section-Graphics-MenuBar">Settings menu</link> first.
+      </para>
+    </footnote>
+    To move the &node;, type new coordinates in the boxes and click
+    the <guilabel>Move</guilabel> button at the bottom of the toolbox.
+  </para>
+  <para>
+    In either mode, moving a &node; triggers the <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Move_Nodes.MoveNode"/>
+    command.
+  </para>
+  <para>
+    Moves that create <link
+    linkend="Section-Concepts-Skeleton-Illegality">illegal</link>
+    &elems; will be rejected unless the box marked <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Move_Nodes.AllowIllegal"><guilabel>Allow
+    illegal moves</guilabel></link> is checked. It can be convenient
+    to temporarily create illegally shaped &elems; when moving
+    multiple &nodes;, as long as no illegal &elems; remain at the end.
+    During a move, the Toolbox indicates if the moving &node; is in an
+    illegal position.  At other times, it indicates the number of
+    illegal &elems; in the &skel;.
+  </para>
+  <para>
+    The <link
+    linkend="MenuItem-OOF.Skeleton.Undo"><guibutton>Undo</guibutton></link>
+    and <link
+    linkend="MenuItem-OOF.Skeleton.Redo"><guibutton>Redo</guibutton></link>
+    buttons at the bottom of the Toolbox are duplicates of the
+    <guibutton>Undo</guibutton> and <guibutton>Redo</guibutton>
+    buttons on the <link linkend="Section-Tasks-Skeleton">Skeleton Task
+    Page</link>.
+  </para>
+</section>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

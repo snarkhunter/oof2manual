@@ -1,0 +1,102 @@
+<!-- 
+  $RCSfile: rectangle_segment.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:45 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <command>RectangleSegmentSelect</command> is a <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Segment">selection
+    method</link> that selects &sgmts; in response to a mouse click in
+    the <link linkend="Chapter-Graphics">graphics window</link> when
+    the <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+    Selection</link> toolbox is active and is set to
+    <quote>Segment</quote> mode.  It selects all &sgmts; lying within
+    a rectangle swept out by dragging the mouse, as shown in <xref
+    linkend="Figure-rect_segments"/>.  Click the mouse on one corner
+    of the rectangle and drag to the opposite corner.  Only &sgmts;
+    that are completly within the rectangle will be selected.
+  </para>
+  <para>
+    <varname>skeleton</varname> is the &skel; from which the &sgmts; are
+    to be selected.
+  </para>
+  <para>
+    <varname>points</varname> is a <xref linkend="Object-list"/> of
+    <xref linkend="Object-Point"/> objects.  The first and second
+    points in the list are diagonally opposite corners of the
+    rectangle.  Any other points in the list will be ignored.
+  </para>
+  <para>
+    The <varname>shift</varname> and <varname>ctrl</varname>
+    parameters govern how the current selection
+    (<foreignphrase>i.e,</foreignphrase> the set of &sgmts; defined by
+    this operation) is merged with the previous selection (the &sgmts;
+    already selected) to form a new selection, as shown in <xref
+    linkend="Table:ShiftCtrl"/>.  They indicate whether
+    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
+    shift and control keys were depressed during the mouse click that
+    initiated this command.
+  </para>
+  <figure id="Figure-rect_segments">
+    <title>Selecting a Rectangular Set of Segments</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_segments0.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_segments0.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; while some &sgmts; are being selected with
+	  <classname>RectangleSegmentSelect</classname>.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_segments1.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_segments1.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The &sgmts; that were selected are marked with thick green
+	  lines.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

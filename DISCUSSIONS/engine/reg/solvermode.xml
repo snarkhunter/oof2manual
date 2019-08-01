@@ -1,0 +1,43 @@
+<!-- 
+  $RCSfile: solvermode.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-25 02:42:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>SolverMode</classname> subclasses are used to set the
+  <link linkend="Section-Concepts-Mesh-Solving">solution method</link>
+  for a &subproblem; in the <xref
+  linkend="MenuItem-OOF.Subproblem.Set_Solver"/> command.  The two
+  modes differ in the amount of detail that the user must provide.  In
+  <xref linkend="RegisteredClass-BasicSolverMode"/>, &oof2; makes most
+  decisions automatically.  In <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/>, all decisions are
+  left up to the user.  In both cases, the subclass parameters
+  determine the time stepping method (or if there is to be any time
+  stepping at all) and the matrix equation solution technique.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

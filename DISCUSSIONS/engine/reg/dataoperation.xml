@@ -1,0 +1,46 @@
+<!-- 
+  $RCSfile: dataoperation.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-27 21:32:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>DataOperation</classname> subclasses represent the
+  operations that can performed on data produced by the <link
+  linkend="Section-Concepts-Outputs">Output</link> classes when <link
+  linkend="Section-Tasks-Analysis">analyzing results</link>, or
+  computing <link
+  linkend="Section-Concepts-Outputs-Scheduled">scheduled
+  outputs</link>.  They're used in a slightly confusing fashion in
+  scripts.  For scheduled outputs, they appear as the
+  <varname>operation</varname> parameter in <xref
+  linkend="RegisteredClass-BulkAnalysis"/> objects, but for Analysis
+  operations, each <classname>DataOperation</classname> is converted
+  into a menu item. For example, the <xref
+  linkend="RegisteredClass-AverageOutput"/> subclass corresponds to
+  the menu command <xref linkend="MenuItem-OOF.Mesh.Analyze.Average"/>
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

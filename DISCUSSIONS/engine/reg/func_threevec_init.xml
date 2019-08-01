@@ -1,0 +1,91 @@
+<!-- 
+  $RCSfile: func_threevec_init.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-04-29 03:18:01 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+  <para>
+    <classname>FuncThreeVectorFieldInit</classname> objects are used
+    as the <varname>initializer</varname> argument in the <xref
+    linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/> command when
+    assigning initial values to three-dimensional vector fields on a
+    &mesh;. The <varname>fx</varname>, <varname>fy</varname>, and
+    <varname>fz</varname> parameters must be valid Python expression
+    which depend on the variables <varname>x</varname>,
+    <varname>y</varname>, and <varname>t</varname>.  These functions
+    will be used to initialize the <emphasis>x</emphasis>,
+    <emphasis>y</emphasis>, and <emphasis>z</emphasis> components of
+    the &field; at each point in the &mesh;.
+  </para>
+  <note>
+    <para>
+      The variable <varname>t</varname> is set to the time at which
+      the &fields;are initialized, when <xref
+      linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/> or <xref
+      linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>
+      is invoked.  Just because an initializer is a function of time
+      does not mean that the &field; has the given time dependence.
+    </para>
+  </note>
+  <formalpara>
+    <title>Examples</title>
+    <para>
+      All of the following are legal values for <varname>fx</varname>,
+      <varname>fy</varname>, or <varname>fz</varname>:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <simpara><userinput>"100*x"</userinput></simpara>
+	</listitem>
+	<listitem>
+	  <simpara>
+	    <userinput>"cos(2*pi*x) + sin(pi*(k*y+t))</userinput>
+	  </simpara>
+	  <simpara>
+	    where <userinput>k</userinput> is a constant defined in an
+	    <link linkend="MenuItem-OOF.File.Load.Script">input
+	    script</link> or in the <link
+	    linkend="Section-Windows-Console">console window</link>.
+	  </simpara>
+	</listitem>
+	<listitem>
+	  <simpara><userinput>"1.234"</userinput></simpara>
+	</listitem>
+	<listitem>
+	  <simpara><userinput>"f(x,y)"</userinput></simpara> where
+	  <userinput>f</userinput> is a function defined in an <link
+	  linkend="MenuItem-OOF.File.Load.Script">input script</link>
+	  or in the <link linkend="Section-Windows-Console">console
+	  window</link>.
+	</listitem>
+      </itemizedlist>
+      The functions are character strings, and must therefore be
+      enclosed in quotation marks in &oof2; scripts.  When entering
+      functions in the GUI, the quotation marks should
+      <emphasis>not</emphasis> be included.
+    </para>
+  </formalpara>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

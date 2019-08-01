@@ -1,0 +1,202 @@
+<!--
+  $RCSfile: CH_overview.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:10 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+<preface id="Chapter-Overview">
+  <title>Overview</title>
+
+  <section id="Introduction">
+    <title>Introduction</title>
+    <para>
+      &oof2; is public domain software created at the <ulink
+      url="http://www.nist.gov">National Institute of Standards and
+      Technology</ulink> (NIST) to investigate the properties of
+      microstructures. The microstructure of a material is the
+      (usually) complex ensemble of polycrystalline grains, second
+      phases, cracks, pores, and other features occurring on length
+      scales large compared to atomic sizes.
+    </para>
+    <para>
+      At the simplest level, &oof2; is designed to answer questions
+      like, <quote>I know what this material looks like and what it's
+      made of, but I wonder what would happen if I pull on it in
+      different ways?</quote>, or <quote>I have a picture of this
+      stuff and I know that different parts expand more than others as
+      the temperature increases -- I wonder where the stresses are
+      greatest?</quote>
+    </para>
+
+    <para>
+      One approach for investigating microstructural behavior is to
+      reduce the representation of a microstructure to a small number
+      of physical parameters (such as grain size or porosity) and
+      develop a model which depends on them. If this type of
+      reductionist approach is predictive, then such models can be
+      extremely useful. However, when physical properties depend on
+      microstructural details (such as the spatial correlation of
+      crystallite orientation, the shapes and dispersion of second
+      phases, extremes of statistical distributions, or local
+      anisotropies) such data reduction is often difficult or
+      pointless.
+    </para>
+
+    <para>
+      &oof2; takes a non-reductionist, brute force approach, but in a
+      user-friendly way. The user starts with a digitized image of the
+      microstructure and builds a data structure on top of it. All the
+      data plus any that can be inferred by the user is used. Tools
+      are provided to allow the user to graphically select features in
+      the microstructural image and specify their properties. For
+      &oof2;, the microstructure is a data structure composed of image
+      and property data.
+    </para>
+
+    <para>
+      The idea of basing calculations on images is not new. <ulink
+      url="http://ciks.cbt.nist.gov/garboczi/">Edward Garboczi</ulink>
+      and colleagues at NIST have used this approach to investigate
+      behavior of cements and porous media. Researchers at Alcoa have
+      developed finite element models of textured materials. The
+      purpose of creating &oof2; and distributing it freely is to
+      supply a generic tool for calculating microstructure-property
+      relations.
+    </para>
+
+    <section id="Section-History">
+      <title>History</title>
+      <para>
+	The original <application>OOF</application> project was
+	started at NIST in the late 1990's by <ulink
+	url="http://dmse.mit.edu/faculty/faculty/ccarter/"
+	role="external">Craig Carter</ulink>, <ulink
+	url="http://www.ctcms.nist.gov/~fuller/">Ed Fuller</ulink>,
+	<ulink url="http://www.ctcms.nist.gov/~roosen/">Andy
+	Roosen</ulink>, and <ulink
+	url="http://math.nist.gov/~SLanger">Steve Langer</ulink>.  At
+	first, &oof1; only solved linear elasticity problems, but
+	later acquired the ability to handle thermal diffusion as
+	well. &oof1; was actually <emphasis>four</emphasis> separate
+	programs, <application>ppm2oof</application>, which converted
+	images to finite element meshes for elasticity problems,
+	<application>oof</application>, which performed virtual
+	experiments on the meshes produced by
+	<application>ppm2oof</application>, and versions of
+	<application>oof</application> and
+	<application>ppm2oof</application> for systems with both
+	elasticity and thermal diffusion.
+      </para>
+      <para>
+	Meanwhile, Craig Carter moved to <ulink
+	url="http://www.mit.edu" role="external">MIT</ulink>, where
+	his students Edwin Garcia and Rajesh Raghavan extended &oof1;
+	to electromechanical, electrochemical, and viscoplastic
+	systems.  It became clear that &oof1;'s architecture would not
+	permit all this physics to coexist happily in one program, and
+	that maintaining separate versions for a myriad of physical
+	applications was not at all feasible.  Furthermore, &oof1;
+	could not easily be extended to higher order finite elements
+	or to three dimensions.  This provided the motivation for
+	&oof2;.
+      </para>
+      <para>
+	&oof2; is a completely new program, sharing almost no code
+	with &oof1;. It provides more flexibility than &oof1; (it
+	offers more physics, and users can arbitrarily combine
+	physical properties within one material), and is more easily
+	expandable (developers and adventurous users can add new types
+	of physics without creating a separate program).  &oof2; does
+	everything within one program; there is no separation between
+	the mesh generation code and the mesh solution code. Finally,
+	&oof2; will be the basis for <application>OOF3D</application>,
+	which will solve three dimensional microstructures.
+      </para>
+
+    </section>
+  </section>
+
+  <section id="Section-Manual">
+    <title>About This Manual</title>
+    <para>
+      <xref linkend="Chapter-Starting"/> describes how to acquire,
+      install, and start &oof2;.  If you're fortunate enough to have
+      &oof2; already installed, you can skip most of this chapter,
+      although you may want to read <xref linkend="Section-Learning"/>
+      to learn about the on-line tutorials.
+    </para>
+    <para>
+      <xref linkend="Chapter-Concepts"/> discusses the various
+      objects (Microstructures, Fields, Meshes,
+      <foreignphrase>etc.</foreignphrase>) that &oof2; manipulates.
+      It would be a good idea to read this now, although the rest of
+      the manual (the on-line version, at least) links back to it
+      frequently.
+    </para>
+    <para>
+      The main &oof2; GUI consists of a bunch of Task Pages.  <xref
+      linkend="Chapter-Tasks"/> describes each page in detail.  This
+      is where you go to learn how to do something specific.
+    </para>
+    <para>
+      The &oof2; Graphics Window is covered in <xref
+      linkend="Chapter-Graphics"/>.  It discusses how to control what
+      is displayed in the window, and all the operations that require
+      graphical interaction (selecting pixels with the mouse, for
+      example).
+    </para>
+    <para>
+      <xref linkend="Chapter-Windows"/> discusses the remaining parts
+      of the &oof2; GUI.
+    </para>
+    <para>
+      <xref linkend="Chapter-Reference"/> is the &oof2; Reference
+      Manual.  All operations in the GUI have a text counterpart.
+      These text commands form a hierarchical system of menus.  <xref
+      linkend="Chapter-Reference"/> lists and describes all of the
+      commands in detail, as well as all of the objects that can be
+      used as arguments to those commands.
+    </para>
+    <para>
+      <xref linkend="Chapter-Extending"/> and <xref
+      linkend="Chapter-Coding"/> describe how to add new features to
+      &oof2;.  <xref linkend="Chapter-Extending"/> discusses the
+      mechanics: which files need to be created, where to put them,
+      and how to compile them into an &oof2; extension module.  <xref
+      linkend="Chapter-Coding"/> discusses the contents of the files.
+      It describes the classes and subroutines that need to be written
+      and provides examples.
+    </para>
+    <para>
+      This manual was written in <ulink url="http:docbook.org"
+      role="external">DocBook</ulink> 4.5 XML, and converted to html
+      with <ulink url="http://saxon.sourceforge.net/"
+      role="external"><application>saxon</application></ulink> 6.5.3.
+    </para>
+  </section>
+</preface>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

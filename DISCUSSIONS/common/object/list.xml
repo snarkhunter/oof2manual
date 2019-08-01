@@ -1,0 +1,77 @@
+<!-- 
+  $RCSfile: list.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:19 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<refentry id="Object-list" xreflabel="list">
+  <refnamediv>
+    <refname>Python lists</refname>
+    <refpurpose>Python syntax for a list of objects</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <simpara>[a,b,c, ...]</simpara>
+  </refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A list in Python is written as a comma-separated series of
+      objects within square brackets (<userinput>[]</userinput>).
+    </para>
+    <itemizedlist>
+      <title>Examples</title>
+      <listitem>
+	<simpara>
+	  <userinput>[1,2,3]</userinput> is a list of integers.
+	</simpara>
+      </listitem>
+      <listitem>
+	<simpara>
+	  <userinput>[Point(1.23, 4.56)]</userinput> is a list
+	  containing a single <link
+	  linkend="Object-Point"><classname>Point</classname></link>
+	  object.
+	</simpara>
+      </listitem>
+      <listitem>
+	<simpara>
+	  <userinput>[[1,2,3], [4,5,6], [7,8]]</userinput> is a list
+	  of lists of integers.
+	</simpara>
+      </listitem>
+      <listitem>
+	<simpara>
+	  <userinput>[]</userinput> is an empty list.
+	</simpara>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
+</refentry>
+
+
+
+  
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

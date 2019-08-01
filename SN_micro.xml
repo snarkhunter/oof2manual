@@ -1,0 +1,245 @@
+<!--
+  $RCSfile: SN_micro.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-05-02 21:36:52 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section id="Section-Tasks-Microstructure">
+  <title>Microstructure</title>
+
+  <para>
+    The &oof2; &micro; is the digitized representation of a physical
+    microstructure and is the primary object upon which &oof2;
+    operates.  The &micro; is a container for &skels; and &meshes;.
+    The Microstructure Page in the main &oof2; window has two main
+    purposes: it creates and manages &micro; objects, and it creates
+    and manages <link
+    linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+    groups</link>.
+  </para>
+
+  <para>
+    The anatomy of the Microstructure Page is shown in <xref
+    linkend="Figure-MicroPage"/>.  The Microstructure Page
+    <foreignphrase>per se</foreignphrase> starts below the <link
+    linkend="Figure-MainWindow">Navigation Bar</link>.  At the top is
+    the <emphasis>Microstructure Chooser</emphasis>, which selects the
+    &micro; on which most of the other components of the page operate.
+    Below that are <link
+    linkend="Section-MicrostructurePage-Buttons">buttons</link> for
+    manipulating &micros; and two panes, the <link
+    linkend="Section-MicrostructurePage-InfoPane">Info Pane</link> and
+    the <link linkend="Section-MicrostructurePage-GroupPane">Pixel
+    Group Pane</link>.
+  </para>
+
+  <figure id="Figure-MicroPage">
+    <title>
+      The Microstructure Page
+    </title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gui/microstructure_page.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gui/microstructure_page.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <simplesect id="Section-MicrostructurePage-Buttons">
+    <title>Microstructure Page Buttons</title>
+    <para>
+      The buttons all correspond in a straightforward fashion to items
+      in the <xref linkend="MenuItem-OOF.Microstructure"/> menu, and
+      the details are provided there.  The first row of buttons is
+      used to create a new &micro;. 
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    Use the <guibutton>New...</guibutton> button to create a
+	    completely new &micro; without any associated
+	    &images; (<xref
+	    linkend="MenuItem-OOF.Microstructure.New"/>).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Use the <guibutton>New from Image</guibutton> button to
+	    create a &micro; from an &image; that's already loaded in
+	    <emphasis>another</emphasis> &micro; (<xref
+	    linkend="MenuItem-OOF.Microstructure.Create_From_Image"/>).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Use the <guibutton>New from Image File</guibutton> button
+	    to load a new &image; and create a &micro; from it (<xref
+	    linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"/>).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Use the <guibutton>New from Orientation Map</guibutton>
+	    button to load a new <link
+	    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+	    Map</classname></link> and create a &micro; from
+	    it (<xref
+	    linkend="MenuItem-OOF.Microstructure.Create_From_OrientationMap_File"/>).
+	  </para>
+	</listitem>
+      </itemizedlist>
+      After using any of these buttons, the Microstructure chooser at
+      the top of the page will automatically switch to the new
+      &micro;.
+    </para>
+    <para>
+      Most of the <guilabel>New&hellip;</guilabel> buttons bring up a
+      dialog box in which the name and size of the &micro; can be
+      set. If any of these parameters is set to
+      <userinput>automatic</userinput>, a suitable default will be
+      used.  In the GUI, any text box with a checkbox to its left
+      accepts the <userinput>automatic</userinput> value when the
+      checkbox is <emphasis>unchecked</emphasis>, as show in <xref
+      linkend="Figure-automatic"/>.  The documentation for the menu
+      commands explains what <quote>automatic</quote> means in each
+      context.
+    </para>
+    <para>
+      The second row of buttons manipulate the &micro; that's
+      selected in the Microstructure chooser.
+      <itemizedlist>
+	<listitem>
+	  <formalpara>
+	    <title>Rename</title>
+	    <para>
+	      Rename the current &micro; (<xref
+	      linkend="MenuItem-OOF.Microstructure.Rename"/>).
+	    </para>
+	  </formalpara>
+	</listitem>
+	<listitem>
+	  <formalpara>
+	    <title>Copy</title>
+	    <para>
+	      Make a duplicate of the current &micro; (<xref
+	      linkend="MenuItem-OOF.Microstructure.Copy"/>).  The copy
+	      will include copies of all the &images; and <link
+	      linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	      groups</link> in the original, but not the <link
+	      linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+	      maps</link>, &skels;, or &meshes;.
+	    </para>
+	  </formalpara>
+	</listitem>
+	<listitem>
+	  <formalpara>
+	    <title>Delete</title>
+	    <para>
+	      Delete the current &micro;, as well as all of its
+	      &skels; and &meshes; (<xref
+	      linkend="MenuItem-OOF.Microstructure.Delete"/>).
+	    </para>
+	  </formalpara>
+	</listitem>
+	<listitem>
+	  <formalpara>
+	    <title>Save</title>
+	    <para>
+	      Save the current &micro; in a file (<xref
+	      linkend="MenuItem-OOF.File.Save.Microstructure"/>).  The
+	      only difference between the
+	      <guibutton>Save...</guibutton> button and the
+	      <guimenu>File/Save/Microstructure</guimenu> command in
+	      the menubar is that the <guibutton>Save...</guibutton>
+	      button saves the &micro; named in the Microstructure
+	      Chooser, whereas the menubar command asks for a &micro;
+	      in a dialog box.
+	    </para>
+	  </formalpara>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+
+  <simplesect id="Section-MicrostructurePage-InfoPane">
+    <title>The Info Pane</title>
+    <para>
+      The Info Pane on the left lists the <link
+      linkend="Section-Concepts-Microstructure-Coordinates">sizes</link>
+      of the currently selected &micro;, as well as the names of any
+      &images; and <link
+      linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+      maps</link> it contains.
+    </para>
+  </simplesect>
+  <simplesect id="Section-MicrostructurePage-GroupPane">
+    <title>The Pixel Group Pane</title>
+    <para>
+      The Pixel Group Pane creates and manipulates <link
+      linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+      groups</link>.  Using pixel groups is in principle optional in
+      &oof2;, but they provide a convenient way of storing and
+      operating on sets of pixels.  The buttons on the left side and
+      right sides of the pane correspond to items in the <xref
+      linkend="MenuItem-OOF.PixelGroup"/> menu.  The center of the
+      pane is a list of all of the pixel groups defined in the
+      current &micro;. 
+    </para>
+    <para>
+      The five buttons to the left of the central list operate on
+      the pixel groups themselves: creating a <link
+      linkend="MenuItem-OOF.PixelGroup.New">new</link> group, <link
+      linkend="MenuItem-OOF.PixelGroup.Rename">renaming</link> or
+      <link linkend="MenuItem-OOF.PixelGroup.Copy">copying</link> an
+      existing group, <link
+      linkend="MenuItem-OOF.PixelGroup.Delete">deleting</link> a
+      group, or setting a group's <link
+      linkend="MenuItem-OOF.PixelGroup.Meshable">meshable</link>
+      flag.  All except for <guibutton>New</guibutton> operate on
+      the pixel group that's currently selected in the list.
+    </para>
+    <para>
+      The four buttons to the right of the central list operate on
+      the <emphasis>contents</emphasis> of the currently selected
+      group.  <link
+      linkend="MenuItem-OOF.PixelGroup.AddSelection"><guibutton>Add</guibutton></link> button
+      adds the <link
+      linkend="Section-Concepts-Microstructure-PixelSelection">currently
+      selected pixels</link> to the currently selected group.  The
+      <link
+	  linkend="MenuItem-OOF.PixelGroup.RemoveSelection"><guibutton>Remove</guibutton></link>
+      button removes the currently selected pixels from the group,
+      and the <link
+      linkend="MenuItem-OOF.PixelGroup.Clear"><guibutton>Clear</guibutton></link>
+      button empties the group entirely.  The <link
+      linkend="MenuItem-OOF.PixelGroup.Query"><guibutton>Info</guibutton></link>
+      button prints information about the group in the <link
+      linkend="Section-Windows-Messages">Message window</link>.
+    </para>
+  </simplesect>
+</section>
+
+
+    <!-- Keep this comment at the end of the file
+    Local variables:
+    sgml-omittag:t
+    sgml-shorttag:t 
+    sgml-namecase-general:nil
+    sgml-minimize-attributes:nil
+    sgml-always-quote-attributes:t
+    sgml-indent-step:2
+    sgml-indent-data:t
+    sgml-parent-document:("man_oof2.xml" "book" "chapter")
+    sgml-exposed-tags:nil
+    sgml-local-ecat-files:nil
+    End:
+    -->

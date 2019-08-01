@@ -1,0 +1,128 @@
+<!--
+  $RCSfile: CH_tasks.xml,v $
+  $Revision: 1.6 $
+  $Author: langer $
+  $Date: 2011-05-02 15:47:04 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<chapter id="Chapter-Tasks">
+  <title>Task Pages</title>
+
+  <section id="Section-Tasks-Overview">
+    <title>Overview</title>
+    <para>
+      This chapter describes how to operate the &oof2; main GUI
+      window.  All operations in the GUI have an associated <link
+      linkend="Section-ScriptGUI">command</link> which is discussed in
+      <xref linkend="Chapter-Reference"/>.  That chapter is the place
+      to go for detailed discussions about what the commands do and
+      how their arguments are defined.  In this chapter the section
+      describing each GUI page provides an overview of the page and
+      discusses any GUI-specific issues, but does not provide details
+      of how the command works or how its arguments are defined.  Each
+      section does, however, link to the relevant pieces of <xref
+      linkend="Chapter-Reference"/> where the details may be found.
+    </para>
+    <para>
+      The main &oof2; window consists of a menu bar, a navigation bar,
+      and a <emphasis>Task Page</emphasis> (<xref
+      linkend="Figure-MainWindow"/>). The navigation bar switches
+      between different Task Pages.  Each Task Page addresses a
+      fundamental step in an &oof2; calculation.  The pages are
+      arranged, more or less, in the order in which you'll use them.
+    </para>
+
+    <figure id="Figure-MainWindow">
+      <title>The Main &oof2; Window</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/mainwindow.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/mainwindow.eps" format="EPS"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Annotated image of the main oof2 window.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+
+    <note>
+      <para>
+	Your version of &oof2; may not look exactly like the
+	illustrations in this manual. You can change the color scheme,
+	widget set, and font used in the GUI via the <xref
+	linkend="MenuItem-OOF.Settings.Fonts"/> menu and <xref
+	linkend="MenuItem-OOF.Settings.Theme"/> command.
+      </para>
+    </note>
+    <para>
+      The Menu Bar at the top of the window in <xref
+      linkend="Figure-MainWindow"/> (highlighted in light green)
+      includes general purpose commands.
+    </para>
+    <para>
+      The Task Page at the bottom (highlighted in yellow in the
+      figure) contains buttons and widgets for working on a particular
+      aspect of &oof2;.  Each page is described in its own section of
+      this manual.
+    </para>
+    <para>
+      The Navigation Bar between the menu bar and the task page
+      (highlighted in light blue) contains a central pull down menu
+      for choosing Task Pages.  The buttons immediately to the left
+      and right of the Task menu can be used to quickly switch to the
+      next and previous pages in the order in which they're listed in
+      the central menu.  The outer pair of buttons also switch to the
+      next and previous pages, but in the order in which the pages
+      were visited.
+    </para>
+    <para>
+      Many of the Task Pages are divided into separate panes.  The
+      divider between the panes may be dragged to change their sizes.
+    </para>
+  </section>
+
+  &TPmicro;
+  &TPimage;
+  &TPpixsel;
+  &TPactive;
+  &TPmaterial;
+  <!-- &TPinterfaces; -->
+  &TPskel;
+  &TPpinnodes;
+  &TPskelsel;
+  &TPskelbdy;
+  &TPfemesh;
+  &TPfields;
+  &TPbdycond;
+  &TPscheduled;
+  &TPsolver;
+  &TPanalysis;
+  &TPbdyanalysis;
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

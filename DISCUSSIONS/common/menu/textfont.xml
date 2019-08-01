@@ -1,0 +1,53 @@
+<!-- 
+  $RCSfile: textfont.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:18 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command sets the font to be used in text displays in the GUI,
+    such as the <link linkend="Section-Windows-Console">Console</link>
+    and <link linkend="Section-Windows-Messages">Messages</link>
+    windows, which look best in a fixed-width font.  &oof2; only
+    suggests that you use a fixed-width font for these windows.  You
+    are free to choose any font you like.
+  </para>
+  <para>
+    The font name can be any font recognized by the <ulink
+    url="http://www.pango.org" role="external">Pango</ulink> library.
+    In GUI mode, this command brings up a font selection dialog, so
+    you don't have to know the names of the fonts installed on
+    the system.
+  </para>
+  <para>
+    To automatically set the font for all &oof2; sessions,
+    put this command in the file
+    <filename>.oof2rc</filename> in your home directory, for example:
+    <literallayout class="monospaced">
+      OOF.Settings.Font.Fixed(fontname="Courier 12")
+    </literallayout>
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

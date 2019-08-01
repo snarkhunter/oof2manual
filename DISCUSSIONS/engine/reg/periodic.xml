@@ -1,0 +1,73 @@
+<!-- 
+  $RCSfile: periodic.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:43 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Periodic boundary conditions set the values of a component of a &field; on a
+    periodic pair of exterior <link
+    linkend="Section-Concepts-Skeleton-Boundary-Edge">edge</link> boundaries to
+    be the same.  A separate boundary condition must be established for each
+    component of a &field; that is to be periodic.  The value for the
+    <varname>boundary</varname> parameter must be a string containing the names
+    of two boundaries that constitute a periodic pair: the appropriate <link
+    linkend="Section-Concepts-Skeleton-Periodicity">periodicity</link> option
+    must have been chosen when the <link
+    linkend="Section-Concepts-Skeleton">skeleton</link> was created in the <link
+    linkend="Section-Tasks-Skeleton">skeleton task page</link> and the
+    directions of the boundaries must be opposite.  By default, the left and
+    right boundaries will constitute a valid pair if
+    <varname>left_right_periodicity</varname> was chosen when the skeleton is
+    created, as will the top and bottom boundaries, if
+    <varname>top_bottom_periodity</varname> was chosen.  The GUI presents a pull
+    down menu listing the legal strings, but users of the text interface will
+    need to know the possible values.
+  </para>
+  <para>
+    The <varname>field</varname>, <varname>field_component</varname>,
+    <varname>equation</varname>, and <varname>eqn_component</varname> parameters
+    are the same as those for <link
+    linkend="RegisteredClass-DirichletBC">Dirichlet</link> boundary conditions.
+    See that discussion for details.  Note that periodic boundary conditions do
+    not have a <varname>profile</varname> parameter.
+  </para>
+
+  <formalpara>
+    <title>Example</title>
+    <para>
+	<literallayout class="monospaced">
+    PeriodicBC(field=Displacement, field_component='y',
+                equation=Force_Balance, eqn_component='y',
+                boundary='left right')
+	</literallayout>
+      This constrains the y component of the
+      <userinput>Displacement</userinput> along the right and left boundaries of
+      the &mesh;, making the y component of the
+      <userinput>Force_Balance</userinput> periodic in the horizontal direction. 
+    </para>
+  </formalpara>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

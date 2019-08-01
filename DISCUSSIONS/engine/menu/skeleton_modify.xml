@@ -1,0 +1,68 @@
+<!-- 
+  $RCSfile: skeleton_modify.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:27 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    The <command>Modify</command> command applies a modification
+    operator to a &skel;.  The available operations are listed in the
+    <xref linkend="RegisteredClass-SkeletonModifier"/> class.
+  </para>
+  <para>
+    A good &skel; must be (1) a faithful representation of its &micro;
+    and (2) composed of well-shaped elements. An element's quality is
+    measured by its <link
+    linkend='Section-Concepts-Skeleton-Homogeneity'>homogeneity</link>
+    and its <link
+    linkend='Section-Concepts-Skeleton-Shape_Energy'>shape
+    energy</link>.  Modifications to &skels; naturally aim at either
+    better adaptation to material boundaries
+    (<emphasis>homogeneity</emphasis>), or better element shape
+    (<emphasis>shape energy</emphasis>), or both.
+  </para>
+  <para>
+    &oof2; provides various <link
+    linkend='RegisteredClass-SkeletonModifier'>tools</link> to help
+    adapt a &skel; to its material boundaries. Unfortunately, these
+    tools are not magic wands that you can swing to automatically
+    create perfect &skels;. These tools work best with careful
+    intervention and, therefore, users should learn the basics of each
+    <link linkend='RegisteredClass-SkeletonModifier'>modification
+    tool</link>.  Fortunately, once a sequence of operations has been
+    found that works well on one &micro;, it's likely to work well on
+    other related &micros;.  See the <xref
+    linkend="RegisteredClass-SkeletonModifier"/> reference page for
+    more information.
+  </para>
+  <para>
+    To apply a <xref linkend="RegisteredClass-SkeletonModifier"/> to
+    only part of a &skel;, either use an &active; or the tools for
+    pinning &nodes; in the <xref
+    linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

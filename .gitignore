@@ -1,0 +1,15 @@
+*~
+\#*\#
+.\#*
+*.aux
+*.html
+*.log
+*.out
+*.pdf
+oof2_api.xml
+oof2dir
+oof2man.tgz
+bin
+tmpdir
+publish
+local

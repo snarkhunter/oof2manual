@@ -1,0 +1,57 @@
+<!-- 
+  $RCSfile: isothermalexp.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-05-25 21:42:49 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<para>
+  Isotropic thermal expansion makes an additive contribution of
+  <equation>
+    <alt role="tex">
+      \[ -C_{ijkl} \alpha_{kl} (T-T_0) \]
+    </alt>
+  </equation>
+  to the <xref linkend="Flux-Stress"/>, where <inlineequation><alt
+  role="tex">\(C_{ijkl}\)</alt></inlineequation> is the &material;'s
+  <link linkend="PropertyType-Elasticity">elastic</link> modulus, and
+  <inlineequation><alt role="tex">\(T\)</alt></inlineequation> is the
+  local <xref linkend="Field-Temperature"/> &field;.
+</para>
+<para>
+  <inlineequation><alt role="tex">\(\alpha_{kl}\)</alt></inlineequation>
+  is the thermal expansion coefficient, which is a symmetric second
+  rank tensor whose diagonal elements, <inlineequation><alt
+  role="tex">\(\alpha_{ii}\)</alt></inlineequation>, are equal to the
+  parameter <varname>alpha</varname>, and whose off-diagonal elements
+  are 0.
+</para>
+<para>
+  <inlineequation><alt role="tex">\(T_0\)</alt></inlineequation> is
+  equal to the parameter <varname>T0</varname>.  It is the temperature
+  at which the thermal strain vanishes.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

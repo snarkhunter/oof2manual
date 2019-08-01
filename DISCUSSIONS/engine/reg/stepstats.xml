@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: stepstats.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-15 21:12:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>StepStatistics</classname> is a dubiously useful <xref
+  linkend="RegisteredClass-ScheduledOutput"/> that gathers statistics
+  on the number and size of the time steps taken when <link
+  linkend="Section-Tasks-Solver">solving</link> a time dependent
+  problem.  Since the same statistics are automatically printed to the
+  <link linkend="Section-Windows-Messages">Messages Window</link>
+  after every solution, this class is only useful if for some reason
+  you need those numbers saved in a file.
+</para>
+<para>
+  <classname>StepStatistics</classname> doesn't produce any output
+  until the time evolution is complete.  However, it does need to be
+  invoked at intermediate times so that it can accumulate statistics.
+  This is done by setting <varname>scheduletype</varname> to <xref
+  linkend="RegisteredClass-ConditionalOutputSchedule"/> and
+  <varname>schedule</varname> to <xref
+  linkend="RegisteredClass-EveryTime"/> in <xref
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Schedule.Set"/>.
+</para>
+
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

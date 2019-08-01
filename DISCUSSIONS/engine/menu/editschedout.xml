@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: editschedout.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-18 20:44:03 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Replace the <xref linkend="RegisteredClass-ScheduledOutput"/> of the
+  given <link linkend="Section-Concepts-Outputs-Scheduled">Scheduled
+  Output</link>, without changing its name, <xref
+  linkend="RegisteredClass-Schedule"/>, <xref
+  linkend="RegisteredClass-ScheduleType"/>, or <xref
+  linkend="RegisteredClass-OutputDestination"/>.  This corresponds to
+  editing in the GUI, because the GUI preloads the dialog box with the
+  current settings of the <xref
+  linkend="RegisteredClass-ScheduledOutput"/> that is being replaced.
+</para>
+<para>
+  If the new <xref linkend="RegisteredClass-ScheduledOutput"/> is
+  incompatible with the old <xref
+  linkend="RegisteredClass-ScheduledOutput"/>'s <xref
+  linkend="RegisteredClass-OutputDestination"/>, the old <xref
+  linkend="RegisteredClass-OutputDestination"/> will be deleted.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

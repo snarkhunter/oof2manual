@@ -1,0 +1,65 @@
+<!-- 
+  $RCSfile: basicadaptive.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-25 17:32:37 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Using <classname>BasicAdaptiveDriver</classname> as the
+  <varname>time_stepper</varname> in <xref
+  linkend="RegisteredClass-BasicSolverMode"/> tells &oof2; to <link
+  linkend="Section-Concepts-Mesh-Solving">solve</link> a time
+  dependent problem using adaptive stepping, in which the step size is
+  adjusted to keep the estimated error below the given
+  <varname>tolerance</varname>.  If that is not possible without using
+  timesteps smaller than <varname>minstep</varname>, an error will be
+  raised and the calculation will be aborted.
+</para>
+<para>
+  Adaptive stepping requires more computation per step than <link
+  linkend="RegisteredClass-BasicUniformDriver">uniform</link>
+  stepping, but can be much more accurate and efficient, especially if
+  the optimal step size changes during a calculation.
+</para>
+<para>
+  <classname>BasicAdaptiveDriver</classname> automatically uses the
+  <xref linkend="RegisteredClass-SS22"/> method with
+  <varname>theta1</varname>=<varname>theta2</varname>=<userinput>0.5</userinput>
+  if the equations contain second order <link
+  linkend="Section-Concepts-Time-Dependence">time derivatives</link>.
+  It uses <xref linkend="RegisteredClass-CrankNicolson"/> otherwise.
+  In both cases, the time step control and error estimation are
+  handled by <xref linkend="RegisteredClass-TwoStep"/> and <xref
+  linkend="RegisteredClass-AbsoluteErrorScaling"/>.
+</para>
+<para>
+  <xref linkend="RegisteredClass-AdaptiveDriver"/> plays the same role
+  in <xref linkend="RegisteredClass-AdvancedSolverMode"/> that
+  <classname>BasicAdaptiveDriver</classname> plays in <xref
+  linkend="RegisteredClass-BasicSolverMode"/>.
+</para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,905 @@
+<!--
+  $RCSfile: CH_graphics.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-04-15 21:12:40 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+<chapter id="Chapter-Graphics">
+  <title>The Graphics Window</title>
+  
+  <para>
+    The Graphics Window provides visual output from &oof2;, and is the
+    home of all operations that require user interaction with
+    graphical representations of &micros;, &images;, &skels;, and
+    &meshes;.
+  </para>
+  <para>
+    <xref linkend="Figure-Graphics"/> shows the structure of the
+    Graphics Window.  It consists of five main panes:
+    <itemizedlist>
+      <listitem>
+	<para>
+	  The <emphasis>Canvas</emphasis> is where &oof2; draws
+	  &micros;.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <link linkend="Section-Graphics-Time"><emphasis>Time
+	  Controls</emphasis></link> display and change the time of
+	  the &micros; displayed on the Canvas.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <link
+	  linkend="Section-Graphics-Toolboxes"><emphasis>Toolbox</emphasis></link>
+	  to the left of the Canvas controls how &oof2; responds to
+	  mouse clicks on the Canvas.  The Toolbox also displays
+	  information in response to mouse clicks.  &oof2; contains
+	  many <link linkend="Section-Graphics-Toolboxes">different
+	  Toolboxes</link>.  The Toolbox Chooser at the top of the
+	  Toolbox pane switches between them.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <link linkend="Section-Graphics-LayerList">Layer
+	  List</link> at the bottom of the window lists the contents
+	  of the Canvas.  It also provides a quick way of turning
+	  different parts of the display on and off.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <link linkend="Section-Graphics-ContourMap">Contour
+	  Map</link> to the right of the Canvas displays the colors
+	  used in contour plots.
+	</para>
+      </listitem>
+    </itemizedlist>
+    The <link linkend="Section-Graphics-MenuBar">Menu Bar</link> at
+    the top of the window contains commands that adjust the behavior
+    of the window and provide alternate ways of performing some basic
+    tasks.
+  </para>
+  <figure id="Figure-Graphics">
+    <title>The Graphics Window</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/gfxwindow.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/gfxwindow.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+
+  <section id='Section-Graphics-Layer'>
+    <title>Layers</title>
+    <para>
+      The objects displayed in the Canvas are arranged in
+      <emphasis>Layers</emphasis>.  Each &layer; obscures the layers
+      below it, and is obscured by the &layer; above it. Each &layer;
+      displays some aspect of a single &oof2; object, either a
+      &micro;, &image;, &skel;, or &mesh;.  Some &layer; are created
+      automatically when a Graphics Window is opened.  Other &layer;
+      are created by the <link
+	linkend="Section-Graphics-LayerEditor">Layer Editor</link>.
+    </para>
+    <para>
+      Each &layer; is drawn on the Canvas by a <xref
+      linkend="RegisteredClass-DisplayMethod"/> object.  The
+      documentation for <xref
+      linkend="RegisteredClass-DisplayMethod"/> lists all of the <xref
+      linkend="RegisteredClass-DisplayMethod"/> subclasses, and
+      indicates which types of object each subclass can draw.  
+    </para>
+    <para id="canonicallayerordering">
+      When new &layers; are added to a Canvas, &oof2; attempts to
+      insert them so as to minimize the amount of useful information
+      that each &layer; obscures in the &layers; below it.  &layers;
+      containing sets of points are drawn above &layers; containing
+      sets of lines, and &layers; containing lines are drawn above
+      &layers; containing filled polygons or bitmapped &images;.  This
+      ordering can be changed by explicitly moving &layers; around in
+      the <link linkend="Section-Graphics-LayerList">Layer
+      List</link>.
+    </para>
+  </section>
+
+  <section id="Section-Graphics-LayerSet">
+    <title>Layer Sets</title>
+    <para>
+      &layers; that display the same object can be grouped together
+      into a <emphasis>LayerSet</emphasis>.  For example, a &skel;
+      might be displayed by drawing its <link
+      linkend="RegisteredClass-SkeletonEdgeDisplay">edges</link>
+      <emphasis>and</emphasis> by filling each &elem; according to its
+      <link linkend="RegisteredClass-SkeletonMaterialDisplay">material
+      color</link>.  If these two &layers; are in one &layerset;, then
+      they will always refer to the same &skel;.  Changing the &skel;
+      of one &layer; will also change the &skel; of the other &layer;.
+    </para>
+  </section>
+
+  <section id="Section-Graphics-LayerList">
+    <title>The Layer List</title>
+    <para>
+      The Layer List at the bottom of the Graphics Window contains one
+      line for each &layer; in the window.  The &layers; are listed in
+      the opposite of the order in which they're drawn, so that the
+      layers drawn <emphasis>last</emphasis> are at the top of the
+      list. That is, &layers; that are conceptually at the top of the
+      display, obscuring the &layers; below them, are listed at the
+      top of the Layer List.  
+    </para>
+    <para>
+      <xref linkend="Figure-LayerList"/> indicates the components of
+      the Layer List.  Each line corresponds to a single &layer;, and
+      is made up of the following columns:
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    A check button marked <guilabel>Show</guilabel>.  If it's
+	    checked, the &layer; is drawn on the canvas.  If it's not
+	    checked, the &layer; is invisible.  Toggling the button
+	    invokes the <link
+	    linkend="MenuItem-OOF.Graphics_n.Layer.Hide"><command>Hide</command></link>
+	    and <link
+	    linkend="MenuItem-OOF.Graphics_n.Layer.Show"><command>Show</command></link>
+	    commands in the <xref
+	    linkend="MenuItem-OOF.Graphics_n.Layer"/> menu.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+ 	    A button marked <guibutton>Map</guibutton>, which shows
+ 	    and hides the <link
+ 	    linkend="Section-Graphics-ContourMap">Contour Map</link>
+ 	    associated with the layer.  At most one <link
+ 	    linkend="Section-Graphics-ContourMap">Contour Map</link>
+ 	    may be displayed at one time.  This button is greyed out
+ 	    for &layers; which do not display contour data.  For
+ 	    contour layers, the button invokes the <link
+ 	    linkend="MenuItem-OOF.Graphics_n.Layer.Show_Contour_Map"><command>Show_Contour_Map</command></link>
+ 	    and <link
+ 	    linkend="MenuItem-OOF.Graphics_n.Layer.Hide_Contour_Map"><command>Hide_Contour_Map</command></link>
+ 	    commands in the <xref
+ 	    linkend="MenuItem-OOF.Graphics_n.Layer"/> menu.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The class (&image;, &mesh;,
+	    <foreignphrase>etc.</foreignphrase>) and name (in
+	    parentheses) of the object being displayed.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    How the object is being displayed.  This is the name of
+	    the &layer;'s <xref
+	    linkend="RegisteredClass-DisplayMethod"/>.  The amount of
+	    extra detail provided for the <xref
+	    linkend="RegisteredClass-DisplayMethod"/> depends on the
+	    setting of the <link
+	    linkend="MenuItem-OOF.Graphics_n.Settings.Long_Layer_Names"><command>Long
+	    Layer Names</command></link> entry in the <link
+	    linkend="Section-Graphics-MenuBar">Settings menu</link>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <figure id="Figure-LayerList">
+      <title>The Layer List</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/layerlist.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/layerlist.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      Clicking on an entry in the Layer List (but not on one of the
+      buttons in it) selects that &layer; for further processing by
+      commands in the Graphics Window's <link
+      linkend="MenuItem-OOF.Graphics_n.Layer"><command>Layer</command></link>
+      menu and by the <link
+      linkend="Section-Graphics-LayerEditor">Layer Editor</link>.
+      Control-clicking on a selected &layer; will deselect it.
+    </para>
+    <para>
+      To rearrange the order of the &layers; in the list, simply click
+      and drag a &layer; to its new position, as shown in <xref
+      linkend="Figure-LayerListMove"/>.  The &layers; in the canvas
+      will rearrange themselves accordingly.  Dragging a layer invokes
+      the commands <xref
+      linkend="MenuItem-OOF.Graphics_n.Layer.Raise.By"/> and <xref
+      linkend="MenuItem-OOF.Graphics_n.Layer.Lower.By"/>.
+    </para>
+    <para>
+      It's often convenient to repeatedly raise and lower a layer to
+      compare it to an adjacent layer.  To do this easily, use the
+      keyboard accelerators <userinput>control-L</userinput> and
+      <userinput>control-R</userinput>, corresponding to the <link
+      linkend="MenuItem-OOF.Graphics_n.Layer.Raise.One_Level"><command>Raise.One_Level</command></link>
+      and <link
+      linkend="MenuItem-OOF.Graphics_n.Layer.Lower.One_Level"><command>Lower.One_Level</command></link>
+      in the <xref linkend="MenuItem-OOF.Graphics_n.Layer"/> menu.
+    </para>
+    <figure id="Figure-LayerListMove">
+      <title>Rearranging Layers</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/layerlist2.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/layerlist2.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      In normal operation, the Layer List actually doesn't show all of
+      the &layers; that are being displayed on the Canvas.  This is
+      because there are a lot of auxiliary &layers;, for showing
+      selections and other decorations, that would just clutter up the
+      list.  These &layers; are called <emphasis>unlisted</emphasis>
+      layers, and are indicated by a thin horizontal line in the list.
+      The <link
+      linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+      All Layers</command></link> command in the <link
+      linkend="Section-Graphics-MenuBar">Settings menu</link> governs
+      whether or not the auxiliary &layers; are listed.
+    </para>
+  </section>
+
+  <section id="Section-Graphics-ContourMap">
+    <title>Contour Map</title>
+    <para>
+      The Contour Map Pane at the right side of the Graphics Window
+      displays the contour levels used in contour plots in the Canvas.
+      There are two forms for the Contour Map, shown in <xref
+      linkend="Figure-ContourMap"/>.  The form on the left is used for
+      <link linkend="RegisteredClass-FilledContourDisplay">filled
+      contours</link> and other plots that assign (<quote>map</quote>)
+      colors to numerical values.  The second form is used for <link
+      linkend="RegisteredClass-PlainContourDisplay">contour
+      line</link> plots.
+    </para>
+    <figure id="Figure-ContourMap">
+      <title>The Contour Map Pane</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/contourmap.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/contourmap.eps" format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    The two forms of the Contour Map.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <para>
+      The two forms of the Contour Map differ only in their central
+      map regions: one form displays a Color Bar, and the other only
+      shows a set of lines.  The positions of the colors and lines
+      correspond to the numerical values assigned to colors and lines
+      in the plot in the Canvas.  The values assigned to the top and
+      bottom colors and lines are indicated immediately above and
+      below the map (shown as <quote>Full Range</quote> in the figure).
+    </para>
+    <para>
+      Clicking on a color or on a space between two lines
+      <emphasis>marks</emphasis> a range of values.  The minimum and
+      maximum values in the range are shown in the boxes right below
+      the Full Range minimum.  The button marked <guibutton>Clear
+      Mark</guibutton> simply removes the mark from the map.
+    </para>
+    <para>
+      Several aspects of the Contour Map display may be controlled in
+      the <link
+      linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command></link>
+      menu.  A PDF image of the Contour Map may be saved to a
+      file with the <link
+      linkend="MenuItem-OOF.Graphics_n.File.Save_Contourmap"><command>Save
+      Contourmap</command></link> command in the <link
+      linkend="MenuItem-OOF.Graphics_n.File"><command>File</command></link>
+      menu.
+    </para>
+  </section>
+
+  <section id="Section-Graphics-Time">
+    <title>Setting the Time</title>
+    <para>
+      A &mesh; can store many sets of &field; values at different
+      <link linkend="Section-Concepts-Mesh-Field">times</link>.  The
+      &mesh;'s current time is the time of its latest stored data set,
+      and is displayed on the <link linkend="Section-Tasks-FEMesh">FE
+      Mesh</link> and <link
+      linkend="Section-Tasks-Solver">Solver</link> Pages.  The
+      Graphics Window, however, can display &mesh; data at any time
+      between the initial time and the current time.  Thus each
+      Graphics Window has its own time which may be different from the
+      &mesh; time and the time of other Graphics Windows.  The Time
+      Controls (<xref linkend="Figure-TimeControls"/>) at the top of
+      the Canvas determine which data set to display.
+    </para>
+    <figure id="Figure-TimeControls">
+      <title>Graphics Window Time Controls</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/timecontrols.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/timecontrols.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      Only &layers; that have a <varname>when</varname> parameter that
+      is set to <link
+      linkend="Object-Placeholder-Time"><guilabel>&lt;latest&gt;</guilabel></link>
+      will be affected by the window's time setting.  Layers that have
+      an explicit time, or whose time is set to <link
+      linkend="Object-Placeholder-Time"><guilabel>&lt;earliest&gt;</guilabel></link>
+      display &mesh; data at their assigned time.
+    </para>
+    <para>
+      The buttons on the left side marked with arrows change the time
+      to the previous or next time stored in the &mesh; or &meshes;
+      displayed in the window.  The slider in the middle allows the
+      time to be changed continuously between the oldest and newest
+      times.  When the slider is not set to a stored time, the
+      &fields; in the &mesh; are interpolated to the selected time,
+      and the displayed quantities are computed from the interpolated
+      values.
+    </para>
+    <para>
+      The text box on the right side of the controls displays the
+      Graphics Window's current time.  The time can be changed
+      directly by typing a number into the box and hitting
+      <userinput>return</userinput>.  As with the slider, the data
+      will be interpolated if the time entered does not correspond to
+      a stored time.
+    </para>
+    <para>
+      When a &mesh; is being <link
+      linkend="Section-Concepts-Mesh-Solving">solved</link> and the
+      <link linkend="RegisteredClass-GraphicsUpdate">Graphics Update</link>
+      <link linkend="Section-Concepts-Outputs">Output</link> is <link
+      linkend="Section-Tasks-ScheduledOutput">scheduled</link>, the
+      time control and the graphics window always display the latest
+      time.  Similarly, when the Window is being <link
+      linkend="MenuItem-OOF.Graphics_n.File.Animate">animated</link>, the Time
+      Controls display the animation time.
+    </para>
+  </section>			<!-- Setting the Time -->
+
+  <section id="Section-Graphics-MenuBar">
+    <title>Graphics Window Menu Bar Commands</title>
+    <para>
+      The Graphics Window's menu bar contains commands for saving the
+      contents of the window, copying the window, and setting various
+      aspects of the display.  Most of the commands are
+      self-explanatory, and all of them are discussed in the <link
+      linkend="Chapter-Reference">reference</link> pages for the <xref
+      linkend="MenuItem-OOF.Graphics_n.File"/>, <xref
+      linkend="MenuItem-OOF.Graphics_n.Layer"/>, and <xref
+      linkend="MenuItem-OOF.Graphics_n.Settings"/> menus.  Only a few
+      are discussed explicitly here.
+    </para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.File.Clone"><command>File/Clone</command></link>
+	  creates a new Graphics Window containing the same &layers;
+	  as the current window.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.File.Save_Image"><command>File/Save&nbsp;Image</command></link>
+	  saves a PDF file containing the current contents of the
+	  Canvas.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.File.Animate"><command>File/Animate</command></link>
+	  animates the &layers; in the Window if they display a time
+	  dependent &mesh;.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.Layer.Delete"><command>Layer/Delete</command></link>
+	  deletes the currently selected &layer; in the Layer List.
+	  It's quicker to delete a &layer; this way than it is to edit
+	  it and delete it in the Layer Editor.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.Layer.Raise.One_Level"><command>Layer/Raise/One&nbsp;Level</command></link>
+	  and <link
+	  linkend="MenuItem-OOF.Graphics_n.Layer.Lower.One_Level"><command>Layer/Lower/One&nbsp;Level</command></link>
+	  are equivalent to the up and down arrows in the Layer List.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.Layer.Raise.To_Top"><command>Layer/Raise/To&nbsp;Top</command></link>
+	  and <link
+	  linkend="MenuItem-OOF.Graphics_n.Layer.Lower.To_Bottom"><command>Layer/Raise/To&nbsp;Bottom</command></link>
+	  have no equivalent in the Layer List.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.Layer.Reorder_All"><command>Layer/Reorder&nbsp;All</command></link>
+	  restores the <link linkend="canonicallayerordering">original
+	  ordering</link> of the &layers;, minimizing the amount of
+	  obscured information.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <link
+	  linkend="MenuItem-OOF.Graphics_n.Settings.Auto_Reorder"><command>Settings/Auto&nbsp;Reorder</command></link>
+	  controls whether the <link
+	  linkend="canonicallayerordering">original ordering</link> of
+	  the &layers; will be restored automatically every time new
+	  &layers; are sent by the &layereditor;.
+	</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="Section-Graphics-Toolboxes">
+    <title>Toolboxes</title>
+    <para>
+      The Toolboxes reside in the pane at the left side of the
+      Graphics Window.  They control how &oof2; responds to mouse
+      clicks on the Canvas.  All &oof2; commands that rely on the
+      location of a mouse click have a GUI representation in a
+      Toolbox.
+    </para>
+    <para>
+      The different Toolboxes each have their own function.  The
+      Toolbox Chooser switches from one Toolbox to
+      another.
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-Viewer">Viewer Toolbox</link>
+	    zooms the Canvas in and out.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-PixelInfo">Pixel Info
+	    Toolbox</link> displays information about individual
+	    pixels in a &micro; or &image;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-PixelSelection">Pixel
+	    Selection Toolbox</link> contains a number of methods for
+	    selecting pixels in a &micro;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-SkeletonInfo">Skeleton
+	    Info Toolbox</link> displays information about &skel;
+	    components.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="Section-Graphics-SkeletonSelection">Skeleton
+	    Selection Toolbox</link> selects components of a &skel;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-MoveNodes">Move Nodes
+	    Toolbox</link> allows &skel; &nodes; to be repositioned
+	    manually.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-PinNodes">Pin Nodes
+	    Toolbox</link> <link
+	    linkend="Section-Concepts-Pin">pins</link> &nodes;
+	    manually.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-MeshInfo">Mesh Info
+	    Toolbox</link> displays information about &mesh;
+	    components.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link linkend="Section-Graphics-CrossSection">Mesh
+	    Cross Section Toolbox</link> defines a <link
+	    linkend="RegisteredClass-CrossSectionDomain">cross
+	    section</link> of a &mesh;, along which output values will
+	    be computed.
+	  </para>
+	</listitem>
+      </itemizedlist>
+      The following sections describe each Toolbox in detail.
+    </para>
+
+    &TBviewer;
+    &TBpixelinfo;
+    &TBpixelselection;
+    &TBskelinfo;
+    &TBskelselection;
+    &TBmovenodes;
+    &TBpinnodes;
+    &TBmeshinfo;
+    &TBmeshcs;
+  </section>
+  <section id='Section-Graphics-LayerEditor'>
+    <title>The Layer Editor</title>
+    <para>
+      The Layer Editor Window, shown in <xref
+      linkend="Figure-LayerEditor"/> is used to create new &layers;
+      and to edit existing ones.  There is only one Layer Editor,
+      shared by all Graphics Windows.  The Layer Editor builds
+      &layersets; by specifying an object to be displayed and a set of
+      <link
+      linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>,
+      one for each &layer; in the &layerset;.  When the &layerset; is
+      complete, it is <link
+      linkend="MenuItem-OOF.LayerEditor.LayerSet.Send">sent</link> to
+      one or more Graphics Windows.  If a &layer; is selected in the
+      recipient Graphics Window's <link
+      linkend="Section-Graphics-LayerList">Layer List</link>, that
+      &layer;'s &layerset; will be replaced by the new &layerset;.  If
+      no &layer; is selected in the Graphics Window, the &layers; in
+      the new &layerset; will be added to the display.
+    </para>
+    <para>
+      The components of the Layer Editor are:
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    A menu bar, containing the usual <command>File</command>
+	    and <link
+	    linkend="MenuItem-OOF.Windows"><command>Windows</command></link>
+	    menus, as well as a menu of <link
+	    linkend="MenuItem-OOF.LayerEditor.Settings"><command>Settings</command></link>
+	    for the Layer Editor.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A Displayed Object pane, on the left below the menu bar.
+	    The pull-down menus in the pane indicate which object is to
+	    be displayed by the &layerset; being edited.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A Display Methods pane, to the right of the Displayed
+	    Object pane. The pane lists all of the <link
+	    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+	    in the &layerset; currently being edited.  <link
+	    linkend="Section-LayerEditor-Buttons">Buttons</link> at
+	    the bottom of the pane operate on the <xref
+	    linkend="RegisteredClass-DisplayMethod"/> selected in the
+	    list.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A <link
+	    linkend="MenuItem-OOF.LayerEditor.LayerSet.New"><guibutton>New
+	    Layer</guibutton></link> button, which clears the
+	    Displayed Object and Display Methods panes, and deselects
+	    all &layers; in all Graphics Windows (so that when the new
+	    &layerset; is <link
+	    linkend="MenuItem-OOF.LayerEditor.LayerSet.Send">sent</link>
+	    to the windows, it won't overwrite existing &layers;).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A <guilabel>Destination</guilabel> pull-down menu, which
+	    determines which Graphics Windows will receive the
+	    &layerset; being edited.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A <link
+	    linkend="MenuItem-OOF.LayerEditor.LayerSet.Send"><guibutton>Send</guibutton></link>
+	    button, which sends the &layerset; to the windows
+	    specified by the <guilabel>Destination</guilabel> menu.
+	    (If <link
+	    linkend="MenuItem-OOF.LayerEditor.Settings.AutoSend"><command>AutoSend</command></link>
+	    is set in the <guimenu>Settings</guimenu> menu in the menu
+	    bar, it's not necessary to use the
+	    <guibutton>Send</guibutton> button, except when the
+	    Displayed Object is changed.)
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <figure id="Figure-LayerEditor">
+      <title>The Layer Editor</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/layereditor.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/layereditor.eps"
+	    format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <simplesect id="Section-Graphics-OpenLayerEditor">
+      <title>Opening the Layer Editor</title>
+      <para>
+	The Layer Editor can be opened in four ways, which differ in
+	how they initialize the Editor and what they do with the
+	selection in the <link
+	linkend="Section-Graphics-LayerList">Layer List</link>:
+	<orderedlist>
+	  <listitem>
+	    <para>
+	      By the <link
+	      linkend="MenuItem-OOF.Windows.Layer_Editor"><command>Layer
+	      Editor</command></link> command in the
+	      <guimenu>Windows</guimenu> menu in any &oof2; window's
+	      menu bar.  The contents of the Layer Editor are not
+	      affected by this.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      By the <link
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.New"><command>New</command></link>
+	      command in the <guimenu>Layer</guimenu> menu in a
+	      Graphics Window's <link
+	      linkend="Section-Graphics-MenuBar">menu bar</link>.  The
+	      Displayed Object and Display Methods panes are cleared,
+	      the selected &layers; are deselected in all Graphics
+	      Windows, and the Layer Editor's
+	      <guilabel>Destination</guilabel> is set to the
+	      originating Graphics Window.
+	    </para>
+	  </listitem>
+	  <listitem id="opentoedit">
+	    <para>
+	      By selecting a &layer; in the <link
+	      linkend="Section-Graphics-LayerList">Layer List</link>
+	      in a Graphics Window, and choosing the <link
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.Edit"><command>Edit</command></link>
+	      command from the <guimenu>Layer</guimenu> menu in the
+	      window's <link linkend="Section-Graphics-MenuBar">menu
+	      bar</link>. The Displayed Object pane is set to the
+	      object of the selected &layer;, the Display Methods pane
+	      lists all of the <link
+	      linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+	      of the &layer;'s &layerset;, the selected &layer; is
+	      highlighted in the Display Methods pane, and the
+	      <guilabel>Destination</guilabel> menu is set to the
+	      originating Graphics Window.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      By double clicking on a &layer; in the <link
+	      linkend="Section-Graphics-LayerList">Layer List</link>.
+	      This is equivalent to method <xref
+	      linkend="opentoedit"/>.
+	    </para>
+	  </listitem>
+	</orderedlist>
+      </para>
+    </simplesect><!-- Opening the Layer Editor -->
+    <simplesect id="Section-Graphics-DisplayedObjPane">
+      <title>The Displayed Object Pane</title>
+      <para>
+	The Displayed Object Pane contains a pull-down menu labelled
+	<guilabel>category</guilabel> and a set of one or more
+	pull-down menus labelled <guilabel>object</guilabel>.  These
+	determine which object will be displayed by the &layers; of
+	the &layerset; that is being edited.  The
+	<guilabel>category</guilabel> can be set to &image;, &micro;,
+	&skel;, <foreignphrase>etc</foreignphrase>.  The
+	<guilabel>object</guilabel> selector lists all of the existing
+	objects in the chosen category.  For example, &micros; are
+	selected by a single menu, but &skels; require two: one for
+	the &skel; and one for its &micro;.  Changing any of the
+	pull-down menus invokes the <xref
+	linkend="MenuItem-OOF.LayerEditor.LayerSet.DisplayedObject"/>
+	command.
+      </para>
+      <para>
+	An additional entry appears in the first
+	<guilabel>object</guilabel> pull-down menu in each category.
+	Selecting this entry, which is either
+	<userinput>&lt;topmost&gt;</userinput> or something similar
+	(depending on the category), means that the &layerset; will
+	examine the <emphasis>other</emphasis> &layers; that display
+	an object of the chosen category, and apply its <link
+	linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+	to the object in the topmost such &layer;.  This is most often
+	used in the predefined unlisted layers.  For example, there is
+	a predefined &layerset; that displays the pixel selection of
+	the topmost &micro;.
+      </para>
+      <para>
+	The <guimenuitem>Nothing</guimenuitem> entry in the
+	<guilabel>category</guilabel> menu and the
+	<guimenuitem>Nobody</guimenuitem> entry in the
+	<guilabel>object</guilabel> menu are just placeholders
+	indicating that no selection has been made.  They can't be
+	used in a &layerset;.
+      </para>
+    </simplesect><!-- The Displayed Object Pane -->
+    <simplesect id="Section-Graphics-DisplayMethods">
+      <title>The Display Methods Pane</title>
+      <para>
+	The Display Methods Pane contains a list of the <link
+	linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+	in the &layerset; and some buttons for manipulating them.
+	Clicking on entry in the list selects it.  Double-clicking an
+	entry is equivalent to selecting it and clicking the
+	<guibutton>Edit</guibutton> button.
+      </para>
+      <para id="Section-LayerEditor-Buttons">
+	The buttons at the bottom of the list have the following
+	functions:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.Add_Method"><guibutton>New</guibutton></link>
+	      button brings up a dialog box for creating a new &layer;
+	      in the &layerset;, as shown in <xref
+	      linkend="Figure-newdispmethod"/>.  The dialog box sets
+	      just one parameter, which is the
+	      <varname>method</varname> argument for the <xref
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.Add_Method"/>
+	      command, but that parameter may be set to an object
+	      which has its own parameters.  In the figure,
+	      <varname>method</varname> is set to <link
+	      linkend="RegisteredClass-SkeletonEdgeDisplay">Element
+	      Edges</link>, which has its own <varname>color</varname>
+	      and <varname>width</varname> parameters.  The pull-down
+	      menu for the <varname>method</varname> lists only those
+	      <link
+	      linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+	      that are applicable to the category set in the Displayed
+	      Object pane.
+	    </para>
+	    <figure id="Figure-newdispmethod">
+	      <title>Creating a New Layer</title>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata fileref="FIGURES/gfx/newdispmethod.png"
+		    format="PNG"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata fileref="FIGURES/gfx/newdispmethod.eps"
+		    format="EPS"/>
+		</imageobject>
+		<caption>
+		  <para>
+		    The pull-down methods, sliders, and text entry
+		    boxes define a new <xref
+		    linkend="RegisteredClass-DisplayMethod"/>.  The
+		    <guibutton>OK</guibutton> button adds the method
+		    to the &layerset;.  The
+		    <guibutton>Cancel</guibutton> button doesn't.
+		  </para>
+		</caption>
+	      </mediaobject>
+	    </figure>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.Replace_Method"><guibutton>Edit</guibutton></link>
+	      button brings up a dialog box just like the
+	      <guibutton>New</guibutton> button's box , but it
+	      initializes it with the currently selected <xref
+		linkend="RegisteredClass-DisplayMethod"/>.  When the
+	      <guibutton>OK</guibutton> button is pressed, the new
+	      method will replace the currently selected method.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.Copy_Method"><guibutton>Copy</guibutton></link>
+	      button copies the currently selected <xref
+	      linkend="RegisteredClass-DisplayMethod"/>.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.LayerEditor.LayerSet.Delete_Method"><guibutton>Delete</guibutton></link>
+	      button deletes the currently selected <xref
+	      linkend="RegisteredClass-DisplayMethod"/> from the
+	      &layerset;.  The &layer; is marked
+	      <userinput>&lt;deleted&gt;</userinput> in the list.
+	      (Because the Layer Editor works on a copy of an entire
+	      &layerset;, it's important for it to keep track of
+	      exactly which &layers; were deleted, so that the correct
+	      &layers; are deleted when the &layerset; is sent to a
+	      Graphics Window.)  Deleted &layers; cannot be edited.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+      <para>
+	Because each <xref linkend="RegisteredClass-DisplayMethod"/>
+	only applies to one or two categories of displayable object,
+	changing the <guilabel>category</guilabel> in the Displayed
+	Object pane may invalidate the entries in the Display Methods
+	pane.  They will be marked as
+	<userinput>(invalid)</userinput>.  The invalid entries may be
+	edited to make them valid again, or they may be deleted.
+	&layersets; with invalid but not deleted <link
+	linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+	cannot be sent to a Graphics Window.
+      </para>
+    </simplesect><!-- Display Methods Pane -->
+  </section><!-- Layer Editor -->
+
+
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

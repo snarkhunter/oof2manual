@@ -1,0 +1,65 @@
+<!-- 
+  $RCSfile: setschedule.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-18 20:44:08 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  This command sets the <xref linkend="RegisteredClass-Schedule"/> for
+  a <link linkend="Section-Concepts-Outputs-Scheduled">Scheduled
+  Output</link>.  The <xref linkend="RegisteredClass-Schedule"/>
+  determines when the output operation will be performed during a time
+  evolution computation.  In the GUI, schedules are listed and
+  manipulated in the <guilabel>Schedule</guilabel> column of the <link
+  linkend="Section-Tasks-ScheduledOutput">Scheduled Output</link>
+  page.
+</para>
+<para>
+  The <varname>scheduletype</varname> parameter indicates whether the
+  given schedule is to be interpreted as absolute, relative, or
+  conditional.  See <xref linkend="RegisteredClass-ScheduleType"/> for
+  details.
+</para>
+<para>
+  The <varname>schedule</varname> determines how the output times are
+  computed.  Different types of <xref
+  linkend="RegisteredClass-Schedule"/> objects can be used to produce
+  outputs at a single specified time, at a number of uniformly spaced
+  times, <foreignphrase>etc</foreignphrase>.
+</para>
+<para>
+  The schedules for all active <link
+  linkend="Section-Concepts-Outputs-Scheduled">Scheduled
+  Outputs</link> in a &mesh; determine the times during a time
+  evolution calculation at which output will be produced.  Because the
+  time stepper chooses step sizes so as to exactly end a step at each
+  scheduled output time, the choice of schedules can affect the
+  results of the calculation.  The choice of schedule does
+  <emphasis>not</emphasis> determine the start or end times of the
+  evolution.  Those are determined by the <link
+  linkend="Section-Tasks-Solver">Solver</link> page.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

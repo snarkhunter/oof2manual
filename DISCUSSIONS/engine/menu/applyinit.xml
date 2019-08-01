@@ -1,0 +1,55 @@
+<!-- 
+  $RCSfile: applyinit.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-22 18:51:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Apply all of the given &mesh;'s &field; <link
+  linkend="Section-Concepts-Mesh-InitialConditions">initializers</link>
+  at the &mesh;'s current <link
+  linkend="Section-Concepts-Mesh-Time">time</link>.  This sets the
+  values of the &fields; at all of the &nodes; where the &fields; are
+  <link linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>, if an
+  initializer has been <link
+  linkend="MenuItem-OOF.Mesh.Set_Field_Initializer">assigned</link> to
+  the &field;.
+</para>
+<para>
+  To set <link linkend="Section-Concepts-Mesh-Time">time</link> as
+  well as the &field; values, use <xref
+  linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>
+  instead.
+</para>
+<para>
+  In the GUI, this command is invoked by the <link
+  linkend="Section-Tasks-Solver-ApplyInit"><guibutton>Apply</guibutton></link>
+  button in the <link
+  linkend="Section-Tasks-Solver-FieldInitPane"><guilabel>Field
+  Initialization</guilabel></link> pane of the <link
+  linkend="Section-Tasks-Solver">Solver</link> page.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: expand_node.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:24 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <command>ExpandNodeSelection</command> selects nodes by selecting
+    the neighbors of the currently selected &nodes;.  The
+    <varname>criterion</varname> parameter determines exactly which
+    other &nodes; are considered to be neighbors.  For illustrations,
+    see the reference pages for the subclasses of <xref
+    linkend="RegisteredClass-ExpandCriterion"/>.
+  </para>
+  <para>
+    Expanding the &node; selection is useful when applying &skel;
+    <link linkend="RegisteredClass-SkeletonModifier">modifier</link>
+    to a portion of a &skel;.  For example, to improve the resolution
+    of a boundary in a &micro;, it's convenient to <xref
+    linkend="RegisteredClass-Anneal"/> the &nodes; that are close to
+    the boundary.  To do this, select the &nodes; on the boundary,
+    expand the selection, and then <xref
+    linkend="RegisteredClass-Anneal"/> the selected &nodes;.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

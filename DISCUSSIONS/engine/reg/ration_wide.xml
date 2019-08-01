@@ -1,0 +1,93 @@
+<!-- 
+  $RCSfile: ration_wide.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:45 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>QuadSplit</classname> is a <xref
+    linkend="RegisteredClass-Rationalizer"/> applied by the <xref
+    linkend="RegisteredClass-Rationalize"/> &skel; <link
+    linkend="RegisteredClass-SkeletonModifier">modifier</link>.  It
+    splits quadrilateral &elems; into two triangular &elems;, if the
+    quadrilateral has an interior angle greater than
+    <varname>angle</varname>.
+  </para>
+
+  <para>
+    <xref linkend="Table:ration_short"/> illustrates the triggering
+    condition and the final result of the procedure. Unlike other
+    rationalizers, <classname>QuadSplit</classname> doesn't affect its
+    neighboring elements.
+  </para>
+
+  <table id='Table:ration_wide'>
+    <title>Rationalizing Wide Quadrilaterals</title>
+    <tgroup cols='2'>
+      <tbody>
+	<row>
+	  <entry align='center'>Condition</entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/ration/wide_condition.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/ration/wide_condition.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+	<row>
+	  <entry align='center'>Case</entry>
+	  <entry align='center'>End-result</entry>
+	</row>
+	<row>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/ration/wide_q.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/ration/wide_q.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/ration/wide_q_fixed.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/ration/wide_q_fixed.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

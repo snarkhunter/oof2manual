@@ -1,0 +1,58 @@
+<!-- 
+  $RCSfile: pgroupcategory.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:17 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    Add <link
+    linkend='Section-Concepts-Microstructure-Pixel_Group'>pixel
+    groups</link> to <link
+    linkend='Definition:Category'>category</link> definitions inside a
+    &micro; <link linkend="MenuItem-OOF.LoadData.Microstructure">data
+    file</link>.  The <varname>groups</varname> argument is a Python
+    list of strings, where each string is the name of a group
+    belonging to the given <varname>category</varname> of pixel.
+  </para>
+  <formalpara>
+    <title>Example</title>
+    <para>
+      The command
+      <literallayout
+	class="monospaced">OOF.LoadData.Microstructure.DefineCategory.PixelGroups(microstructure='tiny3',
+             category=0,
+             groups=['negativland', 'talkingheads'])</literallayout>
+      puts all pixels in category <userinput>0</userinput> in the
+      &micro; named <quote>tiny3</quote> into the pixel groups named
+      <quote>negativland</quote> and <quote>talkingheads</quote>.
+    </para>
+  </formalpara>
+  <para>
+    This command is only used in data files.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

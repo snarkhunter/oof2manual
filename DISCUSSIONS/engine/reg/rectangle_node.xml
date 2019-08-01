@@ -1,0 +1,100 @@
+<!-- 
+  $RCSfile: rectangle_node.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:45 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <command>RectangleNodeSelect</command> is a <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Node">selection
+    method</link> that selects &nodes; in response to a mouse click in
+    the <link linkend="Chapter-Graphics">graphics window</link> when
+    the <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+    Selection</link> toolbox is active and is set to
+    <quote>Node</quote> mode.  It selects all &nodes; lying within a
+    rectangle swept out by dragging the mouse, as shown in <xref
+    linkend="Figure-rect_nodes"/>.  Click the mouse on one corner of
+    the rectangle and drag to the opposite corner.
+  </para>
+  <para>
+    <varname>skeleton</varname> is the &skel; from which the &nodes; are
+    to be selected.
+  </para>
+  <para>
+    <varname>points</varname> is a <xref linkend="Object-list"/> of
+    <xref linkend="Object-Point"/> objects.  The first and second
+    points in the list are diagonally opposite corners of the
+    rectangle.  Any other points in the list will be ignored.
+  </para>
+  <para>
+    The <varname>shift</varname> and <varname>ctrl</varname>
+    parameters govern how the current selection
+    (<foreignphrase>i.e,</foreignphrase> the set of &nodes; defined by
+    this operation) is merged with the previous selection (the &nodes;
+    already selected) to form a new selection, as shown in <xref
+    linkend="Table:ShiftCtrl"/>.  They indicate whether
+    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
+    shift and control keys were depressed during the mouse click that
+    initiated this command.
+  </para>
+  <figure id="Figure-rect_nodes">
+    <title>Selecting a Rectangular Set of Nodes</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_nodes0.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_nodes0.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; while some &nodes; are being selected with
+	  <classname>RectangleNodeSelect</classname>.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_nodes1.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/rect_nodes1.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The &nodes; that were selected are marked with blue dots.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

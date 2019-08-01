@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: euler2rgb.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:40 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>Euler2RGB</classname> is an <xref
+    linkend="RegisteredClass-Angle2Color"/> that simply maps the
+    <varname>alpha</varname>, <varname>beta</varname>, and
+    <varname>gamma</varname> values of an <xref
+    linkend="RegisteredClass-Abg"/> Euler angle to the
+    <varname>red</varname>, <varname>green</varname>, and
+    <varname>blue</varname> parameters of an <xref
+    linkend="RegisteredClass-RGBColor"/>.  The values are scaled and
+    shifted so that the the full Euler angle space maps to the full
+    color space.
+  </para>
+  <para>
+    Note that this isn't a great way to convert orientations to
+    angles, because small changes in orientation can result in a large
+    change in color.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

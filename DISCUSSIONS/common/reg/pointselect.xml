@@ -1,0 +1,122 @@
+<!-- 
+  $RCSfile: pointselect.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:20 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Select the single pixel at the given point.
+  </para>
+  <para>
+    The <varname>source</varname> parameter is the <link
+    linkend="Section-Concepts-Path">path</link> to a &micro; or
+    &image;.  If it's an &image;, the selection is made in the &micro;
+    in which the &image; resides.
+  </para>
+  <para>
+    The <varname>points</varname> parameter is a <link
+    linkend="Object-list">Python list</link> of <link
+    linkend="Object-Point"><classname>Points</classname></link> in
+    the &micro;.  When the command is invoked by the GUI, it's
+    possible that the list may contain more than one point if the
+    mouse was moving during the click.  Only the first point in the
+    list is used.
+  </para>
+  <para>
+    The <varname>shift</varname> and <varname>ctrl</varname>
+    parameters govern how the current selection
+    (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
+    this operation) is merged with the previous selection (the objects
+    already selected) to form a new selection, as shown in <xref
+    linkend="Table:ShiftCtrl"/>.  They indicate whether
+    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
+    shift and control keys were depressed during the mouse click that
+    initiated this command.
+  </para>
+  <table id="Table:ShiftCtrl">
+    <title>Keyboard Modifiers for Selection Operations</title>
+    <tgroup cols="3">
+      <thead>
+	<row>
+	  <entry><simpara><varname>shift</varname></simpara></entry>
+	  <entry><simpara><varname>ctrl</varname></simpara></entry>
+	  <entry><simpara>Effect</simpara></entry>
+	</row>
+      </thead>
+      <tbody>
+	<row>
+	  <entry><userinput>0</userinput></entry>
+	  <entry><userinput>0</userinput></entry>
+	  <entry>
+	    <para>
+	      The previous selection is discarded.  The new selection
+	      is the current selection.
+	    </para>
+	  </entry>
+	</row>
+	<row>
+	  <entry><userinput>1</userinput></entry>
+	  <entry><userinput>0</userinput></entry>
+	  <entry>
+	    <simpara>
+	      The previous selection is retained, and the current
+	      selection is added to it. That is, the new selection is
+	      the union of the previous and current selections.
+	    </simpara>
+	  </entry>
+	</row>
+	<row>
+	  <entry><userinput>0</userinput></entry>
+	  <entry><userinput>1</userinput></entry>
+	  <entry>
+	    <simpara>
+	      The previous selection is toggled at all members of the
+	      current selection.  That is, all members of the new
+	      selection are in the previous or current selections, but
+	      not both.
+	    </simpara>
+	  </entry>
+	</row>
+	<row>
+	  <entry><userinput>1</userinput></entry>
+	  <entry><userinput>1</userinput></entry>
+	  <entry>
+	    <simpara>
+	      Members of the current selection are kept only if they
+	      were also members of the previous selection. That is,
+	      the new selection is the intersection of the previous
+	      and current selections.
+	    </simpara>
+	  </entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </table>
+
+
+
+  
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

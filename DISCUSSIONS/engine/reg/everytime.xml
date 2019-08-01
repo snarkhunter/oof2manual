@@ -1,0 +1,44 @@
+<!-- 
+  $RCSfile: everytime.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-18 20:44:18 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>EveryTime</classname> is a <xref
+  linkend="RegisteredClass-Schedule"/> that causes a <link
+  linkend="Section-Concepts-Outputs-Scheduled">Scheduled Output</link>
+  to be performed at the conclusion of every time step.  If the time
+  step is very small, as it can be when using <link
+  linkend="RegisteredClass-AdaptiveDriver">adaptive stepping</link>,
+  this can lead to a lot of output.
+</para>
+<para>
+  <classname>EveryTime</classname> can only be used with a <xref
+  linkend="RegisteredClass-ScheduleType"/> set to <xref
+  linkend="RegisteredClass-ConditionalOutputSchedule"/>.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

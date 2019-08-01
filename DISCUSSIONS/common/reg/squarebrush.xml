@@ -1,0 +1,66 @@
+<!-- 
+  $RCSfile: squarebrush.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:20 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    The <classname>SquareBrush</classname> is used when selecting
+    pixels with the <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Brush"><classname>Brush</classname></link>
+    selection tool in the <link
+    linkend="Section-Graphics-PixelSelection">Pixel Selection</link>
+    toolbox.  It selects all pixels within a square of side 2 &times;
+    <varname>size</varname> of the mouse.  The <varname>size</varname>
+    is given in <link
+    linkend="Section-Concepts-Microstructure-Coordinates"><emphasis>physical</emphasis></link>
+    units.
+  </para>
+  <figure id="Figure-SquareBrush">
+    <title>Selection with a Square Brush</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pixelselect/squarebrush.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pixelselect/squarebrush.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  A selection made with the square brush, with
+	  <varname>size</varname>=15.  The physical size of the
+	  &micro; is 200&times;200.  Compare with the circular brush in
+	  <xref linkend="Figure-CircleBrush"/>.
+	</simpara>
+      </caption>
+    </mediaobject>
+  </figure>
+
+
+  
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

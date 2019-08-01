@@ -1,0 +1,1649 @@
+<!--
+  $RCSfile: refOutput.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-05-06 16:00:08 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <refentry id="Class-Output">
+    <refnamediv>
+      <refname>Output</refname>
+      <refpurpose>Compute output data on a Mesh</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Python Synopis</title>
+      <literallayout class="monospaced">
+import oof2.common.IO.output
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Output</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Output-constructor">__init__</link></methodname>
+	    <methodparam>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>otype</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>callback</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>inputs=[]</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>params=[]</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>tip=parameter.emptyTipString</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>discussion=parameter.emptyTipString</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>parent=None</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Output-clone">clone</link></methodname>
+	    <methodparam>
+	      <parameter>name=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>params={}</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>tip=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>discussion=None</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Output-connect">connect</link></methodname>
+	    <methodparam>
+	      <parameter>iname</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>input</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Output-findParam">findParam</link></methodname>
+	    <methodparam>
+	      <parameter>path</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Output-aliasParam">aliasParam</link></methodname>
+	    <methodparam>
+	      <parameter>paramname</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>alias</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>default=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>tip=None</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Output-resolveAlias">resolveAlias</link></methodname>
+	    <methodparam>
+	      <parameter>alias</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </literallayout>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/IO/output.py</filename>:
+	      <classname>Output</classname> class definition
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/outputClones.py</filename>:
+	      generic <classname>Output</classname> instances
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/outputDefs.py</filename>: fully
+	      constructed <classname>Output</classname> instances
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	&oof2; <classname>Output</classname> objects perform simple
+	operations on data derived from a finite element &mesh;.
+	Simple <classname>Output</classname> objects may be combined
+	to perform more complicated operations.  An overview and
+	examples may be found in <xref linkend="Section-Coding-Output"/>.
+      </para>
+      <para>
+	The <classname>Output</classname> class is only available in
+	Python.
+      </para>
+    </refsection>
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-Output-constructor">
+	<title><code>Output.__init__(self, ...)</code></title>
+	<para>
+	  Only the first three arguments to the constructor are
+	  required.  The arguments are:
+	  <variablelist spacing="compact">
+	    <varlistentry>
+	      <term><varname>name</varname></term>
+	      <listitem>
+		<para>
+		  <varname>name</varname> is a string, used to identify
+		  this <classname>Output</classname> in error messages.
+		  It's not used otherwise.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>otype</varname></term>
+	      <listitem>
+		<para>
+		  The output from an <classname>Output</classname> is
+		  always a list of objects.  <varname>otype</varname>
+		  specifies the data type of the objects in the list.
+		  If <varname>otype</varname> is a Python class or an
+		  instance of a class, then the objects must be
+		  instances of that class.  If <varname>otype</varname>
+		  is a Python type object
+		  (<foreignphrase>e.g</foreignphrase>,
+		  <code>types.FloatType</code>) or an instance of that
+		  type (<foreignphrase>e.g</foreignphrase>,
+		  <literal>3.14</literal>) then the output must be
+		  instances of that type.
+		</para>
+		<para>
+		  If an <classname>Output</classname> can produce values
+		  of different types, <varname>otype</varname> should be
+		  a list or tuple of type specifications
+		  (<foreignphrase>e.g</foreignphrase>,
+		  <code>(types.IntType, coord.Coord)</code>).
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>callback</varname></term>
+	      <listitem>
+		<para>
+		  <varname>callback</varname> is a function that will be
+		  called to process the data. See <xref
+		    linkend="Class-Output-callback"/> for the details.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>inputs</varname></term>
+	      <listitem>
+		<para>
+		  <varname>inputs</varname> is a list of <link
+		    linkend="Class-Parameter"><classname>Parameter</classname></link>
+		  objects, describing the inputs to this
+		  <classname>Output</classname>, if any.  Only the name
+		  and subclass of each <classname>Parameter</classname>
+		  are important.  The name is used to identify the
+		  input, and the subclass determines its type.  When one
+		  <classname>Output</classname> is <link
+		    linkend="Class-Output-connect">connected</link> to
+		  an input of another, the <varname>otype</varname> of
+		  the first <classname>Output</classname> must be
+		  compatible with the <classname>Parameter</classname>
+		  type of the second <classname>Output</classname>'s
+		  input.
+		</para>
+		<para>
+		  Each input in the list corresponds to an argument of
+		  the callback function.  The argument's value will be a
+		  list of objects whose type is given by the input's
+		  <classname>Parameter</classname> type.  For example,
+		  an input <code>FloatParameter('xyz')</code> will cause
+		  a list of floats named <literal>xyz</literal> to be
+		  sent to the callback.  
+		</para>
+		<para>
+		  The names of all of the inputs must be unique.
+		</para>
+		<para>
+		  Some <classname>Outputs</classname> don't require any
+		  inputs, in which case this constructor argument can be
+		  omitted.  Its default value is an empty list,
+		  <code>[]</code>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>params</varname></term>
+	      <listitem>
+		<para>
+		  <varname>params</varname> is a list of <link
+		    linkend="Class-Parameter"><classname>Parameter</classname></link>
+		  objects, specifying parameters that govern the
+		  <classname>Output</classname>'s behavior.  The value
+		  of each parameter will be passed to the callback
+		  function. 
+		</para>
+		<para>
+		  The names of the parameters must be unique, and must
+		  also not conflict with the names of any of the
+		  inputs.
+		</para>
+		<para>
+		  Parameters that are to be set by the user must
+		  <emphasis>not</emphasis> have values.   That is, if
+		  <code>FloatParameter('x', value=3)</code> appears in
+		  the <varname>params</varname> list, then the callback
+		  argument <varname>x</varname> will always have the
+		  value 3.  To set an initial value that can be changed
+		  by the user, use <varname>default</varname>, as in
+		  <code>FloatParameter('x', default=3)</code>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>tip</varname></term>
+	      <listitem>
+		<para>
+		  <varname>tip</varname> is a character string that
+		  describes the role of the
+		  <classname>Output</classname>.  It appears in GUI
+		  tooltips and in the documentation.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>discussion</varname></term>
+	      <listitem>
+		<para>
+		  <varname>discussion</varname> is a more verbose
+		  description of the <varname>Output</varname>, meant
+		  for inclusion in the &oof2; user manual.  It can
+		  either be a string or a reference to a file via the
+		  <link
+		    linkend="Function-xmlmenudump.loadFile"><function>xmlmenudump.loadFile</function></link>
+		  function.  The string or the contents of the file must
+		  be docbook xml code suitable for the contents of a
+		  refsection.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+      </refsection><!-- constructor -->
+      <refsection id="Class-Output-clone">
+	<title><code>clone(name, params, tip, discussion)</code></title>
+	<para>
+	  <methodname>clone</methodname> makes a copy of an
+	  <classname>Output</classname>, including all of its
+	  parameters and any <link
+	  linkend="Class-Output-connect">connected</link> inputs.
+	</para>
+	<para>
+	  All of of the arguments to <methodname>clone</methodname>
+	  are optional.  The arguments are:
+	  <variablelist spacing="compact">
+	    <varlistentry>
+	      <term><varname>name</varname></term>
+	      <listitem>
+		<para>
+		  The name of the copied <varname>Output</varname>.
+		  This name is only used in error messages.  If omitted,
+		  the name of the clone is the same as the name of its
+		  parent.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>params</varname></term>
+	      <listitem>
+		<para>
+		  <varname>params</varname> is a
+		  <emphasis>dictionary</emphasis> whose keys are
+		  parameter names or aliases.  The clone's parameters
+		  that are specified by the keys in the dictionary
+		  will be set to the values in the dictionary.
+		  Parameters set in this way are set permanently
+		  &mdash; they will not be available to the user.  If
+		  <varname>params</varname> is omitted, only those
+		  parameters that are set in the original
+		  <classname>Output</classname> will be set in the
+		  clone.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>tip</varname></term>
+	      <listitem>
+		<para>
+		  A <varname>tip</varname> provided in the
+		  <methodname>clone</methodname> command will replace
+		  the original <varname>tip</varname> provided in the
+		  <link
+		  linkend="Class-Output-constructor">constructor</link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>discussion</varname></term>
+	      <listitem>
+		<para>
+		  A <varname>discussion</varname> provided in the
+		  <methodname>clone</methodname> command will replace
+		  the original <varname>discussion</varname> provided
+		  in the <link
+		  linkend="Class-Output-constructor">constructor</link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+      </refsection><!-- Output.clone -->
+      <refsection id="Class-Output-connect">
+	<title><code>connect(iname, input)</code></title>
+	<para>
+	  <methodname>connect</methodname> directs the data computed
+	  from one <classname>Output</classname> into the input of
+	  another.  The <varname>otype</varname> of the connected
+	  <classname>Output</classname> must agree with the
+	  <classname>Parameter</classname> type of the input slot.
+	</para>
+	<para>
+	  The arguments are:
+	  <variablelist spacing="compact">
+	    <varlistentry>
+	      <term><varname>iname</varname></term>
+	      <listitem>
+		<para>
+		  The name of the input slot to which the data should
+		  be directed.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>input</varname></term>
+	      <listitem>
+		<para>
+		  The <classname>Output</classname> object which
+		  should be connected to the input slot.  The object
+		  will be cloned automatically before it's connected.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+	<para>
+	  For example, if an <classname>Output</classname> were
+	  created like this:
+
+	  <programlisting>
+downstream = Output(..., inputs=[FloatParameter('x')], ...)</programlisting>
+
+	  and a second one were created like this:
+
+	  <programlisting>
+upstream = Output(..., otype=FloatType, ...) </programlisting>
+
+	  then they could be connected like this:
+
+	  <programlisting>
+downstream.connect('x', upstream)</programlisting>
+
+	</para>
+      </refsection><!-- Output.connect -->
+      <refsection id="Class-Output-findParam">
+	<title><code>findParam(path)</code></title>
+	<para>
+	  <methodname>findParam</methodname> returns the
+	  <classname>Output</classname> parameter specified by the
+	  <varname>path</varname> argument.  <varname>path</varname>
+	  must be a colon separated string, where the last segment is
+	  the name of a parameter, and the preceding segments (if any)
+	  are names of inputs.  For example, given these two
+	  <classname>Outputs</classname>:
+
+	  <programlisting>
+out1 = Output(..., params=[FloatParameter('x')], ...)
+out2 = Output(..., inputs=[FloatParameter('y')], ...)</programlisting>
+
+	  connected like this:
+	  <programlisting>
+out2.connect('y', out1)</programlisting>
+
+	  the parameter named <literal>'x'</literal> can be retrieved
+	  from <varname>out1</varname> like this:
+
+	  <programlisting>
+param1 = out1.findParam('x')</programlisting>
+
+	  or from <varname>out2</varname> like this:
+
+	  <programlisting>
+param2 = out2.findParam('y:x')</programlisting>
+
+	  Note that in this example <varname>param1</varname> and
+	  <varname>param2</varname> are different objects!  The
+	  parameters of <varname>out1</varname> were cloned when it
+	  was connected to <varname>out2</varname>.
+	  <varname>param2</varname> is a reference to the clone.
+	</para>
+	<para>
+	  If <methodname>findParam</methodname> can't find a parameter
+	  with the given name, it raises a
+	  <classname>KeyError</classname>.
+	</para>
+      </refsection><!-- Output.findParam -->
+      <refsection id="Class-Output-aliasParam">
+	<title><code>aliasParam(paramname, alias, default, tip)</code></title>
+	<para>
+	  <methodname>aliasParam</methodname> assigns a new name to an
+	  <classname>Output</classname> parameter.  This is useful
+	  when a generic <classname>Output</classname> is being used
+	  in a specific context, and a generic parameter name can be
+	  replaced by a more descriptive one.  It is
+	  <emphasis>required</emphasis> when a parameter in an input
+	  is to be set by the user, since the colon separated string
+	  that identifies input parameters is not a legal Python
+	  variable name.
+	</para>
+	<para>
+	  The arguments to <methodname>findParam</methodname> are:
+	  <variablelist spacing="compact">
+	    <varlistentry>
+	      <term><varname>paramname</varname></term>
+	      <listitem>
+		<para>
+		  This is the name, path, or pre-existing alias of the
+		  parameter.  See <link
+		  linkend="Class-Output-findParam"><methodname>findParam</methodname></link>
+		  for a discussion of parameter paths.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>alias</varname></term>
+	      <listitem>
+		<para>
+		  This is the new name for the parameter.  It must be
+		  a legal Python variable name.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>default</varname></term>
+	      <listitem>
+		<para>
+		   This argument is optional.  If the parameter is
+		   being aliased because its role is changing, it may
+		   be useful to change its default value.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>tip</varname></term>
+	      <listitem>
+		<para>
+		  This argument is optional.  It provides a new
+		  descriptive <varname>tip</varname> string for the
+		  parameter.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+      </refsection><!-- aliasParam -->
+      <refsection id="Class-Output-resolveAlias">
+	<title><code>resolveAlias(alias)</code></title>
+	<para>
+	  <methodname>resolveAlias</methodname> is just like <link
+	  linkend="Class-Output-findParam"><methodname>findParam</methodname></link>,
+	  except that it first looks for a parameter with the given
+	  <link linkend="Class-Output-aliasParam">alias</link>.  If
+	  the alias can't be found, it returns
+	  <code>findParam(alias)</code>.  If that doesn't work, a
+	  <classname>KeyError</classname> will be raised.
+	</para>
+      </refsection>
+    </refsection><!-- Methods -->
+    <refsection id="Class-Output-callback">
+      <title>The callback function</title>
+      <para>
+	The callback function specified in the
+	<classname>Output</classname> <link
+	linkend="Class-Output-constructor">constructor</link> does all
+	of the computational work for the
+	<classname>Output</classname>.  The arguments to the callback
+	depend upon the <varname>params</varname> and
+	<varname>inputs</varname> arguments to the constructor, but
+	all callbacks have these three arguments, at least:
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>mesh</varname></term>
+	    <listitem>
+	      <para>
+		The <link
+		linkend="Class-FEMesh"><classname>FEMesh</classname></link>
+		object on which the data is to be computed.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>elements</varname></term>
+	    <listitem>
+	      <para>
+		A list of the <link
+		linkend="Class-Element"><classname>Elements</classname></link>
+		of the mesh on which the data is to be computed.  It
+		is possible, even likely, that this list doesn't
+		contain all of the <classname>Elements</classname> in
+		the mesh.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>coords</varname></term>
+	    <listitem>
+	      <para>
+		A list of lists of positions at which the data is to
+		be computed.  The list contains one sublist for each
+		<classname>Element</classname> in the
+		<varname>elements</varname> list, in order.  The
+		sublists contain either <link
+		linkend="Class-Point"><classname>Point</classname></link>
+		or <link linkend="Class-Coord">Coord</link> objects,
+		which specify positions in the
+		<classname>Element</classname>'s master space.  (Use
+		<link
+		linkend="Class-Element-from_master"><methodname>Element.from_master</methodname></link>
+		to convert master space coordinates to physical
+		coordinates, if necessary.)
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+	In addition to these three arguments, the callback function
+	must have one argument for each entry in its <link
+	linkend="Class-Output-constructor">constructor's</link>
+	<varname>params</varname> and <varname>inputs</varname> lists.
+	The name of the argument is the same as the name of the
+	<varname>Parameter</varname> object in the list.  The value of
+	arguments from the <varname>params</varname> list is simply
+	the value that was assigned to the
+	<classname>Parameter</classname>.  Arguments from the
+	<varname>inputs</varname> list are lists of values that were
+	computed by the <classname>Outputs</classname> that were <link
+	linkend="Class-Output-connect">connected</link> to the
+	inputs.  These lists are flat &mdash; they contain one entry
+	for each point in the <varname>coords</varname> list, but the
+	input lists do not contain sublists.
+      </para>
+      <para>
+	Callback functions are invoked with keyword arguments, so the
+	order of the arguments in the function definition is
+	unimportant.  The <emphasis>names</emphasis> of the arguments
+	are crucial, though.  They must match the names in the
+	<varname>params</varname> and <varname>inputs</varname> lists.
+      </para>
+      <para>
+	The callback function must return a flat list of values, whose
+	type is determined by the <varname>otype</varname> constructor
+	argument.  The list contains one value for each point in the
+	<varname>coords</varname> list, in the same order.
+      </para>
+    </refsection>
+  </refentry><!-- Output -->
+
+  <refentry id="Class-PropertyOutput">
+    <refnamediv>
+      <refname>PropertyOutput</refname>
+      <refpurpose>Compute Property-dependent data on a Mesh</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/IO/propertyoutput.h"
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>PropertyOutput</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>const std::string&amp;</type>
+	    <methodname><link linkend="Class-PropertyOutput-name">name</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-PropertyOutput-getFloatParam">getFloatParam</link></methodname>
+	    <methodparam>
+	      <type>char*</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>int</type>
+	    <methodname><link
+		linkend="Class-PropertyOutput-getIntParam">getIntParam</link></methodname>
+	    <methodparam>
+	      <type>char*</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>std::string</type>
+	    <methodname><link
+		linkend="Class-PropertyOutput-getStringParam">getStringParam</link></methodname>
+	    <methodparam>
+	      <type>char*</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>std::string</type>
+	    <methodname><link
+		linkend="Class-PropertyOutput-getEnumParam">getEnumParam</link></methodname>
+	    <methodparam>
+	      <type>char*</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>std::string</type>
+	    <methodname><link
+		linkend="Class-PropertyOutput-getRegisteredParamName">getRegisteredParamName</link></methodname>
+	    <methodparam>
+	      <type>char*</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </literallayout>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.C</filename>: C++
+	      source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.h</filename>: C++
+	      header file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.swg</filename>:
+	      SWIG source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>PropertyOutput</classname> objects are created by
+	the &oof2; <link
+	linkend="Section-Coding-Output"><classname>Output</classname></link>
+	machinery when computing <link
+	linkend="Class-Property"><classname>Property</classname></link>-dependent
+	output quantities.  The objects are passed as arguments to
+	<link
+	linkend="Class-Property-output"><methodname>Property::output()</methodname></link>.
+	They should never be explicitly created by the authors of
+	&oof2; extensions, so the constructor syntax isn't discussed
+	here.
+      </para>
+      <para>
+	The role of the <classname>PropertyOutput</classname> class is
+	simply to inform the <classname>Property</classname> of which
+	output quantity it's supposed to compute. 
+      </para>
+    </refsection>
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-PropertyOutput-name">
+	<title><code>const std::string&amp; name() const</code></title>
+	<para>
+	  This returns the name of the
+	  <classname>PropertyOutput</classname>, as specified in its
+	  <link
+	  linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistration</classname></link>.
+	  In many cases, this is all that the
+	  <classname>Property</classname> needs to know in order to
+	  compute the desired quantities.
+	</para>
+      </refsection><!-- PropertyOutput::name -->
+      <refsection id="Class-PropertyOutput-getFloatParam">
+	<title><code>double getFloatParam(char *name) const</code></title>
+	<para>
+	  If the <link
+	  linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistration</classname></link>
+	  for this <classname>PropertyOutput</classname> included a
+	  floating point parameter (<link
+	  linkend="Class-FloatParameter"><classname>FloatParameter</classname></link>),
+	  then the value of that parameter can be retrieved by calling
+	  <methodname>getFloatParam</methodname>.  The argument is the
+	  name of the parameter.  If the parameter can't be found,
+	  <methodname>getFloatParam</methodname> will throw an
+	  exception which will be caught when control returns to the
+	  Python interpreter.
+	</para>
+	<para>
+	  The argument to <methodname>getFloatParam</methodname> is a
+	  <code>char*</code> instead of a <code>std::string</code>
+	  because that's what the Python API functions expect to see.
+	</para>
+      </refsection>
+      <refsection id="Class-PropertyOutput-getIntParam">
+	<title><code>int getIntParam(char *name) const</code></title>
+	<para>
+	  <methodname>getIntParam</methodname> is just like <link
+	  linkend="Class-PropertyOutput-getFloatParam"><methodname>getFloatParam</methodname></link>,
+	  but it fetches the value of a <link
+	  linkend="Class-IntParameter"><classname>IntParameter</classname></link>.
+	</para>
+      </refsection><!-- getIntParam -->
+      <refsection id="Class-PropertyOutput-getStringParam">
+	<title><code>std::string getStringParam(char *name) const</code></title>
+	<para>
+	  <methodname>getStringParam</methodname> is just like <link
+	  linkend="Class-PropertyOutput-getFloatParam"><methodname>getFloatParam</methodname></link>,
+	  but it fetches the value of a <link
+	  linkend="Class-StringParameter"><classname>StringParameter</classname></link>.
+	</para>
+      </refsection><!-- getStringParam -->
+      <refsection id="Class-PropertyOutput-getEnumParam">
+	<title><code>std::string getEnumParam(char *name) const</code></title>
+	<para>
+	  <methodname>getEnumParam</methodname> is just like <link
+	  linkend="Class-PropertyOutput-getFloatParam"><methodname>getFloatParam</methodname></link>,
+	  but it fetches the value of a <link
+	  linkend="Class-EnumParameter"><classname>EnumParameter</classname></link>.
+	  Actually, it technically returns the
+	  <emphasis>name</emphasis> of the value, since the value is a
+	  Python object.
+	</para>
+      </refsection><!-- getEnumParam -->
+      <refsection id="Class-PropertyOutput-getRegisteredParamName">
+	<title><code>std::string getRegisteredParamName(char *name) const</code></title>
+	<para>
+	  <methodname>getRegisteredParamName</methodname> is just like
+	  <link
+	  linkend="Class-PropertyOutput-getEnumParam"><methodname>getEnumParam</methodname></link>,
+	  but for <link
+	  linkend="Class-RegisteredParameter"><classname>RegisteredParameter</classname></link>
+	  parameters.  The parameter's value is a <link
+	  linkend="Section-RegisteredClasses"><classname>RegisteredClass</classname></link>
+	  object.  <methodname>getRegisteredParamName</methodname>
+	  calls the object's <methodname>name()</methodname> function
+	  and returns the result.
+	</para>
+      </refsection><!-- getRegisteredParamName -->
+    </refsection><!-- Methods -->
+  </refentry><!-- PropertyOutput -->
+
+  <refentry id="Class-PropertyOutputRegistration">
+    <refnamediv>
+      <refname>PropertyOutputRegistration</refname>
+      <refpurpose>Define a new Property-dependent output quantity</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Python Synopsis</title>
+      <literallayout>
+from oof2.SWIG.engine.IO import propertyoutput
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ScalarPropertyOutputRegistration</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>PropertyOutputRegistration</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodparam>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>initializer=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>parameters=[]</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>tip=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>discussion=None</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	</classsynopsis>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>SymmMatrix3PropertyOutputRegistration</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>PropertyOutputRegistration</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodparam>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>initializer=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>parameters=[]</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>tip=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>discussion=None</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	</classsynopsis>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ThreeVectorPropertyOutputRegistration</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>PropertyOutputRegistration</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodparam>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>initializer=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>parameters=[]</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>tip=None</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>discussion=None</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	</classsynopsis>
+      </literallayout>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.C</filename>: C++
+	      source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.h</filename>: C++
+	      header file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.swg</filename>: SWIG
+	      source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.spy</filename>:
+	      Python code included in the SWIG output.
+	      <classname>PropertyOutputRegistration</classname> subclasses.
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>PropertyOutputRegistration</classname> objects
+	contain the data that's required for &oof2; to compute a <link
+	linkend="Class-Property"><classname>Property</classname></link>-dependent
+	output quantity.  Because the actual computation is done in
+	<link
+	linkend="Class-Property-output"><methodname>Property::output</methodname></link>,
+	the registration object doesn't have to do much.  It is
+	basically a container for the name of the output and its <link
+	linkend="Class-Parameter"><classname>Parameters</classname></link>,
+	if any.  It also defines appropriate <link
+	linkend="Class-Output"><classname>Output</classname></link>
+	objects and calls <link
+	linkend="Function-definePositionOutput"><function>definePositionOutput</function></link>,
+	<foreignphrase>etc</foreignphrase> on them.
+      </para>
+      <para>
+	The <classname>PropertyOutputRegistration</classname> base
+	class is a swigged C++ class, but it should never be used
+	directly.  Instead, new property outputs should create an
+	instance of one of the subclasses listed above.  (Adding new
+	subclasses is not difficult, but it won't be discussed
+	here. If new subclasses are required, the classes in
+	<filename>SRC/engine/IO/propertyoutput.spy</filename> can be
+	used as examples.)
+      </para>
+      <para>
+	The three subclasses,
+	<classname>ScalarPropertyOutputRegistration</classname>,
+	<classname>SymmMatrix3PropertyOutputRegistration</classname>,
+	and
+	<classname>ThreeVectorPropertyOutputRegistration</classname>,
+	are for registering Outputs that compute different types of
+	data (scalars, symmetric 3&times;3 matrices, and 3-vectors,
+	respectively).  The constructors for all of the subclasses
+	take the same arguments (all but the first are optional):
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>name</varname></term>
+	    <listitem>
+	      <para>
+		The name of the Output.  This is the name that is
+		retrieved by <link
+		linkend="Class-PropertyOutput-name"><methodname>PropertyOutput::name</methodname></link>
+		in a <link
+		linkend="Class-Property-output"><methodname>Property::output</methodname></link>
+		function.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>initializer</varname></term>
+	    <listitem>
+	      <para>
+		<varname>initializer</varname>, if provided, must be
+		an instance of an appropriate subclass of <link
+		linkend="Class-PropertyOutputInit"><classname>PropertyOutputInit</classname></link>.
+		The initializer is called to make a
+		<classname>Property</classname>-<emphasis>in</emphasis>dependent
+		contribution to the output data before calling <link
+		linkend="Class-Property-output"><methodname>Property::output</methodname></link>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>parameters</varname></term>
+	    <listitem>
+	      <para>
+		<varname>parameters</varname> is a list of <link
+		linkend="Class-Parameter"><classname>Parameter</classname></link>
+		objects that further define the output. For example,
+		the <literal>'Energy'</literal> output has an <link
+		linkend="Class-EnumParameter"><classname>EnumParameter</classname></link>
+		called <literal>'etype'</literal> that can be set to
+		<literal>'Elastic'</literal>,
+		<literal>'Total'</literal>,
+		<foreignphrase>etc</foreignphrase>.  The values of the
+		parameters can be retrieved by <link
+		linkend="Class-Property-output"><methodname>Property::output</methodname></link>
+		by calling <link
+		linkend="Class-PropertyOutput-getFloatParam"><methodname>PropertyOutput::getFloatParam</methodname></link>,
+		<foreignphrase>etc</foreignphrase>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>tip</varname></term>
+	    <listitem>
+	      <para>
+		<varname>tip</varname> is a short string describing
+		the output.  It will appear in tooltips in the GUI.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>discussion</varname></term>
+	    <listitem>
+	      <para>
+		<varname>discussion</varname> is a more verbose
+		description of the Output, meant for inclusion in the
+		&oof2; users manual.  It can either be a string or a
+		reference to a file via the <link
+		linkend="Function-xmlmenudump.loadFile"><function>xmlmenudump.loadFile</function></link>
+		function.  The string or the contents of the file must
+		be docbook xml code suitable for the contents of a
+		refsection.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </para>
+    </refsection><!-- Description -->
+  </refentry><!-- PropertyOutputRegistration -->
+
+  <refentry id="Class-PropertyOutputInit">
+    <refnamediv>
+      <refname>PropertyOutputInit</refname>
+      <refpurpose>Initialize Property Outputs</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>C++ Synopsis</title>
+      <literallayout>
+#include "SRC/engine/IO/propertyoutput.h"
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>PropertyOutputInit</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>OutputVal*</type>
+	    <methodname>operator()</methodname>
+	    <methodparam>
+	      <type>const PropertyOutput*</type>
+	      <parameter>po</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const FEMesh*</type>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const Element*</type>
+	      <parameter>element</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const MasterCoord&amp;</type>
+	      <parameter>coord</parameter>
+	    </methodparam>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ScalarPropertyOutputInit</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>PropertyOutputInit</classname>
+	  </ooclass>
+	</classsynopsis>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ThreeVectorPropertyOutputInit</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>PropertyOutputInit</classname>
+	  </ooclass>
+	</classsynopsis>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>SymmMatrix3PropertyOutputInit</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>PropertyOutputInit</classname>
+	  </ooclass>
+	</classsynopsis>
+      </literallayout>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.C</filename>: C++
+	      source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.h</filename>: C++
+	      header file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/IO/propertyoutput.swg</filename>:
+	      SWIG source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The subclasses of <classname>PropertyOutputInit</classname>
+	are used to initialize the computation of <link
+	linkend="Section-Coding-PropertyOutputs">Property
+	Outputs</link>.  <classname>PropertyOutputInit</classname>
+	objects are passed to the <link
+	linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistration</classname></link>
+	constructor when a Property Output is defined.  The classes
+	listed above are used automatically when the
+	<classname>PropertyOutputRegistration</classname> doesn't
+	explicitly specify an initializer &mdash; they all initialize
+	the data to zero.  Non-trivial initialization can be obtained
+	by creating further subclasses and overriding
+	<methodname>operator()</methodname>.  See
+	<filename>SRC/engine/cstrain.C</filename> for an example.
+      </para>
+      <para>
+	<classname>PropertyOutputInit</classname> classes should be
+	written in C++, and their constructors should be swigged.
+      </para>
+      <para>
+	The arguments to <methodname>operator()</methodname> are:
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><code>const PropertyOutput *po</code></term>
+	    <listitem>
+	      <para>
+		A <link
+		linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+		object describing the output that's being computed.
+		It should be used just like it's used in <link
+		linkend="Class-Property-output"><methodname>Property::output()</methodname></link>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><code>const FEMesh *mesh</code></term>
+	    <listitem>
+	      <para>
+		The <link
+		linkend="Class-FEMesh"><classname>FEMesh</classname></link>
+		on which the data is to be computed.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><code>const Element *element</code></term>
+	    <listitem>
+	      <para>
+		The <link
+		linkend="Class-Element"><classname>Element</classname></link>
+		containing the point at which the data is to be
+		computed.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><code>const MasterCoord &amp;pos</code></term>
+	    <listitem>
+	      <para>
+		The point at which the data is to be computed, given
+		in the <classname>Element</classname>'s master space
+		coordinates.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </para>
+      <para>
+	<methodname>operator()</methodname> must return a pointer to a
+	<emphasis>new</emphasis> <link
+	linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	object of the appropriate type. The pointer will be
+	deallocated elsewhere.
+      </para>
+    </refsection>
+  </refentry><!-- PropertyOutputInit -->
+
+  <refentry id="Function-definePositionOutput">
+    <refnamediv>
+      <refname>definePositionOutput, defineScalarOutput,
+	defineAggregateOutput</refname>
+      <refpurpose>
+	Install Outputs in the GUI
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Python Synopsis</title>
+      <literallayout class="monospaced">
+from oof2.common.IO import output
+
+definePositionOutput(path, output)
+defineScalarOutput(path, output)
+defineAggregateOutput(path, output)
+
+</literallayout>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/IO/output.py</filename>
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<function>definePositionOutput</function>,
+	<function>defineScalarOutput</function>, and
+	<function>defineAggregateOutput</function> are used to make an
+	existing <link
+	linkend="Class-Output"><classname>Output</classname></link>
+	object visible to the user interface, and to determine the
+	name that it will have in the user interface.
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <para>
+	      <function>definePositionOutput</function> is used for
+	      <classname>Outputs</classname> whose value is either a
+	      <link
+	      linkend="Class-Point"><classname>Point</classname></link>
+	      or <link
+	      linkend="Class-Coord"><classname>Coord</classname></link>,
+	      and that are used to determine the location of points in
+	      a contour plot.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      <function>defineScalarOutput</function> is used for
+	      <classname>Outputs</classname> whose value is a floating
+	      point number, and which are used as data in a contour
+	      plot.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      <function>defineAggregateOutput</function> is used for
+	      <classname>Outputs</classname> whose value is a
+	      collection of numbers (such as the set of components of
+	      a &field; or a &flux;).  Aggregate
+	      <classname>Outputs</classname> are used in the <link
+	      linkend="Section-Tasks-Analysis">Analysis</link> Page.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+      <para>
+	The <varname>path</varname> argument to the functions is a
+	colon separated string
+	(<foreignphrase>e.g</foreignphrase>,
+	<literal>'first:second:third'</literal>).  The last component
+	of the string is the name of the
+	<classname>Output</classname>. The preceding components (if
+	any) are the names of the nested menus containing the
+	<classname>Output</classname>.
+	<literal>'first:second:third'</literal> means that in the GUI the
+	<classname>Output</classname> named <literal>'third'</literal>
+	resides in the <literal>'second'</literal> submenu of the
+	<literal>'first'</literal> menu.  In scripts, the
+	<classname>Output</classname> will be identified by the full
+	colon separated string within calls to the
+	<function>getOutput</function> function.
+      </para>
+    </refsection><!-- Description -->
+  </refentry><!-- definePositionOutput -->
+
+
+<!-- Decided not to include the following section because it's too boring
+  <refentry id="Object-PredefinedOutputs">
+    <refnamediv>
+      <refname>Predefined Outputs</refname>
+      <refpurpose>Output objects in the &oof2; distribution</refpurpose>
+    </refnamediv>
+    <refsection>
+      <title>Overview</title>
+      <para>
+	&oof2; <classname>Output</classname> objects are described in
+	<xref linkend="Section-Coding-Output"/> and <xref
+	linkend="Class-Output"/>.  This page summarizes the
+	<classname>Output</classname> instances that &oof2; defines.
+	Extension authors may wish to define new ones.  New
+	<classname>Outputs</classname> can <link
+	linkend="Class-Output-connect">connect</link> to predefined
+	<classname>Outputs</classname> or stand on their own.
+      </para>
+    </refsection>
+    <refsection>
+      <title>Atomic Outputs</title>
+      <para>
+	Atomic <classname>Outputs</classname> are those that aren't
+	created by cloning existing <varname>Outputs</varname> or by
+	connecting multiple <classname>Outputs</classname> together.
+	The following are defined in
+	<filename>SRC/engine/IO/outputClones.py</filename>:
+	<variablelist spacing="normal">
+	  <varlistentry>
+	    <term><varname>posOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>Outputs the physical positions of the given
+		  coords.</simpara>
+		</listitem>
+		<listitem>
+		  <simpara>No inputs.</simpara>
+		</listitem>
+		<listitem>
+		  <simpara>No parameters.</simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>FieldOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Outputs the value of a &field; as an <link
+		    linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+		    It's an error to use this if the &field; is not
+		    defined on the &mesh;.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>No inputs.</simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-FieldParameter"><classname>FieldParameter</classname></link>,
+		    named <literal>'field'</literal>, to specify the
+		    &field;.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>FieldAnywayOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Outputs the value of a &field; as an <link
+		    linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+		    If the &field; is not defined on the &mesh;, all
+		    components of the <classname>OutputVal</classname>
+		    are set to zero.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>No inputs.</simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-FieldParameter"><classname>FieldParameter</classname></link>,
+		    named <literal>'field'</literal>, to specify the
+		    &field;.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>FieldDerivOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Outputs the derivative of a &field; as an <link
+		    linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>No inputs.</simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-FieldParameter"><classname>FieldParameter</classname></link>,
+		    named <literal>'field'</literal>, to specify the
+		    &field;, and one <link
+		    linkend="Class-EnumParameter"><classname>EnumParameter</classname></link>
+		    for an <link
+		    linkend="Enum-InPlaneSpaceComponent"><classname>InPlaneSpaceComponent</classname></link>,
+		    named <literal>'derivative'</literal> to specify
+		    the derivative.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>FluxOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Outputs the value of a &flux; as an <link
+		    linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>No inputs.</simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-FluxParameter"><classname>FluxParameter</classname></link>,
+		    named <literal>'flux</literal>, to specify the
+		    &flux;.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>ComponentOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Extracts a single component of an <link
+		    linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One input, named <literal>'field'</literal>,
+		    containing the <classname>OutputVal</classname> data.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-FieldIndexParameter"><classname>FieldIndexParameter</classname></link>,
+		    named <literal>'component'</literal>, indicating
+		    which component to extract.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>InvariantOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Computes an invariant of an <link
+		    linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One input, named <literal>'field'</literal>,
+		    containing the <classname>OutputVal</classname> data.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-InvariantParameter"><classname>InvariantParameter</classname></link>,
+		    named <literal>'invariant'</literal>, indicating
+		    which invariant to compute.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>FunctionOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Computes an arbitrary function of position.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    No inputs.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-XYStrFunctionParameter"><classname>XYStrFunctionParameter</classname></link>,
+		    named <literal>'f'</literal>, specifying the
+		    function, which can be any Python expression
+		    involving the variables <varname>x</varname> and
+		    <varname>y</varname>.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>PointSumOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Computes a scaled sum of two <link
+		    linkend="Class-Point"><classname>Points</classname></link>
+		    (or <link
+		    linkend="Class-Point"><classname>Coords</classname></link>).
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    Two inputs, named <literal>'point1'</literal> and
+		    <literal>'point2'</literal>
+		    containing the <classname>Point</classname> data.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    Two <link
+		    linkend="Class-FloatParameter"><classname>FloatParameters</classname></link>,
+		    named <literal>'a'</literal> and
+		    <literal>'b'</literal>.  The result is
+		    <code>a*point1 + b*point2</code>.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>RescaleOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Rescales and shifts floating point data.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One input, named <literal>'inputdata'</literal>
+		    containing the unscaled values.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    Two <link
+		    linkend="Class-FloatParameter"><classname>FloatParameters</classname></link>,
+		    named <literal>'minimum'</literal> and
+		    <literal>'maximum'</literal>, giving the range of
+		    the rescaled data.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>ScalarMultiplyOutput</varname></term>
+	    <listitem>
+	      <itemizedlist spacing="compact">
+		<listitem>
+		  <simpara>
+		    Rescales data.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One input, named <literal>'scalee'</literal>
+		    containing unscaled <link
+		    linkend="Class-OutputVal"><classname>OutputVals</classname></link>.
+		  </simpara>
+		</listitem>
+		<listitem>
+		  <simpara>
+		    One <link
+		    linkend="Class-FloatParameter"><classname>FloatParameter</classname></link>,
+		    named <literal>'factor'</literal> by which to
+		    multiply the <classname>OutputVals</classname>.
+		  </simpara>
+		</listitem>
+	      </itemizedlist>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </para>
+    </refsection>
+  </refentry>
+-->
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

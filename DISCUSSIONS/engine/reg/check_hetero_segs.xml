@@ -1,0 +1,105 @@
+<!-- 
+  $RCSfile: check_hetero_segs.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:37 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    The &skel; <link
+    linkend="RegisteredClass-Refine">refinement</link> process is
+    ultimately driven by &sgmts; -- the refinement <link
+    linkend="Enum-RuleSet">rule</link> for each element is determined
+    solely by number and configuration of marked &sgmts; in the
+    element.  <classname>CheckHeterogeneousEdges</classname> directly
+    marks heterogeneous &sgmts; for refinement.
+  </para>
+
+  <para>
+    All &sgmts; whose <link
+    linkend="Section-Concepts-SegmentHomogeneity">homogeneity</link>
+    is less than the given <varname>threshold</varname> will be
+    refined, as long as they're in the set described by the
+    <varname>choose_from</varname> parameter.
+    (<varname>choose_from</varname> is a <xref
+    linkend="RegisteredClass-SegmentChooser"/> object that can
+    restrict the scope of the refinement.  Leave it set to <xref
+    linkend="RegisteredClass-FromAllSegments"/> for unrestricted
+    operation.)
+  </para>
+
+
+  <para>
+    <xref linkend="Figure-hetero_segments"/> shows &sgmts; that have
+    been marked for refinement with <varname>threshold</varname>=0.9
+    and <varname>choose_from</varname>=<xref
+    linkend="RegisteredClass-FromAllSegments"/>().  <xref
+    linkend="Figure-hetero_segments_refined"/> shows the result of
+    refining those segments (with the <link
+    linkend="Enum-RuleSet">liberal</link> <xref
+    linkend="RegisteredClass-Bisection"/> rules).
+
+    <figure id="Figure-hetero_segments">
+      <title>Heterogeneous Segments</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG"
+	  fileref="FIGURES/check_mark/hetero_segments.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS"
+	  fileref="FIGURES/check_mark/hetero_segments.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    Segments with homogeneity less than 0.9 are shown in bold.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <figure id="Figure-hetero_segments_refined">
+      <title>Refined Heterogeneous Segments</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata
+	    fileref="FIGURES/check_mark/hetero_seg_refined.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata
+	    fileref="FIGURES/check_mark/hetero_seg_refined.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A &skel; refinement based on the bold segments.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

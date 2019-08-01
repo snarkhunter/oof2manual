@@ -1,0 +1,105 @@
+<!-- 
+  $RCSfile: merge.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>MergeTriangles</classname> merges two triangular
+    &elems; into one quadrilateral &elem;.
+  </para>
+
+  <para>
+    <classname>MergeTriangles</classname> is more or less the opposite of
+    <xref linkend="RegisteredClass-SplitQuads"/>, which splits a
+    quadrilateral into two triangles. Given the nature of the process
+    (merging elements), it is easy to see that it focuses mostly on
+    reducing elements' <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+    energy</link> rather than increasing elements' <link
+    linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity</link>.
+    It also reduces the overall degrees of freedom in the resulting
+    &mesh;, thereby decreasing the solution time (and accuracy), if
+    the &mesh; is going to be built from <link
+    linkend="Section-Concepts-Mesh-Geometry">high-order</link>
+    elements.  For &meshes; made of linear elements (4-noded quads or
+    3-noded triangles) Merging Triangles does not reduce the number of
+    degrees of freedom.
+  </para>
+
+  <para>
+    The <varname>targets</varname> parameter specifies which &elems;
+    in the &skel; to examine.  Taking the &elems; in random order,
+    &oof2; tries to merge each &elem; with <emphasis>each</emphasis>
+    of its neighbor elements in turn (whether or not they're in the
+    target list), if the neighbor is a triangle and has the same <link
+    linkend="Section-Concepts-PixelCategory">dominant pixel
+    type</link> as the target &elem;.  The
+    <varname>criterion</varname> parameter specifies which, if any, of
+    the possible merges to accept.
+  </para>
+  
+  <para>
+    <xref linkend="Figure-before_merge"/> shows a few highlighted
+    triangle pairs to be merged. The resulting &skel; is shown in
+    <xref linkend="Figure-after_merge"/>.
+  </para>
+  <figure id="Figure-before_merge">
+    <title>Triangles To Be Merged</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/before_merge.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" format="EPS"
+	  fileref="FIGURES/before_merge.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  To-be-merged triangle pairs are highlighted.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-after_merge">
+    <title>After Merge</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG"
+	  fileref="FIGURES/after_merge.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" format="EPS"
+	  fileref="FIGURES/after_merge.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  Triangle pairs have been merged to form quadrilaterals.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

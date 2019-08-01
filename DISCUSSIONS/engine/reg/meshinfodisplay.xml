@@ -1,0 +1,58 @@
+<!-- 
+  $RCSfile: meshinfodisplay.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>MeshInfoDisplay</classname> marks the &mesh; components
+    whose information is displayed in <xref
+    linkend="Section-Graphics-MeshInfo"/> toolbox.
+  </para>
+  <para>
+    The <varname>query_color</varname> parameter governs the color of
+    the primary object being displayed in the toolbox.  Clicking on
+    the name of another Mesh component in the toolbox highlights
+    that component with the <varname>peek_color</varname>.
+  </para>
+  <para>
+    Nodes are displayed with a dot of radius
+    <varname>node_size</varname>, Elements are displayed by drawing
+    their perimeter with lines of width
+    <varname>element_width</varname>.  Both of these parameters are
+    integers, in units of the screen pixel size.
+  </para>
+  <para>
+    A single <classname>MeshInfoDisplay</classname> is created
+    automatically in each <link linkend='Chapter-Graphics'>Graphics
+    Window</link> and is not normally visible in the window's layer
+    list. To edit its properties, first select <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
+    All Layers</link> in the graphics window's <menuchoice>
+    <guimenu>Settings</guimenu> </menuchoice> menu.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

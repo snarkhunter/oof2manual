@@ -1,0 +1,52 @@
+<!-- 
+  $RCSfile: nononlinear.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-28 21:24:09 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>NoNonlinearSolver</classname> is the trivial <xref
+  linkend="RegisteredClass-NonlinearSolverBase"/>.  When selecting a
+  <link linkend="Section-Concepts-Mesh-Solvers">solver</link> in <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/>, specifying
+  <classname>NoNonlinearSolver</classname> as the
+  <varname>nonlinear_solver</varname> parameter will cause &oof2; to
+  assume that the &subproblem; is linear.
+</para>
+<para>
+  Selecting <classname>NoNonlinearSolver</classname> for a nonlinear
+  &subproblem; will lead to unpredictable results.  An explicit <link
+  linkend="RegisteredClass-TimeStepper">time stepper</link>, such as
+  <xref linkend="RegisteredClass-ForwardEuler"/> or <xref
+  linkend="RegisteredClass-RK4"/> will still work, but other steppers
+  will be unreliable.  Static solutions will be incorrect.
+</para>
+<para>
+  In <xref linkend="RegisteredClass-BasicSolverMode"/>,
+  <classname>NoNonlinearSolver</classname> is used automatically for
+  linear problems.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

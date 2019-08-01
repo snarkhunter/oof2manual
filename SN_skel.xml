@@ -1,0 +1,224 @@
+<!--
+  $RCSfile: SN_skel.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:11 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <section id="Section-Tasks-Skeleton">
+    <title>Skeleton</title>
+    
+    <para>
+      An &oof2; &skel; is a bare-bones object containing geometric
+      information about a &mesh;.  It is composed of &elems;, &nodes;,
+      and &sgmts;. It also includes boundaries (<link
+      linkend="Section-Concepts-Skeleton-Boundary-Point"><classname>PointBoundary</classname></link>
+      and <link
+      linkend="Section-Concepts-Skeleton-Boundary-Edge"><classname>EdgeBoundary</classname></link>)
+      where &mesh; boundary conditions will be applied.
+    </para>
+    <para>
+      A &skel; is in essence a discretized geometric representation of
+      &micro;.  A &mesh; is created by adding muscles (material
+      properties) and internal organs (mathematical properties) onto a
+      &skel;.  Thus, the validity of a &mesh; is critically dependent
+      on how faithfully its &skel; has been adapted to the &material;
+      (pixel) boundaries present in its &micro;.
+    </para>
+    <para>
+      This Skeleton Page contains all the tools that are used in
+      creating, managing, and modifying &skels; so that they conform
+      to material boundaries.
+    </para>
+    <para>
+      The layout of the Skeleton Page follows that of the <link
+      linkend="Section-Tasks-Image">Image</link> and <link
+      linkend="Section-Tasks-PixelSelection">Pixel Selection</link>
+      pages.  At the top of the page is a Skeleton Chooser, which
+      selects the &skel; to which the operations on the page apply.
+      Like the <link linkend="Figure-ImagePage">Image Chooser</link>
+      on the <link linkend="Section-Tasks-Image">Image Page</link>,
+      the Skeleton Chooser is in two parts. The first part chooses a
+      &micro;, and the second part chooses one of the &skels; within
+      it.
+    </para>
+    <figure id="Figure-SkeletonPage">
+      <title>The Skeleton Page</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/skeleton_page.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/skeleton_page.eps"
+	    format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+
+    <simplesect id="Section-SkeletonPage-Buttons">
+      <title>Buttons</title>
+      <para>
+	Below the Skeleton Chooser is a row of buttons for performing
+	common &skel; operations.  The first three buttons create
+	&skels;, and set the Skeleton Chooser to the newly created &skel;:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.New"><guibutton>New</guibutton></link>
+	      button creates a new &skel; with a given number of
+	      &elems;.  The &skel; will be created in the &micro;
+	      specified by the first part of the Skeleton Chooser. The
+	      &skel; will have a uniform rectangular array of &elems;,
+	      and the &elems; will not have any relationship to the
+	      &material; boundaries in the &micro;.  It will almost
+	      certainly be necessary to <link
+	      linkend="Section-Skeleton-Modify">modify</link> the
+	      &skel; for it to be a good representation of the
+	      &micro;.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.Simple"><guibutton>Simple</guibutton></link>
+	      button creates a new &skel; in which each pixel of the
+	      &micro; is divided into one quadrilateral or two
+	      triangular &elems;. The &skel; will be created in the
+	      &micro; specified by the first part of the Skeleton
+	      Chooser. A &skel; created in this way already matches
+	      the &material; boundaries in the &micro;, so it doesn't
+	      need any modification.  However, it probably creates far
+	      more elements than are necessary to represent the
+	      &micro; and also includes unphysical <link
+	      linkend="Anchor:over-refinement">jagged edges</link>.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.Auto"><guibutton>Auto</guibutton></link>
+	      button creates a new &skel; and automatically refines it
+	      to fit the &micro;, using a predefined set of
+	      operations.  This set may not be suitable for all
+	      &micros;, but it often does a very good job.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+	The remaining buttons act on the &skel; currently selected in
+	the Skeleton Chooser:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.Rename"><guibutton>Rename</guibutton></link>
+	      button renames the current &skel; and leaves it selected
+	      in the Skeleton Chooser.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.Copy"><guibutton>Copy</guibutton></link>
+	      button makes a copy of the current &skel;.  The copy
+	      becomes the new current &skel;.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.Delete"><guibutton>Delete</guibutton></link>
+	      button deletes the current &skel; and all &meshes;
+	      associated with it.  It does not otherwise affect the
+	      &skel;'s &micro;.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.File.Save.Skeleton"><guibutton>Save</guibutton></link>
+	      button saves the current &skel; in a file.  (The
+	      <guibutton>Save</guibutton> button is exactly the same
+	      as the <guimenu>Save/Skeleton</guimenu> command in the
+	      <guimenu>File</guimenu> menu, except that the
+	      <guibutton>Save</guibutton> button operates on the
+	      &skel; named in the Skeleton Chooser, and the
+	      <guimenu>File</guimenu> command can save any &skel;.)
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </simplesect>
+
+    <simplesect id="Section-Skeleton-Modify">
+      <title>The Skeleton Modification Pane</title>
+      <para>
+	The Skeleton Modification Pane contains tools for modifying a
+	&skel; so that it follows the &material; and <link
+	linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	group</link> boundaries in its &micro;.   See the discussions
+	of the <xref linkend="MenuItem-OOF.Skeleton.Modify"/> command
+	and the <xref linkend="RegisteredClass-SkeletonModifier"/>
+	subclasses to learn about the specific tools.
+      </para>
+      <para>
+	At the top of the pane (see <xref
+	linkend="Figure-SkeletonPage"/>) is a Chooser (marked
+	<guilabel>method</guilabel>) for picking a <link
+	linkend="RegisteredClass-SkeletonModifier">modification
+	method</link>.  The parameters of the method appear below it.
+	Below that are five buttons:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <guibutton>OK</guibutton> button applies the
+	      selected modifier to the current &skel; by invoking the
+	      <xref linkend="MenuItem-OOF.Skeleton.Modify"/> command.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Skeleton.Undo"><guibutton>Undo</guibutton></link>
+	      and <link
+	      linkend="MenuItem-OOF.Skeleton.Redo"><guibutton>Redo</guibutton></link>
+	      buttons undo and redo the latest &skel; modifications.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <guibutton>Prev</guibutton> and
+	      <guibutton>Next</guibutton> buttons cycle the method
+	      chooser through the recently applied methods.  They have
+	      no direct effect on the &skel;.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </simplesect>
+
+  </section>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

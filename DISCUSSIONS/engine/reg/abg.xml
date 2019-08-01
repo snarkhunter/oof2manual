@@ -1,0 +1,168 @@
+<!-- 
+  $RCSfile: abg.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:35 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    An <classname>Abg</classname> object represents the orientation of
+    a three dimensional object (assumed to be a crystal in this
+    discussion) in three dimensional space in terms of the Euler
+    angles
+    <inlineequation>
+      <alt role="tex">\((\alpha, \beta, \gamma)\)</alt>
+    </inlineequation>.  The literature contains different ways of
+    interpreting the angles.  Here we present four different, but
+    equivalent, prescriptions for determining the actual rotation
+    described by the three angles, as used in the
+    <classname>Abg</classname> class.
+  </para>
+  <para>
+    We define <inlineequation>
+      <alt role="tex">\((\hat{\mathrm{\bf x}}, \hat{\mathrm{\bf y}}, \hat{\mathrm{\bf z}})\)</alt>
+    </inlineequation>
+    to be the screen coordinate system, with &xhat; pointing to the
+    right, &yhat; upwards, and &zhat; out of the screen.  We will call
+    the crystal axes
+    <inlineequation>
+      <alt role="tex">\((\hat{\mathrm{\bf a}}, \hat{\mathrm{\bf b}}, \hat{\mathrm{\bf c}})\)</alt>
+    </inlineequation>.
+    As usual, all rotations are right handed -- a positive rotation
+    about an axis is counterclockwise if the axis is pointed towards
+    you.
+  </para>
+
+  <formalpara><title>One Method of Finding the Euler Angles:</title>
+    <para>
+      This method describes the rotation that must be applied to the
+      crystal axes to bring them into alignment with the screen axes,
+      assuming that the crystal <emphasis>starts</emphasis> in its
+      desired orientation with respect to the screen. First, rotate
+      the axes by &beta; around the &chat; axis.  This defines new axes
+      <inlineequation>
+	<alt role="tex">\((\hat{\mathrm{\bf a}}', \hat{\mathrm{\bf b}'}, \hat{\mathrm{\bf c}})\) </alt>
+      </inlineequation>.
+      Next rotate by &alpha; about the 
+      <inlineequation>
+	<alt role="tex">\(\hat{\mathrm{\bf b}'}\)</alt>
+      </inlineequation>
+      axis, defining another coordinate system
+      <inlineequation>
+	<alt role="tex">\((\hat{\mathrm{\bf a}}'', \hat{\mathrm{\bf b}'}, \hat{\mathrm{\bf c}}'')\)</alt>
+      </inlineequation>.
+      Finally, rotate by &gamma; about the
+      <inlineequation>
+	<alt role="tex">\(\hat{\mathrm{\bf c}}''\)</alt>
+      </inlineequation>
+      axis, bringing the axes into agreement with
+      <inlineequation>
+	<alt role="tex">\((\hat{\mathrm{\bf x}}, \hat{\mathrm{\bf y}}, \hat{\mathrm{\bf z}})\)</alt>
+      </inlineequation>.
+    </para>
+  </formalpara>
+  
+  
+  <formalpara>
+    <title>An equivalent method:</title>
+    <para>
+      Consider the material oriented with a globe, with the origin at
+      the center of the earth and &chat;-axis pointing towards the
+      north pole, the &ahat;-axis pointing at the Greenwich Meridian
+      where it intersects the equator and the &bhat;-axis pointing
+      towards the Indian ocean somewhere southeast of Sri Lanka.  The
+      unrotated globe has its &ahat;, &bhat;, and &chat; axes aligned
+      with the &xhat;, &yhat;, and &zhat; axes of the screen,
+      respectively.  The rotation triplet describes how to rotate the
+      material into its desired orientation (in contrast to the
+      previous method, which <emphasis>started</emphasis> with the
+      material in its desired orientation). The first number of the
+      rotation triplet tilts the point on the north pole southward
+      along the Greenwich Meridian by -&alpha; degrees to a new
+      latitude.  The second number spins the globe to the east by
+      <inlineequation>
+	<alt role="tex">\(-\beta\)</alt>
+      </inlineequation>
+      degrees about its (tilted) &chat;-axis. The third number
+      rotates the tilted globe to the east by <inlineequation>
+	<alt role="tex">\(-\gamma\)</alt>
+      </inlineequation>
+      degrees about the screen's &zhat; axis.
+    </para>
+  </formalpara>
+
+  <formalpara>
+    <title>A third method:</title>
+    <para>
+      The order of rotations in the previous definition can be
+      rearranged. Rotate the globe to the east by <inlineequation>
+	<alt role="tex">\(-\beta\)</alt>
+      </inlineequation> degrees about
+      the &zhat;-axis, tilt the north pole by <inlineequation>
+	<alt role="tex">\(-\alpha\)</alt>
+      </inlineequation> about the
+      &yhat;-axis, and rotate to the east by <inlineequation>
+	<alt role="tex">\(-\gamma\)</alt>
+      </inlineequation> again about the
+      &zhat;-axis.
+    </para>
+  </formalpara>
+
+  <formalpara>
+    <title>The fourth method:</title>
+    <para>
+      If you know the components in the crystal coordinate system of
+      the screen vectors &xhat;, &yhat;, and &zhat;, you can compute
+      the Euler angles as follows. Let
+      <inlineequation>
+	<alt role="tex">\((x_1, x_2, x_3)\)</alt>
+      </inlineequation>
+      be the components of the screen's &xhat;-axis in the crystal
+      coordinate system. Let
+      <inlineequation>
+	<alt role="tex">\((y_1, y_2, y_3)\)</alt>
+      </inlineequation>
+      and
+      <inlineequation>
+	<alt role="tex">\((z_1, z_2, z_3)\)</alt>
+      </inlineequation>
+      similarly be the components of the &yhat; and &zhat;-axes. Then
+      <informalequation>
+	<alt role="tex">
+	  \begin{align*}
+	  \sin(\alpha) &amp;= \sqrt{z_1^2 + z_2^2} \\
+	  \cos(\alpha) &amp;= z_3 \\
+	  \\
+	  \sin(\beta) &amp;= z_2/\sqrt{z_1^2 + z_2^2} \\
+	  \cos(\beta) &amp;= z_1/\sqrt{z_1^2 + z_2^2} \\
+	  \\
+	  \sin(\gamma) &amp;= y_3/\sqrt{z_1^2 + z_2^2} \\
+	  \cos(\gamma) &amp;= -x_3/\sqrt{z_1^2 + z_2^2} \\
+	  \end{align*}
+	</alt>
+      </informalequation>
+    </para>
+  </formalpara>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -1,0 +1,338 @@
+<!--
+  $RCSfile: TB_skelinfo.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-05-06 16:00:07 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section id="Section-Graphics-SkeletonInfo" role="toolbox">
+  <title>The Skeleton Info Toolbox</title>
+  <para>
+    When the Skeleton Info toolbox, shown in <xref
+    linkend="Figure-SkeletonInfoToolbox"/>, is active, clicking the
+    mouse on a &skel; on the Canvas displays information about
+    &elems;, &nodes;, and &sgmts; in the Toolbox.  Whether the Toolbox
+    displays &elem;, &node;, or &sgmt;, information is governed by the
+    setting of the Mode Selector buttons at the top of the Toolbox.
+    In all three modes, the position of the mouse click, in <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical
+    coordinates</link> is printed below the Mode Selector.
+  </para>
+  <figure id="Figure-SkeletonInfoToolbox">
+    <title>The Skeleton Info Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/skeletoninfo.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/skeletoninfo.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The Skeleton Info Toolbox and the Canvas, while querying an
+	  &elem;.  The window has been resized to show the entire
+	  Toolbox, which would otherwise need to be scrolled to be
+	  seen.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <para>
+    In all three modes, the queried &skel; component is highlighted in
+    the Canvas.  The <guibutton>Clear</guibutton> button at the bottom
+    of the Toolbox erases the highlighting and clears the data
+    listing.  The <guibutton>Prev</guibutton> and
+    <guibutton>Next</guibutton> buttons on either side cycle through
+    the previously selected objects (changing the Toolbox mode, if
+    necessary).
+  </para>
+  <simplesect id="Toolbox-SkeletonInfo-ElementMode">
+    <title>Element Mode</title>
+    <para>
+      In Element mode, the &elem; being queried is highlighted with a
+      blue perimeter,<footnote id="footnote-skelinfo">
+	<para>
+	  The color and size of the markings used to highlight the
+	  queried &elems;, &nodes;, and &sgmts; may be changed by
+	  editing the <xref
+	  linkend="RegisteredClass-SkeletonInfoDisplay"/> display
+	  &layer;.  This &layer; is predefined and always displays the
+	  topmost &skel;.  It will be necessary to enable <link
+	  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+	  All Layers</command></link> in the <link
+	  linkend="Section-Graphics-MenuBar"><command>Settings</command>
+	  menu</link> in order to edit the &layer;.
+	</para>
+      </footnote>
+      as shown in the figure, and the following data is displayed in
+      the Toolbox:
+      <itemizedlist spacing="compact">
+	<listitem id="skelinfo-elementindex">
+	  <para>
+	    The &elem;'s <emphasis>index</emphasis>.  This is just an
+	    integer used to identify the &elem;.  All of the &elems;
+	    in a &skel; have a unique index.  When a &skel; is
+	    modifed, the indices of all &elems; may be changed.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &elem;'s <emphasis>type</emphasis>, indicating its topology.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A list of the &elem;'s &nodes;.  &nodes; are listed in
+	    counterclockwise order with an arbitrary starting point.
+	    Each &node;'s <link
+	    linkend="skelinfo-nodeindex">index</link>, position (in
+	    <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    coordinates</link>), and interior angle (in degrees) are
+	    listed.
+	  </para>
+	  <para>
+	    Clicking on a &node; in the list will highlight it with an
+	    pink dot<footnoteref linkend="footnote-skelinfo"/> on the
+	    Canvas.  Double-clicking on a &node; in the list will
+	    switch the Toolbox into <link
+	    linkend="Toolbox-SkeletonInfo-NodeMode">Node Mode</link>
+	    and display information for the chosen &node;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A list of the &elem;'s &sgmts;, including the &sgmt;'s
+	    <link linkend="skelinfo-segmentindex">index</link>, the
+	    <link linkend="skelinfo-nodeindex">indices</link> of the
+	    &nodes; at its endpoints, and its length (in <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    units</link>).
+	  </para>
+	  <para>
+	    Clicking on a &sgmt; in the list will highlight it with a
+	    thick pink line<footnoteref linkend="footnote-skelinfo"/>
+	    on the Canvas.  Double-clicking on a &sgmt; in the list
+	    will switch the Toolbox into <link
+	    linkend="Toolbox-SkeletonInfo-SegmentMode">Segment
+	    Mode</link> and display information for the chosen &sgmt;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <emphasis>area</emphasis> of the &elem;, in <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    units</link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="Section-Concepts-Skeleton-Homogeneity"><emphasis>dominant
+	    pixel</emphasis></link> of the &elem;.  This is a list of
+	    the <link
+	    linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	    groups</link> to which the pixels comprising most of the
+	    &elem; belong.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &elem;'s <link
+	    linkend="Section-Concepts-Skeleton-Homogeneity"><emphasis>homogeneity</emphasis></link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &elem;'s <link
+	    linkend="Section-Concepts-Skeleton-Shape_Energy"><emphasis>shape
+	    energy</emphasis></link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &elem; <emphasis>groups</emphasis> to which the &elem;
+	    belongs.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &material; assigned to the &elem;.  This is the
+	    &material; that will be used for any &mesh; elements that
+	    are created from this &skel;. It is the same as the
+	    &material; assiged to the &elem;'s <link
+	    linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+	    pixel</link>, unless that choice has been <link
+	    linkend="MenuItem-OOF.ElementGroup.Assign_Material">overridden</link>
+	    by assigning a &material; to an &elemgroup; containing the
+	    &elem;.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Toolbox-SkeletonInfo-NodeMode">
+    <title>Node Mode</title>
+    <para>
+      In Node Mode, the &node; being queried is highlighted in the
+      Canvas with a blue dot.<footnoteref
+      linkend="footnote-skelinfo"/> The following information is
+      displayed in the Toolbox:
+      <itemizedlist spacing="compact">
+	<listitem id="skelinfo-nodeindex">
+	  <para>
+	    The &node;'s <emphasis>index</emphasis>.  Like the &elem;
+	    index, this is just an integer used to identify the
+	    &node;.  When a &skel; is modified, &nodes; may get new
+	    indices.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <emphasis>position</emphasis> of the &node;, in <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    units</link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <emphasis>mobility</emphasis> of the &node;.  &nodes;
+	    that are <link
+	    linkend="Section-Concepts-Pin">pinned</link> are marked as
+	    such.  &nodes; that are constrained to lie on the
+	    boundaries of the &micro; are marked as <quote>x
+	    only</quote> or <quote>y only</quote> if they can move in
+	    the x or y directions, and as <quote>fixed</quote> if they
+	    cannot move at all.  &nodes; with none of these
+	    constraints are marked <quote>free</quote>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A list of the &elems; which surround the &node;, in no
+	    particular order.  The <link
+	    linkend="skelinfo-elementindex">index</link> of each
+	    &elem; is given.
+	  </para>
+	  <para>
+	    Clicking on an &elem; in the list highlights that &elem;'s
+	    perimeter in pink<footnoteref
+	    linkend="footnote-skelinfo"/> in the Canvas.
+	    Double-clicking will switch the Toolbox to <link
+	    linkend="Toolbox-SkeletonInfo-ElementMode">Element
+	    Mode</link> and display the information for the chosen
+	    &elem;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &node; <emphasis>groups</emphasis> to which the &node;
+	    belongs.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="Section-Concepts-Skeleton-Boundary-Point"><emphasis>point
+	    boundaries</emphasis></link> of which the &node; is a
+	    component.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Toolbox-SkeletonInfo-SegmentMode">
+    <title>Segment Mode</title>
+    <para>
+      In Segment Mode, the &sgmt; being queried is highlighted in the
+      Canvas with a blue line.<footnoteref
+      linkend="footnote-skelinfo"/> The following information is
+      displayed in the Toolbox:
+      <itemizedlist spacing="compact">
+	<listitem id="skelinfo-segmentindex">
+	  <para>
+	    The <emphasis>index</emphasis> of the &sgmt;.  Like the
+	    &node; and &elem; indices, this is just an integer
+	    identifier.  When a &skel; is modified, &sgmt; indices may
+	    change.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &nodes; at the ends of the &sgmt;.  The <link
+	    linkend="skelinfo-nodeindex">index</link> and position (in
+	    <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    coordinates</link>) of each &node; is listed.
+	  </para>
+	  <para>
+	    Clicking on a &node; in the list highlights it with a pink
+	    dot<footnoteref linkend="footnote-skelinfo"/> in the
+	    Canvas.  Double-clicking switches the Toolbox to <link
+	    linkend="Toolbox-SkeletonInfo-NodeMode">Node Mode</link>
+	    and displays the information for the chosen &node;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &elems; to which the &sgmt; belongs.  The <link
+	    linkend="skelinfo-elementindex">index</link> of each
+	    &elem; is given.
+	  </para>
+	  <para>
+	    Clicking on an &elem; in the list highlights that &elem;'s
+	    perimeter in pink<footnoteref
+	    linkend="footnote-skelinfo"/> in the Canvas.
+	    Double-clicking will switch the Toolbox to <link
+	    linkend="Toolbox-SkeletonInfo-ElementMode">Element
+	    Mode</link> and display the information for the chosen
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <emphasis>length</emphasis> of the &sgmt; in <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    units</link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Any &sgmt; <emphasis>groups</emphasis> to which the &sgmt;
+	    belongs.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Any <link
+	    linkend="Section-Concepts-Skeleton-Boundary-Edge"><emphasis>edge
+	    boundaries</emphasis></link> of which the &sgmt; is a
+	    component.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+</section>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

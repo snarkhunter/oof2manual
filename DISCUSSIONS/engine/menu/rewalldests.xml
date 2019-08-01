@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: rewalldests.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-15 21:12:41 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  This command rewinds all <link
+  linkend="Section-Concepts-Outputs-Scheduled">Scheduled Output</link>
+  destinations in the &mesh;.  Rewinding an <xref
+  linkend="RegisteredClass-OutputDestination"/> means that the <xref
+  linkend="RegisteredClass-ScheduledOutput"/>'s file will be cleared
+  before any more data is added to it.  This happens even if the
+  original file was opened for appending.
+</para>
+<para>
+  It may be desirable to rewind output destinations when repeating a
+  time evolution calculation.  If the destinatons are not rewound,
+  data from the second calculation will be appended to data from the
+  first.
+</para>
+<para>
+  Only file-based <xref linkend="RegisteredClass-OutputDestination"/>s
+  can be rewound.  This command has no effect on <xref
+  linkend="RegisteredClass-GraphicsUpdate"/> or <xref
+  linkend="RegisteredClass-MessageWindowStream"/>.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

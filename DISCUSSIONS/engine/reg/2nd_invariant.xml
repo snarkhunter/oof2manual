@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: 2nd_invariant.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:35 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>SecondInvariant</classname> is one of the <link
+    linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
+    of a symmetric three dimensional rank 2 tensor quantity that can
+    be computed by the &oof2; <link
+    linkend="Section-Output"><classname>Outputs</classname></link>.
+    The second invariant of a three dimensional symmetric rank 2
+    tensor <inlineequation>
+      <alt role="tex">\(A\)</alt></inlineequation> is
+    <informalequation>
+      <alt role="tex">
+	\[
+	A_{11}A_{33} + A_{11}A_{22} + A_{22}A_{33} -
+	A_{12}^2 - A_{13}^2 - A_{23}^2.
+	\]
+      </alt>
+    </informalequation>
+  </para>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

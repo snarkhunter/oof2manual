@@ -1,0 +1,60 @@
+<!-- 
+  $RCSfile: deviation.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-27 21:32:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <para>
+    Compute the standard deviation of the given data over the
+    computational domain.  If the data has multiple components, the
+    deviation is computed for each component separately.  The
+    <varname>destination</varname> must be an <xref
+    linkend="RegisteredClass-MessageWindowStream"/> or a <xref
+    linkend="RegisteredClass-OutputStream"/>.
+  </para>
+  <para>
+    If the <varname>sampling</varname> is <xref
+    linkend="RegisteredClass-ElementSampleSet"/> or <xref
+    linkend="RegisteredClass-ElementSegmentSampleSet"/> the data is
+    weighted by the &elem; area or &sgmt; length.  Otherwise, all
+    points are given equal weight.
+  </para>
+  <para>
+    A header will be printed to identify the data.  Each line of
+    the header will begin with a comment character, which can be set
+    by <xref
+    linkend="MenuItem-OOF.Settings.Output_Formatting.Comment_Character"/>.
+    Multiple columns of data will be separated by a separator
+    character, which can be set by <xref
+    linkend="MenuItem-OOF.Settings.Output_Formatting.Separator"/>.
+  </para>
+  <para>
+    The output line will include the current &mesh; time if <xref
+    linkend="MenuItem-OOF.Settings.Output_Formatting.Show_Time"/> is
+    set.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

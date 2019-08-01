@@ -1,0 +1,47 @@
+<!-- 
+  $RCSfile: bufsize.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:14 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<!-- This file is processed before being inserted in the manual. "CLASS" -->
+<!-- is replaced by the name of a WhoDoUndoClass. -->
+  <para>
+    The <command>CLASS</command> command in the <xref
+    linkend="MenuItem-OOF.Settings.UndoBuffer_Size"/> menu sets the
+    size of the history buffer for <classname>CLASS</classname>
+    objects.  When an object is modified, the previous
+    <varname>size</varname> objects are preserved in the buffer, which
+    allows the <command>Undo</command> and <command>Redo</command>
+    commands to work.  Using a large <varname>size</varname> allows
+    more operations to be undone, but uses more memory.
+  </para>
+  <warning>
+    <para>
+      Reducing the buffer size can cause data loss.
+    </para>
+  </warning>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

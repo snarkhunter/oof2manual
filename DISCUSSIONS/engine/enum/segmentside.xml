@@ -1,0 +1,55 @@
+<!-- 
+  $RCSfile: segmentside.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-29 20:21:50 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>SegmentSide</classname> selects the left or right side of
+  an &elem; &sgmt; when evaluating <link
+  linkend="Section-Output"><classname>Outputs</classname></link> on a
+  <xref linkend="RegisteredClass-SkeletonEdgeBoundaryDomain"/>.
+</para>
+<para>
+  When evaluating an <link
+  linkend="Section-Output"><classname>Output</classname></link> along
+  a &sgmt; separating two &elems;, the result may depend upon whether
+  the evaluation point is considered to be in one &elem; or the other,
+  because &fields; and &fluxes; may be discontinuous at the boundary.
+  &skel; <link linkend="Section-Concepts-Skeleton-Boundary-Edge">edge
+  boundaries</link> are directed, having a beginning and an end, so
+  it's possible to specify which &elem; to use for the evaluation by
+  choosing the one on the left or right side of the boundary.
+  <quote>Left</quote> means <quote>On the left if you were on the
+  boundary and facing towards its end.</quote>
+</para>
+<para>
+  If a boundary is external and only has an &elem; on one side, that
+  element will be used regardless of the
+  <classname>SegmentSide</classname> selected.
+</para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

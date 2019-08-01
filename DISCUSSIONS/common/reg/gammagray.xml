@@ -1,0 +1,86 @@
+<!-- 
+  $RCSfile: gammagray.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:20 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <link
+    linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
+    translate numbers into colors, for use in contour plots.
+    <classname>GammaGray</classname> maps low values to black and high
+    values to white, going through all the gray values in between.
+    It's like the <xref linkend="RegisteredClass-GrayMap"/> with gamma
+    correction.
+  </para>
+  <para>
+    When using <classname>GammaGray</classname>, the data is scaled to
+    lie between 0 and 1.  The gray value of a scaled datum
+    <inlineequation>
+      <alt role="tex">\(x\)</alt></inlineequation> is
+    <inlineequation>
+      <alt role="tex">\(x^{1/\gamma}\)</alt></inlineequation>, where
+    <inlineequation>
+      <alt role="tex">\(\gamma\)</alt>
+    </inlineequation>
+    is given by the parameter <varname>gamma</varname>.
+  </para>
+  <figure id="Figure-GammaGray">
+    <title>The GammaGray Color Map</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/colormaps/graymap0.5.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/colormaps/graymap0.5.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The gamma corrected gray color map for
+	  <varname>gamma</varname>=0.5.  High values are on top.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/colormaps/graymap2.0.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/colormaps/graymap2.0.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The gamma corrected gray color map for
+	  <varname>gamma</varname>=2.0.  High values are on top.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

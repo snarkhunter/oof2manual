@@ -1,0 +1,50 @@
+<!-- 
+  $RCSfile: isovisco.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-05-25 21:42:49 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<para>
+  Isotropic viscoelasticity is similar to isotropic <link
+  linkend="Property-Mechanical-Elasticity-Isotropic">elasticity</link>,
+  except that the modulus multiplies the first time derivative of the
+  strain instead of the strain <xref linkend="Eqn-linear-strain"/>
+  itself.  It makes a contribution of
+  <equation>
+    <alt role="tex">
+      \[ g_{ijkl} \dot\epsilon_{kl} \]
+    </alt>
+  </equation>
+  to the <xref linkend="Flux-Stress"/>, where
+  <equation>
+    <alt role="tex">
+      \[ \dot\epsilon_{ij} = \frac12\left(\frac{\partial \dot u_i}{\partial x_j}
+      + \frac{\partial \dot u_j}{\partial x_i}\right). \]
+    </alt>
+  </equation>
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

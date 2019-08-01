@@ -1,0 +1,54 @@
+<!-- 
+  $RCSfile: raiseone.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:17 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <link linkend="MenuItem-OOF.Graphics_n.Layer.Raise">Raise</link>
+    the given &layer; by one position in the layer stack, by
+    interchanging it with the &layer; above.  If the &layer; above is
+    <link linkend="MenuItem-OOF.Graphics_n.Layer.Hide">hidden</link>
+    or currently empty<footnote>
+      <simpara>
+	For example, displaying selected &skel; components when
+	nothing is selected.
+      </simpara>
+    </footnote>, this command will have no
+    <emphasis>visible</emphasis> effect.  It may be necessary to
+    invoke it many times to achieve the desired result.  See <xref
+    linkend="MenuItem-OOF.Graphics_n.Layer.Raise.To_Top"/>.
+  </para>
+  <para>
+    In GUI mode, this command operates on the currently <link
+    linkend="MenuItem-OOF.Graphics_n.Layer.Select">selected</link>
+    &layer;.  In text mode and in scripts, the &layer; is specified by
+    its position <varname>n</varname> in the window's layer list.  The
+    unlisted layers must be counted when computing
+    <varname>n</varname>.  This command isn't very friendly in
+    scripts, because it can be hard to determine <varname>n</varname>.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

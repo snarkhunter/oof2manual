@@ -1,0 +1,55 @@
+<!-- 
+  $RCSfile: create.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:53 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command creates a new &micro; by reading an <link
+    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+    Map</classname></link> file.  The pixel and physical <link
+    linkend="Section-Concepts-Microstructure-Coordinates">sizes</link>
+    of the &micro; will be the same as the sizes of the orientation
+    map.  The orientation data will be loaded into the &micro; after
+    it's been created, and <link
+    linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+    groups</link> will be created for the phases identified in the
+    data file, if possible.
+  </para>
+  <para>
+    The <varname>format</varname> argument indicates which type of
+    orientation map data file is being loaded.  The available formats
+    are listed at <xref linkend="Enum-OrientMapType"/>.  New formats
+    can be added by writing a small amount of python code, as
+    described in <xref linkend="Section-Coding-OrientationMapFormats"/>.
+  </para>
+  <para>
+    This command is only available if &oof2; was built with the
+    <userinput>--enable-orientationmap</userinput> option.
+  </para>
+
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

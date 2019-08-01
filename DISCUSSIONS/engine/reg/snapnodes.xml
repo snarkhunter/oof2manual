@@ -1,0 +1,391 @@
+<!-- 
+  $RCSfile: snapnodes.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:48 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>SnapNodes</classname> moves &nodes; to improve the
+    &elems;' <xref linkend="Section-Concepts-Skeleton-Homog_Energy"/>.
+    If an &elem; edge crosses over regions of the &micro; belonging to
+    different pixel <link
+    linkend="Section-Concepts-PixelCategory">categories</link>, then
+    <classname>SnapNodes</classname> tries to move one of the &elem;
+    corners to the crossing point.  These points are called
+    <quote>transition points</quote>, and are illustrated in <xref
+      linkend="Figure-transition"/>.
+  </para>
+  <figure id="Figure-transition">
+    <title>Transition Points</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/transition.png"></imagedata>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/transition.eps"></imagedata>
+      </imageobject>
+      <caption>
+	<para>
+	  The &elem; in the middle has two transition points (marked
+	  with an X) where the &sgmts; cross from the green to the
+	  magenta pixels.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <para>
+    The general procedure for snapping &nodes; is as follows.
+    <orderedlist  numeration="arabic">
+      <listitem>
+	<para>
+	  Scan the current &skel; to find candidate &nodes; for
+	  snapping.  The candidates are identified by the
+	  <varname>targets</varname> parameter.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Loop over the &elems; containing snappable nodes, and
+	  identify the transition points along each &sgmt; of each
+	  &elem;.
+	  </para>
+      </listitem>
+      <listitem>
+	<para>
+	  Find all possible snaps involving one or two &nodes; of a
+	  single &elem;, assigning a <emphasis>priority</emphasis> to
+	  each according to the arrangement of its transition points.
+	  The priorities are listed in <xref
+	  linkend="Table:snappers"/>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Starting with the highest priority snaps (and choosing
+	  randomly from snaps with equal priorities) attempt to
+	  actually move the nodes.  The move is accepted or rejected
+	  according to the given <link
+	  linkend="RegisteredClass-SkelModCriterion"><varname>criterion</varname></link>
+	  parameter.  When more than one snap is possible for one
+	  &elem;, all are attempted and the best is chosen.  After
+	  successfully snapping the &nodes; of an &elem;, the nodes of
+	  any neighboring snappable &elems; are attempted, regardless
+	  of their priority.<footnote>
+	    <para>
+	      This allows a series of snaps to zip along a line of
+	      &elems; without introducing kinks.
+	    </para>
+	  </footnote>
+	</para>
+	
+      </listitem>
+    </orderedlist>
+  </para>
+  <para>
+    Because snaps with the same priority are attempted in a random
+    order, <link linkend="MenuItem-OOF.Skeleton.Undo">undoing</link>
+    and repeating a <classname>SnapNodes</classname> operation may not
+    reproduce the original result.  For the same reason, repeating
+    (without undoing) a <classname>SnapNodes</classname> operation may
+    move &nodes; that weren't moved the first time.
+  </para>
+
+  <table id='Table:snappers'>
+    <title>Snapping Nodes</title>
+    <tgroup cols='6'>
+      <colspec colnum='2' colname='c2'/>
+      <colspec colnum='3' colname='c3'/>
+      <colspec colnum='4' colname='c4'/>
+      <colspec colnum='5' colname='c5'/>
+      <colspec colnum='6' colname='c6'/>
+      <thead>
+	<row>
+	  <entry>Element Type</entry>
+	  <entry namest='c2' nameend='c4'
+	    align='center'>Quadrilateral</entry>
+	  <entry namest='c5' nameend='c6' align='center'>Triangle</entry>
+	</row>
+	<row>
+	  <entry><varname>Priority</varname></entry>
+	  <entry>1</entry>
+	  <entry>2</entry>
+	  <entry>3</entry>
+	  <entry>1</entry>
+	  <entry>2</entry>
+	</row>
+      </thead>
+      <tbody>
+	<row>
+	  <entry align='center'>Type</entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q_edge.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q_edge.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q2.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q2.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q1.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q1.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/t_edge.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/t_edge.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/t1.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/t1.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+	<row>
+	  <entry morerows='2' valign='middle' align='center'>Possible
+	    Snaps</entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q_edge_a.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q_edge_a.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q2_a.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q2_a.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q1_a.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q1_a.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/t_edge_a.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/t_edge_a.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/t1_a.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/t1_a.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+	<row>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q_edge_b.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q_edge_b.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q2_b.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q2_b.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q1_b.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q1_b.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'></entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/t1_b.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/t1_b.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+	<row>
+	  <entry align='center'></entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/snap/q2_c.png"></imagedata>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/snap/q2_c.eps"></imagedata>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'></entry>
+	  <entry align='center'></entry>
+	  <entry align='center'></entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </table>
+
+
+  <para>
+    Here's a simple example of snapping nodes of heterogeneous
+    elements.  <xref linkend="Figure-before_snap"/> shows a &skel;
+    that features some heterogeneous elements.  The resulting &skel;
+    (after applying <classname>SnapNodes</classname> with &agr;=1.0)
+    is shown in <xref linkend="Figure-after_snap"/>.  The material
+    boundaries have been resolved nicely, although many badly shaped
+    elements have been created.  This is because the procedure was
+    performed with &agr;=1, which emphasizes <link
+    linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity</link>
+    and ignores <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape</link>.
+  </para>
+
+  <figure id="Figure-before_snap">
+    <title>Before Snapping Nodes</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/snapshot/before_snap.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/snapshot/before_snap.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; with heterogeneous &elems;.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-after_snap">
+    <title>After Snapping Nodes with &agr;=1.0</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/snapshot/after_snap.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/snapshot/after_snap.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  After snapping nodes.  All of the elements are still
+	  quadrilateral, although some have very short sides or corner
+	  angles of nearly 180&deg;.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <para>
+    Snapping &nodes; (like all &skel; modifications) tends to produce
+    badly-shaped elements when done with large values of &agr;.
+    However, <classname>SnapNodes</classname> is really a homogeneity
+    oriented operation, and works best when given a large &agr;.  It's
+    usually best to allow it to create badly shaped &elems;, and to
+    clean up afterwards by applying the <xref
+    linkend="RegisteredClass-Rationalize"/> <link
+    linkend="MenuItem-OOF.Skeleton.Modify">Skeleton modifier</link>.
+  </para>
+  <para>
+    <xref linkend="Figure-after_snap7"/> shows the same &skel;, but
+    after snapping with &agr;=0.7 instead of 1.0.  The elements have a
+    much nicer shape, but very few nodes have been moved to material
+    boundaries.
+  </para>
+  <figure id="Figure-after_snap7">
+    <title>After Snapping Nodes with &agr;=0.7</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snapshot/after_snap0.7.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snapshot/after_snap0.7.eps"
+	  format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

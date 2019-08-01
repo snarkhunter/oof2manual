@@ -1,0 +1,49 @@
+<!-- 
+  $RCSfile: solve.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-04-22 21:25:29 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<para>
+  The <command>Solve</command> command obtains the solution of all of
+  the &subproblems; of the given &mesh;, if those &subproblems; have
+  <link linkend="Section-Concepts-Mesh-Solvers">solvers</link>
+  assigned to them, and if the solution hasn't been <link
+  linkend="MenuItem-OOF.Subproblem.Disable_Solution">disabled</link>.
+</para>
+<para>
+  In the GUI, this command is invoked from the
+  <guibutton>Solve</guibutton> button on the <link
+  linkend="Section-Tasks-Solver">Solver</link>
+  page. <varname>endtime</varname> is read from the <guilabel>end
+  time</guilabel> box on the page.  After a time-dependent solution is
+  completed, the <guibutton>Solve</guibutton> button changes to a
+  <guibutton>Continue</guibutton> button, but it still invokes this
+  same <command>OOF.Mesh.Solve</command> command.
+</para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

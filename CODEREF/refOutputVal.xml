@@ -1,0 +1,1075 @@
+<!-- 
+  $RCSfile: refOutputVal.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:13 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <refentry id="Class-OutputVal">
+    <refnamediv>
+      <refname>OutputVal</refname>
+      <refpurpose>Wrappers for Output data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/outputval.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>double</type>
+	    <methodname><link linkend="Class-OutputVal-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link linkend="Class-IndexP">IndexP&amp;</link></type>
+	      <parameter>index</parameter>
+	      <modifier>const = 0</modifier>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>double&amp;</type>
+	    <methodname><link linkend="Class-OutputVal-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link linkend="Class-IndexP">IndexP&amp;</link></type>
+	      <parameter>index</parameter>
+	      <modifier>const = 0</modifier>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>OutputVal&amp;</type>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">operator+=</link></methodname>
+	    <methodparam>
+	      <type>const OutputVal&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	    <modifier>= 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>OutputVal&amp;</type>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">operator-=</link></methodname>
+	    <methodparam>
+	      <type>const OutputVal&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	    <modifier>= 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>OutputVal&amp;</type>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">operator*=</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	    <modifier>= 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <void/>
+	    <methodname><link
+		linkend="Class-OutputVal-component_ops">component_pow</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>power</parameter>
+	    </methodparam>
+	    <modifier>= 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <void/>
+	    <methodname><link
+		linkend="Class-OutputVal-component_ops">component_square</link></methodname>
+	    <void/>
+	    <modifier>= 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <void/>
+	    <methodname><link
+		linkend="Class-OutputVal-component_ops">component_sqrt</link></methodname>
+	    <void/>
+	    <modifier>= 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>std::vector&lt;double&gt;*</type>
+	    <methodname><link linkend="Class-OutputVal-value_list">value_list</link></methodname>
+	    <void/>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type><link linkend="Class-IndexP">IndexP</link></type>
+	    <methodname><link linkend="Class-OutputVal-getIndex">getIndex</link></methodname>
+	    <methodparam>
+	      <type>const std::string&amp;</type>
+	      <parameter>str</parameter>
+	    </methodparam>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type><link linkend="Class-IndexP">IteratorP</link></type>
+	    <methodname><link linkend="Class-OutputVal-getIterator">getIterator</link></methodname>
+	    <void/>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ScalarOutputVal</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link
+		linkend="Class-ScalarOutputVal-constructor">ScalarOutputVal</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>x</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-ScalarOutputVal-value">value</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link linkend="Class-ScalarOutputVal-value">value</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	</classsynopsis><!-- ScalarOutputVal Synopsis -->
+
+	<programlisting>
+ScalarOutputVal <link linkend="Class-OutputVal-arithmetic">operator+</link>(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
+ScalarOutputVal <link linkend="Class-OutputVal-arithmetic">operator-</link>(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
+ScalarOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(const ScalarOutputVal&amp;, double);
+ScalarOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(double, const ScalarOutputVal&amp;);
+ScalarOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(ScalarOutputVal&amp;, double); </programlisting>
+
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>VectorOutputVal</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link
+		linkend="Class-VectorOutputVal-constructor">VectorOutputVal</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>n</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	  <methodsynopsis>
+	    <type>int</type>
+	    <methodname><link linkend="Class-VectorOutputVal-size">size</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-VectorOutputVal-magnitude">magnitude</link></methodname>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis><!-- VectorOutputVal Synopsis -->
+	<programlisting>
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator+</link>(const VectorOutputVal&amp;, const VectorOutputVal&amp;);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator-</link>(const VectorOutputVal&amp;, const VectorOutputVal&amp;);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(const VectorOutputVal&amp;, double);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(double, const VectorOutputVal&amp;);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(VectorOutputVal&amp;, double); </programlisting>
+	  
+	<programlisting>
+#include "engine/symmmatrix.h"
+</programlisting>
+
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>SymmMatrix3</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>SymmMatrix</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-constructor">SymmMatrix3</link></methodname>
+	    <void/>
+	  </constructorsynopsis>
+	  <constructorsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-constructor">SymmMatrix3</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>xx</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>yy</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>zz</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>yz</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>xz</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>xy</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-SymmMatrix3-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link linkend="Class-SymTensorIndex">SymTensorIndex</link>&amp;</type>
+	      <parameter>index</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link linkend="Class-SymmMatrix3-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link linkend="Class-SymTensorIndex">SymTensorIndex</link>&amp;</type>
+	      <parameter>index</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-SymmMatrix3-trace">trace</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-SymmMatrix3-determinant">determinant</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-SymmMatrix3-secondInvariant">secondInvariant</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-SymmMatrix3-eigenvalues">maxEigenvalue</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-SymmMatrix3-eigenvalues">midEigenvalue</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-SymmMatrix3-eigenvalues">minEigenvalue</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis><!-- SymmMatrix3 -->
+
+	<programlisting>
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator+</link>(const SymmMatrix3&amp;, const SymmMatrix3&amp;);
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator-</link>(const SymmMatrix3&amp;, const SymmMatrix3&amp;);
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator*</link>(const SymmMatrix3&amp;, double);
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator*</link>(double, const SymmMatrix3&amp;);
+SymmMatrix3 <link
+	    linkend="Class-OutputVal-arithmetic">operator/</link>(SymmMatrix3&amp;, double); </programlisting>	
+
+      </refsect2><!-- C++ Synopsis -->
+
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import outputval
+	</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-OutputVal-getitem">__getitem__</link></methodname>
+	    <methodparam>
+	      <parameter>index</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputVal-getIndex">getIndex</link></methodname>
+	    <methodparam>
+	      <parameter>str</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-OutputVal-getIterator">getIterator</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">__add__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">__sub__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">__mul__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputVal-arithmetic">__div__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-OutputVal-component_ops">component_pow</link></methodname>
+	    <methodparam>
+	      <parameter>power</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-OutputVal-component_ops">component_square</link></methodname>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-OutputVal-component_ops">component_sqrt</link></methodname>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname>value_list</methodname>
+	  </methodsynopsis>
+	</classsynopsis><!-- OutputVal -->
+
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ScalarOutputVal</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link
+		linkend="Class-ScalarOutputVal-constructor">__init__</link></methodname>
+	    <methodparam>
+	      <parameter>x</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	  <methodsynopsis>
+	    <methodname>value</methodname>
+	    <void/>
+	  </methodsynopsis>
+	</classsynopsis><!-- ScalarOutputVal -->
+	
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>VectorOutputVal</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link
+		linkend="Class-VectorOutputVal-constructor">__init__</link></methodname>
+	    <methodparam>
+	      <parameter>n</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-VectorOutputVal-size">size</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-VectorOutputVal-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>i</parameter>
+	      <modifier>const</modifier>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link linkend="Class-VectorOutputVal-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>i</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis><!-- VectorOutputVal -->
+
+	<programlisting>
+from oof2.SWIG.engine import symmmatrix </programlisting>
+
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>SymmMatrix3</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>OutputVal</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>SymmMatrix</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-constructor">__init__</link></methodname>
+	    <methodparam>
+	      <parameter>xx</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>yy</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>zz</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>yz</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>xz</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>xy</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-trace">trace</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-determinant">determinant</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-SymmMatrix3-secondInvariant">secondInvariant</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-eigenvalues">maxEigenvalue</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-eigenvalues">midEigenvalue</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-SymmMatrix3-eigenvalues">minEigenvalue</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.C</filename>,
+	      <filename>SRC/engine/symmmatrix.C</filename>: C++ source
+	      code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.h</filename>,
+	      <filename>SRC/engine/symmmatrix.h</filename>: C++ header
+	      files
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.swg</filename>,
+	      <filename>SRC/engine/symmmatrix.swg</filename>: SWIG
+	      source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.spy</filename>,
+	      <filename>SRC/engine/symmmatrix.spy</filename>: Python
+	      code included in the SWIG output
+	      </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>OutputVal</classname> classes are used to ferry
+	values from the finite element mesh out to the Python <link
+	linkend="Section-Coding-Output">output</link> machinery. The
+	classes give the output machinery the ability to decide what
+	further processing is possible
+	(<foreignphrase>e.g</foreignphrase>, computing components or
+	invariants).  The <classname>OutputVal</classname> subclasses
+	are wrappers for the actual datatypes (floats, tensors,
+	<foreignphrase>etc</foreignphrase>).  The <link
+	linkend="Class-OutputValue"><classname>OutputValue</classname></link>
+	class provides a generic reference-counted wrapper for all of
+	the <classname>OutputVal</classname> subclasses.
+      </para>
+      <para>
+	There are three subclasses of
+	<classname>OutputVal</classname>:
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <classname><link
+	      linkend="Class-ScalarOutputVal">ScalarOutputVal</link></classname>
+	      for scalar quantities.
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <classname><link
+	      linkend="Class-VectorOutputVal">VectorOutputVal</link></classname>
+	      for vector quantities.
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <link
+	      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+	      for symmetric 3&times;3 tensor quantities.
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </refsection><!-- Description -->
+    <refsection id="Class-OutputVal-generalmethods">
+      <title>General OutputVal Methods</title>
+      <refsection id="Class-OutputVal-getitem">
+	<title><code>operator[](const IndexP&amp; index), __getitem__(index)</code></title>
+	<para>
+	  <code>operator[]</code> (in C++) and
+	  <code>__getitem__</code> (in Python) retrieve a component
+	  of the data wrapped by the
+	  <classname>OutputVal</classname>.  The argument must be an
+	  <link
+	    linkend="Class-IndexP"><classname>IndexP</classname></link>
+	  wrapper for the appropriate type of <link
+	    linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>.
+	</para>
+      </refsection><!-- operator[] -->
+      <refsection id="Class-OutputVal-arithmetic">
+	<title><code>operator+=(const OutputVal&amp; other)</code>
+	  <foreignphrase>etc.</foreignphrase></title>
+	<para>
+	  Arithmetic operations on <classname>OutputVals</classname>
+	  are allowed where they make sense, both in C++ and Python.
+	  In particular, it's possible to add or subtract two
+	  <varname>OutputVals</varname> of the same type, but it's not
+	  possible to multiply or divide two
+	  <varname>OutputVals</varname>. It's only possible to
+	  multiply or divide by floating point numbers.
+	</para>
+	<para>
+	  Note that in many cases it's not necessary or desirable to
+	  do arithmetic with<classname>OutputVal</classname> objects.
+	  The point of <classname>OutputVals</classname> is to provide
+	  a generic wrapper (via virtual functions in the base class)
+	  to different kinds of output data.  In any
+	  <emphasis>non-generic</emphasis> situation, in which the
+	  type of the data is known, it's better to do the arithmetic
+	  on the underlying data directly, and then create a new
+	  <classname>OutputVal</classname> (of the appropriate flavor)
+	  to hold the result.
+	</para>
+      </refsection><!-- arithmetic operators -->
+      <refsection id="Class-OutputVal-component_ops">
+	<title><code>component_pow(int power), component_square(), component_sqrt()</code></title>
+	<para>
+	  These functions operate on the components of an
+	  <classname>OutputVal</classname>.  They operate
+	  <emphasis>in-place</emphasis>. That is,
+	  <code>obj.component_square()</code> changes
+	  <varname>obj</varname> itself.  It doesn't return a new
+	  object.
+	</para>
+      </refsection><!-- component_ops -->
+      <refsection id="Class-OutputVal-value_list">
+	<title><code>std::vector&lt;double&gt;* value_list() const</code></title>
+	<para>
+	  <methodname>value_list</methodname> returns a flat list of
+	  the components of the <classname>OutputVal</classname>, as
+	  floating point numbers.  For
+	  <classname>SymmMatrix3</classname> objects,
+	  <methodname>value_list</methodname> returns the six
+	  independent components in <link
+	  linkend="table:voigt">Voigt</link> order.
+	</para>
+	<para>
+	  When used in C++, <methodname>value_list</methodname>
+	  returns a vector that must be explicitly deallocated.
+	</para>
+      </refsection><!-- value_list -->
+      <refsection id="Class-OutputVal-getIndex">
+	<title><code>IndexP getIndex(const std::string&amp; str)</code></title>
+	<para>
+	  <methodname>getIndex</methodname> converts the standard
+	  string representation of the name of a component to an <link
+	  linkend="Class-IndexP"><classname>IndexP</classname></link>
+	  object, which can be used to access components.
+	</para>
+	<para>
+	  For <classname>SymmMatrix3</classname> objects, the argument
+	  <varname>str</varname> must be a two character string made
+	  up of only <literal>'x'</literal>, <literal>'y'</literal>,
+	  and <literal>'z'</literal>.  For
+	  <classname>VectorOutputVals</classname>,
+	  <varname>str</varname> must be exactly
+	  <literal>"x"</literal>, <literal>"y"</literal>, or
+	  <literal>"z"</literal>.  For
+	  <classname>ScalarOutputVals</classname>,
+	  <varname>str</varname> is ignored.
+	</para>
+      </refsection><!-- getIndex -->
+      <refsection id="Class-OutputVal-getIterator">
+	<title><code>IteratorP getIterator() const</code></title>
+	<para>
+	  <methodname>getIterator</methodname> returns an <link
+	  linkend="Class-IteratorP">IteratorP</link> object suitable
+	  for iterating over the components of the
+	  <classname>OutputVal</classname>.
+	</para>
+      </refsection><!-- getIterator -->
+    </refsection><!-- Methods -->
+    <refsection id="Class-ScalarOutputVal">
+      <title>ScalarOutputVal Methods</title>
+      <para>
+	Methods that <classname>ScalarOutputVal</classname> has in common
+	with other <classname>OutputVals</classname> are discussed
+	<link linkend="Class-OutputVal-generalmethods">above.</link>
+      </para>
+      <refsection id="Class-ScalarOutputVal-constructor">
+	<title><code>ScalarOutputVal(double x)</code></title>
+	<para>
+	  <classname>ScalarOutputVals</classname> are constructed from
+	  a single floating point number, giving its initial value.
+	</para>
+      </refsection>
+      <refsection id="Class-ScalarOutputVal-value">
+	<title><code>double value() const, double&amp; value()</code></title>
+	<para>
+	  <methodname>value()</methodname> is just a shortcut for the
+	  generic function
+	  <code>OutputVal::operator[](IndexP&amp;)</code>.
+	</para>
+      </refsection><!-- ScalarOutputVal::value -->
+    </refsection><!-- ScalarOutputVal methods -->
+    <refsection id="Class-VectorOutputVal">
+      <title>VectorOutputVal Methods</title>
+      <para>
+	Methods that <classname>VectorOutputVal</classname> has in common
+	with other <classname>OutputVals</classname> are discussed
+	<link linkend="Class-OutputVal-generalmethods">above.</link>
+      </para>
+      <refsection id="Class-VectorOutputVal-constructor">
+	<title><code>VectorOutputVal(int n)</code></title>
+	<para>
+	  The integer argument to the
+	  <classname>VectorOutputVal</classname> constructor specifies
+	  the number of components of the vector.  The components are
+	  initialized to zero.
+	</para>
+      </refsection>
+      <refsection id="Class-VectorOutputVal-size">
+	<title><code>int size() const</code></title>
+	<para>
+	  <methodname>size()</methodname> returns the length (number
+	  of components) of the vector.
+	</para>
+      </refsection><!-- VectorOutputVal::size -->
+      <refsection id="Class-VectorOutputVal-magnitude">
+	<title><code>double magnitude() const</code></title>
+	<para>
+	  <methodname>magnitude</methodname> returns the length
+	  (L<subscript>2</subscript> norm) of the vector.
+	</para>
+      </refsection><!-- VectorOutputVal:magnitude -->
+      <refsection id="Class-VectorOutputVal-getitem">
+	<title><code>double operator[](int i) const, double&amp;
+	    operator[](int i)</code></title>
+	<para>
+	  <methodname>VectorOutputVal::operator[](int)</methodname> is
+	  a shortcut for the generic function
+	  <methodname>OutputVal::operator[](IndexP&amp;)</methodname>.
+	</para>
+      </refsection>
+    </refsection><!-- VectorOutputVal Methods -->
+    <refsection id="Class-SymmMatrix3">
+      <title>SymmMatrix3 Methods</title>
+      <para>
+	Methods that <classname>SymmMatrix3</classname> has in common
+	with other <classname>OutputVals</classname> are discussed
+	<link linkend="Class-OutputVal-generalmethods">above.</link>
+      </para>
+      <refsection id="Class-SymmMatrix3-constructor">
+	<title><code>SymmMatrix3(), SymmMatrix3(double...)</code></title>
+	<para>
+	  In C++, there are two constructors for the
+	  <classname>SymmMatrix3</classname> class.  The version with
+	  no arguments creates a <classname>SymmMatrix3</classname>
+	  with all components set to zero.  In the second version, all
+	  of the components are specified by the arguments, in <link
+	    linkend="table:voigt">Voigt</link> order.
+	</para>
+	<para>
+	  In Python, all of the arguments to the
+	  <classname>SymmMatrix3</classname> constructor are optional,
+	  with the missing ones defaulting to zero.  It's best to use
+	  keyword arguments, like this:
+
+	  <programlisting>
+tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
+
+	  If keywords aren't used, then the arguments must be in <link
+	  linkend="table:voigt">Voigt</link> order.
+	</para>
+      </refsection>
+      <refsection id="Class-SymmMatrix3-getitem">
+	<title><code>double operator[](const SymTensorIndex&amp;)
+	    const, double&amp; operator[](const SymTensorIndex&amp;)</code></title>
+	<para>
+	  <methodname>SymmMatrix3::operator[](const
+	  SymTensorIndex&amp;)</methodname> is a shortcut for the
+	  generic function
+	  <methodname>OutputVal::operator[](IndexP&amp;)</methodname>.
+	</para>
+      </refsection><!-- SymmMatrix3:getitem -->
+      <refsection id="Class-SymmMatrix3-trace">
+	<title><code>double trace() const</code></title>
+	<para>
+	  <methodname>trace</methodname> returns the sum of the
+	  diagonal entries of the <classname>SymmMatrix3</classname>
+	  object.
+	</para>
+      </refsection><!-- trace -->
+      <refsection id="Class-SymmMatrix3-determinant">
+	<title><code>double determinant() const</code></title>
+	<para>
+	  <methodname>determinant</methodname> returns the determinant
+	  of the <classname>SymmMatrix3</classname> object.
+	</para>
+      </refsection><!-- determinant -->
+      <refsection id="Class-SymmMatrix3-secondInvariant">
+	<title><code>double secondInvariant() const</code></title>
+	<para>
+	  The <methodname>secondInvariant</methodname> of a
+	  <classname>SymmMatrix3</classname> <inlineequation>
+	    <alt role="tex">\(\sigma\)</alt>
+	  </inlineequation> is
+	  <informalequation>
+	    <alt role="tex">\[
+	      \sigma_{xx}\sigma_{zz} + \sigma_{xx}\sigma_{yy} +
+	      \sigma_{yy}\sigma_{zz} - \sigma_{xy}^2 - \sigma_{xz}^2 -
+	      \sigma_{yz}^2
+	      \]</alt>
+	  </informalequation>
+	</para>
+      </refsection><!-- secondInvariant -->
+      <refsection id="Class-SymmMatrix3-eigenvalues">
+	<title><code>double minEigenvalue() const, double
+	    midEigenvalue() const, double maxEigenvalue() const</code></title>
+	<para>
+	  These functions return the eigenvalues of the
+	  <classname>SymmMatrix3</classname> object. It's guaranteed
+	  that <code>minEigenvalue() &lt;= midEigenvalue() &lt;=
+	  maxEigenvalue()</code>.
+	</para>
+      </refsection>
+    </refsection><!-- SymmMatrix3 Methods -->
+  </refentry><!-- OutputVal -->
+
+  <refentry id="Class-OutputValue">
+    <refnamediv>
+      <refname>OutputValue</refname>
+      <refpurpose>Wrapper for OutputVal classes</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/outputval.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>OutputValue</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>const OutputVal&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-valueRef">valueRef</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputVal*</type>
+	    <methodname><link linkend="Class-OutputValue-valuePtr">valuePtr</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>OutputValue*</type>
+	    <methodname><link
+		linkend="Class-OutputValue-valueClone">valueClone</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputValue&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-arithmetic">operator+=</link></methodname>
+	    <methodparam>
+	      <type>const OutputValue&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputValue&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-arithmetic">operator-=</link></methodname>
+	    <methodparam>
+	      <type>const OutputValue&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputValue&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-arithmetic">operator*=</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>x</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-OutputValue-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link
+		  linkend="Class-IndexP">IndexP&amp;</link></type>
+	      <parameter>index</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-OutputValue-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link
+		  linkend="Class-IndexP">IndexP&amp;</link></type>
+	      <parameter>index</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+	<programlisting>
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator+</link>(const OutputValue &amp;a, const OutputValue &amp;b);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator-</link>(const OutputValue &amp;a, const OutputValue &amp;b);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator*</link>(double x, const OutputValue &amp;ov);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator*</link>(const OutputValue &amp;ov, double x);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator/</link>(const OutputValue &amp;ov, double x); </programlisting>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import outputval</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>OutputValue</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputValue-valuePtr">valuePtr</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputValue-valueClone">valueClone</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputValue-getitem">__getitem__</link></methodname>
+	    <methodparam>
+	      <parameter>index</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.C</filename>: C++ source
+	      code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.h</filename>: C++ header
+	      file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.swg</filename>: SWIG
+	      source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>OuputValue</classname> class is a reference
+	counting wrapper for the various <link
+	linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	classes.  That means that an
+	<classname>OutputValue</classname> contains a pointer to an
+	<link
+	linkend="Class-OutputVal"><classname>OutputVal</classname></link>,
+	and takes care of deleting the
+	<classname>OutputVal</classname> when no more
+	<classname>OutputValues</classname> are using it.
+      </para>
+      <para>
+	<classname>OutputValues</classname> should not be created
+	explicitly, except by functions like <link
+	linkend="Class-Field-output"><classname>Field::output</classname></link>.
+	They should never be created in Python at all, since that
+	confuses the reference counting.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-OutputValue-valueRef">
+	<title><code>const OutputVal&amp; valueRef() const</code></title>
+	<para>
+	  <methodname>valueRef</methodname> returns a reference to the
+	  <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  wrapped inside the <classname>OutputValue</classname>.  This
+	  call does <emphasis>not</emphasis> increment the reference
+	  count of the <classname>OutputVal</classname>, so the
+	  programmer must ensure that the returned
+	  <classname>OutputVal</classname> reference does not outlive
+	  the <classname>OutputValue</classname> object.
+	</para>
+      </refsection><!-- valueRef -->
+      <refsection id="Class-OutputValue-valuePtr">
+	<title><code>const OutputVal* valuePtr() const</code></title>
+	<para>
+	  <methodname>valuePtr</methodname> is just like <link
+	  linkend="Class-OutputValue-valueRef">valueRef</link>, except
+	  that it returns a pointer instead of a reference. This can
+	  be more convenient in some situations.
+	</para>
+      </refsection><!-- valuePtr -->
+      <refsection id="Class-OutputValue-valueClone">
+	<title><code>OutputVal *valueClone() const</code></title>
+	<para>
+	  <methodname>valueClone</methodname> is like <link
+	  linkend="Class-OutputValue-valuePtr"><methodname>valuePtr</methodname></link>
+	  and <link
+	  linkend="Class-OutputValue-valueRef"><methodname>valueRef</methodname></link>,
+	  except that it returns a pointer to a new
+	  <emphasis>copy</emphasis> of the underlying <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+	  It is the programmers responsibility to ensure that the
+	  pointer is eventually deallocated.
+	  <methodname>valueClone</methodname> should be use in
+	  situations in which the <classname>OutputValue</classname>
+	  might be deallocated before the program is finished with the
+	  <classname>OutputVal</classname>.
+	</para>
+      </refsection>
+      <refsection id="Class-OutputValue-arithmetic">
+	<title><code>const OutputValue&amp; operator+=(const OutputValue&amp;)</code>
+	  <foreignphrase>etc.</foreignphrase></title>
+	<para>
+	  The majority of the arithmetic operators available for <link
+	  linkend="Class-OutputVal"><classname>OutputVals</classname></link>
+	  are also available for <classname>OutputValues</classname>,
+	  but only in C++.  (The restriction to C++ is because
+	  <classname>OutputValues</classname> are converted to
+	  <classname>OutputVals</classname> by
+	  <application>swig</application> typemaps when being passed
+	  from C++ to Python, at least in all of the cases in which
+	  they're used in <link
+	  linkend="Class-Output"><classname>Outputs</classname></link>.)
+	</para>
+      </refsection><!-- arithmetic -->
+      <refsection id="Class-OutputValue-getitem">
+	<title><code>double operator[](IndexP&amp;), __getitem__(i)</code></title>
+	<para>
+	  The C++ <methodname>operator[]</methodname> and the Python
+	  <methodname>__getitem__</methodname> return a component of
+	  the <classname>OutputValue</classname>'s underlying <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>,
+	  given an <link
+	  linkend="Class-IndexP"><classname>IndexP</classname></link>
+	  of the right variety.
+	</para>
+      </refsection><!-- getitem -->
+    </refsection><!-- Methods -->
+  </refentry>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

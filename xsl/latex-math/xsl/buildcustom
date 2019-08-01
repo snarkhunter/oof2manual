@@ -1,0 +1,48 @@
+
+# probably a bourne shell script ... 
+
+# make the header
+
+echo "<?xml version='1.0'?> 
+<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+                xmlns:html='http://www.w3.org/1999/xhtml'
+                xmlns:doc='http://nwalsh.com/xsl/documentation/1.0'
+                xmlns:suwl='http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks'
+                exclude-result-prefixes='doc html xsl suwl'
+                version='1.0'>
+<!--
+  This is a docbook XSL stylesheet customization that streamlines 
+  use of latex math in DocBook a little bit. 
+
+  Customization by Doug du Boulay (2005) ddb@owari.msl.titech.ac.jp
+  Be freeeee...
+  -->
+"                                  >  latex-math.xsl
+
+# set some useful params
+#cat custom-math.xsl               >>  latex-math.xsl
+
+# fill in the guts
+cat html/math.xsl                 >>  latex-math.xsl
+cat html/formal.xsl               >>  latex-math.xsl
+
+# add  gentext template stuff
+echo "<xsl:param name='local.l10n.xml' select=\"document('')\"/> 
+
+<!--
+<l:i18n xmlns:l='http://docbook.sourceforge.net/xmlns/l10n/1.0'> 
+  <l:l10n language='en'> 
+    <l:context name='xref'> 
+      <l:template name='equation' text='(%n)'/> 
+    </l:context>    
+  </l:l10n>
+</l:i18n>
+ -->
+"                                 >> latex-math.xsl
+
+cat common/en.xml                 >>  latex-math.xsl
+
+# add the trailer
+echo "</xsl:stylesheet>"          >>  latex-math.xsl
+
+# and we are done!

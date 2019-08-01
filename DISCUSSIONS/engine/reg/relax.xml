@@ -1,0 +1,115 @@
+<!-- 
+  $RCSfile: relax.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:46 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>Relax</classname> is a &skel; <link
+    linkend="RegisteredClass-SkeletonModifier">modifier</link> that
+    moves &nodes; to improve &elem; homogeneity and shape.  In spirit
+    it's like a deterministic version of <xref
+    linkend="RegisteredClass-Anneal"/>.
+  </para>
+  <para>
+    <varname>Relax</varname> works by giving each &elem; an isotropic
+    elastic modulus and an elastic driving force with two components.
+    The first component is isotropic and proportional to the &elem;'s
+    <link linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
+      energy</link>.<footnote>
+      <para>
+	Actually, we use
+	<inlineequation>
+	  <alt role="tex">\(E_\mathrm{homogeneity}(1+E_\mathrm{homogeneity})\)</alt>
+	</inlineequation>
+	to provide a stronger disincentive to very badly shaped
+	&elems;.
+      </para>
+    </footnote>
+    This causes inhomogeneous elements to shrink.  The
+    second part is anisotropic and proportional to the traceless part
+    of the &elem;'s moment of inertia tensor.  This drives the &elems;
+    shapes toward squares and equilateral triangles.  The relative
+    weight of the two terms is given by <varname>alpha</varname>.
+  </para>
+  <para>
+    One iteration of the <varname>Relax</varname> algorithm is
+    equivalent to taking one Euler time step of the equation
+    <equation>
+      <alt role="tex">
+	\[
+	\frac{du}{dt} = \gamma\nabla\cdot\sigma
+	\]
+      </alt>
+    </equation>
+    where <inlineequation>
+      <alt role="tex">\(\sigma\)</alt>
+    </inlineequation>
+    is the stress and
+    <inlineequation>
+      <alt role="tex">u</alt>
+    </inlineequation>
+    is the displacement of a
+    &node;.  After each step, the driving force is recomputed.  The
+    parameter <varname>gamma</varname> plays the role of a &node;
+    mobility.  Using a large <varname>gamma</varname> will make the
+    &skel; change faster but will risk moving &nodes; too far and
+    overstepping their optimal positions.
+  </para>
+
+  <figure id="Figure-SkeletonRelaxation">
+    <title>Skeleton Relaxation</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/relax/relax0.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/relax/relax0.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  A &skel; in a &micro; with three types of pixels.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/relax/relax1.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/relax/relax1.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  The &skel; after applying <classname>Relax</classname> with
+	  <varname>alpha</varname>=0.3, <varname>gamma</varname>=0.3,
+	  and <varname>iterations</varname>=5.
+	</simpara>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

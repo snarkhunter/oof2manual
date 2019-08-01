@@ -1,0 +1,45 @@
+<!-- 
+  $RCSfile: move_node.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:25 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    Move a &skel; &node; to a new position.  The &node; to be moved is
+    the one closest to the given <varname>origin</varname> point.  It
+    will be moved to the given <varname>destination</varname>.
+  </para>
+  <para>
+    Moves that create <link
+      linkend="Section-Concepts-Skeleton-Illegality">illegal</link>
+    &elems; will be prohibited unless they have been explicitly
+    approved by calling <xref
+      linkend="MenuItem-OOF.Graphics_n.Toolbox.Move_Nodes.AllowIllegal"/>.
+  </para>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

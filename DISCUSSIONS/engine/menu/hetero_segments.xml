@@ -1,0 +1,73 @@
+<!-- 
+  $RCSfile: hetero_segments.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:24 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Select &skel; &sgmts; that are <link
+    linkend="Section-Concepts-SegmentHomogeneity">heterogeneous</link>.
+    Any &sgmt; whose homogeneity is less than the given
+    <varname>threshold</varname> will be selected.
+  </para>
+  <figure id="Figure-HeteroSegments">
+    <title>Selecting Heterogeneous Segments</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/heterosegs0.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/heterosegs0.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; containing some heterogeneous &sgmts;.  The pixels
+	  have been grouped by <link
+	    linkend="MenuItem-OOF.Image.AutoGroup">color</link>, so
+	  &sgmts; straddling two colors are inhomogeneous.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/heterosegs1.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/skel_selection/heterosegs1.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  &sgmts; (heavy black lines) that are less than 90%
+	  homogeneous have been selected.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

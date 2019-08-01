@@ -1,0 +1,91 @@
+<!-- 
+  $RCSfile: expand_by_elements.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:40 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>ExpandByElements</classname> is used as the
+    <varname>criterion</varname> parameter of <xref
+    linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/>.  It
+    expands the current &node; selection by selecting all &nodes; that
+    share an &elem; with a &node; that is already selected.  When a
+    &skel; contains quadrilateral &elems;,
+    <classname>ExpandByElements</classname> may select more &nodes;
+    than its colleague <xref
+    linkend="RegisteredClass-ExpandBySegments"/> will.
+  </para>
+
+  <figure id="Figure-ExpandByElements">
+    <title>Expansion of Node Selection by Neighboring Elements</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="GIF"
+	fileref="FIGURES/skel_selection/nodes_expand0.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	fileref="FIGURES/skel_selection/nodes_expand0.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; containing some selected &nodes; (blue dots).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="GIF"
+	fileref="FIGURES/skel_selection/nodes_expand1.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	fileref="FIGURES/skel_selection/nodes_expand1.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The &elems; (in pink) through which the &node; selection
+	  will be expanded.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="GIF"
+	fileref="FIGURES/skel_selection/nodes_expand2.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	fileref="FIGURES/skel_selection/nodes_expand2.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The expanded set of &nodes;.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,152 @@
+<!--
+  $RCSfile: TB_pixelinfo.xml,v $
+  $Revision: 1.5 $
+  $Author: langer $
+  $Date: 2011-05-03 18:53:02 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section id="Section-Graphics-PixelInfo" role="toolbox">
+  <title>The Pixel Info Toolbox</title>
+  <para>
+    The Pixel Info Toolbox displays information about pixels of the
+    topmost &micro; and/or &image; displayed in the Canvas.  <xref
+    linkend="Figure-pixelinfo"/> shows the Toolbox and the Canvas.
+  </para>
+  <figure id="Figure-pixelinfo">
+    <title>The Pixel Info Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/pixelinfo.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/pixelinfo.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    When the mouse is clicked on the Canvas, the pixel under the mouse
+    click is highlighted, as shown in the figure.  The coordinates of
+    the pixel are displayed in the Toolbox.  A new pixel may be chosen
+    by either clicking again on the Canvas, or by typing new
+    coordinates into the <guilabel>x</guilabel> and
+    <guilabel>y</guilabel> boxes in the Toolbox and clicking the
+    <guibutton>Update</guibutton> button.  Either action invokes the
+    <xref linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Info.Query"/>
+    command.
+  </para>
+  <para>
+    The <guilabel>Clear</guilabel> button resets the toolbox and
+    un-highlights the selected pixel by invoking <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Info.Clear"/>.
+  </para>
+  <para>
+    The way in which the selected pixel is highlighted in the Canvas
+    may be changed by using the &layereditor; to alter the <xref
+    linkend="RegisteredClass-PixelInfoDisplay"/> display methods that
+    are assigned to the topmost &micro; and &image;.  It will be
+    necessary to enable <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+    All Layers</command></link> in the <link
+    linkend="Section-Graphics-MenuBar">Settings menu</link> first.
+  </para>
+  <para>
+    The data is displayed in the Toolbox in four different sections.
+    Data is displayed <emphasis>only</emphasis> if the Canvas contains
+    a &layer; displaying an &image; or &micro;.
+    <itemizedlist>
+      <listitem>
+	<para>
+	  The top section shows data from the topmost &image; in the
+	  display, but only if the topmost &image; &layer; is not
+	  obscured by a &micro; &layer;.  It displays the name of the
+	  &image; (actually, its <link
+	  linkend="Section-Concepts-Path">path</link>) and the <link
+	  linkend="RegisteredClass-RGBColor">RGB</link> or <link
+	  linkend="RegisteredClass-HSVColor">HSV</link> representation
+	  of the selected pixel's color.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The next section shows the name of the &micro; and the pixel
+	  groups that contain the selected pixel.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The next section shows the name of the &material; assigned
+	  to the selected pixel.  If no &material; 
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The final section shows the orientation of the pixel.  If
+	  the pixel has a &material; and that &material; has an <link
+	  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	  &property;, that &property;'s orientation is displayed, as
+	  shown in the top part of <xref
+	  linkend="Figure-PixelInfoOrientation"/>.  If the pixel does
+	  <emphasis>not</emphasis> have an
+	  <classname>Orientation</classname> &property;, but the
+	  &micro; has an <link
+	  linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+	  map</link>, the orientation from the orientation map is
+	  displayed,<footnote><simpara>The orientation is displayed
+	  whether or not the pixel's &material; contains the <link
+	  linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	  &property;.  If the &material; does not contain the
+	  &property;, the <classname>OrientationMap</classname> will
+	  not actually be used.</simpara></footnote> as shown in the
+	  lower part of <xref linkend="Figure-PixelInfoOrientation"/>.
+	</para>
+	<para>
+	  At the top of the orientation information pane is a pulldown
+	  menu that changes the format in which the orientation is
+	  displayed.  The orientation can be displayed in any of the
+	  <link linkend="RegisteredClass-Orientation">formats</link>
+	  that &oof2; understands, regardless of the format used by
+	  the orientation property or orientation map file.  The
+	  orientation <emphasis>cannot</emphasis> be changed, despite
+	  the presence of sliders and input boxes in <xref
+	  linkend="Figure-PixelInfoOrientation"/>. 
+	</para>
+	<figure id="Figure-PixelInfoOrientation">
+	  <title>Orientation in the Pixel Info Toolbox</title>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gfx/pixelinfo-orientation.png" format="PNG"/>
+	    </imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gfx/pixelinfo-orientation.eps" format="EPS"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+    </itemizedlist>
+  </para>
+</section>
+  
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

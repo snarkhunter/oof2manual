@@ -1,0 +1,86 @@
+<!-- 
+  $RCSfile: contrast.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:51 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Enhance intensity differences between the lighter and darker
+    portions of the given &image;.  Set <varname>sharpen</varname> to
+    true (1) to increase the image contrast and to false (0) to
+    decrease it.
+  </para>
+  <para>
+    This routine comes from the <ulink url="http://www.imagemagick.org"
+    role="external">ImageMagick</ulink> library.
+  </para>
+  <figure id="Figure-Contrast">
+    <title>Adjusting Contrast</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/raw.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A micrograph of
+	  Si<subscript>3</subscript>N<subscript>4</subscript>
+	  (courtesy of C.-H. Hsueh).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/contrast1.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/contrast1.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The result of applying <command>Contrast</command> with
+	  <varname>sharpen</varname>=1.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/contrast0.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/contrast0.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The result of applying <command>Contrast</command> with
+	  <varname>sharpen</varname>=0.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

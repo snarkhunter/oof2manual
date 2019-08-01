@@ -1,0 +1,58 @@
+<!-- 
+  $RCSfile: geomsched.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-18 20:44:21 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  A <link linkend="Section-Concepts-Outputs-Scheduled">Scheduled
+  Output</link> with a <xref linkend="RegisteredClass-Schedule"/> set
+  to <classname>Geometric</classname> will be performed at time
+  intervals that grow by a constant factor at each step.  If the
+  associated <xref linkend="RegisteredClass-ScheduleType"/> is <xref
+  linkend="RegisteredClass-RelativeOutputSchedule"/>, the output times
+  will be offset by the starting time of the computation.  The first
+  interval will be <varname>timestep</varname>, the second will be
+  <varname>factor</varname> times larger. 
+</para>
+<para>
+  If <varname>factor</varname> is less than 1.0 and the end time of
+  the time evolution is too large, the computation may take a very
+  long time to complete.
+</para>
+<para>
+  There's a bug (feature?) in the implementation of this class that
+  may produce surprising results when <link
+  linkend="Section-Concepts-Mesh-Solving-Times">continuing</link> a
+  time evolution.  If the end time of the calculation does not
+  coincide with a scheduled output time, the next output time will be
+  skipped.  For example, with <varname>factor</varname>=2 and
+  <varname>timestep</varname>=0.1, the output times are 0.1, 0.3, 0.7,
+  1.5, <foreignphrase>etc</foreignphrase>.  If the end time is 1, the actual 
+  output times will be 0.1, 0.3, 0.7, and 1.0.  If the solution is
+  continued, the next time will be 3.1, skipping 1.5.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,63 @@
+<!-- 
+  $RCSfile: displaymethod.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:20 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>DisplayMethods</classname> are the techniques used to
+    draw the &oof2; objects, such as <link
+    linkend='Section-Concepts-Microstructure-Image'>Images</link> and <link
+    linkend='Section-Concepts-Skeleton'>Skeletons</link>, in the <link
+    linkend='Chapter-Graphics'>Graphics Window</link>.  Each <link
+    linkend='Section-Graphics-Layer'>Layer</link> in the Graphics
+    Window corresponds to a single <classname>DisplayMethod</classname>.
+  </para>
+
+  <para>
+    <classname>DisplayMethods</classname> may take parameters, which
+    are described in the sections for each specific method. These
+    parameters govern things like line widths, colors,
+    <foreignphrase>etc</foreignphrase>.  One thing that the parameters
+    do <emphasis>not</emphasis> govern is the object (&image;, &mesh;,
+    <foreignphrase>etc.</foreignphrase>) which the
+    <classname>DisplayMethod</classname> displays.  That is determined
+    by the <link linkend='Section-Graphics-Layer'>Layer</link>
+    containing the <classname>DisplayMethod</classname>.  This
+    arrangement allows an object to be displayed by more than one
+    <classname>DisplayMethod</classname> simultaneously.
+  </para>
+  <para>
+    <classname>DisplayMethods</classname> are added to <link
+    linkend="Section-Graphics-Layer"><classname>Layers</classname></link>
+    and assembled into <link
+    linkend="Section-Graphics-LayerSet"><classname>LayerSets</classname></link>
+    by the <xref linkend="MenuItem-OOF.LayerEditor.LayerSet"/> menu
+    and the <link linkend="Section-Graphics-LayerEditor">Layer
+    Editor</link> window.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

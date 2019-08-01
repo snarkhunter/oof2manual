@@ -1,0 +1,60 @@
+<!-- 
+  $RCSfile: gistearth.xml,v $
+  $Revision: 1.1 $
+  $Author: reida $
+  $Date: 2013-07-03 02:42:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <link
+    linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
+    translate numbers into colors, for use in contour plots.
+    <classname>GistEarth</classname> uses a geographically inspired 
+      color sequence, from dark blue at the bottom, representing water,
+      through green, beige, and finally white at the top, representing
+      snow-covered mountains.  The resulting contour plots resemble
+      topographical maps.  The name comes from the GIST software
+      for viewing GIS data, which popularized this scheme.
+  </para>
+
+  <figure id="Figure-Gistmap">
+    <title>The Gist Earth Color Map</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/colormaps/gistearthmap.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/colormaps/gistearthmap.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The Gist earth color map.  High values are on top.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

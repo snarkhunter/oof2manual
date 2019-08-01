@@ -1,0 +1,53 @@
+<!-- 
+  $RCSfile: newlayerset.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:17 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Make a new &layerset; for drawing something in a Graphics window.
+    This really just resets the &layereditor;, and sets its
+    <varname>Destination</varname> to the specified Graphics window.  It
+    doesn't affect the Graphics window until the &layerset; is <link
+    linkend='MenuItem-OOF.LayerEditor.LayerSet.Send'>sent</link> to
+    the window.
+  </para>
+  <para>
+    Because the <link
+    linkend="MenuItem-OOF.LayerEditor.LayerSet.Send"><command>Send</command></link>
+    overwrites the currently selected &layer; in a Graphics window, the
+    <command>New</command> command deselects all &layers; in the
+    Destination window.
+  </para>
+  <para>
+    In the GUI, this command can be invoked either from the
+    <guimenuitem>New...</guimenuitem> menu item in the
+    <guimenu>Layer</guimenu> menu in any Graphics window, or from the
+    <guibutton>New...</guibutton> button in the &layereditor; window
+    itself.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

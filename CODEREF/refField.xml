@@ -1,0 +1,946 @@
+<!-- 
+  $RCSfile: refField.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:13 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <refentry id="Class-Field">
+    <refnamediv>
+      <refname>Field</refname>
+      <refpurpose>Base class for fields</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+	(Only those methods useful when extending &oof2; are
+	listed here.)
+      </para>
+      <refsect2>
+	<title>C++ Synopsis</title>
+
+	<literallayout class="monospaced">
+#include "engine/field.h"
+	  <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>Field</classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <type>const std::string&amp;</type>
+	      <methodname><link linkend="Class-Field-name">name</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>int</type>
+	      <methodname><link
+		  linkend="Class-Field-ndof">ndof</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>IteratorP</type>
+	      <methodname><link
+		  linkend="Class-Field-iterator">iterator</link></methodname>
+	      <methodparam>
+		<type>Planarity</type>
+		<parameter>planarity</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link
+		  linkend="Class-Field-is_defined">is_defined</link></methodname>
+	      <methodparam>
+		<type>const CSubProblem*</type>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link
+		  linkend="Class-Field-is_active">is_active</link></methodname>
+	      <methodparam>
+		<type>const CSubProblem*</type>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+		<type>const FuncNode*</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>int</type>
+		<parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+		<type>const FuncNode&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>int</type>
+		<parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+		<type>const ElementFuncNodeIterator&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>int</type>
+		<parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>double</type>
+	      <methodname><link linkend="Class-Field-value">value</link></methodname>
+	      <methodparam>
+		<type>const FuncNode*</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>int</type>
+		<parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>double</type>
+	      <methodname><link linkend="Class-Field-value">value</link></methodname>
+	      <methodparam>
+		<type>const ElementFuncNodeIterator&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>int</type>
+		<parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>OutputValue</type>
+	      <methodname><link
+		  linkend="Class-Field-output">output</link></methodname>
+	      <methodparam>
+		<type>const ElementFuncNodeIterator&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>OutputValue</type>
+	      <methodname><link
+		  linkend="Class-Field-output">output</link></methodname>
+
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<literallayout class="monospaced">
+from oof2.SWIG.engine.field import Field
+	  <classsynopsis language="python">
+	    <ooclass>
+	      <classname>Field</classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Field-ndof">ndof</link></methodname>
+	      <void/>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Field-is_defined">is_defined</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Field-is_active">is_active</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Field-iterator">iterator</link></methodname>
+	      <methodparam>
+		<parameter>planarity</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Field-value">value</link></methodname>
+	      <methodparam>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>component</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Subclasses</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara><link linkend="Class-CompoundField"><classname>CompoundField</classname></link></simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara><link linkend="Class-ScalarField"><classname>ScalarField</classname></link></simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara><link linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link></simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- subclasses -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara><filename>SRC/engine/field.h</filename>: C++ header</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara><filename>SRC/engine/field.C</filename>: C++ code</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/field.swg</filename>: SWIG source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/field.spy</filename>: python code
+	      included in <filename>field.swg</filename>.
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>Field</classname> is a base class for all types of
+	fields in &oof2;.  The role of fields is described in <xref
+	linkend="Section-Concepts-Mesh-Field"/>.  Like <link
+	linkend="Class-Flux"><classname>Fluxes</classname></link> and
+	<link
+	linkend="Class-Equation"><classname>Equations</classname></link>,
+	&field; instances are global objects &mdash; there is one
+	instance for each physical field.  &fields; store information
+	about the physical field (such as its name and dimension), but
+	do not store the actual values of the &field;. That's done by
+	a &mesh;, by using bookkeeping data from a &field;.
+      </para>
+      <para>
+	Most of the programming interface for &fields; is defined in
+	the base class, which is an abstract C++ class.  Most of the
+	API is available from both C++ and Python.
+      </para>
+      <para>
+	Most of the &field; objects encountered by &oof2; users and
+	extenders are actually instances of the <link
+	linkend="Class-CompoundField"><classname>CompoundField</classname></link>
+	class, which pairs the in-plane and out-of-plane parts of a
+	&field;, both of which are &fields; themselves.  All
+	operations on a <classname>CompoundField</classname> operate
+	on the in-plane part, unless specifically noted otherwise.
+      </para>
+    </refsection>
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-Field-name">
+	<title><code>std::string &amp; name() const</code></title>
+	<para>
+	  <methodname>name</methodname> returns the name assigned to
+	  the <classname>Field</classname> when it was created.  See
+	  <xref linkend="Section-Coding-AddFields"/>.
+	</para>
+      </refsection><!-- name -->
+      <refsection id="Class-Field-ndof">
+	<title><code>int ndof() const</code></title>
+	<para>
+	  <methodname>ndof</methodname> returns the number of degrees
+	  of freedom in the <classname>Field</classname>.  This is the
+	  number of data values that must be allocated to store the
+	  <classname>Field</classname> at each &node; of the &mesh;.
+	  For <link
+	  linkend="Class-CompoundField"><classname>CompoundFields</classname></link>,
+	  <methodname>ndof</methodname> returns the size of the
+	  <emphasis>in-plane</emphasis> part.
+	</para>
+      </refsection><!-- ndof -->
+      <refsection id="Class-Field-iterator">
+	<title><code>IteratorP iterator(Planarity p)</code></title>
+	<para>
+	  <methodname>iterator</methodname> returns an <link
+	  linkend="Class-IteratorP"><classname>IteratorP</classname></link>
+	  object which can be used to loop over all of the degrees of
+	  freedom of a <classname>Field</classname>.  For example, the
+	  following code snippet zeros the values of a
+	  <classname>Field</classname> on a node:
+	  <programlisting>
+Field field;                   // Assume that this has been set.
+ElementFuncNodeIterator node;  // This too.
+FEMesh *mesh;                  // And this.
+for(IteratorP i=field.iterator(ALL_INDICES); !i.end(); ++i) {
+  DegreeOfFreedom *dof = field(mesh, node, i);
+  dof->value() = 0.0;
+} </programlisting>
+	</para>
+      </refsection><!-- iterator -->
+      <refsection id="Class-Field-is_defined">
+	<title><code>bool is_defined(const FEMesh *mesh) const</code></title>
+	<para>
+	  <methodname>is_defined</methodname> indicates whether the
+	  <classname>Field</classname> has been <link
+	  linkend="MenuItem-OOF.Mesh.Field.Define">defined</link> on
+	  the given <link
+	  linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	  Defined <classname>Fields</classname> have been assigned
+	  values on &nodes;.
+	</para>
+      </refsection><!-- is_defined -->
+      <refsection id="Class-Field-is_active">
+	<title><code>bool is_active(const FEMesh *mesh) const</code></title>
+	<para>
+	  <methodname>is_active</methodname> indicates whether the
+	  <classname>Field</classname> has been <link
+	  linkend="MenuItem-OOF.Mesh.Field.Activate">activated</link> on
+	  the given <link
+	  linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	  Active <classname>Fields</classname> are being solved for.
+	</para>
+      </refsection><!-- is_active -->
+      <refsection id="Class-Field-dofoperator">
+	<title><code>DegreeOfFreedom *operator()(...)
+	    const</code></title>
+	<programlisting>
+DegreeOfFreedom *operator()(const FuncNode*, int component) const;
+DegreeOfFreedom *operator()(const FuncNode&amp;, int component) const;
+DegreeOfFreedom *operator()(const ElementFuncNodeIterator&amp;, int component) const;
+DegreeOfFreedom *operator()(const ElementFuncNodeIterator&amp;, const IteratorP&amp;) const; </programlisting>
+	<para>
+	  This family of methods are all ways of obtaining the value
+	  of a <classname>Field</classname> at the given <link
+	  linkend="Class-Node"><classname>Node</classname></link>.
+	  The different methods are provided for convenience, to allow
+	  different representations of <classname>Nodes</classname> or
+	  <classname>Field</classname> components.  All of these
+	  methods return a pointer to a <link
+	  linkend="Class-DegreeOfFreedom"><classname>DegreeOfFreedom</classname></link>
+	  object, which wraps the actual <classname>Field</classname>
+	  component value and is stored at the
+	  <classname>Node</classname>.
+	</para>
+	<para>
+	  <classname>DegreeOfFreedom</classname>s are low-level,
+	  fairly primitive objects, so these methods cannot be used to
+	  extract aggregate values (such as all of the components of a
+	  multicomponent <classname>Field</classname>).  To do that,
+	  see <link
+	  linkend="Class-Field-output"><methodname>Field::output</methodname></link>.
+	</para>
+	<para>
+	  These functions only return <classname>Field</classname>
+	  values at <classname>Nodes</classname>. To get values
+	  interpolated at an arbitrary point within an <link
+	  linkend="Class-Element"><classname>Element</classname></link>,
+	  see <link
+	  linkend="Class-Element-outputField"><methodname>Element::outputField</methodname></link>.
+	</para>
+      </refsection><!-- operator() -->
+      <refsection id="Class-Field-value">
+	<title><code>double value(node, component)</code></title>
+	<para>
+	  The <methodname>value</methodname> function is a shortcut
+	  for evaluating a component of a <classname>Field</classname>
+	  at a <classname>Node</classname>.  In C++, the given
+	  <varname>node</varname> must be a <link
+	  linkend="Class-Node"><classname>FuncNode</classname></link>
+	  pointer or a <link
+	  linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
+	  reference.  In Python, it must be a <link
+	  linkend="Class-Node"><classname>FuncNode</classname></link>
+	  object.
+	</para>
+      </refsection>
+      <refsection id="Class-Field-output">
+	<title><code>OutputValue output(...) const</code></title>
+	<programlisting>
+OutputValue output(const ElementFuncNodeIterator&amp;) const;
+OutputValue output(const FuncNode&amp;) const = 0; </programlisting>
+	<para>
+	  These functions return an <link
+	  linkend="Class-OutputValue"><classname>OutputValue</classname></link>
+	  object which wraps an <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  object which contains the value of the
+	  <classname>Field</classname> at the given <link
+	  linkend="Class-Node"><classname>Node</classname></link>.
+	  These calls are mostly used as a mechanism for generically
+	  transferring <classname>Field</classname> values to Python
+	  when plotting data, but they can also be useful when writing
+	  <classname>Field</classname>-dependent <link
+	  linkend="Class-Property"><classname>Property</classname></link>s.
+	</para>
+	<para>
+	  The <methodname>output</methodname> functions differ from
+	  <link
+	  linkend="Class-Field-dofoperator"><methodname>Field::operator()</methodname></link>
+	  by returning all of the components of a multi-dimensional
+	  <classname>Field</classname> in one call.
+	</para>
+      </refsection><!-- output -->
+
+    </refsection><!-- Methods -->
+  </refentry><!-- Class:Field -->
+
+  <refentry id="Class-CompoundField">
+    <refnamediv>
+      <refname>CompoundField</refname>
+      <refpurpose>
+	A <classname>Field</classname> with both in- and
+	out-of-plane parts.
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+	Only those methods useful for extending &oof2; are listed
+	here.  Base class functions are described in the <link
+	linkend="Class-Field"><classname>Field</classname></link>
+	documentation.
+      </para>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<literallayout class="monospaced">
+#include "engine/field.h"
+	  <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>CompoundField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <modifier>public</modifier>
+	      <classname><link linkend="Class-Field">Field</link></classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <type>Field*</type>
+	      <methodname><link
+		  linkend="Class-CompoundField-out_of_plane">out_of_plane</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link
+		  linkend="Class-CompoundField-in_plane">in_plane</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link
+		  linkend="Class-CompoundField-in_plane">in_plane</link></methodname>
+	      <methodparam>
+		<type>const CSubProblem*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<literallayout class="monospaced">
+from oof2.SWIG.engine.field import CompoundField
+	  <classsynopsis language="python">
+	    <ooclass>
+	      <classname>CompoundField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <modifier>public</modifier>
+	    <classname><link linkend="Class-Field">Field</link></classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <type>Field*</type>
+	    <methodname><link
+		linkend="Class-CompoundField-out_of_plane">out_of_plane</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>bool</type>
+	    <methodname><link linkend="Class-CompoundField-in_plane">in_plane</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	Most &fields; that the user encounters in &oof2; are instances
+	of <classname>CompoundField</classname> subclasses.  A
+	<classname>CompoundField</classname> is a
+	<classname>Field</classname> that has been augmented with its
+	out-of-plane parts, which form a <classname>Field</classname>
+	(but not a <classname>CompoundField</classname>) themselves.
+	See <xref linkend="Section-Concepts-Mesh-3D"/> for the details.
+	When a <classname>CompoundField</classname> is created, its
+	out-of-plane part is created automatically.  The name of the
+	out-of-plane part is the same as the name of the
+	<classname>CompoundField</classname>, but with
+	<userinput>_z</userinput> appended.
+      </para>
+      <para>
+	The C++ class hierarchies for
+	<classname>CompoundField</classname> subclasses are actually
+	moderately complicated, and are simplified somewhat in the
+	documentation.  An alert reader will notice that the
+	out-of-plane part of a <link
+	linkend="Class-ScalarField"><classname>ScalarField</classname></link>
+	can't be another <classname>ScalarField</classname>, because
+	<classname>ScalarField</classname> is derived from
+	<classname>CompoundField</classname>, but the out-of-plane
+	part isn't compounded.  However, for purposes of writing
+	&oof2; extensions, such complications are just distracting.
+	Readers who are interested in the details can consult
+	<filename>SRC/engine/field.h</filename>.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-CompoundField-out_of_plane">
+	<title><code>Field *out_of_plane() const</code></title>
+	<para>
+	  <methodname>out_of_plane</methodname> returns the <link
+	  linkend="Class-Field"><classname>Field</classname></link>
+	  that contains the out-of-plane part of a
+	  <classname>CompoundField</classname>.
+	</para>
+      </refsection><!-- out_of_plane -->
+      <refsection id="Class-CompoundField-in_plane">
+	<title><code>bool in_plane(...) const</code></title>
+	<para>
+	  <methodname>in_plane</methodname> indicates whether or not
+	  the <classname>CompoundField</classname> is constrained to
+	  be <link linkend="Section-Concepts-Mesh-3D">in-plane</link>.
+	  In C++, the argument can be a pointer to either an <link
+	  linkend="Class-FEMesh"><classname>FEMesh</classname></link>
+	  or a <link
+	  linkend="Class-CSubProblem"><classname>CSubProblem</classname></link>.
+	  In Python, the argument must be an <link
+	  linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	</para>
+	<note>
+	  <para>
+	    The out-of-plane <classname>Field</classname> object
+	    belonging to a <classname>CompoundField</classname> is
+	    always created when the
+	    <classname>CompoundField</classname> is created.  Whether
+	    or not the <classname>CompoundField</classname> is
+	    in-plane is determined by whether or not values for its
+	    out-of-plane field are stored in a mesh and allowed to be
+	    non-zero.
+	  </para>
+	</note>
+      </refsection>
+    </refsection><!-- Methods -->
+  </refentry><!-- Field:CompoundField -->
+
+  <refentry id="Class-ScalarField">
+    <refnamediv>
+      <refname>ScalarField</refname>
+      <refpurpose>A scalar-valued <classname>Field</classname></refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+	Only functions relevant to people writing &oof2; extensions
+	are listed here.  Base class functions are described in the
+	<link
+	  linkend="Class-Field"><classname>Field</classname></link>
+	and <link
+	  linkend="Class-CompoundField"><classname>CompoundField</classname></link> documentation.
+      </para>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<literallayout class="monospaced">
+#include "engine/field.h"
+	  <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>ScalarField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <modifier>public</modifier>
+	      <classname><link linkend="Class-CompoundField">CompoundField</link></classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-ScalarField-dofoperator">operator()</link></methodname>
+	      <methodparam>
+		<type>const FuncNode*</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-ScalarField-dofoperator">operator()</link></methodname>
+	      <methodparam>
+		<type>const FuncNode&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-ScalarField-dofoperator">operator()</link></methodname>
+	      <methodparam>
+		<type>const ElementFuncNodeIterator&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<literallayout class="monospaced">
+from oof2.SWIG.engine.field import ScalarField
+	  <classsynopsis language="python">
+	    <ooclass>
+	      <classname>ScalarField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <classname>CompoundField</classname>
+	    </ooclass>
+	    <constructorsynopsis>
+	      <methodparam>
+		<parameter>name</parameter>
+	      </methodparam>
+	    </constructorsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara><filename>SRC/engine/field.h</filename>: C++ header</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara><filename>SRC/engine/field.C</filename>: C++ code</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/field.swg</filename>: SWIG source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/field.spy</filename>: python code
+	      included in <filename>field.swg</filename>.
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>ScalarField</classname> is a &field; whose value is
+	a number at every point in a &mesh;.
+	<classname>ScalarField</classname>s should always be
+	constructed in Python (see <xref
+	linkend="Section-Coding-AddFields"/>).  The constructor has a
+	single argument, which is the name of the &field;.
+      </para>
+      <para>
+	When a <classname>ScalarField</classname> is constructed,
+	its <link linkend="Section-Concepts-Mesh-3D">out-of-plane
+	  part</link> will be constructed automatically.  The
+	out-of-plane part of a scalar field is its
+	<emphasis>z</emphasis> derivative, which is also a scalar.
+	The name of the out-of-plane part is constructed by
+	appending <userinput>_z</userinput> to the name of the
+	in-plane part.
+      </para>
+      <para>
+	Constructing a <classname>ScalarField</classname> and
+	passing it to <link
+	  linkend="Function.advertise"><function>problem.advertise()</function></link>
+	makes it available for future use.  It does
+	<emphasis>not</emphasis> automatically <link
+	  linkend="MenuItem-OOF.Mesh.Field.Define">define</link> or
+	<link
+	  linkend="MenuItem-OOF.Mesh.Field.Activate">activate</link>
+	the &field;.
+      </para>
+      <para>
+	It is not necessary to keep an explicit reference to a newly
+	constructed <classname>ScalarField</classname>.  All
+	&fields; are automatically stored in the list-like object
+	<code>oof2.SWIG.engine.field.allFields</code>.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	Methods defined in the base classes are not mentioned here.
+      </para>
+      <refsection id="Class-ScalarField-dofoperator">
+	<title><code>DegreeOfFreedom* operator()(...)</code></title>
+	<programlisting>
+DegreeOfFreedom* operator()(const FuncNode *node) const;
+DegreeOfFreedom* operator()(const FuncNode&amp; node) const;
+DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </programlisting>
+	<para>
+	  These three functions are different ways of obtaining the
+	  <classname>DegreeOfFreedom</classname> object containing the
+	  value of a <classname>Field</classname> at a <link
+	  linkend="Class-Node"><classname>Node</classname></link>.
+	  They are identical to the <link
+	  linkend="Class-Field-dofoperator"><methodname>operator()</methodname></link>
+	  methods defined in the <link
+	  linkend="Class-Field"><classname>Field</classname></link>
+	  base class, except that they don't require the component
+	  index to be specified.  Specifying the component of a scalar
+	  field is a bit silly.
+	</para>
+      </refsection>
+    </refsection><!-- Methods -->
+  </refentry><!-- Class:ScalarField -->
+
+  <refentry id="Class-TwoVectorField">
+    <refnamediv>
+      <refname>TwoVectorField</refname>
+      <refpurpose>
+	A two dimensional vector-valued <classname>Field</classname> object
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+	Only functions relevant to people writing &oof2; extensions
+	are listed here.  Base class functions are described in the
+	<link
+	  linkend="Class-Field"><classname>Field</classname></link>
+	and <link
+	  linkend="Class-CompoundField"><classname>CompoundField</classname></link> documentation.
+      </para>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<literallayout class="monospaced">
+#include "engine/field.h"
+	  <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>TwoVectorField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <modifier>public</modifier>
+	      <classname><link
+	      linkend="Class-CompoundField">CompoundField</link></classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <type>TwoVectorHelper</type>
+	      <methodname><link linkend="Class-TwoVectorField-helper">operator()</link></methodname>
+	      <methodparam>
+		<type>const FuncNode*</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>TwoVectorHelper</type>
+	      <methodname><link linkend="Class-TwoVectorField-helper">operator()</link></methodname>
+	      <methodparam>
+		<type>const FuncNode&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>TwoVectorHelper</type>
+	      <methodname><link linkend="Class-TwoVectorField-helper">operator()</link></methodname>
+	      <methodparam>
+		<type>const ElementFuncNodeIterator&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<literallayout class="monospaced">
+from oof2.SWIG.engine.field import TwoVectorField
+	  <classsynopsis language="python">
+	    <ooclass>
+	      <classname>TwoVectorField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <classname><link linkend="Class-CompoundField">CompoundField</link></classname>
+	    </ooclass>
+	    <constructorsynopsis>
+	      <methodparam>
+		<parameter>name</parameter>
+	      </methodparam>
+	    </constructorsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara><filename>SRC/engine/field.h</filename>: C++ header</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara><filename>SRC/engine/field.C</filename>: C++ code</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/field.swg</filename>: SWIG source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/field.spy</filename>: python code
+	      included in <filename>field.swg</filename>.
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source files -->
+
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>TwoVectorField</classname> is a &field; whose value
+	is a two dimensional (in-plane) vector at every point in a
+	&mesh;. <classname>TwoVectorField</classname>s should always
+	be constructed in Python (see <xref
+	linkend="Section-Coding-AddFields"/>). The constructor has a
+	single argument, which is the name of the &field;.
+      </para>
+      <para>
+	When a <classname>TwoVectorField</classname> is constructed,
+	its <link linkend="Section-Concepts-Mesh-3D">out-of-plane
+	  part</link> will be constructed automatically.  The
+	out-of-plane part of a 2-vector field is a 3-vector: the
+	three dimensional gradient of its <emphasis>z</emphasis>
+	component.  The name of the out-of-plane part is constructed
+	by appending <userinput>_z</userinput> to the name of the
+	in-plane part.
+      </para>
+      <para>
+	Constructing a <classname>TwoVectorField</classname> and
+	passing it to <link
+	  linkend="Function.advertise"><function>problem.advertise()</function></link>
+	makes it available for future use.  It does
+	<emphasis>not</emphasis> automatically <link
+	  linkend="MenuItem-OOF.Mesh.Field.Define">define</link> or
+	<link
+	  linkend="MenuItem-OOF.Mesh.Field.Activate">activate</link>
+	the &field;.
+      </para>
+      <para>
+	It is not necessary to keep an explicit reference to a newly
+	constructed <classname>TwoVectorField</classname>.  All
+	&fields; are automatically stored in the list-like object
+	<code>oof2.SWIG.engine.field.allFields</code>.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>Methods defined in the base classes are not mentioned
+	here.</para>
+      <refsection id="Class-TwoVectorField-helper">
+	<title><code>TwoVectorHelper operator()(...)</code></title>
+	<programlisting>
+TwoVectorHelper operator()(const FuncNode* node) const;
+TwoVectorHelper operator()(const FuncNode&amp; node) const;
+TwoVectorHelper operator()(const ElementFuncNodeIterator&amp; node) const; </programlisting>
+	<para>
+	  These functions are provided as a convenient way of getting
+	  and setting the value of a
+	  <classname>TwoVectorField</classname> on a <classname><link
+	  linkend="Class-Node">Node</link></classname>.  (Setting any
+	  <classname>Field</classname> value manually is not
+	  recommended -- let the &oof2; field initialization and
+	  solving routines do it for you.)  The
+	  <classname>TwoVectorHelper</classname> class translates
+	  <classname>Field</classname> values into <link
+	  linkend="Class-Coord"><classname>Coord</classname></link>
+	  values, and is meant to be completely transparent to the
+	  programmer.  It can be used like this:
+	  <programlisting>
+	    Field *field = ...
+	    Coord x = (*field)(mesh, node); // extract Field value
+	    Coord y(1.23, 4.56);
+	    (*field)(mesh, node) = y; // set Field value</programlisting>
+	</para>
+      </refsection>
+    </refsection><!-- Methods -->
+  </refentry><!-- Class:Field:TwoVectorField -->
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

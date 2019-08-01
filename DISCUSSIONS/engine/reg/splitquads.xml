@@ -1,0 +1,107 @@
+<!-- 
+  $RCSfile: splitquads.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:48 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    The <classname>SplitQuads</classname> &skel; <link
+    linkend="RegisteredClass-SkeletonModifier">modifier</link>
+    improves the <xref
+    linkend="Section-Concepts-Skeleton-Homog_Energy"/> of a
+    quadrilateral &elem; by splitting it along a diagonal into two
+    triangles.
+  </para>
+  <para>
+    The <varname>targets</varname> parameter specifies which &elems;
+    to examine as possible candidates for splitting.
+  </para>
+  <para>
+    The <varname>criterion</varname> parameter determines the
+    conditions under which splits will be accepted or rejected.
+  </para>
+  <para>
+    The <varname>split_how</varname> parameter determines how the
+    diagonal is chosen for each split.  When set to <xref
+    linkend="RegisteredClass-GeographicQ2T"/>, neighboring &elems; are
+    consulted for advice.  When set to <xref
+    linkend="RegisteredClass-TrialAndErrorQ2T"/>, both diagonals are
+    tried and the better one is chosen according to the given
+    <varname>criterion</varname>.
+  </para>
+
+  <para>
+    Here's an example using the <xref
+      linkend="RegisteredClass-GeographicQ2T"/> splitter.
+    <xref linkend="Figure-before_split"/> shows a &skel; after applying
+    <xref linkend="RegisteredClass-SnapNodes"/>, which tends to leave
+    some quadrilaterals tailor-made for splitting along the
+    diagonal. As shown, heterogeneous elements (highlighted with fat
+    lines) are surrounded by <emphasis>two</emphasis> types of
+    elements (two <emphasis>blue</emphasis> elements
+    and two <emphasis>magenta</emphasis> elements for each case) and
+    the material boundary is closely following their diagonals.
+    The resulting &skel; is shown <xref
+      linkend="Figure-after_split"/>.
+
+    <figure id="Figure-before_split">
+      <title>Before Splitting</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/before_split.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/before_split.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    The material boundary is crossing two heterogenous
+	    elements along their diagonals.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <figure id="Figure-after_split">
+      <title>After Splitting</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/after_split.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/after_split.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    Inhomogeneous quadrilaterals have been replaced with
+	    homogeneous triangles.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

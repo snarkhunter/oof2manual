@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: eqn-Plane_Heat_Flux.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-05-24 20:51:25 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  The Plane Heat Flux &equation; is
+  <equation>
+    <alt role="tex">
+      \[ {\bf J}_z = 0 \]
+    </alt>
+  </equation>
+  where <inlineequation><alt role="tex">\(\bf
+  J\)</alt></inlineequation> is the <xref linkend="Flux-Heat_Flux"/>.
+  Activating the Plane Heat Flux equation is one way to reduce a three
+  dimensional problem to <link linkend="Section-Concepts-Mesh-3D">two
+  dimensions</link>.  Its role in thermal conduction problems is
+  analogous to the role of the <xref linkend="Equation-Plane_Stress"/>
+  equation in elasticity problems.
+</para>
+<para>
+  When the Plane Heat Flux equation is activated, no heat will flow in
+  the z direction, although the out-of-plane gradient of the <xref
+  linkend='Field-Temperature'/>, <varname>Temperature_z</varname>, may
+  be nonzero and will have to be solved for.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

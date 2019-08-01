@@ -1,0 +1,49 @@
+<!-- 
+  $RCSfile: rgbdata8.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:52 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+  <para>
+    <classname>RGBData8</classname> objects are used to store &image;
+    pixels in &oof2; data files.  The <varname>rgbvalues</varname>
+    argument contains a <link linkend='Object-list'>Python list</link>
+    of unsigned short integers, representing the red, green, and blue
+    values of the pixels, starting at the top left of the image and
+    proceeding by rows.  That is, the pixels are written in the order
+    described by the followind pseudocode:
+    <literallayout>
+loop over rows from top to bottom:
+   loop over columns from left to right:
+      write red, green, blue
+</literallayout>
+  </para>
+  <para>
+    The origin of the name <classname>RGBData8</classname> is lost in
+    the mists of time.  It should probably be
+    <classname>RGBData16</classname>.  Since it's only used internally
+    in data files, it's not worth changing it.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

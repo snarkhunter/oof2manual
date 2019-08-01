@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: definefield.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-04-08 20:00:00 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <para>
+    Defining a &field; on a &mesh; means that the &field; has values
+    that can be computed on the &mesh;: memory is allocated to store
+    the components of the &field; at the <link
+      linkend="Section-Concepts-Mesh-Geometry">nodes</link> of the
+    &mesh;, and values can be interpolated within the &mesh; elements.
+  </para>
+  <para>
+    When a &field; is first defined, its components are all zero
+    everywhere.  To assign &field; values, use <xref
+    linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/> and <xref
+    linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/>.  To solve
+    for &field; values, the &field; must be <link
+    linkend="MenuItem-OOF.Subproblem.Field.Activate">activated</link>,
+    an &equation; involving the &field; must be <link
+    linkend="MenuItem-OOF.Subproblem.Equation.Activate">activated</link>,
+    and the &mesh; must be <link
+    linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
+  </para>
+
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

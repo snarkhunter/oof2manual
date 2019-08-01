@@ -1,0 +1,106 @@
+<!-- 
+  $RCSfile: nodes_from_elements.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:25 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <command>OOF.NodeSelection.Select_From_Selected_Elements</command>
+    provides three ways of selecting &nodes; based on a pre-existing
+    &elem; selection.  The two parameters <varname>internal</varname>
+    and <varname>boundary</varname>
+    control which &nodes; will be selected.  If
+    <varname>internal</varname> is true, then the &nodes; that are
+    completely surrounded by selected &elems; will be selected.  If
+    <varname>boundary</varname> is true, then &nodes; that are
+    <emphasis>not</emphasis> completely surrounded by selected &elems;
+    will be selected.
+  </para>
+
+  <figure id="Figure-nodes_from_elems">
+    <title>Selecting Nodes from the Selected Elements</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_from_elems0.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/skel_selection/nodes_from_elems0.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  Selected &elems; (in red) in a &skel;.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_from_elems1.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/skel_selection/nodes_from_elems1.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  With <varname>boundary</varname>=<userinput>1</userinput>
+	  and <varname>internal</varname>=<userinput>0</userinput>,
+	  only the &nodes; (blue dots) on the perimeter of the
+	  selected &elems; are selected.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_from_elems2.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/skel_selection/nodes_from_elems2.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  With <varname>boundary</varname>=<userinput>0</userinput>
+	  and <varname>internal</varname>=<userinput>1</userinput>,
+	  only the &nodes; in the interior of the region of selected
+	  &elems; are selected.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_from_elems3.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS" fileref="FIGURES/skel_selection/nodes_from_elems3.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  With <varname>boundary</varname>=<userinput>1</userinput>
+	  and <varname>internal</varname>=<userinput>1</userinput>, all
+	  &nodes; of the selected &elems; are selected.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

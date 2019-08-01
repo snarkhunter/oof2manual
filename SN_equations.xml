@@ -1,0 +1,73 @@
+<!--
+  $RCSfile: SN_equations.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-04-08 19:59:59 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<obsolete> THIS FILE IS OBSOLETE </obsolete>
+
+  <section id="Section-Tasks-Equations">
+    <title>Equations</title>
+    <para>
+      The Equations Page determines which &equations; will be <link
+      linkend="Section-Tasks-Solver">solved</link>. As shown in <xref
+      linkend="Figure-EquationsPage"/>, the page simply consists of a
+      Mesh Chooser and an Equations Pane.
+    </para>
+    <figure id="Figure-EquationsPage">
+      <title>The Equations Page</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/equations_page.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/equations_page.eps"
+	    format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      Clicking on the <quote><guilabel>active</guilabel></quote>
+      button next to an &equation; name in the Equations Pane <link
+      linkend="MenuItem-OOF.Mesh.Equation.Activate">activates</link>
+      the &equation;, meaning that it will be solved by <xref
+      linkend="MenuItem-OOF.Solver.Solve"/>.  Clicking again <link
+      linkend="MenuItem-OOF.Mesh.Equation.Deactivate">deactivates</link>
+      the equation.
+    </para>
+    <para>
+      The <link
+      linkend="MenuItem-OOF.Mesh.Copy_Equation_State"><guibutton>Copy
+      Equation State</guibutton></link> button copies the Equation
+      Pane settings from the currently selected &mesh; into a
+      specified target &mesh;.  The target is selected in a dialog
+      box.
+    </para>
+
+  </section>
+    
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

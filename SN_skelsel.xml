@@ -1,0 +1,277 @@
+<!--
+  $RCSfile: SN_skelsel.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-05-02 21:36:52 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section id="Section-Tasks-SkeletonSelection">
+  <title>Skeleton Selection</title>
+  <para>
+    The Skeleton Selection Page has two purposes: it contains tools
+    for creating and manipulating &skel; <link
+    linkend="Section-Concepts-Skeleton-Groups">groups</link>, and
+    tools for selecting &nodes;, &sgmts;, and &elems;.  Groups can be
+    made from selections, and selections can be modified by groups.
+  </para>
+  <para>
+    Groups and selections of objects are useful because other
+    operations can be applied to them.  For example, it's possible to
+    <link linkend="RegisteredClass-Refine">refine</link> the &elems;
+    in an &elem; group, or <link
+    linkend="MenuItem-OOF.Skeleton.PinNodes">pin</link> the selected
+    &nodes;.
+  </para>
+  <para>
+    The geography of the page is shown in <xref
+    linkend="Figure-SkelSelPage"/>.  The Skeleton Chooser at the top
+    of the page selects the &skel; upon which the rest of the page
+    operates.  The Mode Buttons below it determine whether or not the
+    page is selecting and grouping &elems;, &nodes;, or &sgmts;.  Only
+    one of the three modes can be active at one time. The Info Area
+    simply states how many objects (&elems;, &nodes;, or &sgmts;) are
+    selected.
+  </para>
+
+  <figure id="Figure-SkelSelPage">
+    <title>The Skeleton Selection Page</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gui/skelsel_page.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gui/skelsel_page.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    The bulk of the Skeleton Selection Page is occupied by the <link
+    linkend="Section-SkeletonSelection-Group">Group Operations
+    Pane</link> and the <link
+    linkend="Section-SkeletonSelection-Modification">Selection
+    Modification Pane</link>.  The Group Operations Pane creates and
+    manages groups of &elems;, &nodes;, or &sgmts;, depending on the
+    current mode.  The Selection Modification Pane selects and
+    deselects the same objects.
+  </para>
+  <simplesect id="Section-SkeletonSelection-Group">
+    <title>The Group Operations Pane</title>
+    <para>
+      The Group Operations Pane consists of three regions.  A central
+      list of groups, and two columns of buttons.  The central list
+      shows all of the defined groups of &elems;, &nodes;, or &sgmts;
+      (depending on the Mode) in the current &skel; Clicking on a
+      group selects it for operations by the buttons.
+    </para>
+    <para>
+      The buttons to the left of the group list operate on the groups
+      themselves:
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    Depending on the mode, the <guibutton>New</guibutton>
+	    button invokes either <xref
+	    linkend="MenuItem-OOF.ElementGroup.New_Group"/>, <xref
+	    linkend="MenuItem-OOF.NodeGroup.New_Group"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentGroup.New_Group"/> to
+	    create a new group.  It brings up a dialog box to ask
+	    for a name for the group.  The new group will be empty and
+	    will be automatically selected in the group list.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Rename</guibutton> button invokes either
+	    <xref
+		linkend="MenuItem-OOF.ElementGroup.Rename_Group"/>,
+	    <xref linkend="MenuItem-OOF.NodeGroup.Rename_Group"/>,
+	    or <xref
+	    linkend="MenuItem-OOF.SegmentGroup.Rename_Group"/> to
+	    rename the group currently selected in the group list.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Copy</guibutton> button invokes either
+	    <xref linkend="MenuItem-OOF.ElementGroup.Copy_Group"/>,
+	    <xref linkend="MenuItem-OOF.NodeGroup.Copy_Group"/>, or
+	    <xref linkend="MenuItem-OOF.SegmentGroup.Copy_Group"/>
+	    to copy the group currently selected in the group list.
+	    The new group will contain the same objects as the group
+	    being copied.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Delete</guibutton> button deletes the group
+	    selected in the group list, by invoking either <xref
+	    linkend="MenuItem-OOF.ElementGroup.Delete_Group"/>, <xref
+	    linkend="MenuItem-OOF.NodeGroup.Delete_Group"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentGroup.Delete_Group"/>.  The
+	    objects stored in the deleted group are not affected.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      The buttons on the right side of the group list affect the
+      contents of the selected group.
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The <guibutton>Add</guibutton> button invokes either <xref
+	    linkend="MenuItem-OOF.ElementGroup.Add_to_Group"/>, <xref
+	    linkend="MenuItem-OOF.NodeGroup.Add_to_Group"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentGroup.Add_to_Group"/> to add
+	    the currently selected &elems;, &nodes;, or &sgmts; to a
+	    group.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Remove</guibutton> button invokes either
+	    <xref
+	    linkend="MenuItem-OOF.ElementGroup.Remove_from_Group"/>,
+	    <xref
+	    linkend="MenuItem-OOF.NodeGroup.Remove_from_Group"/>, or
+	    <xref
+	    linkend="MenuItem-OOF.SegmentGroup.Remove_from_Group"/> to
+	    remove the currently selected &elems;, &nodes;, or &sgmts;
+	    from a group.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Clear</guibutton> button removes all the
+	    members from the selected group, by invoking either <xref
+	    linkend="MenuItem-OOF.ElementGroup.Clear_Group"/>, <xref
+	    linkend="MenuItem-OOF.NodeGroup.Clear_Group"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentGroup.Clear_Group"/>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Info</guibutton> button prints information
+	    about a group in the <link
+	    linkend="Section-Windows-Messages">Message window</link>.
+	    It invokes either <xref
+	    linkend="MenuItem-OOF.ElementGroup.Query_Group"/>, <xref
+	    linkend="MenuItem-OOF.NodeGroup.Query_Group"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentGroup.Query_Group"/>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Assign</guibutton> and
+	    <guibutton>Remove</guibutton> buttons in the
+	    <guilabel>Material</guilabel> pane are only active in
+	    Element mode.  They invoke <xref
+	    linkend="MenuItem-OOF.ElementGroup.Assign_Material"/> and
+	    <xref
+	    linkend="MenuItem-OOF.ElementGroup.Remove_Material"/> to
+	    assign and remove &materials; from &elem; groups.
+	    &materials; assigned explicitly to groups in this way
+	    override the &material; assignments made to pixels by
+	    <xref linkend="MenuItem-OOF.Material.Assign"/>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Section-SkeletonSelection-Modification">
+    <title>The Selection Modification Pane</title>
+    <para>
+      The Selection Modification Pane contains tools for making and
+      modifying selections in the &skel;.  The pull-down menu labelled
+      <guilabel>Action</guilabel> contains commands from the <xref
+      linkend="MenuItem-OOF.ElementSelection"/>, <xref
+      linkend="MenuItem-OOF.NodeSelection"/>, or <xref
+      linkend="MenuItem-OOF.SegmentSelection"/> menus, depending on
+      the current mode setting.  The area right below the pull-down
+      menu is used to set the parameters for the commands.
+    </para>
+    <para>
+      At the bottom of the Selection Modification Pane are seven
+      buttons:
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The <guibutton>OK</guibutton> button performs the action
+	    specified by the <guilabel>Action</guilabel> menu.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guilabel>Prev</guilabel> and
+	    <guilabel>Next</guilabel> buttons cycle through the
+	    recently used modifiers in the <guilabel>Action</guilabel>
+	    menu.  They don't have any direct effect on the &skel;
+	    selection.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guilabel>Undo</guilabel> and
+	    <guilabel>Redo</guilabel> buttons undo and redo the
+	    recently made &skel; selections.  They're the GUI
+	    equivalent of the <command>Undo</command> and
+	    <command>Redo</command> commands in the <xref
+	    linkend="MenuItem-OOF.ElementSelection"/>, <xref
+	    linkend="MenuItem-OOF.NodeSelection"/>, and <xref
+	    linkend="MenuItem-OOF.SegmentSelection"/> menus.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Clear</guibutton> button unselects all
+	    selected objects in the current mode, by invoking <xref
+	    linkend="MenuItem-OOF.ElementSelection.Clear"/>, <xref
+	    linkend="MenuItem-OOF.NodeSelection.Clear"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentSelection.Clear"/>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Invert</guibutton> button unselects all
+	    selected objects in the current mode and selects all the
+	    unselected ones, by invoking <xref
+	    linkend="MenuItem-OOF.ElementSelection.Invert"/>, <xref
+	    linkend="MenuItem-OOF.NodeSelection.Invert"/>, or <xref
+	    linkend="MenuItem-OOF.SegmentSelection.Invert"/>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      More tools for selecting &skel; components are available in the
+      <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+      Selection Toolbox</link> in the Graphics Window.  Those tools
+      all rely on mouse input, in contrast with the tools in the
+      Skeleton Selection Page, which are all mouseless.
+    </para>
+  </simplesect>
+</section>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

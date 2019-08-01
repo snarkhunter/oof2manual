@@ -1,0 +1,176 @@
+body {
+    background: white;
+}
+
+a:hover {
+    color: #C5DAE3;
+}
+
+div#Banner {
+    background: white url(img/msel_2ndpg_template3.jpg) left top no-repeat;
+}
+
+div#NIST span {
+    position: absolute;
+    left: -2000px;
+}
+
+div#NIST img {
+    width: 128px;
+    height: 48px;
+}
+
+/* Explorer in Windows is known to be broken wrt image transparency */
+
+div#NIST a img {
+    width: 128px;
+    height: 48px;
+    background: url("img/NIST.png") transparent top left no-repeat;
+}
+
+div#NIST a:hover img {
+    background: url("img/NISThover.png") transparent top left no-repeat;
+}
+
+/* 
+ * div#NIST a:active {
+ *     background: url("img/NISTactive.png") transparent bottom left no-repeat;
+ * }
+ */
+
+div#Laboratory a:hover {
+    color: #9999CC;
+}
+
+div#Laboratory a:active {
+    color: #9999CC;
+    text-shadow: 0.2em 0.2em 0.2em black;
+}
+
+div#Site a:hover {
+    color: silver;
+}
+
+div#Site a:active {
+    color: silver;
+    text-shadow: 0.2em 0.2em 0.2em black;
+}
+
+div#sitemenu {
+    background: url("img/tail.gif") transparent bottom right no-repeat;
+}
+
+div#sitemenu ul {
+    margin: 0;
+    padding: 0;
+/*     width: 1px; */
+    /* 
+     * padding-right: 10em;
+     * margin-right: 10em;
+     * padding-top: 0;
+     * margin-top: 0;
+     * margin-left: 0;
+     * padding-left: 0;
+     */
+    list-style: none;
+/*     line-height: normal; */
+    display: inline;
+}
+
+div#sitemenu li {
+    margin-left: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.6ex;
+    background: url("img/dark.gif") repeat-x;
+    list-style: none;
+}
+
+div#sitemenu li.even {
+    background: url("img/light.gif") repeat-x;
+}
+
+#projectmenu {
+    float: left;
+    padding-left: 20px;
+    width: 165px;
+    border-right: 1px solid #000;
+    padding: 0 0 1em 0;
+    margin-bottom: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Grande',
+    Verdana, Lucida, Geneva, Helvetica, 
+    Arial, sans-serif;
+}
+
+#projectmenu ul {
+    list-style: none;
+    margin-left: 20px;
+    padding: 0;
+    border: none;
+    color: gray;
+    background-color: white;
+}
+
+#projectmenu li {
+    margin: 0;
+    margin-bottom: 0.4ex;
+    padding-bottom: 0.4ex;
+    font-size: 100%;
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+}
+
+#projectmenu li a {
+    display: block;
+    color: gray;
+    width: 100%;
+}
+
+html>body #projectmenu li a {
+    width: auto;
+}
+
+#projectmenu li a:hover {
+    color: silver;
+    background-color: white;
+}
+
+#projectmenu li ul {
+    margin-top: 0.4ex;
+    padding-top: 0.4ex;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#projectmenu li ul li {
+    list-style-type: disc;
+    list-style-image: url(img/bullet.gif);
+    list-style-position: inside;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: black;
+    background-color: white;
+/*     margin-bottom: 0.2em; */
+    /* 
+     * border-bottom: 4px solid #90bade;
+     * margin: 0;
+     */
+}
+
+#projectmenu li ul li a {
+    display: block;
+    width: 100%;
+    border-bottom: transparent 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    text-decoration: underline;
+}
+
+html>body #projectmenu li ul li a {
+    width: auto;
+}
+
+#projectmenu li ul li a:hover {
+    color: navy;
+    background-color: white;
+}
+

@@ -1,0 +1,256 @@
+<!-- 
+  $RCSfile: zzspr.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-04-08 20:00:03 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <para>
+    <classname>ZZ_Estimator</classname> is an <xref
+    linkend="RegisteredClass-ErrorEstimator"/> used when modifying a
+    &mesh; by <link
+    linkend="RegisteredClass-AdaptiveMeshRefine">adaptive mesh
+    refinement</link>.  It uses the Superconvergent Patch Recovery
+    technique of Zienkiewicz and Zhu.<footnote>
+      <para>
+	<orderedlist numeration="arabic">
+	  <listitem>
+	    <para>
+	      O.C. Zienkiewicz and J.Z. Zhu, The Superconvergent patch
+	      recovery and <emphasis>a posteriori</emphasis> error
+	      estimators. Part 1. The recovery technique,
+	      <emphasis>Int. J. Numer. Methods Eng.</emphasis>,
+	      33, 1331-1364 (1992)
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      O.C. Zienkiewicz and J.Z. Zhu, The Superconvergent patch
+	      recovery and <emphasis>a posteriori</emphasis> error
+	      estimators. Part 2. Error estimates and adaptivity,
+	      <emphasis>Int. J. Numer. Methods Eng.</emphasis>,
+	      33, 1365-1382 (1992)
+	    </para>
+	  </listitem>
+	</orderedlist>
+      </para>
+    </footnote>
+  </para>
+  <para>
+    The error of the finite element approximation
+    <inlineequation>
+      <alt role="tex">\(u_h\)</alt>
+    </inlineequation> with respect to the
+    exact solution
+    <inlineequation>
+      <alt role="tex">\(u\)</alt>
+    </inlineequation>
+    is
+    <equation>
+      <alt role="tex">
+	  \[e = u - u_h\]
+      </alt>
+    </equation>
+    and the error of the flux (proportional to gradients of
+    <inlineequation>
+      <alt role="tex">\(u\)</alt>
+    </inlineequation>) is
+    <equation>
+      <alt role="tex">
+	\[e_\sigma = \sigma - \sigma_h\]
+      </alt>
+    </equation>
+    These definitions are nearly useless, however, because the exact
+    solutions
+    <inlineequation>
+      <alt role="tex">\(u\)</alt>
+    </inlineequation>
+    and
+    <inlineequation>
+      <alt role="tex">\(\sigma\)</alt>
+    </inlineequation>
+    are almost always unknown.  It is therefore necessary to invent a
+    way of estimating the error.
+  </para>
+  <para>
+    The error estimate procedure developed by Zienkiewicz and Zhu, 
+    employing Superconvergent Patch Recovery
+    has proved to be effective and economical both in evaluating errors
+    and driving adaptive mesh refinement.
+  </para>
+  <para>
+    It is well known that the field derivatives and fluxes
+    <inlineequation>
+      <alt role="tex">\(\sigma_h\)</alt>
+    </inlineequation>
+    computed from the finite element solutions
+    <inlineequation>
+      <alt role="tex">\(u_h\)</alt>
+    </inlineequation>
+    do not possess interelement continuity and have a low accuracy at
+    nodes and element boundaries.  However, there are points within
+    elements, known as <emphasis>superconvergent points</emphasis>, at
+    which the derivatives and fluxes are more accurate than at any
+    other point within the element: values at the superconvergent
+    points converge more quickly to the true values as the element
+    size decreases.  It is possible to get (or
+    <emphasis>recover</emphasis>) a more accurate value
+    <inlineequation>
+      <alt role="tex">\(\sigma^*\)</alt>
+    </inlineequation>
+    of the stress
+    <inlineequation>
+      <alt role="tex">\(\sigma\)</alt>
+    </inlineequation>
+    at a node by interpolating between the stresses at the
+    superconvergent points in a small set of elements (a
+    <emphasis>patch</emphasis>) around the node.
+  </para>
+  <para>
+    The <classname>ZZ_Estimator</classname> compares the recovered and
+    directly computed values of the given <varname>flux</varname> and
+    refines those in which the <varname>norm</varname> of the relative
+    error
+    <inlineequation>
+      <alt role="tex">\((\sigma-\sigma^*)/\sigma^*\)</alt>
+    </inlineequation>
+    is greater than the given <varname>threshold</varname> (given as a
+    percentage).
+  </para>
+  <para>
+    The remainder of this page is not required reading. 
+  </para>
+  <para>
+    The <emphasis>superconvergent</emphasis> points for various
+    element types are summarized in <xref linkend="Table:scpoints"/>,
+    where the <emphasis>black</emphasis> dots represent
+    superconvergent points.
+  </para>
+  <table id="Table:scpoints">
+    <title>Superconvergent Points of Various Elements Types</title>
+    <tgroup cols='3'>
+      <thead>
+	<row>
+	  <entry>Element Type</entry>
+	  <entry>Linear</entry>
+	  <entry>Quadratic</entry>
+	</row>
+      </thead>
+      <tbody>
+	<row>
+	  <entry>Triangle</entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/spr/t3.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/spr/t3.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/spr/t6.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/spr/t6.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+	<row>
+	  <entry>Quadrilateral</entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/spr/q4.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/spr/q4.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	  <entry align='center'>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata format="PNG" fileref="FIGURES/spr/q8.png"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata format="EPS" fileref="FIGURES/spr/q8.eps"/>
+	      </imageobject>
+	    </mediaobject>
+	  </entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </table>
+  
+  <para>
+    <xref linkend="Figure-normal_patch"/> and <xref
+    linkend="Figure-boundary_patch"/> illustrate typical patches. Only
+    the values of nodes that are completely inside the patch are
+    recovered, unless the patch contains boundaries, in which case
+    values at the edge of the patch are recovered too.
+    <figure id="Figure-normal_patch">
+      <title>Normal Patch Recovery</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/spr/recovery.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/spr/recovery.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A Typical patch for the Superconvergent Patch Recovery
+	    procedure.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+
+    <figure id="Figure-boundary_patch">
+      <title>Boundary Patch Recovery</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/spr/boundary.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/spr/boundary.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A Boundary patch for the Superconvergent Patch Recovery
+	    procedure.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+
+  
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

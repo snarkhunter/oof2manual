@@ -1,0 +1,52 @@
+<!-- 
+  $RCSfile: setsolver.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-23 23:30:53 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Assign a <link linkend="Section-Concepts-Mesh-Solvers">solver</link>
+  to the given &subproblem;.  If the &subproblem; already has a
+  solver, it will be replaced.  To remove the solver from a
+  &subproblem;, use <xref
+  linkend="MenuItem-OOF.Subproblem.Remove_Solver"/>.
+</para>
+<para>
+  The argument to <command>Set_Solver</command> is either a <xref
+  linkend="RegisteredClass-BasicSolverMode"/> or an <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/> object.  The
+  arguments to those objects specify the actual time stepping and
+  matrix methods and their parameters, in minimal detail for <xref
+  linkend="RegisteredClass-BasicSolverMode"/> and in full detail in
+  <xref linkend="RegisteredClass-AdvancedSolverMode"/>.
+</para>
+<para>
+  In the GUI, this command is invoked by the <link
+  linkend="Section-Tasks-Solver-SolverPane-Set"><guibutton>Set</guibutton></link>
+  button in the <guilabel>Solver</guilabel> pane of the
+  <guilabel>Solver</guilabel> page.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

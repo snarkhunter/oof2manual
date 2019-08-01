@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: graphicssave.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:15 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Save the contents of the <link linkend='Chapter-Graphics'>Graphics
+    window</link> in a PDF file.  The format is PDF-1.4. 
+    Everything in the window is saved, not just
+    what's visible in the scrolling region.<footnote>
+      <simpara>
+	This will be fixed in a later version.
+      </simpara>
+    </footnote>
+  </para>
+  <note>
+    <para>
+      This <command>Save</command> command is <emphasis>not</emphasis>
+      the same as the <command>Save/Image</command> command in the
+      <xref linkend="MenuItem-OOF.File"/> menu.  This command only
+      writes PDF files, and includes everything that's being
+      displayed.  <xref linkend="MenuItem-OOF.File.Save.Image"/> saves
+      only a single &image; object, but can save it in many different
+      formats.
+    </para>
+  </note>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

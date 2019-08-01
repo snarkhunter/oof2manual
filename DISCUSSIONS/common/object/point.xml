@@ -1,0 +1,67 @@
+<!-- 
+  $RCSfile: point.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:19 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<refentry id='Object-Point'>
+  <refnamediv>
+    <refname>Point</refname>
+    <refpurpose>A point in the xy plane with real coordinates</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <simpara>
+      <classname>Point</classname>(<varname>x</varname>,
+      <varname>y</varname>)
+    </simpara>
+  </refsynopsisdiv>
+  <refsect1>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+	<term><varname>x</varname></term>
+	<listitem>
+	  <simpara>The x coordinate of the point.</simpara>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term><varname>y</varname></term>
+	<listitem>
+	  <simpara>The y coordinate of the point.</simpara>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      An <classname>Point</classname> is a point in the plane with
+      real coordinates.  The x and y coordinates are in whatever units
+      were used to specify the size of the &micro;
+    </para>
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

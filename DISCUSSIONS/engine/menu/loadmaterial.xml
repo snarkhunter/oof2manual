@@ -1,0 +1,52 @@
+<!-- 
+  $RCSfile: loadmaterial.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:24 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Load &materials; definitions from a data file.  Data files
+    containing &materials; are created by the commands <link
+    linkend='MenuItem-OOF.File.Save.Materials'><command>Materials</command></link>,
+    <link
+    linkend='MenuItem-OOF.File.Save.Microstructure'><command>Microstructure</command></link>,
+    <link
+    linkend='MenuItem-OOF.File.Save.Skeleton'><command>Skeleton</command></link>,
+    and <link
+    linkend='MenuItem-OOF.File.Save.Mesh'><command>Mesh</command></link>
+    in the <xref linkend='MenuItem-OOF.File.Save'/> menu.
+  </para>
+  <para>
+    The <varname>properties</varname> argument is a list of names of
+    &properties;.  They must either have been defined with a <xref
+    linkend="MenuItem-OOF.LoadData.Property"/> command in the data
+    file, or have been already existant when the data file was read.
+  </para>
+  <para>
+    This command is only used in data files.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

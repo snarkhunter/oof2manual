@@ -1,0 +1,120 @@
+<!-- 
+  $RCSfile: dirichlet.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-04-05 21:26:00 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <para>
+    Dirichlet boundary conditions assign fixed values to &fields;. A
+    separate boundary condition must be established for each component
+    of a &field; that is to be fixed.  Dirichlet boundary conditions
+    may be applied to both <link
+    linkend="Section-Concepts-Skeleton-Boundary-Edge">Edge</link> and
+    <link
+    linkend="Section-Concepts-Skeleton-Boundary-Point">Point</link>
+    boundaries.
+  </para>
+  <para>
+    The <varname>field</varname> parameter specifies which &field; is
+    to be fixed.  The <varname>field_component</varname> parameter
+    specifies which component is to be fixed.  It is a string
+    representing the component index.  The acceptable strings depend
+    on the type of &field; selected.  The GUI presents a pull down
+    menu listing the legal strings, but users using the text
+    interface or editing scripts will need to know the possible
+    values.  For vector fields, the <varname>field_component</varname>
+    must be <userinput>'x'</userinput> or <userinput>'y'</userinput>.
+    For tensor fields (when implemented) the component must be one of
+    <userinput>'xx'</userinput>, <userinput>'yy'</userinput>,
+    <userinput>'xy'</userinput>, <foreignphrase>etc</foreignphrase>.
+    For scalar fields the <varname>field_component</varname> is
+    ignored.  Note that because the input is a Python string, the
+    quotation marks are required.
+  </para>
+  <para>
+    The <varname>equation</varname> and
+    <varname>eqn_component</varname> parameters require a bit of
+    explanation.  The finite element machinery constructs a system of
+    linear equations with N equations and N unknowns, where N is the
+    number of nodes times the number of active field components.  Each
+    time a Dirichlet boundary condition is applied at a node, one
+    unknown is removed from the problem, and all of a sudden there are
+    too many equations, and one of them must be removed from the
+    system before it is solved.  That is, one of the equations becomes
+    <emphasis>dependent</emphasis> on the others.  The
+    <varname>equation</varname> and <varname>eqn_component</varname>
+    parameters specify which equation that is. In general, any
+    equation containing the fixed &field; may be chosen, but no
+    equation component may be chosen more than once on a single
+    boundary.
+  </para>
+  <para>
+    In simple problems with uncoupled fields, there is a natural
+    choice for the dependent equation -- it is the equation for the
+    component of the &flux; that is conjugate to the fixed &field;
+    component.  For example, when constraining the value of the x
+    component of displacement, the x component of the force balance
+    equation is dependent.  But in complicated problems with coupled
+    fields, the choice isn't always so obvious, and &oof2; relies on
+    the user to identify the dependent equation.  For example, if a
+    &field; contributes to two &fluxes;, both of which have <link
+    linkend="Section-Concepts-Mesh-Equation-Divergence">divergence
+    equations</link>, then either of the two equations may be
+    selected.
+  </para>
+  <para>
+    The <varname>profile</varname> parameter determines the &field;
+    component values along the boundary.  Profiles may be arbitrary
+    functions of position, and are specified by providing a <xref
+    linkend="RegisteredClass-ProfileXTd"/> object.
+  </para>
+
+  <formalpara>
+    <title>Example</title>
+    <para>
+	<literallayout class="monospaced">
+    DirichletBC(field=Displacement, field_component='y',
+                equation=Force_Balance, eqn_component='y',
+                profile=ContinuumProfileXTd(function='y * sin(x/10)'),
+                boundary='top')
+	</literallayout>
+      This constrains the y component of the
+      <userinput>Displacement</userinput> along the top boundary of
+      the &mesh;, making the y component of the
+      <userinput>Force_Balance</userinput> equation dependent.  The y
+      displacement at point
+      <inlineequation>
+	<alt role="tex">\((x,y)\)</alt>
+      </inlineequation> on the boundary
+      is set to 
+      <inlineequation>
+	<alt role="tex">\(y \sin(x/10)\)</alt>
+      </inlineequation>.
+    </para>
+  </formalpara>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
+
+

@@ -1,0 +1,52 @@
+<!-- 
+  $RCSfile: conditionalsched.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-18 20:58:35 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Using a <classname>ConditionalOutputSchedule</classname> as the
+  <varname>scheduledtype</varname> argument in <xref
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Schedule.Set"/> means
+  that the times produced by the <xref
+  linkend="RegisteredClass-Schedule"/> are determined on-the-fly by
+  the <xref linkend="RegisteredClass-Schedule"/> object.  The
+  <classname>ConditionalOutputSchedule</classname> doesn't do anything
+  except to state that the <xref
+  linkend="RegisteredClass-ScheduleType"/> is neither <link
+  linkend="RegisteredClass-AbsoluteOutputSchedule">absolute</link> nor
+  <link
+  linkend="RegisteredClass-RelativeOutputSchedule">relative</link>.
+</para>
+<para>
+  In principle, conditional outputs could be produced when the
+  &fields; or &fluxes; meet some criterion, or when an error estimate
+  is within some bounds.  At the current time, however, there is only
+  one conditional <xref linkend="RegisteredClass-Schedule"/>, <xref
+  linkend="RegisteredClass-EveryTime"/>, and its
+  <quote>conditional</quote> nature is suspect.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

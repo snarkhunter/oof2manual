@@ -1,0 +1,62 @@
+<!-- 
+  $RCSfile: widgetfont.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:19 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command sets the font to be used in most of the GUI.  It
+    applies to all labels, pull-down menus, buttons,
+    <foreignphrase>etc.</foreignphrase> It does
+    <emphasis>not</emphasis> apply to textual displays, like the
+    Console window.
+  </para>
+  <para>
+    The font name can be any font recognized by the <ulink
+    url="http://www.pango.org" role="external">Pango</ulink> library.
+    In GUI mode, this command brings up a font selection dialog, so
+    the user doesn't have to know the names of the fonts installed on
+    the system.
+  </para>
+  <para>
+    To automatically set the font for all &oof2; sessions,
+    put this command in the file
+    <filename>.oof2rc</filename> in your home directory, for example:
+    <literallayout class="monospaced">
+      OOF.Settings.Font.Widgets(fontname="Trebuchet MS 12")
+    </literallayout>
+    It's also possible to specify the font in the
+    <filename>.gtkrc-2.0</filename> file in your home directory, like
+    this:
+    <literallayout class="monospaced">
+      gtk-font-name = "Trebuchet MS 12"
+    </literallayout>
+    A font set in this way will be used in all programs that use the
+    <ulink url="http://www.gtk.org/" role="external">gtk+</ulink>
+    library.  In &oof2;, settings in <filename>.oof2rc</filename>
+    override settings in <filename>.gtkrc-2.0</filename>.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

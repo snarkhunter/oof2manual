@@ -1,0 +1,67 @@
+<!-- 
+  $RCSfile: ipoint.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:19 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<refentry id='Object-iPoint'>
+  <refnamediv>
+    <refname>iPoint</refname>
+    <refpurpose>A point in the xy plane with integer coordinates</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv><simpara>
+      <classname>iPoint</classname>(<varname>x</varname>, <varname>y</varname>)
+    </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+	<term><varname>x</varname></term>
+	<listitem>
+	  <simpara>The x coordinate of the point.</simpara>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term><varname>y</varname></term>
+	<listitem>
+	  <simpara>The y coordinate of the point.</simpara>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      An <classname>iPoint</classname> is a point in the plane with
+      integer coordinates.  It is used to locate a pixel in a &micro;
+      or &image; The x and y coordinates are therefore lengths in
+      units of the pixel size.  The origin is at the lower left corner
+      of the <classname>Image</classname> or
+      <classname>Microstructure</classname>.
+    </para>
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

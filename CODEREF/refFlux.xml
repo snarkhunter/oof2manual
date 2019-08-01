@@ -1,0 +1,826 @@
+<!-- 
+  $RCSfile: refFlux.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:13 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+   <refentry id="Class-Flux">
+    <refnamediv>
+      <refname>Flux</refname>
+      <refpurpose>Base class for &fluxes;</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+	(Only those methods useful when extending &oof2; are
+	listed here.)
+      </para>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<literallayout class="monospaced">
+#include "engine/flux.h"
+	  <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>Flux</classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <type>const std::string&amp;</type>
+	      <methodname><link
+		  linkend="Class-Flux-name">name</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>int</type>
+	      <methodname><link linkend="Class-Flux-ndof">ndof</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>int</type>
+	      <methodname><link
+		  linkend="Class-Flux-divergence_dim">divergence_dim</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>IteratorP</type>
+	      <methodname><link
+		  linkend="Class-Flux-iterator">iterator</link></methodname>
+	      <methodparam>
+		<type>Planarity</type>
+		<parameter>planarity</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>IteratorP</type>
+	      <methodname><link
+		  linkend="Class-Flux-divergence_iterator">divergence_iterator</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>OutputValue</type>
+	      <methodname><link
+		  linkend="Class-Flux-output">output</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const MasterPosition&amp;</type>
+		<parameter>pos</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<literallayout class="monospaced">
+from oof2.SWIG.engine import Flux
+	  <classsynopsis language="python">
+	    <ooclass>
+	      <classname>Flux</classname>
+	    </ooclass>
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Flux-name">name</link></methodname>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Flux-ndof">ndof</link></methodname>
+	      <void/>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Flux-divergence_dim">divergence_dim</link></methodname>
+	      <void/>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Flux-iterator">iterator</link></methodname>
+	      <methodparam>
+		<parameter>planarity</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	  </classsynopsis>
+	</literallayout>
+
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Subclasses</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara><link linkend="Class-VectorFlux"><classname>VectorFlux</classname></link></simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara><link linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link></simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.h</filename>: C++ headers
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.C</filename>: C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.swg</filename>: SWIG source
+	      code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.spy</filename>: python code
+	      included in <filename>flux.swg</filename>
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>Flux</classname> is the base class for all &flux;
+	objects.  Like <link
+	linkend="Class-Field"><classname>Fields</classname></link> and
+	<link
+	linkend="Class-Equation"><classname>Equations</classname></link>,
+	<classname>Fluxes</classname> are global objects.  There is
+	only one stress flux object, even though stress may be
+	computed on many different meshes.
+	<classname>Flux</classname> objects store information about
+	the physical flux, but do not store its values.
+      </para>
+      <para>
+	<classname>Fluxes</classname> should only be created in
+	Python.  See <xref linkend="Section-Coding-AddFields"/>.
+      </para>
+    </refsection>
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-Flux-name">
+	<title><code>std::string &amp;name() const</code></title>
+	<para>
+	  This returns the name that was assigned to this
+	  <classname>Flux</classname> when it was created.
+	  See <xref linkend="Section-Coding-AddFields"/>.
+	</para>
+      </refsection><!-- name -->
+      <refsection id="Class-Flux-ndof">
+	<title><code>int ndof() const</code></title>
+	<para>
+	  <methodname>ndof</methodname> returns the number of floating
+	  point numbers required to represent a value of the
+	  <classname>Flux</classname>.
+	</para>
+      </refsection><!-- ndof -->
+      <refsection id="Class-Flux-divergence_dim">
+	<title><code>int divergence_dim() const</code></title>
+	<para>
+	  <methodname>divergence_dim</methodname> returns the number
+	  of <emphasis>in-plane</emphasis> components in the
+	  <classname>Flux</classname>'s divergence.  This is equal to
+	  the number of <link
+	  linkend="Class-Equation"><classname>Equations</classname></link>
+	  required to solve the <classname>Flux</classname>'s
+	  divergence equation.
+	</para>
+      </refsection><!-- divergence_dim -->
+      <refsection id="Class-Flux-iterator">
+	<title>
+	  <code>const IteratorP iterator(Planarity planarity) const</code>
+	</title>
+	<para>
+	  <methodname>iterator</methodname> returns an <link
+	  linkend="Class-IteratorP">IteratorP</link> object that can
+	  be used to loop over and refer to the components of the
+	  <classname>Flux</classname>.  The given <link
+	  linkend="Class-Planarity"><classname>Planarity</classname></link>
+	  determines whether the iteration should include the
+	  in-plane, out-of-plane, or both components.
+	</para>
+      </refsection><!-- iterator -->
+      <refsection id="Class-Flux-divergence_iterator">
+	<title><code>IteratorP divergence_iterator() const</code></title>
+	<para>
+	  <methodname>divergence_iterator</methodname> returns an
+	  <link
+	  linkend="Class-IteratorP"><classname>IteratorP</classname></link>
+	  that can be used to loop over the in-plane components of the
+	  divergence of the <classname>Flux</classname>.
+	</para>
+      </refsection><!-- divergence_iterator -->
+      <refsection id="Class-Flux-output">
+	<title>
+	  <code>
+	    OutputValue output(...) const
+	  </code>
+	</title>
+	<para>
+	  <methodname>output</methodname> is analogous to <link
+	  linkend="Class-Field-output"><methodname>Field::output</methodname></link>
+	  &mdash; it returns the value of the
+	  <classname>Flux</classname> at a given point.  The return
+	  value is an <link
+	  linkend="Class-OutputValue"><classname>OutputValue</classname></link>,
+	  which wraps the appropriate <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  derived class.
+	</para>
+	<para>The arguments are:
+	  <variablelist>
+	    <varlistentry>
+	      <term><code>const <link
+		    linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+	      <listitem>
+		<para>
+		  The finite element mesh on which the
+		  <classname>Flux</classname> is to be computed.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+	      linkend="Class-Element">Element</link>*
+	      element</code></term>
+	      <listitem>
+		<para>
+		  The element containing the point at which the
+		  <classname>Flux</classname> is to be computed.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term>
+		<code>
+		  const <link
+		    linkend="Class-MasterCoord">MasterPosition</link>&amp;
+		  pos
+		</code>
+	      </term>
+	      <listitem>
+		<para>
+		  The position of the output point, specified as a
+		  point in the element's master coordinate space.
+		  Master space coordinates can be converted to
+		  physical coordinates by <link
+		  linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+      </refsection>
+    </refsection><!-- Methods -->
+  </refentry><!-- Flux -->
+
+
+  <refentry id="Class-VectorFlux">
+    <refnamediv>
+      <refname>VectorFlux</refname>
+      <refpurpose>A vector-valued <classname>Flux</classname></refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/flux.h" </programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>VectorFlux</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname><link linkend="Class-Flux">Flux</link></classname>
+	  </ooclass>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine.flux import VectorFlux </programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>VectorFlux</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname><link linkend="Class-Flux">Flux</link></classname>
+	  </ooclass>
+	    <constructorsynopsis>
+	    <methodparam>
+	      <parameter>name</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+	</classsynopsis>
+      </refsect2><!-- python synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.h</filename>: C++ headers
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.C</filename>: C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.swg</filename>: SWIG source
+	      code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.spy</filename>: python code
+	      included in <filename>flux.swg</filename>
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>VectorFlux</classname> is a &flux; whose value is
+	a three-vector, such as a heat current.  Like all
+	<classname>Fluxes</classname>, it should only be constructed
+	in Python. See <xref linkend="Section-Coding-AddFields"/>.
+      </para>
+      <para>
+	All of the <classname>VectorFlux</classname> methods are
+	inherited from and documented in its base class, <link
+	  linkend="Class-Flux"><classname>Flux</classname></link>.
+      </para>
+    </refsection>
+  </refentry><!-- Class:Flux:VectorFlux -->
+
+  <refentry id="Class-SymmetricTensorFlux">
+    <refnamediv>
+      <refname>SymmetricTensorFlux</refname>
+      <refpurpose>A 3&times;3 symmetric tensor valued <classname>Flux</classname></refpurpose>
+    </refnamediv>
+    <refsection>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.h</filename>: C++ headers
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.C</filename>: C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.swg</filename>: SWIG source
+	      code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.spy</filename>: python code
+	      included in <filename>flux.swg</filename>
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+      <title>Description</title>
+	<para>
+	  <classname>SymmetricTensorFlux</classname> is a &flux; whose value is
+	  a 3&times;3 symmetric tensor, such as stress.  Like all
+	  <classname>Fluxes</classname>, it should only be constructed
+	  in Python. See <xref linkend="Section-Coding-AddFields"/>.
+	</para>
+      <para>
+	All of the <classname>SymmetricTensorFlux</classname> methods
+	are inherited from and documented in its base class, <link
+	linkend="Class-Flux"><classname>Flux</classname></link>.
+      </para>
+    </refsection>
+  </refentry><!-- Class:Flux:SymmetricTensorFlux -->
+
+  <refentry id="Class-FluxData">
+    <refnamediv>
+      <refname>FluxData</refname>
+      <refpurpose>Store data during flux matrix computation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/flux.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>FluxData</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-FluxData-matrix_element">matrix_element</link></methodname>
+	    <methodparam>
+	      <type>const FieldIndex&amp;</type>
+	      <parameter>fluxcomponent</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const Field*</type>
+	      <parameter>field</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const FieldIndex&amp;</type>
+	      <parameter>fieldcomponent</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const ElementFuncNodeIterator&amp;</type>
+	      <parameter>node</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-FluxData-matrix_element">matrix_element</link></methodname>
+	    <methodparam>
+	      <type>const FieldIndex&amp;</type>
+	      <parameter>fluxcomponent</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const Field*</type>
+	      <parameter>field</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const ElementFuncNodeIterator&amp;</type>
+	      <parameter>node</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-FluxData-offset_element">offset_element</link></methodname>
+	    <methodparam>
+	      <type>const FEMesh*</type>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const FieldIndex&amp;</type>
+	      <parameter>fluxcomponent</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link linkend="Class-FluxData-offset_element">offset_element</link></methodname>
+	    <methodparam>
+	      <type>const FEMesh*</type>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const FieldIndex&amp;</type>
+	      <parameter>fluxcomponent</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-FluxData-rhs_element">rhs_element</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter></parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import flux</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>FluxData</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-FluxData-add_matrix_element">add_matrix_element</link></methodname>
+	    <methodparam>
+	      <parameter>fluxIndex</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>field</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>fieldIndex</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>node</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>increment</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-FluxData-add_offset_element">add_offset_element</link></methodname>
+	    <methodparam>
+	      <parameter>fluxIndex</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>increment</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-FluxData-add_rhs_element">add_rhs_element</link></methodname>
+	    <methodparam>
+	      <parameter>index</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>increment</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.h</filename>: C++ headers
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.C</filename>: C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/flux.swg</filename>: SWIG source
+	      code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>FluxData</classname> objects are temporary
+	containers used to accumulate data when building the finite
+	element stiffness matrix and right-hand-side vector.  They're
+	relevant to the authors of &oof2; extensions because they're
+	passed in to <link
+	linkend="Class-Property-fluxmatrix"><methodname>Property::fluxmatrix()</methodname></link>
+	and <link
+	linkend="Class-Property-fluxrhs"><methodname>Property::fluxrhs()</methodname></link>.
+	Those functions must use <classname>FluxData</classname>
+	methods to make their contributions to the <link
+	linkend="fluxmatrix_discussion">flux matrix</link>.
+      </para>
+    </refsection><!-- Discussion -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	Only methods useful to the authors of &oof2; extensions are
+	listed here.  Note that the C++ and Python functions are
+	distinct &mdash; the Python equivalents of the C++ functions
+	have different names and argument lists, so they're documented
+	separately (unlike elsewhere in the manual).
+      </para>
+      <refsection id="Class-FluxData-matrix_element">
+	<title><code>double&amp; matrix_element(const
+	    FieldIndex&amp;, const Field*, const FieldIndex&amp;,
+	    const ElementNodeIterator&amp;)</code></title>
+	<para>
+	  <methodname>matrix_element</methodname> returns a reference
+	  to an element of the flux matrix.  <link
+	  linkend="fluxmatrix_discussion">Recall</link> that the
+	  fluxmatrix is the matrix that gives the components of a
+	  <link
+	  linkend="Class-Flux"><classname>Flux</classname></link> when
+	  multiplied by a vector of <link
+	  linkend="Class-DegreeOfFreedom">degrees of freedom</link> of
+	  an <link
+	  linkend="Class-Element"><classname>Element</classname></link>.
+	  Each call to <link
+	  linkend="Class-Property-fluxmatrix"><methodname>Property::fluxmatrix</methodname></link>
+	  (which must be written by the extension author) adds the
+	  contribution from one <link
+	  linkend="Class-Node"><classname>Node</classname></link>'s
+	  shapefunction.
+	</para>
+	<para>
+	  The arguments to <methodname>matrix_element</methodname>
+	  are:
+	  <variablelist>
+	    <varlistentry>
+	      <term><code>const <link
+	      linkend="Class-FieldIndex">FieldIndex</link>&amp;
+	      fluxIndex</code></term>
+	      <listitem>
+		<para>
+		  This is the component of the <link
+		  linkend="Class-Flux"><classname>Flux</classname></link>
+		  that's being computed.  The calling program should
+		  loop over all values of <varname>fluxIndex</varname>
+		  and call
+		  <methodname>FluxData::matrix_element</methodname>
+		  for each one.  It should use <link
+		  linkend="Class-Flux-iterator">Flux::iterator()</link>
+		  to do the iteration.  (The <link
+		  linkend="Class-IteratorP"><classname>IteratorP</classname></link>
+		  returned by <methodname>Flux::iterator</methodname>
+		  will automatically be converted to a
+		  <classname>FieldIndex</classname>&amp;.)
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+	      linkend="Class-Field">Field</link>*</code></term>
+	      <listitem>
+		<para>
+		  The <classname>Field</classname> whose contribution
+		  to the <classname>Flux</classname> is being
+		  computed.  This is half of the information needed to
+		  specify the <link
+		  linkend="Class-DegreeOfFreedom">degree of
+		  freedom</link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-FieldIndex">FieldIndex</link>&amp; fieldIndex</code></term>
+	      <listitem>
+		<para>
+		  This specifies the component of the <link
+		  linkend="Class-Field"><classname>Field</classname></link>
+		  whose contribution to the
+		  <classname>Flux</classname> is being computed.  It's
+		  the other half of the information required for
+		  specifying the <link
+		  linkend="Class-DegreeOfFreedom">degree of
+		  freedom</link>.  The
+		  <classname>FieldIndex</classname> should be obtained
+		  from <link
+		  linkend="Class-Field-iterator"><methodname>Field::iterator()</methodname></link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+		    linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp; node</code></term>
+	      <listitem>
+		<para>
+		  This indicates the <link
+		  linkend="Class-Node"><classname>Node</classname></link>
+		  whose shapefunction is being used.  It's given in
+		  the form of a <link
+		  linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
+		  because that class is more useful than
+		  <classname>Node</classname> in the
+		  <methodname>fluxmatrix</methodname> context.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+	<para>
+	  An alternative version of
+	  <methodname>matrix_element</methodname> omits the
+	  <varname>fieldIndex</varname> argument and can be used for
+	  <link linkend="Class-ScalarField">scalar
+	  <classname>Fields</classname></link>.
+	</para>
+	<para>
+	  See <link
+	  linkend="Class-Property-fluxmatrix"><methodname>Property::fluxmatrix</methodname></link>
+	  for an example of the use of
+	  <methodname>matrix_element</methodname>.
+	</para>
+      </refsection><!-- matrix_element -->
+      <refsection id="Class-FluxData-offset_element">
+	<title><code>double&amp; offset_element(const
+	FieldIndex&amp;)</code></title>
+	<para>
+	  <link
+	  linkend="Class-Property"><classname>Properties</classname></link>
+	  that make <link
+	  linkend="Class-Field"><classname>Field</classname></link>-independent
+	  contributions to a <link
+	  linkend="Class-Flux"><classname>Flux</classname></link> must
+	  make those contributions by calling
+	  <methodname>offset_element</methodname> from <link
+	  linkend="Class-Property-fluxrhs"><methodname>Property::fluxrhs</methodname></link>.
+	  <methodname>offset_element</methodname> returns a reference
+	  to a double, to which <methodname>fluxrhs</methodname> must
+	  add a <classname>Property</classname>-dependent value.
+	</para>
+	<para>
+	  The argument to <methodname>offset_element</methodname> is a
+	  <link
+	  linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
+	  specifying which <classname>Flux</classname> component is
+	  being computed.  The <classname>FieldIndex</classname> can
+	  be obtained from <link
+	  linkend="Class-Flux-iterator"><methodname>Flux::iterator()</methodname></link>.
+	</para>
+	<para>
+	  See <link
+	  linkend="Class-Property-fluxrhs"><methodname>Property::fluxrhs</methodname></link>
+	  for an example of the use of <methodname>offset_element</methodname>.
+	</para>
+      </refsection><!-- offset_element -->
+      <refsection id="Class-FluxData-rhs_element">
+	<title><code>double&amp; rhs_element(int)</code></title>
+	<para>
+	  <methodname>rhs_element</methodname> is similar to <link
+	  linkend="Class-FluxData-offset_element"><methodname>offset_element</methodname></link>,
+	  but it's used when computing a direct contribution to the
+	  right hand side of a divergence equation, rather than a
+	  direct contribution to a flux.  The argument is the
+	  component of the equation.  For an example, see <link
+	  linkend="Class-Property-fluxrhs"><methodname>Property:fluxrhs</methodname></link>.
+	</para>
+      </refsection><!-- rhs_element -->
+      <refsection id="Class-FluxData-add_matrix_element">
+	<title><code>add_matrix_element(fluxIndex, field, fieldIndex,
+	node, increment)</code></title>
+	<para>
+	  This is the Python equivalent of <link
+	  linkend="Class-FluxData-matrix_element">matrix_element</link>.
+	  <methodname>add_matrix_element</methodname> adds the given
+	  <varname>increment</varname> to the flux matrix element
+	  specified by the first five arguments, which are interpreted
+	  as they are in <methodname>matrix_element</methodname>.
+	</para>
+      </refsection><!-- add_matrix_element -->
+      <refsection id="Class-FluxData-add_offset_element">
+	<title><code>add_offset_element(fluxIndex,
+	increment)</code></title>
+	<para>
+	  <methodname>add_offset_element</methodname> is the Python
+	  equivalent of <link
+	  linkend="Class-FluxData-offset_element"><methodname>offset_element</methodname></link>.
+	  It adds the given <varname>increment</varname> to the <link
+	  linkend="Class-Flux"><classname>Flux</classname></link>
+	  component specified by <varname>fluxIndex</varname>.
+	</para>
+      </refsection><!-- add_offset_element -->
+      <refsection id="Class-FluxData-add_rhs_element">
+	<title><code>add_rhs_element(index, increment)</code></title>
+	<para>
+	  <methodname>add_rhs_element</methodname> is the Python
+	  equivalent of <link
+	  linkend="Class-FluxData-rhs_element"><methodname>rhs_element</methodname></link>.
+	  It adds the given <varname>increment</varname> to the
+	  divergence equation component specified by
+	  <varname>index</varname>.
+	</para>
+      </refsection><!-- add_rhs_element -->
+    </refsection><!-- Methods -->
+    
+  </refentry><!-- FluxData -->
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

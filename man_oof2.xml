@@ -1,0 +1,247 @@
+<?xml version='1.0'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" 
+"dtd/docbook-xml-4.5/docbookx.dtd"
+ [
+<!ENTITY % local.smallcptr.char.mix "|link">
+
+<!ENTITY overview SYSTEM "CH_overview.xml">
+<!ENTITY starting SYSTEM "CH_starting.xml">
+<!ENTITY concepts SYSTEM "CH_concepts.xml">
+<!ENTITY tasks SYSTEM "CH_tasks.xml">
+<!ENTITY TPmicro SYSTEM "SN_micro.xml">
+<!ENTITY TPimage SYSTEM "SN_image.xml">
+<!ENTITY TPpixsel SYSTEM "SN_pixelsel.xml">
+<!ENTITY TPactive SYSTEM "SN_active.xml">
+<!ENTITY TPmaterial SYSTEM "SN_material.xml">
+<!ENTITY TPinterfaces SYSTEM "SN_interfaces.xml">
+<!ENTITY TPskel SYSTEM "SN_skel.xml">
+<!ENTITY TPpinnodes SYSTEM "SN_pinnodes.xml">
+<!ENTITY TPskelsel SYSTEM "SN_skelsel.xml">
+<!ENTITY TPskelbdy SYSTEM "SN_skelbdy.xml">
+<!ENTITY TPfemesh SYSTEM "SN_femesh.xml">
+<!ENTITY TPfields SYSTEM "SN_fields.xml">
+<!ENTITY TPbdycond SYSTEM "SN_bdycond.xml">
+<!ENTITY TPscheduled SYSTEM "SN_scheduledout.xml">
+<!ENTITY TPsolver SYSTEM "SN_solver.xml">
+<!ENTITY TPanalysis SYSTEM "SN_analysis.xml">
+<!ENTITY TPbdyanalysis SYSTEM "SN_bdyanalysis.xml">
+<!ENTITY graphics SYSTEM "CH_graphics.xml">
+<!ENTITY TBviewer SYSTEM "TB_viewer.xml">
+<!ENTITY TBpixelinfo SYSTEM "TB_pixelinfo.xml">
+<!ENTITY TBpixelselection SYSTEM "TB_pixelsel.xml">
+<!ENTITY TBskelinfo SYSTEM "TB_skelinfo.xml">
+<!ENTITY TBskelselection SYSTEM "TB_skelselection.xml">
+<!ENTITY TBmovenodes SYSTEM "TB_movenodes.xml">
+<!ENTITY TBpinnodes SYSTEM "TB_pinnodes.xml">
+<!ENTITY TBmeshinfo SYSTEM "TB_meshinfo.xml">
+<!ENTITY TBmeshcs SYSTEM "TB_meshcs.xml">
+<!ENTITY windows SYSTEM "CH_windows.xml">
+<!ENTITY oof2_api SYSTEM "oof2_api.xml">
+<!ENTITY extending SYSTEM "CH_extending.xml">
+<!ENTITY coding SYSTEM "CH_coding.xml">
+<!ENTITY refProperty SYSTEM "CODEREF/refProperty.xml">
+<!ENTITY refField SYSTEM "CODEREF/refField.xml">
+<!ENTITY refFlux SYSTEM "CODEREF/refFlux.xml">
+<!ENTITY refEquation SYSTEM "CODEREF/refEquation.xml">
+<!ENTITY refMisc SYSTEM "CODEREF/refMisc.xml">
+<!ENTITY refParameter SYSTEM "CODEREF/refParameter.xml">
+<!ENTITY refIterators SYSTEM "CODEREF/refIterators.xml">
+<!ENTITY refOutput SYSTEM "CODEREF/refOutput.xml">
+<!ENTITY refOutputVal SYSTEM "CODEREF/refOutputVal.xml">
+<!ENTITY refFEMesh SYSTEM "CODEREF/refFEMesh.xml">
+<!ENTITY refCoords SYSTEM "CODEREF/refCoords.xml">
+<!ENTITY appendices SYSTEM "appendices.xml">
+
+
+<!ENTITY oof2 "<application>OOF2</application>">
+<!ENTITY oof1 "<application>OOF1</application>">
+
+<!ENTITY mesh "<link
+linkend='Section-Concepts-Mesh'><classname>Mesh</classname></link>">
+<!ENTITY meshes "<link
+linkend='Section-Concepts-Mesh'><classname>Meshes</classname></link>">
+
+<!ENTITY subproblem "<link
+linkend='Section-Concepts-Subproblems'><classname>SubProblem</classname></link>">
+<!ENTITY subproblems "<link
+linkend='Section-Concepts-Subproblems'><classname>SubProblems</classname></link>">
+
+<!ENTITY skel "<link
+linkend='Section-Concepts-Skeleton'><classname>Skeleton</classname></link>">
+<!ENTITY skels "<link
+linkend='Section-Concepts-Skeleton'><classname>Skeletons</classname></link>">
+
+<!ENTITY elem "<link
+linkend='Section-Concepts-Skeleton-Element'><classname>Element</classname></link>">
+<!ENTITY elems "<link
+linkend='Section-Concepts-Skeleton-Element'><classname>Elements</classname></link>">
+
+<!ENTITY node "<link
+linkend='Section-Concepts-Skeleton-Node'><classname>Node</classname></link>">
+<!ENTITY nodes "<link
+linkend='Section-Concepts-Skeleton-Node'><classname>Nodes</classname></link>">
+
+<!ENTITY sgmt "<link
+linkend='Section-Concepts-Skeleton-Segment'><classname>Segment</classname></link>">
+<!ENTITY sgmts "<link
+linkend='Section-Concepts-Skeleton-Segment'><classname>Segments</classname></link>">
+
+<!ENTITY image "<link
+linkend='Section-Concepts-Microstructure-Image'><classname>Image</classname></link>">
+<!ENTITY images "<link
+linkend='Section-Concepts-Microstructure-Image'><classname>Images</classname></link>">
+
+<!ENTITY micro "<link
+linkend='Section-Concepts-Microstructure'><classname>Microstructure</classname></link>">
+<!ENTITY micros "<link
+linkend='Section-Concepts-Microstructure'><classname>Microstructures</classname></link>">
+
+<!ENTITY active "<link
+linkend='Section-Concepts-Microstructure-ActiveArea'>Active Area</link>">
+<!ENTITY actives "<link
+linkend='Section-Concepts-Microstructure-ActiveArea'>Active
+Areas</link>">
+
+<!ENTITY pixelgroup "<link
+linkend='Section-Concepts-Microstructure-Pixel_Group'><classname>PixelGroup</classname></link>">
+<!ENTITY pixelgroups "<link
+linkend='Section-Concepts-Microstructure-Pixel_Group'><classname>PixelGroups</classname></link>">
+
+<!ENTITY nodegroup "<link
+linkend='Section-Concepts-Skeleton-Groups'><classname>NodeGroup</classname></link>">
+<!ENTITY nodegroups "<link
+linkend='Section-Concepts-Skeleton-Groups'><classname>NodeGroups</classname></link>">
+
+<!ENTITY elemgroup "<link
+linkend='Section-Concepts-Skeleton-Groups'><classname>ElementGroup</classname></link>">
+<!ENTITY elemgroups "<link
+linkend='Section-Concepts-Skeleton-Groups'><classname>ElementGroups</classname></link>">
+
+<!ENTITY sgmtgroup "<link
+linkend='Section-Concepts-Skeleton-Groups'><classname>SegmentGroup</classname></link>">
+<!ENTITY sgmtgroups "<link
+linkend='Section-Concepts-Skeleton-Groups'><classname>SegmentGroups</classname></link>">
+
+<!ENTITY material "<link
+linkend='Section-Concepts-Material'><classname>Material</classname></link>">
+<!ENTITY materials "<link
+linkend='Section-Concepts-Material'><classname>Materials</classname></link>">
+
+<!ENTITY property "<link
+linkend='Section-Concepts-Property'><classname>Property</classname></link>">
+<!ENTITY properties "<link
+linkend='Section-Concepts-Property'><classname>Properties</classname></link>">
+
+<!ENTITY field "<link
+linkend='Section-Concepts-Mesh-Field'><classname>Field</classname></link>">
+<!ENTITY fields "<link
+linkend='Section-Concepts-Mesh-Field'><classname>Fields</classname></link>">
+
+<!ENTITY flux "<link
+linkend='Section-Concepts-Mesh-Flux'><classname>Flux</classname></link>">
+<!ENTITY fluxes "<link
+linkend='Section-Concepts-Mesh-Flux'><classname>Fluxes</classname></link>">
+
+<!ENTITY equation "<link
+linkend='Section-Concepts-Mesh-Equation'><classname>Equation</classname></link>">
+<!ENTITY equations "<link
+linkend='Section-Concepts-Mesh-Equation'><classname>Equations</classname></link>">
+
+<!ENTITY layer "<link
+linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
+<!ENTITY layers "<link
+linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
+<!ENTITY layerset "<link
+linkend='Section-Graphics-LayerSet'><classname>LayerSet</classname></link>">
+<!ENTITY layersets "<link
+linkend='Section-Graphics-Layer'><classname>LayerSets</classname></link>">
+<!ENTITY layereditor "<link
+linkend='Section-Graphics-LayerEditor'>Layer Editor</link>">
+
+<!ENTITY xhat "
+ <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
+<!ENTITY yhat "
+ <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf y}}\)</alt></inlineequation>">
+<!ENTITY zhat "
+ <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf z}}\)</alt></inlineequation>">
+<!ENTITY ahat "
+ <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf a}}\)</alt></inlineequation>">
+<!ENTITY bhat "
+ <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf b}}\)</alt></inlineequation>">
+<!ENTITY chat "
+ <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf c}}\)</alt></inlineequation>">
+<!ENTITY alpha "
+  <inlineequation><alt role='tex'>\(\alpha\)</alt></inlineequation>">
+<!ENTITY beta "
+  <inlineequation><alt role='tex'>\(\beta\)</alt></inlineequation>">
+<!ENTITY gamma "
+  <inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
+<!ENTITY phi "
+  <inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
+<!ENTITY psi "
+  <inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
+<!ENTITY theta "
+  <inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
+<!ENTITY Mmatrix "<inlineequation><alt role='tex'>\(\bf M\)</alt></inlineequation>">
+<!ENTITY Cmatrix "<inlineequation><alt role='tex'>\(\bf C\)</alt></inlineequation>">
+
+<!ENTITY oof2rc "<link linkend='Section-oof2rc'><filename>.oof2rc</filename></link>">
+<!ENTITY hellip "&#8230;">
+]>
+
+<book>
+  <bookinfo>
+    <title>The OOF2 Manual</title>
+    <subtitle>Revision 4.0.0 for OOF2 Version 2.1.1</subtitle>
+    <author>
+      <firstname>Stephen A.</firstname><surname>Langer</surname>
+    </author>
+    <author>
+      <firstname>Andrew C.E.</firstname><surname>Reid</surname>
+    </author>
+    <author>
+      <firstname>Valerie R.</firstname>
+      <surname>Coffman</surname>
+    </author>
+    <author>
+      <firstname>G&uuml;nay</firstname>
+      <surname>Doğan</surname>
+    </author>
+    <author>
+      <firstname>Seung-Ill</firstname><surname>Haan</surname>
+    </author>
+    <author>
+      <firstname>R. Edwin</firstname><surname>Garc&iacute;a</surname>
+    </author>
+    <author>
+      <firstname>Rhonald C.</firstname>
+      <surname>Lua</surname>
+    </author>
+  </bookinfo>
+
+  &overview;
+  &starting;
+  &concepts;
+  &tasks;
+  &graphics;
+  &windows;
+  &oof2_api; 
+  &extending;
+  &coding;
+  &appendices;
+  
+</book>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -1,0 +1,323 @@
+<!--
+  $RCSfile: TB_meshinfo.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-05-06 16:00:07 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section id="Section-Graphics-MeshInfo" role="toolbox">
+  <title>The Mesh Info Toolbox</title>
+  <para>
+    The Mesh Info Toolbox displays information about the topmost
+    &mesh; &layer; in the Canvas.  It works more or less like the
+    <link linkend="Section-Graphics-SkeletonInfo">Skeleton Info
+    Toolbox</link>, except that it has only two modes, Element and
+    Node, and has a button for creating a <link
+    linkend="Section-Graphics-MeshInfo-DataViewer">Data Viewer</link>.
+  </para>
+  <para>
+    <xref linkend="Figure-MeshInfoToolbox"/> depicts the Mesh Info
+    Toolbox.  The two buttons at the top, labelled
+    <guilabel>Element</guilabel> and <guilabel>Node</guilabel>
+    determine the Toolbox's operating mode and what information will
+    be displayed when the mouse is clicked on the the Canvas.  Below
+    the mode buttons are boxes that show the coordinates of the mouse
+    click, in <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical
+    units</link>.
+  </para>
+  <figure id="Figure-MeshInfoToolbox">
+    <title>The Mesh Info Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/meshinfo.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/meshinfo.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    In both Element and Node modes, the queried &mesh; component is
+    highlighted in the Canvas.  The <guibutton>Clear</guibutton>
+    button at the bottom of the Toolbox erases the highlighting and
+    clears the data listing.  The <guibutton>Prev</guibutton> and
+    <guibutton>Next</guibutton> buttons on either side cycle through
+    the previously selected objects (changing the Toolbox mode, if
+    necessary).
+  </para>
+  <simplesect id="Toolbox-MeshInfo-ElementMode">
+    <title>Element Mode</title>
+    <para>
+      In Element mode, the <classname>Element</classname> being
+      queried is highlighted with a blue perimeter,<footnote
+      id="footnote-meshinfodisp">
+	<para>
+	  The color and size of the decorations used to highlight the
+	  queried <classname>Element</classname>s and Nodes may be
+	  changed by editing the <xref
+	  linkend="RegisteredClass-MeshInfoDisplay"/> display &layer;.
+	  This &layer; is predefined and always displays the topmost
+	  &mesh;.  It will be necessary to enable <link
+	  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+	  All Layers</command></link> in the <link
+	  linkend="Section-Graphics-MenuBar"><command>Settings</command>
+	  menu</link> in order to edit the &layer;.
+	</para>
+      </footnote>
+      as shown in the figure.  The following data is displayed in the
+      Toolbox:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	    The <classname>Element</classname>'s
+	    <emphasis>index</emphasis>.  This is just an integer used
+	    to identify the <classname>Element</classname>.  All of
+	    the <classname>Element</classname>s in a Mesh have a
+	    unique index.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <classname>Element</classname>'s
+	    <emphasis>type</emphasis>.  <classname>Element</classname>
+	    types are discussed in <xref linkend="Enum-Element3"/>
+	    (triangles) and <xref linkend="Enum-Element4"/>
+	    (quadrilaterals).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="Section-Graphics-MeshInfo-NodeType">
+	    A list of the <link
+	    linkend="Section-Concepts-Mesh-Nodes"><classname>Nodes</classname></link>
+	    of the <classname>Element</classname>.  Two types of Nodes
+	    are listed.  <classname>Nodes</classname> identified
+	    simply as <quote>Node</quote> determine the shape of the
+	    <classname>Element</classname>, but do not carry &field;
+	    values.  <classname>Nodes</classname> marked
+	    <quote>FuncNode</quote> (for <quote>Function Node</quote>)
+	    have &field; values defined at them.  The <link
+	    linkend="Section-MeshInfo-NodeIndex">index</link> and
+	    position (in <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical
+	    coordinates</link>) of each <classname>Node</classname>
+	    are listed as well.
+	  </para>
+	  <para>
+	    Clicking on a <classname>Node</classname> in the list
+	    highlights it with a pink dot<footnoteref
+	      linkend="footnote-meshinfodisp"/> in the Canvas.
+	    Double-clicking switches the Toolbox into Node Mode, and
+	    displays the data for the double-clicked
+	    <classname>Node</classname>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &material; assigned to the
+	    <classname>Element</classname>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Toolbox-MeshInfo-NodeMode">
+    <title>Node Mode</title>
+    <para>
+      In Node mode, the <classname>Node</classname> being queried is
+      highlighted in the Canvas with a blue dot.<footnoteref
+      linkend="footnote-meshinfodisp"/>  The following data is
+      displayed in the Toolbox:
+      <itemizedlist spacing="compact">
+	<listitem id="Section-MeshInfo-NodeIndex">
+	  <para>
+	    The <classname>Node</classname>'s
+	    <emphasis>index</emphasis>.  This is just an integer
+	    identifier.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <classname>Node</classname>'s
+	    <emphasis>type</emphasis>, as explained <link
+	    linkend="Section-Graphics-MeshInfo-NodeType">above</link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <emphasis>position</emphasis> of the
+	    <classname>Node</classname>, in <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical</link>
+	    coordinates.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Section-Graphics-MeshInfo-DataViewer">
+    <title>The Data Viewer</title>
+    <para>
+      The value of &fields; and &fluxes; and other &mesh;-dependent
+      <link linkend="Section-Output">quantities</link> are not given
+      in the Mesh Info Toolbox, because there wouldn't be room for all
+      of them.  The <guibutton>New Data Viewer</guibutton> button in
+      the Toolbox opens a <emphasis>Data Viewer</emphasis> window,
+      which can be set to display numerically any quantity that can be
+      plotted in an &oof2; <link
+      linkend="RegisteredClass-FilledContourDisplay">contour
+      plot</link>.  Any number of Data Viewers may be open at one
+      time.  Clicking the mouse in the Canvas while the Mesh Info
+      Toolbox is open will update the information in all Data Viewers
+      that belong to that Canvas, unless the viewer is
+      <emphasis>frozen</emphasis> (see <link
+      linkend="Section-Graphics-MeshInfo-DataViewer-Freeze">below</link>).
+    </para>
+    <figure id="Figure-DataViewer">
+      <title>The Mesh Data Viewer</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/meshdata0.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/meshdata0.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      <xref linkend="Figure-DataViewer"/> shows what the Data Viewer
+      looks like.  At the top of the window is a triangle labelled
+      <guilabel>Source</guilabel>, which can be clicked to show and
+      hide the following widgets, all of which conspire to determine
+      what data will be displayed:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	     A pull-down menu labelled <guilabel>Source
+	     Window</guilabel> that lists all of the available
+	     Graphics Windows.  The Viewer gets its information from
+	     the selected Graphics Window.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A <guilabel>Mesh</guilabel> box indicating which &mesh; is
+	    the source of the data.  It will always be the topmost
+	    &mesh; displayed in the Canvas of the Source Window.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Two <guilabel>position</guilabel> boxes that give the <link
+	    linkend="Section-Concepts-Microstructure-Coordinates">physical</link>
+	    coordinates of the mouse click.  The text in these boxes
+	    can be edited by hand, in case you didn't click exactly
+	    where you wanted to on the Canvas.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A grayed-out <guilabel>time</guilabel> box that displays
+	    the &mesh; <link
+	    linkend="Section-Concepts-Mesh-Time">time</link> when the
+	    data was computed.  This <emphasis>cannot</emphasis> be
+	    edited directly, because doing so would require that the
+	    &mesh; data be interpolated to a new time at each
+	    keystroke.  To change the time, click the
+	    <guibutton>Edit</guibutton> button to the right of the
+	    box.  The button will metamorphose into a
+	    <guibutton>Done</guibutton> button and the box will no
+	    longer be grayed out (but the rest of the window will
+	    be). Type the new time, and click
+	    <guibutton>Done</guibutton>.  Entering a new time in this
+	    way will automatically <link
+	    linkend="Section-Graphics-MeshInfo-DataViewer-Freeze">freeze</link>
+	    the window's time.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    A set of pull-down menus labelled
+	    <guilabel>Output</guilabel> that specify what quantity
+	    will be displayed in response to mouse clicks on the
+	    Canvas.  
+	  </para>
+	</listitem>
+      </itemizedlist>
+      <xref linkend="Figure-shrunkviewer"/> shows the Data Viewer
+      window in its collapsed state.  (After collapsing the widgets,
+      it's unfortunately necessary to resize the window by hand.)
+    </para>
+    <figure id="Figure-shrunkviewer">
+      <title>The Mesh Data Viewer, Collapsed</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/meshdata1.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gfx/meshdata1.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      Below the Output menus is a region for displaying the output
+      values.  The size and format of this region varies according to
+      the type of Output.  At the bottom of the window are two
+      checkboxes and two buttons.
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	    When the <guibutton>Space</guibutton> checkbox in the
+	    <guilabel>Freeze</guilabel> frame is checked, the data
+	    displayed in the window will not be updated when a new
+	    location is selected by clicking the mouse on the Canvas.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="Section-Graphics-MeshInfo-DataViewer-Freeze">
+	    When the <guibutton>Time</guibutton> checkbox in the
+	    <guilabel>Freeze</guilabel> frame is checked, the data
+	    displayed in the window will not be updated when the time
+	    of the &mesh; displayed in the Canvas changes.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Clone</guibutton> button creates an
+	    identical copy of the Data Viewer window.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <guibutton>Close</guibutton> button simply closes the
+	    Data Viewer window.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+</section>
+  
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

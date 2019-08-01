@@ -1,0 +1,72 @@
+<!-- 
+  $RCSfile: acceptance_rate.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:35 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    When the <varname>condition</varname> parameter of a <xref
+    linkend="RegisteredClass-ConditionalIteration"/> is set to
+    <classname>AcceptanceRate</classname>, iteration of a <xref
+    linkend="RegisteredClass-SkeletonModifier"/> will stop when the
+    fraction of successful modifications falls below the given
+    <varname>acceptance_rate</varname> threshold.
+  </para>
+  <para>
+    The acceptance rate is defined as
+    <blockquote>
+      <simpara>
+	Acceptance Rate = <inlineequation>
+	  <alt role="tex">\(N_\mathrm{accepted}/
+	N_\mathrm{attempted}\times100\)</alt></inlineequation>,
+      </simpara>
+    </blockquote>
+    where <inlineequation>
+      <alt role="tex">\(N_\mathrm{accepted}\)</alt></inlineequation> and
+    <inlineequation>
+      <alt role="tex">\(N_\mathrm{attempted}\)</alt></inlineequation>
+      represent the number of &node; moves accepted and attempted
+      during the <xref linkend="RegisteredClass-SkeletonModifier"/>
+      operation.
+  </para>
+  <para>
+    When the acceptance rate of an iterative method like <xref
+    linkend="RegisteredClass-Anneal"/> or <xref
+    linkend="RegisteredClass-Smooth"/> gets too low, it means that the
+    algorithm is no longer operating effectively, and other methods
+    (or other parameter values) should be used.
+  </para>
+  <tip>
+    <para>
+      In graphics mode, it's always possible to abort an iterative
+      operation by pressing the <guilabel>Stop</guilabel> button in
+      the <link linkend="Section-Windows-ActivityViewer">Activity
+	Viewer</link> window.  In text mode, use control-C.
+    </para>
+  </tip>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

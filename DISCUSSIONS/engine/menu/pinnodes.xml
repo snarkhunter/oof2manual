@@ -1,0 +1,113 @@
+<!-- 
+  $RCSfile: pinnodes.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:26 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    &nodes; that are <emphasis>pinned</emphasis> will not move during
+    &skel; <link
+    linkend="MenuItem-OOF.Skeleton.Modify">modification</link>
+    operations.  Pinning &nodes; is one way of restricting the scope
+    of future &skel; modifications.
+  </para>
+  <para>
+    For example, some &nodes; may be already positioned on a material
+    boundary, but the shapes of the &elems; in the interior of the
+    material may need to be improved.  <xref
+    linkend="Figure-pinexample"/> shows the results of <link
+    linkend="RegisteredClass-Smooth">smoothing</link> a &skel; with
+    and without pinned nodes.
+  </para>
+  <figure id="Figure-pinexample">
+    <title>Pinning Skeleton Noddes</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinexample0.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinexample0.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; that has been partially adapted to the underlying
+	  &micro;.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinexample1.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinexample1.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The result of <link
+	  linkend="RegisteredClass-Smooth">smoothing</link> the &skel;
+	  with the &nodes; on the boundary of the circle pinned.
+	  (Smoothing was done for 5 iterations with
+	  <varname>alpha</varname>=0.3.)
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinexample2.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinexample2.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The result of <link
+	  linkend="RegisteredClass-Smooth">smoothing</link> the &skel;
+	  <emphasis>without</emphasis> first pinning the &nodes; on
+	  the boundary of the circle.  Notice that the boundary is
+	  much less well resolved than it had been.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <note>
+    <para>
+      Whether or not a &node; is pinned for the purpose of &skel;
+      modifications has no bearing on whether or not it will move when
+      a &mesh; is solved.  That depends on the boundary conditions and
+      the value of the displacement &field;.  &node; pinning applies
+      <emphasis>only</emphasis> to &skel; modifications.
+    </para>
+  </note>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

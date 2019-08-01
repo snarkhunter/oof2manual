@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: assignmaterial.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-04-08 20:00:00 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <para>
+    Assigning &materials; to pixels is the climactic step in building
+    a &micro;. The <varname>pixels</varname> argument is either
+    the name of a <link
+    linkend='Section-Concepts-Microstructure-Pixel_Group'>pixel
+      group</link> in the &micro;, or one of the special <xref
+      linkend="Object-Placeholder"/> objects
+    <constant>all</constant> or <constant>selected</constant>.
+    Choosing <constant>selected</constant> assigns the &material; to
+    the pixels currently selected in the &micro;.
+  </para>
+  <para>
+    Assigning a &material; to a pixel that already has a &material;
+    simply overwrites the previous assignment.  There is no need to
+    <link linkend='MenuItem-OOF.Material.Remove'>remove</link> the old
+    &material; first.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

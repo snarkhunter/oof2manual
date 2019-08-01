@@ -1,0 +1,62 @@
+<!-- 
+  $RCSfile: selfconsistency.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-22 21:25:28 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Set the tolerance and maximum number of iterations for the
+  self-consistency checks performed when solving &meshes;.
+</para>
+<para>
+  When <link
+  linkend="Section-Concepts-Mesh-Solving-Multiple">solving</link>
+  multiple &subproblems;, &oof2; iterates over all of the
+  &subproblems; at each time step, and stops iterating when it obtains
+  results that are consistent with the previous iteration.  This
+  ensures<footnote><simpara>Mabye!</simpara></footnote> that
+  interactions with the other subproblems are accounted for correctly.
+</para>
+<para>
+  Self-consistency of a &subproblem; is computed by constructing a
+  vector from all of the &field; values on all of the &nodes;.
+  Vectors are compared using values from before and after one
+  iteration of the solver. If the norm of the difference of the two
+  vectors is less than <varname>tolerance</varname> times the sum of
+  the norms of the two vectors, the solutions are deemed to be
+  consistent.
+</para>
+<para>
+  The default <varname>tolerance</varname> is
+  10<superscript>-6</superscript>, and the default
+  <varname>max_iterations</varname> is 100.
+</para>
+<para>
+  In the GUI, this command is invoked from the
+  <guimenuitem>Settings</guimenuitem> menu in the menubar in the main
+  &oof2; window.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

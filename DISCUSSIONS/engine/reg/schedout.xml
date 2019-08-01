@@ -1,0 +1,99 @@
+<!-- 
+  $RCSfile: schedout.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-13 21:24:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  The <classname>ScheduledOutput</classname> class contains output
+  operations that can be performed on a &mesh; during a time evolution
+  computation.  The operations come in four flavors:
+  <itemizedlist>
+    <listitem>
+      <formalpara>
+	<title>Analyses</title>
+	<para>
+	  These include anything that can be computed on the <link
+	  linkend="Section-Tasks-Analysis">Analysis</link> or <link
+	  linkend="Section-Tasks-BdyAnalysis">Boundary Analysis</link>
+	  pages.  A new analysis operation can be created using the
+	  <xref linkend="RegisteredClass-BulkAnalysis"/> or <xref
+	  linkend="RegisteredClass-BoundaryAnalysis"/> classes, or an
+	  existing named analysis can be re-used by using he <xref
+	  linkend="RegisteredClass-NamedAnalysisOutput"/> class.
+	  Named Analyses can be created by using the <link
+	  linkend="Section-Tasks-Analysis-Named"><guilabel>Named
+	  Analyses</guilabel></link> pane on the <link
+	  linkend="Section-Tasks-Analysis">Analysis</link> or <link
+	  linkend="Section-Tasks-BdyAnalysis">Boundary Analysis</link>
+	  pages, or the <xref linkend="MenuItem-OOF.Named_Analysis.Create"/> or
+	  <xref linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Create"/>
+	  commands.
+	</para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+	<title>Graphics Window Updates</title>
+	<para>
+	  During a time evolution, the <link
+	  linkend="Chapter-Graphics">Graphics Window</link> is only
+	  updated when <xref
+	  linkend="RegisteredClass-GraphicsUpdate"/> is scheduled.
+	</para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+	<title>Saving the Mesh</title>
+	<para>
+	  The <xref linkend="RegisteredClass-MeshFileOutput"/> operation
+	  saves the current state of the &mesh; in a file.
+	</para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+	<title>Time Step Statistics</title>
+	<para>
+	  The time stepping methods print statistics on their step
+	  sizes at the end of a calculation.  The same information can
+	  be saved in a file by added <xref
+	  linkend="RegisteredClass-StepStatistics"/> to the Scheduled
+	  Outputs.
+	</para>
+      </formalpara>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <xref linkend="RegisteredClass-ScheduledOutput"/>
+  objects are created and manipulated on the <link
+  linkend="Section-Tasks-ScheduledOutput">Scheduled Output</link> page
+  in the gui and by the <xref
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output"/> menu in scripts.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,221 @@
+<!--
+  $RCSfile: SN_bdycond.xml,v $
+  $Revision: 1.6 $
+  $Author: langer $
+  $Date: 2011-05-02 21:36:51 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <section id="Section-Tasks-BoundaryCondition">
+    <title>Boundary Conditions</title>
+    <para>
+      The Boundary Conditions Page is where <link
+	linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+	conditions</link> are applied to the <link
+	linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>
+      of a &mesh;.  There are a number of prerequisites for applying
+      <link linkend="RegisteredClass-BC">boundary conditions</link>:
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The &skel; to which the &mesh; belongs must have <link
+	    linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>
+	    defined in it.  Boundaries are automatically defined at
+	    the exterior edges and corners of all &skels; when they're
+	    first created, so this isn't usually a problem.
+	    Boundaries <emphasis>cannot</emphasis> be defined directly
+	    on &meshes;; they must be defined on &skels;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &fields; to which the <link
+	    linkend="RegisteredClass-BC">boundary conditions</link>
+	    apply must have been defined in the <link
+	    linkend="Section-Tasks-FieldsEquations">Fields &amp;
+	    Equations Page</link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The &equations; to which the <link
+	    linkend="RegisteredClass-BC">boundary conditions</link>
+	    apply must have been activated in the <link
+	    linkend="Section-Tasks-FieldsEquations">Equations
+	    Page</link>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      The Boundary Conditions Page is shown in <xref
+      linkend="Figure-BCpage"/>.  At the top is the Mesh Chooser,
+      which selects the &mesh; (and the &skel; and &micro; in which it
+      resides) to which <link linkend="RegisteredClass-BC">boundary
+      conditions</link> will be added.  Below the Chooser is a set of
+      buttons for manipulating <link
+      linkend="RegisteredClass-BC">conditions</link>, and below that
+      is a list of the existing boundary conditions in the &mesh;.
+    </para>
+    <figure id="Figure-BCpage">
+      <title>The Boundary Conditions Page</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/bc_page.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/bc_page.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      The Boundary Condition Pane lists all of the <link
+      linkend="RegisteredClass-BC">boundary conditions</link>
+      assigned to the current &mesh;.  Clicking on an entry in the
+      list selects it.  Double clicking on an entry is the same as
+      selecting it and clicking the <link
+      linkend="Section-BCpage-BC-Edit"><guibutton>Edit</guibutton></link>
+      button.
+    </para>
+    <para>
+      The buttons above the list operate on the selected <link
+      linkend="RegisteredClass-BC">boundary condition</link>.
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions.New"><guibutton>New</guibutton></link>
+	    button creates a new <link
+	    linkend="RegisteredClass-BC">boundary condition</link>.
+	    The button brings up a dialog box, shown in <xref
+	    linkend="Figure-newbc"/>.  The <guibutton>OK</guibutton>
+	    button creates a new condition with the specified
+	    parameters, and closes the dialog box.  The
+	    <guibutton>Apply</guibutton> button creates a new boundary
+	    condition but does <emphasis>not</emphasis> close the
+	    dialog, allowing further conditions to be created.  The
+	    <guibutton>Cancel</guibutton> button closes the box
+	    without creating any more boundary conditions.
+	    Clicking <guibutton>OK</guibutton> immediately after
+	    <guibutton>Apply</guibutton> will create two identical
+	    boundary conditions, which may cause a conflict.
+	    <note>
+	      <para>
+		It is an error to try to <link
+		linkend="MenuItem-OOF.Mesh.Solve">solve</link> a
+		&mesh; containing two <link
+		linkend="RegisteredClass-DirichletBC">Dirichlet</link>
+		or two <link
+		linkend="RegisteredClass-FloatBC">floating</link>
+		boundary conditions that apply to the same degrees of
+		freedom on the same boundary.  Conflicting boundary
+		conditions can be created in the Boundary Conditions
+		page, but the conditions will have to be edited or
+		disabled before the &mesh; is solved.
+	      </para>
+	    </note>
+	  </para>
+	  <figure id="Figure-newbc">
+	    <title>New Boundary Condition Dialog</title>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata fileref="FIGURES/gui/newbc.png"
+			   format="PNG"/>
+	      </imageobject>
+	      <imageobject>
+		<imagedata fileref="FIGURES/gui/newbc.eps"
+			   format="EPS"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Rename"><guibutton>Rename</guibutton></link>
+	    button renames the currently selected <link
+	    linkend="RegisteredClass-BC">boundary condition</link>.
+	  </para>
+	</listitem>
+	<listitem id="Section-BCpage-BC-Edit">
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Edit"><guibutton>Edit</guibutton></link>
+	    button brings up a dialog box for editing the currently
+	    selected <link linkend="RegisteredClass-BC">boundary
+	    condition</link>.  All of its properties other than its
+	    name can be changed. 
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Copy"><guibutton>Copy</guibutton></link>
+	    button copies the currently selected <link
+	    linkend="RegisteredClass-BC">boundary condition</link>.
+	    It can be copied to another boundary in the same &mesh;,
+	    or to another &mesh;.  If the current (source) &mesh; is
+	    the same as the destination &mesh;, then the copied <link
+	    linkend="RegisteredClass-BC">boundary condition</link>
+	    will be automatically selected in the list.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Copy_All"><guibutton>Copy
+	    All</guibutton></link> button copies all of the <link
+	    linkend="RegisteredClass-BC">boundary conditions</link>
+	    from the current &mesh; to another &mesh; specified in a
+	    dialog box. 
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Delete"><guibutton>Delete</guibutton></link>
+	    button deletes the currently selected <link
+	    linkend="RegisteredClass-BC">boundary condition</link>
+	    from the &mesh;.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      The first column of the boundary condition list contains
+      checkboxes that <link
+      linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Enable">enable</link>
+      and <link
+      linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Disable">disable</link>
+      the boundary conditions.  New conditions are automatically
+      enabled.  Disabled conditions will not be used when the &mesh;
+      is <link linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
+    </para>
+    <para>
+      The boundary condition list can be sorted, either by the names
+      of the boundary conditions or by the boundaries to which they're
+      applied, by clicking on the column titles at the top of the list.
+    </para>
+  </section>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

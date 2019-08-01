@@ -1,0 +1,53 @@
+<!-- 
+  $RCSfile: isodamping.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-05-24 20:51:29 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  This &property; adds a term proportional to the time derivative of
+  the <xref linkend="Field-Displacement"/> to the <xref
+  linkend="Equation-Force_Balance"/> equation.  Specifically, it adds
+  a contribution
+  <equation>
+    <alt role="tex">
+      \[ -d \frac{\partial u_i}{\partial t} \]
+    </alt>
+  </equation>
+  to the <inlineequation><alt
+  role="tex">\(C_{ij}\)</alt></inlineequation> term in Eq.&nbsp;<xref
+  linkend="Eqn-Force_Balance"/>.  <inlineequation><alt
+  role="tex">\(d\)</alt></inlineequation> is a scalar given by the
+  parameter <varname>damping</varname>.
+</para>
+<note>
+  <para>
+    This property is unphysical because it breaks Galilean invariance.
+    It was added for debugging purposes.  It may, however, be useful
+    to add stability to the numerical solution in some cases.
+  </para>
+</note>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

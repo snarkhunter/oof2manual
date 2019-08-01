@@ -1,0 +1,116 @@
+<!-- 
+  $RCSfile: debug.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:15 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+  <para>
+    Calling this command with an argument of <userinput>1</userinput>
+    turns debugging mode on.  Calling with with an argument of
+    <userinput>0</userinput> turns it off.  In debugging mode, menu
+    commands and other debugging information is echoed to terminal
+    from which &oof2; was launched.
+  </para>
+  <para>
+    Debugging mode can also be turned on by providing the <link
+    linkend="CommandLineArg-debug"><userinput>--debug</userinput></link>
+    command line argument. Doing it this way initializes the random
+    number generator with a special seed (17, the most random integer)
+    and adds a few more testing commands to the <xref
+    linkend="MenuItem-OOF.Help.Debug"/> menu.  Initializing the random
+    number is done to ensure that program behavior is deterministic in
+    debug mode.  The extra commands are undocumented.
+  </para>
+  <para>
+    Echoed commands look like this:
+    <literallayout class="monospaced">
+      -<co id="debug:depth"/>0013-<co id="debug:thread"/>00<co
+	id="debug:dashes"/>--------------- ====<co
+	id="debug:cmdno"/>0027==== <co id="debug:command"/>OOF.Skeleton.New(name='bones', ...))
+    </literallayout>
+    <calloutlist>
+      <callout arearefs="debug:depth">
+	<simpara>
+	  The stack depth of the Python interpreter.
+	</simpara>
+      </callout>
+      <callout arearefs="debug:thread">
+	<simpara>
+	  The thread that the command is running on.
+	</simpara>
+      </callout>
+      <callout arearefs="debug:dashes">
+	<simpara>
+	  The number of dashes is the same as the stack depth, to make
+	  it easier to recognized nested routines.
+	</simpara>
+      </callout>
+      <callout arearefs="debug:cmdno">
+	<simpara>
+	  The sequence number of the command.
+	</simpara>
+      </callout>
+      <callout arearefs="debug:command">
+	<simpara>
+	  The menu command itself.
+	</simpara>
+      </callout>
+    </calloutlist>
+  </para>
+  <para>
+    Other debugging output has the form:
+    <literallayout class="monospaced">
+      -<co id="debug2:depth"/>0004-<co id="debug2:thread"/>02<co
+	id="debug2:dashes"/>------ <co
+	id="debug2:file"/>mainmenu.py<co id="debug2:line"/>(115):<co
+	id="debug2:function"/>loaddata <co id="debug2:message"/>done loading oofdata.py
+    </literallayout>
+    <calloutlist>
+      <callout arearefs="debug2:depth">
+	<simpara>The stack depth of the Python interpreter.</simpara>
+      </callout>
+      <callout arearefs="debug2:thread">
+	<simpara>The thread that is printing the message.</simpara>
+      </callout>
+      <callout arearefs="debug2:dashes">
+	<simpara>A number of dashes equal to the stack depth.</simpara>
+      </callout>
+      <callout arearefs="debug2:file">
+	<simpara>The file containing the code containing the debugging
+	line.</simpara>
+      </callout>
+      <callout arearefs="debug2:line">
+	<simpara>The location within the file of the debugging line.</simpara>
+      </callout>
+      <callout arearefs="debug2:function">
+	<simpara>The function containing the debugging line.</simpara>
+      </callout>
+      <callout arearefs="debug2:message">
+	<simpara>The debugging message itself.</simpara>
+      </callout>
+    </calloutlist>
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

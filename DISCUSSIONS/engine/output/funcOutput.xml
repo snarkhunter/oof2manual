@@ -1,0 +1,55 @@
+<!-- 
+  $RCSfile: funcOutput.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-04-24 03:55:44 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Compute a function of spatial coordinates <varname>x</varname> and
+  <varname>y</varname> on a &mesh;.
+</para>
+<para>
+  The function is evaluated by the Python interpreter, so it can
+  contain any legal Python expressions.  Any variables defined in the
+  &oof2; <link linkend="Section-Windows-Console">Console</link> window
+  can be used in the function.  For example, if you type
+  <blockquote>
+    <simpara> <userinput>slope=3</userinput> </simpara>
+  </blockquote>
+  in the <link linkend="Section-Windows-Console">Console</link>, you
+  can enter
+  <blockquote>
+    <simpara><userinput>slope*x + y</userinput></simpara>
+  </blockquote>
+  for <varname>f</varname>.  The Python math library is also
+  available.  You could set <varname>f</varname> to
+  <blockquote>
+    <simpara><userinput>sin(x*y/100)</userinput></simpara>
+  </blockquote>
+  for example.
+</para>
+  
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

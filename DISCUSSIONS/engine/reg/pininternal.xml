@@ -1,0 +1,81 @@
+<!-- 
+  $RCSfile: pininternal.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:43 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <link linkend='MenuItem-OOF.Skeleton.PinNodes'>Pin</link> internal
+    boundary nodes.  Internal boundary nodes are those that are along
+    the boundaries of regions of different <link
+    linkend='Section-Concepts-PixelCategory'>pixel categories</link>
+    in the &micro;.
+  </para>
+  <para>
+    Pinning internal boundaries is especially useful to clean up a
+    &skel; after it has adapted to the material boundaries of a
+    &micro;.  <xref linkend="Figure-pininternal"/> shows a &skel; with
+    pinned internal boundary nodes.  <xref
+    linkend="Figure-pinsmooth"/> shows the same &skel; after having
+    been <link linkend="RegisteredClass-Smooth">smoothed</link>.  The
+    pinned nodes have not moved, although the
+    <varname>targets</varname> parameter for <xref
+    linkend="RegisteredClass-Smooth"/> was set to <xref
+    linkend="RegisteredClass-AllNodes"/>.
+
+  </para>
+  <figure id="Figure-pininternal">
+    <title>Pinning Internal Boundary Nodes</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pininternal.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pininternal.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  Pinned nodes are shown in black.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-pinsmooth">
+    <title>Smoothing with Pinned Internal Boundary Nodes</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinsmooth.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/pinnodes/pinsmooth.eps"
+	  format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

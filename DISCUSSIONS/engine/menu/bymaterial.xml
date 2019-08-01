@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: bymaterial.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:22 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Select &skel; &elems; whose &material; is named by the
+    <varname>material</varname> parameter. An &elem;'s &material; is
+    the &material; assigned to the <link
+    linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+    pixel</link> in the set of &micro; pixels underlying the &elem;.
+  </para>
+  <para>
+    If <varname>material</varname> is set to
+    <userinput>'&lt;None&gt;'</userinput>, then &elems; with no
+    &material; will be selected.  This can happen only if there are
+    pixels in the &micro; with no assigned &material;.  If
+    <varname>material</varname> is
+    <userinput>'&lt;Any&gt;'</userinput>, then &elems; with any
+    &material; will be selected.  Choosing &elems; with
+    <userinput>'&lt;Any&gt;'</userinput> is exactly like choosing them
+    with <userinput>'&lt;None&gt;'</userinput> and then <link
+    linkend="MenuItem-OOF.ElementSelection.Invert"><command>Invert</command></link>ing
+    the selection.
+  </para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

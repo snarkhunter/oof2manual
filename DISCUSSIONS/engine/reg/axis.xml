@@ -1,0 +1,58 @@
+<!-- 
+  $RCSfile: axis.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:36 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    An <classname>Axis</classname> object describes the orientation of
+    an object in three dimensional space, in terms of an axis
+    direction, and an angle of rotation about that axis.  When used
+    for crystal orientation in &oof2;, the indicated rotation brings
+    the crystalline &ahat;, &bhat;, and &chat; axes into coincidence
+    with the laboratory (or screen) axies &xhat;, &yhat;, and &zhat;
+    respectively.  The components of the rotation axis itself are
+    preserved by the rotation, and so may be specified in either the
+    crystalline or the laboratory coordinate systems.
+  </para>
+  <para>
+    The <varname>x</varname>, <varname>y</varname>, and
+    <varname>z</varname> parameters specify the rotation axis.  The
+    axis passes through the origin and the point
+    <inlineequation>
+      <alt role="tex">\((x,y,z)\)</alt>
+    </inlineequation>.
+    The vector
+    <inlineequation>
+      <alt role="tex">\((x,y,z)\)</alt>
+    </inlineequation>
+    does not have to be a unit vector.
+  </para>
+  <para>
+    The parameter <varname>angle</varname> specifies the rotation
+    angle, in degrees.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

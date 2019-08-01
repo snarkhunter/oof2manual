@@ -1,0 +1,56 @@
+<!-- 
+  $RCSfile: hsvcolor.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:20 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>HSVColor</classname> specifies a <xref
+    linkend="RegisteredClass-Color"/> in terms of its
+    <varname>hue</varname>, <varname>saturation</varname>, and
+    <varname>value</varname>.  We stole our algorithm for converting
+    between <link linkend="RegisteredClass-RGBColor">RGB</link> and
+    HSV from <ulink
+    url="http://www.cs.rit.edu/~ncs/color/t_convert.html"
+    role="external"/>.
+  </para>
+  <para>
+    <varname>hue</varname> is angle on the color wheel, in degrees. 0
+    or 360 is red, 60 is yellow, 120 is green, 180 is cyan, 240 is
+    blue, and 300 is magenta.
+  </para>
+  <para>
+    <varname>saturation</varname> describes the
+    <quote>strength</quote> or <quote>purity</quote> of the color.
+    It's a floating point number between 0 and 1.
+    Low values give pale, washed-out colors, tending toward white.
+  </para>
+  <para>
+    <varname>value</varname> is the brightness of the color.  It too
+    is a floating point number between 0 and 1, where 0 is darkest and
+    1 is brightest.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

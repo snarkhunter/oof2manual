@@ -1,0 +1,176 @@
+<!-- 
+  $RCSfile: snaprefine.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:48 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>SnapRefine</classname> is a <xref
+    linkend="RegisteredClass-SkeletonModifier"/> that attempts to
+    combine the most desirable features of <xref
+    linkend="RegisteredClass-Refine"/> and <xref
+    linkend="RegisteredClass-SnapNodes"/> into a single method. The
+    method operates like <xref linkend="RegisteredClass-Refine"/>,
+    except that the &elem; &sgmts; are split by points located at the
+    interface of two different <link
+    linkend="Section-Concepts-Skeleton-Homogeneity">pixel
+    categories</link>. These points become the corners of new elements
+    that subdivide the original elements.  <xref
+    linkend="Figure-snaprefine1"/> illustrates the result of applying
+    <classname>SnapRefine</classname> to the starting &skel; depicted
+    in <xref linkend="Figure-snaprefine0"/>.
+  </para>
+
+  <figure id="Figure-snaprefine0">
+    <title>SnapRefining a Skeleton</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/snaprefine0.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/snaprefine0.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A skeleton in need of refinement.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-snaprefine1">
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/snaprefine1.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/snaprefine1.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The skeleton after applying SnapRefine to elements with
+	  homogeneity less than 0.9.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <para>
+    <classname>SnapRefine</classname> can yield a &skel; with a
+    comparable homogeneity to a &skel; produced by <xref
+    linkend="RegisteredClass-Refine"/>, but often with significantly
+    fewer elements.  <classname>SnapRefine</classname> can also be
+    more flexible than <xref linkend="RegisteredClass-SnapNodes"/> in
+    fitting a &skel; to a microstructure, because
+    <classname>SnapRefine</classname> introduces new nodes and
+    additional edges that can be made to follow the boundaries of
+    pixel categories.  For example, <xref
+    linkend="Figure-snaprefinecompare"/> shows the result of using the
+    standard <xref linkend="RegisteredClass-Refine"/> method and the
+    result of using the stand-alone <xref
+    linkend="RegisteredClass-SnapNodes"/> method on the original
+    &skel;.
+  </para>
+  <figure id="Figure-snaprefinecompare">
+    <title>Refine and Snap Separately</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/refineedges.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/refineedges.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The result of <xref linkend="RegisteredClass-Refine"/>ing
+	  the &skel; from <xref linkend="Figure-snaprefine0"/>.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/snap.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/snaprefine/snap.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The result of appling <xref
+	  linkend="RegisteredClass-SnapNodes"/> directly to the &skel;
+	  in <xref linkend="Figure-snaprefine0"/>.  Most borders are
+	  resolved well, but some aren't resolved at all.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <para>
+    However, <classname>SnapRefine</classname> can lead to the
+    creation of very thin elements (see <xref
+    linkend="Figure-snaprefine1"/>).  The creation of such
+    badly-shaped elements may be prevented in many cases by a
+    judicious choice of the parameter <varname>min_distance</varname>.
+    <classname>SnapRefine</classname> will not place a new &node;
+    within a distance <varname>min_distance</varname> of one of the
+    corners of an &elem;. <varname>min_distance</varname> is given in
+    units of the pixel size.<footnote>
+      <simpara>
+	If the pixels are not square, the larger pixel dimension is
+	used.
+      </simpara>
+    </footnote>
+  </para>
+  <para>
+    In general, iterating <classname>SnapRefine</classname> produces
+    very bad results, with a lot of very thin elements.  A good
+    strategy is often to use the regular <xref
+    linkend="RegisteredClass-Refine"/> method first, and to apply
+    <classname>SnapRefine</classname> just once at the end to smooth
+    out jagged edges.
+  </para>
+  <para>
+    Currently, <classname>SnapRefine</classname> finds at most two transition
+    points along an edge.
+    The method also generates
+    both triangular and quadrilateral elements liberally
+    (corresponding to the liberal rule set in <xref
+    linkend="RegisteredClass-Refine"/>).  Note also that
+    <classname>SnapRefine</classname> does not use an alpha
+    parameter. Instead, it takes into account the pixel categories
+    underneath the element edges, as well as the bisection of the
+    edges, when deciding among several ways of subdividing an
+    element. The subdivision of an element may also introduce new
+    nodes within the element.  These nodes may also be located at the
+    interface of pixel categories.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

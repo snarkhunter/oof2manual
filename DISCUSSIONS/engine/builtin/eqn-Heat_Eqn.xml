@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: eqn-Heat_Eqn.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-05-25 21:42:47 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  The Heat Equation is
+  <equation id="Eqn-Heat">
+    <alt role="tex">
+      \[ C\frac{\partial T}{\partial t} + \nabla\cdot{\bf J} = \dot Q \]
+    </alt>
+  </equation>
+  where <inlineequation><alt role="tex">\(T\)</alt></inlineequation>
+  is the <xref linkend="Field-Temperature"/> &field;,
+  <inlineequation><alt role="tex">\(C\)</alt></inlineequation> is the
+  <link linkend="PropertyType-HeatCapacity">heat capacity</link>,
+  <inlineequation><alt role="tex">\(\bf J\)</alt></inlineequation> is
+  the <link linkend="Flux-Heat_Flux">heat flux</link> and
+  <inlineequation><alt role="tex">\(\dot Q\)</alt></inlineequation> is
+  a <link linkend="PropertyType-HeatSource">heat source</link>.
+</para>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

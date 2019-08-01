@@ -1,0 +1,167 @@
+<!-- 
+  $RCSfile: skeleton_new.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:27 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command creates a new &skel; in a &micro;.  The new &skel;
+    has the same height and width as the &micro;.  It's divided into a
+    rectangular
+    <varname>x_elements</varname>&times;<varname>y_elements</varname>
+    array of <link
+    linkend="Section-Concepts-Skeleton-Element">elements</link>.
+    Since the mesh can be <link
+    linkend="RegisteredClass-Refine">refined</link> and otherwise
+    <link linkend="MenuItem-OOF.Skeleton.Modify">modified</link>,
+    choosing the optimal values of <varname>x_elements</varname> and
+    <varname>y_elements</varname> is not crucial, but it helps to
+    start with reasonable values.  They should be set so that the
+    element size is smaller than the <emphasis>largest</emphasis>
+    features that need to be resolved in the &micro;.  (In the end,
+    every feature in the &micro; should contain at least a few
+    elements.  Having many more elements is inefficient.  Starting
+    with very large elements and refining all of them is less
+    efficient than starting with smaller elements and refining some of
+    them.)
+  </para>
+  <para>
+    The <varname>skeleton_geometry</varname> parameter determines
+    whether the elements will be quadrilateral or triangular, and if
+    triangular, how the diagonals will be arranged.  <xref
+    linkend="Figure-initskel"/> illustrates the possibilities.
+  </para>
+  <figure id="Figure-initskel">
+    <title>Initial Skeleton Geometries</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4rect.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4rect.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; created with <varname>skeleton_geometry</varname>
+	  set to <link
+	  linkend="RegisteredClass-QuadSkeleton"><userinput>QuadSkeleton()</userinput></link>.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4lib.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4lib.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; created with <varname>skeleton_geometry</varname>
+	  set to <link
+	  linkend="RegisteredClass-TriSkeleton"><userinput>TriSkeleton(arrangement='liberal')</userinput></link> (liberals lean to the left).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4cons.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4cons.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; created with <varname>skeleton_geometry</varname>
+	  set to <link
+	  linkend="RegisteredClass-TriSkeleton"><userinput>TriSkeleton(arrangement='conservative')</userinput></link> (conservatives lean to the right).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4mod.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4mod.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; created with <varname>skeleton_geometry</varname>
+	  set to <link
+	  linkend="RegisteredClass-TriSkeleton"><userinput>TriSkeleton(arrangement='moderate')</userinput></link>
+	  (moderates don't lean to the right or the left, on average).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4mid.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4mid.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; created with <varname>skeleton_geometry</varname>
+	  set to <link
+	  linkend="RegisteredClass-TriSkeleton"><userinput>TriSkeleton(arrangement='middling')</userinput></link>
+	  ('middling' is like 'moderate', only different).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4anarch.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/init_skel/skel4x4anarch.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A &skel; created with <varname>skeleton_geometry</varname>
+	  set to <link
+	  linkend="RegisteredClass-TriSkeleton"><userinput>TriSkeleton(arrangement='anarchic')</userinput></link>
+	  (the direction of the diagonals is chosen randomly).
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

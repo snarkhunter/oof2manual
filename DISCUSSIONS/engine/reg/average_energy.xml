@@ -1,0 +1,88 @@
+<!-- 
+  $RCSfile: average_energy.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:36 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    When an &elem; is modified or a &node; is moved, it affects its
+    neighboring &elems;, causing changes in their effective <link
+    linkend="Section-Concepts-Skeleton-Energy">element energy</link>.
+    When the <classname>AverageEnergy</classname>
+    <varname>criterion</varname> is applied to a <xref
+    linkend="RegisteredClass-SkeletonModifier"/>, &oof2; accepts a
+    modification only if it lowers the average effective energy of all
+    of the affected &elems;.  If more than one modification is being
+    considered,<footnote>
+      <para>
+	This does not mean that all possible node moves are considered
+	for <link
+	linkend="RegisteredClass-SkeletonModifier">modifiers</link>
+	that choose from an infinite number of possibilities, like
+	<xref linkend="RegisteredClass-Anneal"/> does.  It only
+	applies to modifiers that sometimes have a finite number of
+	choices to make, such as <xref
+	linkend="RegisteredClass-SnapNodes"/>.
+      </para>
+    </footnote>
+    the one that lowers the energy the most is accepted.
+  </para>
+  <para>
+    The parameter <varname>alpha</varname> (&agr;) plays a critical
+    role, since it controls how the effective <link
+    linkend="Section-Concepts-Skeleton-Energy">energy</link> is
+    computed for each element.  Take the node move shown in <xref
+    linkend="Figure-average_example"/> for example.
+  </para>
+
+  <figure id="Figure-average_example">
+    <title>A Node Move</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG"
+	  fileref="FIGURES/criteria/average_example.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	  fileref="FIGURES/criteria/average_example.eps"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    This node move will lower the total <link
+    linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
+    energy</link> by 0.13 but it will elevate the total <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+    energy</link> by 0.46.  If <link
+    linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
+    energy</link> and <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+    energy</link> are to be equally considered (&agr; = 0.5), the move
+    will not be accepted by the <classname>AverageEnergy</classname>
+    criterion -- it increases the overall energy level.  The move
+    becomes possible only if &agr; is greater than 0.8.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

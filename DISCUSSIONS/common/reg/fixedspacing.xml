@@ -1,0 +1,40 @@
+<!-- 
+  $RCSfile: fixedspacing.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-29 03:18:00 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<para>
+  <classname>FixedSpacing</classname> generates uniformly spaced
+  animation frames with a time interval <varname>dt</varname> when
+  animating a <link linkend="Chapter-Graphics">Graphics</link> window
+  with <xref linkend="MenuItem-OOF.Graphics_n.File.Animate"/>.  If the
+  total duration of the animation is not a multiple of
+  <varname>dt</varname>, the final step will be truncated.
+</para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

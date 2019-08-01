@@ -1,0 +1,47 @@
+<!-- 
+  $RCSfile: setcachetype.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-29 20:21:53 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>SetMeshDataCacheType</classname> determines whether the
+  <link linkend="Section-Concepts-Mesh-Time">time</link> data stored
+  with a &mesh; is kept in memory or in temporary files on disk.
+  Storing the data in memory is faster, as long as there is enough
+  RAM.
+</para>
+<para>
+  <classname>SetMeshDataCacheType</classname> is a <xref
+  linkend="RegisteredClass-MeshModification"/> that is applied to a
+  &mesh; with the <xref linkend="MenuItem-OOF.Mesh.Modify"/> command.
+  In the GUI, <xref linkend="RegisteredClass-MeshModification"/>s are
+  applied by the <link
+  linkend="Section-Tasks-FEMesh-Modification"><guilabel>Mesh
+  Operations</guilabel></link> pane in the <link
+  linkend="Section-Tasks-FEMesh">FEMesh</link> page.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,49 @@
+<!-- 
+  $RCSfile: removeelementmat.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-08 20:47:57 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <xref linkend="MenuItem-OOF.ElementGroup.Remove_Material"/> undoes
+  the effect of <xref
+  linkend="MenuItem-OOF.ElementGroup.Assign_Material"/>.  After a
+  &material; has been removed from an &elemgroup;, all &elem;'s in the
+  group will inherit their &material; from the &elem;'s <link
+  linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+  pixel</link>.
+</para>
+<para>
+  In the GUI, <xref
+  linkend="MenuItem-OOF.ElementGroup.Remove_Material"/> is invoked by
+  the <guibutton>Remove</guibutton> button in the
+  <guilabel>Material</guilabel> subpane of the <guilabel>Element group
+  operations</guilabel> pane in the <link
+  linkend="Section-Tasks-SkeletonSelection"><guilabel>Skeleton
+  Selection Page</guilabel></link> when the page is in
+  <guilabel>Elements</guilabel> mode.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

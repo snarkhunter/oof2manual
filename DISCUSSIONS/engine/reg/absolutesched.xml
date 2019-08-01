@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: absolutesched.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-18 20:58:35 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Using an <classname>AbsoluteOutputSchedule</classname> in <xref
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Schedule.Set"/> means
+  that the times produced by the <xref
+  linkend="RegisteredClass-Schedule"/> are interpreted as absolute
+  times, and do not depend on the starting time of the current
+  computation.
+</para>
+<para>
+  For example, if the <xref linkend="RegisteredClass-Schedule"/> is
+  <xref linkend="RegisteredClass-Periodic"/> with
+  <varname>delay</varname>=0 and <varname>interval</varname>=0.1, the
+  output times will be multiples of 0.1, even if the initial time for
+  the simulation was 0.05.
+</para>
+<para>
+  Compare to <xref linkend="RegisteredClass-RelativeOutputSchedule"/>.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

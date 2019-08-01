@@ -1,0 +1,78 @@
+<!-- 
+  $RCSfile: triclinicrank2.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:34 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<refentry xreflabel='TriclinicRank2Tensor'
+  id='Object-TriclinicRank2Tensor'>
+  <refnamediv>
+    <refname>
+      TriclinicRank2Tensor
+    </refname>
+    <refpurpose>
+      A rank 2 tensor with triclinic symmetry
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <simpara>
+      <classname>TriclinicRank2Tensor</classname>(<varname>xx</varname>,
+      <varname>yy</varname>, <varname>zz</varname>,
+      <varname>yz</varname>, <varname>xz</varname>,
+      <varname>xy</varname>) </simpara></refsynopsisdiv>
+ <refsect1>
+  <title>Description</title>
+  <para>
+    A <classname>TriclinicRank2Tensor</classname> is a symmetric
+    second rank tensor with triclinic rotational symmetry. The
+    arguments <varname>xx</varname>, <varname>yy</varname>,
+    <foreignphrase>etc</foreignphrase>, are real numbers.  The
+      structure is shown in <xref linkend="Figure-TriclinicRank2Tensor"/>.
+  </para>
+    <figure id="Figure-TriclinicRank2Tensor">
+      <title>Structure of a Triclinic Second Rank Tensor</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/rank2/triclinicrank2.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/rank2/triclinicrank2.eps" format="EPS"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Structure of a triclinic 2nd rank tensor.</phrase>
+	</textobject>
+	<caption>
+	  <simpara>
+	    Structure of a triclinic rank 2 tensor.  For an explanation of
+	    the symbols, see <xref linkend='Figure-TensorKey'/>.
+	  </simpara>
+	</caption>
+      </mediaobject>
+    </figure>
+ </refsect1>
+</refentry>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "chapter" "refentry")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

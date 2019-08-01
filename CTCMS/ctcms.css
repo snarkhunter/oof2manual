@@ -1,0 +1,441 @@
+@import url("ctcms-adv.css");
+
+body {
+    margin: 0;
+    color: black;
+    background: white url(/CSS/img/msel_2ndpg_template3.jpg) left top no-repeat;
+}
+
+table {
+    width: 100%;
+    margin: 0;
+}
+
+table td {
+    text-align: center;
+    padding: 0;
+    border-width: 0;
+}
+
+a {
+    text-decoration: underline;
+}
+    
+a:hover {
+    color: #C5DAE3;
+}
+
+div#logo {
+    visibility: visible;
+    position: absolute;
+    top: 0px;
+    left: 570px;
+    width: 110px;
+}
+
+div#Banner {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 63px;
+    width: 1005px;
+}
+
+div#NIST {
+    position: absolute;
+    top: 5px;
+    left: 700px;
+}
+
+div#NIST img {
+    border: none;
+    /* 
+     * width: 128px;
+     * height: 48px;
+     */
+}
+
+div#NIST span {
+    font: 200% sans-serif;
+    color: white;
+}
+
+div#Laboratory {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 8px;
+    font-size: 80%;
+}
+
+div#Laboratory a {
+    color: #CCCCFF;
+    text-shadow: 0.3em 0.3em 0.3em black;
+    font-family: Futura Bold, Futura,  Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+div#Laboratory a:hover {
+    color: #9999CC;
+}
+
+div#Laboratory a:active {
+    color: #9999CC;
+    text-shadow: 0.2em 0.2em 0.2em black;
+}
+
+div#Site {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 28px;
+    font-size: 120%;
+}
+
+div#Site a {
+    color: white;
+    text-shadow: 0.3em 0.3em 0.3em black;
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+div#Site a:hover {
+    color: silver;
+}
+
+div#Site a:active {
+    color: silver;
+    text-shadow: 0.2em 0.2em 0.2em black;
+}
+
+div#main {
+/*     position: absolute; */
+    position: relative;
+    margin-top: 97px;
+    margin-right: 15%;
+/*     margin-bottom: 0em; */
+    margin-left: 165px;
+    padding-left: 20px;
+    border-left: solid black thin;
+}
+
+div#main h1 {
+    width: 70%;
+    color: gray;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 130%;
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+}
+
+div#main h2 {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: silver;
+    font-size: 110%;
+}
+
+div#main h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+    text-decoration: none;
+    padding-bottom: 0.1ex;
+    border-bottom: #4422AA 2px solid;
+}
+
+div#main h3 {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: black;
+    font-size: 90%;
+}
+
+div.withFeature#main {
+    border-right: solid black thin;
+    margin-right: 25%;
+    padding-right: 20px;
+}
+
+div#feature {
+    position: absolute;
+    left: 75%;
+    top: 95px;
+    width: 23%;
+    z-index: 3;
+    color: #000;
+    padding: 3px;
+    background: #CCCCFF;
+    border-left: solid black thin;
+}
+
+div#sitemenu {
+    position: absolute;
+    top: 59px;
+    left: 0;
+    height: 36px;
+    padding-right: 10em;
+}
+
+div#sitemenu ul {
+    list-style: none;
+    display: inline;
+}
+
+div#sitemenu li {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    height: 34px;
+    float: left;
+    display: inline;
+    /*/*//*/
+    display : none;
+    /* */ /* stupid hack for Netscape 4.x */
+}
+
+div#sitemenu li a {
+    font-size: 70%;
+    text-decoration: none;    
+    color: white;
+}
+
+#projectmenu {
+    position: absolute;
+    top: 95px;
+    left: 0;
+    width: 165px;
+    border-right: 1px solid #000;
+    padding: 0em 0em 1em 0;
+    margin-left: 0;
+    margin-bottom: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Grande',
+    Verdana, Lucida, Geneva, Helvetica, 
+    Arial, sans-serif;
+}
+
+#projectmenu ul {
+    list-style: none;
+/*     margin-left: 20px; */
+    padding: 0;
+    border: none;
+    color: gray;
+    background-color: white;
+}
+
+#projectmenu li {
+    margin: 0;
+    margin-bottom: 0.4ex;
+    padding-bottom: 0.4ex;
+    font-size: 100%;
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+}
+
+#projectmenu li a {
+    display: block;
+    color: gray;
+    width: 100%;
+}
+
+html>body #projectmenu li a {
+    width: auto;
+}
+
+#projectmenu li a:hover {
+    color: silver;
+    background-color: white;
+}
+
+#projectmenu li ul {
+    margin-top: 0.4ex;
+    padding-top: 0.4ex;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#projectmenu li ul li {
+    list-style-type: disc;
+    list-style-image: url(img/bullet.gif);
+    list-style-position: inside;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: black;
+    background-color: white;
+/*     margin-bottom: 0.2em; */
+    /* 
+     * border-bottom: 4px solid #90bade;
+     * margin: 0;
+     */
+}
+
+#projectmenu li ul li a {
+    display: block;
+    width: 100%;
+    border-bottom: transparent 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    text-decoration: underline;
+}
+
+html>body #projectmenu li ul li a {
+    width: auto;
+}
+
+#projectmenu li ul li a:hover {
+    color: navy;
+    background-color: white;
+}
+
+#projectmenu li ul li ul {
+    padding-left: 1em;
+    margin-left: 1em;
+}
+
+
+
+/* ------- */
+
+ div.contents  {
+     position: fixed;
+     left: 75%;
+     top: 10%;
+     width: 20%;
+     z-index: 4;
+     border-right: 1px solid #000;
+     padding: 1em 1em 1em 1em;
+     margin: 1em 1em 1em 1em;
+     font-family: 'Trebuchet MS', 'Lucida Grande',
+     Verdana, Lucida, Geneva, Helvetica,
+     Arial, sans-serif;
+     border: solid black thin;
+     background-color: white;
+ }
+
+/* 
+ * div.contents  {
+ *     position: absolute;
+ *     top: 95px;
+ *     RIGHT: 0;
+ *     width: 165px;
+ *     border-right: 1px solid #000;
+ *     padding: 0em 0em 1em 0;
+ *     margin-left: 0;
+ *     margin-bottom: 1em;
+ *     font-family: 'Trebuchet MS', 'Lucida Grande',
+ *     Verdana, Lucida, Geneva, Helvetica, 
+ *     Arial, sans-serif;
+ * }
+ */
+
+div.contents ul {
+    list-style: none;
+/*     margin-left: 20px; */
+    padding: 0;
+    border: none;
+    color: gray;
+    background-color: white;
+}
+
+div.contents li {
+    margin: 0;
+    margin-bottom: 0.4ex;
+    padding-bottom: 0.4ex;
+    font-size: 100%;
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+}
+
+div.contents li a {
+    display: block;
+    color: gray;
+    width: 100%;
+}
+
+html>body div.contents li a {
+    width: auto;
+}
+
+div.contents li a:hover {
+    color: silver;
+    background-color: white;
+}
+
+div.contents li ul {
+    margin-top: 0.4ex;
+    padding-top: 0.4ex;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+div.contents li ul li {
+    list-style-type: disc;
+    list-style-image: url(img/bullet.gif);
+    list-style-position: inside;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: black;
+    background-color: white;
+/*     margin-bottom: 0.2em; */
+    /* 
+     * border-bottom: 4px solid #90bade;
+     * margin: 0;
+     */
+}
+
+div.contents li ul li a {
+    display: block;
+    width: 100%;
+    border-bottom: transparent 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    text-decoration: underline;
+}
+
+html>body div.contents li ul li a {
+    width: auto;
+}
+
+div.contents li ul li a:hover {
+    color: navy;
+    background-color: white;
+}
+
+div.contents li ul li ul {
+    padding-left: 1em;
+    margin-left: 1em;
+}
+
+
+/* ------- */
+
+
+
+
+div#footer {
+    position: relative;
+/*     clear: both; */
+    /* 
+     * position: float;
+     * width: 128px;
+     * vertical-align: bottom;
+     */
+}
+
+div#Commerce {
+    /* 
+     * position: relative;
+     * clear: both;
+     */
+    left: 10px;
+    font-size: 70%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div#update {
+    text-align: center;
+    font-size: 70%;
+    font-family: Arial,Helvetica,sans-serif;
+    margin-top: 2ex;
+}
+
+div.credits {
+    margin-top: 2ex;
+}
+
+

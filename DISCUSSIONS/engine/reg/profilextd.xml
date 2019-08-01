@@ -1,0 +1,52 @@
+<!-- 
+  $RCSfile: profilextd.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-28 21:24:09 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+<para>
+  A <classname>ProfileXTd</classname> object describes the <link
+  linkend="Section-Concepts-Mesh-BoundaryCondition-Profile">shape</link>
+  of a <link
+  linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+  condition</link>.  That is, a boundary condition fixes some quantity
+  (a &field; component, for example) on a boundary and the
+  <emphasis>profile</emphasis> of the boundary condition specifies how
+  that quantity varies along the length of the boundary.
+</para>
+<para>
+  Profiles specified by <classname>ProfileXTd</classname> can depend
+  on both position and time.  If they're time dependent, the time
+  derivative must be specified.
+</para>
+<para>
+  The <xref linkend="RegisteredClass-ContinuumProfileXTd"/>, <xref
+  linkend="RegisteredClass-ConstantProfile"/>, and <xref
+  linkend="RegisteredClass-LinearProfile"/> subclasses simply differ
+  in how the profile is specified, with <xref
+  linkend="RegisteredClass-ContinuumProfileXTd"/> being the most general
+  and <xref linkend="RegisteredClass-ConstantProfile"/> the least.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

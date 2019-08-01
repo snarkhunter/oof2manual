@@ -1,0 +1,57 @@
+<!-- 
+  $RCSfile: datafiledest.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-15 21:12:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>DataFileOutput</classname> is the <xref
+  linkend="RegisteredClass-OutputDestination"/> that the <xref
+  linkend="RegisteredClass-MeshFileOutput"/> uses to send <link
+  linkend="Section-Concepts-Outputs-Scheduled">Scheduled Output</link>
+  data to a file.  It is the only type of <xref
+  linkend="RegisteredClass-OutputDestination"/> allowed by <xref
+  linkend="RegisteredClass-MeshFileOutput"/>.
+</para>
+<para>
+  The files written by <classname>DataFileOutput</classname> can be
+  loaded back into &oof2; with the <xref
+  linkend="MenuItem-OOF.File.Load.Data"/> command or the <link
+  linkend="Section-Running"><userinput>--data</userinput></link>
+  startup command line option.
+</para>
+<para>
+  If <varname>mode</varname> is <userinput>w</userinput>, the file
+  will be opened for writing, and any existing file contents will be
+  overwritten.  If <varname>mode</varname> is
+  <userinput>a</userinput>, the file will be opened for appending, and
+  the new data will appear at the end.  Note that if the file is ever
+  <link
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Destination.Rewind">rewound</link>,
+  all data in the file will be overwritten even if the file had been
+  opened for appending.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

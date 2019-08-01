@@ -1,0 +1,114 @@
+<!-- 
+  $RCSfile: remove_segments.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:46 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <classname>RemoveSegments</classname> is a <xref
+    linkend="RegisteredClass-BoundaryModifier"/>, used as the
+    <varname>modifier</varname> argument of the <xref
+    linkend="MenuItem-OOF.Skeleton.Boundary.Modify"/> command when
+    editing &skel; <link
+    linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>.
+    It removes a set of &sgmts; from the boundary specified in the
+    <varname>boundary</varname> argument of the
+    <command>Modify</command> command.  The boundary must be an <link
+    linkend='Section-Concepts-Skeleton-Boundary-Edge'>edge
+    boundary</link>.
+  </para>
+  <para>
+    The <varname>group</varname> parameter specifies which &sgmts; are
+    to be removed from the boundary.  It must be either the name of a
+    &sgmt; <link
+    linkend='Section-Concepts-Skeleton-Groups'>group</link> or the
+    special <xref linkend="Object-Placeholder"/> object,
+    <userinput>selection</userinput>, referring to the currently <link
+    linkend='MenuItem-OOF.SegmentSelection'>selected</link> &skel;
+    &sgmts;.  If the given group or selection contains &sgmts; that
+    are not actually in the boundary, those &sgmts; will be ignored.
+  </para>
+  <para>
+    Edge boundaries must be constructed from a single contiguous
+    non-branching set of &sgmts;.  It is an error to remove &sgmts;
+    from a boundary if doing so would split the boundary into two or
+    more pieces.
+  </para>
+  <figure id="Figure-remove_segments">
+    <title>Removing Segments from a Boundary</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG"
+	fileref="FIGURES/skel_bdymod/remove_segments0.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	fileref="FIGURES/skel_bdymod/remove_segments0.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  An existing boundary (in black) and some selected &sgmts;
+	  (in red).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG"
+	fileref="FIGURES/skel_bdymod/remove_segments1.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	fileref="FIGURES/skel_bdymod/remove_segments1.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The boundary created by removing the selected &sgmts;. The
+	  selected segment that <emphasis>wasn't</emphasis> part of
+	  the old boundary was just ignored.
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG"
+	fileref="FIGURES/skel_bdymod/remove_segments2.png"/>
+      </imageobject>
+      <imageobject>
+	<imagedata format="EPS"
+	fileref="FIGURES/skel_bdymod/remove_segments2.eps"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The selected segments in red cannot be removed from the
+	  boundary in black, because the resulting boundary would not
+	  be connected.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+    
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

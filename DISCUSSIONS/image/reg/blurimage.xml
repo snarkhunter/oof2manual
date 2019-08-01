@@ -1,0 +1,77 @@
+<!-- 
+  $RCSfile: blurimage.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:51 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Blur the given <varname>image</varname>.  This can be a useful way
+    of reducing noise, at the obvious expense of a loss of resolution.
+    The image is convolved with a Gaussian operator with the given
+    <varname>radius</varname> and standard deviation
+    (<varname>sigma</varname>).  For reasonable results, the
+    <varname>radius</varname> should be larger than
+    <varname>sigma</varname>.   If <varname>radius</varname> is 0,
+    then a suitable radius will be chosen automatically.
+  </para>
+  <para>
+    This routine comes from the <ulink url="http://www.imagemagick.org"
+      role="external">ImageMagick</ulink> library.
+  </para>
+  <figure id="Figure-BlurImage">
+    <title>Blurring an Image</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/raw.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A micrograph of
+	  Si<subscript>3</subscript>N<subscript>4</subscript>
+	  (courtesy of C.-H. Hsueh).
+	</para>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/blur.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/imageops/blur.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The image after being blurred with
+	  <varname>radius</varname>=0 and
+	  <varname>sigma</varname>=3.0.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

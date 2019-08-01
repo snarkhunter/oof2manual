@@ -1,0 +1,5 @@
+These files were downloaded from www.docbook.org/rng/4.5/.
+They represent the form of the docbook schema that emacs' nxml
+mode understands.  The schemas.xml file in MAN_OOF2 points to
+the docbook.rnc file in this directory.
+

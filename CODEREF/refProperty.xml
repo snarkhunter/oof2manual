@@ -1,0 +1,2631 @@
+<!-- 
+  $RCSfile: refProperty.xml,v $
+  $Revision: 1.6 $
+  $Author: langer $
+  $Date: 2011-05-06 16:00:08 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+  <refentry id="Class-Property">
+    <refnamediv>
+      <refname>Property</refname>
+      <refpurpose>Base class for material properties</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+
+	<literallayout class="monospaced">
+#include "engine/property.h"
+	  <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>Property</classname>
+	    </ooclass>
+	    <constructorsynopsis>
+	      <methodname><link linkend="Class-Property-Cconstructor">Property</link></methodname>
+	      <methodparam>
+		<type>const std::string&amp;</type>
+		<parameter>name</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>PyObject*</type>
+		<parameter>registration</parameter>
+	      </methodparam>
+	    </constructorsynopsis>
+
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
+	      <methodparam>
+		<type>Material*</type>
+		<parameter>material</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link
+		linkend="Class-Property-precompute">precompute</link></methodname>
+	      <void/>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link
+		linkend="Class-Property-begin_element">begin_element</link></methodname>
+	      <methodparam>
+		<type>const CSubProblem*</type>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier> <void/> <methodname><link
+	      linkend="Class-Property-begin_point">begin_point</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Flux*</type>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const MasterPosition&amp;</type>
+		<parameter>masterpos</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link linkend="Class-Property-end_point">end_point</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Flux*</type>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const MasterPosition&amp;</type>
+		<parameter>masterpos</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link
+	      linkend="Class-Property-end_element">end_element</link></methodname>
+	      <methodparam>
+		<type>const CSubProblem*</type>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link
+		  linkend="Class-Property-post_process">post_process</link></methodname>
+	      <methodparam>
+		<type>CSubProblem*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>int</type>
+	    <methodname><link
+		linkend="Class-Property-integration_order">integration_order</link></methodname>
+	    <methodparam>
+	      <type>const CSubProblem*</type>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link linkend="Class-Property-fluxmatrix">fluxmatrix</link></methodname>
+	    <methodparam>
+	      <type>const FEMesh*</type>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const Element*</type>
+	      <parameter>element</parameter>
+	    </methodparam>
+	      <methodparam>
+		<type>const ElementFuncNodeIterator&amp;</type>
+		<parameter>node</parameter>
+	      </methodparam>             
+	      <methodparam>
+		<type>const Flux*</type>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const FluxData*</type>
+		<parameter>fluxdata</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const MasterPosition&amp;</type>
+		<parameter>position</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis><!-- fluxmatrix -->
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link
+		  linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Flux*</type>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>FluxData*</type>
+		<parameter>fluxdata</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>MasterPosition&amp;</type>
+		<parameter>position</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis><!-- fluxrhs -->
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link linkend="Class-Property-output">output</link></methodname>
+	      <methodparam>
+		<type>const FEMesh*</type>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const Element*</type>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>const PropertyOutput*</type>
+		<parameter>p_output</parameter>
+	      </methodparam> 
+	      <methodparam>
+		<type>const MasterPosition&amp;</type>
+		<parameter>position</parameter>
+	      </methodparam>
+	      <methodparam>
+		<type>OutputVal*</type>
+		<parameter>value</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis><!-- output -->
+
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>bool</type>
+	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric</link></methodname>
+	      <methodparam>
+		<type>const CSubProblem*</type>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis><!-- is_symmetric -->
+	  </classsynopsis>
+	</literallayout>
+
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2 id="Class-PyPropertyWrapper">
+	<title>Python Synopsis</title>
+
+	<literallayout class="monospaced">
+from oof2.SWIG.engine.pypropertywrapper import PyPropertyWrapper
+	  <classsynopsis language="python">
+	    <ooclass>
+	      <classname>PyPropertyWrapper</classname>
+	    </ooclass>
+	    <ooclass>
+	      <classname>Property</classname>
+	    </ooclass>
+	    <constructorsynopsis>
+	      <methodname><link linkend="Class-Property-pyconstructor">__init__</link></methodname>
+	      <methodparam>
+		<parameter>referent</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>registration</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>name</parameter>
+	      </methodparam>
+	    </constructorsynopsis>  
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Property-integration_order">integration_order</link></methodname>
+	      <methodparam>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
+	      <methodparam>
+		<parameter>material</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Property-precompute">precompute</link></methodname>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Property-begin_element">begin_element</link></methodname>
+	      <methodparam>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	      
+	    <methodsynopsis>
+	      <methodname><link
+	      linkend="Class-Property-begin_point">begin_point</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>master_position</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Property-end_point">end_point</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>master_position</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Property-end_element">end_element</link></methodname>
+	      <methodparam>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+		  linkend="Class-Property-post_process">post_process</link></methodname>
+	      <methodparam>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis><!-- post_process -->
+	      <methodname><link linkend="Class-Property-fluxmatrix">fluxmatrix</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>fluxdata</parameter></methodparam>
+	      <methodparam>
+		<parameter>master_position</parameter>
+	      </methodparam>
+	    </methodsynopsis><!-- fluxmatrix -->
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>fluxdata</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>master_position</parameter>
+	      </methodparam>
+	    </methodsynopsis><!-- fluxrhs -->
+	    <methodsynopsis>
+	      <void/>
+	      <methodname><link linkend="Class-Property-output">output</link></methodname>
+	      <methodparam>
+		<parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		<parameter>p_output</parameter>
+	      </methodparam> 
+	      <methodparam>
+		<parameter>position</parameter>
+	      </methodparam>
+	    </methodsynopsis><!-- output -->
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric</link></methodname>
+	      <methodparam>
+		<parameter>subproblem</parameter>
+	      </methodparam>
+	    </methodsynopsis><!-- is_symmetric -->
+	</classsynopsis>
+	</literallayout>
+      </refsect2><!-- Python synopsis -->
+    </refsynopsisdiv>
+
+    <refsection>
+      <title>Overview</title>
+      <para>
+	&property; classes can be constructed either in C++ or Python.
+	Python classes are somewhat simpler to program and build, but
+	C++ classes are significantly more efficient, computationally.
+      </para>
+      <para>
+	In C++, new &properties; are constructed by creating
+	subclasses of the <classname>Property</classname> class.  In
+	Python, they're constructed by creating subclasses of the
+	<classname>PyPropertyWrapper</classname> class.
+	(<classname>PyPropertyWrapper</classname> is a swig wrapper
+	class around a C++ class of the same name, which is itself
+	derived from <classname>Property</classname>.)  In both cases,
+	the base classes contain trivial implementations of all
+	methods except <function>integration_order</function>, so it
+	is safe to omit from the derived classes functions which are
+	irrelevant to a particular physical property.  The
+	<function>integration_order</function> is always relevant to
+	the physical property to which it belongs.
+      </para>
+      <para>
+	In order for both C++ and Python &properties; to work properly
+	and to be included in the GUI, every subclass must have an
+	associated <link
+	linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	object.  <classname>PropertyRegistration</classname>s must
+	always be created in Python, even for C++
+	<classname>Property</classname> subclasses.
+      </para>
+    </refsection>
+
+    <refsection id="Class-Property-Constructors">
+      <title>Constructors</title>
+      
+      <refsection id="Class-Property-Cconstructor">
+	<title>C++</title>
+	<para>
+	  C++ <classname>Property</classname> subclasses must have a
+	  constructor of the form
+
+	  <literallayout class="monospaced">
+SubProperty::SubProperty(PyObject *registration, const std::string&amp; name, ...)
+	  </literallayout>
+
+	  and they must invoke the base class constructor like
+	  this:<footnote>
+	    <simpara>
+	      Sorry about the inconsistent order of the arguments.
+	    </simpara>
+	  </footnote>
+
+	  <literallayout class="monospaced">
+Property(const std::string&amp; name, PyObject *registration)
+	  </literallayout>
+
+	  The derived class should treat <varname>name</varname> and
+	  <varname>registration</varname> as opaque variables, used
+	  only by the base class.  They just need to be passed on
+	  through.  The <varname>...</varname> in the subclass
+	  constructor refers to the <classname>Property</classname>'s
+	  parameters, which <emphasis>must</emphasis> appear in the
+	  constructor argument list in the same order that they appear
+	  in the corresponding <link
+	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
+	</para>
+	<para>
+	  C++ <classname>Property</classname> classes should
+	  <emphasis>not</emphasis> have a copy constructor.  The base
+	  class copy constructor is private, to prohibit unauthorized
+	  duplication, by any means, electronic or otherwise.
+	</para>
+      </refsection><!-- C++ constructor -->
+      <refsection id="Class-Property-pyconstructor">
+	<title>Python</title>
+	<para>
+	  The Python constructor for a
+	  <classname>PyPropertyWrapper</classname> subclass must look
+	  like this:
+
+	  <literallayout class="monospaced">
+def __init__(self, registration, name, ...):
+    PyPropertyWrapper.__init__(self, registration, name)
+	  </literallayout>
+
+	  As in the <link linkend="Class-Property-Cconstructor">C++
+	  constructor</link>, the <varname>name</varname> and
+	  <varname>registration</varname> parameters should be passed
+	  through to the base class unchanged.  
+	</para>
+	<para>
+	  The <varname>...</varname> in the constructor arguments
+	  refers to any parameters that the
+	  <classname>Property</classname> might have.  These must have
+	  the same names and be in the same order as the parameters in
+	  the associated <link
+	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
+	</para>
+      </refsection><!-- Python constructor -->
+    </refsection><!-- constructors -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	The following methods can be defined in C++
+	<classname>Property</classname> and Python
+	<classname>PyPropertyWrapper</classname> subclasses.  Most are
+	optional, and can be omitted if the default behavior is
+	satisfactory.  Unless otherwise noted, the default behavior is
+	to do nothing.  The exception is
+	<function>integration_order</function>, which must be provided
+	explicitly for all properties.  A base-class version does
+	exist, but its default behavior is to indicate an error.
+      </para>
+      <para>
+	All of the functions can be accessed from either C++ or
+	Python.  If there are non-obvious differences between the C++
+	and Python invocations, they are noted below.  Minor and
+	standard punctuation differences are <emphasis>not</emphasis>
+	noted.  Function prototypes are specified in the C++ format,
+	because it is more informative.
+      </para>
+      <refsection id="Class-Property-cross_reference">
+	<title><code>void cross_reference(Material *)</code></title>
+	<para>
+	  <methodname>cross_reference</methodname> is called whenever
+	  a new &property; is added to a &material;.  It gives each
+	  &property; a chance to locate other &properties; in the same
+	  &material; from which it may need information.  For example,
+	  many &properties; of an anisotropic material will need to
+	  know the &material;'s <link
+	  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	  &property;.  The argument to
+	  <methodname>cross_reference</methodname> is the <link
+	  linkend="Class-Material"><classname>Material</classname></link>
+	  object to which the <classname>Property</classname> belongs.
+	</para>
+	<para>
+	   <link
+	   linkend="Class-Material-fetchProperty"><code>Material::fetchProperty</code></link>
+	   should be used to look for other
+	   <classname>Properties</classname>.  It will raise an
+	   exception if the sought-for <classname>Property</classname>
+	   does not exist.  This exception should
+	  <emphasis>not</emphasis> be caught by the
+	  <classname>Property</classname> &mdash; it's handled in the
+	  <classname>Material</classname>.
+	</para>
+	<para>
+	  For example, here is the
+	  <methodname>cross_reference</methodname> routine from the
+	  <classname>AnisotropicThermalExpansion</classname> class,
+	  which needs to access the Elasticity (for the elastic
+	  modulus) and the Orientation:
+	</para>
+	<programlisting>
+void AnisotropicThermalExpansion::cross_reference(Material *mat) {
+  elasticity = dynamic_cast&lt;Elasticity*>(mat->fetchProperty("Elasticity"));
+  orientation = dynamic_cast&lt;OrientationProp*>(mat->fetchProperty("Orientation"));
+} </programlisting>
+	<para>
+	  The <classname>ThermalExpansion</classname> and
+	  <classname>AnisotropicThermalExpansion</classname> classes
+	  store the <varname>elasticity</varname> and
+	  <varname>orientation</varname> variables:
+	</para>
+	<programlisting>
+class ThermalExpansion : public Property {
+protected:
+  Elasticity *elasticity;
+  ...
+};
+
+class AnisotropicThermalExpansion : public ThermalExpansion {
+private:
+  OrientationProp *orientation;
+  ...
+}; </programlisting>
+	<para>
+	  The default base class
+	  <methodname>cross_reference</methodname> function does
+	  nothing.
+	</para>
+      </refsection><!-- cross_reference -->
+      <refsection id="Class-Property-precompute">
+	<title><code>void precompute()</code></title>
+	<para>
+	  <function>precompute()</function> is called when a &mesh; is
+	  being solved.  It's called before any other
+	  <classname>Property</classname> methods, other than
+	  <function>cross_reference</function>.  It should compute any
+	  quantities that the <classname>Property</classname> needs
+	  that depend only upon <classname>Property</classname>
+	  data. It can use <classname>Property</classname> data from
+	  other <classname>Properties</classname>, having located
+	  those other <classname>Properties</classname> during the
+	  <function>cross_reference</function> step.
+	</para>
+	<para>
+	  For example, if a <classname>Property</classname> has an
+	  anisotropic modulus, the <classname>Property</classname>'s
+	  <methodname>precompute</methodname> method should rotate the
+	  modulus to lab coordinates using the &material;'s <link
+	  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>.
+	</para>
+      </refsection>
+      <refsection id="Class-Property-begin_element">
+	<title><code>void begin_element(const CSubProblem*, const const Element*)</code></title>
+	<para>
+	  When building the finite element stiffness matrix and right
+	  hand side vector, &oof2; loops over the elements of the mesh
+	  and computes each element's contribution by calling each
+	  <classname>Property</classname>'s <methodname><link
+	  linkend="Class-Property-fluxmatrix">fluxmatrix</link></methodname>
+	  and <methodname><link
+	  linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
+	  methods.  Before calling these functions, however, it first
+	  calls <methodname>begin_element</methodname>, passing the
+	  current <link
+	  linkend="Class-Element"><classname>Element</classname></link>
+	  as an argument.  This allows the
+	  <classname>Property</classname> to precompute any
+	  <classname>Element</classname> dependent properties.
+	</para>
+      </refsection><!-- begin_element -->
+      <refsection id="Class-Property-end_element">
+	<title><code>void end_element(const CSubProblem*, const Element*)</code></title>
+	<para>
+	  <methodname>end_element</methodname> is just like
+	  <methodname><link
+	  linkend="Class-Property-begin_element">begin_element</link></methodname>,
+	  except that it's called <emphasis>after</emphasis> &oof2; is
+	  done computing an <link
+	  linkend="Class-Element"><classname>Element</classname></link>'s
+	  contribution.  <methodname>end_element</methodname> can be
+	  used to clean up any temporary objects allocated by
+	  <methodname><link
+	  linkend="Class-Property-begin_element">begin_element</link></methodname>.
+	</para>
+      </refsection><!-- end_element -->
+
+
+      <refsection id="Class-Property-begin_point">
+	<title><code>void begin_point(const FEMesh*, const const Element*, const Flux*, const MasterPosition&amp;)</code></title>
+	<para>
+	  Within each element, &oof2; loops over gausspoints.
+	  <classname>Property</classname> objects can use this
+	  begin_point hook to perform expensive computations that are
+	  required at an evaluation point, and cache the results.
+	  There is a matching <methodname><link
+	  linkend="Class-Property-end_point">end_point</link></methodname>
+	  function which can be used to clear the cached data.
+	</para>
+      </refsection><!-- begin_point -->
+      <refsection id="Class-Property-end_point">
+	<title><code>void end_point(const FEMesh*, const Element*, const Flux*, const MasterPosition&amp;)</code></title>
+	<para>
+	  <methodname>end_point</methodname> is just like
+	  <methodname><link
+	  linkend="Class-Property-begin_point">begin_point</link></methodname>,
+	  except that it's called <emphasis>after</emphasis> &oof2; is
+	  done computing the contribution at a point.  The
+	  <methodname>end_point</methodname> method can be used to
+	  clean up any temporary objects allocated by
+	  <methodname><link
+	  linkend="Class-Property-begin_point">begin_point</link></methodname>.
+	</para>
+      </refsection><!-- end_point -->
+      
+
+
+      <refsection id="Class-Property-post_process">
+	<title><code>void post_process(CSubProblem*, const Element*)</code></title>
+	<para>
+	  After solving the finite element equations,
+	  <methodname>post_process</methodname> is called once on each
+	  <classname><link
+	  linkend="Class-Element">Element</link></classname> in a
+	  <link
+	  linkend="Class-CSubProblem"><classname>CSubProblem</classname></link>.
+	  It can be used for any sort of post-processing, such as
+	  adjusting material parameters, or generating output files.
+	</para>
+	<para>
+	  Do not confuse <methodname>post_process</methodname> with
+	  <link
+	  linkend="Class-Property-end_element"><methodname>end_element</methodname></link>.
+	  <classname>end_element</classname> is called during finite
+	  element matrix construction, before the equations are
+	  solved.
+	</para>
+      </refsection><!-- post_process -->
+      <refsection id="Class-Property-integration_order">
+	<title><code>int integration_order(const CSubProblem *subproblem, const Element
+	    *element) const</code></title>
+	<para>
+	  <methodname>integration_order</methodname> returns the polynomial
+	  order (or degree) of the part of the flux matrix (computed
+	  by <link
+	  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>
+	  or <link
+	  linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>)
+	  that this <classname>Property</classname> is responsible
+	  for.  All <classname>Properties</classname> that define
+	  <link
+	  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>
+	  or <link
+	  linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>
+	  should define <methodname>integration_order</methodname>.
+	</para>
+	<para>
+	  Because <methodname>fluxmatrix</methodname> and
+	  <methodname>fluxrhs</methodname> use the finite element
+	  shape functions and their derivatives,
+	  <methodname>integration_order</methodname> must find out the
+	  polynomial degree of the shapefunctions.  The current mesh
+	  <classname>Element</classname> is passed in as an argument.
+	  The shapefunction's degree can be found by calling <link
+	  linkend="Class-Element-shapefun_degree"><methodname>Element::shapefun_degree</methodname></link>,
+	  and it's derivative's degree can be found by calling <link
+	  linkend="Class-Element-dshapefun_degree"><methodname>Element::dshapefun_degree</methodname></link>.
+	</para>
+	<warning>
+	  <para>
+	    Do <emphasis>not</emphasis> compute the shapefunction's
+	    derivative's degree by subtracting 1 from the
+	    shapefunction's degree.  For purposes of Gaussian
+	    integration, the degree of the shapefunction is sometimes
+	    less than its actual polynomial degree.  For example, the
+	    linear quadrilateral shapefunction <inlineequation>
+	      <alt role="tex">\((1-x)(1-y)/4\)</alt>
+	    </inlineequation>
+	     can be integrated
+	    exactly with a single Gauss point at (0,0), although its
+	    polynomial degree is 2.  For this function, both
+	    <methodname>shapefun_degree</methodname> and
+	    <methodname>dshapefun_degree</methodname> return 1.
+	  </para>
+	</warning>
+	<para>
+	  As an example, here is the
+	  <methodname>integration_order</methodname> method for the
+	  <classname>Elasticity</classname> class in &oof2;.  The
+	  <methodname>fluxmatrix</methodname> routine always adds a
+	  (constant) modulus times a shape function derivative to the
+	  flux matrix, but when the displacement field has
+	  out-of-plane components, there are terms proportional to the
+	  shape functions as well.
+	  <methodname>integration_order</methodname> must return the
+	  largest relevant degree, so it has to check for out-of-plane
+	  fields:
+
+	  <programlisting>
+int Elasticity::integration_order(const CSubProblem *subproblem, const Element *el) const {
+  if(displacement->in_plane(subproblem))
+    return el->dshapefun_degree();
+  return el->shapefun_degree();
+} </programlisting>
+	  
+	</para>
+      </refsection><!-- integration_order -->
+      <refsection id="Class-Property-fluxmatrix">
+	<title><code>void fluxmatrix(...)</code></title>
+	<para>
+	  &oof2; <classname>Properties</classname> that represent
+	  terms in a constitutive equation must define the function
+	  <methodname>Property::fluxmatrix</methodname>.
+	  <methodname>fluxmatrix</methodname> computes a matrix that,
+	  when multiplied by a vector of degrees of freedom, produces
+	  a vector containing the components of a &flux;.  Explaining
+	  this properly requires a brief review of the finite element
+	  machinery.
+	</para>
+	<para id="fluxmatrix_discussion">
+	  Let <inlineequation>
+	    <alt role="tex">\(u_n(r)\)</alt>
+	  </inlineequation>
+	  be the n<superscript><emphasis>th</emphasis></superscript>
+	  component of a field <inlineequation> <alt
+	  role="tex">\(u\)</alt></inlineequation> at position
+	  <inlineequation><alt role="tex">\(r\)</alt></inlineequation>.
+	  If the field values are known at nodes <inlineequation>
+	    <alt role="tex">\(\nu\)</alt>
+	  </inlineequation>
+	  at positions
+	  <inlineequation> <alt role="tex">\(r_\nu\)</alt>
+	  </inlineequation>, then the finite element shape functions
+	  <inlineequation>
+	    <alt role="tex">\(N_\nu(r)\)</alt>
+	  </inlineequation>
+	  can be used to approximate the field at any point:
+
+	  <equation id="Eqn-Property-expansion">
+	    <title>expansion</title>
+	    <alt role="tex">\[u_n({\bf r}) = \sum_\nu
+	      N_\nu({\bf r}) u_{n\nu}\]</alt>
+	  </equation>
+
+	  where
+	  <inlineequation>
+	    <alt role="tex">\(N_\nu({\bf r})\)</alt>
+	  </inlineequation>
+	  is the shape function that is 1 at node
+	  <inlineequation>
+	    <alt role="tex">\(\nu\)</alt>
+	  </inlineequation>
+	  and 0 at all other nodes, and
+
+	  <inlineequation>
+	    <alt role="tex">\(u_{n\nu}\equiv u_n({\bf r_\nu})\)</alt>
+	  </inlineequation>.
+ 	</para>
+	<para>
+ 	  A constitutive relation connects a &field;, <inlineequation>
+ 	  <alt role="tex">\(u\)</alt> </inlineequation>, and a
+ 	  &flux;, <inlineequation><alt role="tex">\(\sigma\)</alt>
+ 	  </inlineequation>, through a modulus.  For now, let's assume
+ 	  that it can be represented as a linear operator,
+ 	  <inlineequation><alt
+ 	  role="tex">\(M\)</alt></inlineequation>:
+
+	  <equation id="Eqn-Property-flux">
+	    <alt role="tex">
+	      \[\sigma({\bf r}) = M({\bf r})\cdot u({\bf r})\]
+	    </alt>
+	  </equation>
+
+	  Inserting <xref linkend="Eqn-Property-expansion"/> into
+	  <xref linkend="Eqn-Property-flux"/> shows that
+	  <inlineequation><alt role="tex">\(M\)</alt></inlineequation>
+	  can be written as a matrix, which we call the <emphasis>flux
+	  matrix</emphasis>.  The columns of <inlineequation><alt
+	  role="tex">\(M\)</alt></inlineequation> correspond to
+	  degrees of freedom <inlineequation>
+	    <alt role="tex">\(u_{n\nu}\)</alt>
+	  </inlineequation>, and its rows to
+	  components of the flux
+	  <inlineequation><alt role="tex">\(\sigma\)</alt></inlineequation>.
+	</para>
+
+	<para>
+	  For example, for elasticity
+
+	  <equation>
+	    <alt role="tex">
+	      \begin{align*}
+	      \sigma_{ij} &amp;= C_{ijkl} \epsilon_{kl} \\
+	      &amp;= \frac12 C_{ijkl} \left(\frac{\partial u_l}{\partial r_k} +
+	      \frac{\partial u_k}{\partial r_l}\right) \\
+	      &amp;= C_{ijkl} \frac{\partial u_l}{\partial r_k} \\
+	      &amp;= C_{ijkl} \frac\partial{\partial r_k}
+	                        \left(u_{l\nu}N_\nu(r)\right) \\
+	      &amp;= \left(C_{ijkl}
+	           \frac{\partial N_\nu(r)}{\partial r_k}\right) u_{l\nu}
+	      \end{align*} \\
+	    </alt>
+	  </equation>
+
+	  from which we get
+
+	  <equation id="Eqn-Property-M">
+	    <alt role="tex">\[
+	      M_{ij,l\nu} = C_{ijkl}\frac{\partial N_\nu(r)}{\partial r_k}
+	      \]
+	    </alt>
+	  </equation>
+
+	  Repeated indices are summed in all of the above equations.
+	  In particular, in <xref linkend="Eqn-Property-M"/>, k
+	  runs only over the in-plane components
+	  <emphasis>x</emphasis> and <emphasis>y</emphasis>.
+	</para>
+	<para>
+	  Actually, <xref linkend="Eqn-Property-M"/> isn't quite
+	  correct, because we ignored the <link
+	    linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
+	  components.  The out-of-plane part of the displacement field
+	  is the vector of derivatives
+	  <inlineequation>
+	    <alt role="tex">\(
+	      \partial u_z/\partial x, \partial u_z/\partial y,
+	      \partial u_z/\partial z
+	      \)</alt>
+	  </inlineequation>, which is just 
+	  <inlineequation>
+	    <alt role="tex">\(
+	      2\epsilon_{xz}, 2\epsilon_{yz}, \epsilon_{zz}
+	      \)</alt>
+	  </inlineequation>
+	  (using the fact that <inlineequation>
+	    <alt role="tex">\(\partial u_x/\partial z\)</alt>
+	  </inlineequation> and  <inlineequation>
+	    <alt role="tex">\(\partial u_y/\partial z\)</alt>
+	  </inlineequation> must both be zero).
+	  The part of the flux <inlineequation>
+	    <alt role="tex">\(\sigma\)</alt>
+	  </inlineequation>
+	  due to the out-of-plane strains is
+	  <equation>
+	    <alt role="tex">\[
+	      \sigma_{ij} =
+	      \frac12\left[C_{ijxz}\frac{\partial u_z}{\partial x}
+	                  +C_{ijyz}\frac{\partial u_z}{\partial y}\right] 
+	      + C_{ijzz}\frac{\partial u_z}{\partial z}
+	      \]</alt>
+	  </equation>
+	  Since <inlineequation> <alt role="tex">\(\partial
+	  u_z/\partial r_k\)</alt> </inlineequation> is the
+	  <inlineequation><alt role="tex">\(k\)</alt></inlineequation>
+	  component of a field (an out-of-plane field, in the &oof2;
+	  sense &mdash; it's computed at nodes just like in-plane
+	  fields are), it can be expanded in terms of shape functions
+	  and the field values at nodes, as in <xref
+	  linkend="Eqn-Property-expansion"/>.  From this we see that
+	  the extra terms in <inlineequation><alt
+	  role="tex">\(M\)</alt></inlineequation> are:
+	  <equation id="Eqn-Property-Mp">
+	    <alt role="tex">\[
+	      M'_{ij,k\nu} = \frac12 C_{ijzk}(1+\delta_{kz})N_\nu
+	      \]</alt>
+	  </equation>
+	  (Note:
+	  <inlineequation>
+	    <alt role="tex">\(k\)</alt> </inlineequation> is not
+	    summed in <xref linkend="Eqn-Property-Mp"/>.)
+	</para>
+	<para>
+	  On each call, <methodname>fluxmatrix</methodname> must make
+	  contributions to <inlineequation><alt
+	  role="tex">\(M\)</alt></inlineequation> for all of the
+	  components of a given flux (<inlineequation><alt
+	  role="tex">\(\sigma\)</alt></inlineequation>), all of the
+	  components of the relevant fields (<inlineequation>
+	    <alt role="tex">\(u\)</alt></inlineequation>
+	  and its out-of-plane part), and one given node
+	  (<inlineequation><alt role="tex">\(\nu\)</alt></inlineequation>).
+	</para>
+	<para>
+	  It is important to note that it is <emphasis>not</emphasis>
+	  necessary for the <methodname>fluxmatrix</methodname>
+	  routine or its author to know anything about the following:
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <para>
+		The topology or number of nodes in the element.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+		How nodal degrees of freedom are mapped into
+		columns of the flux matrix.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+		How flux components are mapped into rows of the flux matrix.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+		What equations are being solved.
+	      </para>
+	    </listitem>
+	  </itemizedlist>
+	</para>
+	<para>
+	  The arguments to <methodname>fluxmatrix</methodname> are:
+	  <variablelist>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-FEMesh">FEMesh</link> *mesh</code></term>
+	      <listitem>
+		<para>
+		  The finite element mesh that's being solved.
+		  <methodname>fluxmatrix</methodname> probably doesn't
+		  have to use the <varname>mesh</varname> object
+		  directly, but it does have to pass it through to
+		  other functions.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-Element">Element</link> *element</code></term>
+	      <listitem>
+		<para>
+		  The finite <link
+		  linkend="Class-Element">element</link> under
+		  consideration.  This shouldn't be explicitly needed
+		  except in cases in which the material parameters
+		  depend on physical space coordinates or in which
+		  history-dependent fields are stored in the element.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+	      linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>
+	      &amp;node</code></term>
+	      <listitem>
+		<para>
+		  This is the node <inlineequation> <alt
+		  role="tex">\(\nu\)</alt>
+		  </inlineequation>
+		  referred to in the discussion <link
+		  linkend="fluxmatrix_discussion">above</link>.  Its
+		  passed in in the guise of an iterator, which can
+		  iterate over all of the nodes of the element,
+		  although it should be thought of here simply as a
+		  way of accessing the node's indices and shape
+		  functions.<footnote>
+		    <para>
+		      It's not possible to use a <link
+		      linkend="Class-Node"><classname>Node</classname></link>
+		      instead of an <link
+		      linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
+		      here.  <classname>Nodes</classname> are unable
+		      to evaluate shape functions because they don't
+		      know which <link
+		      linkend="Class-Element"><classname>Element</classname></link>
+		      is being computed.
+		      <classname>ElementFuncNodeIterators</classname>
+		      know which <classname>Element</classname>
+		      they're looping over.
+		    </para>
+		  </footnote>
+  The node's shape function and its
+		  derivatives can be obtained from <link
+		  linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>ElementFuncNodeIterator::shapefunction</methodname></link>
+		  and <link
+		  linkend="Class-ElementShapeFuncIterator-dshapefunction"><methodname>ElementFuncNodeIterator::dshapefunction</methodname></link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-Flux">Flux</link>
+	      *flux</code></term>
+	      <listitem>
+		<para>
+		  The &flux; <inlineequation><alt role="tex">\(\sigma\)</alt></inlineequation> referred to in the discussion <link
+		  linkend="fluxmatrix_discussion">above</link>.
+		  Properties that contribute to more than one &flux;
+		  need to check this variable to know which flux
+		  they're computing now.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code><link
+	      linkend="Class-FluxData">FluxData</link>
+	      *fluxdata</code></term>
+	      <listitem>
+		<para>
+		  The <classname>FluxData</classname> class stores the
+		  actual flux matrix <inlineequation><alt role="tex">\(M\)</alt></inlineequation> and other
+		  flux data.  (This data can't be stored directly in
+		  the <link
+		  linkend="Class-Flux"><classname>Flux</classname></link>
+		  object because one <classname>Flux</classname> is
+		  shared among many <link
+		  linkend="Class-FEMesh"><classname>FEMesh</classname></link>es.
+		  The <link
+		  linkend="Class-FluxData"><classname>FluxData</classname></link>
+		  object is local to this computation.)  The actual
+		  flux matrix <inlineequation><alt role="tex">\(M\)</alt></inlineequation> can be accessed
+		  only through the method <link
+		  linkend="Class-FluxData-matrix_element"><methodname>FluxData::matrix_element</methodname></link>.
+		  This function handles the mapping from node, field,
+		  and flux component indices to actual row and column
+		  indices.  
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+	      linkend="Class-MasterCoord">MasterPosition</link>
+	      &amp;x</code></term>
+	      <listitem>
+		<para>
+		  The flux matrix is evaluated at a physical coordinate
+		  <inlineequation>
+		    <alt role="tex">\(r\)</alt>
+		  </inlineequation>
+		  (often a Gauss integration point, but not always).
+		  <varname>x</varname> is the point in the <link
+		  linkend="Class-Element"><classname>Element</classname></link>'s
+		  master coordinate space<footnote
+		    id="footnote-masterspace">
+		    <para>
+		      Elements are first defined in a master
+		      coordinate space, where geometry is easy, and
+		      then mapped to their actual positions in
+		      physical space.  The master quadrilateral is a
+		      square of side 2 centered on the origin.  The
+		      master triangle is a right isosceles triangle
+		      with vertices (0,0), (1,0), and (0,1).  A master
+		      space coordinate can be converted to a physical
+		      point by <link
+		      linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.
+		    </para>
+		  </footnote>
+		  corresponding to <emphasis>r</emphasis>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+	<para>
+	  Here is the <methodname>fluxmatrix</methodname> routine for
+	  the <classname>Elasticity</classname> class, from
+	  <filename>SRC/engine/property/elasticity/elasticity.C</filename>
+	  in the &oof2; source code:
+	</para>
+
+	<programlisting>
+void Elasticity::fluxmatrix(const FEMesh *mesh, const Element *element,
+			    const ElementFuncNodeIterator &amp;nu,
+			    const Flux *flux, FluxData *fluxdata,
+			    const MasterPosition &amp;x) const 
+{
+  if(*flux != *stress_flux) { <co id="fluxmatrix:test"/>
+    throw ErrProgrammingError("Unexpected flux", __FILE__, __LINE__); <co id="fluxmatrix:error"/>
+  }
+
+  const Cijkl modulus = cijkl(mesh, element, x); <co id="fluxmatrix:modulus"/>
+  double sf = nu.shapefunction(x); <co id="fluxmatrix:sf"/>
+  double dsf0 = nu.dshapefunction(0, x); <co id="fluxmatrix:dsf"/>
+  double dsf1 = nu.dshapefunction(1, x); 
+
+  for(SymTensorIterator ij; !ij.end(); ++ij) { <co id="fluxmatrix:stressloop"/>
+    for(IteratorP ell=displacement->iterator(); !ell.end(); ++ell) { <co id="fluxmatrix:disploop"/>
+
+      SymTensorIndex ell0(0, ell.integer()); <co id="fluxmatrix:ell0"/>
+      SymTensorIndex ell1(1, ell.integer());
+      fluxdata->matrix_element(mesh, ij, displacement, ell, nu) += <co id="fluxmatrix:mat"/>
+	modulus(ij, ell0)*dsf0 + modulus(ij, ell1)*dsf1; <co id="fluxmatrix:kloop"/>
+    }
+
+    if(!displacement->in_plane(mesh)) { <co id="fluxmatrix:oopcheck"/>
+      Field *oop = displacement->out_of_plane(); <co id="fluxmatrix:oop"/>
+      for(IteratorP ell=oop->iterator(ALL_INDICES); !ell.end(); ++ell) { <co id="fluxmatrix:ooploop"/>
+	double diag_factor = ( ell.integer()==2 ? 1.0 : 0.5); <co id="fluxmatrix:delta"/>
+	fluxdata->matrix_element(mesh, ij, oop, ell, nu) += <co id="fluxmatrix:matp"/>
+	  modulus(ij, SymTensorIndex(2, ell.integer())) * sf * diag_factor; <co id="fluxmatrix:Mp"/>
+      }
+    }
+  }
+} </programlisting>
+
+	<calloutlist>
+	  <callout arearefs="fluxmatrix:test">
+	    <para>
+	      We don't really need to do this.  It's a sanity check to
+	      make sure that we got the &flux; we wanted.
+	      <varname>stress_flux</varname> was set in the
+	      <classname>Elasticity</classname> constructor by calling
+	      <code>Flux::getFlux("Stress")</code> and dynamically
+	      casting the result to a
+	      <classname>SymmetricTensorFlux*</classname>.  If a
+	      Property made contributions to more than one
+	      <classname>Flux</classname>, then a statement like this
+	      would be used to determine which flux it was being asked
+	      to compute.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:error">
+	    <para>
+	      <classname>ErrProgrammingError</classname> is declared
+	      in <filename>SRC/common/ooferror.h</filename>.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:modulus">
+	    <para>
+	      <methodname>cijkl</methodname> is a virtual function
+	      defined in the <classname>Elasticity</classname>
+	      subclasses.  It takes <classname>FEMesh*</classname>,
+	      <classname>Element*</classname>, and
+	      <classname>MasterPosition&amp;</classname> arguments so that
+	      a subclass can define a position-dependent modulus, or
+	      something even more bizarre.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:sf">
+	    <para>
+	      Here is where the shape functions are evaluated.  This
+	      is <inlineequation>
+		<alt role="tex">\(N_\nu\)</alt></inlineequation>.  Values are
+	      precomputed and cached at the Gauss integration points,
+	      so the evaluation here is fast.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:dsf">
+	    <para>
+	      These are the derivatives of the shape functions.  The
+	      first argument is the component of the
+	      gradient. <literal>0</literal> is <emphasis>x</emphasis>
+	      and <literal>1</literal> is <emphasis>y</emphasis>.
+	      These values are also cached at Gauss points.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:stressloop">
+	    <para>
+	      This is the loop over components of the flux.  We know
+	      that the flux (stress) is a symmetric tensor, so we use
+	      a <link
+	      linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>
+	      to loop over the components.  If we didn't know the
+	      type, we would have instead written
+	      <programlisting>
+for(<link linkend="Class-IteratorP">IteratorP</link> ij = flux->iterator(); !ij.end(); ++ij) ... </programlisting>
+
+	      The loop here extends over all components of the stress,
+	      without regard to whether or not the stress is <link
+	      linkend="Section-Concepts-Mesh-3D">in-plane</link>.
+	      That's because the out-of-plane components of the flux
+	      matrix are used to construct the plane-stress constraint
+	      equation.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:disploop">
+	    <para>
+	      This is the loop over the <emphasis>in-plane</emphasis>
+	      components of the displacement field.  In this case it's
+	      been written in the generic form.
+	      <varname>displacement</varname> is a <link
+	      linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>,
+	      with only <emphasis>x</emphasis> and
+	      <emphasis>y</emphasis> components, so we don't have to
+	      specify the planarity of the iterator.  The associated <link
+	      linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
+	      field, containing the out-of-plane strains, will be
+	      treated separately.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:ell0">
+	    <para>
+	      This simply creates a
+	      <classname>SymTensorIndex</classname> object for
+	      addressing a component of the elastic modulus.
+	      <inlineequation>
+		<alt role="tex">\(C_{ijkl}\)</alt>
+	      </inlineequation>
+	      requires two <classname>SymTensorIndex</classname> or
+	      <classname>SymTensorIterator</classname> objects to
+	      extract a single component.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:mat">
+	    <para>
+	      This retrieves a C++ reference to the matrix element
+	      that couples flux component <varname>ij</varname> to the
+	      component <varname>ell</varname> of the field
+	      <varname>displacement</varname> at node
+	      <varname>nu</varname>.  Note that we use <code>+=</code>
+	      instead of <code>=</code> because a previous call to
+	      <methodname>fluxmatrix</methodname> may already have
+	      addressed this matrix element.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:kloop">
+	    <para>
+	      The two terms in this line are the implied sum over
+	      <inlineequation>
+		<alt role="tex">\(k\)</alt></inlineequation> in <xref
+	      linkend="Eqn-Property-M"/>.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:oopcheck">
+	    <para>
+	      If the displacement field has no <link
+	      linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
+	      part, we don't need to compute the out-of-plane part's
+	      contributions to the stress.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:oop">
+	    <para>
+	      This retrieves the <link
+	      linkend="Class-Field"><classname>Field</classname></link>
+	      for the out-of-plane part of the displacement.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:ooploop">
+	    <para>
+	      This loops over the components of the out-of-plane
+	      field.  Since this field has three components
+	      (<inlineequation>
+		<alt role="tex">\(\partial u_z/\partial x\)</alt>
+	      </inlineequation>,
+	      <inlineequation>
+		<alt role="tex">\(\partial u_z/\partial y\)</alt>
+	      </inlineequation>,
+	      and
+	      <inlineequation>
+		<alt role="tex">\(\partial u_z/\partial z\)</alt>
+	      </inlineequation>),
+	      the iterator needs to be told to loop over all of them.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:delta">
+	    <para>
+	      This takes care of the numerical factor in <xref
+	      linkend="Eqn-Property-Mp"/>.  All <link
+	      linkend="Class-IteratorP"><classname>IteratorP</classname></link>
+	      objects can be converted to an integer with their
+	      <methodname>integer</methodname> function, which
+	      provides a handy way of checking their value if you know
+	      the meaning of the integer.  In this case, 2 means
+	      <emphasis>z</emphasis>.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:matp">
+	    <para>
+	      This line is just like <xref linkend="fluxmatrix:mat"/>,
+	      but it refers to the out-of-plane field,
+	      <varname>oop</varname>.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxmatrix:Mp">
+	    <para>
+	      This is the right hand side of <xref
+	      linkend="Eqn-Property-Mp"/>.
+	    </para>
+	  </callout>
+	</calloutlist>
+
+      </refsection><!-- fluxmatrix -->
+      <refsection id="Class-Property-fluxrhs">
+	<title><code>void Property::fluxrhs(...) const</code></title>
+	<para>
+	  &oof2; <classname>Properties</classname> that represent
+	  external (generalized) forces or otherwise contribute to the
+	  right hand side of a <link
+	  linkend="Section-Concepts-Mesh-Equation-Divergence">divergence
+	  equation</link> must define
+	  <methodname>Property::fluxrhs</methodname>.
+	  <methodname>fluxrhs</methodname> is similar to <link
+	  linkend="Class-Property-fluxmatrix"><methodname>Property::fluxmatrix</methodname></link>
+	  in its role and its arguments, but is generally simpler to
+	  implement.  Each <methodname>fluxrhs</methodname>
+	  implementation must compute a quantity at a given point
+	  within an element, but does not have to concern itself with
+	  nodes and shapefunctions.
+	</para>
+	<para>
+	  There are two kinds of contributions to the right hand side
+	  of the divergence equation.  <emphasis>Body
+	  forces</emphasis> contribute directly to the right hand side
+	  of the divergence equation <xref linkend="Eqn-Divergence"/>,
+	  but <emphasis>offsets</emphasis> contribute a
+	  field-independent value to the flux on the left hand side of
+	  <xref linkend="Eqn-Divergence"/>.
+	  (Field-<emphasis>dependent</emphasis> contributions are made
+	  by <link
+	  linkend="Class-Property-fluxmatrix"><methodname>Property::fluxmatrix</methodname></link>.)
+	</para>
+	<para>
+	  For an example, consider linear thermal expansion.
+	  The flux (stress) is
+	  <equation>
+	    <alt role="tex">
+	      \[
+	      \sigma_{ij} = C_{ijkl}
+	      \left(\epsilon_{kl} - \alpha_{kl}(T-T_0)\right)
+	      \]
+	    </alt>
+	  </equation>
+	  <inlineequation>
+	    <alt role="tex">\(T_0\)</alt>
+	  </inlineequation>
+	  is the temperature at which the stress-free strain vanishes,
+	  and makes a field independent <emphasis>offset</emphasis>,
+	  <inlineequation>
+	    <alt role="tex">\(C_{ijkl}\alpha_{kl}T_0\)</alt>
+	  </inlineequation>,
+	  to the flux.  On the other hand, gravitational forces do not
+	  contribute to the flux, but appear as body forces:
+	  <equation>
+	    <alt role="tex">
+	      \[\nabla\cdot\sigma = -g\hat{\mathrm{\bf y}}\]
+	    </alt>
+	  </equation>
+	</para>
+	<para>
+	  The arguments to <methodname>Property::fluxrhs</methodname> are:
+	  <variablelist>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-FEMesh">FEMesh</link> *mesh</code></term>
+	      <listitem>
+		<para>
+		  The finite element mesh that's being solved.
+		  <methodname>fluxrhs</methodname> probably doesn't
+		  have to use the <varname>mesh</varname> object
+		  directly, but it might need to pass it through to
+		  other functions.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-Element">Element</link> *element</code></term>
+	      <listitem>
+		<para>
+		  The finite <link
+		  linkend="Class-Element">element</link> under
+		  consideration.  This shouldn't be explicitly needed
+		  except in cases in which the material parameters
+		  depend on physical space coordinates or in which
+		  history-dependent fields are stored in the element.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-Flux">Flux</link>
+		*flux</code></term>
+	      <listitem>
+		<para>
+		  The &flux; under consideration.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code><link linkend="Class-FluxData">FluxData</link> *fluxdata</code></term>
+	      <listitem>
+		<para>
+		  The <varname>fluxdata</varname> object stores the
+		  results computed by
+		  <methodname>fluxrhs</methodname>.  It's the same
+		  object that was passed to <link
+		  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>. <link
+		  linkend="Class-FluxData-offset_element"><methodname>FluxData::offset_element</methodname></link>
+		  accumulates offsets, and <link
+		  linkend="Class-FluxData-rhs_element"><methodname>FluxData::rhs_element</methodname></link>
+		  accumulates body forces.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+	      linkend="Class-MasterCoord">MasterPosition</link>
+	      &amp;x</code></term>
+	      <listitem>
+		<para>
+		  Each call to <methodname>fluxrhs</methodname>
+		  evaluates the rhs or flux offset at a given point
+		  within the given <link
+		  linkend="Class-Element"><classname>Element</classname></link>. <varname>x</varname>
+		  is the master space<footnoteref
+		  linkend="footnote-masterspace"/> coordinate of the
+		  point.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+	<para>
+	  Here is the <methodname>fluxrhs</methodname> function from
+	  the <classname>ForceDensity</classname> class, from
+	  <filename>SRC/engine/property/forcedensity/forcedensity.C</filename>
+	  in the &oof2; source code.  It provides an example of a
+	  <emphasis>body force</emphasis>:
+	</para>
+	<programlisting>
+void ForceDensity::fluxrhs(const FEMesh *mesh, const Element *element,
+			      const Flux *flux, FluxData *fluxdata,
+			      const MasterPosition &amp;x) const 
+{
+  if(*flux != *stress_flux) { <co id="fluxrhs:test"/>
+    throw ErrProgrammingError("Unexpected flux", __FILE__, __LINE__); <co id="fluxrhs:error"/>
+  }
+  
+  fluxdata->rhs_element(0) -= gx; <co id="fluxrhs:rhs_element"/>
+  fluxdata->rhs_element(1) -= gy;
+} </programlisting>
+	<calloutlist>
+	  <callout arearefs="fluxrhs:test">
+	    <para>
+	      As in <link
+	      linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>,
+	      above, this is a sanity check.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxrhs:error">
+	    <para>
+	      <classname>ErrProgrammingError</classname> is declared
+	      in <filename>SRC/common/ooferror.h</filename>.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxrhs:rhs_element">
+	    <para>
+	      <code>FluxData::rhs_element(i)</code> returns a
+	      reference to the
+	      <varname>i</varname><superscript>th</superscript>
+	      component of the divergence of the flux.  Some other
+	      <classname>Property</classname> may already have made a
+	      contribution to it, so here its value is changed with
+	      <code>-=</code> instead of <code>=</code>.  All of the
+	      components of the divergence should be addressed.
+	      <note>
+		<para>
+		  As far as <classname>FluxData</classname> is
+		  concerned, the divergence of a symmetric 3&times;3
+		  tensor flux, such as stress, has only 2 components!
+		  This is because the out-of-plane forces are
+		  irrelevant.<footnote>
+		    <para>
+		      If the flux is in-plane, then
+		      <inlineequation>
+			<alt role="tex">\(\sigma_{iz}=0\)</alt>
+		      </inlineequation>
+		      and the out-of-plane force must be zero too.  If
+		      the flux is not in-plane, then
+		      <inlineequation>
+			<alt role="tex">\(\sigma_{iz}\)</alt>
+		      </inlineequation>
+		      will be found during the solution process, and
+		      the out-of-plane forces can be computed.  In
+		      both cases it's meaningless to specify the
+		      forces ahead of time.
+		    </para>
+		  </footnote>
+		  The function <link
+		  linkend="Class-Flux-divergence_dim">Flux::divergence_dim</link>
+		  can be used to find the number of components of the
+		  divergence of a flux.
+		</para>
+	      </note>
+	    </para>
+	  </callout>
+	</calloutlist>
+	<para>
+	  Here is the <methodname>fluxrhs</methodname> method from the
+	  <classname>ThermalExpansion</classname> property, which is
+	  an example of a flux <emphasis>offset</emphasis>.  It
+	  computes the field-independent term
+	  <equation id="Eqn-thermalexpfluxrhs">
+	    <alt role="tex">\(C_{ijkl}\alpha_{kl}T_0\)</alt>
+	  </equation>
+	  The original version can be found in
+	  <filename>SRC/engine/property/thermalexpansion/thermalexpansion.C</filename>
+	  in the &oof2; source code.
+	</para>
+	<programlisting>
+void ThermalExpansion::fluxrhs(const FEMesh *mesh, const Element *element,
+				   const Flux *flux, FluxData *fluxdata,
+				   const MasterPosition &amp;x) const {
+  
+  if(*flux!=*stress_flux) {
+    throw ErrProgrammingError("Unexpected flux." __FILE__, __LINE__);
+  }
+  const Cijkl modulus = elasticity->cijkl(mesh, element, x); <co id="fluxrhs:mod"/>
+
+  for(SymTensorIterator ij; !ij.end(); ++ij) { <co id="fluxrhs:ij"/>
+    double &amp;offset_el = fluxdata->offset_element(mesh, ij); <co id="fluxrhs:offset"/>
+    for(SymTensorIterator kl; !kl.end(); ++kl) { <co id="fluxrhs:kl"/>
+      if(kl.diagonal()) { <co id="fluxrhs:sum"/>
+	offset_el += modulus(ij,kl)*expansiontensor[kl]*tzero_;
+      }
+      else {
+	offset_el += 2.0*modulus(ij,kl)*expansiontensor[kl]*tzero_;
+      }
+    }
+  }
+} </programlisting>
+	<calloutlist>
+	  <callout arearefs="fluxrhs:mod">
+	    <para>
+	      This retrieves the elastic modulus
+	      <inlineequation>
+		<alt role="tex">\(C_{ijkl}\)</alt>
+	      </inlineequation>
+	      from the <classname>Material</classname>'s
+	      <classname>Elasticity</classname> property.  The
+	      variable <varname>elasticity</varname> was set by
+	      this <classname>Property</classname>'s
+	      <methodname>cross_reference</methodname> function, like
+	      this:
+	      <programlisting>
+void ThermalExpansion::cross_reference(Material *mat) {
+  elasticity = dynamic_cast&lt;Elasticity*>(mat->fetchProperty("Elasticity"));
+} </programlisting>
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxrhs:ij">
+	    <para>
+	      This is the loop over components of the flux, just like
+	      item <xref linkend="fluxmatrix:stressloop"/> in the
+	      <methodname>fluxmatrix</methodname> example.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxrhs:offset">
+	    <para>
+	      <code>FluxData::offset_element(i)</code> returns a
+	      reference to a component of the flux offset.  The
+	      variable <varname>i</varname> must be the appropriate
+	      kind of <link
+	      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
+	      or <link
+	      linkend="Class-FieldIterator"><classname>FieldIterator</classname></link>
+	      object.
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxrhs:kl">
+	    <para>
+	      This is the loop over the indices
+	      <inlineequation>
+		<alt role="tex">\(kl\)</alt>
+	      </inlineequation>
+	      in Eq. <xref linkend="Eqn-thermalexpfluxrhs"/>. 
+	    </para>
+	  </callout>
+	  <callout arearefs="fluxrhs:sum">
+	    <para>
+	      The next few lines compute terms in the sum,
+	      accumulating them in the <classname>FluxData</classname>
+	      object.  <methodname>expansiontensor</methodname> is a
+	      <link
+		linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+	      object stored in the
+	      <classname>ThermalExpansion</classname>
+	      object, containing the matrix
+	      <inlineequation>
+		<alt role="tex">\(\alpha_{kl}\)</alt>
+	      </inlineequation>.
+	      The loop <xref linkend="fluxrhs:kl"/> addresses
+	      only the independent symmetric tensor entries
+	      <inlineequation>
+		<alt role="tex">\(kl\)</alt>
+	      </inlineequation>, but the sum in <xref
+		linkend="Eqn-thermalexpfluxrhs"/> includes the other
+	      half of the tensor as well.  Therefore, we need to
+	      include a factor of 2 for the off-diagonal
+	      terms. <varname>tzero_</varname> is <inlineequation>
+		<alt role="tex">\(T_0\)</alt>
+	      </inlineequation>, which is set when the
+	      <classname>ThermalExpansion</classname> object is constructed.
+	    </para>
+	  </callout>
+	</calloutlist>
+      </refsection><!-- fluxrhs -->
+      <refsection id="Class-Property-output">
+	<title><code>void output(..)</code></title>
+	<para>
+	  A <classname>Property</classname>'s
+	  <methodname>output</methodname> function is called when
+	  quantities that depend on the
+	  <classname>Property</classname> are being computed, usually
+	  (but not necessarily) after a solution has been obtained on
+	  a mesh.  Many different kinds of
+	  <classname>PropertyOutputs</classname> can be defined (see
+	  <xref linkend="Section-Coding-Output"/>).  Each
+	  <classname>Property</classname> class's <link
+	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	  indicates which kinds of
+	  <classname>PropertyOutput</classname> the
+	  <classname>Property</classname> can compute.  The
+	  <methodname>output</methodname> function must determine
+	  which <classname>PropertyOutput</classname> is being
+	  computed, get the output's parameter values if necessary,
+	  compute its value at a given point in the mesh, and store
+	  the value in a given <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  object.
+	</para>
+	<para>
+	  The arguments to <methodname>Property::output</methodname>
+	  in C++ are:
+	  <variablelist>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-FEMesh">FEMesh</link> *mesh</code></term>
+	      <listitem>
+		<para>
+		  The mesh on which the output is being computed. The
+		  <methodname>output</methodname> function will
+		  probably not need to use this variable directly, but
+		  must pass it through to other functions.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+		    linkend="Class-Element">Element</link> *element</code></term>
+	      <listitem>
+		<para>
+		  The element of the mesh containing the point at
+		  which output values are desired.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link
+		    linkend="Class-PropertyOutput">PropertyOutput</link> *output</code></term>
+	      <listitem>
+		<para>
+		  The <classname>PropertyOutput</classname> object being
+		  computed.  The object is created by the &oof2; menu
+		  system and, depending on the type of output, may
+		  contain Python arguments specifying exactly what's
+		  to be computed.  For example, a strain output will
+		  specify whether it's computing the total,
+		  elastic, thermal or other variety of strain. See the
+		  example <link
+		    linkend="Class-Property-output-example">below</link>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code>const <link linkend="Class-MasterCoord">MasterPosition</link> &amp; pos</code></term>
+	      <listitem>
+		<para>
+		  The position in the element's master coordinate
+		  space<footnoteref linkend="footnote-masterspace"/>
+		  at which the output is to be computed.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><code><link
+		    linkend="Class-OutputVal">OutputVal</link> *data</code></term>
+	      <listitem>
+		<para>
+		  The object in which the computed data should be
+		  stored.  In C++, the object must be first cast to an
+		  appropriate derived type.  The new value should be
+		  <emphasis>added</emphasis> to
+		  <varname>data</varname>, to ensure that values
+		  computed by other <classname>Properties</classname>
+		  are retained.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+	<para>
+	  In Python, the arguments are the same, except that there's
+	  no <varname>data</varname> argument.  Instead, the function
+	  <emphasis>returns</emphasis> an <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  (of the appropriate type) containing the
+	  <classname>Property</classname>'s contribution to the output
+	  quantity.
+	</para>
+	<para id="Class-Property-output-example">
+	  Here is an example of a fairly complicated
+	  <methodname>output</methodname> function, from
+	  <filename>SRC/engine/property/thermalexpansion/thermalexpansion.C</filename>
+	  in the &oof2; source code.  It computes one of two types of
+	  output, <literal>Strain</literal> and
+	  <literal>Energy</literal>, each of which has two variants.
+	</para>
+	<programlisting>
+void ThermalExpansion::output(const FEMesh *mesh,
+				  const Element *element,
+				  const PropertyOutput *output,
+				  const MasterPosition &amp;pos,
+				  OutputVal *data)
+  const 
+{
+  const std::string &amp;outputname = output->name(); <co id="output:name"/>
+  if(outputname == "Strain") {
+    // The parameter is a Python StrainType instance.  Extract its name.
+    std::string stype = output->getRegisteredParamName("type"); <co id="output:paramname"/>
+    SymmMatrix3 *sdata = dynamic_cast&lt;SymmMatrix3*>(data); <co id="output:cast"/>
+    // Compute alpha*T with T interpolated to position pos
+    const OutputValue tfield = element->outputField(mesh, *temperature, pos); <co id="output:T"/>
+    const ScalarOutputVal *tval = 
+      dynamic_cast&lt;const ScalarOutputVal*>(tfield.valuePtr()); <co id="output:Tcast"/>
+    double t = tval->value(); <co id="output:Tfinally"/>
+    
+    if(stype == "Thermal") <co id="output:stype"/>
+      *sdata += expansiontensor*(t-tzero_);
+    else if(stype == "Elastic")
+      *sdata -= expansiontensor*(t-tzero_);
+  } // strain output ends here
+
+  if(outputname == "Energy") {
+    // The parameter is a Python Enum instance.  Extract its name.
+    std::string etype = output->getEnumParam("etype"); <co id="output:paramenum"/>
+    if(etype == "Total" || etype == "Elastic") { <co id="output:etype"/>
+      ScalarOutputVal *edata = 
+	dynamic_cast&lt;ScalarOutputVal*>(data); <co id="output:edata"/>
+      SymmMatrix3 thermalstrain;
+      const Cijkl modulus = elasticity->cijkl(mesh, element, pos); <co id="output:modulus"/>
+      const OutputValue tfield = element->outputField(mesh, *temperature, pos); <co id="output:T2"/>
+      const ScalarOutputVal *tval = 
+	dynamic_cast&lt;const ScalarOutputVal*>(tfield.valuePtr());
+      double t = tval->value();
+      thermalstrain = expansiontensor*(t-tzero_);
+      SymmMatrix3 thermalstress(modulus*thermalstrain);
+      SymmMatrix3 strain;
+      findGeometricStrain(mesh, element, pos, strain); <co id="output:geomstrain"/>
+      double e = 0;
+      for(int i=0; i&lt;3; i++) { <co id="output:esum"/>
+	e += thermalstress(i,i)*strain(i,i);
+	int j = (i+1)%3;
+	e += 2*thermalstress(i,j)*strain(i,j);
+      }
+      *edata += -0.5*e;
+    }
+  } //energy output ends here
+} </programlisting>
+	<calloutlist>
+	  <callout arearefs="output:name">
+	    <para>
+	      The name of the output indicates what type of quantity
+	      is to be computed.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:paramname">
+	    <para>
+	      This call to
+	      <methodname>PropertyOutput::getRegisteredParamName</methodname>
+	      retrieves the <classname>PropertyOutput</classname>'s
+	      <literal>type</literal> parameter.  Parameters for <link
+	      linkend="Class-PropertyOutput"><classname>PropertyOutputs</classname></link>
+	      are defined in their <link
+	      linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistrations</classname></link>.
+	      The <link
+	      linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+	      class provides a number of functions for retrieving
+	      parameters of different kinds (integer, float, string,
+	      <foreignphrase>etc.</foreignphrase>).  In this case,
+	      <varname>type</varname> is a <link
+	      linkend="Class-RegisteredParameter"><classname>RegisteredParameter</classname></link>,
+	      so we use
+	      <methodname>getRegisteredParamName</methodname> to
+	      retrieve its name.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:cast">
+	    <para>
+	      Because we know that this is a <literal>Strain</literal>
+	      output, we can cast the <varname>data</varname> pointer
+	      from its base class, <classname>OutputVal</classname>,
+	      to its derived class, <link
+	      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>,
+	      which holds a 3&times;3 symmetric matrix output value.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:T">
+	    <para>
+	      <classname>ThermalExpansion</classname>'s contribution
+	      to the strain depends on the value of the Temperature
+	      &field;.  The variable <varname>temperature</varname>
+	      was set during the
+	      <classname>ThermalExpansion</classname> constructor,
+	      like this:
+
+	      <programlisting>
+temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </programlisting>
+
+	      This line calls <link
+	      linkend="Class-Element-outputField"><methodname>Element::outputField</methodname></link>
+	      to evaluate the temperature at the given position,
+	      <varname>pos</varname>.  The return value is an <link
+	      linkend="Class-OutputValue"><classname>OutputValue</classname></link>,
+	      which is a generic wrapper around different kinds of
+	      <link
+	      linkend="Class-OutputVal"><classname>OutputVals</classname></link>.
+	      The generic wrapper allows different types of outputs to
+	      be handled by the same code elsewhere in &oof2;.  Here,
+	      however, it's a bit of a nuisance since we
+	      <emphasis>know</emphasis> that the temperature is a
+	      scalar field.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:Tcast">
+	    <para>
+	      This line peels off the wrapper around the <link
+	      linkend="Class-ScalarOutputVal"><classname>ScalarOutputVal</classname></link>
+	      contained within the <classname>OutputValue</classname>
+	      retrieved in <xref linkend="output:T"/>.  For different
+	      types of &field;, make sure to use the correct <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      subclass.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:Tfinally">
+	    <para>
+	      This line extracts the actual temperature from the
+	      <classname>ScalarOutputVal</classname>. Whew!<footnote>
+		<para>
+		  This method of obtaining a field value may seem
+		  baroque, especially for a scalar field, but it's
+		  necessary for preserving generality.  We may
+		  implement a short-cut for scalar fields in the
+		  future.
+		</para>
+	      </footnote>
+	    </para>
+	  </callout>
+	  <callout arearefs="output:stype">
+	    <para>
+	      These lines add the thermal expansion contribution to
+	      the strain, with the appropriate sign (depending on the
+	      type of strain being computed).
+	      <varname>expansiontensor</varname> is a <link
+	      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+	      object which can be added directly to
+	      <varname>*sdata</varname>, which is the
+	      <classname>SymmMatrix3</classname> cast of
+	      <varname>data</varname>.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:paramenum">
+	    <para>
+	      The <varname>etype</varname> parameter for the
+	      <literal>Energy</literal> <link
+	      linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+	      is an <link
+	      linkend="Class-EnumParameter"><classname>EnumParameter</classname></link>
+	      instance, representing the <link
+	      linkend="Enum-EnergyType"><classname>EnergyType</classname></link>
+	      &oof2; <link
+	      linkend="Section-Enums"><classname>Enum</classname></link>.
+	      The function <link
+	      linkend="Class-PropertyOutput-getEnumParam"><methodname>PropertyOutput::getEnumParam</methodname></link>
+	      retrieves the value of the parameter, and returns its
+	      name.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:etype">
+	    <para>
+	      There are many different types of
+	      <literal>Energy</literal> output, but this
+	      <classname>Property</classname> only contributes to
+	      these two.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:edata">
+	    <para>
+	      Energy is a scalar, so the
+	      <classname>OutputVal</classname> that was passed in is
+	      really a <link
+	      linkend="Class-ScalarOutputVal"><classname>ScalarOutputVal</classname></link>.
+	      It must be cast to the derived class in order to be
+	      used.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:modulus">
+	    <para>
+	      See <xref linkend="fluxrhs:mod"/> in the <link
+	      linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>
+	      discussion.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:T2">
+	    <para>
+	      See <xref linkend="output:T"/>, <xref
+	      linkend="output:Tcast"/>, and <xref
+	      linkend="output:Tfinally"/>.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:geomstrain">
+	    <para>
+	      <function>findGeometricStrain</function>
+	      is defined in <filename>SRC/engine/cstrain.C</filename>
+	      and declared in
+	      <filename>SRC/engine/cstrain.h</filename>.  It computes
+	      <inlineequation>
+		<alt role="tex">\(\epsilon_{ij}=0.5(\partial u_i/\partial x_j
+		  + \partial u_j/\partial x_i)\)
+		</alt>
+	      </inlineequation>
+	      where
+	      <inlineequation>
+		<alt role="tex">\(u\)</alt>
+	      </inlineequation>
+	      is the displacement field.
+	    </para>
+	  </callout>
+	  <callout arearefs="output:esum">
+	    <para>
+	      This loop computes the contribution of thermal
+	      expansion to the elastic energy.
+	    </para>
+	  </callout>
+	</calloutlist>
+      </refsection><!-- output -->
+      <refsection id="Class-Property-is_symmetric">
+	<title><code>bool is_symmetric(const CSubProblem *mesh) const</code></title>
+	<para>
+	  <methodname>is_symmetric</methodname> indicates whether or
+	  not the finite element stiffness matrix constructed from the
+	  <classname>Property</classname> can be made symmetric by
+	  using the <link
+	  linkend="Section-Coding-Conjugates">relationships</link>
+	  established by <link
+	  linkend="Function-conjugatePair"><function>ConjugatePair</function></link>
+	  calls.
+	</para>
+	<para>
+	  In most cases <function>is_symmetric</function> will simply
+	  return <literal>true</literal>, if the matrix can be
+	  symmetrized, or <literal>false</literal>, if it can't.  Some
+	  cases are more complicated, however.  For example, thermal
+	  expansion makes the matrix asymmetric if the temperature
+	  field is an active field, because the thermal expansion
+	  <classname>Property</classname> couples the temperature
+	  (with no derivatives) to the <emphasis>gradient</emphasis>
+	  of the displacement.  Therefore, in the
+	  <classname>ThermalExpansion</classname> class,
+	  <methodname>is_symmetric</methodname> is defined like this:
+	</para>
+	<programlisting>
+bool ThermalExpansion::is_symmetric(const CSubProblem* subproblem) const {
+  Equation *forcebalance = Equation::getEquation("Force_Balance");
+  return !(forcebalance->is_active(subproblem) &amp;&amp;
+	   temperature->is_defined(subproblem) &amp;&amp;
+	   temperature->is_active(subproblem));
+} </programlisting>
+      </refsection><!-- is_symmetric -->
+    </refsection><!-- Methods -->
+  </refentry><!-- Property -->
+
+  <refentry id="Class-PropertyRegistration">
+    <refnamediv>
+      <refname>PropertyRegistration</refname>
+      <refpurpose>Register new Properties</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <literallayout class="monospaced">
+from oof2.engine.propertyregistration import PropertyRegistration
+
+class PropertyRegistration:
+   def __init__(self, name, subclass, modulename, ordering,
+                params=[], fields=[], fluxes=[],
+                propertyType=None, outputs=[],
+                nonlinear=0, secret=0,
+                tip=parameter.emptyTipString, discussion=parameter.emptyTipString)
+	    </literallayout>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	Every new <link
+	linkend="Class-Property"><classname>Property</classname></link>
+	class must have a single
+	<classname>PropertyRegistration</classname> object.  The
+	<classname>PropertyRegistration</classname> contains meta-data
+	about the <classname>Property</classname> and inserts it in
+	the global list of all <classname>Property</classname>
+	classes, which allows it to appear in the user interface.
+      </para>
+      <para>
+	<classname>PropertyRegistrations</classname> are defined only
+	in Python, even for <classname>Properties</classname> that are
+	defined in C++.  This means that all C++
+	<classname>Property</classname> subclasses must be swigged.  It's
+	sufficient to swig the class and the constructor.  Other
+	methods do not have to be made available in Python.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title><classname>PropertyRegistration</classname> constructor parameters</title>
+      <para>
+	The only required parameters are <varname>name</varname>,
+	<varname>subclass</varname>, <varname>modulename</varname>,
+	and <varname>ordering</varname>.  The others can all be
+	omitted if they're not needed for a particular
+	<classname>Property</classname>.  The default values for the
+	optional parameters are given in the synopsis, above.
+      </para>
+      <para>
+	When creating a <classname>PropertyRegistration</classname>,
+	it's advisable to use Python keyword arguments so that it's
+	clear which parameters have been omitted.
+      </para>
+      <variablelist>
+	<varlistentry>
+	  <term><varname>name</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>name</varname> is a string containing the name
+	      of the <classname>Property</classname>, as it will
+	      appear in scripts and in the GUI.  In the GUI,
+	      <classname>Properties</classname> are arranged <link
+	      linkend="Section-Materials-Property">hierarchically</link>
+	      in a tree.  The <varname>name</varname> is a colon
+	      separated string, in which each segment is a branch of
+	      the <classname>Property</classname> tree.  For example,
+	      the cubic elasticity property's <varname>name</varname>
+	      is
+	      <literal>Mechanical:Elasticity:Anisotropic:Cubic</literal>,
+	      and it appears in the GUI like this:
+	      <informalfigure>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propertyhier.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propertyhier.eps"
+		      format="EPS"/>
+		  </imageobject>
+		</mediaobject>
+	      </informalfigure>
+	    </para>
+	  </listitem>
+	</varlistentry><!-- name -->
+	<varlistentry>
+	  <term><varname>subclass</varname></term>
+	  <listitem>
+	    <para>
+	      This is the <link
+	      linkend="Class-Property"><classname>Property</classname></link>
+	      class that is being registered.  It must either be a
+	      swigged C++ <classname>Property</classname> subclass, a
+	      Python class derived from a swigged C++
+	      <classname>Property</classname> subclass, or a Python
+	      class derived from <link
+	      linkend="Class-PyPropertyWrapper"><classname>PyPropertyWrapper</classname></link>.
+	      Note that the argument is the actual
+	      <emphasis>class</emphasis>, not an instance of the
+	      class.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- subclass -->
+	<varlistentry>
+	  <term><varname>modulename</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>modulename</varname> is a string containing the
+	      name of the Python module in which the Python interface
+	      to the class is defined.  For example, if the
+	      <application>swig</application> output file is
+	      <filename>shoofly.py</filename> in directory
+	      <filename>XYZ</filename> which is in the Python path,
+	      then <varname>modulename</varname> would be
+	      <literal>'XYZ.shoofly'</literal>.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- modulename -->
+	<varlistentry>
+	  <term><varname>ordering</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>ordering</varname> determines this
+	      <classname>Property</classname>'s position when listed
+	      in the GUI.  It has no other significance.  It can be
+	      either an integer or a floating point number.  (Nodes of
+	      the <classname>Property</classname> tree in the GUI are
+	      listed in order of increasing
+	      <varname>ordering</varname>.  The
+	      <varname>ordering</varname> of an intermediate node in
+	      the tree is taken to be the smallest
+	      <varname>ordering</varname> of any of its children.)
+	    </para>
+	  </listitem>
+	</varlistentry><!-- ordering -->
+	<varlistentry>
+	  <term><varname>params</varname></term>
+	  <listitem>
+	    <para>
+	      The arguments for every
+	      <classname>Property</classname>'s constructor are a
+	      name, a registration, and a variable number of
+	      additional values that quantify the
+	      <classname>Property</classname>'s behavior.  These
+	      additional arguments are determined by the
+	      <classname>PropertyRegistration</classname>'s
+	      <varname>params</varname> argument.
+	      <varname>params</varname> is a Python list of <link
+	      linkend="Class-Parameter"><classname>Parameter</classname></link>
+	      subclass instances.  Each entry in the list specifies a
+	      type (which is implied by the
+	      <classname>Parameter</classname> subclass), a
+	      constructor argument name, a default value, and a help
+	      string.  The parameters <emphasis>must</emphasis>
+	      appear in the same order in the
+	      <varname>params</varname>list as they do in the
+	      <classname>Property</classname>'s constructor's argument
+	      list.
+	    </para>
+	    <para>
+	      For example, a mass density
+	      <classname>Property</classname> could have a
+	      <classname>FloatParameter</classname> called
+	      <literal>density</literal>,
+
+	      <programlisting>
+params=[FloatParameter('density', value=1.0, tip='mass density')] </programlisting>
+
+	       while a triclinic thermal expansion
+	      <classname>Property</classname> would have a
+	      <classname>TriclinicRank2TensorParameter</classname>
+	      (for the modulus) and a
+	      <classname>FloatParameter</classname> for the
+	      zero-stress temperature:
+
+	      <programlisting>
+params = [TriclinicRank2TensorParameter(
+                     name='alpha',
+                     value=TriclinicRank2Tensor(xx=1, yy=1, zz=1),
+                     tip='Thermal expansion tensor'),
+          FloatParameter('T0', 0.0, tip='Stress free temperature')
+         ] </programlisting>
+
+	    </para>
+	    <para>
+	      See <xref linkend="Class-Parameter"/> for a list of all
+	      of &oof2;'s built-in
+	      <classname>Parameter</classname> types and their
+	      constructor arguments.
+	    </para>
+	    <para>
+	    </para>
+	  </listitem>
+	</varlistentry><!-- params -->
+	<varlistentry>
+	  <term><varname>fields</varname></term>
+	  <listitem>
+	    <para>
+	      This is a list of <link
+	      linkend="Class-Field"><classname>Field</classname></link>
+	      objects, indicating which <classname>Fields</classname>
+	      the <classname>Property</classname> depends upon.  The
+	      <classname>Property</classname> will not be used unless
+	      all of the <classname>Fields</classname> in the list are
+	      <link
+	      linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>
+	      on the mesh being solved.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- fields -->
+	<varlistentry>
+	  <term><varname>fluxes</varname></term>
+	  <listitem>
+	    <para>
+	      This is a list of <link
+	      linkend="Class-Flux"><classname>Flux</classname></link>
+	      objects, indicating which <classname>Fluxes</classname>
+	      the <classname>Property</classname> contributes to.  The
+	      <classname>Property</classname> will not be used unless
+	      some of the <classname>Fluxes</classname> in the list
+	      are used in the <link
+	      linkend="MenuItem-OOF.Mesh.Equation.Activate">active</link>
+	      <link
+	      linkend="Class-Equation"><classname>Equations</classname></link>.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- fluxes -->
+	<varlistentry>
+	  <term><varname>propertyType</varname></term>
+	  <listitem>
+	    <para>
+	      The <varname>propertyType</varname> is a string that
+	      categorizes the <classname>Property</classname>.  No two
+	      <classname>Properties</classname> in a &material; can
+	      have the same <varname>propertyType</varname>.  The
+	      function <link
+	      linkend="Class-Material-fetchProperty"><methodname>Material::fetchProperty</methodname></link>
+	      locates <classname>Properties</classname> by their
+	      <varname>propertyType</varname>.
+	    </para>
+	    <para>
+	      When registering a new <classname>Property</classname>,
+	      it's important to use the same
+	      <varname>propertyType</varname> that was used for other
+	      <classname>Properties</classname> of that type.  The
+	      existing &oof2; <varname>propertyTypes</varname> are
+	      given in <xref linkend="Table:PropertyTypes"/>.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- propertyType -->
+	<varlistentry>
+	  <term><varname>outputs</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>outputs</varname> is a list of strings, each
+	      one the <emphasis>name</emphasis> of an <link
+	      linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+	      to which the <classname>Property</classname>'s <link
+	      linkend="Class-Property-output"><methodname>output</methodname></link>
+	      function contributes.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- output -->
+	<varlistentry>
+	  <term><varname>nonlinear</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>nonlinear</varname> should be set to 1 if
+	      nonlinear solvers will be needed to solve a mesh
+	      containing this <classname>Property</classname>.
+	      Generally, this means that the
+	      <classname>Property</classname> contains quantities that
+	      are <classname>Field</classname> dependent.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- nonlinear -->
+	<varlistentry>
+	  <term><varname>secret</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>secret</varname> should be set to 1 if the
+	      <classname>Property</classname> shouldn't appear in the
+	      GUI.  This should not be used except by those who know
+	      what they're doing.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- secret -->
+	<varlistentry>
+	  <term><varname>tip</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>tip</varname> is a short string describing the
+	      <classname>Property</classname>.  It should be something
+	      suitable for displaying as a pop-up tooltip in the GUI.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- tip -->
+	<varlistentry>
+	  <term><varname>discussion</varname></term>
+	  <listitem>
+	    <para>
+	      <varname>discussion</varname> is a longer string
+	      describing the <classname>Property</classname>, meant to
+	      be included in the &oof2; manual.  The string should be
+	      written in <ulink url="http://docbook.org/"
+	      role="external">DocBook XML</ulink>.  The manual will
+	      embed it inside a <literal>&lt;refsect1&gt;</literal>
+	      element.<footnote>
+		<para>
+		  The simplest legal <varname>discussion</varname> string
+		  has the form
+		  <blockquote>
+		    <literallayout class="monospaced">
+&lt;para&gt;blah blah blah&lt;/para&gt;
+		    </literallayout>
+		  </blockquote>
+		</para>
+	      </footnote>
+	    </para>
+	    <para>
+	      Since it's often inconvenient to include large blocks of
+	      text inside a
+	      <classname>PropertyRegistration</classname>, the text
+	      can be put into a separate file.  The file name can be
+	      passed to the function <function>loadFile</function>
+	      from the <code>oof2.common.IO.xmlmenudump</code> module.
+	      Then <varname>discussion</varname> should be set to the
+	      return value from
+	      <function>loadFile</function>. (<function>loadFile</function>
+	      doesn't actually read the file unless the users manual
+	      is being generated, so there's no cpu or memory used
+	      when doing it this way, and the file often doesn't even
+	      have to be distributed with the code.)  In any case, the
+	      <varname>discussion</varname> argument is optional.  A
+	      generic message will be generated if it's absent.
+	    </para>
+	  </listitem>
+	</varlistentry><!-- discussion -->
+      </variablelist>
+    </refsection><!-- Parameters -->
+    <refsection id="Class-PropertyRegistration-PropertyType">
+      <title>Property Types</title>
+      <para>
+	The following table lists the <varname>propertyTypes</varname>
+	used in &oof2; <classname>PropertyRegistrations</classname>.
+	Not all of the types listed here are fully available yet
+	&mdash; some are still in development or reserved for future
+	use.
+      </para>
+      <table id="Table:PropertyTypes">
+	<title>Property Types</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry><simpara><varname>propertyType</varname></simpara></entry>
+	      <entry><simpara>Description</simpara></entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>
+		<simpara><literal>'ChargeDensity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Spatial charge distribution</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'DielectricPermittivity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Dielectric permittivity</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Elasticity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Elastic modulus</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'ForceDensity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Externally applied body force density</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Heat Source'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Heat sources and sinks</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'HeatCapacity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Heat capacity</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'MassDensity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Mass density, for dynamic equations</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Orientation'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Crystalline orientation</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'PiezoElectricity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Piezoelectric modulus</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Plasticity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Plastic deformation rules</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'ThermalConductivity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Thermal conductivity</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'ThermalExpansion'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Thermal expansion tensor and stress-free
+		  temperature</simpara>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </refsection><!-- Property Types -->
+  </refentry><!-- PropertyRegistration -->
+
+  <refentry id="Class-Material">
+    <refnamediv>
+      <refname>Material</refname>
+      <refpurpose>Collection of Properties</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/material.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>Material</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>Property*</type>
+	    <methodname><link
+		linkend="Class-Material-fetchProperty">fetchProperty</link></methodname>
+	    <methodparam>
+	      <type>const std::string&amp;</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import material</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Material</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Material-fetchProperty">fetchProperty</link></methodname>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>Material</classname> class contains a list of
+	all of the <link
+	linkend="Class-Property"><classname>Properties</classname></link>
+	that define a physical material.  It coordinates the
+	construction of the finite element stiffness matrix and
+	handles various other bookkeeping tasks.  Most of the details
+	of the class are irrelevant to the authors of &oof2; extensions.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	This section only discusses the
+	<classname>Material</classname> methods that are important
+	when writing &oof2; extensions.  In particular, it does
+	<emphasis>not</emphasis> discuss constructors or destructors,
+	or how to add <link
+	linkend="Class-Property"><classname>Properties</classname></link>
+	to <classname>Materials</classname>.  Those tasks are
+	performed by the GUI and the &oof2; menu system.
+      </para>
+      <refsection id="Class-Material-fetchProperty">
+	<title><code>Property* fetchProperty(const std::string&amp; name) const</code></title>
+	<para>
+	  &oof2; <link
+	  linkend="Class-Property"><classname>Properties</classname></link>
+	  are sorted into categories called <link
+	  linkend="Class-PropertyRegistration-PropertyType">propertyTypes</link>.
+	  Each <classname>Material</classname> can have at most one
+	  <classname>Property</classname> of each type.
+	  <methodname>fetchProperty</methodname> looks through the
+	  <classname>Material</classname>'s
+	  <classname>Properties</classname> and returns the one whose
+	  type is specified by the given <varname>name</varname>.  If
+	  there is no such <classname>Property</classname>, an
+	  exception is thrown.
+	</para>
+	<para>
+	  <methodname>fetchProperty</methodname> is meant to be called
+	  by a <classname>Property</classname>'s <link
+	  linkend="Class-Property-cross_reference"><methodname>cross_reference</methodname></link>
+	  function, in order to resolve dependencies on other
+	  <classname>Properties</classname> within the
+	  <classname>Material</classname>.  For example, an Elasticity
+	  <classname>Property</classname> needs to use the Orientation
+	  <classname>Property</classname> in order to compute the
+	  laboratory frame elasticity tensor. 
+	</para>
+	<para>
+	  In C++, <methodname>fetchProperty</methodname> returns a
+	  pointer to a base class <link
+	  linkend="Class-Property"><classname>Property</classname></link>
+	  object.  This pointer must be dynamically cast to the
+	  appropriate <classname>Property</classname> subclass.  The
+	  correct subclass is always known from the context.  In
+	  Python, <methodname>fetchProperty</methodname> automatically
+	  returns a reference to a <classname>Property</classname> of
+	  the appropriate derived type.
+	</para>
+      </refsection><!-- fetchProperty -->
+    </refsection><!-- Methods -->
+  </refentry><!-- Material -->
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

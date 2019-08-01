@@ -1,0 +1,101 @@
+<!-- 
+  $RCSfile: ss22.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-27 21:32:31 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>SS22</classname> is a <xref
+  linkend="RegisteredClass-TimeStepper"/> that implements the SS22
+  algorithm from Zienkiewicz and Taylor<footnote><simpara>
+  O.C. Zienkiewicz and R.L. Taylor, <emphasis>The Finite Element
+  Method</emphasis>, Fifth Edition, Volume 1, page
+  511.</simpara></footnote>.  Like <xref
+  linkend="RegisteredClass-CrankNicolson"/>, it is a second order
+  method, so its error is of order <inlineequation><alt role="tex">\(
+  (\Delta t)^3 \) </alt></inlineequation> on each step.  Unlike <xref
+  linkend="RegisteredClass-CrankNicolson"/> and the other time
+  steppers in &oof2;, <classname>SS22</classname> integrates second
+  order time derivatives directly, without resorting to equation <xref
+  linkend="Eqn-Augmented"/>.
+</para>
+<para>
+  <classname>SS22</classname> works by expanding the field values
+  <inlineequation><alt role="tex">\(\phi\)</alt></inlineequation> in a
+  Taylor series in time
+ <equation id="Eqn-SS22expansion">
+    <alt role="tex">
+      \[ \phi = \phi_n + \tau\dot\phi_n + \frac12 \tau^2\alpha_n \]
+    </alt>
+  </equation>
+  where <inlineequation><alt
+  role="tex">\(\phi_n\)</alt></inlineequation> and
+  <inlineequation><alt
+  role="tex">\(\dot\phi_n\)</alt></inlineequation> are vectors of
+  &field; values and their time derivatives at time
+  <inlineequation><alt role="tex">\(t_n\)</alt></inlineequation>,
+  <inlineequation><alt role="tex">\(\tau =
+  t-t_n\)</alt></inlineequation> is the time within the time step, and
+  <inlineequation><alt role="tex">\(\alpha_n\)</alt></inlineequation>
+  is unknown.  This expression is inserted into the differential
+  equation being solved (<foreignphrase>e.g,</foreignphrase> equation
+  <xref linkend="Eqn-TimeDivergence"/>) and integrated over the
+  duration <inlineequation><alt role="tex">\(\Delta
+  t\)</alt></inlineequation> of the time step with a weighting
+  function <inlineequation><alt
+  role="tex">\(W(\tau)\)</alt></inlineequation>.  <inlineequation><alt
+  role="tex">\(W(\tau)\)</alt></inlineequation> plays the role of a
+  finite element shape function in the time coordinate.  The result is
+  a matrix equation which can be solved for <inlineequation><alt
+  role="tex">\(\alpha_n\)</alt></inlineequation>, which in turn gives
+  the &field; values and time derivatives at the end of the step, via
+  equation <xref linkend="Eqn-SS22expansion"/>.
+</para>
+<para>
+  The exact form of the weighting function <inlineequation><alt
+  role="tex">\(W(\tau)\)</alt></inlineequation> turns out to be
+  irrelevant.  All that is needed are its first and second moments,
+  which must be provided as the parameters <varname>theta1</varname>
+  and <varname>theta2</varname>.  The k-th moment is defined by
+  <equation id="Eqn-SS22weight">
+    <alt role="tex">
+      \[
+      \theta_k = \frac1{\Delta t^k}
+      \frac{\int_0^{\Delta t} W(\tau) \tau^k\,d\tau}
+      {\int_0^{\Delta t} W(\tau)\,d\tau}
+      \]
+    </alt>
+  </equation>
+  Using small values near 0 will make <classname>SS22</classname> act
+  more like an explicit method, and values near 1 will make it more
+  like an implicit method.  Values near 0.5 seem to work well.
+</para>
+<para>
+  <classname>SS22</classname> can be used on first order equations,
+  such as the heat equation, although it's most advantageous for
+  second order equations, like the force balance equation.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

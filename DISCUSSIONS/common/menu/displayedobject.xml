@@ -1,0 +1,54 @@
+<!-- 
+  $RCSfile: displayedobject.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:15 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command changes which object the &layers; in a &layerset;
+    will display.  In the GUI, the command is invoked by changing the
+    <guilabel>category</guilabel> and <guilabel>object</guilabel>
+    menus in the <guilabel>Displayed Object</guilabel> pane of the
+    &layereditor;.
+  </para>
+  <para>
+    The <varname>category</varname> argument is the name of a class of
+    displayable &oof2; objects: one of &micro;, &image;, &skel;,
+    &mesh;, <link
+    linkend="Section-Concepts-Microstructure-ActiveArea"><classname>Active
+    Area</classname></link>, or <link
+    linkend="Section-Concepts-Microstructure-PixelSelection"><classname>Pixel
+    Selection</classname></link>.  In the GUI, changing the category
+    invalidates all of the <link
+    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>
+    listed in the right hand pane of the &layereditor; window.
+  </para>
+  <para>
+    The <varname>object</varname> argument is the <link
+      linkend="Section-Concepts-Path">path</link> to an existing
+    object in the selected <varname>category</varname>.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

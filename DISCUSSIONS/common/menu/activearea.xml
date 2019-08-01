@@ -1,0 +1,164 @@
+<!-- 
+  $RCSfile: activearea.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:14 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Active Areas provide a mechanism for restricting the scope of
+    &oof2; operations to a portion of a &micro;.  The Active Area is
+    defined in terms of a set of pixels, called the <quote>active
+    pixels</quote>. Pixel operations will be restricted to active
+    pixels.  Operations on &skel; &nodes; will be restricted to &nodes;
+    with positions inside active pixels.  Active &skel; &elems; are
+    defined as &elems; with at least one active &node;, and active
+    &skel; &sgmts; are those with an active &node; at either end.  Thus
+    active &elems; and &nodes; can extend outside the Active Area.
+  </para>
+  <para>
+    This menu contains commands for manipulating Active Areas.  &oof2;
+    maintains a list of previously used Active Areas, so it's possible
+    to go back and reuse old areas.  It's also possible to assign
+    names to Active Areas to make it easier to store and recall them.
+  </para>
+  <caution>
+    <para>
+      Not all &oof2; operations respect the Active Area.  Most &skel;
+      and &micro; operations do (such as <link
+      linkend="RegisteredClass-Refine">element refinement</link> or
+      <link linkend="MenuItem-OOF.PixelSelection">pixel
+      selection</link>), but most &image; and &mesh; operations do
+      not.<footnote>
+	<simpara>
+	  &image; modifications do not use the Active Area because
+	  they are mostly implemented by external libraries which
+	  don't know about &oof2; internal structures.
+	</simpara>
+      </footnote>
+      In particular, none of the <command>Undo</command> or
+      <command>Redo</command> commands pay any attention to Active
+      Areas -- they can change &micros; or &skels; in inactive
+      regions.
+    </para>
+  </caution>
+  <para>
+    Like pixel selections, Active Areas all belong to a particular
+    &micro;.  Activating pixels in one &micro; has no effect on pixels
+    in another &micro;.  It's possible to <link
+    linkend="MenuItem-OOF.ActiveArea.Copy"><command>Copy</command></link>
+    an Active Area from one &micro; to another, though.
+  </para>
+  <para>
+    <xref linkend="Figure-Active"/> shows how the Active Area is used
+    for pixels, &elems;, &nodes;, and &sgmts;.  When an Active Area is
+    being used, the inactive pixels are dimmed in &image; and &micro;
+    <link
+    linkend="RegisteredClass-DisplayMethod">displays</link>. (Inactive
+    &skel; components are <emphasis>not</emphasis> dimmed,
+    unfortunately.)  The amount of dimming can be adjusted by editing
+    the <xref linkend="RegisteredClass-BitmapOverlayDisplayMethod"/>
+    for the Active Area in the &layereditor;.
+  </para>
+  <figure id="Figure-Active">
+    <title>Active Area Example</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/active1.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/active1.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  A circular active area.  The inactive pixels are dimmed.  A
+	  rectangular selection is being made with the <link
+	  linkend="Section-Graphics-PixelSelection">Pixel
+	  Selection</link> toolbox.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/active2.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/active2.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  Only those pixels within the active area are selected,
+	  although the selection rectangle extended beyond it.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/activenodes.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/activenodes.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  A &skel; has been created, and the active &nodes; have been
+	  selected and highlighted in yellow.  Note that the &skel;
+	  has not been dimmed in the inactive region.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/activeelements.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/activeelements.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  All of the active &elems; have been selected.  Note that
+	  they extend into the inactive region, because an &elem;
+	  needs only one active &node; to be active.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/activesegments.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/active/activesegments.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  All of the active &sgmts; have been selected.  They also
+	  extend into the inactive region, because active &sgmts;
+	  only need to have one active &node;.
+	</simpara>
+      </caption>
+    </mediaobject>
+  </figure>
+  
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

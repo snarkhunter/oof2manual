@@ -1,0 +1,58 @@
+<!-- 
+  $RCSfile: axis2hsv.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:36 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>Axis2HSV</classname> is an <xref
+    linkend="RegisteredClass-Angle2Color"/> that converts the <xref
+    linkend="RegisteredClass-Axis"/> representation of an orientation
+    into an <xref linkend="RegisteredClass-HSVColor"/>.
+  </para>
+  <para>
+    The direction of the orientation's axis of rotation is represented
+    by a declination &thgr; and an azimuth &phgr;.
+    <classname>Axis2HSV</classname> maps the cosine of &thgr; into the
+    HSV <varname>value</varname>, so that an orientation with &thgr;=0
+    is bright and &thgr;=180 is black.  It maps the azimuth &phgr;
+    into the HSV <varname>hue</varname>, so that &phgr;=&plusmn;180 is
+    red and &phgr;=0 is cyan.
+  </para>
+  <para>
+    The orientation's angle of rotation about the axis, &psgr;, is
+    mapped to the HSV <varname>saturation</varname>, so that &psgr;=0
+    is fully unsaturated (white, gray, or black), and &psgr;=1 is
+    fully saturated.
+  </para>
+  <para>
+    Note that this isn't a great way to convert orientations to
+    angles, because small changes in orientation can result in a large
+    change in color, and black represents more than one orientation
+    (all orientations with &psgr;=0 or &thgr;=180).
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,46 @@
+<!-- 
+  $RCSfile: stepdriver.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-25 17:32:37 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>StepDriver</classname> objects are the
+  <varname>time_stepper</varname> argument for <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/>.  They specify how
+  multiple time step are to be combined into a full time evolution
+  calculation.  In this context, <quote>multiple</quote> means zero or
+  more, since one if the <classname>StepDrivers</classname> is <xref
+  linkend="RegisteredClass-StaticDriver"/>, which solves static
+  equations with no time steps.
+</para>
+<para>
+  <classname>StepDriver</classname> and <xref
+  linkend="RegisteredClass-BasicStepDriver"/> have the same types of
+  subclasses, but the subclasses of <classname>StepDriver</classname>
+  offer more customization via more complex parameters.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

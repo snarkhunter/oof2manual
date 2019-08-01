@@ -1,0 +1,56 @@
+<!-- 
+  $RCSfile: qcstepper.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-29 20:21:53 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>QCTimeStepper</classname> objects describe ways of taking
+  a single <quote>Quality Controlled</quote><footnote><simpara>The
+  expression <quote>quality controlled</quote> in this context is
+  stolen from an old copy of Numerical Recipes.</simpara></footnote>
+  time step when <link
+  linkend="Section-Concepts-Mesh-Solving">solving</link> a time
+  dependent problem.  Given a set of &field; values at time
+  <inlineequation><alt role="tex">\(t\)</alt></inlineequation>, they
+  compute a set of new values at time <inlineequation><alt
+  role="tex">\(t+\delta t\)</alt></inlineequation>.  The difference
+  between <classname>QCTimeStepper</classname> and <xref
+  linkend="RegisteredClass-TimeStepper"/> is that
+  <classname>QCTimeStepper</classname> also returns an error estimate.
+</para>
+<para>
+  <classname>QCTimeStepper</classname> is used for the
+  <varname>stepper</varname> parameter for <xref
+  linkend="RegisteredClass-AdaptiveDriver"/>.
+</para>
+<para>
+  [At the moment there is only one subclass of
+  <classname>QCTimeStepper</classname>, but our intention is to add
+  more.  (If we've added more and haven't updated the manual, please
+  ignore the previous sentence.)]
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,133 @@
+<!--
+  $RCSfile: check_aspect.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:37 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Skinny &elems; (ones with a high aspect ratio) can cause poor
+    finite element performance.  Refining a &skel; with the
+    <varname>targets</varname> parameter of <xref
+    linkend="RegisteredClass-Refine"/> set to
+    <classname>AspectRatio</classname> will subdivide the long sides
+    of <emphasis>quadrilateral</emphasis> &elems; with high aspect
+    ratios.  (Triangular elements are excluded because refining a high
+    aspect ratio triangle creates new elements that are just as bad as
+    the original.  To remove skinny triangles from a &skel;, use the <xref
+      linkend="RegisteredClass-Rationalize"/> &skel; modifier.)
+  </para>
+
+  <para>
+    The aspect ratio of a quadrilateral element is computed by taking
+    the ratio of the lengths its second longest and second shortest
+    sides.  The ratio is always greater than or equal to 1.  This
+    definition has the advantage of being easy to compute and only
+    yielding large ratios for those quadrilaterals that will be
+    improved by subdividing their long sides. (Quads whose long sides
+    are adjacent are not refined.  These quads can be removed by
+    <xref linkend="RegisteredClass-Rationalize"/>.  Some example of
+    &elems; that won't be refined are given in <xref
+      linkend="Figure-badaspect"/>.)
+  </para>
+
+  <figure id="Figure-badaspect">
+    <title>Elements <emphasis>not</emphasis> Refined</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/check_mark/badaspect.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/check_mark/badaspect.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  A collection of high aspect ratio elements that nevertheless
+	  won't be refined by <classname>CheckAspectRatio</classname>.
+	  (a) and (b) are triangles.  (c) and (d) don't have a clear
+	  distinction between long and short edges, and (e) doesn't
+	  have its long edges on opposite sides of the element.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+
+  <para>
+    <xref linkend="Figure-aspect"/> shows a &skel; containing one
+    skinny &elem;  with its long sides marked
+    (in bold) for refinement.  Unlike <xref
+    linkend="RegisteredClass-CheckHomogeneity"/>, which marks all the
+    &sgmts; of its target &elems;,
+    <classname>CheckAspectRatio</classname> marks only the long
+    &sgmts;. <xref linkend="Figure-aspect-refined"/> shows the result
+    of refining the element.
+
+  </para>
+    <figure id="Figure-aspect">
+      <title>An Element with a High Aspect Ratio</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    A &skel; containing an element with a high aspect ratio.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <figure id="Figure-aspect-refined">
+      <title>Refining an Element with a High Aspect Ratio</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect-refined.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect-refined.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    The &skel; produced by refining with
+	    <userinput>modifier=<link
+	    linkend="RegisteredClass-Refine">Refine</link>(targets=CheckAspectRatio(threshold=5.0),
+	    criterion=<link
+	    linkend="RegisteredClass-Unconditionally">Unconditionally</link>(),
+	    degree=<link
+	    linkend="RegisteredClass-Bisection">Bisection</link>(rule_set=<link
+	    linkend="Enum-RuleSet">'conservative'</link>))</userinput>.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+
+
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

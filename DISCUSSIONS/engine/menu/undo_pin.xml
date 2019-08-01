@@ -1,0 +1,59 @@
+<!-- 
+  $RCSfile: undo_pin.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:28 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    As well as keeping track of which &nodes; are currently <link
+    linkend="MenuItem-OOF.Skeleton.PinNodes">pinned</link>, each
+    &skel; maintains a stack of previous sets of pinned &nodes;.
+    Whenever nodes are pinned or unpinned, a new set is pushed onto
+    the stack.  The <command>Undo</command> command operates on the
+specified &skel;, popping the latest
+    configuration off of the stack, thereby reverting to the previous
+    set of pinned &nodes;.  The popped version is not destroyed -- it
+    can be recovered with the <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Redo"/>
+    command.
+  </para>
+  <para>
+     The <varname>skeleton</varname> parameter is the fully-qualified name
+     of the &skel; on which to operate.
+  </para>
+  <para>
+    The stack is not infinite.  When it is full, the oldest set of
+    pinned &nodes; will be lost to make room for a new one.
+  </para>
+  <para>
+    <command>OOF.Graphics_n.Toolbox.Pin_Nodes.Undo</command> is
+    equivalent to <xref
+    linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"/>.
+  </para>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

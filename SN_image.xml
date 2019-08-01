@@ -1,0 +1,189 @@
+<!--
+  $RCSfile: SN_image.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-05-02 15:47:05 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <section id="Section-Tasks-Image">
+    <title>Image</title>
+
+    <para>
+      &images; are the way in which the geometry of a microstructure
+      is imported into &oof2;.  Each &micro; object can contain any
+      number of &image; objects.  The Image Page contains <link
+      linkend="Section-ImagePage-Buttons">buttons</link> for adding
+      and removing &images; from &micros;, <link
+      linkend="Section-ImagePage-Modification">tools</link> for
+      modifying &images; within &micros;, and an <link
+      linkend="Section-ImagePage-Info">information</link> area.
+    </para>
+    <figure id="Figure-ImagePage">
+      <title>The Image Page</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/image_page.png" format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/image_page.eps" format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+      
+    <para>
+      The Image Chooser at the top of the page identifies the &image;
+      (a.k.a. the <emphasis>current</emphasis> &image;) that the rest
+      of the page operates upon.  Because &images; are <link
+      linkend="Section-Concepts-Path">contained</link> in &micros;,
+      there are two parts to the Image Chooser: one for selecting a
+      &micro; and one for selecting one of the &images; within it.
+    </para>
+    <simplesect id="Section-ImagePage-Buttons">
+      <title>Buttons</title>
+      <para>
+	The buttons below the Image Chooser perform some basic
+	operations.
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.File.Load.Image"><guibutton>Load</guibutton></link>
+	      button loads a new &image; into an
+	      <emphasis>existing</emphasis> &micro;.  (To create a new
+	      &micro; from a new &image; use the <link
+	      linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"><guibutton>New
+	      from Image File</guibutton></link> button on the <link
+	      linkend="Section-Tasks-Microstructure">Microstructure
+	      Page</link>.)
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Image.Copy"><guibutton>Copy</guibutton></link>
+	      button copies the current &image; into a new or existing
+	      &micro;.  Clicking the button brings up a dialog box,
+	      show in <xref linkend="Figure-copyimage"/>.  A new or
+	      existing &micro; name can be entered in the area
+	      labelled <guilabel>microstructure</guilabel>, or a list
+	      of existing names can be accessed through the pull down
+	      menu to the right.
+	      <figure id="Figure-copyimage">
+		<title>The Copy Image Dialog Box</title>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/copyimage.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/copyimage.eps"
+		      format="EPS"/>
+		  </imageobject>
+		  <caption>
+		    <para>
+		      Two views of the dialog box for copying
+		      &images;.  The upper view shows the box as it
+		      first appears, when a &micro; name can typed in.
+		      Clicking on the button below the mouse brings up
+		      a list of existing &micros;, as shown in the
+		      lower view.
+		    </para>
+		  </caption>
+		</mediaobject>
+	      </figure>
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Image.Rename"><guibutton>Rename</guibutton></link>,
+	      <link
+	      linkend="MenuItem-OOF.Image.Delete"><guibutton>Delete</guibutton></link>,
+	      and <link linkend="MenuItem-OOF.File.Save.Image">Save</link>
+	      buttons all operate on the current &image;.  Images can
+	      be saved in any file format recognized by the <ulink
+	      url="http://www.imagemagick.org"
+	      role="external">ImageMagick</ulink> library.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Image.AutoGroup"><guibutton>Group</guibutton></link>
+	      button creates <link
+	      linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	      groups</link> for each color of pixel in the &image;.
+	      If an &image; contains only a few colors, this can be a
+	      quick way of differentiating pixels in the &micro;.  Be
+	      sure to read the caveats in the discussion of the <xref
+		linkend="MenuItem-OOF.Image.AutoGroup"/> command, though.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </simplesect>
+    <simplesect id="Section-ImagePage-Info">
+      <title>The Image Information Pane</title>
+      <para>
+	The Image Information Pane displays information about the
+	current &image;, including its <link
+	linkend="Section-Concepts-Microstructure-Coordinates">sizes</link>
+	and any comments that might have been stored within the image
+	file.
+      </para>
+    </simplesect>
+    <simplesect id="Section-ImagePage-Modification">
+      <title>The Image Modification Pane</title>
+      <para>
+	The Image Modification Pane contains tools for modifying
+	&images;.  It consists of two parts: a Modifier Chooser which
+	selects the modification tool, and a set of buttons.
+      </para>
+      <para>
+	The Modifier Chooser is a pull-down menu.  Its entries
+	correspond to the commands in the <xref
+	linkend="MenuItem-OOF.Image.Modify"/> menu.  If the selected
+	modifier takes arguments, widgets for setting those arguments
+	appear just below the Modifier Chooser.  The
+	<varname>image</varname> argument for all the commands is
+	always set to the &image; currently selected in the Image
+	Chooser.
+      </para>
+      <para>
+	The <guibutton>OK</guibutton> button applies the selected
+	modifier to the current &image;.  The <link
+	linkend="MenuItem-OOF.Image.Undo"><guibutton>Undo</guibutton></link>
+	and <link
+	linkend="MenuItem-OOF.Image.Redo"><guibutton>Redo</guibutton></link>
+	buttons below it undo and redo the modification.  The
+	<guibutton>Prev</guibutton> and <guibutton>Next</guibutton>
+	buttons don't have any effect on the &image;, they just cycle
+	the Modifier Chooser through the previously applied
+	modifications.
+      </para>
+    </simplesect>
+  </section>
+    
+
+    <!-- Keep this comment at the end of the file
+    Local variables:
+    sgml-omittag:t
+    sgml-shorttag:t 
+    sgml-namecase-general:nil
+    sgml-minimize-attributes:nil
+    sgml-always-quote-attributes:t
+    sgml-indent-step:2
+    sgml-indent-data:t
+    sgml-parent-document:("man_oof2.xml" "book" "chapter")
+    sgml-exposed-tags:nil
+    sgml-local-ecat-files:nil
+    End:
+    -->

@@ -1,0 +1,54 @@
+<!-- 
+  $RCSfile: limited_average.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:41 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This is a variation of the <xref
+    linkend="RegisteredClass-AverageEnergy"/> criterion for accepting
+    or rejecting &skel; <link
+    linkend="RegisteredClass-SkeletonModifier">modifications</link>.
+    For a modification to be accepted, it not only has to lower the
+    average <link linkend="Section-Concepts-Skeleton-Energy">effective
+    energy</link> of the associated &elems; but it has to satisfy
+    limits in the changes of these &elems;.  This criterion is best
+    suited for putting finishing touches on the skeleton.
+  </para>
+  <para>
+    The <varname>homogeneity</varname> and
+    <varname>shape_energy</varname> parameters are thresholds that
+    <emphasis>each</emphasis> divide the &elems; into two classes:
+    good (homogeneity above the threshold or <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+    energy</link> below the threshold), and bad (homogeneity below the
+    threshold or shape energy above the threshold).  The rule for
+    accepting a modification is that the average energy must decrease,
+    <emphasis>and</emphasis> bad elements must not get worse. Good
+    elements may get worse, but may not cross the thresholds and
+    become bad.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

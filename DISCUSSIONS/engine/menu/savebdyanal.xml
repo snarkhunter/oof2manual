@@ -1,0 +1,43 @@
+<!-- 
+  $RCSfile: savebdyanal.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-22 18:51:31 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Save the definitions of the given <link
+  linkend="Section-Concepts-Mesh-NamedAnalysis">Named Analyses</link>
+  to a file. The analysis objects must have been created by <xref
+  linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Create"/>.
+</para>
+<para>
+  In the GUI, this command is invoked by choosing
+  <guilabel>Save</guilabel> from the
+  <guilabel>Create/Delete/etc&hellip;</guilabel> pop-up menu in the
+  <guilabel>Named Analyses</guilabel> pane in the <link
+  linkend="Section-Tasks-BdyAnalysis">Boundary Analysis</link> page.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

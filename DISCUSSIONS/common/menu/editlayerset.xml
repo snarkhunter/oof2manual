@@ -1,0 +1,58 @@
+<!-- 
+  $RCSfile: editlayerset.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:15 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Load a &layer; and its &layerset; into the &layereditor;.  When
+    invoked from the <guimenuitem>Edit...</guimenuitem> menu item in
+    the Graphics window's <guimenu>Layer</guimenu> menu, the currently
+    selected &layer; will be loaded.  When invoked by double clicking
+    in the <link linkend="Section-Graphics-LayerList">Layer
+      List</link>, the clicked &layer; will be loaded.
+  </para>
+  <para>
+    In the GUI, the &layereditor; will be opened and raised if
+    necessary, the selected &layer; will be highlighted in the
+    &layereditor;'s <guilabel>Display Methods</guilabel> pane, and the
+    Graphics window from which the command originated will be chosen
+    in the <guimenu>Destination</guimenu> menu.
+  </para>
+  <note>
+    <para>
+      The <command>Edit</command> command only loads a
+      <emphasis>copy</emphasis> of a &layerset; into the
+      &layereditor;.  Despite its name, it doesn't actually modify any
+      &layers;.  To modify a &layerset;, it's necessary to use the
+      other commands in the <xref
+      linkend="MenuItem-OOF.LayerEditor.LayerSet"/> menu or the
+      &layereditor; GUI and to <link
+      linkend="MenuItem-OOF.LayerEditor.LayerSet.Send"><command>Send</command></link>
+      the &layerset; back to the Graphics window.
+    </para>
+  </note>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

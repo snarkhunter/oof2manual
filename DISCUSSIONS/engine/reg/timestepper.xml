@@ -1,0 +1,52 @@
+<!-- 
+  $RCSfile: timestepper.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-25 17:32:37 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>TimeStepper</classname> objects describe ways of taking a
+  single time step when <link
+  linkend="Section-Concepts-Mesh-Solving">solving</link> a time
+  dependent problem.  Given a set of &field; values at time
+  <inlineequation><alt role="tex">\(t\)</alt></inlineequation>, they
+  compute a set of new values at time <inlineequation><alt
+  role="tex">\(t+\Delta t\)</alt></inlineequation>. 
+</para>
+<para>
+  <classname>TimeStepper</classname> is used for the
+  <varname>stepper</varname> parameter for <xref
+  linkend="RegisteredClass-UniformDriver"/> and the
+  <varname>singlestep</varname> parameter for <xref
+  linkend="RegisteredClass-QCTimeStepper"/>, which is used for <link
+  linkend="RegisteredClass-AdaptiveDriver">adaptive</link> stepping.
+</para>
+<para>
+  All of the time steppers in &oof2; work with both linear and <link
+  linkend="Section-Concepts-Mesh-Equation-Nonlinear">nonlinear</link>
+  equations.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

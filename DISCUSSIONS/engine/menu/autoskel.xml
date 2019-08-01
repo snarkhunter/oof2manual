@@ -1,0 +1,104 @@
+<!-- 
+  $RCSfile: autoskel.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:21 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <command>OOF.Skeleton.Auto</command> tries to create and refine a
+    &skel; with no feedback from the user.  It actually runs a series
+    of other &oof2; commands, so the <command>Auto</command> command
+    itself will never appear in a log file.  After automatically
+    creating a &skel; the <link
+    linkend="MenuItem-OOF.Skeleton.Undo"><command>Undo</command></link>
+    command can be applied multiple times to undo the separate steps
+    used in creating the &skel;.
+  </para>
+  <para>
+    <command>Auto</command> inherits a few parameters from the
+    commands that it invokes, and it adds a few of its own.  It begins
+    by creating a new &skel; with <link
+    linkend="RegisteredClass-QuadSkeleton">quadrilateral</link>
+    elements.  The size of the elements is set so that the initial
+    &skel; resolves features of size <varname>maxscale</varname> in
+    the &micro;.  If <varname>units</varname> is
+    <userinput>Physical</userinput>, then <varname>maxscale</varname>
+    is assumed to be in <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical</link>
+    units; if it's <userinput>Pixel</userinput>, then it's assumed to
+    be in units of the &micro;'s pixel size;
+    if it's <userinput>Fractional</userinput>, then it's assumed to be relative
+    to the &micro;'s overall dimensions.
+    The periodicity of the &skel; is set by the
+    parameters <varname>left_right_periodicity</varname> and
+    <varname>top_bottom_periodicity</varname>, which have the same
+    meanings that they have in <xref
+    linkend="RegisteredClass-QuadSkeleton"/>.
+  </para>
+  <para>
+    After creating the initial &skel;, <command>Auto</command> then
+    <link
+    linkend="RegisteredClass-Refine"><classname>Refines</classname></link>
+    the &skel;, using <link
+    linkend="RegisteredClass-Unconditionally">unconditional</link>
+    <link linkend="RegisteredClass-Bisection">bisection</link> with
+    the <link
+    linkend="Enum-RuleSet"><userinput>liberal</userinput></link>
+    ruleset and <varname>alpha</varname>=<userinput>0.8</userinput>,
+    until the linear dimensions of the smallest &elems; are smaller
+    than <varname>minscale</varname>.  To get rid of rough corners,
+    <command>Auto</command> applies <xref
+    linkend="RegisteredClass-SnapRefine"/> once, with
+    <varname>min_distance</varname> set to <userinput>0.0</userinput>.
+    All refinement operations are applied only to elements whose <link
+    linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>
+    is less than the specified <varname>threshold</varname>.
+  </para>
+  <para>
+    After refining, <command>Auto</command> cleans up the &skel; by
+    applying <xref linkend="RegisteredClass-Rationalize"/>
+    <emphasis>twice</emphasis>, with
+    <varname>alpha</varname>=<userinput>0.8</userinput>.  It uses the
+    specific <xref linkend="RegisteredClass-Rationalizer"/>s <xref
+    linkend="RegisteredClass-RemoveShortSide"/>(<varname>ratio</varname>=<userinput>5.0</userinput>),
+    <xref
+    linkend="RegisteredClass-QuadSplit"/>(<varname>angle</varname>=<userinput>150</userinput>),
+    and <xref
+    linkend="RegisteredClass-RemoveBadTriangle"/>(<varname>acute_angle</varname>=<userinput>15</userinput>,
+    <varname>obtuse_angle</varname>=<userinput>150</userinput>).
+    Finally, it <xref linkend="RegisteredClass-Smooth"/>s the &skel;
+    after <link
+    linkend="MenuItem-OOF.Skeleton.PinNodes.Pin_Internal_Boundary_Nodes">pinning</link>
+    the internal boundary &nodes;, which it unpins when it's done.
+    The smoothing is done with
+    <varname>alpha</varname>=<userinput>0.3</userinput> for
+    <userinput>5</userinput> iterations.
+  </para>
+  
+  
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

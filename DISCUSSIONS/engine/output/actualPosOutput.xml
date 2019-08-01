@@ -1,0 +1,45 @@
+<!-- 
+  $RCSfile: actualPosOutput.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:34 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    The <classname>actual</classname> <link
+    linkend="Section-Output-Position"><classname>PositionOutput</classname></link>
+    returns the original position of a point plus the Displacement
+    Field.  The original position of a &mesh; node is the position of
+    the corresponding &skel; node.  The original position of the
+    interior point of an element is computed by interpolating the
+    original positions of the nodes.
+  </para>
+  <para>
+    If the displacement field isn't defined on the Mesh, then
+    <classname>actual</classname> simply returns the original
+    position.
+  </para>
+  
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

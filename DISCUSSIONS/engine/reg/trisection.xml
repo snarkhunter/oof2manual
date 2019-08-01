@@ -1,0 +1,104 @@
+<!-- 
+  $RCSfile: trisection.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:48 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <link linkend="RegisteredClass-Refine">Refining</link> &skel;
+    elements with <varname>degree</varname> set to
+    <classname>Trisection</classname> divides each marked edge into three
+    segments.
+  </para>
+  <para>
+    The <varname>rule_set</varname> parameter determines how the
+    interior of each element is subdivided, given the number of
+    subdivisions on each edge.  The complete set of refinement rules
+    for <classname>Trisection</classname> can be found in <xref
+    linkend='Table:refine_rule_quad'/> and <xref
+    linkend='Table:refine_rule_tri'/>.
+  </para>
+
+  <para>
+    <xref linkend='Figure-tri'/> shows a &skel; refined with a
+    <userinput>conservative</userinput> trisection rule set, which
+    preserves the topology of the elements, and with the
+    <userinput>liberal</userinput> rule set, which does not.  The
+    original unrefined &skel; is shown in <xref
+    linkend="Figure-refine0"/>, and the refined elements are indicated
+    with heavy black edges.
+
+ 
+    <figure id="Figure-tri">
+      <title>Trisected Elements</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/refinement/tri_unrefined.png"
+	    format="PNG"/>
+	  <imagedata fileref="FIGURES/refinement/tri_unrefined.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A &skel; ready for refinement.
+	  </para>
+	</caption>
+      </mediaobject>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/refinement/tri_conservative.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/refinement/tri_conservative.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    The &skel; trisected with the conservative rule set.
+	  </para>
+	</caption>
+      </mediaobject>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/refinement/tri_liberal.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/refinement/tri_liberal.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    The &skel; trisected with the liberal rule set.  The liberal
+	    rules allow &oof2; to choose different configurations
+	    depending on the local geometry.  The elements in the two
+	    red ellipses have the same <emphasis>topology</emphasis>
+	    but different <emphasis>geometry</emphasis>, and have been
+	    refined differently.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

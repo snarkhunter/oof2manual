@@ -1,0 +1,874 @@
+<!-- 
+  $RCSfile: refCoords.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:12 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <refentry id="Class-Coord">
+    <refnamediv>
+      <refname>Coord</refname>
+      <refpurpose>Coordinate classes</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "common/coord.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>Position</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>Coord</type>
+	    <methodname><link linkend="Class-Position-position">position</link></methodname>
+	    <void/>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	</classsynopsis><!-- Position -->
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>Coord</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>Position</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Coord-constructor">Coord</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Coord-constructor">Coord</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>x</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>y</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-Coord-operatorparen">operator()</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>i</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-Coord-operatorparen">operator()</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>i</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>Coord&amp;</type>
+	    <methodname><link linkend="Class-Coord-arithmetic">operator+=</link></methodname>
+	    <methodparam>
+	      <type>const Coord&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>Coord&amp;</type>
+	    <methodname><link linkend="Class-Coord-arithmetic">operator-=</link></methodname>
+	    <methodparam>
+	      <type>const Coord&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>Coord&amp;</type>
+	    <methodname><link linkend="Class-Coord-arithmetic">operator*=</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>Coord&amp;</type>
+	    <methodname><link linkend="Class-Coord-arithmetic">operator/=</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+
+	<programlisting>
+Coord <link linkend="Class-Coord-arithmetic">operator+</link>(const Coord&amp;, const Coord&amp;)
+Coord <link linkend="Class-Coord-arithmetic">operator-</link>(const Coord&amp;, const Coord&amp;)
+Coord <link linkend="Class-Coord-arithmetic">operator*</link>(const Coord&amp;, double)
+Coord <link linkend="Class-Coord-arithmetic">operator(</link>(double, const Coord&amp;)
+double <link linkend="Class-Coord-cross">cross</link>(const Coord&amp;, const Coord&amp;)
+double <link linkend="Class-Coord-cross">operator%</link>(const Coord&amp;, const Coord&amp;)
+double <link linkend="Class-Coord-dot">dot</link>(const Coord&amp;, const Coord&amp;)
+double <link linkend="Class-Coord-norm2">norm2</link>(const Coord&amp;)
+
+bool <link linkend="Class-Coord-cmp">operator&lt;</link>(const Coord&amp;, const Coord&amp;);
+bool <link linkend="Class-Coord-cmp">operator==</link>(const Coord&amp;, const Coord&amp;);
+bool <link linkend="Class-Coord-cmp">operator!=</link>(const Coord&amp;, const Coord&amp;);
+</programlisting>
+
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.common import coord</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Position</classname>
+	  </ooclass>
+	</classsynopsis>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Coord</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>Position</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Coord-operatorparen">__getitem__</link></methodname>
+	    <methodparam>
+	      <parameter>i</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Coord-arithmetic">__mul__</link></methodname>
+	    <methodparam>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Coord-arithmetic">__rmul__</link></methodname>
+	    <methodparam>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Coord-cmp">__cmp__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/coord.C</filename>: C++ code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/coord.h</filename>: C++ header file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/coord.swg</filename>:
+	      <application>swig</application> code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/coord.spy</filename>: Python code
+	      included in <application>swig</application> output
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>Position</classname> and its subclasses, including
+	<classname>Coord</classname>, represent points on the two
+	dimensional plane of an &oof2; calculation.  The other
+	subclass of <classname>Position</classname> is
+	<classname>GaussPoint</classname>, which has a lot more
+	machinery attached to it than <classname>Coord</classname>
+	does.  &oof2; extension authors shouldn't have to write code
+	involving <classname>GaussPoints</classname>
+	explicitly,<footnote>
+	  <simpara>If we've done our job correctly, that is.</simpara>
+	</footnote>
+	so that class isn't documented here.
+      </para>
+      <para>
+	<classname>Coord</classname> is a C++ class and is not
+	intended for heavy use in Python.  It's swigged so that
+	occasional Python operations can be performed, but most of the
+	arithmetic functions are only available in C++.  When there's
+	one <classname>Coord</classname>, there tend to be a lot of
+	them, so if you find yourself doing
+	<classname>Coord</classname> arithmetic in Python, you should
+	think about doing it in C++ instead.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-Position-position">
+	<title><code>virtual Coord position() const</code></title>
+	<para>
+	  <methodname>position</methodname> is the only function in
+	  the <classname>Position</classname> base class.  It
+	  effectively converts any <classname>Position</classname>
+	  object to a <classname>Coord</classname>.  It's useful when
+	  a routine needs to operate on generic
+	  <classname>Position</classname> objects, but still wants to
+	  perform arithmetic with them.<footnote>
+	    <simpara>
+	      <classname>GaussPoints</classname>, which are derived
+	      from <classname>Positions</classname>, represent special
+	      fixed points inside an <classname>Element</classname>,
+	      so it doesn't really make sense to do arithmetic with
+	      them.  Therefore there are no arithmetic operations
+	      defined in the <classname>Position</classname> base
+	      class.
+	    </simpara>
+	  </footnote>
+	</para>
+      </refsection><!-- position -->
+      <refsection id="Class-Coord-constructor">
+	<title><code>Coord(), Coord(double x, double y)</code></title>
+	<para>
+ 	  <code>Coord(x,y)</code> creates a
+	  <classname>Coord</classname> at position
+	  <inlineequation>
+	    <alt role="tex">\((x, y)\)</alt>
+	  </inlineequation>, as you'd expect.  The default
+	  constructor, <code>Coord(0)</code> creates one at
+ 	  <inlineequation>
+	    <alt role="tex">\((0, 0)\)</alt> </inlineequation>.
+	</para>
+      </refsection><!-- constructor -->
+      <refsection id="Class-Coord-operatorparen">
+	<title><code>double operator()(int i), __getitem__(i)</code></title>
+	<para>
+	  These operators retrieve the x and y components of the
+	  <classname>Coord</classname>.  The C++ version uses
+	  <methodname>operator()</methodname> instead of
+	  <methodname>operator[]</methodname> for historical reasons,
+	  for which we apologize.  The argument <varname>i</varname>
+	  should be <literal>0</literal> for x and
+	  <literal>1</literal> for y.
+	</para>
+      </refsection><!-- operator(), __getitem__ -->
+      <refsection id="Class-Coord-arithmetic">
+	<title><code>operator+=, operator*, etc.</code></title>
+	<para>
+	  The standard arithmetic operations are defined for
+	  <classname>Coords</classname> in C++.  As noted above, most
+	  of them are <emphasis>not</emphasis> defined in Python.
+	</para>
+      </refsection><!-- arithmetic -->
+      <refsection id="Class-Coord-cross">
+	<title><code>double cross(const Coord&amp;, const Coord&amp;),
+	    double operator%(const Coord&amp;, const Coord&amp;)</code></title>
+	<para>
+	  The cross product of two <classname>Coords</classname>
+	  <varname>a</varname> and <varname>b</varname> can be
+	  computed either by <code>cross(a,b)</code> or by
+	  <varname>a%b</varname>.  Because
+	  <classname>Coords</classname> are two dimensional vectors,
+	  the cross product is a scalar, not a vector.  It's
+	  equivalent to the z-component of a three dimensional cross
+	  product.
+	</para>
+      </refsection><!-- cross -->
+      <refsection id="Class-Coord-dot">
+	<title><code>double dot(const Coord&amp;, const Coord&amp;)</code></title>
+	<para>
+	  <methodname>dot</methodname> returns the dot product of its
+	  arguments.
+	</para>
+      </refsection><!-- dot -->
+      <refsection id="Class-Coord-norm2">
+	<title><code>double norm2(const Coord&amp;)</code></title>
+	<para>
+	  <methodname>norm2</methodname> returns the square of the
+	  norm of its argument.  <code>norm2(x)</code> is equivalent
+	  to <code>dot(x,x)</code>.
+	</para>
+      </refsection><!-- norm2 -->
+      <refsection id="Class-Coord-cmp">
+	<title><code>operator&lt;, operator==, operator!=, __cmp__</code></title>
+	<para>
+	  The basic comparison operators are available for
+	  <classname>Coords</classname> in C++ and Python.  The C++
+	  <methodname>operator&lt;</methodname> and the Python
+	  <methodname>__cmp__</methodname> are provided mostly so that
+	  <classname>Coords</classname> can be used as keys in STL
+	  maps.
+	</para>
+      </refsection><!-- cmp -->
+    </refsection><!-- Methods -->
+  </refentry><!-- Coord -->
+
+  <refentry id="Class-MasterCoord">
+    <refnamediv>
+      <refname>MasterCoord</refname>
+      <refpurpose>Position in master coordinate space</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/mastercoord.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>MasterPosition</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>MasterCoord</type>
+	    <methodname><link
+		linkend="Class-MasterPosition-mastercoord">mastercoord</link></methodname>
+	    <void/>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>MasterCoord</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname>MasterPosition</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-MasterCoord-constructor">MasterCoord</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-MasterCoord-constructor">MasterCoord</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>eta</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>xi</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-MasterCoord-operatorparen">operator()</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>i</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-MasterCoord-operatorparen">operator()</link></methodname>
+	    <methodparam>
+	      <type>int</type>
+	      <parameter>i</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>MasterCoord&amp;</type>
+	    <methodname><link
+		linkend="Class-MasterCoord-arithmetic">operator+=</link></methodname>
+	    <methodparam>
+	      <type>const MasterCoord&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>MasterCoord&amp;</type>
+	    <methodname><link
+		linkend="Class-MasterCoord-arithmetic">operator*=</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+
+	<programlisting>
+MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator+</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator-</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator*</link>(double, const MasterCoord&amp;)
+MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator*</link>(const MasterCoord&amp;, double)
+MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator/</link>(const MasterCoord&amp;, double)
+
+double <link linkend="Class-MasterCoord-cross">cross</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+double <link linkend="Class-MasterCoord-cross">operator%</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+double <link linkend="Class-MasterCoord-dot">dot</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+double <link linkend="Class-MasterCoord-norm2">norm2</link>(const MasterCoord&amp;)
+
+bool <link linkend="Class-MasterCoord-cmp">operator==</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+bool <link linkend="Class-MasterCoord-cmp">operator&lt;</link>(const MasterCoord&amp;, const MasterCoord&amp;)
+ </programlisting>
+
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import mastercoord</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>MasterPosition</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterPosition-mastercoord">mastercoord</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	</classsynopsis>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>MasterCoord</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>MasterPosition</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-constructor">MasterCoord</link></methodname>
+	    <methodparam>
+	      <parameter>eta</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>xi</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-operatorparen">__getitem__</link></methodname>
+	    <methodparam>
+	      <parameter>i</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-arithmetic">__add__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-arithmetic">__sub__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-arithmetic">__mul__</link></methodname>
+	    <methodparam>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-arithmetic">__div__</link></methodname>
+	    <methodparam>
+	      <parameter>factor</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-MasterCoord-cmp">__cmp__</link></methodname>
+	    <methodparam>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>MasterPosition</classname> and
+	<classname>MasterCoord</classname> classes represent points in
+	an <link
+	linkend="Class-Element"><classname>Element</classname></link>'s
+	<emphasis>master coordinate space</emphasis>, with coordinates
+	<inlineequation>
+	  <alt role="tex">\(\eta\)</alt>
+	</inlineequation> and 	<inlineequation>
+	  <alt role="tex">\(\xi\)</alt>
+	</inlineequation>.  Each type of
+	<classname>Element</classname> has a standard predetermined
+	shape in its master space, as shown in <xref
+	linkend="Figure-masterspace"/>.
+	<classname>Elements</classname> are mapped from master space
+	to physical space, where they have different positions and
+	geometry.  The master space coordinates are useful because the
+	finite element shape functions have a simple form in master
+	space coordinates, and because the gauss integration points
+	have standard positions and weights there.  Finite element
+	calculations are done in master coordinates wherever
+	possible.  The <classname>Element</classname> class contains
+	functions that <link
+	linkend="Class-Element-from_master">convert</link> coordinates
+	from master space to physical space, and <link
+	linkend="Class-Element-to_master">vice versa</link>.
+      </para>
+      <figure id="Figure-masterspace">
+	<title>Master Coordinates</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/extending/coords.png"
+	      format="PNG"/>
+	  </imageobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/extending/coords.eps"
+	      format="EPS"/>
+	  </imageobject>
+	  <caption>
+	    <para>
+	      The two plots at the top show the master element
+	      geometry in (&eegr;, &xgr;) coordinates, for quads and
+	      triangles.  The quad is a 2&times;2 square and the
+	      triangle is a right isosceles triangle.  The dotted
+	      lines show how the master elements might be mapped into
+	      physical elements in (x,y) space.  Every physical
+	      element comes from a different mapping.
+	    </para>
+	  </caption>
+	</mediaobject>
+      </figure>
+      <para>
+	The <classname>MasterPosition</classname> class serves as an
+	abstract base class for both
+	<classname>MasterCoord</classname> and
+	<classname>GaussPoint</classname>.
+	<classname>GaussPoint</classname> is used for numerical
+	integration over an <classname>Element</classname>, and is
+	derived from both <classname>MasterPosition</classname> and
+	<link
+	linkend="Class-Coord"><classname>Position</classname></link>.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-MasterPosition-mastercoord">
+	<title><code>MasterCoord&amp; mastercoord() const</code></title>
+	<para>
+	  <methodname>mastercoord()</methodname> is a virtual function
+	  in the <classname>MasterPosition</classname> base class.  It
+	  converts any <classname>MasterPosition</classname> into a
+	  <classname>MasterCoord</classname>. 
+	</para>
+      </refsection><!-- mastercoord -->
+      <refsection id="Class-MasterCoord-constructor">
+	<title><code>MasterCoord(), MasterCoord(double x, double y)</code></title>
+	<para>
+	  <classname>MasterCoords</classname> can be constructed by
+	  specifying the components of their location in the master
+	  coordinate space.  The default constructor (with no
+	  arguments) puts the point at the origin.
+	</para>
+      </refsection><!-- constructor -->
+      <refsection id="Class-MasterCoord-operatorparen">
+	<title><code>double operator()(int i), __getitem__(i)</code></title>
+	<para>
+	  The components of a <classname>MasterCoord</classname>
+	  <varname>mc</varname> can be retrieved with
+	  <code>mc(i)</code> in C++ or <code>mc[i]</code> in Python.
+	  (The notational inconsistency is historical and
+	  regrettable.) Use <varname>i</varname>=0 for
+	<inlineequation>
+	  <alt role="tex">\(\eta\)</alt> </inlineequation> and
+	  <varname>i</varname>=1 for <inlineequation> <alt
+	  role="tex">\(\xi\)</alt> </inlineequation>.
+	</para>
+      </refsection><!-- operatorparen -->
+      <refsection id="Class-MasterCoord-arithmetic">
+	<title><code>operator+=, operator*, __add__, etc.</code></title>
+	<para>
+	  A full set of arithmetic operations are provided for
+	  <classname>MasterCoords</classname> in C++.  As with <link
+	  linkend="Class-Coord"><classname>Coords</classname></link>,
+	  a somewhat limited set of operations is available in Python.
+	  This is because doing arithmetic in Python is relatively
+	  inefficient and should be avoided.
+	</para>
+      </refsection><!-- arithmetic -->
+      <refsection id="Class-MasterCoord-cross">
+	<title><code>double cross(const MasterCoord&amp;, const
+	    MasterCoord&amp;), operator%(const MasterCoord&amp;, const
+	  MasterCoord&amp;)</code></title>
+	<para>
+	  The cross product of two <classname>MasterCoords</classname>
+	  <varname>a</varname> and <varname>b</varname> can be
+	  computed either by <code>cross(a,b)</code> or by
+	  <varname>a%b</varname>.  Because
+	  <classname>MasterCoords</classname> are two dimensional vectors,
+	  the cross product is a scalar, not a vector.  It's
+	  equivalent to the z-component of a three dimensional cross
+	  product.
+	</para>
+      </refsection><!-- cross -->
+      <refsection id="Class-MasterCoord-dot">
+	<title><code>double dot(const MasterCoord&amp;, const MasterCoord&amp;)</code></title>
+	<para>
+	  <methodname>dot</methodname> returns the dot product of the
+	  given <classname>MasterCoords</classname>.
+	</para>
+      </refsection><!-- dot -->
+      <refsection id="Class-MasterCoord-norm2">
+	<title><code>double norm2(const MasterCoord&amp;)</code></title>
+	<para>
+	  <methodname>norm2</methodname> returns the square of the
+	  norm of the <classname>MasterCoord</classname>.
+	</para>
+      </refsection><!-- norm2 -->
+      <refsection id="Class-MasterCoord-cmp">
+	<title><code>bool operator==, bool operator&lt;, __cmp__</code></title>
+	<para>
+	  <classname>MasterCoords</classname> can be compared to each
+	  other in both C++ and Python.
+	  <methodname>operator&lt;</methodname> is provided so that
+	  <classname>MasterCoords</classname> can be used as keys in
+	  STL maps.
+	</para>
+      </refsection><!-- cmp -->
+    </refsection><!-- Methods -->
+  </refentry><!-- MasterCoord -->
+
+  <refentry id="Class-Point">
+    <refnamediv>
+      <refname>Point</refname>
+      <refpurpose>Python point class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Python Synopsis</title>
+      <programlisting>
+import oof2.common.primitives</programlisting>
+      <classsynopsis language="python">
+	<ooclass>
+	  <classname>Point</classname>
+	</ooclass>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-init">__init__</link></methodname>
+	  <methodparam>
+	    <parameter>x</parameter>
+	  </methodparam>
+	  <methodparam>
+	    <parameter>y</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-getitem">__getitem__</link></methodname>
+	  <methodparam>
+	    <parameter>i</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-getitem">__setitem__</link></methodname>
+	  <methodparam>
+	    <parameter>i</parameter>
+	  </methodparam>
+	  <methodparam>
+	    <parameter>val</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-arithmetic">__mul__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-arithmetic">__rmul__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-arithmetic">__div__</link></methodname>
+	  <methodparam>
+	    <parameter>factor</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-arithmetic">__add__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-arithmetic">__sub__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-cross">cross</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-cmp">__cmp__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-cmp">__lt__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-cmp">__gt__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-cmp">__eq__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	      linkend="Class-Point-cmp">__ne__</link></methodname>
+	  <methodparam>
+	    <parameter>other</parameter>
+	  </methodparam>
+	</methodsynopsis>
+	<methodsynopsis>
+	  <methodname><link
+	  linkend="Class-Point-cmp">__hash__</link></methodname>
+	</methodsynopsis>
+      </classsynopsis>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/common/primitives.py</filename>: Python
+	      source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>Point</classname> is a pure Python class for
+	representing points on a plane.  It is equivalent to the C++
+	<link
+	linkend="Class-Coord"><classname>Coord</classname></link>
+	class.  The reason for having two classes is that there are
+	situations in which it's desirable to avoid the overhead of
+	calling C++ functions from Python, and in which the extra
+	memory required to store a Python object is not important.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-Point-init">
+	<title><code>__init__(x, y)</code></title>
+	<para>
+	  <classname>Points</classname> are created by specifying
+	  their x and y components.
+	</para>
+      </refsection><!-- init -->
+      <refsection id="Class-Point-getitem">
+	<title><code>__getitem__(i), __setitem__(i, val)</code></title>
+	<para>
+	  A single component can be extracted with
+	  <methodname>__getitem__</methodname> and set with
+	  <methodname>__setitem__</methodname>. <code>point[0]</code>
+	  is the x component and <code>point[1]</code> is the y
+	  component.
+	</para>
+      </refsection><!-- getitem -->
+      <refsection id="Class-Point-arithmetic">
+	<title><code>__mul__, __add__, etc.</code></title>
+	<para>
+	  The standard arithmetic operators are defined for
+	  <classname>Points</classname>.  They can be added or
+	  subtracted from one another, and multiplied or divided by
+	  integers or floating point numbers.  Multiplying two
+	  <classname>Points</classname> produces their dot product.
+	</para>
+      </refsection><!-- arithmetic -->
+      <refsection id="Class-Point-cross">
+	<title><code>cross(other)</code></title>
+	<para>
+	  <methodname>cross</methodname> returns the cross product of
+	  a point with another point.  The cross product is a scalar
+	  because <classname>Points</classname> are two dimensional
+	  vectors.
+	</para>
+      </refsection><!-- cross -->
+      <refsection id="Class-Point-cmp">
+	<title><code>__cmp__, __eq__, __lt__, etc</code></title>
+	<para>
+	  The standard comparision operators are defined for
+	  <classname>Points.</classname>  The inequalities establish
+	  an arbitrary order for them.  The
+	  <methodname>__hash__</methodname> function is provided so
+	  that <classname>Points</classname> can be used as dictionary
+	  keys.
+	</para>
+      </refsection>
+    </refsection><!-- Methods -->
+  </refentry>
+  
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

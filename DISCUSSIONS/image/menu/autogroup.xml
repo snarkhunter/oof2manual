@@ -1,0 +1,75 @@
+<!-- 
+  $RCSfile: autogroup.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:49 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    If a &micro; is being built from an &image; which has a one-to-one
+    correspondence between pixel color and &material;, then the most
+    convenient way to assign &materials; to pixels is to automatically
+    create a &pixelgroup; for each color, and then to <link
+    linkend="MenuItem-OOF.Material.Assign">assign</link> &materials;
+    to the pixels in each pixel group.  The
+    <command>AutoGroup</command> command performs the first part of
+    this process, creating pixel groups for each color of pixel in the
+    given &image;.
+  </para>
+  <para>
+    The <varname>name_template</varname> parameter specifies how the
+    names for the automatically created groups will be generated.  It
+    should be a string containing either <userinput>%c</userinput> or
+    <userinput>%n</userinput> or both.  When naming a group,
+    <userinput>%c</userinput> will be replaced by the color of the
+    pixels in the group, and <userinput>%n</userinput> will be
+    replaced by an integer.  Note that <userinput>%c</userinput> often
+    leads to unwieldy names, such as
+    <userinput>RGBColor(red=0.97254901960784312,green=0.9882352941176471,blue=0.0)</userinput>.
+    It may be advisable to manually <link
+    linkend="MenuItem-OOF.PixelGroup.Rename">rename</link> the groups.
+  </para>
+
+  <para>
+    The <varname>name_template</varname> parameter is new in &oof2;
+    version 2.0.4.  To reproduce the pre-2.0.4 behavior, set
+    <varname>name_template</varname> to <userinput>%c</userinput>.
+  </para>
+  
+  <caution>
+    <para>
+      Images produced by drawing programs that use antialiasing to
+      smooth lines are generally not suitable candidates for
+      <command>AutoGroup</command>.  Even if an antialiased image
+      appears to contain only a few colors, it will generally have
+      many slightly different colors at the borders between regions,
+      and <command>AutoGrouping</command> will create a large number
+      of groups.  On antialiased images it's best to select pixels
+      with, for example, <xref
+      linkend="MenuItem-OOF.PixelSelection.Color_Range"/> and assign
+      them to a group manually with <xref
+      linkend="MenuItem-OOF.PixelGroup.AddSelection"/>.
+    </para>
+  </caution>
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

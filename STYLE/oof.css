@@ -1,0 +1,438 @@
+body {
+    margin: 0;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: black;
+    background: white url(border.png) left top repeat-x;
+}
+
+a:link {
+    color: #0000B7;
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a92123;
+}
+
+div#NIST img {
+    margin: 12px 0px 2px 15px;
+}
+
+/*********/
+
+div#logo {
+    /* visibility: hidden; */
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 110px;
+}
+
+#projectmenu {
+    /* border-right: 1px solid #000; */
+    left: 0;
+    margin-bottom: 1em;
+    margin-left: 0;
+    padding-left: 20px;
+    padding: 0em 0em 1em 0;
+    position: absolute;
+    top: 170px; 
+    width: 180px;
+}
+
+#projectmenu ul {
+    list-style: none;
+    margin-left: 20px;
+    padding: 0;
+    border: none;
+    color: gray;
+    background-color: white;
+}
+
+#projectmenu li {
+    margin: 0;
+    margin-bottom: 0.4ex;
+    padding-bottom: 0.4ex;
+    color: #606060;
+    font-size: 90%;
+}
+
+#projectmenu li a {
+    display: block;
+    color: #606060;
+    width: 100%;
+}
+
+html>body #projectmenu li a {
+    width: auto;
+}
+
+#projectmenu li a:hover {
+    color: silver;
+    background-color: white;
+}
+
+#projectmenu li ul {
+    margin-top: 0.4ex;
+    padding-top: 0.4ex;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#projectmenu li ul li {
+    list-style-type: disc;
+    list-style-image: url(STYLE/bullet.gif);
+    list-style-position: inside;
+    color: black;
+    background-color: white;
+}
+
+#projectmenu li ul li a {
+    display: block;
+    width: 100%;
+    border-bottom: transparent 0px;
+    color: #0000B7;
+}
+
+html>body #projectmenu li ul li a {
+    width: auto;
+}
+
+#projectmenu li ul li a:hover {
+    color: navy;
+    background-color: white;
+}
+
+#projectmenu li ul li ul {
+    padding-left: 1em;
+    margin-left: 1em;
+}
+
+/**********/
+
+table {
+    width: 100%;
+    margin: 0;
+}
+
+table p {
+  text-align: left;
+}
+
+table td { 
+  text-align: left;
+  padding: 4;
+  border-width: 1;
+}
+
+
+div#main {
+    position: relative;
+    margin: 0px;
+    margin-top: 45px; */
+    margin-right: 15%;
+    margin-left: 180px;
+    padding-left: 20px;
+    border-left: solid #BEBEBE thin;
+}
+
+div#main1col {
+    position: relative;
+    margin: 0px;
+    margin-right: 15%;
+}
+
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+    text-decoration: none;
+}
+
+h1 {
+    color: gray;
+    font-style: normal;
+    font-weight: normal;
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+}
+
+h1#projectTitle {
+    color: #0000B7;
+}
+
+h2 {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: #b60025;
+    font-size: 110%;
+}
+
+h3 {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: #b60025;
+    font-size: 105%;
+}
+
+h4 {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 100%;
+    color: #950005;
+}
+
+h5 {
+    font-family: Futura Bold, Futura, Verdana, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: #750010;
+    font-size: 95%;
+}
+
+div.withFeature#main {
+    border-right: solid #BEBEBE thin;
+    margin-right: 25%;
+    padding-right: 20px;
+}
+
+div#feature {
+    position: absolute;
+    left: 75%;
+    top: 120px;
+    width: 23%;
+    z-index: 3;
+    color: #000;
+    padding: 3px;
+    border-left: solid #BEBEBE thin;
+}
+
+div#validation {
+    float:right;
+}
+
+
+
+
+/* ------- */
+
+ div.contents  {
+     position: fixed;
+     left: 75%;
+     top: 10%;
+     width: 20%;
+     z-index: 4;
+     border-right: 1px solid #000;
+     padding: 1em 1em 1em 1em;
+     margin: 1em 1em 1em 1em;
+     border: solid #BEBEBE thin;
+     background-color: white;
+ }
+
+div.contents ul {
+    list-style: none;
+    padding: 0;
+    border: none;
+    color: gray;
+    background-color: white;
+}
+
+div.contents li {
+    margin: 0;
+    margin-bottom: 0.4ex;
+    padding-bottom: 0.4ex;
+}
+
+div.contents li a {
+    display: block;
+    color: gray;
+    width: 100%;
+}
+
+html>body div.contents li a {
+    width: auto;
+}
+
+div.contents li a:hover {
+    color: silver;
+    background-color: white;
+}
+
+div.contents li ul {
+    margin-top: 0.4ex;
+    padding-top: 0.4ex;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+div.contents li ul li {
+    list-style-type: disc;
+    list-style-image: url(STYLE/img/bullet.gif);
+    list-style-position: inside;
+    color: black;
+    background-color: white;
+}
+
+div.contents li ul li a {
+    display: block;
+    width: 100%;
+    border-bottom: transparent 0px;
+    color: blue;
+    text-decoration: underline;
+}
+
+html>body div.contents li ul li a {
+    width: auto;
+}
+
+div.contents li ul li a:hover {
+    color: navy;
+    background-color: white;
+}
+
+div.contents li ul li ul {
+    padding-left: 1em;
+    margin-left: 1em;
+}
+
+
+/* ------- */
+
+
+
+
+div#footer {
+    position: relative;
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+    margin-left: 180px;
+    font-size: 80%;
+    padding-left: 20px;
+    border-left: solid #BEBEBE thin;
+}
+
+/* div#Commerce {
+ *     left: 10px;
+ *     /\* text-align: left; *\/
+ *     /\* vertical-align: middle; *\/
+ * }
+ * 
+ * div#update {
+ *     text-align: left;
+ *     font-size: 80%
+ * } */
+
+div.credits {
+    margin-top: 2ex;
+}
+
+
+
+/*************/
+
+
+div.caption { 
+  font-size: 90%;
+  background-color: lightgray;
+}
+
+div#main p {
+    width: 80%;
+}
+
+div.withFeature#main {
+    border-right: solid black thin;
+    margin-right: 20%;
+}
+
+div#feature {
+    position: absolute;
+    left: 80%;
+    top: 97px;
+    width: 18%;
+    z-index: 3;
+    color: #000;
+    padding: 3px;
+    background: #CC99FF;
+    border-left: solid black thin;
+}
+
+span.guibutton {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+span.guilabel { 
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+div.calloutlist table td { 
+  text-align: left;
+}
+
+/* h3 code { 
+ *   background-color: LemonChiffon;
+ *   font-size: 110%;
+ *   font-weight: normal;
+ *   border-bottom: black 1px solid;
+ * }
+ * 
+ * h4 code { 
+ *   background-color: LemonChiffon;
+ *   font-size: 100%;
+ *   font-weight: normal;
+ *   border-bottom: black 1px solid;
+ * } */
+
+pre.classsynopsis {
+  background-color: LemonChiffon;
+}
+
+pre.programlisting { 
+  background-color: LemonChiffon;
+#  background-color: #ffe4c4;
+  text-align: left;
+}
+
+.equation {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.equation-contents {
+  float: left;
+  width: 60%;
+  background-color: LemonChiffon;
+}
+
+.equation .title {
+  margin-top: 0;
+  float: left;
+  width: 20%;
+  margin-right: 0;
+  background-color: LemonChiffon;
+}
+
+.equation .title b {
+  font-weight: normal;
+}
+
+.equation-break {
+  clear: both;
+}
+
+/* TODO: Figure out how to make xrefs to RegisteredClasses use
+<code> instead of <tt>, and then change these font-sizes back to
+110%. */
+
+code.varname {
+    font-size: 100%
+}
+
+code.classname {
+    font-size: 100%
+}

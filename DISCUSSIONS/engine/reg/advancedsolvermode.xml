@@ -1,0 +1,46 @@
+<!-- 
+  $RCSfile: advancedsolvermode.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-25 17:32:37 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  When the <varname>solver_mode</varname> argument to <xref
+  linkend="MenuItem-OOF.Subproblem.Set_Solver"/> is
+  <classname>AdvancedSolverMode</classname>, &oof2; leaves all of the
+  detailed decisions about the <link
+  linkend="Section-Concepts-Mesh-Solvers">solution method</link> to
+  the user.  The settings of the <link
+  linkend="RegisteredClass-StepDriver"><varname>time_stepper</varname></link>,
+  <link
+  linkend="RegisteredClass-NonlinearSolverBase"><varname>nonlinear_solver</varname></link>,
+  <link
+  linkend="RegisteredClass-MatrixMethod"><varname>symmetric_solver</varname></link>,
+  and <link
+  linkend="RegisteredClass-MatrixMethod"><varname>asymmetric_solver</varname></link>
+  determine how the &subproblem;'s equations will be solved.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

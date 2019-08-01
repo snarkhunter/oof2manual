@@ -1,0 +1,259 @@
+<!-- 
+  $RCSfile: swapedges.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:48 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>SwpaEdges</classname> rearranges the interior &sgmts;
+    of neighboring &elems; to improve their <link
+    linkend="Section-Concepts-Skeleton-Shape_Energy">shape energy
+    </link> or <link
+    linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity</link>.
+    The possible rearrangements are shown in <xref
+    linkend="Table:swap_cases"/>.
+  </para>
+
+    <table id='Table:swap_cases'>
+      <title>Swap Possibilities</title>
+      <tgroup cols='5'>
+	<colspec colnum='2' colname='c2'/>
+	<colspec colnum='3' colname='c3'/>
+	<colspec colnum='4' colname='c4'/>
+	<colspec colnum='5' colname='c5'/>
+	<thead>
+	  <row>
+	    <entry morerows='1'
+	      valign='middle' align='center'>Original Pair</entry>
+	    <entry namest='c2'
+	      nameend='c5' align='center'>Possible Rearrangements</entry>
+	  </row>
+	  <row>
+	    <entry>1</entry>
+	    <entry>2</entry>
+	    <entry>3</entry>
+	    <entry>4</entry>
+	  </row>
+	</thead>
+	<tbody>
+	  <row>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qq0.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qq0.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qq1.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qq1.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qq2.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qq2.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qq3.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qq3.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qq4.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qq4.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qt0.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qt0.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qt1.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qt1.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_qt2.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_qt2.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'></entry>
+	    <entry align='center'></entry>
+	  </row>
+	  <row>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_tt0.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_tt0.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'>
+	      <mediaobject>
+		<imageobject>
+		  <imagedata format="PNG" fileref="FIGURES/swap/swap_tt1.png"/>
+		</imageobject>
+		<imageobject>
+		  <imagedata format="EPS" fileref="FIGURES/swap/swap_tt1.eps"/>
+		</imageobject>
+	      </mediaobject>
+	    </entry>
+	    <entry align='center'></entry>
+	    <entry align='center'></entry>
+	    <entry align='center'></entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+
+  <para>
+    The general procedure for <classname>SwapEdges</classname>
+    is as follows:
+    <orderedlist  numeration="arabic">
+      <listitem>
+	<para>
+ 	  Create a list of &elems; chosen by the
+ 	  <varname>targets</varname> <link
+ 	  linkend="RegisteredClass-SkelModTargets">parameter</link>.
+ 	  To avoid any potential artifacts from the internal ordering
+ 	  of &elems;, the list of target &elems; is shuffled.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Loop over the target elements and start swapping edges. For
+	  each element, all of its neighboring elements are considered
+	  for swapping and temporarily will be swapped in all of the
+	  possible ways (see <xref linkend='Table:swap_cases'/>).
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  At each site the configuration of &elems; that best
+	  satisfies the specified <link
+	  linkend="RegisteredClass-SkelModCriterion">criterion</link>
+	  will be chosen and finalized. If none of the possible swap
+	  cases satisfies the given criterion, the &elem; will not be
+	  processed at all.
+	</para>
+      </listitem>
+    </orderedlist>
+  </para>
+
+
+  <para>
+    Here's a simple example of swapping edges.  <xref
+    linkend="Figure-before_swap"/> shows a &skel; that features some
+    element pairs (with thicker lines), which are to swap edges. The
+    resulting &skel; is shown in <xref linkend="Figure-after_swap"/>.
+    Two pairs (top and bottom ones) have improved their <link
+    linkend='Section-Concepts-Skeleton-Shape_Energy'>shape
+    energy</link> significantly.  The pair in the middle has improved
+    both <link linkend='Section-Concepts-Skeleton-Shape_Energy'>shape
+    energy</link> and <link
+    linkend='Section-Concepts-Skeleton-Homog_Energy'>homogeneity</link>.
+    
+    <figure id="Figure-before_swap">
+      <title>Before Swapping Edges</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/swap/before_swap.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/swap/before_swap.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    Three pairs are ready to swap their edges.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <figure id="Figure-after_swap">
+      <title>After Swapping Edges</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/swap/after_swap.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/swap/after_swap.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A better looking &skel; after swapping.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

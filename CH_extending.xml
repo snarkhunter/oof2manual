@@ -1,0 +1,2305 @@
+<!--
+  $RCSfile: CH_extending.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2012-01-30 21:43:27 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<chapter id="Chapter-Extending">
+  <title>Extending &oof2;</title>
+  <para>
+    &oof2; is meant to be easily extended to include new physics.
+    Users with a bit of programming experience can add new &fields;,
+    &fluxes;, &equations;, and especially &material; &properties;.
+    Adding new &fields; and &fluxes; is easy, but is not of much use
+    unless new &properties; are added that use the &fields; and
+    &fluxes;.  Adding &properties; is more complicated, but the
+    individual steps are more-or-less straightforward.  Adding
+    &equations; is easy if the new equations fit the form of the
+    existing <classname>Equation</classname> classes.  Writing new
+    <classname>Equation</classname> classes can be tricky, but should
+    not be commonly required.
+  </para>
+  <para>
+    <xref linkend="Chapter-Extending"/> describes the
+    <emphasis>structure</emphasis> of extensions to &oof2;.  <xref
+    linkend="Chapter-Coding"/> describes the actual
+    <emphasis>contents</emphasis> of extension modules.  Both assume
+    that the reader is familiar with the C++ and Python programming
+    languages.
+  </para>
+  <section id="Section-Extending-Mechanics">
+    <title>The Mechanics of Extending &oof2;</title>
+    <para>
+      This section describes how &oof2; extensions are constructed
+      from source files.  It <emphasis>doesn't</emphasis> describe how
+      to write the source files.  The contents of the source files are
+      discussed in other sections.
+    </para>
+    <para id="para-internal_extension">
+      There are two ways of building &oof2; extensions.  Users
+      building &oof2; from the source distribution can include code
+      for an extension in the <filename>SRC/EXTENSIONS</filename>
+      directory in the main &oof2; directory.  Extensions placed there
+      will be built when &oof2; is built and can be loaded
+      automatically when &oof2; starts.  These extensions are called
+      <emphasis>internal</emphasis> extensions.
+    </para>
+    <para id="para-external_extension">
+      &oof2; can also load extensions built independently of the
+      installation process, possibly after the fact.  Such extensions are
+      called <emphasis>external</emphasis> extensions.  Adding
+      external extensions is the only option for users who do not have
+      permission to edit files in the main &oof2; directory tree.
+      External extensions must always be explicitly loaded into
+      &oof2;, but there is no other difference in the behavior of
+      internal and external extensions.
+    </para>
+    <para>
+      &oof2; extension code can consist of three types of files:
+      Python code, C++ code, and <ulink url="http://www.swig.org"
+      role="external"><application>swig</application></ulink> wrapper
+      files.  The Python files are imported directly into &oof2;, the
+      C++ code is compiled into a shared library, and the swig wrapper
+      files are converted into more C++ and Python files that
+      constitute a <link linkend="Extending-confusion">Python
+      extension module</link>. This module links to the extension's
+      shared library, and is imported by the extension's Python code.
+      The structural organization of an &oof2; extension is shown in
+      <xref linkend="Figure-orgchart"/>. Refer to <xref
+      linkend="Figure-ExternalLayout"/> and <xref
+      linkend="Figure-InternalLayout"/> to see how the structure of
+      the source and installation files and directories relates to the
+      conceptual structure in <xref linkend="Figure-orgchart"/>.
+    </para>
+    <figure id="Figure-orgchart">
+      <title>Components of an &oof2; Extension</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/extending/orgchart.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/extending/orgchart.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    The anatomy of an &oof2; extension.  The red boxes
+	    indicate the components of an extension, and the labels on
+	    the right indicate their sources.  The dotted line
+	    delimits one of the <link
+	    linkend="Extending-confusion">Python extension
+	    modules</link> within the &oof2; extension.  Arrows
+	    indicate linkages: the Python modules at the top import
+	    Python wrapper modules, which import wrapper libraries,
+	    which link to shared libraries built from the extension's
+	    C++ code.  The core &oof2; modules and libraries can be
+	    invoked from any part of the extension code.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <note id="Extending-confusion">
+      <para>
+	It's necessary to make a distinction between an &oof2;
+	extension and a Python extension module.  An &oof2; extension
+	is vaguely defined as a bunch of code that adds some
+	functionality to &oof2;.  Everything in the yellow, blue, and
+	pink boxes in <xref linkend="Figure-orgchart"/> is one &oof2;
+	extension.  A Python extension module, on the other hand, is
+	specifically defined as a C++ library and some Python code
+	that allows Python to call functions from the library.  One
+	&oof2; extension can contain many Python extension modules.
+      </para>
+    </note>
+    <para>
+      In all cases, the procedure for creating an &oof2; extension is
+      the same:
+      <orderedlist numeration="arabic">
+	<listitem id="Extending-stepone">
+	  <para>
+	    Write the C++, python, and swig source code.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Write the control file (<filename>DIR.py</filename> for
+	    internal extensions, <filename>setup.py</filename> for
+	    external extensions).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Build and install the extension using <code>python
+	    setup.py ...</code>.  For external extensions, this is
+	    similar to building &oof2;. For internal extensions, it's
+	    identical.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Run &oof2; and find out what's wrong.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Go to <xref linkend="Extending-stepone"/>.
+	  </para>
+	</listitem>
+      </orderedlist>
+    </para>
+  </section> <!-- mechanics of extending oof2 -->
+
+  <section id="Section-Extending-External">
+    <title>External Extensions</title>
+    <para>
+      This section describes how to create an <link
+      linkend="para-external_extension">external</link> &oof2;
+      extension.
+    </para>
+    <note>
+      <para>
+	There's no fundamental reason that external &oof2;
+	extensions must be built using the procedure described here.
+	Other techniques certainly exist, and users who are
+	proficient with swig and distutils, or can do without them,
+	should feel free to do it their own way.  The methods
+	described here should be easy for most users and should
+	suffice in almost all cases, though.
+      </para>
+    </note>
+    <section id="Section-Extending-External-Dirs">
+      <title>Directory Structure</title>
+      <figure id="Figure-ExternalLayout">
+	<title>File Arrangement for External Extensions</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/extending/external_layout.png"
+	      format="PNG"/>
+	  </imageobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/extending/external_layout.eps"
+	      format="EPS"/>
+	  </imageobject>
+	  <caption>
+	    <para>
+	      The file layout for <quote><link
+	      linkend="para-external_extension">external</link></quote>
+	      extensions.  Names in red are directories, and lines
+	      between them indicate nested subdirectories.  Blue
+	      arrows indicate the information flow during the build
+	      process.  Green arrows show run-time dependencies, and
+	      are equivalent to the black arrows in <xref
+	      linkend="Figure-orgchart"/>.
+	    </para>
+	    <para>
+	      Only the files listed in bold need to be created by
+	      hand.  distutils and the <filename>setup.py</filename>
+	      script creates the rest.
+	    </para>
+	  </caption>
+	</mediaobject>
+      </figure>     
+      <para>
+	The top level directory, labelled
+	<filename>Extension</filename> in <xref
+	  linkend="Figure-ExternalLayout"/> can be located anywhere.
+      </para>
+      <para>
+	&oof2; external extension code should be organized at the top
+	level into Python <emphasis>packages</emphasis>.  Each
+	subdirectory below the top-level
+	<filename>Extension</filename> directory will contain the
+	files for one package, and this directory should have the same
+	name as the package.  The distutils library installs each of
+	these <emphasis>packages</emphasis> and an
+	<filename>__init__.py</filename> file.  The directory named
+	<filename>package</filename> in the figure will become a
+	package named <filename>package</filename>, with modules
+	(corresponding to Python files in
+	<filename>Extension/package</filename>) which can be loaded
+	into Python with <code>import package.module</code>. There can
+	be more than one package defined in an extension directory,
+	and packages can contain subdirectories (subpackages).  There
+	must be an <filename>__init__.py</filename> file in each
+	subdirectory.
+      </para>
+      <para>
+	The directories <filename>wrapper</filename> and
+	<filename>build</filename> are created automatically by
+	<filename>setup.py</filename> when the extension is
+	built. <filename>build</filename> is used by
+	<filename>distutils</filename> to store intermediate
+	results, and its name should not be changed.
+	<filename>wrapper</filename> stores output from swig.  Its
+	name is set in <filename>setup.py</filename>.
+      </para>
+      <para>
+      </para>
+      <para>
+	All of the directories under the <filename>Installation
+	  Directory</filename> on the right side of <xref
+	  linkend="Figure-ExternalLayout"/> are created automatically
+	by <filename>distutils</filename>.  The installation
+	directory itself is determined at build time, when
+	<filename>setup.py</filename> is run.
+      </para>
+    </section> <!-- directory structure -->
+    <section id="Section-setup.py">
+      <title>The <filename>setup.py</filename> File</title>
+      <para>
+	<filename>setup.py</filename> is a Python script that uses the
+	<ulink url="http://docs.python.org/dist/dist.html"
+	role="external"><filename>distutils</filename></ulink> library
+	to build an &oof2; extension.  The distutils library is
+	included with the Python distribution.  (A working example
+	<filename>setup.py</filename> is included in the &oof2;
+	distribution's <filename>examples/extension</filename>
+	directory.)  The first lines (other than comments) of
+	<filename>setup.py</filename> must be
+
+	<literallayout class="monospaced">
+import distutils.core
+import oof2config
+import oof2extutils
+	</literallayout>
+
+	<filename>distutils.core</filename> is the highest level
+	module from the Python distutils library.  The
+	<filename>oof2config</filename> and
+	<filename>oofextutils</filename> modules are provided as part
+	of a correct &oof2; installation.
+	<filename>oof2config</filename> contains information on how
+	&oof2; itself was built, and sets <varname>sys.path</varname>
+	so that some &oof2; utility functions are
+	available. <filename>oof2extutils</filename> contains Python
+	functions and classes that aid the construction of &oof2;
+	extensions.
+      </para>
+      <para>
+	The rest of <filename>setup.py</filename> is involved with
+	setting up the arguments for the function
+	<function>distutils.core.setup</function>, which does most of
+	the work of building and installing an extension.  distutils
+	needs to be told how to construct the shared libraries and
+	wrappers in <xref linkend="Figure-orgchart"/>, and which
+	Python files it should include.
+      </para>
+      <para>
+	<function>distutils.core.setup</function> uses a list of <link
+	linkend="Extending-SharedLibrary"><classname>oof2extutils.SharedLibrary</classname></link>
+	objects to determine how to build the shared libraries.
+	<filename>setup.py</filename> must create these objects by
+	calling the <classname>oof2extutils.SharedLibrary</classname>
+	constructor.  One <classname>SharedLibrary</classname>
+	instance must be created for each shared library that will be
+	built.  The <classname>SharedLibrary</classname> constructor
+	has only two required arguments, the name of the library and a
+	list of source files.  It's invoked, for example, like this:
+
+	<programlisting>
+shlib = oof2extutils.SharedLibrary(name="mylib",
+                                   sources=['mysrc/a.C', 'mysrc/b.C'])</programlisting>
+	
+	The parameter <varname>name</varname> is the name of the
+	library (without a <filename>lib</filename> prefix or
+	<varname>.so</varname> or other suffix).
+	<varname>sources</varname> is a list of C or C++ files to
+	compile.  The file names should be specified relative to the
+	current directory (the directory containing
+	<filename>setup.py</filename>), or given as absolute path
+	names (beginning with <quote>/</quote>).
+      </para>
+      <para>
+	See the <xref linkend="Extending-SharedLibrary"/> reference
+	page for a list of additional optional arguments.
+      </para>
+      <para>
+	The next step is to run <application>swig</application> on the
+	swig input files and to build <link
+	linkend="Extending-confusion">Python extension modules</link>
+	from the results.  &oof2; supplies a function, <link
+	linkend="Extending-run_swig"><code>oof2extutils.run_swig</code></link>,
+	that invokes swig with the appropriate arguments.  The C++
+	files that swig produces need to be compiled into a wrapper
+	library, and distutils needs to be told that swig's Python
+	output files should be included in the extension package.
+	<code>oof2extutils</code> contains a utility function, <link
+	linkend="Extending-get_swig_ext"><function>get_swig_ext</function></link>
+	that calls <link
+	linkend="Extending-run_swig"><function>run_swig</function></link>
+	and returns both an <code>oof2extutils.Extension</code> object
+	(for the wrapper library) and the name of the python package:
+
+	<programlisting>
+ext_obj, pkg = oof2extutils.get_swig_ext(srcdir = 'mysrc',
+                                         srcfile = 'myext.swg',
+                                         destdir = 'swigout',
+                                         libraries = ['mylib'])</programlisting>
+	
+	The parameter <varname>srcdir</varname> is the directory
+	containing the swig source files.  In this example, the swig
+	source is in the same directory as the C++ source for the
+	<classname>SharedLibrary</classname>, above.
+	<varname>srcfile</varname> is the name of the swig file, and
+	<varname>destdir</varname> is the destination directory, where
+	the C++ and Python output files will be written.  If
+	<varname>srcfile</varname> contains a subdirectory name, the
+	same subdirectory will be created within the destination
+	directory.  Finally, <varname>libraries</varname> is a list of
+	libraries with which the extension module should be linked.
+	Generally, this should be the <varname>name</varname> of the
+	<classname>SharedLibrary</classname> object, as in the example
+	above.  The return values are in the indicated order, with
+	<varname>ext_obj</varname> being the
+	<code>oof2extutils.Extension</code> object and
+	<varname>pkg</varname> being the name of the Python package.
+      </para>
+      <para>
+	The <link linkend="Extending-confusion">Python extension
+	module</link> created by the above call to <link
+	linkend="Extending-get_swig_ext"><function>get_swig_ext</function></link>
+	can be imported into any Python program as
+	<code>swigout.myext</code>, combining the names of the
+	destination directory (<filename>swigout</filename>) and
+	source file (<filename>myext.swg</filename>).
+      </para>
+      <para>
+	Additional optional arguments to <link
+	linkend="Extending-get_swig_ext"><function>get_swig_ext</function></link>
+	are documented on its reference page, <xref
+	linkend="Extending-get_swig_ext"/>.  If for some reason <link
+	linkend="Extending-get_swig_ext"><function>get_swig_ext</function></link>
+	doesn't do what you need, you'll need to read the <link
+	linkend="Extending-run_swig">reference page for
+	<function>run_swig</function></link> and for the <link
+	linkend="Extending-Extension"><classname>oof2extutils.Extension</classname></link>
+	class.
+      </para>
+      <para>
+	The last thing that <filename>setup.py</filename> needs to
+	do is to call <function>distutils.core.setup</function>,
+	like this:
+
+	<literallayout class="monospaced">
+distutils.core.setup(name = "oof2ExtensionName",
+                     version = "0.0.0",
+                     author = "John Q. Oof",
+                     author_email = "jqoof@address.net",
+                     url = "http://www.address.net/~jqoof",
+                     ext_modules = [ext_obj],
+                     packages = [mysrc, pkg],
+                     shlibs = [shlib])
+	</literallayout>
+
+	The first five arguments are self
+	explanatory. <varname>ext_modules</varname> is a list of the
+	<link linkend="Extending-confusion">Python extension
+	modules</link> created by <link
+	linkend="Extending-get_swig_ext"><function>oof2extutils.get_swig_ext</function></link>.
+	<varname>packages</varname> is a list containing both the
+	Python packages returned by <function>get_swig_ext</function>
+	and any hand-written Python packages<footnote
+	id="Extending-package">
+	  <para>
+	    A <emphasis>package</emphasis> is a directory containing
+	    Python source files and an
+	    <filename>__init__.py</filename> file.  Code in a file
+	    in the directory can be loaded into Python with
+	    <code>import directoryname.filename</code>.  Code within
+	    <filename>__init__.py</filename> will run the first time
+	    any module from the directory is imported.
+	    <filename>__init__.py</filename> can itself import the
+	    other files in the directory, in which case the whole
+	    package can be loaded with <code>import
+	      directoryname</code>.
+	  </para>
+	</footnote>
+	(in <xref linkend="Figure-orgchart"/>, the former correspond
+	to the boxes labelled <quote>Python Wrapper Code</quote> and
+	the latter to the box labelled <quote>Extension's Python
+	  Modules</quote>).
+      </para>
+    </section><!-- setup.py -->
+    <section id="Extending-BuildingExternal">
+      <title>Building External Extensions</title>
+      <para>
+	After creating the source files and writing
+	<filename>setup.py</filename>, building an &oof2; extension
+	is straightforward.
+	<orderedlist spacing="compact">
+	  <listitem>
+	    <para>
+	      Make sure that &oof2; itself is installed.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Build the extension by typing
+
+	      <literallayout class="monospaced">
+% python setup.py build
+	      </literallayout>
+
+	      in a Unix shell.
+	    </para>
+	  </listitem>
+	  <listitem id="setupinstall">
+	    <para>
+	      Install the extension by typing
+
+	      <literallayout class="monospaced">
+% python setup.py install
+	      </literallayout>
+
+	      If you aren't the superuser this command will fail
+	      because you won't have permission to write to the
+	      default installation directories.  There are two
+	      solutions to this problem:
+	      <orderedlist numeration="loweralpha">
+		<listitem>
+		  <para>
+		    Become a superuser or ask one to help you.
+		  </para>
+		</listitem>
+		<listitem>
+		  <para>
+		    Install the files into a directory that you own,
+		    via the <userinput>--prefix</userinput> command
+		    line option:
+
+		    <literallayout class="monospaced">
+% python setup.py install --prefix=/home/oofuser</literallayout>
+
+		    The example given above will put shared libraries
+		    in <filename>/home/oofuser/lib</filename><footnote id="Extending-homepath">
+		      <para>
+		      On Linux and many other Unix systems, user
+		      accounts are located under the
+		      <filename>/home</filename> directory, but this
+		      practice is not universal, and on heterogeneous
+		      clusters, home directories may be soft-linked in
+		      complicated ways.  In case of doubt, the value
+		      of the <literal>HOME</literal> environment
+		      variable may be used to portably refer to the
+		      user's home directory, like this:
+			<literallayout class="monospaced">
+% python setup.py install --prefix=$HOME</literallayout>
+		    </para>
+		    </footnote>
+		    and
+		    Python modules in
+		    <filename>/home/oofuser/lib/python2.4/site-packages</filename>
+		    (with the directory name
+		    <filename>python2.4</filename> adjusted
+		    appropriately).
+		  </para>
+		  <para>
+		    If this method is used, it may be necessary to
+		    set environment variables to get &oof2; to run
+		    correctly.  See <xref
+		      linkend="Extending-Environment"/>.
+		  </para>
+		</listitem>
+	      </orderedlist>
+	    </para>
+	  </listitem>
+	</orderedlist>
+      </para>
+    </section> <!-- building external extensions -->
+    <section id="Extending-Loading">
+      <title>Loading External Extensions</title>
+      <para>
+	The process described in <xref
+	linkend="Extending-BuildingExternal"/> creates modules and
+	libraries for &oof2;, but it doesn't tell &oof2; anything
+	about them, so the modules won't be used.  Modules must be
+	<emphasis>imported</emphasis> before they're accessible to
+	Python.  Generally, an &oof2; extension is designed so that
+	only one of its modules needs to be imported explicitly
+	&mdash; this <emphasis>main</emphasis> module then imports the
+	rest of the modules.
+      </para>
+      <para>
+	There are three ways of importing an extension into &oof2;.
+	Assume that the extension is called <filename>ABC</filename>
+	and its main module is contained in the file
+	<filename>start.py</filename>.  The three ways to import it
+	are:
+	<orderedlist>
+	  <listitem>
+	    <para>
+	      An import command can be typed explicitly in <link
+	      linkend="Section-Windows-Console">Console Window</link>,
+	      like this:
+
+	      <literallayout class="monospaced">
+import ABC.start
+	      </literallayout>
+
+	      This has the advantage of not requiring any
+	      premeditation, but it's awkward.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The import command, above, can be placed in the
+	      <filename>.oof2rc</filename> file in the users home
+	      directory.  The extension will then be loaded
+	      automatically for all future &oof2; sessions.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The extension can be imported when &oof2; is started, by
+	      using the <link
+	      linkend="CommandLineArg-import"><userinput>--import</userinput></link>
+	      command line option:
+
+	      <literallayout class="monospaced">
+% oof2 --import ABC.start
+	      </literallayout>
+
+	    </para>
+	  </listitem>
+	</orderedlist>
+      </para>
+      <section id="Extending-Environment">
+	<title>Environment Variables</title>
+	<para>
+	  If an &oof2; extension has been installed in a non-standard
+	  location, the Python import command may not be able to
+	  locate it, and the linker may not be able to find the shared
+	  libraries.  Both of these problems will occur at
+	  <emphasis>run-time</emphasis>, and are fixed by setting
+	  shell environment variables.  (The method of setting
+	  environment variables differs depending on which Unix shell
+	  you're using, and won't be discussed here.)
+	</para>
+	<para>
+	  If you get a message like
+
+	  <literallayout class="monospaced">
+ImportError: No module named ABC
+	  </literallayout>
+
+	  when you try to load the extension ABC, then you need to set
+	  the <literal>PYTHONPATH</literal> variable.  It should be
+	  set to the name of the directory where the &oof2; Python
+	  modules are installed.  If you installed &oof2; with the
+	  command <userinput>python setup.py install
+	  --prefix=/home/oofuser</userinput><footnoteref
+	  linkend="Extending-homepath"/>,  then
+	  <literal>PYTHONPATH</literal> must be set to
+	  <userinput>/home/oofuser/lib/python2.4/site-packages</userinput>
+	  (but replace 2.4 by the correct Python version number).  If
+	  <literal>PYTHONPATH</literal> needs to contain more than one
+	  directory (for example, if it's set to something else for
+	  another extension), then just concatenate the directory
+	  names, separated by colons.
+	</para>
+	<para>
+	  If you get a message containing something like
+
+	  <literallayout class="monospaced">
+ImportError: Failure linking new module: [...]
+	  </literallayout>
+
+	  or
+
+	  <literallayout class="monospaced">
+ImportError: [...]: cannot open shared object file: [...]
+	  </literallayout>
+
+	  then you need to set <literal>LD_LIBRARY_PATH</literal>
+	  (<literal>DYLD_LIBRARY_PATH</literal> on Mac OS X) to the
+	  directory containing your extension's shared libraries.  For
+	  the example above, with <literal>--prefix</literal> set to
+	  <userinput>/home/oof2user</userinput>,
+	  <literal>LD_LIBRARY_PATH</literal> should be set to
+	  <userinput>/home/oof2user/lib</userinput>.
+	</para>
+      </section>
+    </section>
+  </section><!-- External Extensions -->
+
+<!-- oof2extutils Reference sections -->
+
+  <section id="Extending-oof2extutils">
+    <title><filename>oof2extutils</filename> Reference</title>
+    <para>
+      The following reference pages provide the details on the Python
+      functions and classes used when building external &oof2;
+      extensions.  All of the functions and classes are defined in the
+      <code>oof2extutils</code> module.
+    </para>
+    <refentry id="Extending-get_swig_ext">
+      <refnamediv>
+	<refname>oof2extutils.get_swig_ext</refname>
+	<refpurpose>Run <application>swig</application> and generate
+	  <classname>Extension</classname> objects</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+	<para>
+
+	  <programlisting>
+from oof2extutils import get_swig_ext
+
+<varname>extobj</varname>, <varname>pkgname</varname> = <function>get_swig_ext</function>(<varname>srcdir</varname>,
+                               <varname>srcfile</varname>,
+                               <varname>destdir</varname>,
+                               <varname>cext</varname>="_wrap.C",
+                               <varname>include_dirs</varname>=[],
+                               <varname>libraries</varname>=[],
+                               <varname>dry_run</varname>=False,
+                               <varname>force</varname>=False,
+                               <varname>**kwargs</varname>) </programlisting>
+
+	</para>
+      </refsynopsisdiv>
+      <refsection>
+	<title>Details</title>
+	<para>
+	  <function>get_swig_ext</function> uses <ulink
+	  url="http://www.swig.org/"
+	  role="external"><application>swig</application></ulink> to
+	  generate the code for a Python extension module, and returns
+	  a tuple containing an <link
+	  linkend="Extending-Extension"><classname>oof2extutils.Extension</classname></link>
+	  object and a package name.  Both members of the tuple need
+	  to be included in the arguments to
+	  <function>distutils.core.setup</function>: the
+	  <classname>Extension</classname> object should be included
+	  in the <varname>ext_modules</varname> list and the package
+	  name should be included in the <varname>packages</varname>
+	  list.
+	</para>
+	<para>
+	  The name of the swig source file is specified in two parts,
+	  <varname>srcdir</varname> and <varname>srcfile</varname>,
+	  and the output directory is specified by
+	  <varname>destdir</varname>. <varname>srcfile</varname>
+	  doesn't have to be a simple filename &mdash; it can contain
+	  subdirectory names.  If it does, then the output files will
+	  be created in a corresponding subdirectory of
+	  <varname>destdir</varname>.  Using the same
+	  <varname>destdir</varname> for more than one call to
+	  <function>get_swig_ext</function> allows the swig-generated
+	  Python packages to be arranged into a package heirarchy.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Return Values</title>
+	<para>
+	  Note that the names given to the return values here are not
+	  mandated by the function itself, but are only used for
+	  reference.
+	</para>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>extobj</varname></term>
+	      <listitem>
+		<para>
+		  The <link linkend="Extending-Extension"><classname>oof2extutils.Extension</classname></link> object created by the function.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  <varlistentry>
+	    <term><varname>pkgname</varname></term>
+	      <listitem>
+		<para>
+		  The name of the generated Python package.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+      </refsection><!-- get_swig_ext return values -->
+      <refsection>
+	<title>Parameters</title>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>srcdir</varname></term>
+	    <listitem>
+	      <para>
+		The name of the directory or directory hierarchy
+		containing the swig source file.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>srcfile</varname></term>
+	    <listitem>
+	      <para>
+		The name of the swig source file, relative to the
+		<varname>srcdir</varname> directory.  The value of
+		this parameter may contain subdirectory names.  See
+		the discussion above.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>destdir</varname></term>
+	    <listitem>
+	      <para>
+		The destination directory, or the base of the
+		destination directory hierarchy.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>cext</varname></term>
+	    <listitem>
+	      <para>
+		The filename suffix to use for C++ files created by
+		swig.  This argument is optional.  The default value
+		is <userinput>_wrap.C</userinput>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>include_dirs</varname></term>
+	    <listitem>
+	      <para>
+		A list of directories in which to search for header
+		files, for both swig and the C++ compiler.  The C++
+		compiler will automatically be told to search the
+		directory containing the swig source file, so that
+		directory does not have to be listed here.  This
+		argument is optional: its default value is the empty
+		list, <userinput>[]</userinput>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>libraries</varname></term>
+	    <listitem>
+	      <para>
+		A list of additional libraries to link with when
+		building the Python extension module.  The linker will
+		automatically link with the core &oof2; libraries, so
+		they don't have to be included here.  This argument is
+		optional: its default value is the empty list,
+		<userinput>[]</userinput>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>dry_run</varname></term>
+	    <listitem>
+	      <para>
+		This is an optional argument used by distutils to
+		indicate that it should go through the motions of
+		building an extension, but shouldn't actually do
+		anything.  The default value is
+		<literal>False</literal>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>force</varname></term>
+	    <listitem>
+	      <para>
+		This is an optional argument used by distutils to
+		indicate that output files should be recreated even if
+		it appears that they are up-to-date with respect to
+		their source files.  The default value is
+		<literal>False</literal>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><code>**kwargs</code></term>
+	    <listitem>
+	      <para>
+		Any keyword arguments allowed by <link
+		  linkend="Extending-Extension"><classname>oof2extutils.Extension</classname></link>
+		can be added.  They will simply be passed through to
+		the <classname>Extension</classname> constructor.
+		(The arguments listed above are required because they
+		are used by <link
+		  linkend="Extending-run_swig"><function>run_swig</function></link>.)
+		In particular, one might want to include
+		<varname>library_dirs</varname> or
+		<varname>define_macros</varname>.  See
+		<filename>distutils/extension.py</filename> in the
+		Python library for a complete list.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection><!-- get_swig_ext parameters -->
+    </refentry><!-- get_swig_ext -->
+
+    <refentry id="Extending-run_swig">
+      <refnamediv>
+	<refname>oof2extutils.run_swig</refname>
+	<refpurpose>Generate the C++ to Python interface code</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+	<para>
+	  
+	  <programlisting>
+from oof2extutils import run_swig
+
+<varname>dict</varname> = <function>run_swig</function>(<varname>swigfile</varname>,
+                <varname>destdir</varname>,
+                <varname>basedir</varname>=".",
+                <varname>cext</varname>="_wrap.C",
+                <varname>include_dirs</varname>=[],
+                <varname>dry_run</varname>=False,
+                <varname>force</varname>=False) </programlisting>
+
+	</para>
+      </refsynopsisdiv>
+      <refsection>
+	<title>Details</title>
+	<para>
+	  <function>run_swig</function> takes a swig input file,
+	  typically with a <userinput>.swg</userinput> or
+	  <userinput>.i</userinput> suffix, and creates Python and C++
+	  files that provide the interface between the Python and C++
+	  portions of &oof2;.
+	</para>
+	<para>
+	  This function should be called explicitly only if, for some
+	  reason, the function <function>get_swig_ext</function> is
+	  insufficient. <function>get_swig_ext</function> is a
+	  convenient interface to <function>run_swig</function>.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Return Value</title>
+	<para>
+	  <function>run_swig</function> returns a dictionary, called
+	  <varname>dict</varname> in the synopsis, containing
+	  information about the swig output files.  Its entries are:
+	  <variablelist spacing="compact">
+	    <varlistentry>
+	      <term><varname>basename</varname></term>
+	      <listitem>
+		<para>
+		  The name of the swig input file, with all
+		  directories and the suffix removed.  If
+		  <varname>srcfile</varname> was
+		  <userinput>'foe/fum.swg'</userinput>, then
+		  <varname>basename</varname> would be
+		  <userinput>'fum'</userinput>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>indir</varname></term>
+	      <listitem>
+		<para>
+		  The actual directory containing the swig input file.
+		  If <varname>srcdir</varname> was
+		  <userinput>'fee/fie'</userinput> and
+		  <varname>srcfile</varname> was
+		  <userinput>'foe/fum.swg'</userinput>, then
+		  <varname>indir</varname> would be
+		  <userinput>'fee/fie/foe'</userinput>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>outdir</varname></term>
+	      <listitem>
+		<para>
+		  The actual directory containing the output files.
+		  It's a combination of <varname>destdir</varname> and
+		  the subdirectory part, if any, of
+		  <varname>srcfile</varname>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>cfile</varname></term>
+	      <listitem>
+		<para>
+		  The full name, including the directory, of the C++
+		  file that swig created.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</para>
+      </refsection>
+      <refsection>
+	<title>Parameters</title>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>srcdir</varname></term>
+	    <listitem>
+	      <para>
+		The name of the directory containing the swig input
+		file.  The name should be given relative to the
+		current directory (where <filename>setup.py</filename>
+		is), or should be an absolute path name (beginning
+		with <quote>/</quote>).
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>swigfile</varname></term>
+	    <listitem>
+	      <para>
+		The name of the swig input file.  Swig input files
+		conventionally have a <filename>.i</filename> suffix,
+		but <filename>.swg</filename> is also used (in
+		particular, it's used by the &oof2; source code).  It
+		is not necessary to use a conventional suffix.  The
+		file name can be either absolute (beginning with
+		<quote>/</quote>) or relative to the
+		<varname>srcdir</varname> directory.  If the swig
+		input file for the example
+		<filename>package</filename> directory in <xref
+		linkend="Figure-ExternalLayout"/>, were called
+		<filename>example.swg</filename>, then the correct
+		value of the <varname>swigfile</varname> parameter
+		would be <userinput>package/example.swg</userinput>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>destdir</varname></term>
+	    <listitem>
+	      <para>
+		The directory into which the output files will be
+		written. The directory will be created if it doesn't
+		exist.  For the example shown in <xref
+		  linkend="Figure-ExternalLayout"/>,
+		<varname>destdir</varname> would be
+		<userinput>wrapper</userinput>. The name of this
+		directory is important, because it is the name of the
+		Python package in which the swigged files will be
+		imported into &oof2;.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>cext</varname></term>
+	    <listitem>
+	      <para>
+		<varname>cext</varname> is the suffix to use when
+		creating C++ output files.  The default value is
+		<userinput>"_wrap.C"</userinput>, meaning that swig
+		will make an output file called
+		<filename>higglety_wrap.C</filename> from an input
+		file named
+		<filename>higglety.swg</filename>.<footnote>
+		  <para>
+		    For some reason, the &oof2; program itself is
+		    built with <varname>cext</varname> set to
+		    <userinput>cmodule.C</userinput>.
+		  </para>
+		</footnote>
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>include_dirs</varname></term>
+	    <listitem>
+	      <para>
+		<varname>include_dirs</varname> should be set to a
+		list of directory names, in which swig will search for
+		files included in its input files with the <code
+		  language="swig">%include</code> and <code
+		  language="swig">%extern</code> directives.  This
+		variable should be set to the predefined list, <code
+		  language="python">oof2config.swig_include</code>, with
+		other directories added to it if necessary.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>dry_run</varname></term>
+	    <listitem>
+	      <para>
+		Setting <varname>dry_run</varname> to
+		<literal>True</literal> will make
+		<function>run_swig</function> go through the motions
+		but not actually do anything.  The default value is
+		<literal>False</literal>.  This argument can (and
+		should) be omitted.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>force</varname></term>
+	    <listitem>
+	      <para>
+		If <varname>force</varname> is
+		<literal>True</literal>, then swig will be run even if
+		the output files already exist and appear to be newer
+		than the input file.  This argument can be omitted.
+		If so, it is assumed to be <literal>False</literal>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection>
+    </refentry><!-- run_swig -->
+    <refentry id="Extending-Extension">
+      <refnamediv>
+	<refname>oof2extutils.Extension</refname>
+	<refpurpose>
+	  Describe an &oof2; Python extension module
+	</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+	<para>
+
+	  <literallayout class="monospaced">
+from oof2extutils import Extension
+<classname>Extension</classname>(<varname>name</varname>,
+          <varname>sources</varname>,
+          <varname>include_dirs</varname>=None,
+          <varname>libraries</varname>=None,
+          <varname>library_dirs</varname>=None,
+          <varname>define_macros</varname>=None,
+          <varname>undef_macros</varname>=None,
+          <varname>runtime_library_dirs</varname>=None,
+          <varname>extra_objects</varname>=None,
+          <varname>extra_compile_args</varname>=None,
+          <varname>extra_link_args</varname>=None,
+          <varname>language</varname>=None)
+	  </literallayout>
+
+	</para>
+      </refsynopsisdiv>
+      <refsection>
+	<title>Description</title>
+	<para>
+	  The <classname>oof2extutils.Extension</classname> class
+	  stores all of the information required for distutils to
+	  build a Python extension module.  A <link
+	    linkend="Extending-confusion">Python extension module</link>
+	  is a small bit of code that allows Python to call C or C++
+	  functions.
+	</para>
+	<para>
+	  In most cases, it should not be necessary to invoke the
+	  <classname>Extension</classname> class explicitly.  Instead,
+	  use <link
+	  linkend="Extending-get_swig_ext"><function>get_swig_ext</function></link>
+	  to create an <classname>Extension</classname> object from a
+	  swig file.  The <classname>Extension</classname> object
+	  returned by <function>get_swig_ext</function> can be passed
+	  unmodified to <function>distutils.core.setup</function>.
+	</para>
+	<para>
+	  <classname>oof2extutils.Extension</classname> is derived
+	  from <classname>distutils.core.Extension</classname>, and
+	  all constructor arguments allowed by
+	  <classname>distutils.core.Extension</classname> are also
+	  allowed by <classname>oof2extutils.Extension</classname>.
+	  The difference between the two classes is that the &oof2;
+	  version automatically includes some compilation and link
+	  options required by the current &oof2; installation.
+	</para>
+      </refsection><!-- description -->
+      <refsection>
+	<title>Parameters</title>
+	<para>
+	  Many of these parameters are optional and are only listed
+	  here because they're available in the
+	  <classname>distutils.core.Extension</classname> base class.
+	  The only parameters absolutely required by the
+	  <classname>oof2extutils.Extension</classname> constructor
+	  are <varname>name</varname>, <varname>sources</varname>,
+	  <varname>include_dirs</varname>, and
+	  <varname>libraries</varname>.
+	</para>
+	<para>
+	  The value of every parameter is either a Python string
+	  (<code>'hello'</code>) or a list of strings (<code>['Hello',
+	    'world']</code>).
+	</para>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>name</varname></term>
+	    <listitem>
+	      <para>
+		The name of the extension.  To be compatible with
+		swig, this should be the name of the swig input file
+		without its suffix, and with a <quote>c</quote>
+		appended.  For example, if the swig file was
+		<filename>package/oofext.swg</filename>, the
+		<varname>name</varname> of the
+		<classname>Extension</classname> should be
+		<userinput>oofextc</userinput>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>sources</varname></term>
+	    <listitem>
+	      <para>
+		This is a list of all of the C++ files that need to be
+		compiled to build the
+		<classname>Extension</classname>.  Since each
+		<classname>Extension</classname> is built from one
+		swig file, there is only one name in the list, namely
+		the swig C++ output file.  The name of the file
+		depends on the <varname>swigfile</varname>,
+		<varname>destdir</varname>, and
+		<varname>basedir</varname> arguments to
+		<link linkend="Extending-run_swig"><function>run_swig</function></link>.  The name should be
+		given either as an absolute path name or relative to
+		the directory containing
+		<filename>setup.py</filename>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>include_dirs</varname></term>
+	    <listitem>
+	      <para>
+		This is a list of directory names in which the
+		compiler will search for header files.  Directories
+		containing &oof2; header files are included in the
+		list automatically.  What <emphasis>isn't</emphasis>
+		included, and needs to be, is the location of the
+		extension source code.  That is, for the layout shown
+		in <xref linkend="Figure-ExternalLayout"/>,
+		<varname>include_dirs</varname> would be set to
+		<code>['package']</code>.  Other directories may be
+		added if necessary.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>libraries</varname></term>
+	    <listitem>
+	      <para>
+		This is a list of the names of the libraries that the
+		extension will link with.  The &oof2; libraries are
+		included automatically, but libraries constructed by
+		<link
+		  linkend="Extending-SharedLibrary"><classname>SharedLibrary</classname></link>
+		calls in this <filename>setup.py</filename> file are
+		not.  They need to be included in the list.  Library
+		names should be listed without any
+		<userinput>lib</userinput> prefix or
+		<userinput>.so</userinput>,
+		<userinput>.dylib</userinput>, or
+		<userinput>.a</userinput> suffix.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>library_dirs</varname></term>
+	    <listitem>
+	      <para>
+		Optional. This is a list of directories in which the
+		linker will search for libraries.  It automatically
+		includes the location of the main &oof2; libraries, as
+		well as the location of libraries built by <link
+		  linkend="Extending-SharedLibrary"><classname>SharedLibrary</classname></link>
+		calls in this <filename>setup.py</filename> file.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>define_macros</varname></term>
+	    <listitem>
+	      <para>
+		Optional.  A list of C++ preprocessor macros to
+		define.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>undef_macros</varname></term>
+	    <listitem>
+	      <para>
+		Optional.  A list of C++ preprocessor macros to
+		undefine.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>runtime_library_dirs</varname></term>
+	    <listitem>
+	      <para>
+		Optional. A list of additional directories in which to
+		search for libraries at run time.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>extra_objects</varname></term>
+	    <listitem>
+	      <para>
+		Optional.  A list of extra files to link with.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>extra_compile_args</varname></term>
+	    <listitem>
+	      <para>
+		Optional. This is a list of strings, each one an
+		argument to pass to the C++ compiler.  Arguments used
+		to compile &oof2; are included automatically.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>extra_link_args</varname></term>
+	    <listitem>
+	      <para>
+		Optional.  A list of additional options to pass to the
+		linker.  Standard options required for all &oof2;
+		extensions are included automatically.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>language</varname></term>
+	    <listitem>
+	      <para>
+		Optional.  It's assumed to be
+		<userinput>'c++'</userinput>.  Don't change it without
+		changing <link linkend="Extending-run_swig"><function>run_swig</function></link> as well.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection><!-- parameters -->
+    </refentry><!-- oof2extutils.Extension -->
+    <refentry id="Extending-SharedLibrary">
+      <refnamediv>
+	<refname>oof2extutils.SharedLibrary</refname>
+	<refpurpose>Describe an &oof2; shared library</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+	<para>
+	  
+	  <literallayout class="monospaced">
+from oof2extutils import SharedLibrary
+<classname>SharedLibrary</classname>(<varname>name</varname>,
+              <varname>sources</varname>,
+              <varname>language</varname>='c++',
+              <varname>include_dirs</varname>=None,
+              <varname>macros</varname>=None,
+              <varname>extra_compile_args</varname>=None,
+              <varname>libraries</varname>=None,
+              <varname>library_dirs</varname>=None,
+              <varname>extra_link_args</varname>=None)
+	  </literallayout>
+
+	</para>
+      </refsynopsisdiv>
+      <refsection>
+	<title>Description</title>
+	<para>
+	  The <classname>oof2extutils.SharedLibrary</classname> class
+	  is analogous to <link
+	  linkend="Extending-Extension"><classname>oof2extutils.Extension</classname></link>.
+	  It contains the information required for distutils to build
+	  a shared library.  The libraries built by
+	  <classname>SharedLibrary</classname> contain the heart of an
+	  &oof2; extension &mdash; the C++ routines in the library are
+	  invoked by the wrapper routines (in the <link
+	  linkend="Extending-confusion">Python extension
+	  modules</link>) that are called by &oof2;'s Python front
+	  end.
+	</para>
+	<para>
+	  Tools for building shared libraries like these are not
+	  actually part of the distutils library. &oof2; contains a
+	  <classname>build_shlib</classname> extension to distutils,
+	  which is installed when <filename>oof2extutils</filename> is
+	  imported. The
+	  <classname>oof2extutils.SharedLibrary</classname> class is
+	  actually derived from a more general
+	  <classname>shlib.build_shlib.SharedLibrary</classname>
+	  class, just as <classname>oof2extutils.Extension</classname>
+	  is derived from
+	  <classname>distutils.core.Extension</classname>.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Parameters</title>
+	<para>
+	  Because <classname>SharedLibrary</classname> is not derived
+	  from a standard distutils class, all of its parameters are
+	  listed here, even those that are identical to those in the
+	  base class.  For the curious, the
+	  <classname>SharedLibrary</classname> base class and the
+	  <classname>build_shlib</classname> distutils command can be
+	  found in the <filename>shlib</filename> subdirectory in the
+	  &oof2; distribution.
+	</para>
+	<para>
+	  The only required arguments are <varname>name</varname>
+	  and <varname>sources</varname>.  The rest are optional.
+	</para>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>name</varname></term>
+	    <listitem>
+	      <para>
+		The name of the library.  The actual file created will
+		have a 'lib' prefix and an appropriate suffix
+		(usually, but not always, '.so').
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>sources</varname></term>
+	    <listitem>
+	      <para>
+		A list of C or C++ source files.  The file names must
+		be given relative to the current directory (the
+		directory containing <filename>setup.py</filename>).
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>language</varname></term>
+	    <listitem>
+	      <para>
+		The language of the source files. The default value,
+		if omitted, is <userinput>'c++'</userinput>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>include_dirs</varname></term>
+	    <listitem>
+	      <para>
+		A list of directories to search for header files.  The
+		directories containing the &oof2; source code, the
+		directory containing <filename>oofconfig.h</filename>,
+		and the directory containing the Python API headers
+		are included automatically.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>macros</varname></term>
+	    <listitem>
+	      <para>
+		A list of preprocessor macros to define.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>extra_compile_args</varname></term>
+	    <listitem>
+	      <para>
+		A list of additional arguments to pass to the
+		compiler.  distutils tries to use a reasonable set of
+		arguments, so in most cases it should be possible to
+		omit <varname>extra_compile_args</varname>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>libraries</varname></term>
+	    <listitem>
+	      <para>
+		A list of libraries that the final shared library
+		should link to.  The main &oof2; libraries are
+		included automatically.  Library names should be given
+		without the 'lib' prefix or any '.so' or '.dylib'
+		suffix.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>library_dirs</varname></term>
+	    <listitem>
+	      <para>
+		A list of directories in which to search for
+		libraries.  The location of the main &oof2; libraries
+		is included automatically.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>extra_link_args</varname></term>
+	    <listitem>
+	      <para>
+		A list of any additional arguments that need to be
+		passed to the linker.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection><!-- parameters -->
+    </refentry><!-- SharedLibrary -->
+  </section><!-- oof2extutils reference pages -->
+
+<!-- Internal Extensions -->
+
+  <section id="Section-Extending-Internal">
+    <title>Internal Extensions</title>
+    <para>
+      This section describes the files that must be created in the
+      <filename>SRC/EXTENSIONS</filename> directory in order to add an
+      <link linkend="para-internal_extension">internal</link>
+      extension to &oof2;.  Internal extensions are somewhat easier to
+      build, and can be imported automatically when &oof2; is started,
+      but they are less flexible because they require that the author
+      has permission to create files in the &oof2; source and
+      installation directories.
+    </para>
+    <para>
+      Because internal extensions are built by the main &oof2;
+      <filename>setup.py</filename> file, there is less flexibility
+      in how they're constructed.
+    </para>
+    <section id="Section-Extending-Internal-Directory">
+      <title>Directory Structure</title>
+      <figure id="Figure-InternalLayout">
+	<title>File Arrangement for Internal Extensions</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/extending/internal_layout.png"
+	      format="PNG"/>
+	  </imageobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/extending/internal_layout.eps"
+	      format="EPS"/>
+	  </imageobject>
+	  <caption>
+	    <para>
+	      The file layout for <quote><link
+	      linkend="para-internal_extension">internal</link></quote>
+	      extensions.  Names in red are directories, and lines
+	      between them indicate nested subdirectories.  Blue
+	      arrows indicate the information flow during the build
+	      process.  Green arrows show run-time dependencies, and
+	      are equivalent to the black arrows in <xref
+	      linkend="Figure-orgchart"/>.
+	    </para>
+	    <para>
+	      Only the files listed in bold need to be created by hand.
+	      The <filename>setup.py</filename> script creates the rest.
+	    </para>
+	  </caption>
+	</mediaobject>
+      </figure>
+
+      <para>
+	The source files for an internal &oof2; extension must reside
+	in the <filename>SRC/EXTENSIONS</filename> directory within
+	the main &oof2; directory.  The files can be placed directly
+	in that directory, or within subdirectories of it.
+	<filename>EXTENSIONS</filename> and all of its subdirectories
+	must each have a file called <link
+	linkend="Extending-DIR.py"><filename>DIR.py</filename></link>,
+	which is read by the main &oof2; <filename>setup.py</filename>
+	script and instructs it on what to do with each file.  Each
+	subdirectory must also contain an
+	<filename>__init__.py</filename> file, which may be empty.
+      </para>
+      <para>
+	<filename>EXTENSIONS</filename> and the Python files within it
+	form a Python package<footnoteref
+	linkend="Extending-package"/>, which will be copied at
+	installation time to <filename>oof2.EXTENSIONS</filename> in
+	the Python library directory.
+      </para>
+      <para>
+	C++ files in the <filename>EXTENSIONS</filename> directory are
+	compiled into a shared library, which will be installed
+	alongside of the main &oof2; shared libraries.  (It is
+	possible, but not necessarily recommended, to simply add the
+	C++ files to an existing &oof2; library.)
+      </para>
+      <para>
+	Swig processes its input files from the
+	<filename>EXTENSIONS</filename> directory and writes output
+	files to <filename>SRC/SWIG/EXTENSIONS</filename>.  These
+	files are the source for wrapper libraries and <link
+	  linkend="Extending-confusion">Python extension
+	  modules</link> in the
+	<filename>oof2.SWIG.EXTENSIONS</filename> package.
+      </para>
+      <para>
+	<filename>EXTENSIONS</filename> contains a file called
+	<filename>initialize.py</filename> which is imported when
+	&oof2; starts, after all other &oof2; components have been
+	initialized.  Authors of internal extensions should place an
+	<code>import</code> statement in this file if they wish the
+	extension code to be loaded automatically when &oof2; starts.
+      </para>
+    </section><!-- Directory Structure -->
+    <section id="Extending-DIR.py">
+      <title>The <filename>DIR.py</filename> File</title>
+      <para>
+	The <filename>DIR.py</filename> file in each
+	<filename>EXTENSIONS</filename> subdirectory tells the
+	&oof2; setup script how to build the program.
+	<filename>DIR.py</filename> is itself a Python script,
+	containing a number of variable and function definitions.
+	<filename>setup.py</filename> expects to find certain
+	definitions in <filename>DIR.py</filename>.  If it finds
+	definitions that it doesn't recognize, it will print a
+	warning message.  On the other hand, all of the entries in
+	<filename>DIR.py</filename> are optional.
+	<filename>setup.py</filename> will not complain about an
+	empty <filename>DIR.py</filename>, but it won't do anything
+	useful either.
+      </para>
+      <para>
+	Here is an example of a <filename>DIR.py</filename> file, from
+	the &oof2; source code.  <filename>DIR.py</filename> files
+	from <filename>EXTENSIONS</filename> have exactly the same
+	structure.
+
+	<literallayout class="monospaced">
+dirname = 'image'
+clib = 'oof2image'
+clib_order = 2
+subdirs = ['IO', 'GRAINBDY']
+
+cfiles = ['oofimage.C', 'burn.C', 'evenlyilluminate.C',
+'pixelselectioncourieri.C']
+
+swigfiles = ['oofimage.swg', 'burn.swg', 'pixelselectioncourieri.swg']
+
+swigpyfiles = ['oofimage.spy', 'burn.spy']
+
+pyfiles = ['initialize.py', 'pixelselectionmethod.py',
+'pixelselectionmod.py', 'imagemodifier.py']
+
+hfiles = ['oofimage.h', 'burn.h', 'pixelselectioncourieri.h']
+
+def set_clib_flags(c_lib):
+    import oof2setuputils
+    if oof2setuputils.check_exec('Magick++-config'):
+        oof2setuputils.add_third_party_includes('Magick++-config --cppflags',
+     					   c_lib)
+        oof2setuputils.add_third_party_libs('Magick++-config --ldflags --libs',
+     				       c_lib)
+    else:
+        print "Can't find Magick++-config!"
+    c_lib.externalLibs.append('oof2common')
+	</literallayout>
+
+      </para>
+      <para>
+	<filename>DIR.py</filename> can contain the following
+	entries:
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>subdirs</varname></term>
+	    <listitem>
+	      <para>
+		A list of the names of the subdirectories of the
+		current directory.  <filename>setup.py</filename>
+		will not process directories that aren't listed in
+		their <emphasis>parent's</emphasis>
+		<filename>DIR.py</filename> file.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>cfiles</varname></term>
+	    <listitem>
+	      <para>
+		A list of the C and C++ files in the current
+		directory that need to be compiled into a shared
+		library.  Omit the list or set it to <code>[]</code>
+		if there are no C or C++ files.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>hfiles</varname></term>
+	    <listitem>
+	      <para>
+		A list of the header files that are included in the
+		C and C++ files.  This list isn't actually used (at
+		the moment).
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>swigfiles</varname></term>
+	    <listitem>
+	      <para>
+		A list of the swig input files in the current
+		directory.  The python wrapper generated from each
+		file in the list will be importable as
+
+		<literallayout class="monospaced">
+import oof2.SWIG.EXTENSIONS.<emphasis>subdirectory.filename</emphasis>
+		</literallayout>
+		The C++ wrapper library that's generated from the
+		swig output will automatically link to the shared
+		library built from the files in
+		<varname>cfiles</varname>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>pyfiles</varname></term>
+	    <listitem>
+	      <para>
+		A list of the python files in the current
+		directory.  Files in this list will be importable as
+
+		<literallayout class="monospaced">
+import oof2.EXTENSIONS.<emphasis>subdirectory.filename</emphasis>
+		</literallayout>
+
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>swigpyfiles</varname></term>
+	    <listitem>
+	      <para>
+		A list of Python files that
+		<emphasis>aren't</emphasis> to be installed as
+		modules, but are instead included in the swig output
+		files.  The list is used to ensure that the swig
+		output is regenerated when the Python file changes.
+		It's a good idea to give these files a suffix other
+		than <filename>.py</filename>, so that distutils won't
+		install them.  (The main &oof2; code uses
+		<filename>.spy</filename>.)
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>clib</varname></term>
+	    <listitem>
+	      <para>
+		This is the name of the shared library that will be
+		built from the C and C++ files listed in
+		<varname>cfiles</varname>.  The library name should
+		not have a 'lib' prefix or any suffix.
+		<filename>DIR.py</filename> files from more than one
+		subdirectory can use the same
+		<varname>clib</varname> &mdash; the
+		<varname>cfiles</varname> lists from each of the
+		subdirectories will be combined to build the
+		library.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>clib_order</varname></term>
+	    <listitem>
+	      <para>
+		An integer indicating the order in which the shared
+		libraries are to be built.  Libraries will small
+		order numbers will be built first, so that libraries
+		with large orders can link to them.  The core &oof2;
+		libraries have small <varname>clib_order</varname>s.
+		Extensions should use large numbers (say 10000).  If
+		more than one <filename>DIR.py</filename> file
+		refers to the same <varname>clib</varname>, then
+		only one of them should define
+		<varname>clib_order</varname>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>set_clib_flags</varname></term>
+	    <listitem>
+	      <para>
+		<function>set_clib_flags</function> is a function
+		that is called to set compilation and link flags for
+		building the shared library.  It's described in more
+		detail below.  If more than one
+		<filename>DIR.py</filename> file refers to the same
+		<varname>clib</varname>, then only one of them
+		should define <function>set_clib_flags</function>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </para>
+      <section id="Extending-set_clib_flags">
+	<title>set_clib_flags</title>
+	<para>
+	  The <function>set_clib_flags</function> function that can
+	  optionally be defined in a <filename>DIR.py</filename>
+	  script has the job of setting extra compilation and link
+	  flags required to build a shared library from the C and
+	  C++ files in the subdirectory.
+	</para>
+	<para>
+	  The argument to <function>set_clib_flags</function> is an
+	  object of the <classname>CLibInfo</classname> class, which
+	  holds information about how to build a shared library.  It
+	  contains the following data members which can be altered
+	  by <function>set_clib_flags</function>:
+	  <variablelist spacing="compact">
+	    <varlistentry>
+	      <term><varname>externalLibs</varname></term>
+	      <listitem>
+		<para>
+		  A list of other libraries that should be linked.
+		  The names of the libraries should be specified
+		  without a 'lib' prefix or any suffix.  It's safe
+		  to include other &oof2; libraries in the list, as
+		  long as those other libraries have a
+		  smaller <varname>clib_order</varname>.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>externalLibDirs</varname></term>
+	      <listitem>
+		<para>
+		  A list of directories in which to search for the
+		  libraries specified by
+		  <varname>externalLibs</varname>.  It's not
+		  necessary to specify the location of other &oof2;
+		  libraries.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>includeDirs</varname></term>
+	      <listitem>
+		<para>
+		  A list of directories to search for C and C++
+		  header files.  The &oof2; source directories are
+		  included automatically.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	  Other compilation arguments can be specified in the usual
+	  way when &oof2; is built.
+	</para>
+	<para>
+	  The module <filename>oof2setuputils</filename> contains a
+	  few functions that are convenient to use in
+	  <function>set_clib_flags</function>:
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <para>
+		<link
+		linkend="Extending-pkg_check"><function>pkg_check</function></link>
+		adds options for linking to external libraries that
+		use the <ulink
+		url="http://pkg-config.freedesktop.org/wiki/"
+		role="external"><application>pkg-config</application></ulink>
+		program to retrieve their configuration options.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+		<link
+		  linkend="Extending-add_third_party_includes"><function>add_third_party_includes</function></link>
+		can be used to get the header file directories for
+		external libraries that don't use
+		<application>pkg-config</application>.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+		<link
+		  linkend="Extending-add_third_party_libs"><function>add_third_party_libs</function></link>
+		can be used to get the library names and directories
+		for external libraries that don't use
+		<application>pkg-config</application>.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+		<link
+		linkend="Extending-check_exec"><function>check_exec</function></link>
+		checks for the existence of external utility
+		functions.
+	      </para>
+	    </listitem>
+	  </itemizedlist>
+	</para>
+      </section>
+    </section><!-- DIR.py -->
+  </section><!-- internal extensions -->
+  <section id="Extending-oof2setuputils">
+    <title><filename>oof2setuputils</filename> Reference</title>
+    <para>
+      This section contains reference pages for the Python functions
+      defined in the <filename>oof2setuputils</filename> module, which
+      can be used in an <link
+      linkend="para-internal_extension">internal</link> extension's
+      <link
+      linkend="Extending-DIR.py"><filename>DIR.py</filename></link>
+      file.
+    </para>
+    <refentry id="Extending-add_third_party_includes">
+      <refnamediv>
+	<refname>oof2setuputils.add_third_party_includes</refname>
+	<refpurpose>Add header file directories for an internal extension</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+	
+	<literallayout class="monospaced">
+from oof2setuputils import add_third_party_includes	 
+add_third_party_includes(cmd, clib)
+	  </literallayout>
+	
+      </refsynopsisdiv>
+      <refsection>
+	<title>Description</title>
+	<para>
+	  <function>add_third_party_includes</function> runs a Unix
+	  command and incorporates its output into the given
+	  <classname>CLibInfo</classname> object.  The Unix command
+	  must print the compiler arguments required to locate the
+	  header files for an external library.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Parameters</title>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>cmd</varname></term>
+	    <listitem>
+	      <para>A string, containing the Unix command to be executed.</para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>clib</varname></term>
+	    <listitem>
+	      <para>
+		The <classname>CLibInfo</classname> object that was
+		passed in as an argument to
+		<function>set_clib_flags</function>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection><!-- parameters -->
+      <refsection>
+	<title>Example</title>
+	<para>
+	  &oof2; uses the <ulink
+	  url="http://www.imagemagick.org/www/Magick++/index.html"
+	  role="external"><application>Magick++</application></ulink>
+	  library, which provides a
+	  <application>Magick++-config</application> command, which
+	  prints include-file information, like this:
+
+	  <literallayout class="monospaced">
+% Magick++-config --cppflags
+-I/usr/local/stow/ImageMagick-6.2.4-gcc3/include
+	  </literallayout>
+	  
+	  An internal &oof2; extension that uses
+	  <application>Magick++</application> could define
+	  <function>set_clib_flags</function> like this:
+
+	  <literallayout class="monospaced">
+import oof2setuputils
+def set_clib_flags(clib):
+   <emphasis>[...]</emphasis>
+    oof2setuputils.add_third_party_includes('Magick++-config --cppflags', clib)
+   <emphasis>[...]</emphasis>
+	  </literallayout>
+
+	</para>
+      </refsection><!-- example -->
+    </refentry><!-- add_third_party_includes -->
+    <refentry id="Extending-add_third_party_libs">
+      <refnamediv>
+	<refname>oof2setuputils.add_third_party_libs</refname>
+	<refpurpose>
+	  Add libraries and library directories for an
+	  internal extension
+	</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+
+	<literallayout class="monospaced">
+from oof2setuputils import add_third_party_libs
+add_third_party_libs(cmd, clib)
+	</literallayout>
+
+      </refsynopsisdiv>
+      <refsection>
+	<title>Description</title>
+	<para>
+	  <function>add_third_party_libs</function> runs a Unix
+	  command and incorporates its output into the given
+	  <classname>CLibInfo</classname> object.  The Unix command
+	  must print the linker arguments that specify required
+	  external libraries and their locations.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Parameters</title>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>cmd</varname></term>
+	    <listitem>
+	      <para>A string, containing the Unix command to be executed.</para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>clib</varname></term>
+	    <listitem>
+	      <para>
+		The <classname>CLibInfo</classname> object that was
+		passed in as an argument to
+		<function>set_clib_flags</function>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection>
+      <refsection>
+	<title>Example</title>
+	<para>
+	  &oof2; uses the <ulink
+	  url="http://www.imagemagick.org/www/Magick++/index.html"
+	  role="external"><application>Magick++</application></ulink>
+	  library, which provides a
+	  <application>Magick++-config</application> command, which
+	  prints library information, like this:
+
+	  <literallayout class="monospaced">
+% Magick++-config --ldflags --libs
+-L/usr/local/stow/ImageMagick-6.2.4-gcc3/lib -L/sw/lib
+-L/usr/X11R6/lib -L/usr/X11R6/lib -lfreetype -L/sw/lib
+-lMagick++ -lWand -lMagick -llcms -ltiff -lfreetype -ljpeg -lpng
+-ldpstk -ldps -lXext -lXt -lSM -lICE -lX11 -lbz2 -lxml2 -lz
+-lpthread -lm -lpthread
+	  </literallayout>
+	  
+	  An internal &oof2; extension that uses
+	  <application>Magick++</application> could define
+	  <function>set_clib_flags</function> like this:
+
+	  <literallayout class="monospaced">
+import oof2setuputils
+def set_clib_flags(clib):
+   <emphasis>[...]</emphasis>
+    oof2setuputils.add_third_party_libs('Magick++-config --ldflags --libs', clib)
+   <emphasis>[...]</emphasis>
+	  </literallayout>
+
+	</para>
+      </refsection>
+    </refentry><!-- add_third_party_libs -->
+    <refentry id="Extending-check_exec">
+      <refnamediv>
+	<refname>oof2setuputils.check_exec</refname>
+	<refpurpose>Check that an external program exists</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+
+	<literallayout class="monospaced">
+from oof2setuputils import check_exec
+check_exec(xfile)
+	</literallayout>
+
+      </refsynopsisdiv>
+      <refsection>
+	<title>Description</title>
+	<para>
+	  <function>check_exec</function> checks that the given file
+	  exists and is executable.  The file must be in the user's
+	  <literal>PATH</literal>.  <function>check_exec</function>
+	  can be used in the <link
+	  linkend="Extending-set_clib_flags"><function>set_clib_flags</function></link>
+	  function in a <link
+	  linkend="Extending-DIR.py"><filename>DIR.py</filename></link>
+	  file to ensure that the functions called by other utility
+	  functions exist.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Parameters</title>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>xfile</varname></term>
+	    <listitem>
+	      <para>The name of the executable file to check.</para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection>
+      <refsection>
+	<title>Example</title>
+	<para>
+	  The examples used in the reference pages for <link
+	  linkend="Extending-add_third_party_includes"><function>add_third_party_includes</function></link>
+	  and <link
+	  linkend="Extending-add_third_party_libs"><function>add_third_party_libs</function></link>
+	  can be combined and written more robustly like this:
+
+	  <literallayout class="monospaced">
+import oof2setuputils
+def set_clib_flags(clib):
+   if oof2setuputils.check_exec('Magick++-config'):
+      oof2setuputils.add_third_party_includes('Magick++-config --cppflags', clib)
+      oof2setuputils.add_third_party_libs('Magick++-config --ldflags --libs', clib)
+   else:
+      print "Can't find Magick++-config!"
+	  </literallayout>
+
+	</para>
+      </refsection>
+    </refentry><!-- check_exec -->
+    <refentry id="Extending-pkg_check">
+      <refnamediv>
+	<refname>oof2setuputils.pkg_check</refname>
+	<refpurpose>Add include directories, libraries, and library directories </refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+	<title>Synopsis</title>
+
+	<literallayout class="monospaced">
+from oof2setuputils import pkg_check
+pkg_check(package, version, clib)
+	</literallayout>
+
+      </refsynopsisdiv>
+      <refsection>
+	<title>Description</title>
+	<para>
+	  If an &oof2; internal extension links to a package or
+	  library that uses the <ulink
+	  url="http://pkg-config.freedesktop.org/wiki/"
+	  role="external"><application>pkg-config</application></ulink>
+	  to retrieve its compiler and linker options, then the <link
+	  linkend="Extending-set_clib_flags"><function>set_clib_flags</function></link>
+	  function in a <link
+	  linkend="Extending-DIR.py"><filename>DIR.py</filename></link>
+	  file can set all of the relevant information in a
+	  <classname>CLibInfo</classname> object with one call to
+	  <function>pkg_check</function>.
+	</para>
+      </refsection>
+      <refsection>
+	<title>Parameters</title>
+	<variablelist spacing="compact">
+	  <varlistentry>
+	    <term><varname>package</varname></term>
+	    <listitem>
+	      <para>
+		The name of the package.  The name must be
+		specified exactly as it is in the
+		<application>pkg-config</application> database.  Run
+		<userinput>pkg-config --list-all</userinput> to see
+		the names of all the installed packages.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>version</varname></term>
+	    <listitem>
+	      <para>
+		A string, containing the minimum required version
+		number of the package.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><varname>clib</varname></term>
+	    <listitem>
+	      <para>
+		The <classname>CLibInfo</classname> object that was
+		passed in as an argument to
+		<function>set_clib_flags</function>.
+	      </para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </refsection>
+      <refsection>
+	<title>Example</title>
+	<para>
+	  To add all of the compiler and linker flags required to use
+	  version 2.6.0 (or later) of the <ulink
+	    url="http://www.gtk.org/download/"
+	    role="external"><application>gtk+</application></ulink>
+	  library, the following code could be inserted into
+	  <filename>DIR.py</filename>:
+
+	  <literallayout class="monospaced">
+import oof2setuputils
+def set_clib_flags(clib):
+   oof2setuputils.pkg_check("gtk+-2.0", "2.6.0", clib)
+	  </literallayout>
+
+	</para>
+      </refsection>
+    </refentry><!-- pkg_check -->
+  </section><!-- oof2setuputils -->
+  <section id="Section-Extending-swig">
+    <title>Writing SWIG input files</title>
+    <para>
+      &oof2; uses an old (but stable) version of
+      <application>swig</application>, version 1.1 build 883.  These
+      instructions will have to be modified when we move to a later
+      version.  There's no fundamental reason that an &oof2; extension
+      can't use a different version of
+      <application>swig</application>, but it'll probably make things a
+      lot harder.
+    </para>
+    <para>
+      The following sample swig file contains examples of most of the
+      useful constructs.  The annotations explain which lines are
+      necessary, and when.
+    </para>
+    <programlisting>
+#ifndef EXTENSION_SWG <co id="swig-sentry"/>
+#define EXTENSION_SWG 
+
+%module extension <co id='swig-module'/>
+%{ 
+#include "myextension.h" <co id="swig-percentbrace"/>
+%}
+%include "common/typemaps.swg" <co id="swig-typemaps"/>
+%pragma(python) include="myextension.spy" <co id="swig-pragmainclude"/>
+
+%pragma(python) code="from SWIGdir.othermodule import MyBasePtr" <co id="swig-pragmacode"/>
+%extern "othermodule.swg" <co id="swig-othermodule"/>
+
+class MyExtension : public MyBase { <co id="swig-class"/>
+public:
+   MyExtension(); <co id="swig-methods"/>
+};
+
+#endif // EXTENSION_SWG </programlisting>
+
+    <calloutlist>
+      <callout arearefs="swig-sentry">
+	<para>
+	  Defining and checking <literal>EXTENSION_SWG</literal>
+	  prevents this file from being included twice in another swig
+	  file.  Doing this is good idea, even if you're absolutely sure
+	  that this file won't ever be included elsewhere.  Replace
+	  <literal>EXTENSION_SWG</literal> with another name, unique
+	  to your swig file.
+	</para>
+      </callout>
+      <callout arearefs="swig-module">
+	<para>
+	  This line is recommended, but not required.  Replace
+	  <literal>extension</literal> with the name of your
+	  extension.
+	</para>
+      </callout>
+      <callout arearefs="swig-percentbrace">
+	<para>
+	  Any code within <literal>%{</literal> and
+	  <literal>%}</literal> will be included   verbatim in the C++
+	  file that <application>swig</application> generates.  It's
+	  important to include your extension's header files here.
+	</para>
+      </callout>
+      <callout arearefs="swig-typemaps">
+	<para>
+	  This line <emphasis>must</emphasis> be included in every
+	  &oof2; swig file to ensure that exceptions are handled
+	  correctly.  <filename>SRC/common/typemaps.swg</filename>
+	  also contains other swig typemaps that you may find useful.
+	  They typemaps are listed in the comments at the start of the
+	  file.
+	</para>
+      </callout>
+      <callout arearefs="swig-pragmainclude">
+	<para>
+	  This line appends the given file to
+	  <application>swig</application>'s Python output.  The file
+	  can contain Python code that modifies the classes produced
+	  by <application>swig</application>, or performs other
+	  initialization tasks.  This is just a convenient place to
+	  perform such tasks &mdash; if there are no tasks, then
+	  this line (and the file) can be omitted.  The
+	  <literal>.spy</literal> suffix is standard, but only within
+	  the &oof2; development team.
+	</para>
+      </callout>
+      <callout arearefs="swig-pragmacode">
+	<para>
+	  If the swigged class is derived from a base class that was
+	  swigged elsewhere, then two things are necessary: the Python
+	  code that <application>swig</application> generates must
+	  import the base class, and <application>swig</application>
+	  must be told about the base class.<footnote>
+	    <para>
+	      Note that when swigging a new &oof2;
+	      <classname>Property</classname>, both of these tasks are
+	      handled by <filename>engine/propertyhdr.swg</filename>.
+	    </para>
+	  </footnote>
+	  This line imports the base class into the swig python
+	  output.  <literal>SWIGdir</literal> is the directory
+	  containing the <application>swig</application> output,
+	  specified by <varname>destdir</varname> argument to <link
+	  linkend="Extending-get_swig_ext"><function>get_swig_ext</function></link>.</para>
+	<para>
+	  Note that the imported name has <literal>Ptr</literal>
+	  appended to it!
+	</para>
+      </callout>
+      <callout arearefs="swig-othermodule">
+	<para>
+	  An <code>%extern</code> line tells
+	  <application>swig</application> to load another file but not
+	  build any code from it.  In this case, the file containing
+	  the swig definition of <classname>MyBase</classname> is
+	  being loaded.  This allows <application>swig</application>
+	  to treat the base class properly.
+	</para>
+      </callout>
+      <callout arearefs="swig-class">
+	<para>
+	  All swigged base classes of the swigged class need to appear
+	  here.  Base classes that are not swigged should not be listed.
+	</para>
+      </callout>
+      <callout arearefs="swig-methods">
+	<para>
+	  All member functions that will be used in Python need to be
+	  listed here.  Swig typemaps, such as those in
+	  <filename>SRC/common/typemaps.swg</filename> or
+	  <filename>SRC/engine/typemaps.swg</filename> can be used to
+	  process arguments and return values if necessary.  See the
+	  <application>swig</application> documentation for more
+	  information on typemaps.
+	</para>
+      </callout>
+    </calloutlist>
+  </section><!-- Writing SWIG input files -->
+</chapter>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

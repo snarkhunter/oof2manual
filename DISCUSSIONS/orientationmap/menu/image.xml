@@ -1,0 +1,64 @@
+<!-- 
+  $RCSfile: image.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:53 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command converts an <link
+    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+    Map</classname></link> into an &image;, and loads the &image; into
+    the map's &micro;.  This is useful if you'd like to use
+    color-dependent pixel selection tools on the data in the map.
+    Those tools only work on &images;.
+  </para>
+  <para>
+    The <varname>microstructure</varname> parameter specifies which
+    <classname>Orientation Map</classname> to convert.  &micros; can
+    contain only one <classname>Orientation Map</classname>, so
+    specifying the &micro; name is sufficient.
+  </para>
+  <para>
+    The <varname>imagename</varname> parameter holds the name that will
+    be assigned to the new &image;.  If the name is not unique,
+    <userinput>&lt;x&gt;</userinput> will be appended to it, where
+    <userinput>x</userinput> is a suitable integer.
+  </para>
+  <para>
+    The <varname>colorscheme</varname> parameter governs how
+    orientations in the map will be converted to pixels in the
+    &image;.  If most of the orientations in the
+    <classname>Orientation Map</classname> are similar, the resulting
+    &image; will have very low contrast.  It may be useful to use
+    image modification tools, especially <xref
+    linkend="MenuItem-OOF.Image.Modify.Equalize"/>, to enhance the
+    contrast.
+  </para>
+  <para>
+    This command is only available if &oof2; was built with the
+    <userinput>--enable-orientationmap</userinput> option.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

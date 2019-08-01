@@ -1,0 +1,82 @@
+<!-- 
+  $RCSfile: conditional_iteration.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:38 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    When the <varname>iteration</varname> parameter of an iterative
+    <xref linkend="RegisteredClass-SkeletonModifier"/> (such as <xref
+    linkend="RegisteredClass-Anneal"/> or <xref
+    linkend="RegisteredClass-Smooth"/>) is set to
+    <classname>ConditionalIteration</classname>, &oof2; will stop
+    modifying the &skel; when a specified condition is met.
+  </para>
+  <para>
+    The <varname>condition</varname> parameter determines the
+    stopping criterion.  See the <xref
+      linkend="RegisteredClass-ConditionSelector"/> class for the details.
+  </para>
+  <para>
+    Iteration doesn't necessarily stop immediately when the
+    <varname>condition</varname> is satisfied.  If the
+    <varname>extra</varname> parameter is non-zero, &oof2; will
+    iterate for another <varname>extra</varname> iterations, and only
+    stop if the <varname>condition</varname> remains satisfied for all
+    of them.  That is, the &skel; modification operation stops after
+    the <varname>condition</varname> is met for
+    <varname>extra+1</varname> consecutive iterations.
+  </para>
+  <para>
+    To prevent runaway operations, the &skel; modification operation
+    will always stop after <varname>maximum</varname> iterations have
+    been performed.
+  </para>
+  <para>
+    Here's a sample of the output for an <xref
+    linkend="RegisteredClass-Anneal"/> operation, using
+    <varname>condition</varname>=<xref
+    linkend="RegisteredClass-AcceptanceRate"/>(<varname>acceptance_rate</varname>=<userinput>10</userinput>)
+    and <varname>extra</varname>=<userinput>3</userinput>.
+    <literallayout class="monospaced">
+Iteration 21: E = 4.2672e+00, deltaE=-1.4758e-02 ( 0.346%), Acceptance Rate = 13.0%
+Iteration 22: E = 4.2056e+00, deltaE=-7.3972e-03 ( 0.176%), Acceptance Rate = 14.1%
+Iteration 23: E = 4.1721e+00, deltaE=-4.2731e-03 ( 0.102%), Acceptance Rate = 13.0%
+Iteration 24: E = 4.1536e+00, deltaE=-5.8492e-03 ( 0.141%), Acceptance Rate = 10.9%
+Iteration 25: E = 4.1260e+00, deltaE=-8.9829e-04 ( 0.022%), Acceptance Rate =  6.5% <lineannotation>The rate is below the threshold...</lineannotation>
+Iteration 26: E = 4.1217e+00, deltaE=-6.1829e-03 ( 0.150%), Acceptance Rate =  4.3% <lineannotation>... but...</lineannotation>
+Iteration 27: E = 4.0965e+00, deltaE=-6.5146e-03 ( 0.159%), Acceptance Rate =  3.3% <lineannotation>... not for long enough</lineannotation>
+Iteration 28: E = 4.0706e+00, deltaE=-1.0707e-03 ( 0.026%), Acceptance Rate = 10.9% <lineannotation>... so iteration continues</lineannotation>
+Iteration 29: E = 4.0651e+00, deltaE=-5.6484e-04 ( 0.014%), Acceptance Rate =  5.4%
+Iteration 30: E = 4.0625e+00, deltaE=-1.1716e-04 ( 0.003%), Acceptance Rate =  2.2%
+Iteration 31: E = 4.0620e+00, deltaE=-1.1398e-03 ( 0.028%), Acceptance Rate =  8.7%
+Iteration 32: E = 4.0565e+00, deltaE=-1.5421e-03 ( 0.038%), Acceptance Rate =  5.4% <lineannotation>... until the rate stays low</lineannotation>
+Annealing done:  deltaE = -1.1007e+00 (21.369%)
+
+    </literallayout>
+  </para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,41 @@
+<!-- 
+  $RCSfile: copyschedule.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-27 21:32:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Copy the <xref linkend="RegisteredClass-Schedule"/> from the <link
+  linkend="Section-Concepts-Outputs-Scheduled">Scheduled Output</link>
+  named <varname>source</varname> in &mesh; <varname>mesh</varname> to
+  the <link linkend="Section-Concepts-Outputs-Scheduled">Scheduled
+  Output</link> named <varname>target</varname> in &mesh;
+  <varname>targetmesh</varname>.  <varname>mesh</varname> and
+  <varname>targetmesh</varname> may be identical.  If the
+  <varname>target</varname> already has a <xref
+  linkend="RegisteredClass-Schedule"/>, it will be replaced.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

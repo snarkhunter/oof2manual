@@ -1,0 +1,213 @@
+<!--  $RCSfile: smooth.xml,v $ $Revision: 1.2 $
+$Author: langer $ $Date: 2009-10-16 22:11:47 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    <classname>Smooth</classname> moves &nodes; to the
+    <emphasis>average</emphasis> positions of their neighbors in order
+    to smooth out gradients in &node; density in a &skel;.
+  </para>
+
+  <para>
+    Typically, it takes about 3 iterations of
+    <classname>Smooth</classname> to get desirable result.  The general
+    procedure for a single iteration is as follows:
+
+    <orderedlist>
+      <listitem>
+	<para>
+	  Collect <link
+	  linkend="RegisteredClass-FiddleNodesTargets">target
+	  nodes</link> according to the given
+	  <varname>targets</varname> parameter.  The collected &nodes;
+	  are re-ordered randomly to avoid any potential artifacts
+	  from the original ordering of &nodes;.  This re-ordering is
+	  repeated at every iteration.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Give each &node; a single chance to move to the average
+	  position of its neighbors.  For this purpose,
+	  <emphasis>neighbors</emphasis> are defined as &nodes; that
+	  share a &sgmt; with the &node; being moved.
+	</para>
+	<para>
+	  <xref linkend="Figure-smooth_schematics"/>(a) shows a &node;
+	  (the red dot) that is about to move to the average position
+	  of its neighbors (the green dots).
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  A node move is accepted only if the move satisfies the
+	  specified <link
+	  linkend="RegisteredClass-SkelModCriterion">acceptance
+	  criterion</link>.  Moved nodes that fail to meet the
+	  criterion will spring back to their respective original
+	  positions, as shown in <xref
+	  linkend="Figure-anneal_schematics"/>(b).
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If the move is unacceptable according to the acceptance
+	  <varname>criterion</varname>, &oof2; may still accept the
+	  move if the smoothing is being done at a non-zero
+	  <emphasis>temperature</emphasis>.  The parameter
+	  <varname>T</varname> sets the effective temperature of the
+	  annealing process.  Unacceptable moves are accepted with a
+	  probability
+	  <equation>
+	    <alt role="tex">
+	      \[P = \exp{(-E_\mathrm{diff}/T)}\]
+	    </alt>
+	  </equation>
+	  where 	  
+	  <inlineequation>
+	    <alt role="tex">\(E_\mathrm{diff}\)</alt>
+	  </inlineequation> is the difference between
+	  the effective energies of the new and old &elem; configurations.
+	</para>
+      </listitem>
+    </orderedlist>
+    
+    <figure id="Figure-smooth_schematics">
+      <title>Schematics of Smooth</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/smooth_schematics.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/smooth_schematics.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    (a) A node moves to its average position with respect to
+	    its five neighboring nodes, N<subscript>0</subscript>,
+	    N<subscript>1</subscript>, N<subscript>2</subscript>,
+	    N<subscript>3</subscript>, and
+	    N<subscript>4</subscript>. The move is affecting its five
+	    neighboring elements, E<subscript>0</subscript>,
+	    E<subscript>1</subscript>, E<subscript>2</subscript>,
+	    E<subscript>3</subscript>, and E<subscript>4</subscript>.
+	    (b) The node moved to its average position. If the move
+	    doesn't satisfy the given criterion (computed based on the
+	    five affected elements), it'll be rejected.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+  <para>
+    Smoothing a &skel; usually requires a number of iterations.  The
+    smoothing algorithm converges very quickly, so it's usually
+    sufficient to set the <varname>iteration</varname> parameter to
+    <xref
+    linkend="RegisteredClass-FixedIteration"/>(<varname>iterations</varname>=<userinput>3</userinput>)
+    to perform exactly three iterations.  Nonetheless, it is possible
+    to use <link
+    linkend="RegisteredClass-ConditionalIteration">conditional
+    iteration</link>, which can repeatedly smooth the &skel; until the
+    <link linkend="RegisteredClass-ReductionRate">energy drop</link>
+    or <link linkend="RegisteredClass-AcceptanceRate">acceptance
+    rate</link> per iteration becomes too small.
+  </para>
+
+  <para>
+    <xref linkend="Figure-before_smooth"/> shows a &skel; in which the
+    &elems; near the perimeter of the circle have been <link
+    linkend="RegisteredClass-Refine">refined</link> more than those
+    elsewhere, resulting in an uneven &node; distribution.
+
+
+    <figure id="Figure-before_smooth">
+      <title>Before Smoothing a Skeleton</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG"
+	    fileref="FIGURES/smooth/smooth.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS"
+	    fileref="FIGURES/smooth/smooth.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A &skel; with regions of high node density.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+
+    After 3 iterations of smoothing, the &skel; looks much better in
+    <xref linkend="Figure-after_smooth"/>.
+
+    <figure id="Figure-after_smooth">
+      <title>After Smooth</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG"
+	  fileref="FIGURES/smooth/smooth2.png"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS"
+	  fileref="FIGURES/smooth/smooth2.eps"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A better &skel; after smoothing.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+
+  </para>
+
+  <para>
+    Statistics for each step of the smoothing process are printed in
+    the &oof2; <link linkend="Section-Windows-Messages">Message</link>
+    window.  For example,
+    <literallayout class="monospaced">
+Iteration 1: E = 1.0480e+02, deltaE=-2.6308e+00 ( 2.510%), Acceptance Rate = 55.3%
+Iteration 2: E = 9.0358e+01, deltaE=-9.1959e-01 ( 1.018%), Acceptance Rate = 47.9%
+Iteration 3: E = 8.5505e+01, deltaE=-2.0926e-01 ( 0.245%), Acceptance Rate = 40.1%
+Iteration 4: E = 8.4485e+01, deltaE=-3.1806e-02 ( 0.038%), Acceptance Rate = 37.2%
+Iteration 5: E = 8.4317e+01, deltaE=-3.5836e-03 ( 0.004%), Acceptance Rate = 35.6%
+</literallayout>
+    The listing shows the iteration number, the total <link
+    linkend="Section-Concepts-Skeleton-Energy">energy</link>
+    (<computeroutput>E</computeroutput>) of the &skel;, the absolute
+    change in energy (<computeroutput>deltaE</computeroutput>) during
+    the iteration, the percentage change in energy, and the move <link
+    linkend="RegisteredClass-AcceptanceRate">acceptance rate</link>.
+    If the change in energy or the acceptance rate gets too small, the
+    smoothing process is not being effective at improving the &skel;.
+    Notice in the example that the energy change per step is
+    decreasing exponentially, indicating rapid convergence.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

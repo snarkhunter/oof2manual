@@ -1,0 +1,183 @@
+<!-- 
+  $RCSfile: despeckle.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:15 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Some pixel selection tools such as <xref
+    linkend='MenuItem-OOF.Graphics_1.Toolbox.Pixel_Select.Burn'/> or
+    <xref
+    linkend='MenuItem-OOF.Graphics_1.Toolbox.Pixel_Select.Color'/>
+    tend to leave small holes in the selection due to imperfection of
+    the micrograph or other reasons.  With only a few holes, it's
+    possible to fill them manually other tools in the <link
+    linkend="Section-Graphics-PixelSelection">Pixel Selection</link>
+    toolbox, but this quickly gets tedious. The
+    <command>Despeckle</command> fills these holes efficiently.
+  </para>
+
+  <note>
+    <para>
+      Note that it's the <emphasis>pixel selection</emphasis> that is
+      being despeckled, not the &image;.  The term
+      <quote>despeckle</quote> is also used to mean removing noise
+      from an image, and &oof2; does include &image; despeckling
+      (<xref linkend="MenuItem-OOF.Image.Modify.Despeckle"/>.)  <xref
+      linkend="MenuItem-OOF.PixelSelection.Despeckle"/> selects pixels, but
+      does not affect &images;.
+    </para>
+  </note>
+
+  <para>
+    The end result of a despeckling is a solidification of the
+    selecting region.  Compare to <link
+    linkend="MenuItem-OOF.PixelSelection.Elkcepsed"><command>Elkcepsed</command></link>,
+    which achieves a similar effect by
+    <emphasis>deselecting</emphasis> pixels.
+  </para>
+
+  <para>
+    The <varname>microstructure</varname> parameter specifies the &micro;
+    where the selection resides.
+  </para>
+  <para>
+    The parameter <varname>neighbors</varname> controls the
+    despeckling operation. Smaller values mean stronger filling power.
+    The algorithm examines each unselected pixel, counts its selected
+    neighbors (examining the 8 immediately adjacent pixels), and
+    selects the target pixels if at least <varname>neighbors</varname>
+    neighboring pixels were selected. The process repeats recursively
+    until no more pixels are selected. The value of
+    <varname>neighbors</varname> must be between 4 and 8 inclusive:
+    values higher than 8 are meaningless, and values lower than 4 will
+    cause all pixels to be selected.  4 itself is of dubious utility.
+    See <xref linkend="Figure-despeckle"/> for examples.
+  </para>
+
+  <figure id="Figure-despeckle">
+    <title>Despeckling the Pixel Selection</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata format="PNG"
+	  fileref="FIGURES/despeckle/d00.png"></imagedata>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" format="EPS"
+	  fileref="FIGURES/despeckle/d00.eps"></imagedata>
+      </imageobject>
+      <caption>
+	<simpara>
+	  A pixel selection (in red) containing some holes to be
+	  filled with <command>Despeckle</command>.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/despeckle/d8.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" fileref="FIGURES/despeckle/d8.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  The result of despeckling with
+	  <varname>neighbors</varname>=8.  Only single pixel holes
+	  have been filled.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/despeckle/d7.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" fileref="FIGURES/despeckle/d7.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  The result of despeckling with
+	  <varname>neighbors</varname>=7.  One and two pixel holes
+	  have been filled.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/despeckle/d6.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" fileref="FIGURES/despeckle/d6.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  The result of despeckling with
+	  <varname>neighbors</varname>=6.  Larger holes have been
+	  filled.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/despeckle/d5.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" fileref="FIGURES/despeckle/d5.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  The result of despeckling with
+	  <varname>neighbors</varname>=5.  Holes
+	  have been filled <emphasis>and</emphasis> the boundary has
+	  been smoothed.
+	</simpara>
+      </caption>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/despeckle/d4.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata scale="50" fileref="FIGURES/despeckle/d4.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<simpara>
+	  The result of despeckling with
+	  <varname>neighbors</varname>=4. Almost everything has been
+	  obliterated.
+	</simpara>
+      </caption>
+    </mediaobject>
+    </figure>
+
+  
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

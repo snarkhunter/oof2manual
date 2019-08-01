@@ -1,0 +1,62 @@
+<!-- 
+  $RCSfile: linear_solver.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-04-08 20:00:02 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<obsolete>OBSOLETE</obsolete>
+
+  <para>
+    <classname>LinearSolvers</classname> are applied by <link
+    linkend="RegisteredClass-Driver"><classname>Driver</classname></link>s
+    to solve the linear matrix equations that arise when <link
+    linkend="MenuItem-OOF.Solver.Solve">solving</link> &equations; on a
+    &mesh;. 
+  </para>
+  <para>
+    The different types of <classname>LinearSolver</classname> are
+    applicable to different types of matrix equations.  The reference
+    page for each subclass gives some information about its
+    applicability.  In particular, solution methods for
+    <emphasis>symmetric</emphasis> matrices can take advantage of the
+    symmetry to obtain a solution more efficiently.  &oof2; constructs
+    symmetric matrices when possible, and only allows the symmetric
+    solver (<xref linkend="RegisteredClass-CGSolver"/>) to be used in
+    those cases.
+  </para>
+  <para>
+    The matrices that arise in finite element calculations are
+    generally <emphasis>sparse</emphasis>, meaning that many of their
+    entries are zero.  Sparse matrices can be stored efficiently by
+    only retaining the non-zero values.  The
+    <emphasis>iterative</emphasis>
+    <classname>LinearSolvers</classname> have the advantageous
+    property of not requiring storage for the full matrix.  <xref
+    linkend="RegisteredClass-DirectSolver"/> solvers, on the other hand,
+    generate intermediate values at all matrix entries, and so their
+    storage requirements are much larger.
+  </para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

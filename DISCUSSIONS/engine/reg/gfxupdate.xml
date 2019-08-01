@@ -1,0 +1,46 @@
+<!-- 
+  $RCSfile: gfxupdate.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-13 21:24:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  When &oof2; is <link
+  linkend="Section-Concepts-Mesh-Solving">solving</link> a time
+  dependent problem, all <link linkend="Chapter-Graphics">Graphics
+  Windows</link> will be updated when
+  <classname>GraphicsUpdate</classname> is <link
+  linkend="Section-Tasks-ScheduledOutput">scheduled</link>.  If
+  <classname>GraphicsUpdate</classname> is not scheduled, the window
+  will not be updated until the time evolution is complete.
+</para>
+<para>
+  Only the &layers; that have their <varname>when</varname> parameter
+  set to <link
+  linkend="Object-Placeholder-Time"><userinput>latest</userinput></link>
+  will be redrawn when the window is updated.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

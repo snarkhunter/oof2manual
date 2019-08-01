@@ -1,0 +1,56 @@
+<!-- 
+  $RCSfile: api_listing.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:14 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <command>API_Listing</command> dumps information about all of the
+    &oof2; menu items and their parameters to a file. It's mostly used
+    for generating the documentation that you're reading now, but it
+    may also be useful for creating external drivers for &oof2;.
+  </para>
+  <para>
+    The <varname>filename</varname> parameter specifies the file to
+    which the listing will be written. Any existing file of the same
+    name will be overwritten.
+  </para>
+  <para>
+    The <varname>format</varname> parameter determines whether the
+    file will be written as plain text or in XML format.  The XML
+    listing is more complete, but less readable without some further
+    processing.  The best way of reading the XML output is to read the
+    manual, which you're doing now.
+  </para>
+  <para>
+    The XML output assumes the <ulink url="http://www.docbook.org"
+    role="external">DocBook</ulink> DTD.  It also assumes the existence of
+    a large number of external files containing the verbose descriptions of
+    the commands and other &oof2; objects.  Anyone who wishes to
+    generate the manual themselves can acquire these files by sending
+    e-mail to <email>oof_manager@ctcms.nist.gov</email>.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -1,0 +1,456 @@
+<!--
+  $RCSfile: SN_material.xml,v $
+  $Revision: 1.5 $
+  $Author: langer $
+  $Date: 2014/05/19 19:31:12 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <section id="Section-Tasks-Materials">
+    <title>Materials</title>
+
+    <para>
+      The Materials Page is where &materials; are built and assigned
+      to pixels in a &micro;.  It is the only &oof2; page (other than
+      the Introduction Page) that does not begin with a Chooser for
+      selecting a &micro;, &skel;, or &mesh;.  This is because
+      &materials; exist independenly of &micros;, allowing them to be
+      easily shared among different &micros;.
+    </para>
+    <para>
+      The Materials Page consists of two panes, as shown in <xref
+      linkend="Figure-MaterialsPage"/>. The <link
+      linkend="Section-Materials-Property">Property Pane</link> is for
+      setting the parameters for &properties;.  The <link
+      linkend="Section-Materials-Material">Material Pane</link>
+      creates and manipulates &materials; and assigns them to pixels
+      in a &micro;.
+    </para>
+    <figure id="Figure-MaterialsPage">
+      <title>The Materials Page</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/material_page.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/gui/material_page.eps"
+	    format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <simplesect id="Section-Materials-Property">
+      <title>The Property Pane</title>
+      <para>
+	Most of the Property Pane is occupied by a hierarchical list
+	of &properties;.  This includes the predefined
+	<emphasis>unnamed</emphasis> &properties;, and the
+	user-defined <emphasis>named</emphasis> &properties;.  In
+	<xref linkend="Figure-MaterialsPage"/> the highlighted
+	&property; named <quote>goo</quote> is a named isotropic
+	elasticity &property;.  It appears in the hierarchy below its
+	unnamed parent, Isotropic, which appears below
+	<emphasis>its</emphasis> parent, Elasticity, which is below
+	the top level category, Mechanical.  Clicking on a &property;
+	in the list selects it for further operations.
+	Double-clicking a &property; is the same as single-clicking it
+	and pressing the <link
+	linkend="Section-PropertyPane-Parametrize"><guibutton>Parametrize</guibutton></link>
+	button.  Names in the list that correspond to hierarchy levels
+	but not to &properties; (such as <quote>Elasticity</quote> or
+	<quote>Anisotropic</quote>) cannot be selected.
+      </para>
+      <para>
+	Clicking on the triangles to the left of the property names
+	collapses and expands levels of the hierarchy.  <xref
+	linkend="Figure-expandprop"/> shows two views of the same
+	section of the list.  The anisotropic elastic property
+	hierarchy is collapsed on the left and expanded on the right.
+	<figure id="Figure-expandprop">
+	  <title>Collapsed and Expanded Property Hierarchies</title>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gui/expandprop.png"
+		format="PNG"/>
+	    </imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gui/expandprop.eps"
+		format="EPS"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </para>
+      <para>
+	The three buttons above the Property List make changes to the
+	list.
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Property.Copy"><guibutton>Copy</guibutton></link>
+	      button creates a <emphasis>named</emphasis> copy of the
+	      &property; currently selected in the list.  The
+	      currently selected &property; can be either named or
+	      unnamed.  The button brings up a dialog box for naming
+	      the copied &property;.
+	    </para>
+	  </listitem>
+	  <listitem id="Section-PropertyPane-Parametrize">
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Property.Parametrize"><guibutton>Parametrize</guibutton></link>
+	      button brings up a dialog box for setting the parameters
+	      of the currently selected &property;.  Property
+	      parametrization dialogs are discussed in <link
+	      linkend="Section-Materials-PropDialogs">below</link>. The
+	      parameters are assigned to the &property; when the
+	      <guibutton>OK</guibutton> button is pressed in the
+	      dialog box.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Property.Delete"><guibutton>Delete</guibutton></link>
+	      button deletes the selected &property;.  It can only be
+	      applied to <emphasis>named</emphasis> &properties;.  The
+	      predefined unnamed &properties; cannot be deleted.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+      <para>
+	Below the Property list is the <link
+	linkend="MenuItem-OOF.Material.Add_property"><guibutton>Add
+	Property to Material</guibutton></link> button, which adds the
+	currently selected &property; to the &material; that is
+	currently selected in the <link
+	linkend="Section-Materials-Material">Material Pane</link>.
+	One &property; can be added to more than one &material;.
+      </para>
+
+    </simplesect>
+    <simplesect id="Section-Materials-PropDialogs">
+      <title>Property Parametrization Dialogs</title>
+      <para>
+	Clicking the <link
+	linkend="MenuItem-OOF.Property.Parametrize"><guibutton>Parametrize</guibutton></link>
+	button or double-clicking on a &property; in the Property List
+	brings up a dialog box for setting the parameters of the
+	chosen &property;.  Property dialogs have a couple of notable
+	features.<itemizedlist>
+	  <listitem>
+	    <para>
+	      Many properties contain a number of related
+	      parameters. Only the independent ones can be set, but it
+	      can be convenient to see all of them.  For example,
+	      <xref linkend="Figure-hexpropbox"/> shows the dialog box
+	      for the <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Hexagonal">hexagonal
+	      elasticity</link> property, whose parameter is a <xref
+	      linkend="Object-HexagonalRank4TensorCij"/> object.  The
+	      dialog box has entries for each of the components of the
+	      tensor.  Some of the entries are grayed out, meaning
+	      that they cannot be set.  Some of these (such as
+	      C<subscript>14</subscript>) are always zero for this
+	      &property;, and some (such as
+	      C<subscript>22</subscript>) are constrained to be equal
+	      to another entry (C<subscript>11</subscript>, in this
+	      case).  Changing the value of C<subscript>11</subscript>
+	      will also change the value of
+	      C<subscript>22</subscript>.  Hexagonal rank 4 tensors
+	      have only 5 independent entries, but the dialog box
+	      contains 6 active entry fields.  This is because there
+	      is a non-trivial relationship between values (in this
+	      case,
+	      C<subscript>66</subscript>=(C<subscript>11</subscript>-C<subscript>12</subscript>)/2).
+	      Changing the value of any one of the related entries
+	      will change the value of the others so that the
+	      constraint is always satisfied.
+	      <figure id="Figure-hexpropbox">
+		<title>The Hexagonal Elasticity Property Dialog Box</title>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata
+		      fileref="FIGURES/gui/hexpropdialog.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata
+		      fileref="FIGURES/gui/hexpropdialog.eps"
+		      format="EPS"/>
+		  </imageobject>
+		</mediaobject>
+	      </figure>
+	    </para>
+	    <para>
+	      Sometimes there can be more than one way to specify a
+	      &property;.  For example, isotropic elasticity can be
+	      specified in terms of the components of the elastic
+	      modulus tensor, or by giving the bulk and shear moduli,
+	      or in Lam&eacute; coefficients.  The dialog boxes
+	      contain a pull-down menu for selecting the preferred
+	      representation for such parameters.  <xref
+	      linkend="Figure-colorprop"/> illustrates this for the
+	      <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Color">Color</link>
+	      &property;.  Other &properties; that have multiple
+	      representations include <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Isotropic">isotropic
+	      elasticity</link>, <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic">cubic
+	      elasticity</link>, and <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Orientation">orientation</link>.
+	      <figure id="Figure-colorprop">
+		<title>The Color Property Dialog Box</title>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propdialog0.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propdialog0.eps"
+		      format="EPS"/>
+		  </imageobject>
+		  <caption>
+		    <para>
+		      The Color Property dialog box.  The menu at the
+		      top, labelled <guilabel>RGBColor</guilabel>,
+		      indicates that the Color is being specified in
+		      the <xref linkend="RegisteredClass-RGBColor"/>
+		      representation.  (The black rectangle shows the
+		      previous value of the Color.  The orange
+		      rectangle is the current value.)
+		    </para>
+		  </caption>
+		</mediaobject>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propdialog1.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propdialog1.eps"
+		      format="EPS"/>
+		  </imageobject>
+		  <caption>
+		    <para>
+		      Switching to a different representation with
+		      the menu.
+		    </para>
+		  </caption>
+		</mediaobject>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propdialog2.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/propdialog2.eps"
+		      format="EPS"/>
+		  </imageobject>
+		  <caption>
+		    <para>
+		      The color hasn't changed, but the sliders for
+		      setting it now use the <xref
+		      linkend="RegisteredClass-HSVColor"/>
+		      representation.
+		    </para>
+		  </caption>
+		</mediaobject>
+	      </figure>
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </simplesect>
+    <simplesect id="Section-Materials-Material">
+      <title>The Material Pane</title>
+      <para>
+	The Material Pane is where &properties; constructed in the
+	<link linkend="Section-Materials-Property">Property
+	Pane</link> are assembled into &materials;.  &materials; in
+	&oof2; are simply lists of &properties;.  The Material Pane
+	consists of three regions (see <xref
+	linkend="Figure-MaterialsPage"/>): a set of buttons at the
+	top, a Material Chooser and a list of &properties; in the
+	middle, and another set of buttons at the bottom.
+      </para>
+      <para>
+	The Material Chooser is used to select one of the existing
+	&materials;.  The &properties; contained in the selected
+	&material; are listed below the Chooser.  Clicking on a
+	&property; in the list selects it, and also selects it in the
+	Property List in the <link
+	linkend="Section-Materials-Property">Property Pane</link>.
+      </para>
+      <para>
+	The buttons at the top of the Material Pane manipulate
+	&materials;:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.New"><guibutton>New</guibutton></link>
+	      button creates a new &material;. It brings up a dialog
+	      box asking for a name for the &material;.  After a
+	      &material; is created, it will be automatically selected
+	      in the Material Chooser.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Copy"><guibutton>Copy</guibutton></link>
+	      button makes a copy of the &material; currently selected
+	      in the Material Chooser.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Delete"><guibutton>Delete</guibutton></link>
+	      button deletes the &material; currently selected in the
+	      Material Chooser.  It does not delete the &properties;
+	      that were in the &material; -- they still exist in the
+	      <link linkend="Section-Materials-Property">Property
+	      Pane</link> and can be used in another &material;.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.File.Save.Materials"><guibutton>Save</guibutton></link>
+	      button saves the currently selected &material; and its
+	      &properties; in a file.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+      <para>
+	Three of the five buttons at the bottom of the Material Pane also act
+	on the selected &material;:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Remove_property"><guibutton>Remove
+	      Property from Material</guibutton></link> removes the
+	      &property; selected in the Material Pane's Property list
+	      from the current &material;.  It does not remove the
+	      &property; from the Property Pane.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+	The next two buttons on the left column are a pair, since they deal with
+	bulk &materials; <emphasis>and</emphasis> &micros;:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Assign"><guibutton>Assign
+	      Material to Pixels</guibutton></link> button assigns the
+	      currently selected &material; to pixels in a &micro;.
+	      It brings up the dialog box shown in <xref
+	      linkend="Figure-assignmat"/>.
+	      <figure id="Figure-assignmat">
+		<title>Assigning Materials to Pixels</title>
+		<mediaobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/assignmat.png"
+		      format="PNG"/>
+		  </imageobject>
+		  <imageobject>
+		    <imagedata fileref="FIGURES/gui/assignmat.eps"
+		      format="EPS"/>
+		  </imageobject>
+		  <caption>
+		    <para>
+		      The &material; named <quote>stuff</quote> is
+		      being assigned to all pixels in the &micro;
+		      named <quote>microstructure</quote>.  The
+		      pull-down menu marked
+		      <guilabel>pixels</guilabel> allows the
+		      &material; to be assigned to the selected
+		      pixels, to all the pixels, or to pixel groups
+		      (in this case, there's only one group, called
+		      <quote>grains</quote>).
+		    </para>
+		  </caption>
+		</mediaobject>
+	      </figure>
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Remove"><guibutton>Remove
+	      Materials from Pixels</guibutton></link> button brings
+	      up a dialog box for removing the assigned &material;
+	      from specified pixels in a &micro;.  The dialog box
+	      specifies the pixels and &micro; in pull-down menus like
+	      those in <xref linkend="Figure-assignmat"/>.  The
+	      &material; assignment is removed whether or not the
+	      pixels' &material; is the same as the Material Pane's
+	      currently selected &material;.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+	The last two buttons on the right column are used for assigning
+	interface &materials; to interfaces and skeleton boundaries
+	in the &micros;:
+	<note>
+	  <para>
+	    Interface materials have been disabled as of version 2.1.
+	    They will be re-enabled in a future release.
+	  </para>
+	</note>
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Interface.Assign"><guibutton>Assign
+	      to interface</guibutton></link> button assigns the
+	      currently selected &material; to a list of selected
+	      interfaces and skeleton boundaries in a &micro;.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      The <link
+	      linkend="MenuItem-OOF.Material.Interface.Remove"><guibutton>Remove
+	      from interface</guibutton></link> button brings
+	      up a dialog box for removing the &material; assigned to
+	      a list of interfaces and skeleton boundaries in a &micro;.  The dialog box
+	      groups the names of interfaces and skeleton boundaries that
+	      have the same material assignments.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+
+      </para>
+    </simplesect>
+  </section>
+    
+
+    <!-- Keep this comment at the end of the file
+    Local variables:
+    sgml-omittag:t
+    sgml-shorttag:t 
+    sgml-namecase-general:nil
+    sgml-minimize-attributes:nil
+    sgml-always-quote-attributes:t
+    sgml-indent-step:2
+    sgml-indent-data:t
+    sgml-parent-document:("man_oof2.xml" "book" "chapter")
+    sgml-exposed-tags:nil
+    sgml-local-ecat-files:nil
+    End:
+    -->

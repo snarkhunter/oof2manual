@@ -1,0 +1,89 @@
+<!--
+  $RCSfile: TB_viewer.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:12 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<section id="Section-Graphics-Viewer" role="toolbox">
+  <title>The Viewer Toolbox</title>
+  <para>
+    The Viewer Toolbox, shown in <xref linkend="Figure-Viewer"/>,
+    changes the scale of the Canvas display. When the Toolbox is open,
+    clicking the mouse on the Canvas with either the Shift or Control
+    keys held down zooms <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.Zoom.InFocussed">in</link>
+    or <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.Zoom.OutFocussed">out</link>
+    about the clicked point.  The point under the mouse does not
+    move.<footnote>
+      <para>
+	More or less.  Keeping the clicked point stationary is not
+	always possible when the edges of the displayed image are near
+	the edges of the Canvas.
+      </para>
+    </footnote>
+  </para>
+  <figure id="Figure-Viewer">
+    <title>The Viewer Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/viewer.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/viewer.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    The Toolbox area itself displays the coordinate of the mouse click
+    in both the <link
+    linkend="Section-Concepts-Microstructure-Coordinates">pixel and
+    physical coordinate systems</link> of the topmost displayed
+    &micro;, &image;, &skel;, or &mesh;.
+  </para>
+  <para>
+    The buttons marked <guibutton>In</guibutton>,
+    <guibutton>Out</guibutton>, and <guibutton>Fill Window</guibutton>
+    have exactly the same the same behavior as the items in the <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.Zoom"><command>Zoom</command></link>
+    submenu in the Graphics Window's <link
+    linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command></link>
+    menu.  The <guibutton>In</guibutton> and
+    <guibutton>Out</guibutton> buttons zoom about the
+    <emphasis>center</emphasis> of the Canvas.
+  </para>
+  <para>
+    The <guibutton>Canvas Info</guibutton> button prints some possibly
+    useful information about the Canvas.  It reports the physical
+    coordinates of visible region of the Canvas, the positions of the
+    Canvas's horizontal and vertical scroll bars (in screen pixel
+    units), and the scale factor (<quote>Pixels per unit</quote>) for
+    converting between physical and screen pixel coordinates.
+  </para>
+</section>
+  
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

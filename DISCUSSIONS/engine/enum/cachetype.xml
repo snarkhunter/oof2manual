@@ -1,0 +1,60 @@
+<!-- 
+  $RCSfile: cachetype.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-22 21:25:26 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>CacheType</classname> values are used by <xref
+  linkend="RegisteredClass-SetMeshDataCacheType"/> and <xref
+  linkend="MenuItem-OOF.Settings.Mesh_Defaults.Data_Cache_Type"/> to
+  set the type of storage used for time step data in &meshes;.  A
+  value of <userinput>Memory</userinput> means that the data will be
+  stored in RAM, which is usually fast but limited in size.  A value
+  of <userinput>Disk</userinput> means that the data will be stored in
+  temporary files on disk, which is usually slower than RAM but not as
+  limited in extent.
+</para>
+<para>
+  When storing data on disk, &oof2; decides where to store the
+  temporary files by looking for the name of a writable directory in
+  the Unix environment variables <varname>OOFTMP</varname>,
+  <varname>TMPDIR</varname>, <varname>TEMP</varname>, and
+  <varname>TMP</varname>, in that order.  If none of those variables
+  is set to the name of writable directory, &oof2; checks the
+  directories <filename>/tmp</filename>,
+  <filename>/var/tmp</filename>, and <filename>/usr/tmp</filename>, in
+  that order.  If it <emphasis>still</emphasis> hasn't found a
+  writable directory, it raises an error and suggests setting
+  <varname>OOFTMP</varname>.
+</para>
+<para>
+  The temporary files are given names starting with
+  <userinput>oof2-cache</userinput>.  Normally the files are deleted
+  when the &mesh; is deleted.  If the program ends abnormally, it's
+  possible that the files will not be deleted automatically.
+</para>
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

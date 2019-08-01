@@ -1,0 +1,50 @@
+<!-- 
+  $RCSfile: initfield.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:24 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Assign values to the given &field; on the given &mesh;.  The
+    &field; must already be <link
+    linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>.
+  </para>
+  <para>
+    The <varname>initializer</varname> will be evaluated at every
+    <link linkend='Section-Concepts-Mesh-Geometry'>node</link> of the
+    &mesh;.  Different kinds of &fields;
+    (<foreignphrase>i.e</foreignphrase>, scalar and vector) require
+    different kinds of initializers.  The GUI makes it impossible to
+    apply a scalar initializer to a vector &field;, but it's necessary
+    to be careful when writing scripts.  The different kinds of
+    initializers are described in <xref
+    linkend="RegisteredClass-ScalarFieldInit"/> and <xref
+    linkend="RegisteredClass-TwoVectorFieldInit"/>.
+
+  </para>
+  
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

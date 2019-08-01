@@ -1,0 +1,111 @@
+<!--
+  $RCSfile: TB_skelselection.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:11 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<section id="Section-Graphics-SkeletonSelection" role="toolbox">
+  <title>Skeleton Selection</title>
+  <para>
+    The Skeleton Selection Toolbox, shown in <xref
+    linkend="Figure-SkelSelToolbox"/>, contains mouse-based tools for
+    selecting &elems;, &nodes;, and &sgmts; in a &skel;. It
+    supplements the <link
+    linkend="Section-Tasks-SkeletonSelection">Skeleton Selection Task
+    Page</link>, which contains mouse-independent ways of selecting
+    &skel; components.  Other than the Mode Selector buttons at the
+    top, the layout and function of the Skeleton Selection Toolbox are
+    identical to the <link
+    linkend="Section-Graphics-PixelSelection">Pixel Selection
+    Toolbox</link>.
+  </para>
+  <figure id="Figure-SkelSelToolbox">
+    <title>The Skeleton Selection Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/skelselection.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/skelselection.eps"
+	  format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    The Mode Selector at the top of the Toolbox determines whether
+    mouse clicks on the Canvas will select &elems;, &nodes;, or
+    &sgmts;.  Mouse clicks on the canvas and the buttons in the
+    Toolbox correspond to commands from the <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Element"/>, <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Node"/>, or <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Segment"/> menu,
+    depending on the mode.  Because the discussion below refers to all
+    three menus, the customary hyperlinks are missing from the text.
+    For details, refer to the entries in the three menus linked above.
+  </para>
+  <para>
+    The pull-down menu labelled <guilabel>Method</guilabel> chooses a
+    selection method.  Clicking, or clicking and dragging, on the
+    Canvas selects &skel; components using the chosen method.  The
+    shift and control keys on the keyboard can be held down while
+    making a selection.   They modify the selection operation as shown
+    in <xref linkend="Table:ShiftCtrl"/>.  The shift key retains the
+    previous selection, the control key toggles the previous
+    selection, and both keys together take the intersection of the
+    previous and the new selections.
+  </para>
+  <para>
+    The <guibutton>Undo</guibutton>, <guibutton>Redo</guibutton>,
+    <guibutton>Clear</guibutton>, and <guibutton>Invert</guibutton>
+    buttons duplicate functions available in the <link
+    linkend="Section-Tasks-SkeletonSelection">Skeleton Selection Task
+    Page</link>.
+  </para>
+  <para>
+    The buttons and entry fields in the box labelled
+    <guilabel>History</guilabel> work exactly like those in the <link
+    linkend="Section-Graphics-PixelSelection-History">Pixel Selection
+    Toolbox</link>.  Refer to that discussion for the details.
+  </para>
+  <para>
+    The way in which selected &elems;, &nodes;, and &sgmts; are
+    displayed in the Canvas is determined by the <xref
+    linkend="RegisteredClass-SkeletonElementSelectionDisplay"/>, <xref
+    linkend="RegisteredClass-SkeletonNodeSelectionDisplay"/>, and
+    <xref linkend="RegisteredClass-SkeletonSegmentSelectionDisplay"/>
+    <link
+    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>.
+    Predefined &layers; for these methods are set to display the
+    selections in the topmost &skel; &layer;.  To change the
+    parameters for these &layers;, it is necessary first to enable
+    <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+    All Layers</command></link> in the <link
+    linkend="Section-Graphics-MenuBar">Settings menu</link>.
+  </para>
+</section>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

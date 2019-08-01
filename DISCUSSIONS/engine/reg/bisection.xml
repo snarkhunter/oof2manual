@@ -1,0 +1,96 @@
+<!-- 
+  $RCSfile: bisection.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:36 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <link linkend="RegisteredClass-Refine">Refining</link> &skel;
+    elements with <varname>degree</varname> set to
+    <classname>Bisection</classname> divides each marked edge into two
+    segments.
+  </para>
+  <para>
+    The <varname>rule_set</varname> parameter determines how the
+    interior of each element is subdivided, given the number of
+    subdivisions on each edge.  The complete set of refinement rules
+    for <classname>Bisection</classname> can be found in <xref
+    linkend='Table:refine_rule_quad'/> and <xref
+    linkend='Table:refine_rule_tri'/>.
+  </para>
+
+  <para>
+    <xref linkend='Figure-bi_conservative'/> shows a &skel; refined by
+    the <userinput>conservative</userinput> bisection rule set, which
+    preserves the topology of the elements (quadrilaterals beget
+    quadrilaterals and triangles beget triangles).  The original
+    unrefined &skel; is shown in <xref linkend="Figure-refine0"/>, and
+    the refined elements are indicated with heavy black edges.
+
+    <figure id="Figure-bi_conservative">
+      <title>Bisected Elements - Conservative</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/refinement/bi_conservative.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/refinement/bi_conservative.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    The topology of the elements has been preserved.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+  <para>
+    The <emphasis>liberal</emphasis> <classname>Bisection</classname>
+    rule set is presented in <xref linkend='Figure-bi_liberal'/>. As
+    expected. the &skel; features a mixture of triangles and
+    quadrilaterals -- note that its original &skel; contained only
+    quadrilaterals.
+
+    <figure id="Figure-bi_liberal">
+      <title>Bisected Elements - Liberal</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/refinement/refine2.png"></imagedata>
+	</imageobject>
+	<imageobject>
+	  <imagedata format="EPS" fileref="FIGURES/refinement/refine2.eps"></imagedata>
+	</imageobject>
+	<caption>
+	  <para>
+	    Triangles and Quadrilaterals exisiting together peacefully.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

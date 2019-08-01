@@ -1,0 +1,138 @@
+<!--
+  $RCSfile: TB_pixelsel.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:11 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<section id="Section-Graphics-PixelSelection" role="toolbox">
+  <title>The Pixel Selection Toolbox</title>
+  <para>
+    The Pixel Selection Toolbox selects pixels in the topmost &micro;
+    or &image; displayed in the Canvas.  It augments the <link
+    linkend="Section-Tasks-PixelSelection">Pixel Selection Task
+    Page</link> by providing ways of selecting pixels with the mouse.
+  </para>
+  <figure id="Figure-pixelseltoolbox">
+    <title>The Pixel Selection Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/pixelselection.png"
+	  format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/pixelselection.eps"
+	  format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The Pixel Selection Toolbox, on the left, and a selection in
+	  progress in the Canvas, on the right.
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <para>
+    As shown in <xref linkend="Figure-pixelseltoolbox"/>, the Pixel
+    Selection Toolbox consists of two regions.  The upper region
+    contains a pull-down menu labelled <guilabel>Method</guilabel> for
+    choosing a pixel selection technique.  These techniques correspond
+    to commands in the <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select"/> menu.
+    The region immediately below the <guilabel>Method</guilabel> menu
+    is for setting the parameters of the chosen selection method.
+    After choosing a method, clicking or clicking and dragging the
+    mouse on the Canvas will invoke the corresponding command to
+    select pixels.
+  </para>
+  <para>
+    The shift and control keys on the keyboard can be held down while
+    making a selection.  They modify the selection operation as shown
+    in <xref linkend="Table:ShiftCtrl"/>.  The shift key retains the
+    previous selection, the control key toggles the previous
+    selection, and both keys together take the intersection of the
+    previous and the new selections.
+  </para>
+  <para>
+    The four buttons labelled <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Undo"><guibutton>Undo</guibutton></link>,
+    <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Redo"><command>Redo</command></link>,
+    <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Clear"><guibutton>Clear</guibutton></link>
+    and <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Invert"><guibutton>Invert</guibutton></link>
+    also correspond to commands in the <xref
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select"/> menu.
+    These functions are all available on the <link
+    linkend="Section-Tasks-PixelSelection">Pixel Selection Task
+    Page</link>, but are duplicated in the Toolbox for convenience.
+  </para>
+  <para id="Section-Graphics-PixelSelection-History">
+    The box labelled <guilabel>History</guilabel> shows the
+    position(s) of the last mouse click in <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical</link>
+    coordinates.  It displays both the point where the mouse was
+    depressed (<guilabel>down</guilabel>) and where it was released
+    (<guilabel>up</guilabel>).  If the selection method did not use
+    one of the coordinates, the Toolbox displays
+    <userinput>--</userinput>.
+  </para>
+  <para>
+    The <guibutton>Prev</guibutton> and <guibutton>Next</guibutton>
+    buttons cycle through both the mouse click history and the history
+    of selection methods.
+  </para>
+  <para>
+    The <guibutton>Repeat</guibutton> button simulates a mouse click
+    at the coordinates shown in the <guilabel>down</guilabel> and
+    <guilabel>up</guilabel> boxes, using the technique and parameters
+    currently selected in the <guilabel>Method</guilabel> menu.  It's
+    possible to change any or all of the parameters, including the
+    mouse coordinates, before hitting <guibutton>Repeat</guibutton>.
+    To change the mouse coordinates, just type new values into the
+    <guilabel>down</guilabel> and <guilabel>up</guilabel> boxes.  If
+    the current selection technique requires a coordinate for which
+    there is no data in the box, the <guibutton>Repeat</guibutton>
+    button will be unavailable.
+  </para>
+  <para>
+    The shift and control keys can be held down while the
+    <guibutton>Repeat</guibutton> button is pressed.  They have the
+    same effect that they do while clicking on the Canvas.
+  </para>
+  <para>
+    The way in which the selected pixels are highlighted in the Canvas
+    may be changed by using the &layereditor; to alter the <xref
+    linkend="RegisteredClass-BitmapOverlayDisplayMethod"/> display method that's
+    assigned to the Pixel Selection category.  It will be necessary to
+    enable <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+    All Layers</command></link> in the <link
+    linkend="Section-Graphics-MenuBar">Settings menu</link> first.
+  </para>
+</section>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -1,0 +1,278 @@
+<!--
+  $RCSfile: SN_femesh.xml,v $
+  $Revision: 1.6 $
+  $Author: langer $
+  $Date: 2011-05-02 21:36:52 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section id="Section-Tasks-FEMesh">
+  <title>FE Mesh</title>
+  <para>
+    The FE Mesh Page constructs finite element &meshes; from &skels;,
+    and manages and modifies the &meshes; and the &subproblems; that
+    they contain.  The layout of the page is shown in <xref
+    linkend="Figure-femesh_page"/>.  At the top of the page is the
+    Mesh Chooser, which determines which &mesh; is being operated
+    upon.  Below that are a set of <link
+    linkend="Section-Tasks-FEMesh-Buttons">buttons</link>.  Below the
+    buttons are a <guilabel>Mesh Information</guilabel> pane, a <link
+    linkend="Section-Tasks-FEMesh-Subproblems"><guilabel>Subproblems</guilabel>
+    pane</link>, and a <link
+    linkend="Section-Tasks-FEMesh-Modification"><guilabel>Mesh
+    Operations</guilabel> pane</link>, for modifying the current
+    &mesh;.
+  </para>
+  <figure id="Figure-femesh_page">
+    <title>The FE Mesh Page</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gui/femesh_page.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gui/femesh_page.eps" format="EPS"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    The Mesh Chooser has three components, because to specify a &mesh;
+    it's necessary to specify the &skel; containing the &mesh; and the
+    &micro; containing the &skel;.
+  </para>
+  <simplesect id="Section-Tasks-FEMesh-Buttons">
+    <title>FE Mesh Buttons</title>
+    <para>
+      The buttons below the Mesh Chooser perform common &mesh;
+      management functions:
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.New"><guibutton>New</guibutton></link>
+	    button creates a new &mesh; in the &micro; and &skel;
+	    specified by the first two parts of the Mesh Chooser.  The
+	    button brings up a dialog box in which to choose the <link
+	    linkend="Section-Concepts-Mesh-Geometry">types</link> of
+	    the finite elements used in the &mesh;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Rename"><guibutton>Rename</guibutton></link>
+	    button assigns a new name to the current &mesh;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Copy"><guibutton>Copy</guibutton></link>
+	    button makes a copy of the current &mesh;.  The copy
+	    becomes the new current &mesh;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Mesh.Delete"><guibutton>Delete</guibutton></link>
+	    button deletes the current &mesh;. It has no other effect
+	    on the current &mesh;'s &micro; and &skel;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.File.Save.Mesh"><guibutton>Save</guibutton></link>
+	    button saves the current &mesh; in a file.  It has the
+	    same effect as the <guimenu>Save/Mesh</guimenu> command in
+	    the <guimenu>File</guimenu> menu, except that it only
+	    saves the &mesh; chosen in the Mesh Chooser.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Section-Tasks-FEMesh-Info">
+    <title>The Info Pane</title>
+    <para>
+      The <guilabel>Info</guilabel> pane displays information about
+      the current &mesh;, including its current <link
+      linkend="Section-Concepts-Mesh-Status">status</link>, its size
+      (in terms of numbers of &elems;, &nodes;,
+      <foreignphrase>etc.</foreignphrase>), its current <link
+      linkend="Section-Concepts-Mesh-Time">time</link>, and the type
+      and size of its <link linkend="Section-Concepts-Mesh-Cache">data
+      cache</link>.
+    </para>
+    <para>
+      If the &mesh;'s &skel; or &micro; has been modified, the
+      <guilabel>Info</guilabel> pane will begin with
+      <screen>
+Status: Out of sync with Skeleton
+***Mesh must be rebuilt! ***
+      </screen>
+      In this situation, many &mesh; operations will be unavailable
+      until the &mesh; is rebuilt, using <xref
+      linkend="RegisteredClass-RebuildMesh"/> in the <link
+      linkend="Section-Tasks-FEMesh-Modification"><guilabel>Mesh
+      Operations</guilabel></link> pane.
+    </para>
+  </simplesect>
+  <simplesect id="Section-Tasks-FEMesh-Subproblems">
+    <title>The Subproblems Pane</title>
+    <para>
+      The <guilabel>Subproblems</guilabel> pane manages &subproblems;,
+      which are portions of a &mesh;.  A &mesh; can contain many
+      &subproblems;, which need not be distinct.  &fields; and
+      &equations; are defined and solved on &subproblems;.  Using
+      &subproblems; allows different solution techniques to be used on
+      different &equations;, or allows the &fields; in one region to
+      provide boundary conditions for another.  For example, the
+      Temperature &field; could be solved for on a <link
+      linkend="RegisteredClass-PixelGroupSubProblem"><guilabel>PixelGroup</guilabel></link>
+      &subproblem; which was defined to include all &elems; whose
+      <link linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+      pixel type</link> includes a specified &pixelgroup;, while
+      another &field; is solved for on a &subproblem; defined to
+      include only &elems; with a given &material;.
+    </para>
+    <para>
+      The top part of the <guilabel>Subproblems</guilabel> pane is a
+      list of all of the &subproblems; defined in the current &mesh;.
+      The list always contains a &subproblem; named
+      <userinput>default</userinput>.  The
+      <userinput>default</userinput> &subproblem; is an <link
+      linkend="RegisteredClass-EntireMeshSubProblem"><classname>EntireMeshSubProblem</classname></link>,
+      which contains all of the &elems; in the &mesh;.
+    </para>
+    <para>
+      Clicking on the name of a &subproblem; in the list allows the
+      buttons below the list to operate on the selected &subproblem;.
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Subproblem.New"><guilabel>New</guilabel></link>
+	    button brings up a dialog box for creating a new
+	    &subproblem;.  The different kinds of &subproblems; are
+	    enumerated in <xref
+	    linkend="RegisteredClass-SubProblemType"/>.  Each new
+	    &subproblem; must have a unique name.  Non-unique names
+	    will have <userinput>&lt;x&gt;</userinput> appended to
+	    them, where <userinput>x</userinput> is an integer chosen
+	    to make the name unique.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Subproblem.Rename"><guilabel>Rename</guilabel></link>
+	    button allows you to rename an existing &subproblem;.  It
+	    is not possible to rename the
+	    <userinput>default</userinput> &subproblem;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Subproblem.Edit"><guilabel>Edit</guilabel></link>
+	    button allows you to change the definition of a
+	    &subproblem;, either changing the parameters by which it's
+	    defined, or changing its type.  It is not possible to edit
+	    the <userinput>default</userinput> subproblem.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Subproblem.Copy"><guilabel>Copy</guilabel></link>
+	    button copies the currently selected &subproblem;.  It
+	    brings up a dialog box to specify a name for the copied
+	    &subproblem; and the &mesh; to which it will be copied
+	    (which may be the same as the &mesh; containing the
+	    original subproblem).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Subproblem.Info"><guilabel>Info</guilabel></link>
+	    button prints information in the <link
+	    linkend="Section-Windows-Messages">Messages Window</link>
+	    about the selected &subproblem;.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <link
+	    linkend="MenuItem-OOF.Subproblem.Delete"><guilabel>Delete</guilabel></link>
+	    button deletes the selected &subproblem;.  It is not
+	    possible to delete the <userinput>default</userinput>
+	    subproblem.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </simplesect>
+  <simplesect id="Section-Tasks-FEMesh-Modification">
+    <title>The Mesh Operations Pane</title>
+    <para>
+      The <guilabel>Mesh Operations</guilabel> pane works just like
+      the <guilabel>Modification</guilabel> pane in the <link
+      linkend="Section-Tasks-Skeleton">Skeleton Page</link>, except
+      that it doesn't provide as many modification methods, and has no
+      <guibutton>Undo</guibutton> or <guibutton>Redo</guibutton>
+      button.  (This is because &mesh; modifications are stored in a
+      different way than &skel; modifications.)
+    </para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  The pull-down menu labelled <guilabel>Method</guilabel>
+	  selects a <xref linkend="RegisteredClass-MeshModification"/>
+	  method.  The area immediately below the pull-down menu is
+	  for setting the method's parameters, if any.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <guibutton>OK</guibutton> button applies the selected
+	  modifier to the current &mesh; by invoking the <xref
+	  linkend="MenuItem-OOF.Mesh.Modify"/> command.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <guibutton>Prev</guibutton> and
+	  <guibutton>Next</guibutton> buttons cycle through the recent
+	  &mesh; modification methods.  They only reset the pull-down
+	  menu and parameters.  They don't have any direct effect on
+	  the &mesh;.
+	</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</section>
+    
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

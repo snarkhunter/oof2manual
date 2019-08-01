@@ -1,0 +1,206 @@
+<!-- 
+  $RCSfile: adaptive.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-04-25 02:42:41 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<obsolete/>
+  <para>
+    The adaptive mesh refinement &mesh; modifier is used
+    <emphasis>after</emphasis> <link
+    linkend="MenuItem-OOF.Mesh.Solve">solving</link> a &mesh;.  It
+    subdivides the &mesh; elements in regions where the solution is
+    inadequate.  After subdividing, <link
+    linkend="MenuItem-OOF.Mesh.Solve">solving</link> the &mesh; again
+    should yield a better solution.  (A later version of &oof2; will
+    combine and automate the solving and refining operations.  For
+    now, it's necessary to apply them individually.)
+  </para>
+  <caution>
+    <para>
+      In &oof2; version 2.0.2, the adaptive mesh refinement algorithm
+      only works on the <userinput>default</userinput> &subproblem;.
+    </para>
+  </caution>
+  <para>
+    When a &mesh; is originally created, it's created from a &skel;.
+    When a &mesh; is refined, its &skel; is copied, the new &skel; is
+    refined, and a new &mesh; is generated from the new &skel;.  Then
+    &field; values and boundary conditions are copied from the old
+    &mesh; to the new.  (The copied &skels; are stored internally
+    within in the &mesh; and cannot be operated upon by the general
+    <link
+    linkend="RegisteredClass-SkeletonModifier"><classname>SkeletonModifiers</classname></link>.)
+  </para>
+  <para>
+    The <varname>estimator</varname> parameter specifies which
+    <foreignphrase>a posteriori</foreignphrase> error estimator to
+    use.  
+  </para>
+  <para>
+    The <varname>criterion</varname> parameter can limit which
+    elements are selected for refinement.  Elements that don't satisfy
+    the criterion will not be subdivided, even if the error estimator
+    indicates that they should be.
+  </para>
+  <para>
+    <varname>degree</varname> specifies how the elements are to be
+    subdivided.  It's identical to the <varname>degree</varname>
+    parameter for &skel; &elem; <link
+    linkend="RegisteredClass-Refine">refinement</link>.
+  </para>
+  <para>
+    <varname>rationalize</varname> specifies whether or not the <xref
+    linkend="RegisteredClass-Rationalize"/> <xref
+    linkend="RegisteredClass-SkeletonModifier"/> will be applied to
+    the new &skel; after it has been refined.
+  </para>
+  <para>
+    Here, we have a simple example. A clamped L-shaped bracket is
+    being pulled down as illustrated in
+    <xref linkend="Figure-spr_problem0"/>. Its deformed mesh is
+    shown in <xref linkend="Figure-spr_problem1"/>.
+    
+    <figure id="Figure-spr_problem">
+      <title>A simple SPR example</title>
+      <mediaobject id="Figure-spr_problem0" xreflabel='Figure
+	"SPR Example" (a)'>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/problem.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/problem.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    a) A mesh for an L-shaped bracket.
+	  </para>
+	</caption>
+      </mediaobject>
+      <mediaobject id="Figure-spr_problem1" xreflabel='Figure
+	"SPR Example" (b)'>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/deformed.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/deformed.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    b) A deformed mesh of an L-shaped bracket.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    As shown, the inside corner of the bracket is guaranteed to be a
+    site of stress concentration. It's not not hard to guess that
+    errors would be higher in this corner than any other
+    places. Error for each element has been measured using an
+    <emphasis>L<subscript>2</subscript></emphasis> norm ( see
+    <xref linkend="RegisteredClass-L2ErrorNorm"/>) in conjunction with
+    a solution recovery technique of choice -- currently &oof2;
+    uses <link linkend="RegisteredClass-ZZ_Estimator">the
+      superceonvergent patch recovery</link> developed by
+    <emphasis>Zienkiewicz</emphasis> and <emphasis>Zhu</emphasis>.
+    Elements that
+    exceed <emphasis>10</emphasis> percent error have been refined. The
+    refined mesh is presented in
+    <xref linkend="Figure-spr_refined"/>. As expected, the inside
+    corner of the bracket has been further refined, whereas other
+    regions have been unchanged.
+    
+    <figure id="Figure-spr_refined">
+      <title>Adaptive mesh refinement using SPR</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/refined.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/refined.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    A refined mesh.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+  <para>
+    The next two figures show stress contours of
+    the first stress invariant
+    (<inlineequation>
+      <alt role="tex">\(\sigma_{xx} + \sigma_{yy} + \sigma_{zz}\)</alt>
+    </inlineequation>)
+    for the original and refined mesh.
+    The refined mesh captured the stress variation at the
+    corner much better than the original mesh did, clearly showing the
+    improvement in accuracy.
+
+    <figure id="Figure-spr_contour">
+      <title>Solution Improvement</title>
+      <mediaobject id="Figure-spr_contour0" xreflabel='Figure
+	"Solution Improvement" (a)'>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/contour.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/contour.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    a) Stress contours (the first stress invariant) for the
+	    original mesh.
+	  </para>
+	</caption>
+      </mediaobject>
+      <mediaobject id="Figure-spr_contour1" xreflabel='Figure
+	"Solution Improvement" (b)'>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/contour_refined.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/spr/contour_refined.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    b) Stress contours for the refined mesh.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+  </para>
+  
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

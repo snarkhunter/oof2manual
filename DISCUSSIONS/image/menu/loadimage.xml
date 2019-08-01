@@ -1,0 +1,59 @@
+<!-- 
+  $RCSfile: loadimage.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:49 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    This command loads an &image; into an existing &micro;.  The new
+    &image; must have the same <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical and
+    pixel sizes</link> as the &micro;.
+  </para>
+  <note>
+    <para>
+      All &images; in &oof2; must be associated with &micros;.  To
+      load an &image; without a preexisting &micro;, use <xref
+      linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"/>
+      instead.
+    </para>
+  </note>
+  <para>
+    The image file can be in any format understood by the <ulink
+    url="http://www.imagemagick.org"
+    role="external">ImageMagick</ulink> library.  All the common
+    formats (jpg, gif, ppm, png, tif,
+    <foreignphrase>etc.</foreignphrase>) are acceptable.
+  </para>
+  <para>
+    The new &image; will be identified within the &micro; by its
+    <varname>filename</varname> (after stripping off any directory
+    path components).  If there is already an &image; with that name
+    in the &micro;, then <userinput>&lt;x&gt;</userinput> will be
+    appended to the name, where <userinput>x</userinput> is an
+    integer.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

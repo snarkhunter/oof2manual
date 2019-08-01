@@ -1,0 +1,1517 @@
+<!-- 
+  $RCSfile: refFEMesh.xml,v $
+  $Revision: 1.3 $
+  $Author: langer $
+  $Date: 2011-05-06 16:00:08 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <refentry id="Class-FEMesh">
+    <refnamediv>
+      <refname>FEMesh</refname>
+      <refpurpose>C++ FE mesh class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <programlisting>
+#include "engine/femesh.h"</programlisting>
+      <classsynopsis language="cpp">
+	<ooclass>
+	  <classname>FEMesh</classname>
+	</ooclass>
+      </classsynopsis>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>FEMesh</classname> is a C++ class that holds all
+	the data for a finite element &mesh;.  Authors of &oof2;
+	extensions should not need to use any of the methods in the
+	class directly, but extension functions will often need to
+	pass an <classname>FEMesh</classname> argument on to other
+	functions.
+      </para>
+    </refsection>
+  </refentry><!-- FEMesh -->
+
+  <refentry id="Class-CSubProblem">
+    <refnamediv>
+      <refname>CSubProblem</refname>
+      <refpurpose>C++ subproblem class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <programlisting>
+#include "engine/csubproblem.h"</programlisting>
+      <classsynopsis language="cpp">
+	<ooclass>
+	  <classname>CSubProblem</classname>
+	</ooclass>
+      </classsynopsis>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>CSubProblem</classname> is a C++ class that holds
+	all the data for defining and solving a &subproblem; on a
+	finite element &mesh;.  Authors of &oof2; extensions should
+	not need to use any of the methods in the class directly, but
+	extension functions will often need to pass an
+	<classname>FEMesh</classname> argument on to other functions.
+      </para>
+    </refsection>
+  </refentry><!-- CSubProblem -->
+
+  <refentry id="Class-Element">
+    <refnamediv>
+      <refname>Element</refname>
+      <refpurpose>Element class for finite element meshes</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/element.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>Element</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>const Material *</type>
+	    <methodname><link
+		linkend="Class-Element-material">material</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>int</type>
+	    <methodname><link
+		linkend="Class-Element-nnodes">nnodes</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>int</type>
+	    <methodname><link
+		linkend="Class-Element-nfuncnodes">nfuncnodes</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>int</type>
+	    <methodname><link linkend="Class-Element-shapefun_degree">shapefun_degree</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>int</type>
+	    <methodname><link linkend="Class-Element-dshapefun_degree">dshapefun_degree</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementNodeIterator</type>
+	    <methodname><link
+		linkend="Class-Element-node_iterator">node_iterator</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementMapNodeIterator</type>
+	    <methodname><link
+		linkend="Class-Element-mapnode_iterator">mapnode_iterator</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementFuncNodeIterator</type>
+	    <methodname><link
+		linkend="Class-Element-funcnode_iterator">funcnode_iterator</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementCornerNodeIterator</type>
+	    <methodname><link
+		linkend="Class-Element-cornernode_iterator">cornernode_iterator</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>MasterCoord</type>
+	    <methodname><link
+		linkend="Class-Element-to_master">to_master</link></methodname>
+	    <methodparam>
+	      <type>const Coord&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>Coord</type>
+	    <methodname><link
+		linkend="Class-Element-from_master">from_master</link></methodname>
+	    <methodparam>
+	      <type>const MasterCoord&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>MasterCoord</type>
+	    <methodname><link linkend="Class-Element-center">center</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-Element-area">area</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>OutputValue</type>
+	    <methodname><link linkend="Class-Element-outputField">outputField</link></methodname>
+	    <methodparam>
+	      <type>const Field&amp;</type>
+	      <parameter>field</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const MasterPosition&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>OutputValue</type>
+	    <methodname><link linkend="Class-Element-outputFieldDeriv">outputFieldDeriv</link></methodname>
+	    <methodparam>
+	      <type>const Field&amp;</type>
+	      <parameter>field</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>SpaceIndex*</type>
+	      <parameter>derivative</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const MasterPosition&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>OutputValue</type>
+	    <methodname><link linkend="Class-Element-outputFlux">outputFlux</link></methodname>
+	    <methodparam>
+	      <type>const FEMesh*</type>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const Flux&amp;</type>
+	      <parameter>flux</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const MasterPosition&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import element</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Element</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-material">material</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-area">area</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-shapefun_degree">shapefun_degree</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-dshapefun_degree">dshapefun_degree</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-node_iterator">node_iterator</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-mapnode_iterator">mapnode_iterator</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-funcnode_iterator">funcnode_iterator</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-cornernode_iterator">cornernode_iterator</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-outputField">outputField</link></methodname>
+	    <methodparam>
+	      <parameter>field</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>position</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-outputFlux">outputFlux</link></methodname>
+	    <methodparam>
+	      <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>flux</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>position</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-from_master">from_master</link></methodname>
+	    <methodparam>
+	      <parameter>x</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>y</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-Element-to_master">to_master</link></methodname>
+	    <methodparam>
+	      <parameter>x</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>y</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara><filename>SRC/engine/element.C</filename>: C++
+	      source code</simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/element.h</filename>: C++ header file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/element.swg</filename>:
+	      <application>swig</application> source code.
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>Element</classname> is a swigged C++ class for
+	describing a finite element.  It is a generic class: each
+	<classname>Element</classname> contains a pointer to a
+	<classname>MasterElement</classname> object that contains all
+	of the geometry-specific details.
+      </para>
+      <para>
+	Only those parts of the <classname>Element</classname> class
+	that are useful for writing &oof2; extensions are described
+	here.  There are actually many more functions and data
+	members.  Consult the source code for the details.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-Element-material">
+	<title><code>const Material* material() const</code></title>
+	<para>
+	  <methodname>material</methodname> simply returns a pointer
+	  to the <link
+	  linkend="Class-Material"><classname>Material</classname></link>
+	  object that describes the <classname>Element</classname>'s
+	  physical features.
+	</para>
+      </refsection><!-- material -->
+      <refsection id="Class-Element-nnodes">
+	<title><code>int nnodes() const</code></title>
+	<para>
+	  <methodname>nnodes</methodname> returns the number of nodes
+	  in the <classname>Element</classname>.
+	</para>
+      </refsection><!-- nnodes -->
+      <refsection id="Class-Element-nfuncnodes">
+	<title><code>int nfuncnodes() const</code></title>
+	<para>
+	  <methodname>nfuncnodes</methodname> returns the number of
+	  so-called <link
+	  linkend="Section-Concepts-Mesh-Nodes">function nodes</link>
+	  in the element.  These are the nodes that store &field;
+	  values.
+	</para>
+      </refsection><!-- nfuncnodes -->
+      <refsection id="Class-Element-shapefun_degree">
+	<title><code>int shapefun_degree() const</code></title>
+	<para>
+	  <methodname>shapefun_degree</methodname> returns the
+	  polynomial degree of the <classname>Element</classname>'s
+	  <link linkend="Section-Concepts-Mesh-Geometry">shape
+	  functions</link>, more or less.  It actually returns the
+	  Gaussian integration order required to perform integrals
+	  over the <classname>Element</classname>'s area.
+	</para>
+      </refsection><!-- shapefun_degree -->
+      <refsection id="Class-Element-dshapefun_degree">
+	<title><code>int dshapefun_degree() const</code></title>
+	<para>
+	  <methodname>dshapefun_degree</methodname> returns the
+	  Gaussian integration order required to integrate the
+	  derivatives of the shape function over the area of the
+	  <classname>Element</classname>.
+	</para>
+      </refsection><!-- dshapefun_degree -->
+      <refsection id="Class-Element-node_iterator">
+	<title><code>ElementNodeIterator node_iterator() const</code></title>
+	<para>
+	  <methodname>node_iterator</methodname> returns an <link
+	  linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>
+	  which can be used to access all of the
+	  <classname>Element</classname>'s <link
+	  linkend="Class-Node"><classname>Nodes</classname></link>.
+	</para>
+      </refsection><!-- node_iterator -->
+      <refsection id="Class-Element-mapnode_iterator">
+	<title><code>ElementMapNodeIterator mapnode_iterator() const</code></title>
+	<para>
+	  <methodname>mapnode_iterator</methodname> returns an <link
+	  linkend="Class-ElementMapNodeIterator"><classname>ElementMapNodeIterator</classname></link>
+	  which can be used to access all of the
+	  <classname>Element</classname>'s mapping <link
+	  linkend="Class-Node"><classname>Nodes</classname></link>.
+	  These are the <classname>Nodes</classname> that determine
+	  the <classname>Element</classname>'s shape and position in
+	  space. That is, they determine the
+	  <emphasis>mapping</emphasis> between <link
+	  linkend="Class-MasterCoord">master coordinates</link> and
+	  physical coordinates.
+	</para>
+      </refsection><!-- mapnode_iterator -->
+      <refsection id="Class-Element-funcnode_iterator">
+	<title><code>ElementFuncNodeIterator funcnode_iterator() const</code></title>
+	<para>
+	  <methodname>funcnode_iterator</methodname> returns an <link
+	  linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
+	  which can be used to access all of the
+	  <classname>Element</classname>'s <link
+	  linkend="Class-Node"><classname>FuncNodes</classname></link>.
+	  <classname>FuncNodes</classname> are <link
+	  linkend="Class-Node"><classname>Nodes</classname></link>
+	  which store <link
+	  linkend="Class-Field"><classname>Field</classname></link>
+	  values.
+	</para>
+      </refsection><!-- funcnode_iterator -->
+      <refsection id="Class-Element-cornernode_iterator">
+	<title><code>ElementCornerNodeIterator cornernode_iterator() const</code></title>
+	<para>
+	  <methodname>cornernode_iterator</methodname> returns an
+	  <link
+	  linkend="Class-ElementCornerNodeIterator"><classname>ElementCornerNodeIterator</classname></link>
+	  which can be used to access the <link
+	  linkend="Class-Node"><classname>Nodes</classname></link> at
+	  the corners of the <classname>Element</classname>.
+	</para>
+      </refsection><!-- cornernode_iterator -->
+      <refsection id="Class-Element-to_master">
+	<title><code>MasterCoord to_master(const Coord&amp;) const, to_master(x,y)</code></title>
+	<para>
+	  <methodname>to_master</methodname> converts a position in
+	  physical space to a position in the
+	  <classname>Element</classname>'s master coordinate space.
+	  The C++ version takes a <link
+	  linkend="Class-Coord"><classname>Coord</classname></link>
+	  argument, but the Python version takes two floats,
+	  <varname>x</varname> and <varname>y</varname>, which allows
+	  it to work equally well with <link
+	  linkend="Class-Point"><classname>Points</classname></link>
+	  and swigged <classname>Coords</classname>.  Both versions
+	  return a <link
+	  linkend="Class-MasterCoord"><classname>MasterCoord</classname></link>
+	  object.
+	</para>
+	<para>
+	  <methodname>to_master</methodname> is a fairly expensive
+	  function to compute, so it should be used judiciously.
+	</para>
+      </refsection><!-- to_master -->
+      <refsection id="Class-Element-from_master">
+	<title><code>Coord from_master(const MasterCoord&amp;) const, from_master(x,y)</code></title>
+	<para>
+	  <methodname>from_master</methodname> takes a position in
+	  master coordinate space (in the form of a <link
+	  linkend="Class-MasterCoord"><classname>MasterCoord</classname></link>
+	  object in C++ or an
+	  <varname>x</varname>,<varname>y</varname> pair in Python)
+	  and returns the corresponding point in physical space.  The
+	  return value is a <link
+	  linkend="Class-Coord"><classname>Coord</classname></link> in
+	  both languages.
+	</para>
+      </refsection><!-- from_master -->
+      <refsection id="Class-Element-center">
+	<title><code>MasterCoord center() const</code></title>
+	<para>
+	  <methodname>center</methodname> returns the position of the
+	  center of the <classname>Element</classname> in <link
+	  linkend="Class-MasterCoord">master coordinate space</link>.
+	  This can be converted to a physical coordinate with <link
+	  linkend="Class-Element-from_master"><methodname>from_master</methodname></link>.
+	</para>
+      </refsection><!-- center -->
+      <refsection id="Class-Element-area">
+	<title><code>double area() const</code></title>
+	<para>
+	  <methodname>area</methodname> returns the physical area of
+	  the <classname>Element</classname>.
+	</para>
+      </refsection><!-- area -->
+      <refsection id="Class-Element-outputField">
+	<title><code>OutputValue outputField(const Field&amp; field,
+	const MasterPosition&amp; position) const</code></title>
+	<para>
+	  <methodname>outputField</methodname> uses finite element
+	  interpolation to evaluate a given <link
+	  linkend="Class-Field"><classname>Field</classname></link> at
+	  a given <varname>position</varname> within the
+	  <classname>Element</classname>.  The position must be
+	  specified in the <classname>Element</classname>'s <link
+	  linkend="Class-MasterCoord">master coordinate space</link>.
+	  The value of the <classname>Field</classname> is returned
+	  inside a generic <link
+	  linkend="Class-OutputValue"><classname>OutputValue</classname></link>
+	  wrapper, allowing it to be used in the <link
+	  linkend="Class-Output"><classname>Outputs</classname></link>.
+	</para>
+      </refsection><!-- outputField -->
+      <refsection id="Class-Element-outputFieldDeriv">
+	<title>
+	  <code>OutputValue outputFieldDeriv(const Field&amp; field,
+	  SpaceIndex* derivative, const MasterPosition&amp;
+	  position)</code>\
+	</title>
+	<para>
+	  <methodname>outputFieldDeriv</methodname> is just like <link
+	  linkend="Class-Element-outputField"><methodname>outputField</methodname></link>,
+	  but it computes a derivative of the <link
+	  linkend='Class-Field'><classname>Field</classname></link>.
+	</para>
+	<para>
+	  The <varname>derivative</varname> argument is a
+	  <classname>SpaceIndex</classname> object, which is basically
+	  a fancy integer.<footnote id="footnote-spaceindex">
+	    <para>
+	      The wrapper around the integer provides type
+	      checking. For example, it prevents a shape function
+	      index from being used as a spatial index, although both
+	      are integers. See
+	      <filename>SRC/engine/indextypes.h</filename>.
+	    </para>
+	  </footnote>
+	  <methodname>outputFieldDeriv</methodname> returns the
+	  <emphasis>x</emphasis> derivative if
+	  <code>derivative==0</code> and the <emphasis>y</emphasis>
+	  derivative if <code>derivative==1</code>.
+	</para>
+      </refsection><!-- outputFieldDeriv -->
+      <refsection id="Class-Element-outputFlux">
+	<title><code>OutputValue outputFlux(const FEMesh* mesh, const
+	    Flux&amp; flux, const MasterPosition&amp; position) const</code></title>
+	<para>
+	  <methodname>outputFlux</methodname> is just like <link
+	  linkend="Class-Element-outputField"><methodname>outputField</methodname></link>,
+	  except that it computes the value of a <link
+	  linkend="Class-Flux"><classname>Flux</classname></link>.
+	</para>
+      </refsection><!-- outputFlux -->
+    </refsection><!-- Methods -->
+  </refentry><!-- Element -->
+
+  <refentry id="Class-Node">
+    <refnamediv>
+      <refname>Node, FuncNode</refname>
+      <refpurpose>Node classes for finite element meshes</refpurpose>
+    </refnamediv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>Node</classname> and
+	<classname>FuncNode</classname> classes represent nodes of the
+	finite element mesh.  Authors of &oof2; extensions should not
+	have much need to use the classes directly.  The <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>
+	classes are generally more useful, because what one usually
+	wants is not the <classname>Node</classname>, but information
+	(such as shape function values) that is indexed by the <link
+	linkend="Class-Element"><classname>Element</classname></link>
+	<emphasis>and</emphasis> the node number.
+      </para>
+      <para>
+	<classname>FuncNodes</classname> are nodes that store <link
+	linkend="Class-Field"><classname>Field</classname></link>
+	values.  <classname>FuncNode</classname> is derived from
+	<classname>Node</classname>.
+      </para>
+      <para>
+	See <filename>SRC/engine/node.*</filename> for the details.
+      </para>
+    </refsection>
+  </refentry><!-- Node -->
+
+  <refentry id="Class-ElementNodeIterator">
+    <refnamediv>
+      <refname>ElementNodeIterator</refname>
+      <refpurpose>Iterate over Nodes in an Element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+      <programlisting>
+#include "engine/elementnodeiterator.h"</programlisting>
+      <classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ElementNodeIterator</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>Node*</type>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-node">node</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementNodeIterator&amp;</type>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-operatorplusplus">operator++</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>bool</type>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-end">end</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>void</type>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-set_start">set_start</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const MasterCoord&amp;</type>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-mastercoord">mastercoord</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import elementnodeiterator</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ElementNodeIterator</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-ElementNodeIterator-node">node</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-operatorplusplus">increment</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-ElementNodeIterator-end">end</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-set_start">set_start</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementNodeIterator-getitem">__getitem__</link></methodname>
+	    <methodparam>
+	      <parameter>dummyindex</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.C</filename>:
+	      C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.h</filename>:
+	      C++ header
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.swg</filename>:
+	      <application>swig</application> source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.spy</filename>:
+	      Python code included in swig output
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	An <classname>ElementNodeIterator</classname> is used to loop
+	over all of the <link
+	linkend="Class-Node"><classname>Nodes</classname></link> of an
+	<link
+	linkend="Class-Element"><classname>Element</classname></link>.
+	<classname>ElementNodeIterators</classname> should be
+	created by calling <link
+	linkend="Class-Element-node_iterator"><methodname>Element::node_iterator</methodname></link>,
+	rather than calling the
+	<classname>ElementNodeIterator</classname> constructor
+	directly.
+      </para>
+      <para>
+	Here's how to iterate over <classname>Nodes</classname> in C++:
+
+	<programlisting>
+Element *element; // assume this has been set
+for(ElementNodeIterator iter=element->node_iterator(); !iter.end(); ++iter) {
+  Node *node = iter.node();
+  // do something with node
+} </programlisting>
+
+	and here's one way to do it in Python:
+
+	<programlisting>
+for nodeiter in element.node_iterator():
+   node = nodeiter.node()
+   // do something with node </programlisting>
+      </para>
+
+      Here's an uglier way to do it in Python, which might be useful
+      in some circumstances:
+
+      <programlisting>
+nodeiter = element.node_iterator()
+while not nodeiter.end():
+    node = nodeiter.node()
+    // do something with node
+    nodeiter.increment()
+</programlisting>
+
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	Only those methods useful to authors of &oof2; extensions are
+	discussed here.  
+      </para>
+      <refsection id="Class-ElementNodeIterator-node">
+	<title><code>Node* node() const</code></title>
+	<para>
+	  <methodname>node</methodname> returns a pointer to the
+	  iterator's current <link
+	  linkend="Class-Node"><classname>Node</classname></link>.
+	</para>
+      </refsection><!-- node -->
+      <refsection id="Class-ElementNodeIterator-operatorplusplus">
+	<title><code>ElementNodeIterator&amp; operator++(), increment()</code></title>
+	<para>
+	  The C++ function <methodname>operator++</methodname> and the
+	  Python function <methodname>increment</methodname> both
+	  advance the iterator to the next
+	  <classname>Node</classname>.  The nodes are visited in an
+	  arbitrary order.
+	</para>
+	<para>
+	  <methodname>operator++</methodname> returns a reference to
+	  the iterator.  <methodname>increment</methodname> returns
+	  <literal>None</literal>.
+	</para>
+      </refsection><!-- operator++ -->
+      <refsection id="Class-ElementNodeIterator-end">
+	<title><code>bool end() const</code></title>
+	<para>
+	  <methodname>end</methodname> returns <literal>true</literal>
+	  if the iterator has visited all of the
+	  <classname>Nodes</classname> of the
+	  <classname>Element</classname>.
+	</para>
+      </refsection><!-- end -->
+      <refsection id="Class-ElementNodeIterator-set_start">
+	<title><code>void set_start()</code></title>
+	<para>
+	  Sometimes it's useful to look for a particular <link
+	  linkend="Class-Node"><classname>Node</classname></link> in
+	  an <link
+	  linkend="Class-Element"><classname>Element</classname></link>and
+	  then to loop over all of the other
+	  <classname>Nodes</classname>.  This can be done by iterating
+	  until the desired <classname>Node</classname> is found, and
+	  then calling the iterator's
+	  <methodname>set_start</methodname> method.  This
+	  reinitializes the iterator without changing its current
+	  position.  The <link
+	  linkend="Class-ElementNodeIterator-end"><methodname>end</methodname></link>
+	  flag won't be set until the iterator returns to its current
+	  position.
+	</para>
+      </refsection><!-- set_start -->
+      <refsection id="Class-ElementNodeIterator-mastercoord">
+	<title><code>const MasterCoord&amp; mastercoord() const</code></title>
+	<para>
+	  <methodname>mastercoord</methodname> returns the <link
+	  linkend="Class-MasterCoord">master coordinate space
+	  position</link> of the <link
+	  linkend="Class-Node"><classname>Node</classname></link> that
+	  the iterator currently points to.  It's not possible to get
+	  this information directly from the
+	  <classname>Node</classname>, because a single
+	  <classname>Node</classname> can be in many <link
+	  linkend="Class-Element"><classname>Elements</classname></link>,
+	  and have a different master space position in each.
+	  <classname>ElementNodeIterators</classname> don't have this
+	  problem, because they know which
+	  <classname>Element</classname> they're looping over.
+	</para>
+      </refsection><!-- mastercoord -->
+      <refsection id="Class-ElementNodeIterator-getitem">
+	<title>__getitem__(dummy)</title>
+	<para>
+	  <varname>__getitem__</varname> is defined for the Python
+	  verison of <classname>ElementNodeIterator</classname> so
+	  that it's possible to use the syntax
+
+	  <programlisting>
+for node in element.node_iterator():</programlisting>
+	  
+	  to loop over the nodes in an <link
+	  linkend="Class-Element"><classname>Element</classname></link>.
+	  The argument isn't used.<footnote>
+	    <para>
+	      Yes, we know that doing it this way is ugly.  It should
+	      be rewritten using Python generators.
+	    </para>
+	  </footnote>
+	</para>
+      </refsection>
+    </refsection><!-- Methods -->
+  </refentry><!-- ElementNodeIterator -->
+
+  <refentry id="Class-ElementShapeFuncIterator">
+    <refnamediv>
+      <refname>ElementShapeFuncIterator</refname>
+      <refpurpose>Base class for other Node iterators</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/elementnodeiterator.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ElementShapeFuncIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname><link linkend="Class-ElementNodeIterator">ElementNodeIterator</link></classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-ElementShapeFuncIterator-shapefunction">shapefunction</link></methodname>
+	    <methodparam>
+	      <type>const MasterPosition&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-ElementShapeFuncIterator-dshapefunction">dshapefunction</link></methodname>
+	    <methodparam>
+	      <type>SpaceIndex</type>
+	      <parameter>derivative</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const MasterPosition&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-ElementShapeFuncIterator-masterderiv">masterderiv</link></methodname>
+	    <methodparam>
+	      <type>SpaceIndex</type>
+	      <parameter>derivative</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <type>const MasterPosition&amp;</type>
+	      <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const = 0</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import elementnodeiterator</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ElementShapeFuncIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname>ElementNodeIterator</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementShapeFuncIterator-shapefunction">shapefunction</link></methodname>
+	    <methodparam>
+	      <parameter>position</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementShapeFuncIterator-dshapefunction">dshapefunction</link></methodname>
+	    <methodparam>
+	      <parameter>derivative</parameter>
+	    </methodparam>
+	    <methodparam>
+	      <parameter>position</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2>
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.C</filename>:
+	      C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.h</filename>:
+	      C++ header
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>ElementShapeFuncIterator</classname> is derived
+	from <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>
+	and serves as an abstract base class for <link
+	linkend="Class-ElementMapNodeIterator"><classname>ElementMapNodeIterator</classname></link>,
+	<link
+	linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>,
+	and <classname>EdgeNodeIterator</classname>, and as such
+	should never be used explicitly.
+      </para>
+      <para>
+	<classname>ElementShapeFuncIterator</classname> provides an
+	API for looping over <link
+	linkend="Class-Node"><classname>Nodes</classname></link> with
+	associated <link
+	linkend="Section-Concepts-Mesh-Geometry">shape
+	functions</link>, and for evaluating those functions.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	See <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>
+	for the functions defined in the base class.  This section
+	only lists the new methods introduced in
+	<classname>ElementShapeFuncIterator</classname>.
+      </para>
+      <refsection id="Class-ElementShapeFuncIterator-shapefunction">
+	<title><code>double shapefunction(const MasterPosition&amp; position)</code></title>
+	<para>
+	  Each <link
+	  linkend="Class-Element"><classname>Element</classname></link>'s
+	  shapefunctions are zero at all but one of the
+	  <classname>Element</classname>'s <link
+	  linkend="Class-Node"><classname>FuncNode</classname></link>s.
+	  By pairing shape functions with the nodes at which they're
+	  non-zero, a node iterator can identify a shape function as
+	  well as a <classname>FuncNode</classname>.
+	  <methodname>ElementFuncNodeIterator::shapefunction</methodname>
+	  evaluates the iterator's shape function at the <link
+	  linkend="Class-MasterCoord">master space coordinate</link>
+	  given by <varname>position</varname>.
+	</para>
+      </refsection><!-- shapefunction -->
+      <refsection id="Class-ElementShapeFuncIterator-dshapefunction">
+	<title><code>double dshapefunction(SpaceIndex derivative,
+	    const MasterPosition&amp; position) const</code></title>
+	<para>
+	  <methodname>dshapefunction</methodname> is just like <link
+	  linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>shapefunction</methodname></link>,
+	  but it returns the value of the specified
+	  <varname>derivative</varname> of the shape function.  The
+	  <classname>SpaceIndex</classname> takes the value
+	  <literal>0</literal> for <emphasis>x</emphasis> and
+	  <literal>1</literal> for
+	  <emphasis>y</emphasis>.<footnoteref
+	  linkend="footnote-spaceindex"/>
+	</para>
+      </refsection><!-- dshapefunction -->
+      <refsection id="Class-ElementShapeFuncIterator-masterderiv">
+	<title><code>double masterderiv(SpaceIndex derivative, const
+	    MasterPosition&amp; position) const</code></title>
+	<para>
+	  <methodname>masterderiv</methodname> is just like <link
+	  linkend="Class-ElementShapeFuncIterator-dshapefunction"><methodname>dshapefunction</methodname></link>,
+	  except that it computes the derivative in <link
+	  linkend="Class-MasterCoord">master coordinate space</link>,
+	  instead of physical space.  This is cheaper to compute, but
+	  usually less useful.
+	</para>
+      </refsection><!-- masterderiv -->
+    </refsection><!-- Methods -->
+  </refentry><!-- ElementShapeFuncIterator -->
+
+  <refentry id="Class-ElementMapNodeIterator">
+    <refnamediv>
+      <refname>ElementMapNodeIterator</refname>
+      <refpurpose>Iterate over mapping nodes in an Element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/elementnodeiterator.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ElementMapNodeIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname><link linkend="Class-ElementShapeFuncIterator">ElementShapeFuncIterator</link></classname>
+	  </ooclass>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import elementnodeiterator</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ElementMapNodeIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname><link linkend="Class-ElementShapeFuncIterator">ElementShapeFuncIterator</link></classname>
+	  </ooclass>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.C</filename>:
+	      C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.h</filename>:
+	      C++ header
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.swg</filename>:
+	      <application>swig</application> source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	An <classname>ElementMapNodeIterator</classname> loops over
+	the <link
+	linkend="Class-Node"><classname>Nodes</classname></link> whose
+	position determines the shape and position of an <link
+	linkend="Class-Element"><classname>Element</classname></link>
+	in an <link
+	linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	All of its member functions are described in the base class
+	documentation, <link
+	linkend="Class-ElementShapeFuncIterator"><classname>ElementShapeFuncIterator</classname></link>
+	and <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>.
+      </para>
+      <para>
+	<classname>ElementMapNodeIterators</classname> should not be
+	created explicitly.  Call <link
+	linkend="Class-Element-mapnode_iterator"><methodname>Element::mapnode_iterator()</methodname></link>
+	instead.
+      </para>
+    </refsection>
+  </refentry><!-- ElementMapNodeIterator -->
+
+  <refentry id="Class-ElementFuncNodeIterator">
+    <refnamediv>
+      <refname>ElementFuncNodeIterator</refname>
+      <refpurpose>Iterate over function nodes in an Element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/elementnodeiterator.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ElementFuncNodeIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname><link linkend="Class-ElementShapeFuncIterator">ElementShapeFuncIterator</link></classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>FuncNode*</type>
+	    <methodname><link
+		linkend="Class-ElementFuncNodeIterator-funcnode">funcnode</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import elementnodeiterator</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ElementFuncNodeIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname><link linkend="Class-ElementShapeFuncIterator">ElementShapeFuncIterator</link></classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementFuncNodeIterator-funcnode">funcnode</link></methodname>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.C</filename>:
+	      C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.h</filename>:
+	      C++ header
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.swg</filename>:
+	      <application>swig</application> source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	An <classname>ElementFuncNodeIterator</classname> loops over
+	the <link
+	linkend="Class-Node"><classname>Nodes</classname></link> of an <link
+	linkend="Class-Element"><classname>Element</classname></link>
+	that are used to store <link
+	  linkend="Class-Field"><classname>Field</classname></link>
+	values and whose shape functions are used for functional
+	interpolation within the <classname>Element</classname>.
+      </para>
+      <para>
+	<classname>ElementFuncNodeIterators</classname> should not be
+	created explicitly.  Call <link
+	linkend="Class-Element-mapnode_iterator"><methodname>Element::funcnode_iterator()</methodname></link>
+	instead.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	Most of the <classname>ElementFuncNodeIterator</classname>
+	methods are described in its base classes' documentation,
+	<link
+	linkend="Class-ElementShapeFuncIterator"><classname>ElementShapeFuncIterator</classname></link>
+	and <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>.
+      </para>
+      <refsection id="Class-ElementFuncNodeIterator-funcnode">
+	<title><code>FuncNode *funcnode() const</code></title>
+	<para>
+	  <methodname>funcnode</methodname> returns a pointer to the
+	  <link
+	  linkend="Class-Node"><classname>FuncNode</classname></link>
+	  that the iterator is currently referring to.  The only
+	  difference between
+	  <methodname>ElementFuncNodeIterator::funcnode</methodname>
+	  and the base class function, <link
+	  linkend="Class-ElementNodeIterator-node"><methodname>ElementNodeIterator::node</methodname></link>,
+	  is in the return type.  Both calls return the same object,
+	  but <methodname>funcnode</methodname> returns a pointer to
+	  the derived class, <link
+	  linkend="Class-Node"><classname>FuncNode</classname></link>
+	  while <methodname>node</methodname> returns a pointer to the
+	  base class, <link
+	  linkend="Class-Node"><classname>Node</classname></link>.
+	</para>
+      </refsection><!-- funcnode -->
+    </refsection><!-- Methods -->
+  </refentry><!-- ElementFuncNodeIterator -->
+
+  <refentry id="Class-ElementCornerNodeIterator">
+    <refnamediv>
+      <refname>ElementCornerNodeIterator</refname>
+      <refpurpose>Iterate over the corner Nodes of an Element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/elementnodeiterator.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>ElementCornerNodeIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <modifier>public</modifier>
+	    <classname><link linkend="Class-ElementNodeIterator">ElementNodeIterator</link></classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>FuncNode*</type>
+	    <methodname><link
+		linkend="Class-ElementCornerNodeIterator-funcnode">funcnode</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementFuncNodeIterator</type>
+	    <methodname><link
+		linkend="Class-ElementCornerNodeIterator-funcnode_iterator">funcnode_iterator</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>ElementMapNodeIterator</type>
+	    <methodname><link
+		linkend="Class-ElementCornerNodeIterator-mapnode_iterator">mapnode_iterator</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import elementnodeiterator</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>ElementCornerNodeIterator</classname>
+	  </ooclass>
+	  <ooclass>
+	    <classname><link linkend="Class-ElementNodeIterator">ElementNodeIterator</link></classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-ElementCornerNodeIterator-funcnode">funcnode</link></methodname>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.C</filename>:
+	      C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.h</filename>:
+	      C++ header
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/elementnodeiterator.swg</filename>:
+	      <application>swig</application> source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	<classname>ElementCornerNodeIterator</classname> loops over
+	the <link
+	linkend="Class-Node"><classname>Nodes</classname></link> at
+	the corners of an <link
+	linkend="Class-Element"><classname>Element</classname></link>.
+	It's similar in function to <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>,
+	except that <classname>ElementCornerNodeIterator</classname>
+	skips non-corner <classname>Nodes</classname>.  Because corner
+	<classname>Nodes</classname> are always mapping and function
+	nodes, <classname>ElementCornerNodeIterator</classname> also
+	contains all of the functionality of <link
+	linkend="Class-ElementMapNodeIterator"><classname>ElementMapNodeIterator</classname></link>
+	and <link
+	linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>.
+      </para>
+      <para>
+	<classname>ElementCornerNodeIterators</classname> should not
+	be created explicitly.
+	<link
+	  linkend="Class-Element-cornernode_iterator"><methodname>Element::cornernode_iterator()</methodname></link> should be called instead.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	See <link
+	linkend="Class-ElementNodeIterator"><classname>ElementNodeIterator</classname></link>
+	for a description of the base class functions.
+      </para>
+      <refsection id="Class-ElementCornerNodeIterator-funcnode">
+	<title><code>FuncNode *funcnode() const</code></title>
+	<para>
+	  See <link
+	  linkend="Class-ElementFuncNodeIterator-funcnode"><methodname>ElementFuncNodeIterator::funcnode()</methodname></link>.
+	</para>
+      </refsection><!-- funcnode -->
+      <refsection
+	id="Class-ElementCornerNodeIterator-funcnode_iterator">
+	<title><code>ElementFuncNodeIterator funcnode_iterator() const</code></title>
+	<para>
+	  <methodname>funcnode_iterator</methodname> returns a <link
+	  linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
+	  that points to the same <classname>Node</classname> as the
+	  <classname>ElementCornerNodeIterator</classname>.  If the
+	  returned <classname>ElementFuncNodeIterator</classname> is
+	  incremented, it might no longer point to a corner
+	  <classname>Node</classname>.
+	</para>
+      </refsection><!-- funcnode_iterator -->
+      <refsection
+	id="Class-ElementCornerNodeIterator-mapnode_iterator">
+	<title><code>ElementMapNodeIterator mapnode_iterator() const</code></title>
+	<para>
+	  <methodname>mapnode_iterator</methodname> returns a <link
+	  linkend="Class-ElementMapNodeIterator"><classname>ElementMapNodeIterator</classname></link>
+	  that points to the same <classname>Node</classname> as the
+	  <classname>ElementCornerNodeIterator</classname>.  If the
+	  returned <classname>ElementMapNodeIterator</classname> is
+	  incremented, it might no longer point to a corner
+	  <classname>Node</classname>.
+	</para>
+      </refsection><!-- mapnode_iterator -->
+    </refsection><!-- Methods -->
+  </refentry><!-- ElementCornerNodeIterator -->
+
+  <refentry id="Class-DegreeOfFreedom">
+    <refnamediv>
+      <refname>DegreeOfFreedom</refname>
+      <refpurpose>Degree of freedom at a Node</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/freedom.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>DegreeOfFreedom</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link linkend="Class-DegreeOfFreedom-value">value</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link linkend="Class-DegreeOfFreedom-value">value</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from oof2.SWIG.engine import freedom</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>DegreeOfFreedom</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-DegreeOfFreedom-value">value</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/freedom.C</filename>: C++ source code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/freedom.h</filename>: C++ header file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/freedom.swg</filename>:
+	      <application>swig</application> source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>DegreeOfFreedom</classname> class holds the
+	value of a degree of freedom
+	(<foreignphrase>i.e,</foreignphrase> <link
+	linkend="Class-Field"><classname>Field</classname></link>
+	value) at a node (specifically a <link
+	linkend="Class-Node"><classname>FuncNode</classname></link>)
+	of a <link
+	linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	It also holds some other bookkeeping data, which isn't
+	described here because it isn't directly useful to authors of
+	&oof2; extensions.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	Only methods relevant for &oof2; extensions are listed here.
+      </para>
+      <refsection id="Class-DegreeOfFreedom-value">
+	<title><code>double value() const, double&amp; value()</code></title>
+	<para>
+	  <methodname>value</methodname> simply returns the numerical
+	  value of the degree of freedom.  Usually this is a component
+	  of a <link
+	  linkend="Class-Field"><classname>Field</classname></link>.
+	</para>
+      </refsection>
+    </refsection>
+  </refentry><!-- DegreeOfFreedom -->
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

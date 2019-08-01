@@ -1,0 +1,49 @@
+<!-- 
+  $RCSfile: numericaldiff.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-28 21:24:08 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  When solving nonlinear equations with <xref
+  linkend="RegisteredClass-Newton"/>'s method, &oof2; needs to know
+  the derivatives of some of the material &properties; with respect to
+  the &field; values.  If the &properties; don't provide code that
+  evaluates the derivatives, &oof2; can still use <xref
+  linkend="RegisteredClass-Newton"/>'s method by evaluating the
+  derivatives numerically.  <varname>epsilon</varname> sets the size
+  of the perturbation, relative to the &field; value, that is applied
+  to the &field; values when differentiating the &property;.
+</para>
+<para>
+  The default value of the relative perturbation is
+  10<superscript>-5</superscript>.  An absolute perturbation less than
+  16 times the double precision <ulink role="external"
+  linkend="http://en.wikipedia.org/wiki/Machine_epsilon">machine
+  epsilon</ulink> will never be used.
+</para>
+
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

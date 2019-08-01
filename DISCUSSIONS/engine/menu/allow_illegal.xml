@@ -1,0 +1,45 @@
+<!-- 
+  $RCSfile: allow_illegal.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:21 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+
+  <para>
+    When moving &nodes; manually with the <link
+    linkend="Section-Graphics-MoveNodes">Move Nodes</link> toolbox, it
+    can sometimes be necessary or convenient to temporarily create
+    <link
+    linkend="Section-Concepts-Skeleton-Illegality">illegal</link>
+    &skel; &elems;.  Creating such &elems; is prohibited unless
+    <command>AllowIllegal</command> has first been called with
+    <varname>allowed</varname> set to 1.  Illegal &elems; will then be
+    allowed until <command>AllowIllegal</command> is called with
+    <varname>allowed</varname>=0.
+  </para>
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

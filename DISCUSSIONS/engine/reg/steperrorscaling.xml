@@ -1,0 +1,48 @@
+<!-- 
+  $RCSfile: steperrorscaling.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-28 21:24:10 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+<para>
+  <classname>StepErrorScaling</classname> subclasses determine how to
+  compute the error estimate when solving a &subproblem; with adaptive
+  time-stepping in <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/>.  The
+  <varname>errorscaling</varname> parameter of <xref
+  linkend="RegisteredClass-AdaptiveDriver"/> is a
+  <classname>StepErrorScaling</classname> object.  The <xref
+  linkend="RegisteredClass-AdaptiveDriver"/> adjusts the timestep so
+  that the error estimate returned by the
+  <classname>StepErrorScaling</classname> object is less than, but not
+  much less than, the given <varname>tolerance</varname>.
+</para>
+<para>
+  When a time-evolution calculation with adaptive stepping is failing
+  because the step size is too small, it's often due to a poorly
+  chosen error scaling method.
+</para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

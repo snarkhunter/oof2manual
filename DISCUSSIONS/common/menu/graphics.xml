@@ -1,0 +1,39 @@
+<!-- 
+  $RCSfile: graphics.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:15 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Any &oof2; commands that either affect what's displayed in a <link
+    linkend='Chapter-Graphics'>Graphics window</link> or whose
+    behavior depends on what's displayed in the window are kept in a
+    menu called <command>OOF.Graphics_</command><varname>n</varname>,
+    where <varname>n</varname> is the number of the Graphics window.
+    All Graphics windows menus are the same, and in this manual
+    they're all called <quote><command>Graphics_n</command></quote>.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

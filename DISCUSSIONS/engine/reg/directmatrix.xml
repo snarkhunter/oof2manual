@@ -1,0 +1,46 @@
+<!-- 
+  $RCSfile: directmatrix.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-25 02:42:42 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>DirectMatrixSolver</classname> is a <link
+  linkend="Section-Concepts-Mesh-Solvers-Matrix">matrix equation
+  solver</link> used in <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/>.  It uses the <ulink
+  role="external" url="http://www.netlib.org/lapack/">LAPACK</ulink>
+  <ulink role="external"
+  url="http://http://www.netlib.org/lapack/double/dgesv.f"><function>dgesv</function></ulink>
+  function to solve equations via <ulink role="external"
+  url="http://en.wikipedia.org/wiki/Lu_decomposition"> LU
+  decomposition</ulink>.  This requires the matrix to to converted
+  from the sparse format used in &oof2; to a full represention, which
+  uses a lot of memory.  It may be faster and more accurate for small
+  matrices, however.
+</para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

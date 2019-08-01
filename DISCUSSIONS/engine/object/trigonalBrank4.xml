@@ -1,0 +1,71 @@
+<!-- 
+  $RCSfile: trigonalBrank4.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:34 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<refentry xreflabel='TrigonalBRank4TensorCij' id='Object-TrigonalBRank4TensorCij'>
+  <refnamediv>
+    <refname>TrigonalBRank4TensorCij</refname>
+    <refpurpose>
+      A rank 4 tensor with trigonal-B symmetry
+    </refpurpose>
+  </refnamediv>
+ <refsynopsisdiv><simpara>
+ <classname>TrigonalBRank4TensorCij</classname>(<varname>c11</varname>,
+ <varname>c12</varname>, <varname>c13</varname>,
+ <varname>c33</varname>, <varname>c44</varname>,
+ <varname>c14</varname>) </simpara></refsynopsisdiv>
+ <refsect1>
+  <title>Description</title>
+  <para>
+    A <classname>TrigonalBRank4TensorCij</classname> is a fourth rank
+    tensor with trigonal-B rotational symmetry, expressed in Voigt
+    notation. The arguments <varname>c11</varname>,
+    <varname>c12</varname>, <foreignphrase>etc</foreignphrase>, are
+    real numbers.
+  </para>
+  <figure id='Figure-TrigonalBRank4Tensor'>
+   <title>Structure of a Trigonal-B Fourth Rank Tensor</title>
+   <mediaobject>
+    <imageobject>
+     <imagedata fileref='FIGURES/rank4/trigonalBCij.gif' format='GIF'/>
+    </imageobject>
+    <imageobject>
+     <imagedata fileref='FIGURES/rank4/trigonalBCij.eps' format='EPS'/>
+    </imageobject>
+    <textobject><phrase>Trigonal-B rank 4 tensor diagram</phrase></textobject>
+    <caption><simpara>
+     Structure of a trigonal-B rank 4 tensor.  For an explanation of
+     the symbols, see <xref linkend='Figure-TensorKey'/>.
+    </simpara></caption>
+   </mediaobject>
+  </figure>
+ </refsect1>
+</refentry>
+
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "chapter" "refentry")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

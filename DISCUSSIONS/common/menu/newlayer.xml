@@ -1,0 +1,42 @@
+<!-- 
+  $RCSfile: newlayer.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:17 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    The <command>New</command> command in the <xref
+    linkend="MenuItem-OOF.Graphics_n.Layer"/> menu doesn't actually
+    create a new graphics &layer;.  Instead, it opens and clears the
+    &layereditor; window.  The &layereditor; can then create a new
+    &layer;.
+  </para>
+  <para>
+    In text mode, this command doesn't do anything.  To create
+    graphics layers in text mode, use the &layereditor; commands in
+    the <xref linkend="MenuItem-OOF.LayerEditor.LayerSet"/> menu.
+  </para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

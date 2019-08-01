@@ -1,0 +1,51 @@
+<!-- 
+  $RCSfile: datacachetype.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-22 21:25:27 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Change the default <xref linkend="Enum-CacheType"/> used to store time step
+  data for new &meshes;.  If <varname>cachetype</varname> is
+  <userinput>Memory</userinput>, the data will be stored in RAM.  If
+  it's <userinput>Disk</userinput>, the data will be stored in
+  temporary files on disk.  Storage in RAM is usually faster, but more
+  data can usually be stored on disk.
+</para>
+<para>
+  This command only affects new &meshes;.  To change the cache type
+  for an existing &mesh;, use <xref
+  linkend="MenuItem-OOF.Mesh.Modify"/> with
+  <varname>modifier</varname>=<xref
+  linkend="RegisteredClass-SetMeshDataCacheType"/>.
+</para>
+<para>
+  In the GUI, this command is invoked from the
+  <guimenuitem>Settings</guimenuitem> menu in the main &oof2; window's
+  menubar.
+</para>
+
+
+ <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

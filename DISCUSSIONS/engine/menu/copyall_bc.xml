@@ -1,0 +1,47 @@
+<!-- 
+  $RCSfile: copyall_bc.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:22 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <command>OOF.Mesh.Boundary_Conditions.Copy_All</command> copies all
+    existing <link linkend="RegisteredClass-BC">boundary
+    conditions</link> from one &mesh; to another.
+  </para>
+  <para>
+    The <varname>current</varname> parameter is the name of the &mesh;
+    <emphasis>from</emphasis> which the boundary conditions will be
+    copied.  The <varname>mesh</varname> parameter is the name of the
+    target &mesh; <emphasis>to</emphasis> which they will be copied.
+  </para>
+  <para>
+    The copied boundary conditions will have the same names as the
+    originals.  The target &mesh; must have boundaries with the same
+    names as the boundaries in the source &mesh;.
+  </para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

@@ -1,0 +1,87 @@
+<!-- 
+  $RCSfile: newton.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-28 21:24:09 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>Newton</classname> is a <link
+  linkend="RegisteredClass-NonlinearSolverBase">nonlinear
+  solver</link> used in <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/> for solving nonlinear
+  equations of the form
+  <equation id="Eqn-Newton0">
+    <alt role="tex">
+      \[ A(\phi) = 0 \]
+    </alt>
+  </equation>
+  It implements <ulink
+  url="http://en.wikipedia.org/wiki/Newtons_method"
+  role="external">Newton's method</ulink>, which uses the derivative
+  of the nonlinear term <inlineequation><alt
+  role="tex">\(A\)</alt></inlineequation> with respect to the vector
+  of unknowns, <inlineequation><alt
+  role="tex">\(\phi\)</alt></inlineequation>
+  (<foreignphrase>i.e,</foreignphrase> &field; values), to compute
+  successive approximations to the solution.  The iteration stops when
+  the norm of the residual after the
+  n<superscript><emphasis>th</emphasis></superscript> step,
+  |A<subscript><emphasis>n</emphasis></subscript>|, satisfies
+  <equation>
+    <alt role="tex">
+      \[ |A_n| &lt; \epsilon|A_0| + \delta \]
+    </alt>
+  </equation>
+  where <inlineequation><alt
+  role="tex">\(\epsilon\)</alt></inlineequation>=<varname>relative_tolerance</varname>
+  and <inlineequation><alt
+  role="tex">\(\delta\)</alt></inlineequation>=<varname>absolute_tolerance</varname>,
+  or when the <varname>maximum_iterations</varname> limit is exceeded.
+</para>
+<para>
+  Newton's method generally converges in fewer iterations than <xref
+  linkend="RegisteredClass-Picard"/>, but may require more work per
+  iteration.
+</para>
+<para>
+  Newton's method relies upon knowing the derivatives of the nonlinear
+  function with respect to the unknowns, <inlineequation><alt
+  role="tex">\( \partial A_i(\phi)/\partial \phi_j
+  \)</alt></inlineequation>.  This information comes from the
+  &material; &properties;, which determine the exact form of the
+  equations being solved.  Nonlinear &properties; that are built into
+  &oof2; provide routines to compute the derivatives, but &properties;
+  defined in &oof2; <link
+  linkend="Chapter-Extending">extensions</link> might not.  In this
+  case, <classname>Newton</classname> will compute the derivatives
+  numerically.  This will make <classname>Newton</classname> perform
+  more computations on each iteration and quite possibly also require
+  more iterations.  The parameters used for the numerical
+  differentiation may be set by the <xref
+  linkend="MenuItem-OOF.Settings.Mesh_Defaults.Numerical_Differentiation"/>
+  command.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

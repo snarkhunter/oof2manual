@@ -1,0 +1,50 @@
+<!-- 
+  $RCSfile: layerset.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:16 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    A <link
+    linkend="Section-Graphics-LayerSet"><classname>LayerSet</classname></link>
+    is a collection of graphics <link
+    linkend="Section-Graphics-Layer"><classname>Layers</classname></link>,
+    each displaying some aspect the same object.  The displayable
+    objects are things like &micros;, &skels; and &meshes;.  Each
+    <classname>Layer</classname> has a single <xref
+    linkend="RegisteredClass-DisplayMethod"/>, which determines how
+    the object is drawn in the <link
+    linkend="Chapter-Graphics">Graphics window</link>.
+  </para>
+  <para>
+    The <command>OOF.LayerEditor.LayerSet</command> menu contains
+    commands for manipulating <classname>LayerSets</classname>.  It is
+    where <classname>Layers</classname> are created and added to
+    <classname>LayerSets</classname>, and where
+    <classname>LayerSets</classname> are sent to Graphics windows.
+  </para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

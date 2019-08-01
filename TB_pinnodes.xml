@@ -1,0 +1,124 @@
+<!--
+  $RCSfile: TB_pinnodes.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:11 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<section id="Section-Graphics-PinNodes" role="toolbox">
+  <title>Pin Nodes</title>
+  <para>
+    The Pin Nodes Toolbox is used to <link
+    linkend="Section-Concepts-Pin">pin</link> &skel; &nodes; so that
+    they won't be moved by subsequent &skel; modification operations.
+    Tools for pinning &nodes; are also found in the <link
+    linkend="Section-Tasks-PinNodes">Pin Nodes Task Page</link>.  The
+    tools in this Toolbox rely on mouse input, unlike the tools on the
+    task page.  The Toolbox operations always refer to the &skel; in
+    the topmost &skel; &layer; in the Canvas.
+  </para>
+  <para>
+    <xref linkend="Figure-PinNodesToolbox"/> illustrates the Pin Nodes
+    Toolbox.  The two sets of boxes labelled
+    <guilabel>Mouse</guilabel> and <guilabel>Node</guilabel> show the
+    coordinates (in <link
+    linkend="Section-Concepts-Microstructure-Coordinates">physical
+    units</link>) of the mouse and of the &node; that's closest to the
+    mouse.  These boxes are continuously updated as the mouse moves.
+    Below the <guilabel>Node</guilabel> boxes is an indicator of
+    whether or not the nearest &node; is pinned or not.
+  </para>
+  <figure id="Figure-PinNodesToolbox">
+    <title>The Pin Nodes Toolbox</title>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/pinnodes.png" format="PNG"/>
+      </imageobject>
+      <imageobject>
+	<imagedata fileref="FIGURES/gfx/pinnodes.eps" format="EPS"/>
+      </imageobject>
+      <caption>
+	<para>
+	  The Pin Nodes Toolbox and a Canvas displaying some pinned
+	  &nodes;.  (The dots on the &nodes; have been enlarged for
+	  illustrative purposes.)
+	</para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <para>
+    The note at the top of the Toolbox explains how to use it: click
+    on a &node; to <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Pin">pin</link>
+    it, shift-click on the &node; to <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.UnPin">unpin</link>
+    it, and control-click the &node; to <link
+    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.TogglePin">toggle</link>
+    it.  The buttons at the bottom of the Toolbox perform
+    mouse-independent actions that duplicate features of the <link
+    linkend="Section-Tasks-PinNodes">Pin Nodes Task Page</link>, but
+    are provided here for convenience:
+    <itemizedlist>
+      <listitem>
+	<para>
+	  The <link
+	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Undo"><guibutton>Undo</guibutton></link>
+	  and <link
+	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Redo"><guibutton>Redo</guibutton></link>
+	  buttons undo and redo the latest pinning operations.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <link
+	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.UnPinAll"><guibutton>UnPinAll</guibutton></link>
+	  button unpins all the &nodes;.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  The <link
+	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Invert"><guibutton>Invert</guibutton></link>
+	  button pins all of the unpinned &nodes; and unpins all of
+	  the pinned ones.
+	</para>
+      </listitem>
+    </itemizedlist>
+  </para>
+  <para>
+    Pinned &nodes; are displayed on the Canvas with a small yellow
+    dot.  The size and color of the dot may be changed by enabling
+    <link
+    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+    All Layers</command></link> in the <link
+    linkend="Section-Graphics-MenuBar">Settings menu</link>, and then
+    editing the <xref linkend="RegisteredClass-PinnedNodesDisplay"/>
+    &layer;.  The predefined <xref
+      linkend="RegisteredClass-PinnedNodesDisplay"/> &layer; displays
+    the pinned &nodes; in the topmost &skel;.
+  </para>
+</section>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "section")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -1,0 +1,80 @@
+<!-- 
+  $RCSfile: rk2.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-27 21:32:31 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>RK2</classname> is a <xref
+  linkend="RegisteredClass-TimeStepper"/> that implements the <ulink
+  role="external"
+  url="http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">second
+  order Runge-Kutta</ulink> method for solving ordinary differential
+  equations.  The error on each step is of order <inlineequation><alt
+  role="tex">\(\Delta t^3\)</alt></inlineequation>.
+  <classname>RK2</classname> is also referred to as the
+  <emphasis>midpoint</emphasis> method.
+</para>
+<para>
+  Given a vector <inlineequation><alt
+  role="tex">\(\phi_n\)</alt></inlineequation> of unknowns
+  (<foreignphrase>i.e.</foreignphrase> &field; values in &oof2;) at
+  time <inlineequation><alt role="tex">\(t_n\)</alt></inlineequation>,
+  and the first order differential equation
+  <equation>
+    <alt role="tex">
+      \[ \frac{d\phi}{dt} = f(\phi, t) \]
+    </alt>
+  </equation>
+  the second order Runge-Kutta estimate for <inlineequation><alt
+  role="tex">\(\phi_{n+1}\)</alt></inlineequation> is given by
+  <equation id="Eqn-RK2">
+    <alt role="tex">
+      \begin{align*}
+      k_1 &amp;= \Delta t f(\phi_n, t_n) \\
+      k_2 &amp;= \Delta t f(\phi_n+\frac{k_1}{2}, t_n+\frac{\Delta t}{2}) \\
+      \phi_{n+1} &amp;= \phi_n + k_2
+      \end{align*}
+    </alt>
+  </equation>
+  where <inlineequation><alt role="tex">\(\Delta t =
+  t_{n+1}-t_n\)</alt></inlineequation>.
+</para>
+<para>
+  <classname>RK2</classname> can be applied to second order equations
+  by using equation <xref linkend="Eqn-Augmented"/>. 
+</para>
+<para>
+  Because the method is explicit (<inlineequation><alt
+  role="tex">\(\phi_{n+1}\)</alt></inlineequation> doesn't appear as an
+  argument to <inlineequation><alt
+  role="tex">\(f\)</alt></inlineequation>), equation <xref
+  linkend="Eqn-RK2"/> doesn't require a <link
+  linkend="RegisteredClass-NonlinearSolverBase">nonlinear
+  solver</link> even if <inlineequation><alt
+  role="tex">\(f\)</alt></inlineequation> is nonlinear.
+</para>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

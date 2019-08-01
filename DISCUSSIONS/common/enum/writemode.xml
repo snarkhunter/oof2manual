@@ -1,0 +1,54 @@
+<!-- 
+  $RCSfile: writemode.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-29 20:21:50 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>WriteMode</classname> is used when opening output files
+  of all sorts. Choosing <userinput>w</userinput> (which shows up in
+  the GUI as <guilabel>write</guilabel> or
+  <guilabel>OVERWRITE</guilabel>) will cause the existing contents of
+  the file to be deleted when new data is added. Choosing
+  <userinput>a</userinput> (<guilabel>append</guilabel> in the GUI)
+  will cause the old data to be preserved, and new data to be appended
+  to it.
+</para>
+<para>
+  If a file doesn't already exist, there's no difference between
+  opening it with <userinput>w</userinput> and with
+  <userinput>a</userinput>.  However, if a data file is saved in a GUI
+  session, and then the session is <link
+  linkend="MenuItem-OOF.File.Save.Python_Log">saved</link> as a <link
+  linkend="Section-Concepts-FileFormats">script</link> and the script
+  is reloaded, the file mode of the data file
+  <emphasis>will</emphasis> make a difference, because the data file
+  will exist when the script reopens it.  The script will contain the
+  <classname>WriteMode</classname> that was used in the original GUI
+  session.
+</para>
+  
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

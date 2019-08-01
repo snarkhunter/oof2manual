@@ -1,0 +1,72 @@
+<!-- 
+  $RCSfile: d2drank3.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:32 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<refentry xreflabel='D2dRank3Tensor' id='Object-D2dRank3Tensor'>
+  <refnamediv>
+    <refname>
+      D2dRank3Tensor
+    </refname>
+    <refpurpose>
+      A rank 3 tensor with D2d symmetry
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <simpara>
+      <classname>D2dRank3Tensor</classname>(<varname>d14</varname>,
+      <varname>d36</varname>)
+    </simpara>
+  </refsynopsisdiv>
+  <refsect1>
+  <title>Description</title>
+  <para>
+    A <classname>D2dRank3Tensor</classname> is a third rank tensor
+    with D2d point group symmetry. The arguments
+    <varname>d14</varname> and <varname>d36</varname>, are real
+    numbers.  The first integer in each argument name is a space index
+    (1, 2, or 3) and the second is a Voigt index (1 through 6).
+  </para>
+  <figure id='Figure-D2dRank3Tensor'>
+   <title>Structure of a D2d Third Rank Tensor</title>
+   <mediaobject>
+    <imageobject>
+     <imagedata fileref='FIGURES/rank3/d2d.png' format='PNG'/>
+    </imageobject>
+    <imageobject>
+     <imagedata fileref='FIGURES/rank3/d2d.eps' format='EPS'/>
+    </imageobject>
+    <caption><simpara>
+     Structure of a D2d rank 3 tensor.  For an explanation of
+     the symbols, see <xref linkend='Figure-TensorKey'/>.
+    </simpara></caption>
+   </mediaobject>
+  </figure>
+ </refsect1>
+</refentry>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "chapter" "refentry")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

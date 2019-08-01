@@ -1,0 +1,1691 @@
+<!--
+  $RCSfile: CH_coding.xml,v $
+  $Revision: 1.8 $
+  $Author: langer $
+  $Date: 2012-01-30 21:43:27 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<chapter id="Chapter-Coding">
+  <title>Writing &oof2; Extensions</title>
+  <warning>
+    <para>
+      This chapter has not yet been updated for &oof2; version 2.1.  A
+      partial discussion of the differences between the 2.0 and 2.1
+      extension APIs may be found at <ulink
+      url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
+    </para>
+  </warning>
+  <para>
+    This chapter describes the contents of the source files for &oof2;
+    extensions.  <xref linkend="Chapter-Extending"/> describes how to
+    assemble the source files into a loadable extension module.
+  </para>
+  <section id="Section-Coding-AddFields">
+    <title>Adding New Fields, Fluxes, and Equations</title>
+    <para>
+      New &fields;, &fluxes;, and &equations; can be added with just a
+      few lines of Python code.  The &oof2; &field;, &flux;, and
+      &equation; classes represent <emphasis>global</emphasis> objects
+      &mdash; there is only one instance of the
+      <varname>Temperature</varname> field, for example, although the
+      field may be defined on more than one &mesh;, or on none at all.
+      Creating a &field;, &flux;, or &equation; object makes it
+      available for use in a &mesh;, and records some information
+      about it, such as its name and dimension.
+    </para>
+    <para>
+      To create a &field;, &flux;, or &equation;, simply create an
+      object by calling its (Python) constructor,<footnote>
+	<para>
+	  &fields;, &fluxes;, and &equations; are C++ classes, but
+	  they should be instantiated by calling their swigged Python
+	  constructors.
+	</para>
+      </footnote>
+      and pass the object to the function <link
+      linkend="Function.advertise"><function>problem.advertise</function></link>.
+      <code>problem</code> is a module in <code>oof2.engine</code>.
+      For example:
+
+     <programlisting>
+from oof2.engine import problem
+from oof2.SWIG.engine import field
+problem.advertise(field.ScalarField("Temperature")) </programlisting>
+
+      &oof2; predefines some &fields;, &fluxes;, and &equations; in
+      <filename>SRC/engine/problem.py</filename>.  Refer to that file
+      for examples.
+    </para>
+    <para>
+      The &field; subclasses defined in
+      <code>oof2.SWIG.engine.field</code> are:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <simpara>
+	    <xref linkend="Class-ScalarField"/>:
+	    <foreignphrase>e.g,</foreignphrase>, Temperature, Density
+	  </simpara>
+	</listitem>
+	<listitem>
+	  <simpara>
+	    <xref linkend="Class-TwoVectorField"/>:
+	    <foreignphrase>e.g,</foreignphrase> Displacement,
+	    Polarization
+	  </simpara>
+	</listitem>
+      </itemizedlist>
+      These classes actually define
+      <classname>CompoundField</classname>s, which represent the <link
+      linkend="Section-Concepts-Mesh-3D">in-plane</link> part of a
+      &field;.  All of the <classname>Field</classname> class methods,
+      when applied directly to a <classname>CompoundField</classname>,
+      act on the in-plane part (which is why the vector field is
+      called
+      <emphasis>Two</emphasis><classname>VectorField</classname>.  The
+      out-of-plane part, which is also a <classname>Field</classname>
+      object, is accessible through the
+      <classname>CompoundField</classname>'s
+      <methodname>out_of_plane</methodname> method.
+    </para>
+    <para>
+      The Python function <function>getCompoundField(name)</function>
+      in the <code>oof2.SWIG.engine.field</code> module returns the
+      <classname>CompoundField</classname> with the given name.  After
+
+      <programlisting>
+tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
+
+      the function call
+      <code>field.getCompoundField('Temperature')</code> returns an
+      object identical to <varname>tfield</varname>.
+    </para>
+    <para>
+      The &flux; subclasses defined in
+      <code>oof2.SWIG.engine.flux</code> are:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <simpara>
+	    <xref linkend="Class-VectorFlux"/>:
+	    <foreignphrase>e.g,</foreignphrase> Mass Current, Heat
+	    Flow
+	  </simpara>
+	</listitem>
+	<listitem>
+	  <simpara>
+	    <xref linkend="Class-SymmetricTensorFlux"/>:
+	    <foreignphrase>e.g,</foreignphrase> Stress
+	  </simpara>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      The &equation; subclasses defined in
+      <code>oof2.SWIG.engine.equation</code> are:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <simpara>
+	    <xref linkend="Class-DivergenceEquation"/>: any
+	    equation of the form <quote>divergence of a &flux; =
+	    external force</quote>.
+	  </simpara>
+	</listitem>
+	<listitem>
+	  <simpara>
+	    <xref linkend="Class-PlaneFluxEquation"/>: any equation
+	    that constrains the out-of-plane components of a &flux;.
+	  </simpara>
+	</listitem>
+      </itemizedlist>
+      The &equation; constructors each take a name, a &flux;, and a
+      dimension.  The name allows &equations; to
+      be retrieved via the Python function
+      <function>getEquation(name)</function> from
+      <code>oof2.SWIG.engine.equation</code>.  The &flux; is the
+      &flux; that the &equation; operates on, and the dimension is an
+      integer specifying how many components the equation has.  (The
+      divergence of a vector &flux; has one component, and the divergence
+      of a tensor flux has three components.  A
+      <classname>PlaneFluxEquation</classname> has as many components
+      as there are out-of-plane components of the associated &flux;.)
+    </para>
+    <para>
+      The Python form of the
+      <classname>DivergenceEquation</classname> constructor also can take
+      optional arguments specifying whether or not the &equation; contains
+      first-order (kinetic) or second-order (dynamic) time
+      derivatives.  This facility is still under development, and so
+      the documentation is incomplett.<!-- TODO: Finish this -->
+    </para>
+    <para>
+      As an example, the following code fully defines the quantities
+      necessary to solve the static heat conductivity problem (except
+      for the thermal conductivity &material; &property;, which is
+      discussed <link linkend="Section-Coding-Material">later</link>).
+
+      <programlisting>
+from oof2.engine.problem import advertise
+from oof2.SWIG.engine.field import ScalarField
+from oof2.SWIG.engine.flux import VectorFlux
+from oof2.SWIG.engine.equation import DivergenceEquation, PlaneFluxEquation
+
+Temperature = advertise(ScalarField('Temperature'))
+Heat_Flux = advertise(VectorFlux('Heat_Flux'))
+HeatBalanceEqn = advertise(DivergenceEquation('Heat_Eqn', Heat_Flux, 1))
+HeatOutOfPlane = advertise(PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1))
+      </programlisting>
+
+    </para>
+  </section><!-- Adding New Fields, Fluxes, and Equations -->
+
+  <section id="Section-Coding-Indices">
+    <title>Indices and Iterators</title>
+    <warning>
+      <para>
+	This section has not yet been updated for &oof2; version 2.1.
+	A partial discussion of the differences between the 2.0 and
+	2.1 extension APIs may be found at <ulink
+	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
+      </para>
+    </warning>
+    <para>
+      Before proceeding, it's necessary to take a diversion on the
+      topic of indices and iterators.
+    </para>
+    <para>
+      It is often necessary to refer to the components of &fields;,
+      &fluxes;, and &equations;.  &oof2;'s
+      <filename>fieldindex</filename> module provides a generic
+      mechanism for doing this, so that it's possible to loop over all
+      of the components of an object without even having to know how
+      many indices are required to specify a component.  For example,
+      it takes one index to specify a vector component, two for a
+      tensor, and zero for a scalar, but all three cases can be
+      handled identically.
+    </para>
+    <para>
+      Every &field;, &flux;, and &equation; class has a function
+      <methodname>iterator()</methodname> which returns an <link
+      linkend="Class-IteratorP"><classname>IteratorP</classname></link>
+      object.  The <classname>IteratorP</classname> can be used to
+      refer to components of the compound object, and can also be
+      incremented to refer to the next component. Some types of
+      <methodname>iterator</methodname>s take a <link
+      linkend="Class-Planarity"><classname>Planarity</classname></link>
+      argument which determines which components will be included when
+      incrementing.
+    </para>
+    <para>
+      <classname>IteratorP</classname> is actually derived from a base
+      class, <link
+      linkend="Class-IndexP"><classname>IndexP</classname></link>,
+      which can refer to a component but cannot be incremented or looped
+      over components.  It is used in situations in which the
+      <classname>Planarity</classname> is unknown.
+    </para>
+    <para>
+      As an example, this &oof2; session prints all of the indices of a
+      vector and a symmetric tensor:
+
+      <literallayout class="monospaced">
+% oof2 --text
+>>> from oof2.SWIG.engine.planarity import ALL_INDICES
+>>> it = Displacement.iterator(ALL_INDICES)
+>>> while not it.end():
+...    print it.components()
+...    it.next()
+... 
+[0]
+[1]
+>>> it = Stress.iterator(ALL_INDICES)
+>>> while not it.end():
+...    print it.components()
+...    it.next()
+... 
+[0, 0]
+[1, 1]
+[2, 2]
+[1, 2]
+[0, 2]
+[0, 1]
+      </literallayout>
+
+      The same task could be accomplished in C++ like this:<footnote>
+	<para>
+	  This is an irresponsible example because <link
+	  linkend="Class-IndexP-components"><methodname>IteratorP::components()</methodname></link>
+	  returns a <code>std::vector&lt;int&gt;*</code> that ought to
+	  be to be deleted.
+	</para>
+      </footnote>
+
+      <programlisting>
+for(IteratorP it = displacement->iterator(); !it.end(); ++it)
+  std::cerr &lt;&lt; it.components() &lt;&lt; std::endl;
+
+for(IteratorP it = stress.iterator(); !it.end(); ++it)
+  std::cerr &lt;&lt; it.components() &lt;&lt; std::endl; </programlisting>
+      
+    </para>
+    <para>
+      <classname>IteratorP</classname> and
+      <classname>IndexP</classname> actually are just wrappers for
+      subclasses of <link
+      linkend="Class-FieldIterator"><classname>FieldIterator</classname></link>
+      and <link
+      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>.
+      The wrappers free the user from having to know the actual class
+      being used, and handle memory allocation tasks. In some
+      situations it's necessary and/or convenient to use the
+      underlying class directly.  The
+      <classname>FieldIterator</classname> subclasses are:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <simpara>
+	    <link
+	    linkend="Class-ScalarFieldIterator"><classname>ScalarFieldIterator</classname></link>
+	  </simpara>
+	</listitem>
+	<listitem>
+	  <simpara>
+	    <link
+	    linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>,
+	    <link
+	    linkend="Class-OutOfPlaneVectorFieldIterator"><classname>OutOfPlaneVectorFieldIterator</classname></link>
+	  </simpara>
+	</listitem>
+	<listitem>
+	  <simpara>
+	    <link
+	    linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>,
+	    <link
+	    linkend="Class-SymTensorInPlaneIterator"><classname>SymTensorInPlaneIterator</classname></link>,
+	    <link
+	    linkend="Class-SymTensorOutOfPlaneIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>,
+	    <link
+	      linkend="Class-OutOfPlaneSymTensorIterator"><classname>OutOfPlaneSymTensorIterator</classname></link>
+	  </simpara>
+	</listitem>
+      </itemizedlist>
+
+    </para>
+  </section><!-- Indices and Iterators -->
+  <section id="Section-Coding-Conjugates">
+    <title>Conjugate Pairs</title>
+    <warning>
+      <para>
+	This section has not yet been updated for &oof2; version 2.1.
+	A partial discussion of the differences between the 2.0 and
+	2.1 extension APIs may be found at <ulink
+	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
+      </para>
+    </warning>
+    <para>
+      Finite element problems which lead to a symmetric stiffness
+      matrix can be solved efficiently by the <link
+      linkend="RegisteredClass-ConjugateGradient">conjugate
+      gradient</link> method. &oof2; needs to be told how to construct
+      a symmetric matrix, though.
+    </para>
+    <para>
+      Consider a simple elasticity problem.  The degrees of freedom
+      are the components of the displacement at each node of the mesh.
+      The equations are the components of the force balance at each
+      node.  In the stiffness matrix, degrees of freedom correspond to
+      columns and equations correspond to rows.  The matrix will be
+      symmetric if the columns and rows are ordered so that the force
+      component and node of the
+      <emphasis>n</emphasis><superscript>th</superscript> row are the
+      same as the displacement component and node of the
+      <emphasis>n</emphasis><superscript>th</superscript> column.
+    </para>
+    <para>
+      In general, this correspondence is <emphasis>not</emphasis>
+      trivial.  If the stress in the example above came from material
+      properties other than elasticity, the matrix would not
+      necessarily be symmetric.  Including thermal expansion can make
+      an elasticity problem asymmetric.
+    </para>
+    <para>
+      The function <link
+      linkend="Function-conjugatePair"><function>conjugatePair</function></link>
+      in the <code>oof2.SWIG.engine.conjugate</code> module
+      establishes the correspondence between &field; and &equation;
+      components that is necessary to build a symmetric matrix.  After
+      <link linkend="Section-Coding-AddFields">creating</link>
+      &fields; and &equations;, call
+      <function>conjugatePair</function> like this:
+
+      <programlisting>
+from oof2.SWIG.engine.conjugate import conjugatePair
+conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
+
+      where <varname>proptype</varname> is the <link
+      linkend="para-propertyType"><classname>PropertyType</classname></link>
+      of the &property; that will be symmetrized by this conjugacy
+      pair; <varname>equation</varname> is an &equation; object;
+      <varname>field</varname> is a &field; object, and
+      <varname>eqncomp</varname> and <varname>fieldcomp</varname> are
+      either <link
+      linkend="Section-Coding-Indices"><classname>FieldIndex</classname></link>
+      objects or lists of them.  For example, the following code
+      establishes the correspondence between the
+      <emphasis>x</emphasis> and <emphasis>y</emphasis> components of
+      the displacement field and the force balance equation
+      (<code>import</code> statements have been omitted for
+      conciseness):
+
+      <programlisting>
+ForceBalanceEquation = getEquation('Force_Balance')
+Displacement = getCompoundField('Displacement')
+x = VectorFieldIndex(0)
+y = VectorFieldIndex(1)
+conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
+                            Displacement, [x, y]) </programlisting>
+
+    </para>
+    <para>
+      Calling <function>conjugatePair</function> is necessary but not
+      sufficient for &oof2; to create symmetric stiffness matrices.
+      The &properties; that contribute to the stiffness matrix must
+      also support symmetry.  This is discussed in <xref
+      linkend="Section-Coding-Material"/>.
+    </para>
+    <!-- STEVE: Added these two paras. -->
+    <para>
+      It is not required that <function>conjugatePair</function> be
+      called on all defined fields and equations, but failing to do so
+      will make the <link
+      linkend="RegisteredClass-ConjugateGradient">conjugate
+      gradient</link> solver unavailable for problems involving these
+      fields and equations.
+    </para>
+    <para>
+      It is also not necessary to call the
+      <function>conjugatePair</function> for the predefined fields in
+      &oof2;, since conjugacy is predefined for these fields and
+      equations in the <filename>problem.py</filename> file.
+    </para>
+  </section><!-- Conjugate Pairs -->
+
+  <section id="Section-Coding-Material">
+    <title>Adding New Material Properties</title>
+    <warning>
+      <para>
+	This section has not yet been updated for &oof2; version 2.1.
+	A partial discussion of the differences between the 2.0 and
+	2.1 extension APIs may be found at <ulink
+	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
+      </para>
+    </warning>
+    <para>
+      Adding new &material; &properties; is the most complicated part
+      of creating an &oof2; extension.  Just to make it simpler, there
+      are two ways of doing it.  &properties; can be written in C++ or
+      they can be written in Python.  Python &properties; are a bit
+      easier to write and install, but will run significantly more
+      slowly.  It may be convenient to develop new &properties; in
+      Python and translate them to C++ after the bugs have been worked
+      out.
+    </para>
+    <para>
+      Whether a &property; is written in C++ or Python, the same code
+      elements must be present.  Not all of them are necessary for
+      every &property;.  It is safe simply to omit the unnecessary ones.
+    </para>
+    <para>
+      A &property; definition contains a class definition, which is
+      either a <link linkend="Class-Property">C++ subclass of
+      <classname>Property</classname></link> or a <link
+      linkend="Class-PyPropertyWrapper">Python subclass of
+      <classname>oof2.SWIG.engine.pypropertywrapper</classname></link>,
+      and a <link
+      linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+      object, which contains metadata about the &property;.
+    </para>
+    <para>
+      &property; classes perform the following types of tasks (the
+      links below each task lead to detailed documentation):
+      <itemizedlist>
+	<listitem>
+	  <para id="para-propertyType">
+	    <emphasis>Identification.</emphasis> &properties; have
+	    names by which they are identified in the user interface.
+	    They also have a <emphasis>propertyType</emphasis>.  A
+	    <varname>propertyType</varname> is a string that
+	    identifies the &property;'s physical role.  Each
+	    &material; instance can have at most one &property; of
+	    each <varname>propertyType</varname>.  For example, all
+	    &properties; that provide an elastic modulus have the type
+	    <literal>'Elasticity'</literal>, and all thermal expansion
+	    &properties; have the type
+	    <literal>'ThermalExpansion'</literal>.  Authors of new
+	    types of &property; should invent new
+	    <varname>propertyType</varname> strings.  Authors of new
+	    versions of a preexisting &property; should examine the
+	    existing <link
+	    linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>
+	    and reuse the same <varname>propertyType</varname>.
+	  </para>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara>
+		<link linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><link
+	      linkend="Class-Property-Constructors"><classname>Property</classname>
+	      constructor</link></simpara>
+	    </listitem>
+	  </itemizedlist>
+	  <para>
+	    There are also a few functions that &properties; may
+	    define that influence the way they're used or the way a
+	    computation is done:
+	    <itemizedlist spacing="compact">
+	      <listitem>
+		<simpara>
+		  <link
+		    linkend="Class-Property-is_symmetric"><code>Property::is_symmetric</code></link>
+		</simpara>
+	      </listitem>
+	      <listitem>
+		<simpara>
+		  <link
+		    linkend="Class-Property-integration_order"><code>Property::integration_order</code></link>
+		</simpara>
+	      </listitem>
+	    </itemizedlist>
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis>Cross Referencing.</emphasis> Sometimes a
+	    &property; needs to use data from other &properties; in
+	    the same &material;.  For example, any anisotropic
+	    &property; will need to find out its &material;'s <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>. Cross
+	    referencing allows a &property; to use
+	    <classname>propertyType</classname> information to locate
+	    other &properties;.  This is done after a &material; is
+	    constructed but before it is used for numerical
+	    computations.
+	  </para>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><link
+		  linkend="Class-Property-cross_reference"><code>Property::cross_reference</code></link></simpara>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+	<listitem>
+	  <para id="para-precomputation">
+	    <emphasis>Precomputation.</emphasis> When constructing the
+	    finite element stiffness matrix, the &oof2; program loops
+	    over all &elems; and asks their &materials; to ask their
+	    &properties; to make their contributions to the matrix.
+	    For efficiency, &properties; may want to precompute some
+	    quantities before this process begins.  There are two
+	    possible precomputation points: &elem;- and
+	    &node;-independent computations that are done before looping
+	    over &elems;, and &elem;-<emphasis>de</emphasis>pendent
+	    ones that are done before looping over &nodes;.
+	  </para>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara>
+		<link
+		linkend="Class-Property-precompute"><code>Property::precompute</code></link>
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+		<link
+		linkend="Class-Property-begin_element"><code>Property::begin_element</code></link>
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+		<link linkend="Class-Property-begin_point"><code>Property::begin_point</code></link>
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+	<listitem>
+	  <para id="para-computation">
+	    <emphasis>Computation.</emphasis> &properties; can make
+	    contributions to the finite element stiffness matrix and
+	    to the right-hand side vector of external
+	    <quote>forces</quote>.
+	  </para>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara>
+		<link
+		linkend="Class-Property-fluxmatrix"><code>Property::fluxmatrix</code></link>
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+		<link
+		linkend="Class-Property-fluxrhs"><code>Property::fluxrhs</code></link>
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis>Postcomputation.</emphasis> This is just like
+	    <link linkend="para-precomputation">precomputation</link>,
+	    but later.  It can be done either after the <link
+	    linkend="para-computation">computation</link> on each
+	    &elem;, or after a full solution has been obtained.
+	  </para>
+	  <itemizedlist spacing="compact">
+	      <listitem>
+		<simpara>
+		  <link linkend="Class-Property-end_point"><code>Property::end_point</code></link>
+		</simpara>
+	      </listitem>
+	    <listitem>
+	      <simpara>
+		<link
+		linkend="Class-Property-end_element"><code>Property::end_element</code></link>
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+		<link
+		linkend="Class-Property-post_process"><code>Property::post_process</code></link>
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis>Outputs.</emphasis> Many <link
+	    linkend="Section-Concepts-Outputs">output</link>
+	    quantities, such as &field; invariants, are defined
+	    without reference to &properties;, but there are also many
+	    outputs, such as energy densities, that depend upon a
+	    &property; in one way or another, and rely upon the
+	    &property;'s code.  See <xref
+	      linkend="Section-Coding-Output"/> to learn how to add
+	    new outputs.
+	  </para>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara>
+		<link linkend="Class-Property-output"><code>Property::output</code></link>
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </section><!-- Adding New Material Properties -->
+
+  <section id="Section-Coding-Output">
+    <title>Adding New Outputs</title>
+    <warning>
+      <para>
+	This section has not yet been updated for &oof2; version 2.1.
+	A partial discussion of the differences between the 2.0 and
+	2.1 extension APIs may be found at <ulink
+	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
+      </para>
+    </warning>
+    <para>
+      <classname>Outputs</classname> in &oof2; are operations
+      performed on &mesh; data.  The results can be sent to the <link
+      linkend="Chapter-Graphics">graphics window</link> and displayed
+      in a <link
+      linkend="RegisteredClass-FilledContourDisplay">contour
+      plot</link>, or analyzed on the <link
+      linkend="Section-Tasks-Analysis">Analysis Page</link>.
+    </para>
+    <para>
+      The outputs that the user sees come in three flavors:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	    <emphasis>Scalar</emphasis> outputs are just numbers, to
+	    be plotted or analyzed.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis>Aggregate</emphasis> outputs are quantities like
+	    &fields; and &fluxes; that can't be plotted directly
+	    (because they generally have too many components) but can
+	    still be analyzed.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis>Position</emphasis> outputs are two dimensional
+	    vectors that determine where scalar outputs are displayed
+	    in contour plots.
+	  </para>
+	</listitem>
+      </itemizedlist>
+      <xref linkend="Figure-outputwidgets"/> shows how scalar and
+      position outputs appear in the GUI.
+    </para>
+    <figure id="Figure-outputwidgets">
+      <title>Output Widgets</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/widgets/outputwidgets.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/widgets/outputwidgets.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    Two output widgets, from the &layereditor; window.  The
+	    top widget, labelled <literal>what</literal>, lists scalar
+	    outputs and determines what will be plotted in the
+	    graphics window.  The lower widget, labelled
+	    <literal>where</literal>, lists position outputs, which
+	    are two dimensional vectors.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <para>
+      Under the hood, the scalar, aggregate, and position outputs are
+      built by combining <link
+      linkend="Class-Output"><classname>Output</classname></link>
+      objects.  Each <classname>Output</classname> object performs a
+      simple operation on a set of input values and creates a set of
+      output values.  Simple <classname>Outputs</classname> are
+      chained together, with the output of one connected to the input
+      of another, to create more complicated
+      <classname>Outputs</classname>.  (One
+      <classname>Output</classname> object can be used in many
+      different Output chains.)  Only those
+      <classname>Outputs</classname> that are <link
+	linkend="Function-definePositionOutput">registered</link> with
+      the GUI are directly available to the user.
+    </para>
+    <para>
+      <classname>Outputs</classname> have parameters which govern
+      their behavior.  <classname>Output</classname> parameters use
+      the same <link
+      linkend="Class-Parameter"><classname>Parameter</classname></link>
+      classes that are used in <link
+      linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>.
+    </para>
+    <para>
+      &oof2; includes predefined <classname>Outputs</classname> that
+      can be used by themselves or combined with new
+      <classname>Outputs</classname>.  The predefined
+      <classname>Outputs</classname> can evaluate the components and
+      invariants of &fields; and &fluxes; and compute energies and
+      strains.  For the details, consult the source code in
+      <filename>SRC/engine/IO/outputClones.py</filename> and
+      <filename>SRC/engine/IO/outputDefs.py</filename>.
+    </para>
+    <para>
+      Creating a new <classname>Output</classname> involves the
+      following steps:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	    Write a callback function.  This is what does the actual
+	    computation.  See <xref linkend="Class-Output"/> for the details.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Invoke the <classname>Output</classname> <link
+	    linkend="Class-Output-constructor">constructor</link>,
+	    specifying the type of the <classname>Output</classname>,
+	    the types of its inputs (if any), its parameters (if any),
+	    and its callback function.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Connect the <classname>Output</classname> to its inputs,
+	    if any, by calling <link
+	    linkend="Class-Output-connect"><methodname>Output.connect</methodname></link>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Set parameters in the inputs, if desired.
+	    <classname>Parameters</classname> which have fixed values
+	    in the <classname>Output</classname> definition will
+	    <emphasis>not</emphasis> be settable by the user.  To make
+	    a <classname>Parameter</classname> settable by the user,
+	    leave its value alone (or set it to
+	    <literal>None</literal>).  Use <link
+	    linkend="Class-Output-findParam"><methodname>Output.findParam</methodname></link>
+	    or <link
+	    linkend="Class-Output-resolveAlias"><methodname>Output.resolveAlias</methodname></link>
+	    to gain access to an <classname>Output</classname>'s
+	    parameters, or those of its connected inputs.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    If any of the inputs have parameters that are
+	    <emphasis>not</emphasis> specified in advance, these need
+	    to given aliases so that they can be used in scripts and
+	    the GUI.  See <link
+	    linkend="Class-Output-aliasParam"><methodname>Output.aliasParam</methodname></link> for the details.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    If the <classname>Output </classname> is to appear in the
+	    GUI, it must be registered by calling <link
+	    linkend="Function-definePositionOutput"><function>definePositionOutput</function></link>,
+	    <link
+	    linkend="Function-definePositionOutput"><function>defineScalarOutput</function></link>,
+	    or <link
+	    linkend="Function-definePositionOutput"><function>defineAggregateOutput</function></link>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <section id="Section-Coding-Output-Examples">
+      <title>Examples</title>
+      <para>
+	Here are a few example <classname>Output</classname>
+	definitions, extracted from the &oof2; source code.  The
+	examples illustrate all of the important features of the
+	<classname>Output</classname> class.
+      </para>
+      <section id="Section-Coding-Output-Example1">
+	<title>Evaluating a Field</title>
+	<para>
+	  The first example returns <classname>Field</classname>
+	  values as <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  instances.  It's copied<footnote>
+	    <para>
+	      Ok, we lied. The example is copied from an
+	      <emphasis>old</emphasis> version of the source code.
+	      The given example is very inefficient because the
+	      <code>+=</code> inside the loop is continuously
+	      reallocating and copying the <varname>ans</varname>
+	      list.  See the actual code in
+	      <filename>SRC/engine/IO/outputClones.py</filename> for a
+	      more efficient but less obvious scheme.
+	    </para>
+	  </footnote>
+ from
+	  <filename>SRC/engine/IO/outputClones.py</filename>.
+	</para>
+
+	<programlisting>
+def _field(mesh, elements, coords, field): <co id="example1-callback"/>
+    ans = [] <co id="example1-ans"/>
+    for element, ecoords in zip(elements, coords): <co id="example1-zip"/>
+        ans += element.outputFields(mesh, field, ecoords) <co id="example1-eoF"/>
+    return ans
+
+FieldOutput = output.Output(
+    name = "field", <co id="example1-name"/>
+    callback = _field, <co id="example1-callback2"/>
+    otype = outputval.<link linkend="Class-OutputVal">OutputValPtr</link>, <co id="example1-otype"/>
+    params = [meshparameters.<link linkend="Class-FieldParameter">FieldParameter</link>("field", outofplane=1)], <co id="example1-param"/>
+    ) </programlisting>
+
+	<calloutlist>
+	  <callout arearefs="example1-callback">
+	    <para>
+	      This is the callback function.  All callbacks have
+	      <varname>mesh</varname>, <varname>elements</varname>,
+	      and <varname>coords</varname> arguments.
+	      <varname>elements</varname> is a list of the mesh <link
+	      linkend="Class-Element"><classname>Elements</classname></link>
+	      within which the output is to be computed.
+	      <varname>coords</varname> is a list of lists of <link
+	      linkend="Class-MasterCoord"><classname>MasterCoords</classname></link>
+	      specifying the computation points within each
+	      <classname>Element</classname>.
+	    </para>
+	    <para>
+	      Any additional callback arguments are either inputs or
+	      parameters, with names determined by the input and
+	      parameter lists in the <classname>Output</classname>
+	      constructor.  Here <varname>field</varname> is a
+	      <classname>Parameter</classname> value.
+	    </para>
+	  </callout>
+	  <callout arearefs="example1-ans">
+	    <para>
+	      The result of the computation is a
+	      <emphasis>flat</emphasis> list of <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      objects, one for each coordinate in
+	      <varname>coords</varname>.
+	    </para>
+	  </callout>
+	  <callout arearefs="example1-zip">
+	    <para>
+	      The <code>zip</code> call here matches up each
+	      <classname>Element</classname> to the list of
+	      coordinates at which the output should be evaluated
+	      within the <classname>Element</classname>.
+	      <varname>element</varname> is an
+	      <classname>Element</classname>, and
+	      <varname>ecoords</varname> is a list of <link
+	      linkend="Class-MasterCoord"><classname>MasterCoords</classname></link>.
+	    </para>
+	  </callout>
+	  <callout arearefs="example1-eoF">
+	    <para>
+	      <methodname>Element:outputFields</methodname>
+	      returns a list of <classname>OutputVals</classname>
+	      containing <classname>Field</classname> values at the
+	      specified points within the given
+	      <classname>Element</classname>.  The list is appended to
+	      results already obtained.
+	    </para>
+	  </callout>
+	<callout arearefs="example1-name">
+	    <para>
+	      This specifies the name of the
+	      <classname>Output</classname>. It will be used to when
+	      setting parameters and connecting this
+	      <classname>Output</classname> to others.  It will
+	      <emphasis>not</emphasis> be used in scripts or the user
+	      interface.
+	    </para>
+	  </callout>
+	  <callout arearefs="example1-callback2">
+	    <para>
+	      This is just the name of the callback function defined above.
+	    </para>
+	  </callout>
+	  <callout arearefs="example1-otype">
+	    <para>
+	      This specifies the type of the quantities computed by
+	      this <classname>Output</classname>.<footnote>
+		<para>
+		  Note that the type is
+		  <classname>OutputValPtr</classname>, not
+		  <classname>OutputVal</classname>.  That's because
+		  <classname>OutputVal</classname> is a swigged C++
+		  class.  <application>swig</application> creates two
+		  Python classes for each C++ class.  One, with a name
+		  ending in <literal>Ptr</literal>
+		  (<foreignphrase>e.g,</foreignphrase>
+		  <classname>OutputValPtr</classname>) is a pointer
+		  (of sorts) to the C++ object, and is used to refer
+		  to an object that was created in C++.  The other
+		  Python class has no <literal>Ptr</literal> suffix
+		  (<foreignphrase>e.g,</foreignphrase>
+		  <classname>OutputVal</classname>) and is used when
+		  an object was created directly in Python.  In the
+		  <varname>FieldOutput</varname> callback,
+		  <methodname>Element::outputFields</methodname>
+		  returns <classname>OutputVals</classname> created by
+		  the C++ code.
+		</para>
+		<para>
+		  In general, in <varname>otype</varname>
+		  specifications, it's safe to use the
+		  <literal>Ptr</literal> form of a swigged class if
+		  you're not sure which is correct.  The type checking
+		  mechanism allows subclasses of the given type.
+		  <literal>Ptr</literal> will always work because the
+		  non-<literal>Ptr</literal> version of a class is
+		  derived from the <literal>Ptr</literal> version.
+		</para>
+	      </footnote>
+	    </para>
+	  </callout>
+	  <callout arearefs="example1-param">
+	    <para>
+	      This states that the <classname>Output</classname> has
+	      one parameter, named <literal>field</literal>, whose
+	      value is a <link
+	      linkend="Class-Field"><classname>Field</classname></link>.
+	    </para>
+	  </callout>
+	</calloutlist>
+	<para>
+	  To make the <varname>FieldOutput</varname> available in
+	  scripts and the GUI,
+	  <filename>SRC/engine/IO/outputDefs.py</filename> contains
+	  the following lines:
+	</para>
+	
+	<programlisting>
+from oof2.common.IO import output
+from oof2.engine.IO import outputClones
+output.defineAggregateOutput('Field:Value', outputClones.FieldOutput) </programlisting>
+      
+	<para>
+	  <link
+	  linkend="Function-definePositionOutput"><function>defineAggregateOutput</function></link>
+	  states that this <classname>Output</classname> computes an
+	  aggregate object (such as all of the components of a
+	  <classname>Field</classname> or <varname>Flux</varname>), as
+	  opposed to a scalar object.
+	  <literal>'Field:Value'</literal> categorizes the output
+	  &mdash; the GUI will refer to it as the
+	  <literal>Value</literal> item in the
+	  <literal>Field</literal> menu.
+	</para>
+      </section><!-- example 1 -->
+      <section id="Section-Coding-Output-Example2">
+	<title>Connecting Inputs</title>
+	<para>
+	  Note that the <classname>FieldOutput</classname> has no
+	  inputs!  It reads its data from the mesh, not from any other
+	  <classname>Output</classname>.  The next example,
+	  <varname>ComponentOutput</varname>, has both a parameter and
+	  an input, but doesn't read data from the mesh.
+	</para>
+
+      <programlisting>
+def _component(mesh, elements, coords, field, component): <co id="example2-callback"/>
+    if field: <co id="example2-if"/>
+        comp = field[0].getIndex(component) <co id="example2-convert"/>
+        return [f[comp] for f in field] <co id="example2-extract"/>
+    return []
+        
+import types
+
+ComponentOutput = output.Output(
+    name = "component",
+    callback = _component,
+    otype = types.FloatType, <co id="example2-otype"/>
+	inputs = [outputval.<link linkend="Class-OutputValParameter">OutputValParameter</link>('field')], <co id="example2-input"/>
+	params = [meshparameters.<link
+	  linkend="Class-FieldIndexParameter">FieldIndexParameter</link>('component')] <co id="example2-param"/>
+    ) </programlisting>
+
+	<calloutlist>
+	  <callout arearefs="example2-callback">
+	    <para>
+	      The callback here has the usual required
+	      <varname>mesh</varname>, <varname>elements</varname>,
+	      and <varname>coords</varname> arguments, although it
+	      doesn't use them.  <varname>field</varname> is an input
+	      list of <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      objects, and <varname>component</varname> is a parameter
+	      value.
+	  </para>
+	  </callout>
+	  <callout arearefs="example2-if">
+	    <para>
+	      It's possible that the list of values could be empty.
+	      The next line assumes that it's not empty, so we have to
+	      check.
+	    </para>
+	  </callout>
+	  <callout arearefs="example2-convert">
+	    <para>
+	      The <varname>component</varname> is passed in in a
+	      user-friendly string form (such as
+	      <literal>'x'</literal> or <literal>'yz'</literal>).
+	      This line asks the <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      class to convert the string into a computer-friendly
+	      <link
+	      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
+	      object.  (<code>field[0]</code> is used just because
+	      it's an <classname>OutputVal</classname> of the correct
+	      type. Its actual value isn't important here.)  Different
+	      kinds of <classname>OutputVal</classname> interpret the
+	      strings differently.
+	    </para>
+	  </callout>
+	  <callout arearefs="example2-extract">
+	    <para>
+	      This computes and returns a list of components of the
+	      input <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      objects.
+	    </para>
+	  </callout>
+	  <callout arearefs="example2-otype">
+	    <para>
+	      Components of an <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      are floating point numbers, so the output type of
+	      <varname>ComponentOutput</varname> is
+	      <literal>FloatType</literal>.
+	    </para>
+	  </callout>
+	  <callout arearefs="example2-input">
+	    <para>
+	      Inputs are specified by a list of <link
+	      linkend="Class-Parameter"><classname>Parameters</classname></link>,
+	      although they don't actually have values the same way
+	      that <classname>Parameters</classname> do.  The input
+	      <classname>Parameter</classname> specifies the name and
+	      type of the input.  In this case, the input is called
+	      <literal>'field'</literal> and is a list of
+	      <classname>OutputVals</classname> (or
+	      <classname>OutputValPtrs</classname>).
+	    </para>
+	  </callout>
+	  <callout arearefs="example2-param">
+	    <para>
+	      The <classname>Output</classname> has a single
+	      parameter, named <literal>'component'</literal>, whose
+	      value is a string representation of a component index.
+	    </para>
+	  </callout>
+	</calloutlist>
+	<para>
+	  Note that despite the name of its input,
+	  <literal>'field'</literal>, the
+	  <varname>ComponentOutput</varname> can extract components
+	  from any kind of <classname>OutputVal</classname>, not only
+	  ones containing <classname>Fields</classname>.  The built-in
+	  &oof2; outputs use <classname>ComponentOutput</classname> on
+	  <classname>Fields</classname>,
+	  <classname>Fluxes</classname>, and other multicomponent
+	  quantities.
+	</para>
+	<para>
+	  The <varname>FieldOutput</varname> and
+	  <varname>ComponentOutput</varname> can be combined into a
+	  <varname>FieldCompOutput</varname>, which extracts a given
+	  component of a given <classname>Field</classname>, by using
+	  <methodname>Output.connect</methodname>.  First, a copy of
+	  the <varname>ComponentOutput</varname> is made, giving it a
+	  new name at the same time:<footnote>
+	    <para>
+	      It's also possible to change the
+	      <classname>Output</classname>'s <varname>tip</varname>
+	      and <varname>discussion</varname> strings, which have
+	      been omitted here.
+	    </para>
+	  </footnote>
+	</para>
+      
+      <programlisting>
+FieldCompOutput = ComponentOutput.clone(name="field component") </programlisting>
+
+	<para>
+	  <varname>FieldOutput</varname> is connected to the input
+	  named <literal>'field'</literal> of the
+	  <varname>FieldCompOutput</varname>:
+	</para>
+
+      <programlisting>
+FieldCompOutput.connect("field", FieldOutput) </programlisting>
+
+	<para>
+	  <methodname>connect</methodname> automatically makes a copy
+	  of its argument, so we don't have to worry about cloning
+	  <varname>FieldOutput</varname> here.
+	</para>
+      </section><!-- Connecting inputs -->
+      <section id="Section-Coding-Output-Example2.5">
+	<title>Managing Output Parameters</title>
+	<para>
+	  At this stage, <varname>FieldCompOutput</varname> has two
+	  parameters and no inputs.  (The one input of the original
+	  <varname>ComponentOutput</varname> has been filled by the
+	  <varname>FieldOutput</varname> that was connected to it.)
+	  The original <varname>FieldOutput</varname> parameter, named
+	  <varname>'field'</varname>, and the
+	  <varname>ComponentOutput</varname> parameter, named
+	  <literal>'component'</literal>, still remain.
+	  <literal>'component'</literal> is a direct parameter of
+	  <varname>FieldCompOutput</varname>.  It can be accessed by
+	  the <link
+	  linkend="Class-Output-findParam"><methodname>findParam</methodname></link>
+	  method, <foreignphrase>e.g</foreignphrase>:
+
+	  <programlisting>
+FieldCompOutput.findParam('component').value = 'x' </programlisting>
+
+	  Setting a parameter's value like this gives it a permanent
+	  value, as far as <classname>Outputs</classname> are
+	  concerned.  The user will not be able to change the value,
+	  and the field-component <classname>Output</classname> has
+	  been changed into an field-x-component
+	  <classname>Output</classname>.
+	</para>
+	<para>
+	  The <literal>'field'</literal> parameter of the original
+	  <varname>FieldOutput</varname> can be accessed in a similar,
+	  but not identical way.  The
+	  <varname>FieldCompOutput</varname> has no parameter called
+	  <literal>'field'</literal>, so we can't use
+	  <code>FieldCompOutput.findParam('field')</code>, and the
+	  original <varname>FieldOutput</varname> has been cloned, so
+	  its <literal>'field'</literal> parameter isn't the same one
+	  that <varname>FieldCompOutput</varname> uses.  The parameter
+	  can be accessed by specifying both the name of the input and
+	  the parameter in the call to
+	  <methodname>findParam</methodname>:
+
+	  <programlisting>
+FieldCompOutput.findParam('field:field').value = Displacement </programlisting>
+
+	  Here the first <literal>field</literal> is the name of the
+	  input, and the second is the name of the parameter of that
+	  input.
+	</para>
+	<para>
+	  Assuming that we want the user to be able to choose the
+	  <classname>Field</classname> <emphasis>and</emphasis> the
+	  component, we don't actually want to use
+	  <methodname>findParam</methodname> and set the parameter
+	  values.  However, we don't want the user to see an ugly name
+	  like <literal>'field:field'</literal>.  For one thing,
+	  parameter names are used as Python variable names in
+	  scripts, and Python variable names can't contain colons.
+	  The function <link
+	  linkend="Class-Output-aliasParam"><methodname>Output.aliasParam</methodname></link>
+	  assigns a new name to an <classname>Output</classname>
+	  parameter, like this:
+	  
+	  <programlisting>
+FieldCompOutput.aliasParam('field:field', 'field') </programlisting>
+
+	  Now <varname>FieldCompOutput</varname> has a parameter
+	  called <literal>'field'</literal> instead of
+	  <literal>'field:field'</literal>.  Note that there's no
+	  conflict between the aliased parameter named
+	  <literal>'field'</literal> and the input named
+	  <literal>'field'</literal>.  The confusion is always
+	  resolved by the context.
+	</para>
+	<para>
+	  <link
+	  linkend="Class-Output-findParam"><methodname>Output.findParam</methodname></link>
+	  never considers aliases, so the call
+	  <code>FieldCompOutput.findParam('field')</code> will fail
+	  (it will raise a <code>KeyError</code> exception).  To
+	  retrieve an aliased parameter, use <link
+	  linkend="Class-Output-resolveAlias"><methodname>Output.resolveAlias</methodname></link>
+	  instead.  If <methodname>resolveAlias</methodname> can't
+	  find an alias, it looks for a parameter, so the following
+	  three function calls are equivalent:
+
+	  <programlisting>
+param = FieldCompOutput.resolveAlias('field')
+param = FieldCompOutput.resolveAlias('field:field')
+param = FieldCompOutput.findParam('field:field') </programlisting>
+	</para>
+
+	<para>
+	  Aliases are only known to the <classname>Outputs</classname>
+	  that create them.  In the example above, the
+	  <varname>FieldOutput</varname> containing the original
+	  <literal>'field'</literal> parameter doesn't know that it's
+	  been aliased.  However, if
+	  <varname>FieldCompOutput</varname> were to be used as an
+	  input to another <classname>Output</classname>, like this:
+
+	  <programlisting>
+SomeOtherOutput.connect('otherinput', FieldCompOutput) </programlisting>
+
+	  then the <varname>'field'</varname> parameter could be
+	  accessed by
+
+	  <programlisting>
+param = SomeOtherOutput.resolveAlias('otherinput:field') </programlisting>
+
+	  using the alias still stored in
+	  <varname>FieldCompOutput</varname>.
+	</para>
+      </section><!-- Managing Output Parameters -->
+      <section id="Section-Coding-Output-Example3">
+	<title>Handling Multiple Parameters and Inputs</title>
+	<para>
+	  The examples above all use at most one parameter and one
+	  input. <classname>Outputs</classname> can have as many
+	  parameters and inputs as they like.  The
+	  <varname>PointSumOutput</varname> from
+	  <filename>SRC/engine/IO/outputClones.py</filename> is used
+	  to add the Displacement to the original position of a node.
+	  It's actually a little more general than that &mdash; it
+	  takes two input streams which are lists of <link
+	  linkend="Class-Coord"><classname>Coord</classname></link>
+	  or <link linkend="Class-Point"><classname>Point</classname></link>
+	  objects, multiplies them by scalar factors, and adds them
+	  together.
+	</para>
+
+	<programlisting>
+from oof2.SWIG.common import coord
+from oof2.common import primitives
+from oof2.common.IO import output
+from oof2.common.IO import parameter
+
+def _pointSum(mesh, elements, coords, point1, point2, a, b): <co id="example3-callback"/>
+    ans = [a*f+b*s for f,s in zip(point1, point2)] <co id="example3-zip"/>
+    return ans
+
+PointSumOutput = output.Output(
+    name="point sum",
+    callback=_pointSum,
+    otype=(coord.Coord, primitives.Point), <co id="example3-otype"/>
+    inputs=[coord.CoordParameter("point1"), coord.CoordParameter("point2")], <co id="example3-input"/>
+    params=[parameter.FloatParameter("a", default=1.0), <co id="example3-param"/>
+            parameter.FloatParameter("b", default=1.0)]
+    ) </programlisting>
+	
+	<calloutlist>
+	  <callout arearefs="example3-callback">
+	    <para>
+	      The callback arguments include the usual
+	      <varname>mesh</varname>, <varname>elements</varname>,
+	      and <varname>coords</varname>, although they're not used
+	      here.  <varname>point1</varname> and
+	      <varname>point2</varname> are the names of the inputs,
+	      and <varname>a</varname> and <varname>b</varname> are
+	      the names of the parameters.
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-zip">
+	    <para>
+	      This line does all the work.  It can be written in such
+	      a simple way because inputs are flat lists of data.
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-otype">
+	    <para>
+	      Because the input (see <xref linkend="example3-input"/>)
+	      accepts either <classname>Coords</classname> or
+	      <classname>Points</classname>, the output can be either
+	      <classname>Coords</classname> or
+	      <classname>Points</classname>.<footnote
+		id="footnote-CoordPoint">
+		<para>
+		  The <classname>Coord</classname> and
+		  <classname>Point</classname> classes are equivalent,
+		  except that <classname>Coord</classname> is a
+		  swigged C++ class, and <classname>Point</classname>
+		  is a pure Python class. There are circumstances in
+		  which the overhead of calling C++ from Python makes
+		  using a Python class more efficient.
+		</para>
+	      </footnote>
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-input">
+	    <para>
+	      There are two inputs, named <literal>point1</literal>
+	      and <literal>point2</literal>.  The <link
+	      linkend="Class-CoordParameter"><classname>CoordParameter</classname></link>
+	      class accepts either a <classname>Coord</classname> or a
+	      <classname>Point</classname>.<footnoteref
+	      linkend="footnote-CoordPoint"/>
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-param">
+	    <para>
+	      The two parameters, named <literal>'a'</literal> and
+	      <literal>'b'</literal> have been given default values of
+	      <literal>1.0</literal>, which is the value that will be
+	      displayed in the GUI if the variable hasn't been set
+	      yet.
+	    </para>
+	  </callout>
+	</calloutlist>
+	<para>
+	  The <varname>PointSumOutput</varname> is used in
+	  <filename>SRC/engine/IO/outputDefs.py</filename> to add the
+	  displacement to the node position.  The displacement values
+	  come from <varname>displacementOutput</varname> and the
+	  position values come from <varname>posOutput</varname>,
+	  which won't be explicitly discussed here.  The connection
+	  looks like this:
+	</para>
+	
+	<programlisting>
+enhancedPosition = outputClones.PointSumOutput.clone(
+    name='enhanced position',
+    params=dict(b=1), <co id="example3-params2"/>
+    tip='Exaggerated displacement field.') <co id="example3-tip"/>
+enhancedPosition.connect('point1', displacementOutput) <co id="example3-connect"/>
+enhancedPosition.connect('point2', outputClones.posOutput) <coref linkend="example3-connect"/>
+enhancedPosition.aliasParam('a', 'factor', default=1.0, <co id="example3-alias"/>
+                            tip='Displacement multiplier.') </programlisting>
+
+	<calloutlist>
+	  <callout arearefs="example3-params2">
+	    <para>
+	      Parameters can be set when cloning an
+	      <classname>Output</classname>.  The
+	      <varname>params</varname> argument is a
+	      dictionary.<footnote>
+		<para>
+		  The parameter dictionary can also be written as
+		  <code>params={'b' : 1}</code>.  This form would be
+		  required if a full parameter name containing colons
+		  were being used, <foreignphrase>e.g</foreignphrase>
+		  <code>params={'input:b' : 1}</code>, because the
+		  <function>dict</function> form requires that the
+		  keywords be legal Python variable names.
+		</para>
+	      </footnote>
+	      The dictionary keys are the names (or aliases) of the
+	      parameters to be set.  Parameters set in this way remain
+	      set.  The user will not have a chance to modify them.
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-tip">
+	    <para>
+	      Most of the examples have omitted the optional
+	      <varname>tip</varname> argument.  When creating or
+	      cloning <classname>Outputs</classname>, it's possible to
+	      specify a <varname>tip</varname> string, which will
+	      appear as a help string in the GUI, and a
+	      <varname>discussion</varname> string, which will appear
+	      in the manual.
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-connect">
+	    <para>
+	      These lines connect the preexisting
+	      <varname>displacementOutput</varname> and
+	      <varname>posOutput</varname>
+	      <classname>Outputs</classname> to the inputs of the
+	      <varname>PointSumOutput</varname> clone.
+	    </para>
+	  </callout>
+	  <callout arearefs="example3-alias">
+	    <para>
+	      This line shows that <methodname>aliasParam</methodname>
+	      can be used to change the name of a local parameter, as
+	      well as parameters in the inputs.  Here the
+	      non-descriptive parameter <literal>'a'</literal> is
+	      renamed <literal>'factor'</literal> and given a default
+	      value<footnote>
+		<para>
+		  The default value setting is redundant in this case,
+		  because the default value of <literal>'a'</literal>
+		  was already set to 1 when
+		  <varname>PointSumOutput</varname> was created.
+		</para>
+	      </footnote>
+	      and a <varname>tip</varname> string.
+	    </para>
+	  </callout>
+	</calloutlist>
+	<para>
+	  At this point, the <varname>enhancedPosition</varname>
+	  <classname>Output</classname> has one parameter,
+	  <literal>'factor'</literal>, and no inputs.  It produces a
+	  list of node positions, with displacement exaggerated by the
+	  given amount.  The <varname>actualPosition</varname>
+	  <classname>Output</classname> is now simply created by
+	  cloning <varname>enhancedPosition</varname> and setting the
+	  enhancement factor to 1.0:
+	</para>
+
+	<programlisting>
+actualPosition = enhancedPosition.clone(
+    name='actual position',
+    params=dict(factor=1.0),
+    tip='Displaced position.') </programlisting>
+
+	<para>
+	  Finally, both <varname>enhancedPosition</varname> and
+	  <varname>actualPosition</varname> are made available in the
+	  GUI by calling <link
+	  linkend="Function-definePositionOutput"><function>definePositionOutput</function></link>:
+	</para>
+
+	<programlisting>
+output.definePositionOutput('actual', actualPosition)
+output.definePositionOutput('enhanced', enhancedPosition) </programlisting>
+
+      </section><!-- Multiple Parameters and Inputs -->
+    </section><!-- Output Examples -->
+
+    <section id="Section-Coding-PropertyOutputs">
+      <title><classname>PropertyOutputs</classname></title>
+      <para>
+	Output quantities that need to use information from the
+	material <link
+	linkend="Class-Property"><classname>Properties</classname></link>
+	of the &mesh; are treated differently because they need to
+	hook into existing <classname>Property</classname> instances
+	and because many different <classname>Properties</classname>
+	may contribute to any given <classname>Output</classname>.
+	Outputs such as this are defined by creating an instance of a
+	<link
+	linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistration</classname></link>
+	subclass, and listing the name of the subclass in a
+	<classname>Property</classname>'s <link
+	linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	<varname>outputs</varname> list.  The
+	<classname>PropertyOutputRegistration</classname> will
+	automatically create <link
+	linkend="Class-Output"><classname>Output</classname></link>
+	objects.  When these <classname>Outputs</classname> are
+	evaluated, the <classname>Property</classname>'s <link
+	linkend="Class-Property-output"><methodname>output</methodname></link>
+	function will be called, with a <link
+	linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+	object as one of its arguments.
+	<classname>Property::output</classname> can use the
+	<classname>PropertyOutput</classname> object to find out which
+	output is being computed, and to access the output's parameters.
+      </para>
+      <para>
+	Clear?  Here's an example, illustrating the
+	<literal>Energy</literal> output and how it's computed by the
+	<classname>Elasticity</classname> property.  Some of the code
+	has been slightly simplified for brevity, but the source files
+	have been indicated for anyone interested in all the details.
+      </para>
+      <para>
+	First, an <link
+	  linkend="Section-Enums"><classname>Enum</classname></link>
+	class is created to distinguish the different types of energy
+	(in <filename>SRC/engine/IO/outputDefs.py</filename>):
+
+      <programlisting>
+from oof2.common import enum
+
+class EnergyType(enum.EnumClass("Total", "Elastic", ...)):
+   pass </programlisting>
+
+	The same file then defines a <link
+	linkend="Class-PropertyOutputRegistration"><classname>ScalarPropertyOutputRegistration</classname></link>,
+	because energy is a scalar quantity:
+
+	<programlisting>
+from oof2.SWIG.engine.IO import propertyoutput
+
+propertyoutput.ScalarPropertyOutputRegistration(
+   "Energy",
+   parameters=[enum.EnumParameter("etype", EnergyType, default="Total")]
+) </programlisting>
+
+	The string <literal>"Energy"</literal> is the name by which
+	the output will be known both in the user interface and in the
+	<classname>Property</classname> code.  The parameter name
+	<literal>"etype"</literal> will also appear in the user
+	interface and the code.  It's important that the parameter
+	does <emphasis>not</emphasis> have an assigned value!  The
+	Output mechanism assumes that parameters with values are not
+	going to be set by the user.  Instead, the parameter has its
+	<varname>default</varname> set, which provides a value to be
+	displayed in the GUI, without actually fixing the
+	<classname>Parameter</classname>'s value.
+      </para>
+      <para>
+	Note that the output registration does
+	<emphasis>not</emphasis> contain any information about what
+	<literal>Energy</literal> is, or how it's computed.  That's
+	the <classname>Properties</classname>' job.
+	<classname>Elasticity</classname>'s
+	<methodname>output</methodname> function looks like this (in
+	<filename>SRC/engine/property/elasticity/elasticity.C</filename>):
+
+	<programlisting>
+void Elasticity::output(const FEMesh *mesh,
+			const Element *element,
+			const PropertyOutput *output,
+			const MasterPosition &amp;pos,
+			OutputVal *data)
+  const 
+{
+  const std::string &amp;outputname = output->name();
+  if(outputname == "Energy") {
+    std::string etype = output->getEnumParam("etype");
+    if(etype == "Total" || etype == "Elastic") {
+      ScalarOutputVal *edata = dynamic_cast&lt;ScalarOutputVal*>(data);
+      SymmMatrix strain(3);
+      const Cijkl modulus = cijkl(mesh, element, pos);
+      findGeometricStrain(mesh, element, pos, strain);
+      SymmMatrix stress(modulus*strain);
+      double e = 0;
+      for(int i=0; i&lt;3; i++) {
+	e += stress(i,i)*strain(i,i);
+	int j = (i+1)%3;
+	e += 2*stress(i,j)*strain(i,j);
+      }
+      *edata += 0.5*e;
+    }
+  }
+} </programlisting>
+
+	See the <link
+	linkend="Class-Property-output"><methodname>Property::output</methodname></link>
+	discussion for another example, with annotations.
+      </para>
+      <para>
+	Finally, the <literal>Elasticity</literal> <link
+	linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	needs to indicate that <literal>"Energy"</literal> is one of
+	the outputs that it can compute.  There are many types of
+	elasticity, and each has its own registration.  Here's the one
+	for isotropic elasticity, from
+	<filename>SRC/engine/property/elasticity/iso/iso.spy</filename>:
+
+	<programlisting>
+from oof2.engine import propertyregistration
+
+propertyregistration.PropertyRegistration(
+    name = "Mechanical:Elasticity:Isotropic",
+    subclass = IsoElasticityProp,
+    ...
+    outputs=["Energy"],
+    ...) </programlisting>
+
+	<classname>IsoElasticityProp</classname> is a subclass of
+	<classname>Elasticity</classname>, so because
+	<classname>PropertyRegistration</classname> indicates that
+	<classname>IsoElasticityProp</classname> can compute
+	<literal>"Energy"</literal>, when a &material; contains
+	<classname>IsoElasticityProp</classname>,
+	<methodname>Elasticity::output</methodname> will be called to
+	compute it.
+      </para>
+      <para>
+	Property outputs can never use other
+	<classname>Outputs</classname> as inputs, but they can, in
+	principle, be used as inputs for other
+	<classname>Outputs</classname>.  However, there's no machinery
+	to make this easy to do, yet.
+      </para>
+    </section><!-- PropertyOutputs -->
+    <section id="Section-Coding-OrientationMapFormats">
+      <title>Orientation Map Formats</title>
+      <para>
+	TODO: Write this section.
+      </para>
+    </section>
+  </section><!-- Adding New Outputs -->
+
+<!-- ****************************************** -->
+
+<!-- TODO: Why doesn't the Reference section appear in the output? -->
+
+  <section id="Section-Coding-Reference"> 
+    <title>&oof2; Class and Function Reference</title>
+    <para>
+      This section contains the reference pages for the classes and
+      functions that can be used when programming &oof2; extensions.
+      Both the C++ and Python interfaces are documented, when
+      appropriate.  In general, only functions that are relevant to
+      building &oof2; extensions are listed, and base class functions
+      are not listed again in the derived classes.
+    </para>
+
+    <section id="Section-Coding-FieldFluxEquation" role="reference">
+      <title>Field, Flux, and Equation Classes</title>
+      &refField;
+      &refFlux;
+      &refEquation;
+    </section>
+
+    <section id="Section-Coding-Iterators" role="reference">
+      <title>Field Iterators and Related Objects</title>
+      &refIterators;
+    </section>
+
+    <section id="Section-Coding-PropertyRef" role="reference">
+      <title>Property- and Material-related Classes</title>
+      &refProperty;
+    </section>
+
+    <section id="Section-Coding-ParameterRef" role="reference">
+      <title>Parameter Classes</title>
+      &refParameter;
+    </section>
+
+    <section id="Section-Coding-OutputRef" role="reference">
+      <title>Output-related Classes</title>
+      &refOutput;
+      &refOutputVal;
+    </section>
+
+    <section id="Section-Coding-FEMesh" role="reference">
+      <title>Mesh, Subproblem, and Element Classes</title>
+      &refFEMesh;
+    </section>
+
+    <section id="Section-Coding-Coords" role="reference">
+      <title>Coordinate Classes</title>
+      &refCoords;
+    </section>
+
+    <section id="Section-Coding-Misc" role="reference">
+      <title>Miscellaneous Classes and Functions</title>
+      &refMisc;
+    </section>
+
+
+
+  </section><!-- Class and Function Reference -->
+</chapter>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

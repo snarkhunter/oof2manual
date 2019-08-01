@@ -1,0 +1,60 @@
+<!--
+  $RCSfile: freezelayer.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2011-04-19 21:33:30 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <command>Freezing</command> a &layer; prevents it from being redrawn
+  when a <link linkend="Chapter-Graphics">graphics window</link> is
+  updated, even if the object that the &layer; displays has changed.
+  It will prevent a &layer; from being <link
+  linkend="MenuItem-OOF.Graphics_n.File.Animate">animated</link> or
+  being updated when the window's time changes.  The one exception is
+  that if a frozen &layer; has never been displayed, it will be drawn
+  once.
+</para>
+<para>
+  In the GUI, freezing and unfreezing is accomplished by the checkbox
+  in the the <guilabel>Freeze</guilabel> column of the <link
+  linkend="Section-Graphics-LayerList">Layer List</link>.  It can also
+  be invoked from the <guilabel>Layer</guilabel> menu in the graphics
+  window's menu bar, in which case it acts on the currently selected
+  layer.
+</para>
+<para>
+  In text mode and in scripts, the &layer; is specified by its
+  position <varname>n</varname> in the window's layer list.  The
+  unlisted layers must be counted when computing <varname>n</varname>.
+  This command isn't very friendly in scripts, because it can be hard
+  to determine the parameter <varname>n</varname>.
+</para>
+<para>
+  Frozen &layers; can be thawed with <xref
+  linkend="MenuItem-OOF.Graphics_n.Layer.Unfreeze"/>.
+</para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

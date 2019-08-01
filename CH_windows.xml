@@ -1,0 +1,296 @@
+<!--
+  $RCSfile: CH_windows.xml,v $
+  $Revision: 1.4 $
+  $Author: langer $
+  $Date: 2011-05-02 21:36:51 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<chapter id="Chapter-Windows">
+  <title>Auxiliary Windows</title>
+
+  <para>
+    This chapter describes a small number of additional window types
+    not discussed elsewhere in this manual.
+  </para>
+
+  <section id="Section-Windows-Messages">
+    <title>Messages</title>
+    <para>
+      The Messages Window displays various kinds of communications
+      from &oof2; to the user. More than one Messages Window may be
+      open simultaneously.  New ones are created by the <link
+      linkend="MenuItem-OOF.Windows.Messages.New"><command>New</command></link>
+      command in the <link
+      linkend="MenuItem-OOF.Windows.Messages"><command>Messages</command></link>
+      submenu in any &oof2; window's <xref
+      linkend="MenuItem-OOF.Windows"/> menu.  One Messages Window is
+      created automatically when &oof2; starts.
+    </para>
+    <figure id="Figure-MessagesWindow">
+      <title>The Messages Window</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/windows/messages.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/windows/messages.eps"
+	    format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      The <link
+      linkend="MenuItem-OOF.File.Save.Messages"><guibutton>Save</guibutton></link>
+      button saves the contents of the Messages Window to a file.
+      This is <emphasis>not</emphasis> equivalent to saving an &oof2;
+      script with <xref linkend="MenuItem-OOF.File.Save.Python_Log"/>.
+      The Messages window contents may include things other than
+      executable Python statements.
+    </para>
+    <para>
+      The contents of the window are controlled by the five check
+      buttons to the right of the <guibutton>Save</guibutton> button.
+      Each one, when checked, includes a different category of
+      message:
+      <itemizedlist spacing="compact">
+	<listitem>
+	  <para>
+	    <guibutton>Log</guibutton>:  Every &oof2; action
+	    corresponds to a command in the <link
+	      linkend="MenuItem-OOF">OOF</link> menu, listed in <xref
+	      linkend="Chapter-Reference"/>.  As each command is
+	    executed, the command and its arguments are logged in the
+	    Message Window.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guibutton>Warning</guibutton>: Warning messages indicate that
+	    something suspicious is going on.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guibutton>Report</guibutton>: Informational messages.
+	    The last line in <xref linkend="Figure-MessagesWindow"/>
+	    is a report.  Messages about the status and progress of a
+	    solver are reports.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guibutton>Query</guibutton>: Whenever &oof2; asks the
+	    user a question (<quote>Are you sure you want to do
+	    that?</quote>) the question and answer appear in the
+	    Messages Window as a Query.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guibutton>Error</guibutton>: Generally, error messages
+	    indicate that a task could not be completed, either due to
+	    user error (entering an illegal parameter, for example) or
+	    programming errors.  Please <ulink
+	    url="http://www.ctcms.nist.gov/oof/oof2.html#bugreport">report</ulink>
+	    programming errors to
+	    <email>oof_bugs@ctcms.nist.gov</email>.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </section>
+
+  <section id="Section-Windows-ActivityViewer">
+    <title>Activity Viewer</title>
+    <para>
+      The Activity Viewer indicates the status of major &oof2;
+      operations.  Every task that might potentially take a long time
+      to complete draws a <emphasis>progress bar</emphasis> in the
+      Activity Viewer window.  The window is shown in <xref
+	linkend="Figure-ActivityViewer"/>.
+    </para>
+    <figure id="Figure-ActivityViewer">
+      <title>The Activity Viewer</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/windows/activityviewer.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/windows/activityviewer.eps"
+	    format="EPS"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+    <para>
+      Each task puts two items in the Activity Viewer Window: a
+      progress bar, a <guibutton>Stop</guibutton> button, and a
+      description.  The progress bar indicates how far the task is
+      from completion, if possible.  Some tasks are open ended, and
+      their progress bars just indicate that they're still going.
+      Each progress bar includes some text that describes the task
+      and, when relevant, how much work it's completed and how much
+      work it has left to do.  The <guibutton>Stop</guibutton> button
+      can be pressed to interrupt and abort the task.
+    </para>
+    <para>
+      After a task finishes, the <guibutton>Stop</guibutton> button
+      changes to a <guibutton>Dismiss</guibutton> button.  Clicking
+      the button removes the task from the Activity Viewer.  (But see
+      <link
+      linkend="MenuItem-OOF.ActivityViewer.Settings.AutoDismiss"><command>AutoDismiss</command></link>,
+      <link
+      linkend="Section-Windows-ActivityViewer-AutoDismiss">below</link>.)
+    </para>
+    <para>
+      The <link
+      linkend="MenuItem-OOF.ActivityViewer.Settings"><command>Settings</command></link>
+      menu in the Activity Viewer's menu bar contains two items:
+      <itemizedlist spacing="compact">
+	<listitem id="Section-Windows-ActivityViewer-AutoDismiss">
+	  <para>
+	    <link
+	    linkend="MenuItem-OOF.ActivityViewer.Settings.AutoDismiss"><command>AutoDismiss</command></link>
+	    controls whether or not progress bars for completed tasks
+	    remain in the window, or if they disappear immediately
+	    without waiting for their <guibutton>Dismiss</guibutton>
+	    buttons to be pressed.  The default setting is for them to
+	    disappear immediately.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <link
+	    linkend="MenuItem-OOF.ActivityViewer.Settings.DelayProgressBarCreation"><command>DelayProgressBarCreation</command></link>
+	    brings up a dialog for setting the progress bar delay
+	    time.  Progress bars are not created immediately when a
+	    task starts.  &oof2; waits for a bit so that the Activity
+	    Viewer is not cluttered with progress bars for short
+	    tasks.  The delay time determines how long it waits.  The
+	    default value is 2 seconds.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      The <guibutton>Dismiss All</guibutton> button at the top of the
+      Activity Viewer window closes all completed progress bars.  The
+      <guibutton>Stop All</guibutton> stops all current tasks.
+    </para>
+    <para>
+      The Activity Viewer window appears automatically the first time
+      an &oof2; task creates a progress bar. If the window is closed,
+      it won't reappear automatically, but it can be resurrected with
+      the <link
+      linkend="MenuItem-OOF.Windows.Activity_Viewer"><command>Activity
+      Viewer</command></link> command in any &oof2; <xref
+      linkend="MenuItem-OOF.Windows"/> menu.  Only one Activity Viewer
+      window may be open at a time.
+    </para>
+    <para>
+      If &oof2; is started with the <link
+      linkend="CommandLineArg-unthreaded"><userinput>--unthreaded</userinput></link>
+      option, the Activity Viewer will be unavailable.
+    </para>
+  </section>
+
+
+  <section id="Section-Windows-Console">
+    <title>Console</title>
+    <para>
+      The Console Window allows arbitrary Python code to be executed.
+      Typing Python code into the Console is just like typing it at a
+      Python prompt in a terminal window. The Console can be opened
+      from the <link
+      linkend="MenuItem-OOF.Windows.Console"><command>Console</command></link>
+      command in any &oof2; <link
+      linkend="MenuItem-OOF.Windows"><command>Windows</command></link>
+      menu.
+    </para>
+    <figure id="Figure-Console">
+      <title>The Console Window</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/windows/console.png"
+	    format="PNG"/>
+	</imageobject>
+	<imageobject>
+	  <imagedata fileref="FIGURES/windows/console.eps"
+	    format="EPS"/>
+	</imageobject>
+	<caption>
+	  <para>
+	    The Console Window, with examples of three of its possible
+	    applications.
+	  </para>
+	</caption>
+      </mediaobject>
+    </figure>
+    <para>
+      The Console operates in the same Python environment that &oof2;
+      uses to evaluate all of its inputs.  This means that it's
+      possible to define variables in the Console, like this:
+      <blockquote>
+	<literallayout class="monospaced">&gt;&gt;&gt; foo=1.23
+&gt;&gt;&gt; fish=3.21</literallayout>
+      </blockquote>
+and use them like this:
+      <informalfigure>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/windows/examplevar.png"
+	      format="PNG"/>
+	  </imageobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/windows/examplevar.eps"
+	      format="EPS"/>
+	  </imageobject>
+	</mediaobject>
+      </informalfigure>
+      Naturally, all of the &oof2; modules have been imported into the
+      Python environment in the Console, as has the Python math
+      module.  This means that the Console can be used to execute
+      &oof2; commands as if running in <link
+      linkend="Appendix-TextMode">text mode</link>:
+      <blockquote>
+	<literallayout class="monospaced">&gt;&gt;&gt; OOF.Microstructure.Create_From_ImageFile(filename='K1_small.pgm')
+Enter microstructure_name ['K1_small.pgm']: 'micro'
+Enter height [automatic]: 
+Enter width [automatic]: 
+OOF.Microstructure.Create_From_ImageFile(filename='K1_small.pgm', microstructure_name='micro', height=automatic, width=automatic)
+&gt;&gt;&gt;
+</literallayout>
+      </blockquote>
+    </para>
+    <para>
+      The Console can also be used as a calculator, for debugging, and
+      for poking around in the code.
+    </para>
+  </section>
+
+</chapter>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

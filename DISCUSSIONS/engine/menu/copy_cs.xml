@@ -1,0 +1,50 @@
+<!-- 
+  $RCSfile: copy_cs.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:22 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    Copy the cross section named <varname>cross_section</varname> from
+    the &mesh; named <varname>current</varname> to the &mesh; named
+    <varname>mesh</varname>, giving the copy the name
+    <varname>name</varname>.
+  </para>
+  <para>
+    If the given <varname>name</varname> is not unique among all cross
+    sections in the target &mesh;, the string
+    <userinput>&lt;x&gt;</userinput> will be appended to it, where
+    <userinput>x</userinput> is an integer chosen to make the name
+    unique.  If the <varname>name</varname> is <link
+    linkend="Object-automatic"><userinput>automatic</userinput></link>,
+    a suitable (but boring) name will be generated.
+  </para>
+  <para>
+    The source mesh (<varname>current</varname>) and the target mesh
+    (<varname>mesh</varname>) need not be different.
+  </para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

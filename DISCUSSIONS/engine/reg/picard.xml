@@ -1,0 +1,94 @@
+<!-- 
+  $RCSfile: picard.xml,v $
+  $Revision: 1.1 $
+  $Author: langer $
+  $Date: 2011-04-28 21:24:09 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>Picard</classname> is a <link
+  linkend="RegisteredClass-NonlinearSolverBase">nonlinear
+  solver</link> used in <xref
+  linkend="RegisteredClass-AdvancedSolverMode"/> for solving nonlinear
+  equations by <ulink
+  url="http://en.wikipedia.org/wiki/Picard_iteration"
+  role="external">Picard iteration</ulink>.
+</para>
+<para>
+  Given equations of the form
+  <equation id="Eqn-Picard0">
+    <alt role="tex">
+      \[ B(\phi)\phi = f(\phi). \]
+    </alt>
+  </equation>
+  where <inlineequation><alt
+  role="tex">\(\phi\)</alt></inlineequation> is a vector of unknowns
+  (&field; values), <inlineequation><alt
+  role="tex">\(B(\phi)\)</alt></inlineequation> is a nonlinear
+  matrix-valued function of <inlineequation><alt
+  role="tex">\(\phi\)</alt></inlineequation>, and <inlineequation><alt
+  role="tex">\(f(\phi)\)</alt></inlineequation> is a vector, and a
+  trial solution <inlineequation><alt
+  role="tex">\(\phi_n\)</alt></inlineequation>, the next trial
+  solution is obtained by solving
+  <equation>
+    <alt role="tex">
+      \[ B(\phi_n) \phi_{n+1} = f(\phi_n). \]
+    </alt>
+  </equation>
+  <classname>Picard</classname> iterates this procedure until the
+  residual, <inlineequation><alt role="tex">\(r_n = B(\phi_n)\phi_n -
+  f(\phi_n)\)</alt></inlineequation> satisfies
+  <equation>
+    <alt role="tex">
+      \[ |r_n| &lt; \epsilon|r_0| + \delta \]
+    </alt>
+  </equation>
+  where <inlineequation><alt
+  role="tex">\(\epsilon\)</alt></inlineequation>=<varname>relative_tolerance</varname>
+  and <inlineequation><alt
+  role="tex">\(\delta\)</alt></inlineequation>=<varname>absolute_tolerance</varname>,
+  or when the <varname>maximum_iterations</varname> limit is exceeded.
+</para>
+<note>
+  <para>
+   We've written equation <xref linkend="Eqn-Picard0"/>, which is
+   being solved by <classname>Picard</classname>, in a different form
+   than the equation <xref linkend="Eqn-Newton0"/> being solved by
+   <xref linkend="RegisteredClass-Newton"/>.  In many situations the
+   two methods are equivalent.  The big difference between our
+   implementations is that <classname>Picard</classname> doesn't
+   require the derivative of the <inlineequation><alt
+   role="tex">\(f(\phi)\)</alt></inlineequation> term, which arises
+   from &properties; that make direct contributions to forces, as
+   opposed to &fluxes;, in equation <xref
+   linkend="Eqn-TimeDivergence"/>.  <classname>Picard</classname> may
+   be useful for systems with linear fluxes (for which computing
+   <inlineequation><alt role="tex">\(B(\phi)\)</alt></inlineequation>
+   is simple) and nonlinear forces, but in general <xref
+   linkend="RegisteredClass-Newton"/> is to be preferred.
+  </para>
+</note>
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->

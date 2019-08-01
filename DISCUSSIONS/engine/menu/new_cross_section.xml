@@ -1,0 +1,84 @@
+<!-- 
+  $RCSfile: new_cross_section.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:25 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+  <para>
+    <command>OOF.Mesh.Cross_Section.New</command> creates a new <xref
+      linkend="RegisteredClass-CrossSectionDomain"/>, which can be
+    used as the <varname>domain</varname> parameter of the commands in
+    the <xref linkend="MenuItem-OOF.Mesh.Analyze"/> menu.
+  </para>
+  <para>
+    The <varname>name</varname> parameter assigns a name to the new
+    cross section.  Cross sections are always referred to by name
+    after they've been created.  If another cross section in the same
+    &mesh; already has the given <varname>name</varname>, the name
+    will be made unique by appending <userinput>&lt;x&gt;</userinput>,
+    where <userinput>x</userinput> is a suitable integer.
+  </para>
+  <para>
+    The <varname>mesh</varname> parameter specifies which &mesh; the
+    cross section will be associated with.
+  </para>
+  <para>
+    The <varname>cross_section</varname> parameter is a <xref
+    linkend="RegisteredClass-MeshCrossSection"/> object, which defines
+    the cross section that's being created.<footnote> <simpara>If you
+    want to be picky, it's the <xref
+    linkend="RegisteredClass-MeshCrossSection"/> object that creates
+    the cross section. <command>OOF.Mesh.Cross_Section.New</command>
+    only names it.</simpara>
+    </footnote> 
+  </para>
+  <para>
+    In the GUI, new cross sections can be created in two ways:
+    <orderedlist>
+      <listitem>
+	<para>
+	  When using the <link
+	  linkend="Section-Graphics-CrossSection">Cross Section
+	  toolbox</link> in the graphics window, dragging the mouse on
+	  a displayed &mesh; creates a new cross section.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  In the <link linkend="Section-Tasks-Analysis">Analysis
+	  Page</link> in the main &oof2; window, setting the
+	  <guilabel>Domain</guilabel> to <userinput>Cross
+	  Section</userinput> reveals a
+	  <quote><guilabel>New</guilabel></quote> button that brings
+	  up a dialog box in which the parameters defining a new <xref
+	  linkend="RegisteredClass-MeshCrossSection"/> can be entered
+	  explicitly.
+	</para>
+      </listitem>
+    </orderedlist>
+  </para>
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+  -->
