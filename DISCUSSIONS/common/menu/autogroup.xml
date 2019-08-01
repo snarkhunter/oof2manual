@@ -1,0 +1,95 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Automatically assign every &active; pixel in the &micro; to a
+  &pixelgroup; according to a given criterion.  Unlike <xref
+  linkend="MenuItem-OOF.Image.AutoGroup"/>, this command is designed
+  to handle noisy images (but not too noisy), and it can group pixels
+  according to <link
+  linkend="Section-Concepts-Microstructure-OrientationMap">EBSD</link>
+  data as well as color.
+</para>
+<para>
+  There are three steps in the process:
+  <itemizedlist>
+    <listitem>
+      <para>
+	<command>AutoGroup</command> keeps track of the mean and
+	standard deviation of the groups that it's creating.  It
+	selects a pixel at random and sees if that pixel's value is
+	within <varname>delta</varname> standard deviations of the
+	mean of any existing pixel group (where "existing" means any
+	of the groups already created during this call to
+	<command>AutoGroup</command>).  If it is, then the pixel is
+	added to the group and the group's mean and deviation are
+	recomputed.  If the pixel is close to the mean of more than
+	one group, the closest one is used.  After recomputing the
+	mean, the group is compared to all other groups, and if it's
+	within <varname>gamma</varname> deviations of one, the two
+	groups are merged.  Again, if more than one is found, the
+	closest one is used.  The mean and deviation of the merged
+	group is recomputed and checked against the remaining groups
+	recursively until no more merges are found.
+      </para>
+      <para>
+	If the pixel being examined is not within
+	<varname>delta</varname> standard deviations of any group, a
+	new group is created for it, and a standard deviation of
+	<varname>sigma0</varname> is imposed.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	After putting pixels into preliminary groups, each group is
+	split into contiguous pieces, where each piece is a single
+	connected set of pixels.  Any sets containing fewer than
+	<varname>minsize</varname> pixels are absorbed into the
+	neighboring groups.  If there are multiple groups neighboring
+	a pixel, the pixel is added to the group with the nearest
+	mean, measured in terms of the group's standard deviation.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	If the parameter <varname>contiguous</varname> is
+	<userinput>false</userinput>, the groups that were split in
+	the previous step are reassembled, so the final &pixelgroups;
+	may be discontiguous.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	Finally, the groups are sorted by size, largest to smallest,
+	and each group is given a name, determined by the
+	<varname>name_template</varname> parameter.  A
+	<userinput>%n</userinput> in the name will be replaced by an
+	integer, starting from 0.  If <varname>name_template</varname>
+	does not contain <userinput>%n</userinput>, one will be
+	appended to it.
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -31,10 +31,11 @@
     <userinput>%n</userinput> or both.  When naming a group,
     <userinput>%c</userinput> will be replaced by the color of the
     pixels in the group, and <userinput>%n</userinput> will be
-    replaced by an integer.  Note that <userinput>%c</userinput> often
-    leads to unwieldy names, such as
-    <userinput>RGBColor(red=0.97254901960784312,green=0.9882352941176471,blue=0.0)</userinput>.
-    It may be advisable to manually <link
+    replaced by an integer. The colors are written in the slightly
+    uncomfortable but compact form <userinput>#RRGGBB</userinput>,
+    where <userinput>RR</userinput>, <userinput>GG</userinput>, and
+    <userinput>BB</userinput> are the hexadecimal values of the 8-bit
+    RGB color channels.  It may be advisable to manually <link
     linkend="MenuItem-OOF.PixelGroup.Rename">rename</link> the groups.
   </para>
 
