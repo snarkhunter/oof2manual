@@ -10,20 +10,48 @@
 
 <para>
   Automatically assign every &active; pixel in the &micro; to a
-  &pixelgroup; according to a given criterion.  Unlike <xref
+  &pixelgroup; according to the criterion given by
+  <varname>grouper</varname>.  Unlike <xref
   linkend="MenuItem-OOF.Image.AutoGroup"/>, this command is designed
   to handle noisy images (but not too noisy), and it can group pixels
   according to <link
   linkend="Section-Concepts-Microstructure-OrientationMap">EBSD</link>
-  data as well as color.
+  data as well as color.  It can create either contiguous groups (each
+  group containing a connected set of pixels) or discontiguous groups (a
+  single group possibly comprising disjoint regions).
+</para>
+<para>
+  <command>AutoGroup</command> works well on images with regions of
+  constant color (or orientation) with a small amount of added noise,
+  when you want the final &pixelgroups; to be insensitive to the
+  noise.  It also works well on antialiased images, where the
+  transition from one region of constant color to another has been
+  smoothed out over the span of a few pixels, but the interpolated
+  colors in the boundary should not be put into their own
+  &pixelgroups;.
+</para>
+<para>
+  Pixels are compared to one another using the operation given by the
+  <varname>grouper</varname> parameter, and put into groups if they
+  are within a set number of standard deviations of the group's mean,
+  which is also determined by the <varname>grouper</varname>.  The
+  <varname>grouper</varname> has a parameter <varname>sigma0</varname>
+  which is the minimum standard deviation of a group. (Any deviation
+  smaller than <varname>sigma0</varname> will be set equal to
+  <varname>sigma0</varname>.)  Using a small <varname>sigma0</varname>
+  will tend to create many groups, each containing a small range of
+  pixel values.  Using a large <varname>sigma0</varname> will tend to
+  create fewer, larger groups, with a wide range of pixel values in
+  each.
 </para>
 <para>
   There are three steps in the process:
   <itemizedlist>
     <listitem>
       <para>
-	<command>AutoGroup</command> keeps track of the mean and
-	standard deviation of the groups that it's creating.  It
+	Preliminary groups are created from statistically similar
+	pixels.  <command>AutoGroup</command> keeps track of the mean
+	and standard deviation of the groups that it's creating.  It
 	selects a pixel at random and sees if that pixel's value is
 	within <varname>delta</varname> standard deviations of the
 	mean of any existing pixel group (where "existing" means any
@@ -31,19 +59,23 @@
 	<command>AutoGroup</command>).  If it is, then the pixel is
 	added to the group and the group's mean and deviation are
 	recomputed.  If the pixel is close to the mean of more than
-	one group, the closest one is used.  After recomputing the
-	mean, the group is compared to all other groups, and if it's
-	within <varname>gamma</varname> deviations of one, the two
-	groups are merged.  Again, if more than one is found, the
-	closest one is used.  The mean and deviation of the merged
-	group is recomputed and checked against the remaining groups
-	recursively until no more merges are found.
+	one group, the closest one is used (ie, the one whose mean is
+	the fewest standard deviations from the pixel value).  After
+	recomputing the mean, the group is compared to all other
+	groups, and if it's within <varname>gamma</varname> deviations
+	of one, the two groups are merged.  Again, if more than one is
+	found, the closest one is used.  The mean and deviation of the
+	merged group is recomputed and checked against the remaining
+	groups recursively until no more merges are found.
       </para>
       <para>
 	If the pixel being examined is not within
 	<varname>delta</varname> standard deviations of any group, a
 	new group is created for it, and a standard deviation of
-	<varname>sigma0</varname> is imposed.
+	<varname>sigma0</varname> is imposed.  If at any time adding a
+	pixel brings the standard deviation (or one if its components,
+	if it's a vector) below <varname>sigma0</varname>, the
+	deviation is reset to <varname>sigma0</varname>.
       </para>
     </listitem>
     <listitem>

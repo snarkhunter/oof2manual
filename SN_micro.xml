@@ -195,17 +195,19 @@
       current &micro;. 
     </para>
     <para>
-      The five buttons to the left of the central list operate on
-      the pixel groups themselves: creating a <link
+      The five buttons to the left of the central list operate on the
+      pixel groups themselves: creating a <link
       linkend="MenuItem-OOF.PixelGroup.New">new</link> group, <link
+      linkend="MenuItem-OOF.PixelGroup.AutoGroup">automatically</link>
+      putting all pixels into groups, <link
       linkend="MenuItem-OOF.PixelGroup.Rename">renaming</link> or
       <link linkend="MenuItem-OOF.PixelGroup.Copy">copying</link> an
       existing group, <link
       linkend="MenuItem-OOF.PixelGroup.Delete">deleting</link> a
       group, or setting a group's <link
-      linkend="MenuItem-OOF.PixelGroup.Meshable">meshable</link>
-      flag.  All except for <guibutton>New</guibutton> operate on
-      the pixel group that's currently selected in the list.
+      linkend="MenuItem-OOF.PixelGroup.Meshable">meshable</link> flag.
+      All except for <guibutton>New</guibutton> operate on the pixel
+      group that's currently selected in the list.
     </para>
     <para>
       The four buttons to the right of the central list operate on
