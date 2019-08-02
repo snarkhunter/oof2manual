@@ -21,6 +21,9 @@
 XMLFILES = CH_graphics.xml CH_tasks.xml CH_windows.xml SN_skel.xml     \
 man_oof2.xml oof2_api.xml CH_overview.xml CH_concepts.xml SN_micro.xml
 
+# On macOS with macports, dvi2bitmap needs to be built with
+# --with-kpathsea.
+
 DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif
 
 # TEMPDIR used to be called "TMPDIR", but that conflicts with the
