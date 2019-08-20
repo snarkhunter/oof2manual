@@ -9,16 +9,17 @@
 -->
 
 <para>
-  Automatically assign every &active; pixel in the &micro; to a
-  &pixelgroup; according to the criterion given by
-  <varname>grouper</varname>.  Unlike <xref
+  Automatically assign every <link
+  linkend="Section-Concepts-Microstructure-ActiveArea">active</link>
+  pixel in the &micro; to a &pixelgroup; according to the criterion
+  given by <varname>grouper</varname>.  Unlike <xref
   linkend="MenuItem-OOF.Image.AutoGroup"/>, this command is designed
   to handle noisy images (but not too noisy), and it can group pixels
   according to <link
   linkend="Section-Concepts-Microstructure-OrientationMap">EBSD</link>
   data as well as color.  It can create either contiguous groups (each
-  group containing a connected set of pixels) or discontiguous groups (a
-  single group possibly comprising disjoint regions).
+  group containing a connected set of pixels) or discontiguous groups
+  (a single group possibly comprising disjoint regions).
 </para>
 <para>
   <command>AutoGroup</command> works well on images with regions of

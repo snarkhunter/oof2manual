@@ -1,0 +1,40 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  The space group number is an integer between 1 and 230, inclusive.
+  See the <ulink
+  url="https://en.wikipedia.org/wiki/Space_group#Table_of_space_groups_in_3_dimensions"
+  role="external">table of space groups</ulink> at Wikipedia for more
+  information and the correspondence with other notations.
+</para>
+<para>
+  Many different space groups can correspond to the same point group.
+  &oof2; only cares about point groups, not space groups, but it
+  allows you to enter space groups because some EBSD data files
+  contain space group numbers.  When &oof2; converts a point group
+  name to a space group number, it uses the smallest space group
+  number for that point group.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

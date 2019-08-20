@@ -1,0 +1,38 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>LatticeSymmetry</classname> parameters are used in a few
+  cases in which it's necessary to specify the full point group of the
+  crystal lattice.  For example, when providing an elastic modulus, it
+  may be sufficient to say that a material is cubic, but when deciding
+  whether two Euler angles represent equivalent orientations, it may
+  be necessary to know which cubic point group the material belongs to.
+</para>
+<para>
+  The subclasses of <classname>LatticeSymmetry</classname> allow you
+  to specify the symmetry in a variety of popular styles.  Any
+  of the styles can be used to represent any symmetry.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
