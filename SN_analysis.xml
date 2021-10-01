@@ -194,7 +194,7 @@
 	panes and allows those settings to be reloaded into the panes
 	or to be used as a <link
 	linkend="Section-Concepts-Outputs-Scheduled">Scheduled
-	Output</link> during time evolution computations.  The
+	Output</link> during time evolution computations.
       </para>
       <para>
 	As shown in <xref linkend="Figure-Analysis-Named"/>, the Named
