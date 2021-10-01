@@ -22,9 +22,9 @@ XMLFILES = CH_graphics.xml CH_tasks.xml CH_windows.xml SN_skel.xml     \
 man_oof2.xml oof2_api.xml CH_overview.xml CH_concepts.xml SN_micro.xml
 
 # On macOS with macports, dvi2bitmap needs to be built with
-# --with-kpathsea.
+# --with-kpathsea --enable-fontgen
 
-DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif
+DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif 
 
 # TEMPDIR used to be called "TMPDIR", but that conflicts with the
 # TMPDIR environment variable that dvi2bitmap uses to communicate with
@@ -45,7 +45,7 @@ local: $(TEMPDIR) saxonize.web texify figs
 
 publish: local
 	rsync -vrt --delete-excluded -e ssh --rsync-path=/usr/bin/rsync $(OOFWEBDIR)/oof2man/* genie.nist.gov:/u/WWW/langer/oof2man
-	ssh genie.nist.gov updatewww
+	ssh genie.nist.gov /usr/site/bin/updatewww
 	touch publish
 
 # Build the file that users can download to create a local copy of
