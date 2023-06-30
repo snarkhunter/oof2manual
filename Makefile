@@ -36,11 +36,11 @@ TEMPDIR = tmpdir
 # publish: $(TEMPDIR) saxonize.web texify figs
 # 	-mkdir html
 # 	rm -rf html/*
-# 	python webwrap.py --from=$(TEMPDIR) --to=html --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+# 	python2 webwrap.py --from=$(TEMPDIR) --to=html --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 # 	touch publish
 
 local: $(TEMPDIR) saxonize.web texify figs 
-	python webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+	python2 webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 	touch local
 
 publish: local
@@ -52,7 +52,7 @@ publish: local
 # the manual.  
 oof2man.tgz: $(TEMPDIR) saxonize.ext texify figs 
 	-mkdir oof2man
-	python webwrap.py --from=$(TEMPDIR) --to=oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+	python2 webwrap.py --from=$(TEMPDIR) --to=oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 	tar -czf oof2man.tgz oof2man
 	-rm -rf oof2man
 
@@ -68,8 +68,8 @@ texify:
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
 
 oof2_api.xml: always
-	(cd oof2dir; ./oof2-build dist)
-	bin/oof2 --script xmldump.py --batch --debug
+	(cd oof2dir; python2 ./oof2-build dist)
+	PYTHONPATH=~/lib/python2.7/site-packages bin/oof2 --script xmldump.py --batch --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
 	mv -f tmp oof2_api.xml
 
@@ -93,7 +93,7 @@ always:
 equations:
 	(cd $(TEMPDIR); latex tex-math-inlines.tex && $(DVI2BITMAP) --verbose=quiet --query=bitmaps tex-math-inlines | awk '{printf "img[src=\"%s\"] {margin-bottom:%dpx;}\n",$$2,$$6-$$4}' > inline.css)
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
-	python webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+	python2 webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 
 #pdf: $(XMLFILES)
 #	#docbook2pdf -l /sw/share/sgml/dsssl/docbook-dsssl-nwalsh/dtds/decls/xml.dcl man_oof2.xml 
