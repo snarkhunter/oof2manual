@@ -22,7 +22,8 @@ import getopt
 import stat
 
 def usage():
-    print >> sys.stderr, """\
+    print(
+        """
 
 Usage: ctcmsWeb.py --from=SOURCE --to=DEST [options]
 
@@ -38,7 +39,7 @@ The options are:
    --styledir=DIR      look in DIR for template.html, menu.html, etc.
    --exclude=SUFFIXES  don't copy any files whose suffixes are in the
                        comma-delimited list, eg, --exclude=.tex,.dvi,.log
-"""
+""", file=sys.stderr)
 
 def mod_time(file):
     return os.path.getmtime(file)
@@ -46,8 +47,8 @@ def mod_time(file):
 try:
     optlist, args = getopt.getopt(sys.argv[1:], '',
                                   ['from=', 'to=', 'styledir=', 'exclude='])
-except getopt.error, message:
-    print message
+except getopt.error as message:
+    print(message)
     usage()
     sys.exit(1)
 
@@ -72,7 +73,7 @@ for opt in optlist:
     elif opt[0] == '--styledir':
         styleDir = opt[1]
     elif opt[0] == '--exclude':
-        excludes = string.split(opt[1], ',')
+        excludes = opt[1].split(',')
 
 def readHTML(f, default = ""):
     try:
@@ -88,7 +89,10 @@ headermodtime = None
 for htmlName in templatefiles:
     fullname = os.path.join(fromPath, styleDir, htmlName)
     dataOrig[htmlName] = readHTML(fullname)
-    headermodtime = max(headermodtime, mod_time(fullname))
+    if headermodtime is not None:
+        headermodtime = max(headermodtime, mod_time(fullname))
+    else:
+        headermodtime = mod_time(fullname)
 
 metaLen = len(dataOrig['meta.html'])
 projectTitleRe = re.search('<title>(.*)</title>', dataOrig['meta.html'])
@@ -120,7 +124,7 @@ def mergefile(srcname, dstname, root, simplecopylist):
             # copyfile copies contents only, not permissions.
             shutil.copyfile(srcname, dstname)
         except:
-            print >> sys.stderr, "ctcmsWeb.py: shutil.copy failed"
+            print("ctcmsWeb.py: shutil.copy failed", file=sys.stderr)
             raise
     else:
         # But process html files by inserting them in the template.
@@ -185,7 +189,7 @@ def mergetree(src, dst, root):
         fullpath = os.path.join(dst, dstfile)
         if dstfile not in names:
             if os.path.isdir(fullpath): # remove whole directory
-                print "removing directory", fullpath
+                print("removing directory", fullpath)
                 for subdir, dirs, files in os.walk(fullpath, topdown=False):
                     for name in files:
                         os.remove(os.path.join(subdir, name))
@@ -193,7 +197,7 @@ def mergetree(src, dst, root):
                         os.rmdir(os.path.join(subdir, name))
                 os.rmdir(fullpath)
             else:
-                print "removing file", fullpath
+                print("removing file", fullpath)
                 os.remove(fullpath)
 
     try:
@@ -212,7 +216,7 @@ def mergetree(src, dst, root):
             else:
                 for excl in excludes:
                     if srcname[-len(excl):] == excl:
-                        print "excluding", srcname
+                        print("excluding", srcname)
                         break
                 else:
                     # copy the file if the destination doesn't exist,
@@ -224,11 +228,11 @@ def mergetree(src, dst, root):
                     if (not xclude and (not os.path.exists(dstname) or
                         (max(mod_time(srcname), headermodtime) >
                          mod_time(dstname)))):
-                            print "merging", srcname, '->', dstname
+                            print("merging", srcname, '->', dstname)
                             mergefile(srcname, dstname, root, simplecopylist)
 
-        except (IOError, os.error), why: 
-            print "Can't copy %s to %s: %s" % (`srcname`, `dstname`, str(why))
+        except (IOError, os.error) as why: 
+            print(f"Can't copy {srcname} to {dstname}: {str(why)}")
 
             
 mergetree(fromPath, toPath, root='.')

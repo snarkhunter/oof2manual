@@ -13,3 +13,4 @@ bin
 tmpdir
 publish
 local
+build*

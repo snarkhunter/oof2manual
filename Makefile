@@ -6,7 +6,7 @@
 # Makefile for creating readable docs from the xml files.  For this to
 # work, the current directory needs to have a symbolic link called
 # 'bin' that points to the directory where the executable lives and a
-# link called 'oof2dir' pointing to the main OOF2 directory.  The
+# link called 'build' pointing to the OOF2 build directory.  The
 # environment variable OOFWEBDIR should be set to the base of the
 # *local* web server file system.  For example, on OS X it should be
 # set to ~/Sites.  If you don't have a local server, set OOFWEBDIR to
@@ -24,7 +24,7 @@ man_oof2.xml oof2_api.xml CH_overview.xml CH_concepts.xml SN_micro.xml
 # On macOS with macports, dvi2bitmap needs to be built with
 # --with-kpathsea --enable-fontgen
 
-DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif 
+DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif --font-search=kpathsea
 
 # TEMPDIR used to be called "TMPDIR", but that conflicts with the
 # TMPDIR environment variable that dvi2bitmap uses to communicate with
@@ -40,7 +40,7 @@ TEMPDIR = tmpdir
 # 	touch publish
 
 local: $(TEMPDIR) saxonize.web texify figs 
-	python2 webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+	python webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 	touch local
 
 publish: local
@@ -52,7 +52,7 @@ publish: local
 # the manual.  
 oof2man.tgz: $(TEMPDIR) saxonize.ext texify figs 
 	-mkdir oof2man
-	python2 webwrap.py --from=$(TEMPDIR) --to=oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+	python webwrap.py --from=$(TEMPDIR) --to=oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 	tar -czf oof2man.tgz oof2man
 	-rm -rf oof2man
 
@@ -68,8 +68,8 @@ texify:
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
 
 oof2_api.xml: always
-	(cd oof2dir; python2 ./oof2-build dist)
-	PYTHONPATH=~/lib/python2.7/site-packages bin/oof2 --script xmldump.py --batch --debug
+	(cd build; make -j 10 DESTDIR=~/stow/oof2-manual install; cd ~/stow; ./switchto oof2-manual)
+	bin/oof2 --script xmldump.py --batch --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
 	mv -f tmp oof2_api.xml
 
