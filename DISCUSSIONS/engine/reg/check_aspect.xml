@@ -13,32 +13,58 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Skinny &elems; (ones with a high aspect ratio) can cause poor
-    finite element performance.  Refining a &skel; with the
-    <varname>targets</varname> parameter of <xref
-    linkend="RegisteredClass-Refine"/> set to
-    <classname>AspectRatio</classname> will subdivide the long sides
-    of <emphasis>quadrilateral</emphasis> &elems; with high aspect
-    ratios.  (Triangular elements are excluded because refining a high
-    aspect ratio triangle creates new elements that are just as bad as
-    the original.  To remove skinny triangles from a &skel;, use the <xref
-      linkend="RegisteredClass-Rationalize"/> &skel; modifier.)
-  </para>
-
-  <para>
-    The aspect ratio of a quadrilateral element is computed by taking
-    the ratio of the lengths its second longest and second shortest
-    sides.  The ratio is always greater than or equal to 1.  This
-    definition has the advantage of being easy to compute and only
-    yielding large ratios for those quadrilaterals that will be
-    improved by subdividing their long sides. (Quads whose long sides
-    are adjacent are not refined.  These quads can be removed by
-    <xref linkend="RegisteredClass-Rationalize"/>.  Some example of
-    &elems; that won't be refined are given in <xref
-      linkend="Figure-badaspect"/>.)
-  </para>
-
+<para>
+  Skinny &elems; (ones with a high aspect ratio) can cause poor
+  finite element performance.  Refining a &skel; with the
+  <varname>targets</varname> parameter of <xref
+  linkend="RegisteredClass-Refine"/> set to <classname>Aspect
+  Ratio</classname> will subdivide the long sides of &elems; with
+  high aspect ratios.
+</para>
+<para>
+  The aspect ratio of both triangular and quatrilateral &elems; is
+  the square root of the ratio of the eigenvalues of the in-plane
+  moment of inertia tensor of the element's corners.  If corner
+  <inlineequation><alt role="tex">n</alt></inlineequation>
+  is at position
+  <inlineequation>
+    <alt role="tex">
+      \( \mathbf{x}^n \)
+    </alt>
+  </inlineequation>
+  and the center of the element is
+  <inlineequation>
+    <alt role="tex">
+      \( \bar{\mathbf{x}} \)
+    </alt>
+  </inlineequation>
+  then the moment of inertia is
+  <equation>
+    <alt role="tex">
+      \[M_{ij} = \sum_n (\mathbf{x}^n_i-\bar{\mathbf{x}}_i)
+      (\mathbf{x}^n_j-\bar{\mathbf{x}}_j)\]
+    </alt>
+  </equation>
+  This definition reduces to the intuitive one if the element is
+  rectangular, doesn't require any special handling if it is not, and
+  can be computed more easily than it seems.
+</para>
+<para>
+  The longest two edges of a quadrilateral
+  &elem; whose aspect ratio is greater than
+  <varname>threshold</varname> will be subdivided,
+  if the longest two edges are on opposite sides of the element.
+</para>
+<para>
+  The longest two edges of a triangular &elem; will be subdivided if
+  the aspect ratio is greater than <varname>threshold</varname>, but
+  only if the parameter <varname>only_quads</varname> is
+  <varname>False</varname>.  If your goal is to eliminate high aspect
+  elements, refining high aspect triangles is not useful -- it just
+  creates new smaller triangles with the same high aspect ratio.  To
+  remove skinny triangles from a &skel;, use the <xref
+  linkend="RegisteredClass-Rationalize"/> &skel; modifier.
+</para>
   <figure id="Figure-badaspect">
     <title>Elements <emphasis>not</emphasis> Refined</title>
     <mediaobject>
@@ -64,50 +90,53 @@
 
   <para>
     <xref linkend="Figure-aspect"/> shows a &skel; containing one
-    skinny &elem;  with its long sides marked
-    (in bold) for refinement.  Unlike <xref
+    skinny quadrilateral and one skinny triangle. <xref
+    linkend="Figure-aspect-refined"/> shows the result of refining the
+    element.  Unlike <xref
     linkend="RegisteredClass-CheckHomogeneity"/>, which marks all the
     &sgmts; of its target &elems;,
     <classname>CheckAspectRatio</classname> marks only the long
-    &sgmts;. <xref linkend="Figure-aspect-refined"/> shows the result
-    of refining the element.
-
+    &sgmts;, so not all of the sides have been subdivided.
   </para>
     <figure id="Figure-aspect">
-      <title>An Element with a High Aspect Ratio</title>
+      <title>Elements with High Aspect Ratios</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect.png"></imagedata>
+	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect0.png"></imagedata>
 	</imageobject>
 	<imageobject>
-	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect.eps"></imagedata>
+	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect0.eps"></imagedata>
 	</imageobject>
 	<caption>
 	  <para>
-	    A &skel; containing an element with a high aspect ratio.
+	    A &skel; containing two elements with a high aspect ratio.
+        The aspect ratio of the highlighted quadrilateral is about 6, and
+        the aspect ratio of the highlighted triangle is about 15.
 	  </para>
 	</caption>
       </mediaobject>
     </figure>
     <figure id="Figure-aspect-refined">
-      <title>Refining an Element with a High Aspect Ratio</title>
+      <title>Refining Elements with High Aspect Ratios</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect-refined.png"></imagedata>
+	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect1.png"></imagedata>
 	</imageobject>
 	<imageobject>
-	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect-refined.eps"></imagedata>
+	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect1.eps"></imagedata>
 	</imageobject>
 	<caption>
 	  <para>
 	    The &skel; produced by refining with
 	    <userinput>modifier=<link
-	    linkend="RegisteredClass-Refine">Refine</link>(targets=CheckAspectRatio(threshold=5.0),
-	    criterion=<link
-	    linkend="RegisteredClass-Unconditionally">Unconditionally</link>(),
-	    degree=<link
-	    linkend="RegisteredClass-Bisection">Bisection</link>(rule_set=<link
-	    linkend="Enum-RuleSet">'conservative'</link>))</userinput>.
+	    linkend="RegisteredClass-Refine">Refine</link>(targets=CheckAspectRatio(threshold=5.0,
+        only_quads=False),
+	    divider=<link
+	    linkend="RegisteredClass-Bisection">Bisection</link>(),
+        rules='Quick', alpha=1)</userinput>.  The quad was divided
+        into two elements with aspect ratios near 3, but the triangle
+        was turned into a quad with aspect ratio 8 and a new triangle
+        wtih aspect ratio 15.
 	  </para>
 	</caption>
       </mediaobject>

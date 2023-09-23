@@ -14,123 +14,112 @@
 -->
 
 
-  <para>
-    <classname>Refine</classname> is a <xref
-    linkend="RegisteredClass-SkeletonModifier"/> that chops its target
-    elements and their neighbors into smaller pieces.  This adds more
-    degrees of freedom to the &skel;, which allows it to adapt better
-    to the &micro;.  Refinement by itself is rarely sufficient to
-    create an acceptable &skel; -- it must be combined with other
-    <link linkend="MenuItem-OOF.Skeleton.Modify">modifiers</link> that
-    move nodes, such as <xref linkend="RegisteredClass-SnapNodes"/> or
-    <xref linkend="RegisteredClass-Anneal"/>.
-  </para>
+<para>
+  <classname>Refine</classname> is a <xref
+  linkend="RegisteredClass-SkeletonModifier"/> that chops its target
+  elements and their neighbors into smaller pieces.  This adds more
+  degrees of freedom to the &skel;, which allows it to adapt better
+  to the &micro;.  Refinement by itself is rarely sufficient to
+  create an acceptable &skel; -- it must be combined with other
+  <link linkend="MenuItem-OOF.Skeleton.Modify">modifiers</link> that
+  move nodes, such as <xref linkend="RegisteredClass-SnapNodes"/> or
+  <xref linkend="RegisteredClass-Anneal"/>.
+</para>
 
-  <para>
-    The steps involved in refining a &skel; are:
-    <orderedlist numeration="arabic">
-      <listitem>
-	<para>
-	  Find the element <emphasis>edges</emphasis> (&sgmts;) that
-	  need to be refined. These are specified by the
-	  <varname>targets</varname> parameter, whose value is a <xref
-	  linkend="RegisteredClass-RefinementTarget"/> object.
-	  Different kinds of <xref
-	  linkend="RegisteredClass-RefinementTarget"/> objects pick
-	  segments in different ways, for example, by choosing all
-	  edges of heterogeneous elements or the long edges of skinny
-	  elements.  See <xref
-	  linkend="RegisteredClass-RefinementTarget"/> for the
-	  details.
-	</para>
-	<para>
-	  The <varname>criterion</varname> parameter is used to
-	  exclude certain elements and segments from the marking process.
-	  Setting it to <xref
-	  linkend="RegisteredClass-Unconditional"/> means that all
-	  elements and segments are possible candidates for refinement.
-	</para>
-	<para>
-	  <xref linkend='Figure-refine0'/> shows a &skel; that needs
-	  to have its heterogeneous elements refined.  Setting
-	  <varname>targets</varname> to <userinput><link
-	  linkend="RegisteredClass-CheckHomogeneity">CheckHomogeneity</link>(threshold=1)</userinput>
-	  marks the edges of all elements whose homogeneity is less
-	  than 100%, as shown in <xref linkend="Figure-refine1"/>.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  Sometimes the way in which the elements will be subdivided
-	  (determined by the <varname>degree</varname> parameter)
-	  requires extra segments to be marked.  In these cases a second
-	  pass is made through the &skel;, marking additional segments.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  After the segments are marked, each element is replaced by a
-	  suitable collection of smaller elements, such that each
-	  marked segment of the old &skel; turns into a set number of
-	  segments of the new &skel;.  Exactly how this is done
-	  depends on the setting of the <varname>degree</varname>
-	  parameter, which determines both how many new edges replace
-	  each old edge, and how the new elements are arranged within
-	  the old element. (For details, see the descriptions of <xref
-	  linkend="RegisteredClass-RefinementDegree"/> and <xref
-	  linkend="Enum-RuleSet"/>.)  The rules sometimes allow more
-	  than one way of subdividing an element. In those cases, the
-	  total <link
-	  linkend="Section-Concepts-Skeleton-Energy">effective
-	  energy</link> of the new elements is computed, and the
-	  configuration with the lowest energy is used.  The parameter
-	  <varname>alpha</varname> determines the relative
-	  contributions of shape and homogeneity to the effective
-	  energy, as discussed in <xref
-	  linkend="Section-Concepts-Skeleton-Energy"/>.
-	</para>
-	<para>
-	  <xref linkend="Figure-refine2"/> shows the result of
-	  refining a mesh using
-	  <varname>degree</varname>=<userinput><link
-	  linkend="RegisteredClass-Bisection">Bisection</link>(rule_set='liberal')</userinput>
-	  and <varname>alpha</varname>=<userinput>1</userinput>.
-	</para>
-      </listitem>
-    </orderedlist>
+<para>
+  The steps involved in refining a &skel; are:
+  <orderedlist numeration="arabic">
+    <listitem>
+	  <para>
+	    Find the element <emphasis>edges</emphasis> (&sgmts;) that
+	    need to be refined. These are specified by the
+	    <varname>targets</varname> parameter, whose value is a <xref
+	    linkend="RegisteredClass-RefinementTarget"/> object.
+	    Different kinds of <xref
+	    linkend="RegisteredClass-RefinementTarget"/> objects pick
+	    segments in different ways, for example, by choosing all edges
+	    of heterogeneous elements or the long edges of skinny
+	    elements.  See <xref
+	    linkend="RegisteredClass-RefinementTarget"/> for the details.
+	  </para>
+	  <para>
+	    <xref linkend='Figure-refine0'/> shows a &skel; that needs to
+	    have its heterogeneous elements refined.  Setting
+	    <varname>targets</varname> to <userinput><xref
+	    linkend="RegisteredClass-CheckHomogeneity"/></userinput> marks
+	    the edges of all elements whose homogeneity is less than 90%,
+	    as shown in <xref linkend="Figure-refine1"/>.
+	  </para>
+    </listitem>
+    <listitem>
+      <para>
+        The <varname>divider</varname> parameter determines how and
+        where the chosen segments will be divided.  Segments are
+        marked for division in in half (<xref
+        linkend="RegisteredClass-Bisection"/>), in thirds
+        (<xref linkend="RegisteredClass-Trisection"/>), or at
+        <xref linkend="RegisteredClass-TransitionPoints"/>.
+      </para>
+    </listitem>
+    <listitem>
+	  <para>
+	    After the segments are marked for division, each element is
+	    replaced by a suitable collection of smaller elements, such
+	    that each marked segment of the old &skel; turns into a set
+	    number of segments of the new &skel;.  Exactly how this is
+	    done depends on the setting of the <varname>rules</varname>
+	    parameter.  (For details, see the description of <xref
+	    linkend="Enum-RuleSet"/>.)  The rules sometimes allow more
+	    than one way of subdividing an element. In those cases, the
+	    total <link
+	    linkend="Section-Concepts-Skeleton-Energy">effective
+	    energy</link> of the new elements is computed, and the
+	    configuration with the lowest energy is used.  The parameter
+	    <varname>alpha</varname> determines the relative contributions
+	    of shape and homogeneity to the effective energy, as discussed
+	    in <xref linkend="Section-Concepts-Skeleton-Energy"/>.
+	  </para>
+	  <para>
+	    <xref linkend="Figure-refine2"/> shows the result of
+	    refining a mesh using
+	    <varname>divider</varname>=<userinput><link
+	    linkend="RegisteredClass-Bisection">Bisection</link></userinput>
+	    with <varname>alpha</varname>=<userinput>0.3</userinput>.
+	  </para>
+    </listitem>
+  </orderedlist>
 
-    <figure id="Figure-refine">
+  <figure id="Figure-refine">
       <title>Refining a Skeleton</title>
       <mediaobject id="Figure-refine0" xreflabel='Figure
-	"Refining a Skeleton" (a)'>
-	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine0.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine0.eps"
-	    format="EPS"/>
-	</imageobject>
-	<caption>
-	  <para>
-	    a) A &skel; ripe for refinement.
+	                                              "Refining a Skeleton" (a)'>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/refinement/refine0.png"
+	                 format="PNG"/>
+	    </imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/refinement/refine0.eps"
+	                 format="EPS"/>
+	    </imageobject>
+	    <caption>
+	      <para>
+	        a) A &skel; ripe for refinement.
 	  </para>
 	</caption>
       </mediaobject>
       <mediaobject id="Figure-refine1" xreflabel='Figure "Refining a
 	Skeleton" (b)'>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/refinement/refine1.png" format="PNG"/>
+	    </imageobject>
 	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine1.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine1.eps"
-	    format="EPS"/>
+	  <imagedata fileref="FIGURES/refinement/refine1.pdf"
+	    format="PDF"/>
 	</imageobject>
 	<caption>
 	  <para>
 	    b) The <userinput><link
-	    linkend="RegisteredClass-CheckHomogeneity">CheckHomogeneity</link>(threshold=1)</userinput>
+	    linkend="RegisteredClass-CheckHomogeneity">CheckHomogeneity</link>(threshold=0.9)</userinput>
 	    <xref linkend="RegisteredClass-RefinementTarget"/>
 	    operator marks the edges of the heterogeneous elements.
 	    The marked edges are drawn in bold.  (In actual &oof2;
@@ -150,9 +139,12 @@
 	</imageobject>
 	<caption>
 	  <para>
-	    c) The final result of refining the marked edges with
-	    <varname>degree</varname> set to <userinput><link
-	    linkend="RegisteredClass-Bisection">Bisection</link>(rule_set='liberal')</userinput>.
+	    c) The result of refining the marked edges with
+	    <varname>divider</varname> set to <userinput><link
+	    linkend="RegisteredClass-Bisection">Bisection</link></userinput>
+        and <varname>rules</varname> set to
+        <userinput>Quick</userinput>.
+        <!-- TODO: Provide links for Quick and Large rules -->
 	  </para>
 	</caption>
       </mediaobject>
@@ -163,11 +155,12 @@
     <para id="Anchor:over-refinement">
       One should not abuse Refinement to the point where elements
       become too small.  <xref linkend="Figure-abused"/> shows a part
-      of &skel; that has been refined to the pixel resolution -- each
-      element represents a pixel. This is not only unphysical (the
-      jagged pixel boundaries are an artifact of the digitization of
-      the micrograph) but can introduce unnecessary numerical
-      anomalies, such as stress concentrations, at corner nodes.
+      of &skel; that has been refined to the pixel resolution -- many
+      elements along the boundary represent a single pixel. This is
+      not only unphysical (the jagged pixel boundaries are an artifact
+      of the digitization of the micrograph) but can introduce
+      unnecessary numerical anomalies, such as stress concentrations,
+      at corner nodes.
     </para>
     <para>
       Instead of abusing refinement, it is better to employ other
@@ -175,19 +168,18 @@
       shows the same portion of the &skel; shown in <xref
       linkend="Figure-abused"/> but with different modification tools
       applied.  This &skel; has been refined less, but the elements
-      have been adapted to the &micro; with <xref
-      linkend="RegisteredClass-Anneal"/> and <xref
-      linkend="RegisteredClass-SnapNodes"/>.
+      have been adapted to the &micro; by using <xref
+      linkend="RegisteredClass-TransitionPoints"/> instead of <xref linkend="RegisteredClass-Bisection"/>.
       <figure id="Figure-abused">
 	<title>Excessive Refinement</title>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata format="PNG"
-	      fileref="FIGURES/refinement/abused.png"></imagedata>
+	      fileref="FIGURES/refinement/pixels-overrefined.png"></imagedata>
 	  </imageobject>
 	  <imageobject>
 	    <imagedata format="EPS"
-	      fileref="FIGURES/refinement/abused.eps"></imagedata>
+	      fileref="FIGURES/refinement/pixels-overrefined.eps"></imagedata>
 	  </imageobject>
 	  <caption>
 	    <para>
@@ -202,11 +194,11 @@
 	<mediaobject>
 	  <imageobject>
 	    <imagedata format="PNG"
-	      fileref="FIGURES/refinement/not_abused.png"></imagedata>
+	      fileref="FIGURES/refinement/pixels-wellrefined.png"></imagedata>
 	  </imageobject>
 	  <imageobject>
 	    <imagedata format="EPS"
-	      fileref="FIGURES/refinement/not_abused.eps"></imagedata>
+	      fileref="FIGURES/refinement/pixels-wellrefined.eps"></imagedata>
 	  </imageobject>
 	  <caption>
 	    <para>
