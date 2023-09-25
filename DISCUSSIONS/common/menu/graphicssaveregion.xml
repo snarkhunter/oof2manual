@@ -9,9 +9,13 @@
 -->
 
 <para>
-  Save the contents of the <link linkend='Chapter-Graphics'>Graphics
-  window</link> in a file.  Everything in the window is saved, not
-  just what's visible in the scrolling region.
+  Save a rectangular region of the contents of the <link
+  linkend='Chapter-Graphics'>Graphics window</link> in a file.  The
+  region is defined by its corners <varname>lowerleft</varname> and
+  <varname>upperright</varname>.  In the GUI,
+  <varname>lowerleft</varname> and <varname>upperright</varname> are
+  initialized to the corners of the currently visible section of the
+  canvas.
 </para>
 <note>
   <para>
