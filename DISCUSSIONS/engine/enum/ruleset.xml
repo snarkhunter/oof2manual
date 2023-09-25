@@ -13,455 +13,91 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-
-  <para>
-    &oof2; provides two sets of refinement rules.  When <link
-    linkend="RegisteredClass-Refine">refining</link> a &skel;, the
-    refinement rules determine how the interior of an element is
-    subdivided after the subdivision of its edges has been determined.
-    The rule set appears as an argument to the <link
-    linkend="RegisteredClass-RefinementDegree"><varname>degree</varname></link>
-    parameter of the <xref linkend="RegisteredClass-Refine"/> &skel;
-    modifier.
-  </para>
-  <para>
-    The rule sets are displayed in <xref
-    linkend="Table:refine_rule_quad"/> and <xref
-    linkend="Table:refine_rule_tri"/>.  The tables contain diagrams
-    for each possible element geometry and all possible ways of
-    subdividing the element's edges.  Each diagram shows how the
-    element will be subdivided (after appropriate rotations and
-    distortions to bring it into alignment with the actual shape and
-    position of the &skel; element).
-  </para>
-
-  <para>
-    The two sets of rules are called <emphasis>conservative</emphasis>
-    and <emphasis>liberal</emphasis>.  The conservative rules never
-    change the topology of an element: quadrilateral elements will
-    beget little quadrilaterals, and triangular elements will beget
-    little triangles.<footnote>
-      <simpara>
-	It's not always possible to preserve topology when <link
-	linkend="RegisteredClass-Bisection">bisecting</link>
-	quadrilaterals.  When using conservative bisection, &oof2;
-	will try to preserve topology by bisecting
-	<emphasis>unmarked</emphasis> segments.  If this fails, the
-	user will be notified, and &oof2; will proceed using the
-	<quote>wrong</quote> kind of element.
-      </simpara>
-    </footnote> The liberal rules, in some cases,
-    will create triangles from quadrilaterals and <foreignphrase>vice
-    versa</foreignphrase>.  When using the liberal rule set, &oof2;
-    will substitute the corresponding conservative rule if it would
-    produce a configuration with lower <link
-    linkend="Section-Concepts-Skeleton-Energy">effective
-      energy</link>.<footnote>
-      <simpara>
-	The effective energy is calculated with &agr;=0.5.  It may be
-	adjustable by the user in some future version of &oof2;.
-      </simpara>
-    </footnote>
-  </para>
-
-  <para>
-    There are two distinct ways in which two segments can be marked
-    for subdivision on a quadrilateral element.  The column marked
-    <quote>opposite</quote> in <xref
-    linkend="Table:refine_rule_quad"/> contains the rules that apply
-    when the marked edges are on opposite sides of the quadrilateral.
-    The column marked <quote>adjacent</quote> contains the rules that
-    apply when the marked edges are next to one another.
-  </para>
-
-  <table id='Table:refine_rule_quad'>
-    <title>Refinement Rules for Quadrilaterals</title>
-    <tgroup cols='7'>
-      <colspec colnum='3' colname='c3'/>
-      <colspec colnum='4' colname='c4'/>
-      <colspec colnum='5' colname='c5'/>
-      <colspec colnum='6' colname='c6'/>
-      <colspec colnum='7' colname='c7'/>
-      <thead>
-	<row>
-	  <entry morerows='1' valign='middle'><link linkend='RegisteredClass-RefinementDegree'><varname>degree</varname></link></entry>
-	  <entry morerows='1' valign='middle'><link
-	      linkend='Enum-RuleSet'><varname>rule_set</varname></link></entry>
-	  <entry  namest='c3' nameend='c7'>No. of Marked Segments</entry>
-	</row>
-	<row>
-	  <entry>1</entry>
-	  <entry>2 (opposite)</entry>
-	  <entry>2 (adjacent)</entry>
-	  <entry>3</entry>
-	  <entry>4</entry>
-	</row>
-      </thead>
-      <tbody>
-	<row>
-	  <entry morerows='1' valign='middle'><xref
-	      linkend='RegisteredClass-Bisection'/></entry>
-	  <entry align='center'>Conservative</entry>
-	  <entry align='center'>N/A</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_bi1.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_bi1.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_bi2.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_bi2.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>N/A</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q4c_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q4c_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry align='center'>Liberal</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q1l_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q1l_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_bi1.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_bi1.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_bi2.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_bi2.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q3l_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q3l_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q4c_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q4c_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry morerows='1' valign='middle'><xref
-	      linkend='RegisteredClass-Trisection'/></entry>
-	  <entry align='center'>Conservative</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q1c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q1c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_tri1.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_tri1.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_tri2.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_tri2.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q3c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q3c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q4c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q4c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry align='center'>Liberal</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q1l_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q1l_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_tri1.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_tri1.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q2c_tri2.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q2c_tri2.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q3l_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q3l_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/q4c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/q4c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-      </tbody>
-    </tgroup>
-  </table>
-
-
-
-  <table id='Table:refine_rule_tri'>
-    <title>Refinement Rules for Triangles</title>
-    <tgroup cols='5'>
-      <colspec colnum='3' colname='c3'/>
-      <colspec colnum='4' colname='c4'/>
-      <colspec colnum='5' colname='c5'/>
-      <thead>
-	<row>
-	  <entry morerows='1'><link linkend='RegisteredClass-RefinementDegree'><varname>degree</varname></link></entry>
-	  <entry morerows='1'><link
-	      linkend='Enum-RuleSet'><varname>rule_set</varname></link></entry>
-	  <entry  namest='c3' nameend='c5'>No. of Marked
-	    Segments</entry>
-	</row>
-	<row>
-	  <entry>1</entry>
-	  <entry>2</entry>
-	  <entry>3</entry>
-	</row>
-      </thead>
-      <tbody>
-	<row>
-	  <entry morerows='1' valign='middle'><xref
-	      linkend='RegisteredClass-Bisection'/></entry>
-	  <entry align='center'>Conservative</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t1c_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t1c_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t2c_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t2c_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t3c_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t3c_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry align='center'>Liberal</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t1c_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t1c_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t2l_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t2l_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t3l_bi.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t3l_bi.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry morerows='1' valign='middle'><xref
-	      linkend='RegisteredClass-Trisection'/></entry>
-	  <entry align='center'>Conservative</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t1c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t1c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t2c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t2c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t3c_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t3c_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry align='center'>Liberal</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t1l_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t1l_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t2l_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t2l_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/refine/t3l_tri.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/refine/t3l_tri.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-      </tbody>
-    </tgroup>
-  </table>
+<para>
+  When <link linkend="RegisteredClass-Refine">refining</link> a
+  &skel;, &oof2; first decides which &sgmts; to subdivide. It chooses
+  up to two locations on each &sgmt;.  Then it subdivides the interior
+  of each &elem; in a way that is consistent with the subdivision of
+  its &sgmts;, as provided by a <emphasis>refinement rule</emphasis>.
+</para>
+<para>
+  Often there is more than one way to subdivide an element's interior,
+  and the refinement rule returns more than one possibility.  In this
+  case, &oof2; chooses between them by picking the one that minimizes
+  the resulting <link
+  linkend="Section-Concepts-Skeleton-Energy">effective energy</link>.
+  The best choice will depend upon the exact position of the original
+  element's nodes, the positions of the segment subdivisions, and the
+  pixels in the interior, all of which go into determining the shape
+  and homogeneity energies of the new elements.
+</para>
+<para>
+  Because there can be very many ways of subdividing an &elem;, the
+  <varname>rules</varname> parameter of <xref
+  linkend="RegisteredClass-Refine"/> lets you choose between two
+  refinement rule sets.  The <userinput>Large</userinput> rule set
+  considers almost all possible ways of refining an element, while the
+  <userinput>Quick</userinput> rule set examines just a few simple
+  geometries (often only one) for each
+  element. <userinput>Quick</userinput> often does a good enough job,
+  and does it faster.  It may be more efficient to use
+  <userinput>Quick</userinput> twice than to use
+  <userinput>Large</userinput> once.
+</para>
+<para>
+  For example, when subdividing each edge of a triangular element in a
+  single spot, the <userinput>Quick</userinput> rule set offers only
+  this configuration
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/refinement/111q.png" format="PNG"/>
+      </imageobject>
+    </mediaobject>
+    but the <userinput>Large</userinput> rule set also includes these
+    options:
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/refinement/111a.png" format="PNG"/>
+      </imageobject>
+    </mediaobject>
+    as well as these
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/refinement/111b.png" format="PNG"/>
+      </imageobject>
+    </mediaobject>
+    and all 26 geometries that can be derived from the
+    <userinput>Quick</userinput> refinement by subdividing one or more
+    of its quadrilaterals into two triangles
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/refinement/111c.png" format="PNG"/>
+      </imageobject>
+    </mediaobject>
+</para>
+<para>
+  Similarly, when bisecting one edge of a quadrilateral and trisecting
+  a neighboring edge, the <userinput>Quick</userinput> rule set
+  generates only the simple refinement
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/refinement/2001q.png" format="PNG"/>
+    </imageobject>
+  </mediaobject>
+  while the large rule set also considers these geometries
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/refinement/2001L.png" format="PNG"/>
+    </imageobject>
+  </mediaobject>
+  and all the configurations that can be derived from them by
+  splitting quadrilaterals into two triangles.
+</para>
+<para>
+  The full set of 66 refinement rules is in
+  <filename>SRC/engine/refinemethod.py</filename> in the &oof2; source
+  code, along with ascii art diagrams for each.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

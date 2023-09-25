@@ -69,9 +69,9 @@
 	    number of segments of the new &skel;.  Exactly how this is
 	    done depends on the setting of the <varname>rules</varname>
 	    parameter.  (For details, see the description of <xref
-	    linkend="Enum-RuleSet"/>.)  The rules sometimes allow more
-	    than one way of subdividing an element. In those cases, the
-	    total <link
+	    linkend="Enum-RuleSet"/>.)  The rules sometimes
+	    allow more than one way of subdividing an element. In those
+	    cases, the total <link
 	    linkend="Section-Concepts-Skeleton-Energy">effective
 	    energy</link> of the new elements is computed, and the
 	    configuration with the lowest energy is used.  The parameter
