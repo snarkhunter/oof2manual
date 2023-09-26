@@ -92,10 +92,12 @@
       <emphasis>Layers</emphasis>.  Each &layer; obscures the layers
       below it, and is obscured by the &layer; above it. Each &layer;
       displays some aspect of a single &oof2; object, either a
-      &micro;, &image;, &skel;, or &mesh;.  Some &layer; are created
-      automatically when a Graphics Window is opened.  Other &layer;
-      are created by the <link
-	linkend="Section-Graphics-LayerEditor">Layer Editor</link>.
+      &micro;, &image;, &skel;, or &mesh;.  Which objects are displayed
+      automatically can be controlled by the New Layer Policy commands
+      in the graphics window's Settings menu.
+      <!-- TODO: Provide links! -->
+      (Some utility layers, such as those that display selected
+      objects, are always created automatically.)
     </para>
     <para>
       Each &layer; is drawn on the Canvas by a <xref
@@ -115,21 +117,6 @@
       ordering can be changed by explicitly moving &layers; around in
       the <link linkend="Section-Graphics-LayerList">Layer
       List</link>.
-    </para>
-  </section>
-
-  <section id="Section-Graphics-LayerSet">
-    <title>Layer Sets</title>
-    <para>
-      &layers; that display the same object can be grouped together
-      into a <emphasis>LayerSet</emphasis>.  For example, a &skel;
-      might be displayed by drawing its <link
-      linkend="RegisteredClass-SkeletonEdgeDisplay">edges</link>
-      <emphasis>and</emphasis> by filling each &elem; according to its
-      <link linkend="RegisteredClass-SkeletonMaterialDisplay">material
-      color</link>.  If these two &layers; are in one &layerset;, then
-      they will always refer to the same &skel;.  Changing the &skel;
-      of one &layer; will also change the &skel; of the other &layer;.
     </para>
   </section>
 

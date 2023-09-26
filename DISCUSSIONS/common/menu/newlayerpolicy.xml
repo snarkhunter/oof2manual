@@ -1,0 +1,76 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  When a new object, such as an &image; or &skel; is created, &oof2;
+  needs to know whether or not to add it to a graphics window.
+  Previous versions of &oof2; had a confusing policy governing which
+  objects would be displayed and when.  To avoid confusion, there is
+  now one unambiguous policy:
+  <warning>
+    Nothing is displayed unless you request that it be displayed.
+  </warning>
+</para>
+<para>
+  Fortunately, you can change this policy by setting
+  <varname>policy</varname> in <xref
+  linkend="MenuItem-OOF.Settings.New_Layer_Policy"/>.
+  <itemizedlist>
+    <listitem>
+      <simpara>
+        <emphasis>Never</emphasis> is the default. New items are not
+        displayed automatically.  To add items to a graphics window,
+        use the <xref linkend="OOF.Graphics_n.Layer.New"/> menu item.
+      </simpara>
+    </listitem>
+    <listitem>
+      <simpara>
+        <emphasis>Always</emphasis> is the opposite of Never. New
+        items are always displayed in all graphics windows.  Images
+        will be displayed as bitmaps.  &skels; and &meshes; will be
+        displayed by their edges.  This probably isn't very useful if
+        you have a lot of objects.
+      </simpara>
+    </listitem>
+    <listitem>
+      <simpara>
+        <emphasis>Single</emphasis> is the most like the earlier
+        behavior.  Objects will be automatically displayed in an
+        existing graphics window if the window doesn't already contain
+        a similar object.  Each window can contain one &image;, one
+        &skel;, and so forth.
+      </simpara>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  Changing the policy from the <xref
+  linkend="MenuItem-OOF.Settings.Graphics_Defaults.New_Layer_Policy"/> menu
+  will change it for all new graphics windows, but won't affect
+  windows that are already open.  To change the behavior of open
+  windows, use the <xref
+  linkend="MenuItem-OOF.Graphics_n.Settings.New_Layer_Policy"/> menu item in the
+  already opened window.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
