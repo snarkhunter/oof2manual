@@ -1,0 +1,86 @@
+<!-- 
+  $RCSfile: trisection.xml,v $
+  $Revision: 1.2 $
+  $Author: langer $
+  $Date: 2009-10-16 22:11:48 $
+
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<para>
+  <link linkend="RegisteredClass-Refine">Refining</link> &skel;
+  elements with <varname>divider</varname> set to
+  <classname>TransitionPoints</classname> divides each marked edge
+  into up to three &sgmts; at the points are points where the original
+  &sgmt; crosses a boundary between two types of pixels.
+  The parameter <varname>minlength</varname> sets a minimum size (in
+  pixel units) for the subdivided segments.
+</para>
+<para>
+  The computation of these transition points involves the same
+  subtleties that occur in the calculation of <link
+  linkend="Section-Concepts-Skeleton-Segment">segment
+  homogeneiety</link>.  The green circles in <xref
+  linkend="Figure-transition-points"/> mark where an element's edges
+  cross pixel boundaries. The top boundary has two transition points,
+  and the right boundary has one.  The left boundary appears to have
+  six.  However, in a discretized image an diagonal pixel boundary
+  will always have the form of a staircase, and a segment following
+  the staircase will intersect the boundary multiple times.  These
+  intersections are not true transition points. &oof2; recognizes this
+  and will ignore the step intersections.
+</para>
+<para>
+  <figure id="Figure-transition-points">
+    <title>Transition Points</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/refinement/transpts.png"/>
+      </imageobject>
+    </mediaobject>
+    <caption>
+      <simpara>
+        An element overlying three types of pixels. The green circles
+        mark transition points on the edges.  The red arrows mark
+        points which look like transition points, but aren't.
+      </simpara>
+    </caption>
+  </figure>
+</para>
+<para>
+  As shown in <xref linkend="Figure-seg_subtleties"/>, the transition
+  points can be different on the two sides of a segment.  If the
+  &elems; on both sides of the &sgmt; are both being refined, the
+  lists of transition points from both sides are merged.  Points from
+  different sides that are less than <varname>minlength</varname>
+  apart are replaced by one point halfway between them.  Any remaining
+  sections of the &sgmt; that are shorter than
+  <varname>minlength</varname> are absorbed into their neighbors.
+</para>
+<para>
+  Finally, because the refinement <xref linkend="Enum-RuleSet"/>s only
+  handle bisection and trisection, if a &sgmt; has more than two
+  transition points, &oof2; ignores all but the two most evenly spaced
+  ones.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -916,67 +916,105 @@
     <section id="Section-Concepts-Skeleton-Segment">
       <title>Segments</title>
       <para>
-	The <emphasis>segments</emphasis> of a &skel; are the edges of
-	the elements, <foreignphrase>i.e</foreignphrase>, the lines
-	joining the nodes. (See <xref
-	linkend="Figure-SkeletonAnatomy"/>.)
+	    The <emphasis>segments</emphasis> of a &skel; are the edges of
+	    the elements, <foreignphrase>i.e</foreignphrase>, the lines
+	    joining the nodes. (See <xref
+	    linkend="Figure-SkeletonAnatomy"/>.)
       </para>
       <para>
-	Many &skel; operations operate on the set of currently
-	selected segments.  Segments may be selected by the <link
-	linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
-	Task Page</link> and the <link
-	linkend="Section-Graphics-SkeletonSelection">Skeleton
-	Selection</link> toolbox.
+	    Many &skel; operations operate on the set of currently
+	    selected segments.  Segments may be selected by the <link
+	    linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
+	    Task Page</link> and the <link
+	    linkend="Section-Graphics-SkeletonSelection">Skeleton
+	    Selection</link> toolbox.
       </para>
-      <formalpara id="Section-Concepts-SegmentHomogeneity">
-	<title>Segment Homogeneity</title>
-	<para>
-	  Homogeneity can be computed on &sgmts; just as it can on
-	  &elems;.  Analogous to the definition of Element <link
-	  linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>,
-	  the homogeneity of a Segment is defined as the fraction of
-	  the length of the segment that lies above that Segment's
-	  dominant pixel type.  See <xref
-	  linkend="Figure-seg_homogeneity"/> for a graphical
-	  representation.
-	  
-	  <figure id="Figure-seg_homogeneity">
-	    <title>Homogeneity of Segment</title>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/check_mark/seg_homogeneity.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/check_mark/seg_homogeneity.eps"></imagedata>
-	      </imageobject>
-	      <caption>
-		<para>
-		  <emphasis>Yellow</emphasis> is the dominant pixel
-		  color along the segment. Thus, the homogeneity of the
-		  Segment is the ratio of the fractional length covered by
-		  yellow pixels along the Segment
-		  L<subscript>yellow</subscript>/L<subscript>total</subscript>.
-		</para>
-	      </caption>
-	    </mediaobject>
-	  </figure>
-	</para>
-      </formalpara>
+      <para>
+	    Homogeneity can be computed on &sgmts; just as it can on
+	    &elems;.  Analogous to the definition of Element <link
+	    linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>,
+	    the homogeneity of a Segment is defined as the fraction of
+	    the length of the segment that lies above that Segment's
+	    dominant pixel type.  See <xref
+	    linkend="Figure-seg_homogeneity"/> for a graphical
+	    representation.
+	    
+	    <figure id="Figure-seg_homogeneity">
+	      <title>Homogeneity of a Segment</title>
+	      <mediaobject>
+	        <imageobject>
+		      <imagedata format="PNG" fileref="FIGURES/seg_homogeneity1.png"/>
+	        </imageobject>
+	        <caption>
+		      <para>
+		        <emphasis>Yellow</emphasis> is the dominant pixel
+		        color along the segment (the heavy black line).
+		        The homogeneity of the Segment is the 
+		        fractional length covered by the yellow pixels,
+		        L<subscript>yellow</subscript>/L<subscript>total</subscript>.
+		      </para>
+	        </caption>
+	      </mediaobject>
+	    </figure>
+	  </para>
+      <para>
+        Actually, &sgmt; homogeneity is quite a bit tricker to define
+        than &elem; homogeneity.  The previous discussion skipped over
+        two subtleties which are illustrated in <xref
+        linkend="Figure-seg_subtleties"/>.  The first difficulty,
+        illustrated by the vertical segment marked "A", is that the
+        homogeneity of a segment that is part of two &elems; can
+        depend on which element is being considered.  From the point
+        of view of the left hand element, segment A is about 60% blue
+        and 40% yellow, with the transition marked by the red circle.
+        From the point of view of the right hand element, it's about
+        80% yellow and 20% red, with the transition at the green
+        circle.  Because &oof2; attempts to put element edges on pixel
+        boundaries, this sort of situation can occur quite often.
+        &oof2; uses the correct one-sided homogeneity where it's clear
+        which side to use, and averages the two values when it's not.
+        The <link linkend="Section-Graphics-SkeletonInfo">Skeleton
+        Info Toolbox</link> in the Graphics window reports both
+        homogeneities when there are two distinct values.
+        <figure id="Figure-seg_subtleties">
+          <title>Segment Homogeneity Subtleties</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata format="PNG" fileref="FIGURES/seg_homogeneity2.png"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+        The second subtlety illustrated in <xref
+        linkend="Figure-seg_subtleties"/> is what happens when a
+        &sgmt; lies along a diagonal pixel boundary, like the one
+        marked "S".  Again, because &oof2; puts &sgmts; on pixel
+        boundaries, this is a common occurence.  If you were
+        traversing this &sgmt; looking for transition points in order
+        to subdivide it (see <xref linkend="RegisteredClass-Refine"/>
+        you would not want to consider any of the intersections to be
+        transition points -- they are just artifacts of the
+        pixelization of the image. This &sgmt; should be considered to
+        be entirely homogeneous, although whether it's yellow or red
+        depends on where you're standing.  &oof2; detects stairstepped
+        pixel boundaries like this and takes them into account when
+        computing &sgmt; homogeneity.
+      </para>
+      
+        
     </section>
     <section id="Section-Concepts-Skeleton-Groups">
       <title>Groups</title>
       <para>
-	The components of a &skel;, <link
-	linkend="Section-Concepts-Skeleton-Element">elements</link>,
-	<link linkend="Section-Concepts-Skeleton-Node">nodes</link>,
-	and <link
-	linkend="Section-Concepts-Skeleton-Segment">segments</link>,
-	may be placed into named groups.  These groups form a
-	convenient way to save and recover sets of selected objects.
-	Groups are created and manipulated by the <link
-	linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
-	Task Page</link>.
+	    The components of a &skel;, <link
+	    linkend="Section-Concepts-Skeleton-Element">elements</link>,
+	    <link linkend="Section-Concepts-Skeleton-Node">nodes</link>,
+	    and <link
+	    linkend="Section-Concepts-Skeleton-Segment">segments</link>,
+	    may be placed into named groups.  These groups form a
+	    convenient way to save and recover sets of selected objects.
+	    Groups are created and manipulated by the <link
+	    linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
+	    Task Page</link>.
       </para>
     </section>
     <section id="Section-Concepts-Skeleton-Boundary">

@@ -1,29 +1,21 @@
-<!-- 
-  $RCSfile: bisection.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:36 $
-
+<!--
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
-  <link linkend="RegisteredClass-Refine">Refining</link> &skel;
-  elements with <varname>divider</varname> set to
-  <classname>Bisection</classname> divides each marked edge into two
-  equal length segments.
+  When <link linkend="RegisteredClass-Refine">refining</link> a
+  &skel;, the next step after choosing which &sgmts; and &elems; to
+  divide is to determine where to subdivide the &sgmts;.
+  <classname>SegmentDivider</classname> objects determine how that
+  division is performed.
 </para>
-<para>
-  No subdivision will be done if the length of the resulting &sgmt; is
-  less than <varname>minlength</varname>, in pixel units.
-</para>
-    
+
 
 <!-- Keep this comment at the end of the file
   Local variables:
@@ -34,7 +26,7 @@
   sgml-always-quote-attributes:t
   sgml-indent-step:2
   sgml-indent-data:t
-  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "refentry" "refsect1")
   sgml-exposed-tags:nil
   sgml-local-ecat-files:nil
   End:
