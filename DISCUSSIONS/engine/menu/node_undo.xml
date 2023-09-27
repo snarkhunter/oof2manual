@@ -19,7 +19,7 @@
     version is pushed onto the stack.  The <command>Undo</command>
     pops the latest version off of the stack, thereby reverting to the
     previously selected set of &nodes;.  The popped set is not
-    destroyed -- it can be recovered with the <xref
+    destroyed &#x2014; it can be recovered with the <xref
     linkend="MenuItem-OOF.NodeSelection.Redo"/> command.
   </para>
   <para>

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: abg.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:35 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -36,7 +31,7 @@
     <inlineequation>
       <alt role="tex">\((\hat{\mathrm{\bf a}}, \hat{\mathrm{\bf b}}, \hat{\mathrm{\bf c}})\)</alt>
     </inlineequation>.
-    As usual, all rotations are right handed -- a positive rotation
+    As usual, all rotations are right handed &#x2014; a positive rotation
     about an axis is counterclockwise if the axis is pointed towards
     you.
   </para>

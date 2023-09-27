@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: check_hetero_segs.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:37 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -16,11 +11,12 @@
   <para>
     The &skel; <link
     linkend="RegisteredClass-Refine">refinement</link> process is
-    ultimately driven by &sgmts; -- the refinement <link
+    ultimately driven by &sgmts; &#x2014; the refinement <link
     linkend="Enum-RuleSet">rule</link> for each element is determined
     solely by number and configuration of marked &sgmts; in the
     element.  <classname>CheckHeterogeneousEdges</classname> directly
-    marks heterogeneous &sgmts; for refinement.
+    marks heterogeneous &sgmts; for refinement.  Segment homogeneity
+    is defined in <xref linkend="Section-Concepts-Skeleton-Segment"/>.
   </para>
 
   <para>
@@ -35,7 +31,6 @@
     linkend="RegisteredClass-FromAllSegments"/> for unrestricted
     operation.)
   </para>
-
 
   <para>
     <xref linkend="Figure-hetero_segments"/> shows &sgmts; that have

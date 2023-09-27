@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refine.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:46 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -20,7 +15,7 @@
   elements and their neighbors into smaller pieces.  This adds more
   degrees of freedom to the &skel;, which allows it to adapt better
   to the &micro;.  Refinement by itself is rarely sufficient to
-  create an acceptable &skel; -- it must be combined with other
+  create an acceptable &skel; &#x2014; it must be combined with other
   <link linkend="MenuItem-OOF.Skeleton.Modify">modifiers</link> that
   move nodes, such as <xref linkend="RegisteredClass-SnapNodes"/> or
   <xref linkend="RegisteredClass-Anneal"/>.
@@ -155,7 +150,7 @@
     <para id="Anchor:over-refinement">
       One should not abuse Refinement to the point where elements
       become too small.  <xref linkend="Figure-abused"/> shows a part
-      of &skel; that has been refined to the pixel resolution -- many
+      of &skel; that has been refined to the pixel resolution &#x2014; many
       elements along the boundary represent a single pixel. This is
       not only unphysical (the jagged pixel boundaries are an artifact
       of the digitization of the micrograph) but can introduce

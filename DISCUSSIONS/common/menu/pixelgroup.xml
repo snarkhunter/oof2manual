@@ -20,7 +20,7 @@
     &micro;.  Many &oof2; operations work on either the currently
     <link
     linkend="Section-Concepts-Microstructure-PixelSelection">selected
-    pixels</link> or on a <classname>PixelGroup</classname> -- for
+    pixels</link> or on a <classname>PixelGroup</classname> &#x2014; for
     example, &materials; can be <link
     linkend="MenuItem-OOF.Material.Assign">assigned</link> either to
     pixels in a group or to pixels in the selection.  In some sense,

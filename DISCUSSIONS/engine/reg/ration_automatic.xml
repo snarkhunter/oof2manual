@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: ration_automatic.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:44 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -28,7 +23,7 @@
     <para>
       Automatic <link
       linkend="RegisteredClass-Rationalize">rationalizing</link> works
-      best with a focus group of badly-shaped elements -- since it
+      best with a focus group of badly-shaped elements &#x2014; since it
       tries every possible method on each element, it's a very costly
       procedure for a large group of target elements.  See <xref
       linkend="MenuItem-OOF.ElementSelection.Select_by_Shape_Energy"/>

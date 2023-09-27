@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: element_undo.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -19,7 +14,7 @@
     version is pushed onto the stack.  The <command>Undo</command>
     pops the latest version off of the stack, thereby reverting to the
     previously selected set of &elems;.  The popped set is not
-    destroyed -- it can be recovered with the <xref
+    destroyed &#x2014; it can be recovered with the <xref
     linkend="MenuItem-OOF.ElementSelection.Redo"/> command.
   </para>
   <para>

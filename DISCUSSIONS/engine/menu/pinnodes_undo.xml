@@ -20,7 +20,7 @@
     Whenever nodes are pinned or unpinned, a new set is pushed onto
     the stack.  The <command>Undo</command> command pops the latest
     version off of the stack, thereby reverting to the previous set of
-    pinned &nodes;.  The popped version is not destroyed -- it can be
+    pinned &nodes;.  The popped version is not destroyed &#x2014; it can be
     recovered with the <xref
     linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"/> command.
   </para>

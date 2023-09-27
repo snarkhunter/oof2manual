@@ -60,7 +60,7 @@
   the aspect ratio is greater than <varname>threshold</varname>, but
   only if the parameter <varname>only_quads</varname> is
   <varname>False</varname>.  If your goal is to eliminate high aspect
-  elements, refining high aspect triangles is not useful -- it just
+  elements, refining high aspect triangles is not useful &#x2014; it just
   creates new smaller triangles with the same high aspect ratio.  To
   remove skinny triangles from a &skel;, use the <xref
   linkend="RegisteredClass-Rationalize"/> &skel; modifier.

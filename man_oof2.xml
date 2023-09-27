@@ -192,7 +192,7 @@ linkend='Section-Graphics-LayerEditor'>Layer Editor</link>">
 <book>
   <bookinfo>
     <title>The OOF2 Manual</title>
-    <subtitle>Revision 4.1.0 for OOF2 Version 2.1.17</subtitle>
+    <subtitle>Revision 5.0.0 for OOF2 Version 3.2.1</subtitle>
     <author>
       <firstname>Stephen A.</firstname><surname>Langer</surname>
     </author>
@@ -200,22 +200,10 @@ linkend='Section-Graphics-LayerEditor'>Layer Editor</link>">
       <firstname>Andrew C.E.</firstname><surname>Reid</surname>
     </author>
     <author>
-      <firstname>Valerie R.</firstname>
-      <surname>Coffman</surname>
+      <firstname>G&uuml;nay</firstname><surname>Doğan</surname>
     </author>
     <author>
-      <firstname>G&uuml;nay</firstname>
-      <surname>Doğan</surname>
-    </author>
-    <author>
-      <firstname>Seung-Ill</firstname><surname>Haan</surname>
-    </author>
-    <author>
-      <firstname>R. Edwin</firstname><surname>Garc&iacute;a</surname>
-    </author>
-    <author>
-      <firstname>Rhonald C.</firstname>
-      <surname>Lua</surname>
+      <firstname>Shahriyar</firstname><surname>Kesharvarz</surname>
     </author>
   </bookinfo>
 

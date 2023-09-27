@@ -59,7 +59,7 @@
   </para>
   <para>
     In simple problems with uncoupled fields, there is a natural
-    choice for the dependent equation -- it is the equation for the
+    choice for the dependent equation &#x2014; it is the equation for the
     component of the &flux; that is conjugate to the fixed &field;
     component.  For example, when constraining the value of the x
     component of displacement, the x component of the force balance

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: undo_pin.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:28 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -22,7 +17,7 @@
     the stack.  The <command>Undo</command> command operates on the
 specified &skel;, popping the latest
     configuration off of the stack, thereby reverting to the previous
-    set of pinned &nodes;.  The popped version is not destroyed -- it
+    set of pinned &nodes;.  The popped version is not destroyed &#x2014; it
     can be recovered with the <xref
     linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Redo"/>
     command.

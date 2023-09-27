@@ -1,11 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <!-- $RCSfile: nistexit.xsl,v $ -->
-  <!-- $Revision: 1.4 $ -->
-  <!-- $Author: langer $ -->
-  <!-- $Date: 2005/12/15 15:51:34 $ -->
-
 <!-- Modify the ulink template so that URLs marked "role=external"
      are directed to the NIST exit page. -->
 

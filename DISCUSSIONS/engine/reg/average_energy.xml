@@ -68,7 +68,7 @@
     linkend="Section-Concepts-Skeleton-Shape_Energy">shape
     energy</link> are to be equally considered (&agr; = 0.5), the move
     will not be accepted by the <classname>AverageEnergy</classname>
-    criterion -- it increases the overall energy level.  The move
+    criterion &#x2014; it increases the overall energy level.  The move
     becomes possible only if &agr; is greater than 0.8.
   </para>
 

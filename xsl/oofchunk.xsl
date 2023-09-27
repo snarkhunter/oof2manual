@@ -3,11 +3,6 @@
 		version="1.0"
                 exclude-result-prefixes="exsl">
 
-  <!-- $RCSfile: oofchunk.xsl,v $ -->
-  <!-- $Revision: 1.10 $ -->
-  <!-- $Author: reida $ -->
-  <!-- $Date: 2007/01/11 22:18:08 $ -->
-
 <xsl:import href="docbook-xsl-4.5/html/docbook.xsl"/>
 <xsl:include href="docbook-xsl-4.5/html/chunk-common.xsl"/>
 

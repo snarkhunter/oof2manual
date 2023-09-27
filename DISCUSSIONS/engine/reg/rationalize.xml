@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: rationalize.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:45 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -108,7 +103,7 @@
   </tip>
   <para>
     <xref linkend="Figure-before_rationalize"/> shows a &skel;
-    featuring six badly-shaped &elems; -- two
+    featuring six badly-shaped &elems; &#x2014; two
     <emphasis>sharp</emphasis> triangles, a <emphasis>flat</emphasis>
     triangle, a quadrilateral with a <emphasis>wide</emphasis>
     interior angle, and two quadrilaterals sharing a

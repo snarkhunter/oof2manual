@@ -130,6 +130,11 @@
 	  </mediaobject>
 	</figure>
       </listitem>
+      <listitem>
+        <para id="Section-Graphics-PixelInfo-Misorient">
+          TODO: paragraph about misorientation
+        </para>
+      </listitem>
     </itemizedlist>
   </para>
 </section>

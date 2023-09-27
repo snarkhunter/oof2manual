@@ -38,7 +38,7 @@
     this operation) is merged with the previous selection (the objects
     already selected) to form a new selection, as shown in <xref
     linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
+    (<userinput>True</userinput>) or not (<userinput>False</userinput>) the
     shift and control keys were depressed during the mouse click that
     initiated this command.
   </para>
@@ -54,8 +54,8 @@
       </thead>
       <tbody>
 	<row>
-	  <entry><userinput>0</userinput></entry>
-	  <entry><userinput>0</userinput></entry>
+	  <entry><userinput>False</userinput></entry>
+	  <entry><userinput>False</userinput></entry>
 	  <entry>
 	    <para>
 	      The previous selection is discarded.  The new selection
@@ -64,8 +64,8 @@
 	  </entry>
 	</row>
 	<row>
-	  <entry><userinput>1</userinput></entry>
-	  <entry><userinput>0</userinput></entry>
+	  <entry><userinput>True</userinput></entry>
+	  <entry><userinput>False</userinput></entry>
 	  <entry>
 	    <simpara>
 	      The previous selection is retained, and the current
@@ -75,8 +75,8 @@
 	  </entry>
 	</row>
 	<row>
-	  <entry><userinput>0</userinput></entry>
-	  <entry><userinput>1</userinput></entry>
+	  <entry><userinput>False</userinput></entry>
+	  <entry><userinput>True</userinput></entry>
 	  <entry>
 	    <simpara>
 	      The previous selection is toggled at all members of the
@@ -87,8 +87,8 @@
 	  </entry>
 	</row>
 	<row>
-	  <entry><userinput>1</userinput></entry>
-	  <entry><userinput>1</userinput></entry>
+	  <entry><userinput>True</userinput></entry>
+	  <entry><userinput>True</userinput></entry>
 	  <entry>
 	    <simpara>
 	      Members of the current selection are kept only if they

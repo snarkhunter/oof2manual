@@ -16,7 +16,7 @@
   <para>
     Activate the <link
     linkend='Section-Concepts-Microstructure-PixelSelection'>selected
-    pixels</link> -- add them to the existing &active;.  Compare with
+    pixels</link> &#x2014; add them to the existing &active;.  Compare with
     <xref
     linkend="MenuItem-OOF.ActiveArea.Activate_Pixel_Group"/>,
     which activates a pixel group, and with <xref

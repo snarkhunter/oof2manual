@@ -46,7 +46,7 @@
       </footnote>
       In particular, none of the <command>Undo</command> or
       <command>Redo</command> commands pay any attention to Active
-      Areas -- they can change &micros; or &skels; in inactive
+      Areas &#x2014; they can change &micros; or &skels; in inactive
       regions.
     </para>
   </caution>
