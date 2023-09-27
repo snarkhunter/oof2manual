@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: burn.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:51 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,102 +8,102 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Select a contiguous set of similarly colored pixels, using an
-    algorithm sometimes used to model forest fires.  This can be a
-    powerful way of selecting features in a &micro;.
-  </para>
-  <para>
-    The <varname>source</varname> parameter must be the <link
-    linkend="Section-Concepts-Path">path</link> to an &image;.  The
-    selection is made in the &micro; in which the &image; resides.
-  </para>
-  <para>
-    The algorithm first selects the pixel located at the first <link
-    linkend="Object-Point"><classname>Point</classname></link> in the
-    <varname>points</varname> list. The selection spreads like a
-    forest fire from one pixel to its neighbors, if the difference in
-    intensity between the selected pixel and its neighbor is less than
-    <varname>local_flammability</varname>, and the difference in
-    intensity between the neighbor and the first point is less than
-    <varname>global_flammability</varname>.
-  </para>
-  <para>
-    The <varname>color_space_norm</varname> parameter governs how
-    differences in intensity are computed.  It doesn't have a big
-    effect on the behavior of the algorithm.
-  </para>
-  <para>
-    The <varname>next_nearest</varname> parameter determines whether
-    the selection spreads diagonally from pixel to pixel in the
-    &image;, or only along the x and y axes.  A burn started at one
-    square on a checkerboard will spread to all the squares of the
-    same color if <varname>next_nearest</varname> is
-    <userinput>1</userinput>, but will not spread beyond the initial
-    square if <varname>next_nearest</varname> is
-    <userinput>0</userinput>.
-  </para>
-  <para>
-    The <varname>shift</varname> and <varname>ctrl</varname>
-    parameters govern how the current selection
-    (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
-    this operation) is merged with the previous selection (the objects
-    already selected) to form a new selection, as shown in <xref
-    linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-    shift and control keys were depressed during the mouse click that
-    initiated this command.
-  </para>
+<para>
+  Select a contiguous set of similarly colored pixels, using an
+  algorithm sometimes used to model forest fires.  This can be a
+  powerful way of selecting features in a &micro;.
+</para>
+<para>
+  The <varname>source</varname> parameter must be the <link
+  linkend="Section-Concepts-Path">path</link> to an &image;.  The
+  selection is made in the &micro; in which the &image; resides.
+</para>
+<para>
+  The algorithm first selects the pixel located at the first <link
+  linkend="Object-Point"><classname>Point</classname></link> in the
+  <varname>points</varname> list. The selection spreads like a
+  forest fire from one pixel to its neighbors, if the difference in
+  intensity between the selected pixel and its neighbor is less than
+  <varname>local_flammability</varname>, and the difference in
+  intensity between the neighbor and the first point is less than
+  <varname>global_flammability</varname>.
+</para>
+<para>
+  The <varname>color_space_norm</varname> parameter governs how
+  differences in intensity are computed.  It doesn't have a big
+  effect on the behavior of the algorithm.
+</para>
+<para>
+  The <varname>next_nearest</varname> parameter determines whether
+  the selection spreads diagonally from pixel to pixel in the
+  &image;, or only along the x and y axes.  A burn started at one
+  square on a checkerboard will spread to all the squares of the
+  same color if <varname>next_nearest</varname> is
+  <userinput>True</userinput>, but will not spread beyond the initial
+  square if <varname>next_nearest</varname> is
+  <userinput>False</userinput>.
+</para>
+<para>
+  The <varname>shift</varname> and <varname>ctrl</varname>
+  parameters govern how the current selection
+  (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
+  this operation) is merged with the previous selection (the objects
+  already selected) to form a new selection, as shown in <xref
+  linkend="Table:ShiftCtrl"/>.  They indicate whether
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>) the
+  shift and control keys were depressed during the mouse click that
+  initiated this command.
+</para>
 
-  <figure id="Figure-burn">
-    <title>Selecting Pixels with the Burn Algorithm</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/burn.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/burn.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  Pixels selected with the <classname>Burn</classname>
-	  selector with <varname>local_flammability</varname>=0.03,
-	  <varname>global_flammability</varname>=0.1,
-	  <varname>color_space_norm</varname>=<userinput>'L1'</userinput>,
-	  and <varname>next_nearest</varname>=0.
-	</simpara>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/burn2.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/burn2.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  The same selection made with both flammabilities set to
-	  0.2.  The fire has spread further and selected more pixels.
-	</simpara>
-      </caption>
-    </mediaobject>
-  </figure>
+<figure id="Figure-burn">
+  <title>Selecting Pixels with the Burn Algorithm</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/burn.png" format="PNG"/>
+    </imageobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/burn.eps" format="EPS"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+	    Pixels selected with the <classname>Burn</classname>
+	    selector with <varname>local_flammability</varname>=0.03,
+	    <varname>global_flammability</varname>=0.1,
+	    <varname>color_space_norm</varname>=<userinput>'L1'</userinput>,
+	    and <varname>next_nearest</varname>=0.
+	  </simpara>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/burn2.png" format="PNG"/>
+    </imageobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/burn2.eps" format="EPS"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+	    The same selection made with both flammabilities set to
+	    0.2.  The fire has spread further and selected more pixels.
+	  </simpara>
+    </caption>
+  </mediaobject>
+</figure>
 
 
-  
 
-  <!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
-  -->
+
+<!-- Keep this comment at the end of the file
+     Local variables:
+     sgml-omittag:t
+     sgml-shorttag:t 
+     sgml-namecase-general:nil
+     sgml-minimize-attributes:nil
+     sgml-always-quote-attributes:t
+     sgml-indent-step:2
+     sgml-indent-data:t
+     sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+     sgml-exposed-tags:nil
+     sgml-local-ecat-files:nil
+     End:
+-->
