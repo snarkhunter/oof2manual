@@ -493,7 +493,7 @@
 	linkend="MenuItem-OOF.Property.Parametrize"/>.
       </para>
     </section>			<!-- Properties -->
-    <section id="Section-Concepts-Material-Orientaton">
+    <section id="Section-Concepts-Material-Orientation">
       <title>Orientations</title>
       <para>
 	Many &properties; are anisotropic: their values depend on the
@@ -524,6 +524,33 @@
 	linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
 	&property; must also be present.  This allows some &materials;
 	to get their orientations from the map while others do not.
+      </para>
+      <para>
+        A <emphasis>misorientation</emphasis> is the difference in
+        orientation between two pixels.  Misorientation can be used in
+        &oof2; to select a range of contiguous or noncontiguous
+        pixels, and can be computed and displayed in the <link
+        linkend="Section-Graphics-PixelSelection">Pixel Selection
+        Toolbox</link>. The misorientation between two crystal
+        lattices is the magnitude of the <link
+        xref="RegisteredClass-Orientation">rotation</link> that aligns
+        one of the lattices with the other. The magnitude of a
+        rotation is easily computed by using the <xref
+        linkend="RegisteredClass-Axis"/> representation &#x2014; the
+        magnitude is just the absolute value of the
+        <varname>angle</varname> part of the <varname>Axis</varname>
+        object.
+      </para>
+      <para>
+        Because crystal lattices are symmetric, there is always more
+        than one rotation that brings one lattice into agreement with
+        another.  The misorientation is defined to be the magnitude of
+        the smallest of the rotations. Whenever misorientations are
+        computed, the user needs to specify the <xref
+        linkend="RegisteredClass-LatticeSymmetry"/>.  Since lattices
+        with different symmetries cannot be rotated into alignment
+        with each other, &oof2; assumes that all points being compared
+        have the same symmetry.
       </para>
     </section>			<!--Orientations-->
   </section>			<!-- Materials -->
