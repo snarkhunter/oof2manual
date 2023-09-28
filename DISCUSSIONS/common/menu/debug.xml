@@ -13,11 +13,11 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
   <para>
-    Calling this command with an argument of <userinput>1</userinput>
-    turns debugging mode on.  Calling with with an argument of
-    <userinput>0</userinput> turns it off.  In debugging mode, menu
-    commands and other debugging information is echoed to terminal
-    from which &oof2; was launched.
+    Calling this command with an argument of
+    <userinput>True</userinput> turns debugging mode on.  Calling with
+    with an argument of <userinput>False</userinput> turns it off.  In
+    debugging mode, menu commands are echoed to the terminal from
+    which &oof2; was launched, along with other debugging information.
   </para>
   <para>
     Debugging mode can also be turned on by providing the <link
@@ -27,7 +27,7 @@
     and adds a few more testing commands to the <xref
     linkend="MenuItem-OOF.Help.Debug"/> menu.  Initializing the random
     number is done to ensure that program behavior is deterministic in
-    debug mode.  The extra commands are undocumented.
+    debug mode.
   </para>
   <para>
     Echoed commands look like this:

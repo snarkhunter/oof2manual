@@ -118,6 +118,58 @@
       the <link linkend="Section-Graphics-LayerList">Layer
       List</link>.
     </para>
+    <section id="Section-Graphics-New-Layer-Policy">
+      <title>The New Layer Policy</title>
+      <para>
+        When a new object, such as an &image; or &skel; is created, &oof2;
+        needs to know whether or not to add it to a graphics window.
+        Previous versions of &oof2; had a confusing policy governing which
+        objects would be displayed and when.  To avoid confusion, there is
+        now one unambiguous policy:
+        <warning>
+          Nothing is displayed unless you request that it be displayed.
+        </warning>
+      </para>
+      <para>
+        You can change the policy to one of these values:
+        <itemizedlist>
+          <listitem>
+            <simpara>
+              <emphasis>Never</emphasis> is the default. New items are not
+              displayed automatically.  To add items to a graphics window,
+              use the <xref linkend="MenuItem-OOF.Graphics_n.Layer.New"/> menu item.
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <emphasis>Always</emphasis> is the opposite of Never. New
+              items are always displayed in all graphics windows.  Images
+              will be displayed as bitmaps.  &skels; and &meshes; will be
+              displayed by their edges.  This probably isn't very useful if
+              you have a lot of objects.
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <emphasis>Single</emphasis> is the most like the earlier
+              behavior.  Objects will be automatically displayed in an
+              existing graphics window if the window doesn't already contain
+              a similar object.  Each window can contain one &image;, one
+              &skel;, and so forth.
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        The policy can be changed in two places.  <xref
+        linkend="MenuItem-OOF.Settings.Graphics_Defaults.New_Layer_Policy"/>
+        menu will change it for all new graphics windows, but won't affect
+        windows that are already open.  To change the behavior of open
+        windows, use <xref
+        linkend="MenuItem-OOF.Graphics_n.Settings.New_Layer_Policy"/> in the
+        already opened window.
+      </para>
+    </section>
   </section>
 
   <section id="Section-Graphics-LayerList">
