@@ -1,0 +1,58 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Set the number of digits to use point when displaying floating point
+  numbers in the GUI.  In order for changes to be take effect, you may
+  need to close and reopen pages.
+</para>
+<para>
+  The default number of digits is 6.  If you need 10 digits instead,
+  put the line
+  <literallayout class="monospaced">
+    OOF.Settings.GUI_Digits(10)
+  </literallayout>
+  in your <link
+  linkend="Section-oof2rc"><filename>.oof2rc</filename></link> file.
+</para>
+<warning>
+  <para>
+    This <emphasis>can</emphasis> have an effect on numerical
+    operations, if you're not careful.  Sometimes &oof2; fills in a
+    value for you, and then uses that value for input.  For example,
+    if a &property; parametrization dialog box has two parameters,
+    <varname>P0</varname> and <varname>P1</varname> and you set
+    <varname>P0</varname> to <userinput>0.33333333333</userinput>,
+    then close the dialog and reopen it with <varname>digits</varname>
+    set to 2, <varname>P0</varname> will be displayed as 0.33.  If you
+    then click <guibutton>OK</guibutton>, perhaps after changing
+    <varname>P1</varname>, <varname>P0</varname> will be changed from
+    0.33333333333 to 0.33.
+  </para>
+</warning>
+
+            
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
+
+
+

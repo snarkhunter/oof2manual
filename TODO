@@ -1,0 +1,8 @@
+Find out why tip strings for PropertyParameterOutputs aren't appearing.
+
+Find all instances of "MISSING" in oof2_api.xml, find their sources in
+the OOF2 code, and add the missing documentation.
+
+Get rid of all references to Layer Sets and the Layer Editor.
+
+Go over all Chapters, Sections, and Toolbox pages.
