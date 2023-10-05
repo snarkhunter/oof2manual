@@ -1,0 +1,114 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  The generic reader is meant to read <link
+  linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+  maps</link> that cannot be read by the more <link
+  linkend="RegisteredClass-OrientMapReader">specific readers</link>.
+</para>
+<para>
+  It assumes that the data file is ASCII and contains lines which
+  are numbers separated from one another by blanks and the specified
+  <varname>separator</varname> character.  Any lines that can't be
+  read in that format at the top of the file are assumed to be a
+  header, and are discarded. Any lines beginning with the given
+  <varname>comment_character</varname> are also discarded, wherever
+  they occur.
+</para>
+<para>
+  Each line of data in the file must contain the position of a point
+  and the measured orientation at that point.  &oof2; requires that
+  data is on a rectangular grid.  If the file uses a triangular grid,
+  you need to delete every other line to turn it into a rectangular
+  before loading it into &oof2;.
+</para>
+<para>
+  The crystal orientations in the file are in the form of
+  <varname>angle_type</varname> angles, which can be any of the <xref
+  linkend="RegisteredClass-Orientation"/>s that &oof2; supports.  The
+  data are assumed to be in consecutive columns starting with column
+  <varname>angle_column</varname>. (The left hand column is column 1.)
+  <varname>angle_units</varname> determines if the angles are
+  interpreted as degrees or radians.
+</para>
+<para>
+  All angles are understood as differences from some reference zero
+  angle, and the definition of "zero" is a matter of convention.  The
+  software that created the data file may be using a different
+  convention.  &oof2; assumes that the z direction (out of the screen
+  toward the viewer) is the usual one.  The
+  <varname>angle_offset</varname> parameter rotates the axes by the
+  given amount in the given units in the xy plane.  If using <xref
+  linkend="RegisteredClass-Abg"/> format, the offset is added to
+  <varname>gamma</varname>.  If using <xref
+  linkend="RegisteredClass-Bunge"/>, it's subtracted from
+  <varname>phi1</varname>. 
+</para>
+<warning>
+  <para>
+    The definitions of the orientation angles also depend on how the
+    crystal structure is assumed to be oriented in the reference
+    configuration.  If &oof2; is making different assumptions than the
+    program that generated the the data file, it may be necessary to
+    rotate the angles further.  &oof2; currently does not do this for
+    you.  You should create a simple data file for an anisotropic
+    structure that you understand, load it into &oof2; and check that
+    its anistropic response is what you expect.
+  </para>
+</warning>
+<para>
+  &oof2; assumes that the x and y coordinates of the position are in
+  adjacent columns numbered <varname>xy_column</varname> and
+  <varname>xy_column</varname>+1.  If the x and y axes used by the
+  file do not agree with the axes used by &oof2;, set either
+  <varname>flip_x</varname> or <varname>flip_y</varname> or both to
+  <userinput>True</userinput>.  (In &oof2;, x increases from left to
+  right and y increases from bottom to top on the screen.)  If
+  necessary, all of the position data can be scaled by the specified
+  <varname>scale_factor</varname>.
+</para>
+<para>
+  &oof2; can automatically create <link
+  linkend="Section-Concepts-Microstructure->Pixel_Group">pixel
+  groups</link> based on data in the orientation map file.  The
+  <varname>groups</varname> parameter can contain a list of tuples,
+  each of which contains a group name template and an integer.  The
+  integer indicates which column of the data file contains the group
+  information.  All pixels in the data file containing the same value
+  in the given column will be put into a single group.  The name of
+  the group is the given name plus the value in the column.  For
+  example, If <varname>groups</varname> is <userinput>[(1, "%s-group"),
+  (3, "froop")]</userinput> and if all pixels have values
+  <userinput>abc</userinput> or <userinput>def</userinput> in column
+  1, then &oof2; will assign pixels with <userinput>abc</userinput> in
+  column 1 to a group named <varname>abc-group</varname>, and pixels
+  with <userinput>def</userinput> in column 1 to a group named
+  <userinput>def-group</userinput>.   Since the template for
+  column 3 doesn't contain <varname>%s</varname> the contents of
+  column 3 will simply be appended to the template, creating groups
+  named <userinput>froopX</userinput> for each X in column 3.
+</para>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
