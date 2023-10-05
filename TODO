@@ -1,4 +1,6 @@
-Find out why tip strings for PropertyParameterOutputs aren't appearing.
+OrientationEnum pages should link to the corresponding Orientation
+pages.  Replace "This operation brings the crystal axes into
+coincidence with the lab axes" with something clearer.
 
 Find all instances of "MISSING" in oof2_api.xml, find their sources in
 the OOF2 code, and add the missing documentation.

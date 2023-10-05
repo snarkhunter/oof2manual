@@ -1,0 +1,79 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  This <xref linkend="RegisteredClass-OrientMapReader"/> reads data
+  files produced by HKL<footnote>
+  <simpara>
+    This interface between HKL files and &oof2; was created at the
+    request of &oof2; users and does not represent an endorsement by
+    NIST.
+  </simpara>
+  </footnote> EBSD devices.  There is no guarantee that it
+  is up to date.  It was written to read files that were provided to
+  us as examples 10 or more years ago, and is not based on any formal
+  file specification.  If this <classname>HKL</classname> reader does
+  not work, try using <xref linkend="RegisteredClass-GenericReader"/>
+  instead.
+</para>
+<para>
+  The HKL data file is expected to look like this.  Items in bold are
+  keywords that &oof2; expects to find. <footnote>
+    <simpara>
+      &oof2; isn't actually paying much attention to the keywords.  It
+      assumes that they're in the order given, and it doesn't bother
+      to check that <code>YCells</code> comes after
+      <code>XCells</code>, for example.
+    </simpara>
+  </footnote>
+  Words in angle
+  brackets (like <code>&lt;this&gt;</code>) describe numbers that
+  &oof2; that oof2 will read.
+</para>
+
+<programlisting>
+  [Header lines above XCells are ignored]
+  <emphasis role="bold">XCells</emphasis> &lt;number of cells in the x direction&gt;
+  <emphasis role="bold">YCells</emphasis> &lt;number of cells in the y direction&gt;
+  <emphasis role="bold">XStep</emphasis> &lt;step size in the x direction&gt;
+  <emphasis role="bold">YStep</emphasis> &lt;step size in the y direction&gt;
+  [More header lines that are ignored]
+  <emphasis role="bold">Phase</emphasis> [more column names, also ignored]
+  &lt;phase&gt; &lt;x&gt; &lt;y&gt; [ignored] [ignored] &lt;Euler angles&gt; [ignored...]
+</programlisting>
+<para>
+  The last line is repeated for each data point. There should be
+  <code>XCells*YCells</code> data lines.  The Euler angle data is
+  three columns containing the <xref linkend="RegisteredClass-Bunge"/>
+  angles <varname>phi1</varname>, <varname>theta</varname>, and
+  <varname>phi2</varname> in that order.
+</para>
+<para>
+  The first column of the data section contains phase information in
+  the form of an integer.  Each pixel will be added to a <link
+  linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+  group</link> named <userinput>Phase_X</userinput>, where
+  <userinput>X</userinput> is the phase number from the data file.
+</para>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

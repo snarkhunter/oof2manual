@@ -1,0 +1,58 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  This <xref linkend="RegisteredClass-OrientMapReader"/> reads data
+  files produced by TSL (now ESAX)<footnote>
+  <simpara>
+    This interface between TSL files and &oof2; was created at the
+    request of &oof2; users and does not represent an endorsement by
+    NIST.
+  </simpara>
+  </footnote> EBSD devices.  There is no guarantee that it
+  is up to date.  It was written to read files that were provided to
+  us as examples 10 or more years ago, and is not based on any formal
+  file specification.  If this <classname>TSL</classname>  or
+  <xref linkend="RegisteredClass-TSL2"/>
+  readers do not work, try using <xref
+  linkend="RegisteredClass-GenericReader"/> instead.
+</para>
+<para>
+  The TSL data file is expected to look like this.  Items in bold are
+  keywords that &oof2; expects to find. <footnote>
+    <simpara>
+      &oof2; isn't actually paying much attention to the keywords.  It
+      assumes that they're in the order given, and it doesn't bother
+      to check that <code>YCells</code> comes after
+      <code>XCells</code>, for example.
+    </simpara>
+  </footnote>
+  Words in angle
+  brackets (like <code>&lt;this&gt;</code>) describe numbers that
+  &oof2; that oof2 will read.
+</para>
+
+<para>
+  TODO: Finish this
+</para>
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
