@@ -63,6 +63,13 @@
   <userinput>X</userinput> is the phase number from the data file.
 </para>
 
+<warning>
+  <para>
+    Please see the <link linkend="orientwarning">warning</link> about
+    how orientation data is interpreted.
+  </para>
+</warning>
+
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

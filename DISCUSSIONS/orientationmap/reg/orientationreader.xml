@@ -22,6 +22,57 @@
   you enter information about the format and hopefully will work on
   any file not covered by the specific readers.
 </para>
+<warning id="orientwarning">
+  <para>
+    There are a lot of assumptions that go into reading a orientation
+    map, and no real guarantee that the &oof2; authors have made the
+    correct ones.  These assumptions include
+    <itemizedlist>
+      <listitem>
+        <simpara>
+          The definition of the x and y axes.  Does y increase from
+          top to bottom or from bottom to top on the screen?
+        </simpara>
+      </listitem>
+      <listitem>
+        <simpara>
+          The definition of the <link
+          linkend="RegisteredClass-Orientation">Euler angles</link>.
+          Which convention is being used?
+        </simpara>
+      </listitem>
+      <listitem>
+        <simpara>
+          The reference orientation in lab space.  Which orientation
+          is the unrotated one?
+        </simpara>
+      </listitem>
+      <listitem>
+        <simpara>
+          The reference orientation in crystal space.  Which crystal
+          axes are aligned with the unrotated x, y, and z axes?
+        </simpara>
+      </listitem>
+    </itemizedlist>
+  </para>
+  <para>
+    The safest procedure is to test your assumptions.  Create an
+    artificial orientation map for a simple &micro; with anistropic
+    &properties;, rotate the material by a known angle, apply boundary
+    conditions or external forces, and make sure that the &micro;
+    responds in the way that you expect it to.  If you get results
+    that you don't expect, see if changing settings when reading the
+    orientation map leads to better results.  In that case, the <xref
+    linkend="RegisteredClass-GenericReader"/> gives you the most
+    options.
+  </para>
+  <para>
+    If &oof2; can't read your orientation map file, please contact the
+    developers at <email>oof_manager@ctcms.nist.gov</email>.  We may
+    be able to help.
+  </para>
+</warning>
+
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

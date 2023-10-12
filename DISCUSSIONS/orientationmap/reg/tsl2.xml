@@ -19,36 +19,36 @@
   </footnote> EBSD devices.  There is no guarantee that it is up to
   date.  It was written to read files that were provided to us as
   examples 10 or more years ago, and is not based on any formal file
-  specification.  The <xref linkend="RegisteredClass-TSLreader2"/>
-  reader is based on a more recent example file.  If the
+  specification.  The <xref linkend="RegisteredClass-TSLreader"/>
+  reader is based on an older example file.  If the
   <classname>TSL</classname> readers do not work, try using <xref
   linkend="RegisteredClass-GenericReader"/> instead.
 </para>
 <para>
   &oof2; expects the data file to start with some number of header
   lines that begin with <code>#</code>.  The content of these lines
-  is ignored, except that if one of them begins with <code># Column
-  1-3</code> and contains the word <code>radians</code>, then angle
-  data will be assumed to be in radians instead of degrees.
+  is ignored, except that if one of them begins with <code># GRID:
+  HexGrid</code> the data will be assumed to lie on a hexagonal grid.
 </para>
 <para>
   After the header comes a table of data, with one line for each data
-  point (pixel). There are ten columns of numbers, separated by white
-  space, followed by one column of phase names.  &oof2; only uses the
-  first five columns of numbers and the phase name.  The first three
-  columns specify an orientation in <xref
-  linkend="RegisteredClass-Bunge"/> angles, and the fourth and the
-  fifth columns are the x and y coordinates of the pixel.  Pixels with
-  the same phase name will be placed into a <link
+  point (pixel).  There must be at least 5 columns of data. The first
+  three are <xref linkend="RegisteredClass-Bunge"/> angles, and the
+  next two are x and y coordinates.  &oof2; ignores any additional
+  columns, except for the 8<superscript>th</superscript>, which can
+  contain the name of a phase.  Pixels with the same phase name will
+  be placed into a <link
   linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
   group</link> with that name.
 </para>
 <para>
   &oof2; only works on rectangular grids pixels.  If the x values of
-  the first two rows of data are not the same, &oof2; assumes that the
-  data file contains a hexagonal grid, and converts it to a
+  the first two rows of data are not the same, or if
+  <code>HexGrid</code> was found in the header, &oof2; assumes that
+  the data file contains a hexagonal grid, and converts it to a
   rectangular grid by discarding every other row.
 </para>
+
 <para>
   The parameters <varname>flip_x</varname>, <varname>flip_y</varname>,
   and <varname>angle_offset</varname> provide some flexibility in

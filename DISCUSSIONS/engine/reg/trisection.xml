@@ -15,7 +15,7 @@
 
 <para>
   <link linkend="RegisteredClass-Refine">Refining</link> &skel;
-  elements with <varname>divider</varname> set to
+  &elems; with <varname>divider</varname> set to
   <classname>Trisection</classname> divides each marked edge into
   three equal segments.
 </para>

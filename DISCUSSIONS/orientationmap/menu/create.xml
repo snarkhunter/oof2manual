@@ -28,9 +28,10 @@
   <para>
     The <varname>format</varname> argument indicates which type of
     orientation map data file is being loaded.  The available formats
-    are listed at <xref linkend="Enum-OrientMapType"/>.  New formats
-    can be added by writing a small amount of python code, as
-    described in <xref linkend="Section-Coding-OrientationMapFormats"/>.
+    are listed at <xref linkend="RegisteredClass-OrientMapReader"/>.
+    New formats can be added by writing a small amount of python code,
+    as described in <xref
+    linkend="Section-Coding-OrientationMapFormats"/>.
   </para>
   <para>
     This command is only available if &oof2; was built with the

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: bisection.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:36 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -15,7 +10,7 @@
 
 <para>
   <link linkend="RegisteredClass-Refine">Refining</link> &skel;
-  elements with <varname>divider</varname> set to
+  &elems; with <varname>divider</varname> set to
   <classname>Bisection</classname> divides each marked edge into two
   equal length segments.
 </para>
