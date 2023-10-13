@@ -119,16 +119,24 @@
 	    <phrase>Relationships between the main oof2 classes.</phrase>
 	  </textobject>
 	  <caption>
-	    The principal object hierarchy in &oof2; is that &micros;
-	    contain &images; and &skels;, and &skels; contain
-	    &meshes;.  &micros; also contain the pixel selection,
-	    pixel groups, and a &material; map, which assigns
-	    &materials; to pixels.  The arrows indicate the flow of
-	    information within the program: pixel selections made on
-	    &images; are used to generate the pixel groups and the
-	    &material; map.  That information is used to create a
-	    &skel;, from which &meshes; are constructed.  A &mesh; can
-	    be divided into &subproblems;.
+        <para>
+	      The principal object hierarchy in &oof2; is that &micros;
+	      contain &images; and &skels;, and &skels; contain &meshes;.
+	      &micros; also contain the pixel selection, pixel groups, and
+	      a &material; map, which assigns &materials; to
+	      pixels. &micros; can optionally contain an <link
+	      linkend="Section-Concepts-Microstructure-Orientation">Orientation
+	      Map</link>, which assigned <xref
+	      linkend="RegisteredClass-Orientation"/>s to pixels.
+        </para>
+        <para>
+          The arrows indicate the flow of information within the
+          program: pixel selections made on &images; are used to
+          generate the pixel groups and the &material; map.  That
+          information is used to create a &skel;, from which &meshes;
+          are constructed.  A &mesh; can be divided into
+          &subproblems;.
+        </para>
 	  </caption>
 	</mediaobject>
       </figure>
@@ -167,9 +175,6 @@
 	    <imageobject>
 	      <imagedata fileref="FIGURES/whowidget1.png" format="PNG"/>
 	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/whowidget1.eps" format="EPS"/>
-	    </imageobject>
 	    <caption>
 	      <para>
 		Menus for selecting a &mesh; in the <link
@@ -180,9 +185,6 @@
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="FIGURES/whowidget2.png" format="PNG"/>
-	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/whowidget2.eps" format="EPS"/>
 	    </imageobject>
 	    <caption>
 	      <para>

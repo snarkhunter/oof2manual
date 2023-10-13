@@ -67,8 +67,10 @@ texify:
 	(cd $(TEMPDIR); latex tex-math-inlines.tex && $(DVI2BITMAP) --verbose=quiet --query=bitmaps tex-math-inlines | awk '{printf "img[src=\"%s\"] {margin-bottom:%dpx;}\n",$$2,$$6-$$4}' > inline.css)
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
 
-oof2_api.xml: always
+oof2: always
 	(cd build; make -j 10 DESTDIR=~/stow/oof2-manual install; cd ~/stow; ./switchto oof2-manual)
+
+oof2_api.xml: oof2
 	bin/oof2 --script xmldump.py --batch --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
 	mv -f tmp oof2_api.xml

@@ -413,7 +413,8 @@
             <entry></entry>
             <entry>
               <simpara>
-                Don't show progress bars when in text mode.
+                Don't show progress bars when in text mode.  This is
+                useful if output is being redirected to a file.
               </simpara>
             </entry>
           </row>
@@ -662,10 +663,8 @@
 	    <title>The Error Dialog Box</title>
 	    <mediaobject>
 	      <imageobject>
-	        <imagedata fileref="FIGURES/errordialog.png" format="PNG"/>
-	      </imageobject>
-	      <imageobject>
-	        <imagedata fileref="FIGURES/errordialog.eps" format="EPS"/>
+	        <imagedata fileref="FIGURES/errordialog.png"
+                       format="PNG" contentwidth="100%"/>
 	      </imageobject>
 	    </mediaobject>
       </figure>
@@ -673,12 +672,12 @@
 	    If you abort &oof2; from the error dialog, or if something
 	    goes seriously wrong and it aborts itself, a log file will be
 	    saved automatically.  The default location of this file is
-	    operating system dependent, but it will always be in the
-	    default directory for temporary files on your system.
+	    operating system dependent, but it will be in the
+	    default directory for temporary files on your system unless
+        you override the default by setting the
+        <varname>OOFTMP</varname> environment variable. 
 	    <filename>/tmp</filename> is a good place to start
-	    looking. (You can control the location of the file by setting
-	    the <varname>OOFTMP</varname> environment variable to the name
-	    of a directory.) The file will be named
+	    looking.  The file will be named
 	    <filename>oof2-XXXXX.py</filename> or
 	    <filename>XXXXX-oof2.py</filename>, where
 	    <filename>XXXXX</filename> is a random string of characters
@@ -715,10 +714,8 @@
       <title>The Tutorial Window</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="FIGURES/tutorial.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/tutorial.eps" format="EPS"/>
+	  <imagedata fileref="FIGURES/tutorial.png"
+                 format="PNG" contentwidth="100%"/>
 	</imageobject>
       </mediaobject>
     </figure>
