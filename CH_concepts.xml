@@ -21,13 +21,15 @@
     <section id="Section-Concepts-Units">
       <title>Units</title>
       <para>
-	&oof2; has no built in system of units. Enter data in any set
-	of units that you prefer, and the output will be in those
-	units.  Of course, at NIST we prefer that you use <ulink
-	url="http://ts.nist.gov/ts/htdocs/200/202/pub814.htm#act">SI</ulink>
-	units (kilograms, meters, and seconds,
-	<foreignphrase>etc</foreignphrase>.), but if you use slugs,
-	furlongs, and fortnights instead, &oof2; will not complain.
+	    &oof2; has no built in system of units. Enter data in any set
+	    of units that you prefer, and the output will be in those
+	    units.  Of course, at NIST we prefer that you use <ulink
+	    url="https://www.nist.gov/pml/owm/metric-si/si-units">SI</ulink>
+	    units (kilograms, meters, and seconds,
+	    <foreignphrase>etc</foreignphrase>.), but if you use slugs,
+	    furlongs, and fortnights instead, &oof2; will not complain.
+	    Just make sure that <emphasis>all</emphasis> numerical values
+	    that you use are in consistent units.
       </para>
     </section>
     <section id="Section-Concepts-Objects">
@@ -112,9 +114,6 @@
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/infoflow.png" format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/infoflow.eps" format="EPS"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Relationships between the main oof2 classes.</phrase>
@@ -1012,14 +1011,14 @@
         marked "S".  Again, because &oof2; puts &sgmts; on pixel
         boundaries, this is a common occurence.  If you were
         traversing this &sgmt; looking for transition points in order
-        to subdivide it (see <xref linkend="RegisteredClass-Refine"/>
+        to subdivide it (see <xref linkend="RegisteredClass-Refine"/>)
         you would not want to consider any of the intersections to be
         transition points -- they are just artifacts of the
         pixelization of the image. This &sgmt; should be considered to
         be entirely homogeneous, although whether it's yellow or red
-        depends on where you're standing.  &oof2; detects stairstepped
-        pixel boundaries like this and takes them into account when
-        computing &sgmt; homogeneity.
+        depends on which side of the segment you're interested in.
+        &oof2; detects stairstepped pixel boundaries like this and
+        takes them into account when computing &sgmt; homogeneity.
       </para>
       
         

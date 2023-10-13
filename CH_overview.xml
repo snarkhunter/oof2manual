@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: CH_overview.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:10 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -236,7 +231,7 @@
       and provides examples.
     </para>
     <para>
-      This manual was written in <ulink url="http:docbook.org"
+      This manual was written in <ulink url="http://docbook.org"
       role="external">DocBook</ulink> 4.5 XML, and converted to html
       with <ulink url="http://saxon.sourceforge.net/"
       role="external"><application>saxon</application></ulink> 6.5.3.

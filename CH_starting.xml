@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: CH_starting.xml,v $
-  $Revision: 1.6 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:06 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -22,165 +17,191 @@
       url="http://www.nist.gov">NIST</ulink> <ulink
       url="http://www.ctcms.nist.gov">CTCMS</ulink> website at
       <blockquote>
-	<simpara><ulink
-	url="http://www.ctcms.nist.gov/oof/oof2/"><userinput>http://www.ctcms.nist.gov/oof/oof2/</userinput></ulink></simpara>
+	    <simpara><ulink
+	    url="http://www.ctcms.nist.gov/oof/oof2"/></simpara>
       </blockquote>
       After downloading the program, follow the installation
       instructions in the <ulink
-      url="http://www.ctcms.nist.gov/oof/oof2/source/README"><filename>README</filename></ulink>
+      url="http://www.ctcms.nist.gov/oof/oof2/README.html"><filename>README</filename></ulink>
       file.
     </para>
     <section id="Section-Requirements">
       <title>Requirements</title>
       <para>
-	&oof2; will run on any Unix system with an X11 server.  At the
-	current time, it will not run on Windows.  It has been
-	compiled and run at NIST on Debian Linux, Ubuntu Linux,
-	and Macintosh OS X systems.
+	    &oof2; will run on any Unix system with an X11 server.  At the
+	    current time, it will not run on Windows.  It has been
+	    compiled and run at NIST on Debian Linux, Ubuntu Linux, and
+	    Macintosh systems.  It can also be installed on Macintoshes
+	    via <ulink url="http://www.macports.org"
+	    role="external">MacPorts</ulink>.
       </para>
       <para>
-	&oof2; requires a number of other freely available software
-	programs and libraries to run.<footnote>
-	<simpara>
-	  We hope to soon have installer packages for popular
-	  open-source distributions to simplify this process.
-	</simpara>
-      </footnote>
-	These must be installed <emphasis>before</emphasis> you
-	install &oof2;. To compile &oof2; from sources, you will also
-	require the header files (<quote>includes</quote>) associated
-	with these programs and libraries.  These are usually
-	available as part of a <quote>development</quote> version of
-	the library software. 
+	    Building and running &oof2; requires a C++ compiler and a
+	    number of other freely available software programs and
+	    libraries, listed in <xref linkend="Table:Requirements"/>.
+	    These must be installed <emphasis>before</emphasis> you
+	    install &oof2;. To compile &oof2; from sources, you will also
+	    require the header files (<quote>includes</quote>) associated
+	    with these programs and libraries.  These are usually
+	    available as part of a <quote>development</quote> version of
+	    the library software. 
       </para>
       <para>
-	Detailed instructions for installing
-	the &oof2; dependencies on a number of operating systems are
-	available at
-	<blockquote>
-	  <simpara>
-	    <ulink url="http://www.ctcms.nist.gov/oof/oof2/prerequisites.html">
-	      <userinput>http://www.ctcms.nist.gov/oof/oof2/prerequisites.html</userinput>
-	    </ulink>
-	  </simpara>
-	</blockquote>
+	    Detailed instructions for installing
+	    the &oof2; dependencies on a number of operating systems are
+	    available at
+	    <blockquote>
+	      <simpara>
+	        <ulink url="http://www.ctcms.nist.gov/oof/oof2/prerequisites.html"/>.
+	      </simpara>
+	    </blockquote>
+        Most of the prequisites are met by installing
+        <application>OOFCanvas</application> and its prerequisites.
       </para>
       <table id="Table:Requirements">
-	<title>&oof2; Requirements</title>
-	<tgroup cols="3">
-	  <tbody>
-	    <row>
-	      <entry>
-		<simpara><application>Python</application></simpara>
-	      </entry>
-	      <entry><simpara>2.4 through 2.7</simpara></entry>
-	      <entry>
-		<simpara>
-		  <ulink url="http://www.python.org" role="external"/>
-		</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><application>Magick++</application></simpara>
-	      </entry>
-	      <entry></entry>
-	      <entry>
-		<simpara>
-		  <ulink url="http://www.imagemagick.org/Magick++/"
-			 role="external"/>
-		</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><application>gtk+</application></simpara>
-	      </entry>
-	      <entry><simpara>2.6 or later</simpara></entry>
-	      <entry>
-		<simpara>
-		  <ulink url="http://www.gtk.org/download.html/" role="external"/>
-		</simpara>		
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><application>libgnomecanvas</application></simpara>
-	      </entry>
-	      <entry><simpara>2.6 or later</simpara></entry>
-	      <entry>
-		<para>
-		  <ulink
-		      url="http://directory.fsf.org/graphics/misc/libgnomecanvas.html" role="external"/>
-		</para>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><application>pygtk-2.0</application></simpara>
-	      </entry>
-	      <entry>
-	      <simpara>2.6 or later</simpara></entry>
-	      <entry>
-		<para>
-		  <ulink url="http://www.pygtk.org/downloads.html"
-			 role="external"/>
-		</para>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry><para><application>swig</application></para></entry>
-	      <entry>
-		<para>
-		  1.1 build 883<footnote>
-		  <simpara>
-		    We are using an old version of
-		    <application>swig</application> because it was
-		    the stable version at the time we began
-		    &oof2;. Earlier versions, notably 1.1 patch 5,
-		    will <emphasis>not</emphasis> work
-		    properly. However,
-		    <application>swig</application> is only used
-		    to generate the <quote>glue</quote> code
-		    between the C++ and Python portions of &oof2;.
-		    If you're not going to be developing your own
-		    C++ modules, you can use the
-		    <userinput>--skip-swig</userinput> option when
-		    building &oof2;, and you won't have to install
-		    <application>swig</application>.  See the
-		    <filename>README</filename> for the details.
-		  </simpara>
-		</footnote>
-		</para>
-	      </entry>
-	      <entry>
-		<para>
-		  <ulink url="http://www.swig.org/download.html" role="external"/>
-		</para>
-	      </entry>
-	    </row>
-	  </tbody>
-	</tgroup>
+	    <title>&oof2; Requirements</title>
+	    <tgroup cols="3">
+          <colspec colnum='3' colname='site'/>
+	      <tbody>
+	        <row>
+	          <entry>
+		        <simpara><application>Python</application></simpara>
+	          </entry>
+	          <entry><simpara>3.8 through 3.11</simpara></entry>
+	          <entry>
+		        <ulink url="http://www.python.org" role="external"/>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><application>OOFCanvas</application></simpara>
+              </entry>
+              <entry> <simpara>1.1.0 or later</simpara> </entry>
+              <entry>
+                <ulink url="https://www.ctcms.nist.gov/oof/oofcanvas"/>
+              </entry>
+            </row>
+	        <row>
+	          <entry>
+		        <simpara><application>Magick++</application></simpara>
+	          </entry>
+	          <entry><simpara>6.x</simpara></entry>
+	          <entry>
+		        <ulink url="https://www.imagemagick.org/Magick%2b%2b"
+			           role="external">https://www.imagemagick.org/Magick++</ulink>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><application>Gtk3</application></simpara>
+	          </entry>
+	          <entry>
+                <simpara>
+                  3.22 or later, but not as late as 4.0
+                </simpara>
+              </entry>
+	          <entry>
+		        <ulink url="https://docs.gtk.org/gtk3" role="external"/>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><application>pygobject</application></simpara>
+	          </entry>
+	          <entry>
+	          <simpara>3.28 or later</simpara></entry>
+	          <entry>
+		        <ulink url="https://pypi.org/project/PyGObject"
+                       role="external"/>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><application>cairomm</application></simpara>
+              </entry>
+              <entry>
+                <simpara>1.12 or later</simpara>
+              </entry>
+              <entry>
+                <ulink url="https://www.cairographics.org/cairomm"
+                       role="external"/>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <simpara><application>Pango</application></simpara>
+              </entry>
+              <entry>
+                <simpara>1.40 or later</simpara>
+              </entry>
+              <entry>
+                <ulink url="https://pango.gnome.org" role="external"/>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <simpara><application>PangoCairo</application></simpara>
+              </entry>
+              <entry>
+                <simpara>1.40 or later</simpara>
+              </entry>
+              <entry>
+                <ulink
+                    url="https://docs.gtk.org/PangoCairo" role="external"/>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <para><application>BLAS</application>
+                <footnote id="footnote-blas">
+                  <para>
+                    BLAS and LAPACK are provided by the vecLib system
+                    library on macOS and don't need to be installed.
+                  </para>
+                </footnote>
+                </para>
+              </entry>
+              <entry colname='site'>
+                <ulink url="https://www.netlib.org/blas" role="external"/>
+              </entry>
+            </row>
+            <row>
+              <entry><simpara><application>LAPACK</application><footnoteref
+              linkend="footnote-blas"/>
+              </simpara></entry>
+              <entry colname='site'>
+                <ulink url="https://www.netlib.org/lapack" role="external"/>
+              </entry>
+            </row>
+	        <row>
+	          <entry><simpara><application>swig</application></simpara></entry>
+	          <entry>
+		        <simpara>
+                  4.0 or later
+		        </simpara>
+	          </entry>
+	          <entry>
+		        <ulink url="http://www.swig.org" role="external"/>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><application>cmake</application></simpara>
+              </entry>
+              <entry> <simpara>3.18 or later</simpara> </entry>
+              <entry>
+                <ulink url="https://cmake.org" role="external"/>
+              </entry>
+            </row>
+	      </tbody>
+	    </tgroup>
       </table>
       <para>
-	Macintosh users should install Apple's
-	<application>X11.app</application> or another X11 server.
-	<application>X11.app</application> is available
-	from <ulink url="http://xquartz.macosforge.org/trac/wiki"
-	role="external">XQuartz</ulink> or as an option during the OS
-	X installation process.
-      </para>
-      <para>
-	&oof2; also requires the ability to run the
-	<ulink url="http://www.netlib.org/blas/" role="external"><application>blas</application></ulink>
-	and
-	<ulink url="http://www.netlib.org/lapack/"
-	role="external"><application>lapack</application></ulink>
-	linear algebra subroutines.  These are provided with many
-	systems.  In particular, on Macintosh OS X they are built into
-	the <ulink url="http://developer.apple.com/performance/accelerateframework.html">Accelerate</ulink>
-	framework, and no special libraries are required.  On Linux
-	and commercial Unix systems, they may have to be installed.
+	    Macintosh users can configure &oof2; to use either Apple's
+	    native Quartz graphics (recommended) or X11.  If using X11
+	    they will need to install an X11 server such as <ulink
+	    url="http://xquartz.macosforge.org/trac/wiki"
+	    role="external">XQuartz</ulink>.
       </para>
     </section>
     
@@ -193,16 +214,6 @@
       <quote>oof2</quote> in a bin directory in your execution path.
       You can now simply type <userinput>oof2</userinput> at your
       shell prompt, and &oof2; will start up.
-      <footnote> 
-	<simpara>
-	  Users of older Macintosh OS X systems may have to start
-	  <application>X11</application> before starting &oof2;.  Then
-	  &oof2; can be started in an <application>xterm</application>
-	  window, or in a <application>Terminal</application> window
-	  if the <literal>DISPLAY</literal> environment variable has
-	  been set correctly, probably to <userinput>:0.0</userinput>.
-	</simpara>
-      </footnote>
     </para>
     <para>
       &oof2; has many command line options, shown in <xref
@@ -215,448 +226,464 @@
     <table id="Table:options">
       <title>&oof2; Command Line Options</title>
       <tgroup cols="3">
-	<colspec colname="option"/>
-	<colspec colname="args"/>
-	<colspec colname="descr"/>
-	<thead>
-	  <row>
-	    <entry>Option</entry>
-	    <entry>Argument</entry>
-	    <entry>Description</entry>
-	  </row>
-	</thead>
-	<tbody>
-	  <row>
-	    <entry namest="option" nameend="descr" align="left">
-	      Options for loading files and commands.
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-script">
-	    <entry>
-	      <simpara><userinput>--script</userinput></simpara>
-	    </entry>
-	    <entry><simpara>filename</simpara></entry>
-	    <entry>
-	      <para>
-		Load a Python <link
-		linkend="MenuItem-OOF.File.Load.Script">script</link>.<footnote
-		id="Footnote:fileoptions">
-		  <simpara>
-		    This option may be present more than once.  Files
-		    will be loaded in the order in which they are
-		    listed.
-		  </simpara>
-		</footnote>
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-image">
-	    <entry>
-	      <simpara><userinput>--image</userinput></simpara>
-	    </entry>
-	    <entry><simpara>filename</simpara></entry>
-	    <entry>
-	      <para>
-		Load an &image; and create a &micro; from
-		it.<footnoteref linkend="Footnote:fileoptions"/>
-		<footnote>
-		  <simpara>
-		    See <xref
-		    linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"/>.
-		  </simpara>
-		</footnote>
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry><simpara><userinput>--data</userinput></simpara></entry>
-	    <entry><simpara>filename</simpara></entry>
-	    <entry>
-	      <para>
-		Load an &oof2; <link
-		linkend="MenuItem-OOF.File.Load.Data"> data file
-		</link>.<footnoteref linkend="Footnote:fileoptions"/>
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-import">
-	    <entry>
-	      <simpara><userinput>--import</userinput></simpara>
-	    </entry>
-	    <entry><simpara>module name</simpara></entry>
-	    <entry>
-	      <para>
-		Load a Python <link
-		linkend="Chapter-Extending">extension
-		module</link>.<footnoteref
-		linkend="Footnote:fileoptions"/>
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-pathdir">
-	    <entry>
-	      <simpara><userinput>--pathdir</userinput></simpara>
-	    </entry>
-	    <entry>The name of a directory</entry>
-	    <entry>
-	      <para>
-		Add a directory to the Python search path, so that
-		OOF2 can import modules from it.<footnoteref
-		linkend="Footnote:fileoptions"/>
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-autoload">
-	    <entry>
-	      <simpara><userinput>--autoload</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Automatically load all
-		&oof2; <link linkend="Chapter-Extending">extension
-		moduless</link> found in
-		the <filename>EXTENSIONS</filename> directory.
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-command">
-	    <entry>
-	      <simpara><userinput>--command</userinput></simpara>
-	    </entry>
-	    <entry>
-	      <simpara>text</simpara>
-	    </entry>
-	    <entry>
-	      <para>
-		Evaluate the given OOF2 Python command. Any valid
-		Python expression can be given.  It must be in
-		quotation marks if it contains spaces.<footnoteref
-		linkend="Footnote:fileoptions"/>
-	      </para>
-	    </entry>
-	  </row>
+	    <colspec colname="option"/>
+	    <colspec colname="args"/>
+	    <colspec colname="descr"/>
+	    <thead>
+	      <row>
+	        <entry>Option</entry>
+	        <entry>Argument</entry>
+	        <entry>Description</entry>
+	      </row>
+	    </thead>
+	    <tbody>
+	      <row>
+	        <entry namest="option" nameend="descr" align="left">
+	          Options for loading files and commands.
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-script">
+	        <entry>
+	          <simpara><userinput>--script</userinput></simpara>
+	        </entry>
+	        <entry><simpara>filename</simpara></entry>
+	        <entry>
+	          <para>
+		        Load a Python <link
+		        linkend="MenuItem-OOF.File.Load.Script">script</link>.<footnote
+		        id="Footnote:fileoptions">
+		        <simpara>
+		          This option may be present more than once.  Files
+		          will be loaded in the order in which they are
+		          listed.
+		        </simpara>
+		      </footnote>
+	          </para>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-image">
+	        <entry>
+	          <simpara><userinput>--image</userinput></simpara>
+	        </entry>
+	        <entry><simpara>filename</simpara></entry>
+	        <entry>
+	          <para>
+                Load an &image; and create a &micro; from
+	            it.<footnoteref linkend="Footnote:fileoptions"/>
+		        <footnote>
+		          <simpara>
+		            See <xref
+		            linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"/>.
+		          </simpara>
+		        </footnote>
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry><simpara><userinput>--data</userinput></simpara></entry>
+	        <entry><simpara>filename</simpara></entry>
+	        <entry>
+	          <para>
+		        Load an &oof2; <link
+		        linkend="MenuItem-OOF.File.Load.Data"> data file
+		        </link>.<footnoteref linkend="Footnote:fileoptions"/>
+	          </para>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-import">
+	        <entry>
+	          <simpara><userinput>--import</userinput></simpara>
+	        </entry>
+	        <entry><simpara>module name</simpara></entry>
+	        <entry>
+	          <para>
+		        Load a Python <link
+		        linkend="Chapter-Extending">extension
+		        module</link>.<footnoteref
+		        linkend="Footnote:fileoptions"/>
+	          </para>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-pathdir">
+	        <entry>
+	          <simpara><userinput>--pathdir</userinput></simpara>
+	        </entry>
+	        <entry>The name of a directory</entry>
+	        <entry>
+	          <para>
+		        Add a directory to the Python search path, so that
+		        &oof2; can import modules from it.<footnoteref
+		        linkend="Footnote:fileoptions"/>
+	          </para>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-autoload">
+	        <entry>
+	          <simpara><userinput>--autoload</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Automatically load all
+		        &oof2; <link linkend="Chapter-Extending">extension
+		        modules</link> found in
+		        the <filename>EXTENSIONS</filename> directory.
+	          </para>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-command">
+	        <entry>
+	          <simpara><userinput>--command</userinput></simpara>
+	        </entry>
+	        <entry>
+	          <simpara>text</simpara>
+	        </entry>
+	        <entry>
+	          <para>
+		        Evaluate the given &oof2; Python command. Any valid
+		        Python expression can be given.  It must be in
+		        quotation marks if it contains spaces.<footnoteref
+		        linkend="Footnote:fileoptions"/>
+	          </para>
+	        </entry>
+	      </row>
+          
+	      <row>
+	        <entry namest="option" nameend="descr" align="left">
+	          Options controlling the user interface
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-text">
+	        <entry><simpara><userinput>--text</userinput></simpara></entry>
+	        <entry></entry>
+	        <entry><simpara>Turn off graphics mode.</simpara></entry>
+	      </row>
+	      <row id="CommandLineArg-geometry">
+	        <entry>
+	          <simpara><userinput>--geometry</userinput></simpara>
+	        </entry>
+	        <entry>
+	          <simpara>width x height</simpara>
+	        </entry>
+	        <entry>
+	          <para>
+		        Specify the initial size, in pixels, of the main &oof2;
+		        window.
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry><simpara><userinput>--gtk</userinput></simpara></entry>
+	        <entry><simpara>gtk options</simpara></entry>
+	        <entry>
+	          <para>
+		        Extra options for graphics mode, passed to the gtk+
+		        library.
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara><userinput>--quiet</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Quit quietly when done, without confirmation.
+	          </para>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-batch">
+	        <entry>
+	          <simpara><userinput>--batch</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Quit immediately after running scripts (implies
+		        <userinput>--text</userinput> and
+		        <userinput>--no-bars</userinput>).
+	          </para>
+	        </entry>
+	      </row>
+          <row>
+            <entry>
+              <simpara><userinput>--no-bars</userinput></simpara>
+            </entry>
+            <entry></entry>
+            <entry>
+              <simpara>
+                Don't show progress bars when in text mode.
+              </simpara>
+            </entry>
+          </row>
+	      <row>
+	        <entry namest="option" nameend="descr" align="left">
+	          Miscellaneous options.
+	        </entry>
+	      </row>
+	      <row>
+	        <entry><simpara><userinput>--help</userinput></simpara></entry>
+	        <entry></entry>
+	        <entry>
+	          <simpara>Display valid options, then quit.</simpara>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara><userinput>--version</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <simpara>Display version number, then quit.</simpara>
+	        </entry>
+	      </row>
+	      <row id="CommandLineArg-seed">
+	        <entry><simpara><userinput>--seed</userinput></simpara></entry>
+	        <entry><simpara>integer</simpara></entry>
+	        <entry>
+	          <para>Seed for the random number generator.</para>
+	        </entry>
+	      </row>
 
-	  <row>
-	    <entry namest="option" nameend="descr" align="left">
-	      Options controlling the user interface
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-text">
-	    <entry><simpara><userinput>--text</userinput></simpara></entry>
-	    <entry></entry>
-	    <entry><simpara>Turn off graphics mode.</simpara></entry>
-	  </row>
-	  <row id="CommandLineArg-geometry">
-	    <entry>
-	      <simpara><userinput>--geometry</userinput></simpara>
-	    </entry>
-	    <entry>
-	      <simpara>width x height</simpara>
-	    </entry>
-	    <entry>
-	      <para>
-		Specify the initial size, in pixels, of the main OOF2
-		window.
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry><simpara><userinput>--gtk</userinput></simpara></entry>
-	    <entry><simpara>gtk options</simpara></entry>
-	    <entry>
-	      <para>
-		Extra options for graphics mode, passed to the gtk+
-		library.
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--quiet</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Quit quietly when done, without confirmation.
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-batch">
-	    <entry>
-	      <simpara><userinput>--batch</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Quit immediately after running scripts (implies
-		<userinput>--text</userinput>).
-	      </para>
-	    </entry>
-	  </row>
-
-	  <row>
-	    <entry namest="option" nameend="descr" align="left">
-	      Miscellaneous options.
-	    </entry>
-	  </row>
-	  <row>
-	    <entry><simpara><userinput>--help</userinput></simpara></entry>
-	    <entry></entry>
-	    <entry>
-	      <simpara>Display valid options, then quit.</simpara>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--version</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <simpara>Display version number, then quit.</simpara>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-seed">
-	    <entry><simpara><userinput>--seed</userinput></simpara></entry>
-	    <entry><simpara>integer</simpara></entry>
-	    <entry>
-	      <para>Seed for the random number generator.</para>
-	    </entry>
-	  </row>
-
-	  <row>
-	    <entry namest="option" nameend="descr" align="left">
-	      Debugging options, which you probably won't need.
-	    </entry>
-	  </row>
-
-	  <row id="CommandLineArg-debug">
-	    <entry>
-	      <simpara><userinput>--debug</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Turn on debugging mode (increased verbosity, and
-		seed=17).
-	      </para>
-	    </entry>
-	  </row>
-	  <row id="CommandLineArg-unthreaded">
-	    <entry>
-	      <simpara><userinput>--unthreaded</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Don't use multiple execution threads.<footnote>
-		  <simpara>
-		    Threading allows multiple tasks to be performed
-		    simultaneously.  Using
-		    <userinput>--unthreaded</userinput> makes the GUI
-		    unresponsive during computations, but is useful
-		    for debugging some kinds of problems.
-		  </simpara>
-		</footnote>
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--record</userinput></simpara>
-	    </entry>
-	    <entry><simpara>file name</simpara></entry>
-	    <entry>
-	      <para>
-		Record all user interaction with the GUI in the given
-		log file.  Used for generating the GUI tests.
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--replay</userinput></simpara>
-	    </entry>
-	    <entry><simpara>file name</simpara></entry>
-	    <entry>
-	      <para>
-		Replay the GUI session stored in the given log file,
-		which must have been recorded with
-		<userinput>--record</userinput>.  Used when running
-		GUI tests.
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--replaydelay</userinput></simpara>
-	    </entry>
-	    <entry><simpara>integer</simpara></entry>
-	    <entry>
-	      <para>
-		Approximate time delay in milliseconds to insert
-		between lines when replaying a recorded GUI log file.
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--no-checkpoints</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Ignore synchronizing checkpoints when replaying a GUI
-		log file.  Not recommended.
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara>
-		<userinput>--fakefileselector</userinput>
-	      </simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <simpara>
-		Don't use the real file selector widget, which causes
-		problems when replaying GUI logs.<footnote
-		id="Footnote:fakefileselector">
-		<simpara>
-		  If neither <userinput>--fakefileselector</userinput>
-		  nor <userinput>--no-fakefileselector</userinput> is
-		  given, the fake file selector will be used when
-		  recording or replaying GUI logs, and the real file
-		  selector will be used at all other times.
-		</simpara>
-	      </footnote>
-	      </simpara>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara>
-		<userinput>--no-fakefileselector</userinput>
-	      </simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Use the real file selector widget, even though it
-		causes problems when replaying GUI logs.<footnoteref
-		linkend="Footnote:fakefileselector"/>
-	      </para>
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>
-	      <simpara><userinput>--nobars</userinput></simpara>
-	    </entry>
-	    <entry></entry>
-	    <entry>
-	      <para>
-		Don't show progress bars when in text mode.
-	      </para>
-	    </entry>
-	  </row>
-	</tbody>
+	      <row>
+	        <entry namest="option" nameend="descr" align="left">
+	          Debugging options, which you probably won't need.
+	        </entry>
+	      </row>
+          
+	      <row id="CommandLineArg-debug">
+	        <entry>
+	          <simpara><userinput>--debug</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Turn on debugging mode (increased verbosity, and
+		        seed=17).
+	          </para>
+	        </entry>
+	      </row>
+          <row>
+            <entry><simpara><userinput>--no-rc</userinput></simpara></entry>
+            <entry></entry>
+            <entry>
+              <para>
+                Don't read the <link
+                linkend="Section-oof2rc"><filename>.oof2rc</filename></link>
+                file when starting up.
+              </para>
+            </entry>
+          </row>
+	      <row id="CommandLineArg-unthreaded">
+	        <entry>
+	          <simpara><userinput>--unthreaded</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Don't use multiple execution threads.<footnote>
+		        <simpara>
+		          Threading allows multiple tasks to be performed
+		          simultaneously.  Using
+		          <userinput>--unthreaded</userinput> makes the GUI
+		          unresponsive during computations, but is useful for
+		          debugging some kinds of problems.
+		        </simpara>
+		      </footnote>
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara><userinput>--record</userinput></simpara>
+	        </entry>
+	        <entry><simpara>file name</simpara></entry>
+	        <entry>
+	          <para>
+		        Record all user interaction with the GUI in the given
+		        log file.  Used for generating the GUI tests.
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara><userinput>--replay</userinput></simpara>
+	        </entry>
+	        <entry><simpara>file name</simpara></entry>
+	        <entry>
+	          <para>
+		        Replay the GUI session stored in the given log file,
+		        which must have been recorded with
+		        <userinput>--record</userinput>.  Used when running
+		        GUI tests.
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara><userinput>--replaydelay</userinput></simpara>
+	        </entry>
+	        <entry><simpara>integer</simpara></entry>
+	        <entry>
+	          <para>
+		        Approximate time delay in milliseconds to insert
+		        between lines when replaying a recorded GUI log file.
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara><userinput>--no-checkpoints</userinput></simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Ignore synchronizing checkpoints when replaying a GUI
+		        log file.  Not recommended.
+	          </para>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara>
+		        <userinput>--fakefileselector</userinput>
+	          </simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <simpara>
+		        Don't use the real file selector widget, which causes
+		        problems when replaying GUI logs.<footnote
+		        id="Footnote:fakefileselector">
+		        <simpara>
+		          If neither <userinput>--fakefileselector</userinput>
+		          nor <userinput>--no-fakefileselector</userinput> is
+		          given, the fake file selector will be used when
+		          recording or replaying GUI logs, and the real file
+		          selector will be used at all other times.
+		        </simpara>
+	          </footnote>
+	          </simpara>
+	        </entry>
+	      </row>
+	      <row>
+	        <entry>
+	          <simpara>
+		        <userinput>--no-fakefileselector</userinput>
+	          </simpara>
+	        </entry>
+	        <entry></entry>
+	        <entry>
+	          <para>
+		        Use the real file selector widget, even though it
+		        causes problems when replaying GUI logs.<footnoteref
+		        linkend="Footnote:fakefileselector"/>
+	          </para>
+	        </entry>
+	      </row>
+	    </tbody>
       </tgroup>
     </table>
-
+    
 
     <section id="Section-ScriptGUI">
       <title>Modes of Operation, Menus, and Commands</title>
       <para>
-	&oof2; has two modes of operation: the normal graphics mode,
-	driven by a graphical user interface (GUI); and a text mode,
-	invoked by starting the program with the <link
-	linkend="CommandLineArg-text"><userinput>--text</userinput></link>
-	option.  &oof2; can be conceptually split into two parts: a
-	computational back end and the GUI front end.  The difference
-	between the text and GUI modes of operation is that in GUI
-	mode the front end transmits commands to the back end, and in
-	text mode the user types those same commands, or has the
-	program read them from a file.
+	    &oof2; has two modes of operation: the normal graphics mode,
+	    driven by a graphical user interface (GUI); and a text mode,
+	    invoked by starting the program with the <link
+	    linkend="CommandLineArg-text"><userinput>--text</userinput></link>
+	    option.  &oof2; can be conceptually split into two parts: a
+	    computational back end and the GUI front end.  The difference
+	    between the text and GUI modes of operation is that in GUI
+	    mode the front end transmits commands to the back end, and in
+	    text mode the user types those same commands, or has the
+	    program read them from a file. Batch mode, invoked by starting
+	    &oof2; with the <link
+	    linkend="CommandLineArg-batch"><userinput>--batch</userinput></link>
+	    option, is a variant of text mode in which commands are only
+	    read from input files and there is no user interaction.
       </para>
       <para>
-	&oof2; commands are expressions in the Python programming
-	language.  They are arranged in hierachical menus.  The root
-	of the hierarchy is the python object
-	<userinput>OOF</userinput>.  Commands all have the form
-	<literallayout class="monospaced">
-	  OOF.Menu.SubMenu.Command(argument=value, ...)
-	</literallayout>
-	There may be multiple levels of submenus, or none at all, and
-	there may be any (non-negative) number of arguments.  The
-	format of each command is described in detail in
-	<xref linkend="Chapter-Reference"/>.  In general, however, you
-	won't want to run &oof2; in text mode.  The commands can be
-	quite long, and typing them yourself might be tedious.
-	Instead, use the GUI
-	to <link linkend="MenuItem-OOF.File.Save.Python_Log">save</link>
-	a script, edit the script if necessary,
-	and <link linkend="MenuItem-OOF.File.Load.Script">reload</link>
-	it in GUI or batch mode. 
+	    &oof2; commands are expressions in the Python programming
+	    language.  They are arranged in hierachical menus, which are
+        described in detail in <xref linkend="MenuItem-OOF"/>.  The root
+	    of the hierarchy is the python object
+	    <userinput>OOF</userinput>.  Commands all have the form
+	    <literallayout class="monospaced">
+	      OOF.Menu.SubMenu.Command(argument=value, ...)
+	    </literallayout>
+	    There may be multiple levels of submenus, or none at all, and
+	    there may be any (non-negative) number of arguments.  The
+	    format of each command is described in detail in <xref
+	    linkend="Chapter-Reference"/>.  In general, however, you won't
+	    want to run &oof2; in text mode.  The commands can be quite
+	    long, and typing them yourself might be tedious.  Instead, use
+	    the GUI to <link
+	    linkend="MenuItem-OOF.File.Save.Python_Log">save</link> a
+	    script, edit the script if necessary, and <link
+	    linkend="MenuItem-OOF.File.Load.Script">reload</link> it in
+	    GUI or batch mode.  The scripts are processed by Python so
+        you can freely add Python code to them.
       </para>
     </section>
     <section id="Section-oof2rc">
       <title>The <filename>.oof2rc</filename> File</title>
       <para>
-	All actions in &oof2; are expressed in terms of <emphasis>menu
-	commands</emphasis>, which are enumerated explicitly in <xref
-	linkend="MenuItem-OOF"/>.  If you want to run a set of
-	commands automatically each time &oof2; starts, you can place
-	them in a file called <filename>.oof2rc</filename> in your
-	home directory.  Good commands to put in this file are those
-	that control <link
-	linkend="MenuItem-OOF.Settings.Graphics_Defaults">graphics
-	window defaults</link>, or the GUI <link
-	linkend="MenuItem-OOF.Settings.Theme">theme</link> and <link
-	linkend="MenuItem-OOF.Settings.Fonts">fonts</link>.
+	     If you want to run a set of commands automatically each time
+	     &oof2; starts, you can place them in a file called
+	     <filename>.oof2rc</filename> in your home directory.  Good
+	     commands to put in this file are those that control <link
+	     linkend="MenuItem-OOF.Settings.Graphics_Defaults">graphics
+	     window defaults</link>, or the GUI <link
+	     linkend="MenuItem-OOF.Settings.Theme">theme</link> and <link
+	     linkend="MenuItem-OOF.Settings.Fonts">fonts</link>.
       </para>
     </section>
     <section id="Section-Difficulty">
       <title>In Case of Difficulty</title>
       <para>
-	If something goes wrong while you're running &oof2;, you'll be
-	told about it and given the choice of continuing, or aborting
-	the program.  In GUI mode, a dialog box like the one shown in
-	<xref linkend="Figure-ErrorDialog"/> will appear.  If the
-	error is yours (<foreignphrase>e.g,</foreignphrase> a data
-	file is missing, or you specified incompatible boundary
-	conditions) then it's safe to click <guibutton>OK</guibutton>
-	and continue.  If the problem is <emphasis>ours</emphasis>,
-	and is due to a bug in &oof2;, you may want to click
-	<guibutton>Abort</guibutton> to quit the program.  Please file
-	a <ulink
-	url="http://www.ctcms.nist.gov/oof/oof2/#bugreport">bug
-	report</ulink>!
+	    If something goes wrong while you're running &oof2;, you'll be
+	    told about it and given the choice of continuing, or aborting
+	    the program.  In GUI mode, a dialog box like the one shown in
+	    <xref linkend="Figure-ErrorDialog"/> will appear.  If the
+	    error is yours (<foreignphrase>e.g,</foreignphrase> a data
+	    file is missing, or you specified incompatible boundary
+	    conditions) then it's safe to click <guibutton>OK</guibutton>
+	    and continue.  If the problem is <emphasis>ours</emphasis>,
+	    and is due to a bug in &oof2;, you may want to click
+	    <guibutton>Abort</guibutton> to quit the program.  Please file
+	    a <ulink
+	    url="http://www.ctcms.nist.gov/oof/oof2/#bugreport">bug
+	    report</ulink>!
       </para>
       <figure id="Figure-ErrorDialog">
-	<title>The Error Dialog Box</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/errordialog.png" format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/errordialog.eps" format="EPS"/>
-	  </imageobject>
-	</mediaobject>
+	    <title>The Error Dialog Box</title>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/errordialog.png" format="PNG"/>
+	      </imageobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/errordialog.eps" format="EPS"/>
+	      </imageobject>
+	    </mediaobject>
       </figure>
       <para>
-	If you abort &oof2; from the error dialog, or if something
-	goes seriously wrong and it aborts itself, a log file will be
-	saved automatically.  The location of this file is operating
-	system dependent, but it will always be in the default
-	directory for temporary files on your system.
-	<filename>/tmp</filename> is a good place to start
-	looking. The file will be named
-	<filename>oof2-XXXXX.py</filename> or
-	<filename>XXXXX-oof2.py</filename>, where
-	<filename>XXXXX</filename> is a random string of characters
-	that guarantees that the filename is unique.  If you report a
-	bug, please include the log file.
+	    If you abort &oof2; from the error dialog, or if something
+	    goes seriously wrong and it aborts itself, a log file will be
+	    saved automatically.  The default location of this file is
+	    operating system dependent, but it will always be in the
+	    default directory for temporary files on your system.
+	    <filename>/tmp</filename> is a good place to start
+	    looking. (You can control the location of the file by setting
+	    the <varname>OOFTMP</varname> environment variable to the name
+	    of a directory.) The file will be named
+	    <filename>oof2-XXXXX.py</filename> or
+	    <filename>XXXXX-oof2.py</filename>, where
+	    <filename>XXXXX</filename> is a random string of characters
+	    that guarantees that the filename is unique.  If you report a
+	    bug, please include the log file.
       </para>
     </section>
   </section>
