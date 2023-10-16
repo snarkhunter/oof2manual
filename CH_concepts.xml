@@ -177,8 +177,8 @@
 	    </imageobject>
 	    <caption>
 	      <para>
-		Menus for selecting a &mesh; in the <link
-		linkend="Section-Tasks-FEMesh">FE Mesh</link> task page.
+		    Menus for selecting a &mesh; in the <link
+		    linkend="Section-Tasks-FEMesh">FE Mesh</link> task page.
 	      </para>
 	    </caption>
 	  </mediaobject>
@@ -188,7 +188,9 @@
 	    </imageobject>
 	    <caption>
 	      <para>
-		Menus for selecting a &mesh; in the &layereditor;.
+		    Menus for selecting a &mesh; in the <link
+		    linkend="Section-Graphics-NewLayer">New Graphics
+		    Layer</link> dialog.
 	      </para>
 	    </caption>
 	  </mediaobject>
@@ -252,7 +254,7 @@
 	<note>
 	  <para>
 	    Most image processing programs label the pixels as if they
-	    were matrix elements -- pixel (i,j) is in the
+	    were matrix elements &#x2014; pixel (i,j) is in the
 	    i<superscript>th</superscript> row from the top and the
 	    j<superscript>th</superscript> column from the left.
 	    &oof2; does <emphasis>not</emphasis> do this, choosing
@@ -317,18 +319,15 @@
     <section id="Section-Concepts-Microstructure-Image">
       <title>Images</title>
       <para>
-	&micros; are usually created from &images;.  An &image; in
-	&oof2; is a digitized micrograph or other digital image. 
-	&images; live inside their &micros; -- that is, each &image;
-	is associated with one and only one &micro;, and the size of
-	the &image;, in pixels, must be exactly the same as the size
-	of its &micro;<footnote>
-	  <simpara>This restriction may be lifted in future versions.</simpara>
-	</footnote>.
-	One &micro;, however, may contain more than one &image; or
-	more than one version of the same image.  This can be useful
-	when different processing techniques are needed to bring out
-	different features of a micrograph.
+	&micros; are usually created from &images;.  An &image; in &oof2;
+	is a digitized micrograph or other digital image.  &images; live
+	inside their &micros; &#x2014; that is, each &image; is associated
+	with one and only one &micro;, and the size of the &image;, in
+	pixels, must be exactly the same as the size of its &micro;.  One
+	&micro;, however, may contain more than one &image; or more than
+	one version of the same image.  This can be useful when different
+	processing techniques are needed to bring out different features
+	of a micrograph.
       </para>
       <para>
 	When pixels are <link
@@ -440,7 +439,7 @@
 	and all the other crystal symmetries.  Generally, a &material;
 	may contain only one &property; from each category.  Some
 	categories of &properties; make sense only if a property of
-	another category is defined in the same &material; -- for
+	another category is defined in the same &material; &#x2014; for
 	example, it's an error to include a
 	<classname>Cubic</classname> elasticity without also including
 	an <classname>Orientation</classname>.  &oof2; will notify you
@@ -460,32 +459,32 @@
 	may be set in either named or unnamed &properties;.
       </para>
       <para id="Section-Concepts-Property-Path">
-	&properties; are arranged in a hierarchical tree structure,
-	which is shown in the <guilabel>Property</guilabel> pane of
-	the <link linkend="Section-Tasks-Materials">Materials</link>
-	task page.  The <quote>path</quote> to a &property; is a colon
-	separated list of the names of the levels of the tree leading
-	to the &property;.  For example, the path to cubic elasiticity
-	is
+	&properties; are arranged in a hierarchical tree structure, which
+	is shown in the <link
+	linkend="Section-Materials-Property"><guilabel>Property</guilabel>
+	pane</link> of the <link
+	linkend="Section-Tasks-Materials">Materials</link> task page.  The
+	<quote>path</quote> to a &property; is a colon separated list of
+	the names of the levels of the tree leading to the &property;.
+	For example, the path to cubic elasiticity is
 	<userinput>'Mechanical:Elasticity:Anisotropic:Cubic'</userinput>.
-	The path to a <emphasis>named</emphasis> property is created
-	by appending the name to the path to its unnamed version:
-	<userinput>'Mechanical:Elasticity:Anisotropic:Cubic:salt'</userinput> is
-	a cubic elasticity &property; named <quote>salt</quote>.  Most
+	The path to a <emphasis>named</emphasis> property is created by
+	appending the name to the path to its unnamed version:
+	<userinput>'Mechanical:Elasticity:Anisotropic:Cubic:salt'</userinput>
+	is a cubic elasticity &property; named <quote>salt</quote>.  Most
 	commands that work on &properties; in scripts refer to them by
 	their paths.  The exceptions are the <xref
 	linkend="MenuItem-OOF.Property.Parametrize"/> and <xref
-	linkend="MenuItem-OOF.LoadData.Property"/> menus, which
-	instead embed the &property; name in the name of the command.
-	That is, the command to parametrize a cubic elastic property
-	is <xref
+	linkend="MenuItem-OOF.LoadData.Property"/> menus, which instead
+	embed the &property; name in the name of the command.  That is,
+	the command to parametrize a cubic elastic property is <xref
 	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic"/>,
 	and the command to parametrize a cubic elastic property named
 	<quote>salt</quote> is
 	<command>OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic.salt</command>.
-	(Fortunately, the user rarely has to type these names in
-	full.)  The arguments for the named and unnamed forms are the
-	same, and are listed in the documentation under <xref
+	(Fortunately, the user rarely has to type these names in full.)
+	The arguments for the named and unnamed forms are the same, and
+	are listed in the documentation under <xref
 	linkend="MenuItem-OOF.Property.Parametrize"/>.
       </para>
     </section>			<!-- Properties -->
@@ -860,7 +859,7 @@
 	  linkend="Section-Graphics-MoveNodes">Move Node</link>
 	  toolbox, which allows the user to move nodes by hand.
 	  Sometimes it may be necessary to temporarily make an illegal
-	  element while moving a bunch of nodes.
+	  element while manually moving a bunch of nodes.
 	</para>
 	<figure id="Figure-IllegalDemo">
 	  <title>Creating Illegal Elements</title>
@@ -989,15 +988,16 @@
         homogeneity of a segment that is part of two &elems; can
         depend on which element is being considered.  From the point
         of view of the left hand element, segment A is about 60% blue
-        and 40% yellow, with the transition marked by the red circle.
-        From the point of view of the right hand element, it's about
-        80% yellow and 20% red, with the transition at the green
-        circle.  Because &oof2; attempts to put element edges on pixel
-        boundaries, this sort of situation can occur quite often.
-        &oof2; uses the correct one-sided homogeneity where it's clear
-        which side to use, and averages the two values when it's not.
-        The <link linkend="Section-Graphics-SkeletonInfo">Skeleton
-        Info Toolbox</link> in the Graphics window reports both
+        and 40% yellow, with the transition from blue to yellow marked
+        by the red circle.  From the point of view of the right hand
+        element, it's about 80% yellow and 20% red, with the
+        transition at the green circle.  Because &oof2; attempts to
+        put element edges on pixel boundaries, this sort of situation
+        can occur quite often.  &oof2; uses the correct one-sided
+        homogeneity where it's clear which side to use, and averages
+        the two values when it's not.  The <link
+        linkend="Section-Graphics-SkeletonInfo">Skeleton Info
+        Toolbox</link> in the Graphics window reports both
         homogeneities when there are two distinct values.
         <figure id="Figure-seg_subtleties">
           <title>Segment Homogeneity Subtleties</title>
@@ -1015,7 +1015,7 @@
         traversing this &sgmt; looking for transition points in order
         to subdivide it (see <xref linkend="RegisteredClass-Refine"/>)
         you would not want to consider any of the intersections to be
-        transition points -- they are just artifacts of the
+        transition points &#x2014; they are just artifacts of the
         pixelization of the image. This &sgmt; should be considered to
         be entirely homogeneous, although whether it's yellow or red
         depends on which side of the segment you're interested in.
@@ -1028,12 +1028,12 @@
     <section id="Section-Concepts-Skeleton-Groups">
       <title>Groups</title>
       <para>
-	    The components of a &skel;, <link
+	    The components of a &skel; &#x2014; <link
 	    linkend="Section-Concepts-Skeleton-Element">elements</link>,
 	    <link linkend="Section-Concepts-Skeleton-Node">nodes</link>,
 	    and <link
-	    linkend="Section-Concepts-Skeleton-Segment">segments</link>,
-	    may be placed into named groups.  These groups form a
+	    linkend="Section-Concepts-Skeleton-Segment">segments</link>
+	    &#x2014; may be placed into named groups.  These groups form a
 	    convenient way to save and recover sets of selected objects.
 	    Groups are created and manipulated by the <link
 	    linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
@@ -1099,9 +1099,9 @@
       &mesh;.  It combines the geometry of a &skel; with information
       about <link
       linkend="Section-Concepts-Mesh-Equation">equations</link> and
-      boundary conditions, and it stores the values of &fields;.  In
-      &oof2; version 2.1 and later, the &mesh; can store sets of
-      &field; values, with a different time for each set.
+      boundary conditions, and it stores the values of &fields;.  A
+      &mesh; can store multiple sets of &field; values, with a
+      different time for each set.
     </para>
     <para>
       Every &mesh; is derived from a &skel;. The &mesh; <link
@@ -1278,20 +1278,20 @@
 	when you read <quote>subproblem</quote> and you'll be fine.)
       </para>
       <para>
-	&subproblems; are created in the
-	<guilabel>Subproblem</guilabel> pane in the <link
-	linkend="Section-Tasks-FEMesh">FE Mesh</link> Task Page.  The
-	various kinds of &subproblems; differ in their geographical
-	extent. A <xref linkend="RegisteredClass-MaterialSubProblem"/>
-	includes all &elems; with a given &material; type.  A <xref
+	&subproblems; are created in the <link
+	linkend="Section-Tasks-FEMesh-Subproblems"><guilabel>Subproblem</guilabel>
+	pane</link> in the <link linkend="Section-Tasks-FEMesh">FE
+	Mesh</link> Task Page.  The various kinds of &subproblems; differ
+	in their geographical extent. A <xref
+	linkend="RegisteredClass-MaterialSubProblem"/> includes all
+	&elems; with a given &material; type.  A <xref
 	linkend="RegisteredClass-PixelGroupSubProblem"/> includes all
 	&elems; which have a majority of their underlying pixels in a
 	given &pixelgroup;.  An <xref
 	linkend="RegisteredClass-EntireMeshSubProblem"/> includes all
-	&elems;.  There are also boolean &subproblems; that are
-	defined in terms of other existing &subproblems;.  The full
-	set is documented in the <xref
-	linkend="RegisteredClass-SubProblemType"/> class.
+	&elems;.  There are also boolean &subproblems; that are defined in
+	terms of other existing &subproblems;.  The full set is documented
+	in the <xref linkend="RegisteredClass-SubProblemType"/> class.
       </para>
     </section><!-- Subproblem -->
 
@@ -1327,7 +1327,7 @@
 	</itemizedlist>
 	If a &field; is defined on two or more geographically
 	overlapping &subproblems; on a &mesh;, then the &field;'s
-	values are the same for each &subproblem; whereever the
+	values are the same for each &subproblem; wherever the
 	&subproblems; overlap.  That is, although &fields; are defined
 	on &subproblems;, their values are actually only stored on the
 	&mesh;.
@@ -1360,39 +1360,40 @@
 	the &fields; or by solving time dependent equations.
       </para>
       <para>
-	&oof2; sometimes needs to store the first time derivative of a
-	&field;.  In this case, a new &field; will automatically be
-	created for it.  The new &field;'s name is constructed by
-	appending <varname>_t</varname> to the name of the original
-	&field;.  For example, <varname>Displacement_t</varname>
-	stores the first derivative of
-	<varname>Displacement</varname>.
+	    &oof2; sometimes needs to store the first time derivative of a
+	    &field;.  In this case, a new &field; will automatically be
+	    created for it.  The new &field;'s name is constructed by
+	    appending <varname>_t</varname> to the name of the original
+	    &field;.  For example, <varname>Displacement_t</varname>
+	    stores the first derivative of
+	    <varname>Displacement</varname>.
       </para>
       <para id="Section-Concepts-Mesh-Cache">
-	Storing all of the &field; values at each time can use a lot
-	of memory. &oof2; can cache the values either in RAM or in
-	temporary files on a disk.  The cache type for any &mesh; can
-	be changed in the <guilabel>Mesh Operations</guilabel> pane in
-	the <link linkend="Section-Tasks-FEMesh">FE Mesh</link> page.
-	The default cache type, used for new &meshes;, can be set in
-	the <xref linkend="MenuItem-OOF.Settings.Mesh_Defaults"/>
-	menu in the main window's menubar.
+	    Storing all of the &field; values at each time can use a lot
+	    of memory. &oof2; can cache the values either in RAM or in
+	    temporary files on a disk.  The cache type for any &mesh; can
+	    be changed in the <guilabel>Mesh Operations</guilabel> pane in
+	    the <link linkend="Section-Tasks-FEMesh">FE Mesh</link> page.
+	    The default cache type, used for new &meshes;, can be set in
+	    the <xref linkend="MenuItem-OOF.Settings.Mesh_Defaults"/> menu
+	    in the main window's menubar.  If not set, the default is to
+	    use RAM.
       </para>
       </section><!-- Fields and Time -->
 
     <section id="Section-Concepts-Mesh-Flux">
       <title>Fluxes</title>
       <para>
-	In &oof2; a &flux; is a quantity analogous to stress in
-	elasticity: it is generally some modulus times the derivative
-	of a &field;.  Some examples are stress (elastic modulus times
-	the strain, which is the symmetric gradient of the
-	displacement), heat flux (thermal conductivity times the
-	negative gradient of the temperature), and electrical
-	polarization (permittivity times the negative gradient of the
-	voltage).  &properties; define how &fields; contribute to
-	&fluxes;.  One flux may have contributions simultaneously from
-	many different &properties; and &fields;.
+	    In &oof2; a &flux; is a quantity analogous to stress in
+	    elasticity: it is generally some modulus times the derivative
+	    of a &field;.  Some examples are stress (elastic modulus times
+	    the strain, which is the symmetric gradient of the
+	    displacement), heat flux (thermal conductivity times the
+	    negative gradient of the temperature), and electrical
+	    polarization (permittivity times the negative gradient of the
+	    voltage).  &properties; define how &fields; contribute to
+	    &fluxes;.  One flux may simultaneously have contributions from
+	    many different &properties; and &fields;.
       </para>
       <para>
 	&fluxes; don't appear explicitly when setting up a problem,
@@ -1893,8 +1894,7 @@
 	      take any time steps, they just solve for the
 	      instantaneous values of the &fields; at the current
 	      time.  If the &equations; include &Mmatrix; or &Cmatrix;
-	      terms, those terms will be ignored.  &oof2; versions
-	      prior to 2.1.0 only included static steppers.
+	      terms, those terms will be ignored. 
 	      <itemizedlist spacing="compact">
 		<listitem>
 		  <simpara>
@@ -1984,7 +1984,7 @@
 	&mesh;, and one column for each &field; component at every
 	&node;.  Therefore the matrices can be quite large.  However,
 	they are also generally <emphasis>sparse</emphasis>, meaning
-	that most of its entries are zero.  Large sparse matrix
+	that most of their entries are zero.  Large sparse matrix
 	equations are best solved by <emphasis>iterative</emphasis>
 	methods, which don't require the zeros to be stored
 	explicitly, but which only provide approximate solutions.

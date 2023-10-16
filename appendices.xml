@@ -605,7 +605,7 @@ OOF.Material.New(name='pbj')
 	<para>
 	  The Field initialization operations have been moved from the
 	  Field page to the Solver page.  Fields are initialized on
-	  the whole Mesh, whereever they're defined.  The old version
+	  the whole Mesh, wherever they're defined.  The old version
 	  initialized them Subproblem by Subproblem.  Also, Fields are
 	  <emphasis>not</emphasis> actually initialized when their
 	  initializers are set.  Values aren't changed on the Mesh

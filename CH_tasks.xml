@@ -47,9 +47,6 @@
 	<imageobject>
 	  <imagedata fileref="FIGURES/gui/mainwindow.png" format="PNG"/>
 	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/mainwindow.eps" format="EPS"/>
-	</imageobject>
 	<textobject>
 	  <phrase>Annotated image of the main oof2 window.</phrase>
 	</textobject>
