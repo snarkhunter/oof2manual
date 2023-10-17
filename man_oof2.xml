@@ -189,6 +189,10 @@ linkend='Section-Graphics-LayerEditor'>Layer Editor</link>">
 <!ENTITY hellip "&#8230;">
 ]>
 
+<!-- The reference pages for all menuitems should refer to the
+     appropriate page of GUI documentation.
+-->
+
 <book>
   <bookinfo>
     <title>The OOF2 Manual</title>

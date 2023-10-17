@@ -32,9 +32,6 @@
 	<imageobject>
 	  <imagedata fileref="FIGURES/gui/image_page.png" format="PNG"/>
 	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/image_page.eps" format="EPS"/>
-	</imageobject>
       </mediaobject>
     </figure>
       
@@ -89,11 +86,11 @@
 		  </imageobject>
 		  <caption>
 		    <para>
-		      Two views of the dialog box for copying
-		      &images;.  The upper view shows the box as it
-		      first appears, when a &micro; name can typed in.
-		      Clicking on the button below the mouse brings up
-		      a list of existing &micros;, as shown in the
+		      Two views of the dialog box for copying &images;.  The
+		      upper view shows the box as it first appears, when a
+		      &micro; name can typed in.  Clicking on the downward
+		      pointing triangle to the right of the entry widget
+		      brings up a list of existing &micros;, as shown in the
 		      lower view.
 		    </para>
 		  </caption>
@@ -120,11 +117,15 @@
 	      linkend="MenuItem-OOF.Image.AutoGroup"><guibutton>Group</guibutton></link>
 	      button creates <link
 	      linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
-	      groups</link> for each color of pixel in the &image;.
-	      If an &image; contains only a few colors, this can be a
-	      quick way of differentiating pixels in the &micro;.  Be
-	      sure to read the caveats in the discussion of the <xref
-		linkend="MenuItem-OOF.Image.AutoGroup"/> command, though.
+	      groups</link> for each color of pixel in the &image;.  If an
+	      &image; contains only a few colors, this can be a quick way
+	      of differentiating pixels in the &micro;.  Be sure to read
+	      the caveats in the discussion of the <xref
+	      linkend="MenuItem-OOF.Image.AutoGroup"/> command, though.
+	      The <guibutton>Auto</guibutton> button on the <link
+	      linkend="Section-Tasks-Microstructure">Microstructure
+	      Page</link> is a better tool for noisy or antialiased
+	      images.
 	    </para>
 	  </listitem>
 	</itemizedlist>

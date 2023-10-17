@@ -198,7 +198,16 @@
       The seven buttons to the left of the central list operate on the
       pixel groups themselves: creating a <link
       linkend="MenuItem-OOF.PixelGroup.New">new</link> group, <link
-      linkend="MenuItem-OOF.PixelGroup.AutoGroup">automatically</link>
+      linkend="MenuItem-OOF.PixelGroup.AutoGroup">automatically</link><footnote>
+      <para>
+        This command works differently from the
+        <guibutton>Group</guibutton> on the <link
+        linkend="Section-Tasks-Image">Image</link> page.  Compare
+        <xref linkend="MenuItem-OOF.PixelGroup.AutoGroup"/> (this
+        page) and <xref linkend="MenuItem-OOF.Image.AutoGroup"/>
+        (Image page).
+      </para>
+      </footnote>
       putting all pixels into groups, <link
       linkend="MenuItem-OOF.PixelGroup.Rename">renaming</link> or
       <link linkend="MenuItem-OOF.PixelGroup.Copy">copying</link> an
