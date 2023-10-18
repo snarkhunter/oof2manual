@@ -13,82 +13,77 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <section id="Section-Tasks-PixelSelection">
-    <title>Pixel Selection</title>
+<section id="Section-Tasks-PixelSelection">
+  <title>Pixel Selection</title>
 
-    <para>
-      The Pixel Selection Page contains tools for creating and
-      modifying the set of <link
-      linkend="Section-Concepts-Microstructure-PixelSelection">selected
-      pixels</link> in a &micro;.  None of these tools require mouse
-      input.  The pixel selection tools that <emphasis>do</emphasis>
-      require mouse input are all in the <link
-      linkend="Section-Graphics-PixelSelection">Pixel Selection
-      toolbox</link> in the <link linkend="Chapter-Graphics">Graphics
-      window.</link>
-    </para>
+  <para>
+    The Pixel Selection Page contains tools for creating and modifying
+    the set of <link
+    linkend="Section-Concepts-Microstructure-PixelSelection">selected
+    pixels</link> in a &micro;.  None of these tools require mouse
+    input.  The pixel selection tools that <emphasis>do</emphasis>
+    require mouse input are all in the <link
+    linkend="Section-Graphics-PixelSelection">Pixel Selection
+    toolbox</link> in the <link linkend="Chapter-Graphics">Graphics
+    window.</link>
+  </para>
 
-    <para>
-      <xref linkend="Figure-PixselPage"/> shows the anatomy of the
-      Pixel Selection Page.  It consists of a Microstructure Chooser
-      for selecting the &micro; (called the
-      <emphasis>current</emphasis> &micro;) whose pixel selection will
-      be modified, a Status Pane, and a <link
-      linkend="Section-PixSel-Modification">Pixel Selection
-      Modification Pane</link>.  The Status Pane simply shows how many
-      pixels are selected in the current &micro;.
-    </para>
+  <para>
+    <xref linkend="Figure-PixselPage"/> shows the anatomy of the Pixel
+    Selection Page.  It consists of a Microstructure Chooser for
+    selecting the &micro; (called the <emphasis>current</emphasis>
+    &micro;) whose pixel selection will be modified, a Status Pane,
+    and a <link linkend="Section-PixSel-Modification">Pixel Selection
+    Modification Pane</link>.  The Status Pane simply shows how many
+    pixels are selected in the current &micro;.
+  </para>
 
-    <figure id="Figure-PixselPage">
-      <title>The Pixel Selection Page</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/pixsel_page.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/pixsel_page.eps" format="EPS"/>
-	</imageobject>
-      </mediaobject>
-    </figure>
+  <figure id="Figure-PixselPage">
+    <title>The Pixel Selection Page</title>
+    <mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/gui/pixsel_page.png" format="PNG"/>
+	  </imageobject>
+    </mediaobject>
+  </figure>
       
-    <simplesect id="Section-PixSel-Modification">
-      <title>The Pixel Selection Modification Pane</title>
-      <para>
-	The Pixel Selection Modification Pane follows the same layout
-	as the <link linkend="Section-ImagePage-Modification">Image
-	Modification Pane</link> in the <link
-	linkend="Section-Tasks-Image">Image Page</link>.
-      </para>
-      <para>
-	At the top of the pane is a Modifier Chooser, which selects a
-	method for modifying the pixel selection of the current
-	&micro;.  The Chooser is a pull-down menu, corresponding to
-	the <xref linkend="MenuItem-OOF.PixelSelection"/> command
-	menu.  The arguments for commands that require them (as in the
-	<link
-	linkend="MenuItem-OOF.PixelSelection.Despeckle"><command>Despeckle</command></link>
-	command shown in <xref linkend="Figure-PixselPage"/>) are set
-	in the region below the Chooser.  The
-	<guibutton>OK</guibutton> at the bottom of the pane performs the
-	operation specified in the Chooser.
-      </para>
-      <para>
-	The <link
-	linkend="MenuItem-OOF.PixelSelection.Undo"><guibutton>Undo</guibutton></link>
-	and <link
-	linkend="MenuItem-OOF.PixelSelection.Redo"><guibutton>Redo</guibutton></link>
-	buttons at the bottom of the pane undo and redo the latest
-	changes to the pixel selection in the current &micro;, whether
-	or not the changes were made through the Pixel Selection page
-	or through other means.  The <guibutton>Prev</guibutton> and
-	<guibutton>Next</guibutton> buttons cycle the Chooser through
-	the recently used modifiers, without actually affecting the
-	&micro; at all.
-      </para>
-      <para>
-	The <link
-	linkend="MenuItem-OOF.PixelSelection.Clear"><guibutton>Clear</guibutton></link>
-	button clears the pixel selection in the current &micro;.
+  <simplesect id="Section-PixSel-Modification">
+    <title>The Pixel Selection Modification Pane</title>
+    <para>
+	  The Pixel Selection Modification Pane follows the same layout as
+	  the <link linkend="Section-ImagePage-Modification">Image
+	  Modification Pane</link> in the <link
+	  linkend="Section-Tasks-Image">Image Page</link>.
+    </para>
+    <para>
+	  At the top of the pane is a Modifier Chooser, which selects a
+	  method for modifying the pixel selection of the current &micro;.
+	  The Chooser is a pull-down menu, corresponding to the <xref
+	  linkend="MenuItem-OOF.PixelSelection"/> command menu.  The
+	  arguments for commands that require them (as in the <link
+	  linkend="MenuItem-OOF.PixelSelection.Despeckle"><command>Despeckle</command></link>
+	  command shown in <xref linkend="Figure-PixselPage"/>) are set in
+	  the region below the Chooser.  The <guibutton>OK</guibutton> at
+	  the bottom of the pane performs the operation specified in the
+	  Chooser.
+    </para>
+    <para>
+	  The <link
+	  linkend="MenuItem-OOF.PixelSelection.Undo"><guibutton>Undo</guibutton></link>
+	  and <link
+	  linkend="MenuItem-OOF.PixelSelection.Redo"><guibutton>Redo</guibutton></link>
+	  buttons at the bottom of the pane undo and redo the latest
+	  changes to the pixel selection in the current &micro;, whether
+	  or not the changes were made through the Pixel Selection page or
+	  through other means.  The <guibutton>Prev</guibutton> and
+	  <guibutton>Next</guibutton> buttons cycle the Chooser through
+	  the recently used modifiers, without actually affecting the
+	  &micro; at all.
+    </para>
+    <para>
+	  The <link
+	  linkend="MenuItem-OOF.PixelSelection.Clear"><guibutton>Clear</guibutton></link>
+	  button clears the pixel selection in the current &micro;.
       </para>
     </simplesect>
 

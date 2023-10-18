@@ -13,163 +13,152 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <section id="Section-Tasks-ActiveArea">
-    <title>Active Area</title>
-
+<section id="Section-Tasks-ActiveArea">
+  <title>Active Area</title>
+  
+  <para>
+    <link linkend="Section-Concepts-Microstructure-ActiveArea">Active
+    Areas</link> provide a way of restricting &oof2; operations to a
+    subset of a &micro;.  They are manipulated by the commands in the
+    <xref linkend="MenuItem-OOF.ActiveArea"/> menu.  See <link
+    linkend="MenuItem-OOF.ActiveArea">that section</link> for a more
+    detailed discussion.
+  </para>
+  <para>
+    The Active Area Page, as shown in <xref
+    linkend="Figure-ActivePage"/>, contains a Microstructure Chooser,
+    a Status Pane, a <link
+    linkend="Section-ActivePage-NamedArea">Named Area Pane</link>, and
+    a <link linkend="Section-ActivePage-Modifier">Modification
+    Pane</link>. Active Areas are specific to a particular &micro;.
+    The Chooser selects which &micro;'s Active Area is being addressed
+    by the rest of the page.  The Status Pane simply states how many
+    pixels are currently active in the current &micro;.
+  </para>
+  <figure id="Figure-ActivePage">
+    <title>The Active Area Page</title>
+    <mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/gui/active_page.png"
+	               format="PNG"/>
+	  </imageobject>
+    </mediaobject>
+  </figure>
+  <simplesect id="Section-ActivePage-NamedArea">
+    <title>The Named Area Pane</title>
     <para>
-      <link
-      linkend="Section-Concepts-Microstructure-ActiveArea">Active
-      Areas</link> provide a way of restricting &oof2; operations to a
-      subset of a &micro;.  They are manipulated by the commands in
-      the <xref linkend="MenuItem-OOF.ActiveArea"/> menu.  See <link
-      linkend="MenuItem-OOF.ActiveArea">that section</link> for a more
-      detailed discussion.
+	  The Named Area Pane contains the machinery needed to give names
+	  to Active Areas and store them for later use.  The bulk of the
+	  pane is a list of named areas. Clicking on a name in the list
+	  selects it.  Double-clicking on a name is equivalent to
+	  single-clicking and using the <link
+	  linkend="MenuItem-OOF.ActiveArea.Restore"><guibutton>Restore</guibutton></link>
+	  button.  The buttons at the bottom of the pane operate on the
+	  selected Active Area:
+	  <itemizedlist>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.ActiveArea.Store"><guibutton>Store</guibutton></link>
+	        button stores the current ActiveArea (the currently active
+	        pixels in the current &micro;) and assigns a name to
+	        it. The newly named area will be selected in the Named
+	        Area list.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.ActiveArea.Rename"><guibutton>Rename</guibutton></link>
+	        button renames the Active Area that's currently selected
+	        in the list.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.ActiveArea.Delete"><guibutton>Delete</guibutton></link>
+	        button deletes the currently selected Active Area from the
+	        list.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.ActiveArea.Restore"><guibutton>Restore</guibutton></link>
+	        button activates the selected Active Area.  That is, the
+	        named stored Active Area becomes the &micro;'s current
+	        Active Area.  Clicking on the
+	        <guibutton>Restore</guibutton> button is equivalent to
+	        double-clicking a name in the list.
+	      </para>
+	    </listitem>
+	  </itemizedlist>
     </para>
+  </simplesect>
+  <simplesect id="Section-ActivePage-Modifier">
+    <title>The Modification Pane</title>
     <para>
-      The Active Area Page, as shown in <xref
-      linkend="Figure-ActivePage"/>, contains a Microstructure
-      Chooser, a Status Pane, a <link
-      linkend="Section-ActivePage-NamedArea">Named Area Pane</link>,
-      and a <link linkend="Section-ActivePage-Modifier">Modification
-      Pane</link>. Active Areas are specific to a particular &micro;.
-      The Chooser selects which &micro;'s Active Area is being
-      addressed by the rest of the page.  The Status Pane simply
-      states how many pixels are currently active in the current
-      &micro;.
+	  The Active Area Modification pane is similar to the Modification
+	  Panes in the <link linkend="Section-Tasks-Image">Image</link>
+	  and <link linkend="Section-Tasks-PixelSelection">Pixel
+	  Selection</link> pages.  At the top is a pull-down menu of
+	  methods of modifying the Active Area of the current &micro;.
+	  The modifiers in this menu correspond to commands in the <xref
+	  linkend="MenuItem-OOF.ActiveArea"/> menu.  Modifiers that
+	  require additional arguments display them in the region below
+	  the menu.  Below this are a set of buttons:
+	  <itemizedlist>
+	    <listitem>
+	      <para>
+	        The <guibutton>OK</guibutton> performs the action
+	        specified by the currently selected modifier.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.ActiveArea.Undo"><guibutton>Undo</guibutton></link>
+	        and <link
+	        linkend="MenuItem-OOF.ActiveArea.Redo"><guibutton>Redo</guibutton></link>
+	        buttons undo and redo the most recent changes to the
+	        Active Area.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <guibutton>Prev</guibutton> and
+	        <guibutton>Next</guibutton> buttons cycle the Modifier
+	        Chooser through the most recently used modifiers.  These
+	        buttons have no direct effect on the current Active Area.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.ActiveArea.Override"><guibutton>Override</guibutton></link>
+	        button makes the whole &micro; active as long as the
+	        button is pressed.  Unlike the other buttons on the page,
+	        when the <guibutton>Override</guibutton> button is
+	        pressed, it stays pressed.  It must be pressed again to
+	        release it.  <xref linkend="Figure-override"/> shows the
+	        two states of the button, unpressed (on the left) and
+	        pressed (on the right).
+	        <figure id="Figure-override">
+		      <title>The Override Button</title>
+		      <mediaobject>
+		        <imageobject>
+		          <imagedata fileref="FIGURES/gui/override.png"
+                             format="PNG"/>
+		        </imageobject>
+		      </mediaobject>
+	        </figure>
+	      </para>
+	    </listitem>
+	  </itemizedlist>
     </para>
-    <figure id="Figure-ActivePage">
-      <title>The Active Area Page</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/active_page.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/active_page.eps"
-	    format="EPS"/>
-	</imageobject>
-      </mediaobject>
-    </figure>
-    <simplesect id="Section-ActivePage-NamedArea">
-      <title>The Named Area Pane</title>
-      <para>
-	The Named Area Pane contains the machinery needed to give
-	names to Active Areas and store them for later use.  The bulk
-	of the pane is a list of named areas. Clicking on a name in
-	the list selects it.  Double-clicking on a name is equivalent
-	to single-clicking and using the <link
-	linkend="MenuItem-OOF.ActiveArea.Restore"><guibutton>Restore</guibutton></link>
-	button.  The buttons at the bottom of the pane operate on the
-	selected Active Area:
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.ActiveArea.Store"><guibutton>Store</guibutton></link>
-	      button stores the current ActiveArea (the currently
-	      active pixels in the current &micro;) and assigns a name
-	      to it. The newly named area will be selected in the
-	      Named Area list.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.ActiveArea.Rename"><guibutton>Rename</guibutton></link>
-	      button renames the Active Area that's currently selected
-	      in the list.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.ActiveArea.Delete"><guibutton>Delete</guibutton></link>
-	      button deletes the currently selected Active Area from
-	      the list.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.ActiveArea.Restore"><guibutton>Restore</guibutton></link>
-	      button activates the selected Active Area.  That is, the
-	      named stored Active Area becomes the &micro;'s current
-	      Active Area.  Clicking on the
-	      <guibutton>Restore</guibutton> button is equivalent to
-	      double-clicking a name in the list.
-	    </para>
-	  </listitem>
-	</itemizedlist>
-      </para>
-    </simplesect>
-    <simplesect id="Section-ActivePage-Modifier">
-      <title>The Modification Pane</title>
-      <para>
-	The Active Area Modification pane is similar to the
-	Modification Panes in the <link
-	linkend="Section-Tasks-Image">Image</link> and <link
-	linkend="Section-Tasks-PixelSelection">Pixel Selection</link>
-	pages.  At the top is a pull-down menu of methods of modifying
-	the Active Area of the current &micro;.  The modifiers in this
-	menu correspond to commands in the <xref
-	linkend="MenuItem-OOF.ActiveArea"/> menu.  Modifiers that
-	require additional arguments display them in the region below
-	the menu.  Below this are a set of buttons:
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      The <guibutton>OK</guibutton> performs the action
-	      specified by the currently selected modifier.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.ActiveArea.Undo"><guibutton>Undo</guibutton></link>
-	      and <link
-	      linkend="MenuItem-OOF.ActiveArea.Redo"><guibutton>Redo</guibutton></link>
-	      buttons undo and redo the most recent changes to the
-	      Active Area.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <guibutton>Prev</guibutton> and
-	      <guibutton>Next</guibutton> buttons cycle the Modifier
-	      Chooser through the most recently used modifiers.  These
-	      buttons have no direct effect on the current Active Area.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.ActiveArea.Override"><guibutton>Override</guibutton></link>
-	      button makes the whole &micro; active as long as the
-	      button is pressed.  Unlike the other buttons on the
-	      page, when the <guibutton>Override</guibutton> button is
-	      pressed, it stays pressed.  It must be pressed again to
-	      release it.  <xref linkend="Figure-override"/> shows the
-	      two states of the button, unpressed (on the left) and
-	      pressed (on the right).
-	      <figure id="Figure-override">
-		<title>The Override Button</title>
-		<mediaobject>
-		  <imageobject>
-		    <imagedata fileref="FIGURES/gui/override.png"
-		      format="PNG"/>
-		  </imageobject>
-		  <imageobject>
-		    <imagedata fileref="FIGURES/gui/override.eps"
-		      format="EPS"/>
-		  </imageobject>
-		</mediaobject>
-	      </figure>
-	    </para>
-	  </listitem>
-	</itemizedlist>
-      </para>
-    </simplesect>
-  </section>
+  </simplesect>
+</section>
     
 
   <!-- Keep this comment at the end of the file

@@ -64,24 +64,21 @@
     </note>
     <para>
       The Menu Bar at the top of the window in <xref
-      linkend="Figure-MainWindow"/> (highlighted in light green)
-      includes general purpose commands.
+      linkend="Figure-MainWindow"/> includes general purpose commands.
     </para>
     <para>
-      The Task Page at the bottom (highlighted in yellow in the
-      figure) contains buttons and widgets for working on a particular
-      aspect of &oof2;.  Each page is described in its own section of
-      this manual.
+      The Task Page at the bottom contains buttons and widgets for
+      working on a particular aspect of &oof2;.  Each page is
+      described in its own section of this manual.
     </para>
     <para>
       The Navigation Bar between the menu bar and the task page
-      (highlighted in light blue) contains a central pull down menu
-      for choosing Task Pages.  The buttons immediately to the left
-      and right of the Task menu can be used to quickly switch to the
-      next and previous pages in the order in which they're listed in
-      the central menu.  The outer pair of buttons also switch to the
-      next and previous pages, but in the order in which the pages
-      were visited.
+      contains a central pull down menu for choosing Task Pages.  The
+      buttons immediately to the left and right of the Task menu can
+      be used to quickly switch to the next and previous pages in the
+      order in which they're listed in the central menu.  The outer
+      pair of buttons also switch to the next and previous pages, but
+      in the order in which the pages were visited.
     </para>
     <para>
       Many of the Task Pages are divided into separate panes.  The
