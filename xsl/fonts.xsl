@@ -55,7 +55,7 @@
     <xsl:param name="purpose"/>
     <xsl:param name="xrefstyle"/>
     <xsl:param name="title"/>
-    <tt><xsl:copy-of select="$title"/></tt>
+    <code class="classname"><xsl:copy-of select="$title"/></code>
   </xsl:template>
 
   <xsl:template match="refentry[@role='RegisteredClass']"
@@ -63,7 +63,7 @@
     <xsl:param name="purpose"/>
     <xsl:param name="xrefstyle"/>
     <xsl:param name="title"/>
-    <tt><xsl:copy-of select="$title"/></tt>
+    <code class="classname"><xsl:copy-of select="$title"/></code>
   </xsl:template>
 
   <xsl:template match="refentry[@role='MenuItem']"
@@ -86,10 +86,10 @@
     <xsl:param name="target" select="."/>
     <xsl:choose>
       <xsl:when test="$target/@role='Registration'">
-        <tt><xsl:value-of select="$target/@xreflabel"/></tt>      
+        <code class="classname"><xsl:value-of select="$target/@xreflabel"/></code>      
       </xsl:when>
       <xsl:when test="$target/@role='RegisteredClass'">
-        <tt><xsl:value-of select="$target/@xreflabel"/></tt>      
+        <code class="classname"><xsl:value-of select="$target/@xreflabel"/></code>      
       </xsl:when>
       <xsl:when test="$target/@role='MenuItem'">
         <b><xsl:value-of select="$target/@xreflabel"/></b>      

@@ -85,7 +85,7 @@ html>body #projectmenu li a {
 
 #projectmenu li ul li {
     list-style-type: disc;
-    list-style-image: url(STYLE/bullet.gif);
+    list-style-image: url(bullet.gif);
     list-style-position: inside;
     color: black;
     background-color: white;
@@ -336,7 +336,7 @@ div.credits {
 
 div.caption { 
   font-size: 90%;
-  background-color: lightgray;
+  background-color: ghostwhite;
 }
 
 div#main p {
@@ -425,14 +425,14 @@ pre.programlisting {
   clear: both;
 }
 
-/* TODO: Figure out how to make xrefs to RegisteredClasses use
-<code> instead of <tt>, and then change these font-sizes back to
-110%. */
-
 code.varname {
-    font-size: 100%
+    font-size: 110%
 }
 
 code.classname {
-    font-size: 100%
+    font-size: 110%
+}
+
+code.filename {
+    font-size: 110%
 }
