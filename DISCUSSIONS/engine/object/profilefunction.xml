@@ -165,9 +165,11 @@
       <function>pow</function>, <function>radians</function>,
       <function>sin</function>, <function>sinh</function>,
       <function>sqrt</function>, <function>tan</function>, and
-      <function>tanh</function>) as well as any variables and
+      <function>tanh</function>), as well as any variables and
       functions that may have been defined in the &oof2; <link
-	linkend="Section-Windows-Console">Console</link> window.
+      linkend="Section-Windows-Console">Console</link> window or in a
+      Python script loaded by <xref
+      linkend="MenuItem-OOF.File.Load.Script"/>.
     </para>
     <para>
       In the GUI, a <classname>ProfileFunction</classname> should

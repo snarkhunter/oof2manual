@@ -34,10 +34,7 @@
     <title>The FE Mesh Page</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gui/femesh_page.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gui/femesh_page.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gui/femesh_page.png" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -116,8 +113,7 @@
       <guilabel>Info</guilabel> pane will begin with
       <screen>
 Status: Out of sync with Skeleton
-***Mesh must be rebuilt! ***
-      </screen>
+*** Mesh must be rebuilt! ***</screen>
       In this situation, many &mesh; operations will be unavailable
       until the &mesh; is rebuilt, using <xref
       linkend="RegisteredClass-RebuildMesh"/> in the <link
@@ -128,20 +124,18 @@ Status: Out of sync with Skeleton
   <simplesect id="Section-Tasks-FEMesh-Subproblems">
     <title>The Subproblems Pane</title>
     <para>
-      The <guilabel>Subproblems</guilabel> pane manages &subproblems;,
-      which are portions of a &mesh;.  A &mesh; can contain many
-      &subproblems;, which need not be distinct.  &fields; and
-      &equations; are defined and solved on &subproblems;.  Using
-      &subproblems; allows different solution techniques to be used on
-      different &equations;, or allows the &fields; in one region to
-      provide boundary conditions for another.  For example, the
-      Temperature &field; could be solved for on a <link
-      linkend="RegisteredClass-PixelGroupSubProblem"><guilabel>PixelGroup</guilabel></link>
-      &subproblem; which was defined to include all &elems; whose
-      <link linkend="Section-Concepts-Skeleton-Homogeneity">dominant
-      pixel type</link> includes a specified &pixelgroup;, while
-      another &field; is solved for on a &subproblem; defined to
-      include only &elems; with a given &material;.
+      The <guilabel>Subproblems</guilabel> pane manages &subproblems;.
+      Subproblems can be defined geographically, restricted to the
+      area of a <link
+      linkend="Section-Concepts-Microstructure-Pixel_Group"> pixel
+      group</link>, or by material type, or by boolean combinations of
+      other &subproblems;.  A &mesh; can contain many &subproblems;,
+      which need not be distinct.
+    </para>
+    <para>
+      If you only want to solve one problem on the entire &mesh;, you
+      can ignore the <guilabel>Subproblem</guilabel> pane and use the
+      predefined <userinput>default</userinput> &subproblem;.
     </para>
     <para>
       The top part of the <guilabel>Subproblems</guilabel> pane is a
@@ -156,68 +150,68 @@ Status: Out of sync with Skeleton
       Clicking on the name of a &subproblem; in the list allows the
       buttons below the list to operate on the selected &subproblem;.
       <itemizedlist>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="MenuItem-OOF.Subproblem.New"><guilabel>New</guilabel></link>
-	    button brings up a dialog box for creating a new
-	    &subproblem;.  The different kinds of &subproblems; are
-	    enumerated in <xref
-	    linkend="RegisteredClass-SubProblemType"/>.  Each new
-	    &subproblem; must have a unique name.  Non-unique names
-	    will have <userinput>&lt;x&gt;</userinput> appended to
-	    them, where <userinput>x</userinput> is an integer chosen
-	    to make the name unique.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="MenuItem-OOF.Subproblem.Rename"><guilabel>Rename</guilabel></link>
-	    button allows you to rename an existing &subproblem;.  It
-	    is not possible to rename the
-	    <userinput>default</userinput> &subproblem;.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="MenuItem-OOF.Subproblem.Edit"><guilabel>Edit</guilabel></link>
-	    button allows you to change the definition of a
-	    &subproblem;, either changing the parameters by which it's
-	    defined, or changing its type.  It is not possible to edit
-	    the <userinput>default</userinput> subproblem.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="MenuItem-OOF.Subproblem.Copy"><guilabel>Copy</guilabel></link>
-	    button copies the currently selected &subproblem;.  It
-	    brings up a dialog box to specify a name for the copied
-	    &subproblem; and the &mesh; to which it will be copied
-	    (which may be the same as the &mesh; containing the
-	    original subproblem).
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="MenuItem-OOF.Subproblem.Info"><guilabel>Info</guilabel></link>
-	    button prints information in the <link
-	    linkend="Section-Windows-Messages">Messages Window</link>
-	    about the selected &subproblem;.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="MenuItem-OOF.Subproblem.Delete"><guilabel>Delete</guilabel></link>
-	    button deletes the selected &subproblem;.  It is not
-	    possible to delete the <userinput>default</userinput>
-	    subproblem.
-	  </para>
-	</listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Subproblem.New"><guilabel>New</guilabel></link>
+	        button brings up a dialog box for creating a new
+	        &subproblem;.  The different kinds of &subproblems; are
+	        enumerated in <xref
+	        linkend="RegisteredClass-SubProblemType"/>.  Each new
+	        &subproblem; must have a unique name.  Non-unique names
+	        will have <userinput>&lt;x&gt;</userinput> appended to
+	        them, where <userinput>x</userinput> is an integer chosen
+	        to make the name unique.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Subproblem.Rename"><guilabel>Rename</guilabel></link>
+	        button allows you to rename an existing &subproblem;.  It
+	        is not possible to rename the
+	        <userinput>default</userinput> &subproblem;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Subproblem.Edit"><guilabel>Edit</guilabel></link>
+	        button allows you to change the definition of a
+	        &subproblem;, either changing the parameters by which it's
+	        defined, or changing its type.  It is not possible to edit
+	        the <userinput>default</userinput> subproblem.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Subproblem.Copy"><guilabel>Copy</guilabel></link>
+	        button copies the currently selected &subproblem;.  It
+	        brings up a dialog box to specify a name for the copied
+	        &subproblem; and the &mesh; to which it will be copied
+	        (which may be the same as the &mesh; containing the
+	        original subproblem).
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Subproblem.Info"><guilabel>Info</guilabel></link>
+	        button prints information in the <link
+	        linkend="Section-Windows-Messages">Messages Window</link>
+	        about the selected &subproblem;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Subproblem.Delete"><guilabel>Delete</guilabel></link>
+	        button deletes the selected &subproblem;.  It is not
+	        possible to delete the <userinput>default</userinput>
+	        subproblem.
+	      </para>
+	    </listitem>
       </itemizedlist>
     </para>
   </simplesect>

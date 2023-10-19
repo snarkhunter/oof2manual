@@ -1,11 +1,11 @@
 <!--
-  This software was produced by NIST, an agency of the
-  U.S. government, and by statute is not subject to copyright in the
-  United States.  Recipients of this software assume all
-  responsibilities associated with its operation, modification and
-  maintenance. However, to facilitate maintenance we ask that before
-  distributing modified versions of this software, you first contact
-  the authors at oof_manager@nist.gov.
+    This software was produced by NIST, an agency of the
+    U.S. government, and by statute is not subject to copyright in the
+    United States.  Recipients of this software assume all
+    responsibilities associated with its operation, modification and
+    maintenance. However, to facilitate maintenance we ask that before
+    distributing modified versions of this software, you first contact
+    the authors at oof_manager@nist.gov.
 -->
 
 <chapter id="Chapter-Concepts">
@@ -35,167 +35,173 @@
     <section id="Section-Concepts-Objects">
       <title>Objects and Classes</title>
       <para>
-	&oof2; is an object oriented program.  The term <quote>object
-	oriented</quote> (commonly abbreviated <quote>OO</quote>)
-	means different things to different people.  For the purpose
-	of understanding this manual, it's only necessary to
-	understand what <emphasis>we</emphasis> mean when we refer to
-	<quote>objects</quote>, <quote>classes</quote>, and
-	<quote>subclasses</quote>.
+	    &oof2; is an object oriented program.  The term <quote>object
+	    oriented</quote> (commonly abbreviated <quote>OO</quote>)
+	    means different things to different people.  For the purpose
+	    of understanding this manual, it's only necessary to
+	    understand what <emphasis>we</emphasis> mean when we refer to
+	    <quote>objects</quote>, <quote>classes</quote>, and
+	    <quote>subclasses</quote>.
       </para>
       <para>
-	OO programming involves writing descriptions of things, such
-	as finite elements, or colors.  A <emphasis>class</emphasis>
-	describes the data associated with a thing and the functions
-	that operate on that data.  For example, a color class could
-	contain storage for the red, green, and blue components,
-	functions for setting those components, and a function for
-	returning the equivalent gray value.  The class only provides
-	the description, though.  To actually create a color, it's
-	necessary to actually allocate space for the data and store it
-	in a variable somewhere.  In the jargon, this is called
-	<emphasis>instantiating</emphasis> an
-	<emphasis>object</emphasis> (or <emphasis>instance</emphasis>)
-	of the class.
+	    OO programming involves writing descriptions of things, such
+	    as finite elements, or colors.  A <emphasis>class</emphasis>
+	    describes the data associated with a thing and the functions
+	    that operate on that data.  For example, a color class could
+	    contain storage for the red, green, and blue components,
+	    functions for setting those components, and a function for
+	    returning the equivalent gray value.  The class only provides
+	    the description, though.  To actually create a color, it's
+	    necessary to actually allocate space for the data and store it
+	    in a variable somewhere.  In the jargon, this is called
+	    <emphasis>instantiating</emphasis> an
+	    <emphasis>object</emphasis> (or <emphasis>instance</emphasis>)
+	    of the class.
       </para>
       <para>
-	Classes often describe a variety of different but related
-	things.  For example, a finite element could be a triangle or
-	a quadrilateral.  Related classes can be arranged
-	hierarchically, with a generic <emphasis>base class</emphasis>
-	(<foreignphrase>e.g,</foreignphrase>
-	<classname>Element</classname>) and specific
-	<emphasis>subclasses</emphasis>
-	(<foreignphrase>e.g,</foreignphrase>
-	<classname>Triangle</classname> and
-	<classname>Quadrilateral</classname>).  Subclasses can share
-	some data and functions with their parent base class, and
-	provide their own versions of others.
+	    Classes often describe a variety of different but related
+	    things.  For example, a finite element could be a triangle or
+	    a quadrilateral.  Related classes can be arranged
+	    hierarchically, with a generic <emphasis>base class</emphasis>
+	    (<foreignphrase>e.g,</foreignphrase>
+	    <classname>Element</classname>) and specific
+	    <emphasis>subclasses</emphasis>
+	    (<foreignphrase>e.g,</foreignphrase>
+	    <classname>Triangle</classname> and
+	    <classname>Quadrilateral</classname>).  Subclasses can share
+	    some data and functions with their parent base class, and
+	    provide their own versions of others.
       </para>
       <para>
-	In this manual, the names of classes and subclasses appear in
-	<classname>this typeface</classname>.
+	    In this manual, the names of classes and subclasses appear in
+	    <classname>this typeface</classname>.
       </para>
     </section>
     <section id="Section-Concepts-Path">
       <title>Names, Paths, and the Object Hierarchy</title>
       <para>
-	The fundamental objects that &oof2; manipulates, &micros;,
-	&images;, &skels;, &meshes;, and &subproblems;, are nested
-	(see <xref linkend="Figure-infoflow"/>).  &micros; contain
-	&images; and &skels;, and &skels; contain &meshes;. &meshes;
-	are divided into &subproblems;. The objects are all given
-	identifying names when they're created.  These names are
-	assigned by the user, or generated automatically by the program
-	if the user declines to specify a name.  Names must be unique:
-	no two &micros; can have the same name, and within a &micro;
-	no two &images; can have the same name.
-	<note id="Section-Concepts-Path-Unique">
-	  <para>
-	    If the user attempts to assign a name that's in use,
-	    &oof2; will append <userinput>&lt;x&gt;</userinput> to the
-	    name, where <userinput>x</userinput> is an integer chosen
-	    to make the resulting name unique.  If the given name is a
-	    duplicate and <emphasis>already</emphasis> ends with
-	    <userinput>&lt;x&gt;</userinput>, <userinput>x</userinput>
-	    will be incremented in the new name.  For example, if a
-	    &micro; contains two &skels; named
-	    <userinput>thing</userinput> and
-	    <userinput>thing&lt;1&gt;</userinput> and the user
-	    attempts to create a third &skel; in the same &micro; with
-	    either one of the existing names, the name of the new
-	    &skel; will be changed to
-	    <userinput>thing&lt;2&gt;</userinput>.
-	  </para>
-	</note>
+	    The fundamental objects that &oof2; manipulates, &micros;,
+	    &images;, &skels;, &meshes;, and &subproblems;, are nested
+	    (see <xref linkend="Figure-infoflow"/>).  &micros; contain
+	    &images; and &skels;, and &skels; contain &meshes;. &meshes;
+	    are divided into &subproblems;. The objects are all given
+	    identifying names when they're created.  These names are
+	    assigned by the user, or generated automatically by the
+	    program if the user declines to specify a name.  Names must be
+	    unique: no two &micros; can have the same name, and within a
+	    &micro; no two &images; can have the same name.
+	    <note id="Section-Concepts-Path-Unique">
+	      <para>
+	        If the user attempts to assign a name that's in use,
+	        &oof2; will append <userinput>&lt;x&gt;</userinput> to the
+	        name, where <userinput>x</userinput> is an integer chosen
+	        to make the resulting name unique.  If the given name is a
+	        duplicate and <emphasis>already</emphasis> ends with
+	        <userinput>&lt;x&gt;</userinput>, <userinput>x</userinput>
+	        will be incremented in the new name.  For example, if a
+	        &micro; contains two &skels; named
+	        <userinput>thing</userinput> and
+	        <userinput>thing&lt;1&gt;</userinput> and the user
+	        attempts to create a third &skel; in the same &micro; with
+	        either one of the existing names, the name of the new
+	        &skel; will be changed to
+	        <userinput>thing&lt;2&gt;</userinput>.
+	      </para>
+	    </note>
       </para>
       <figure id="Figure-infoflow">
-	<title>Object Organization and Information Flow</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/infoflow.png" format="PNG"/>
-	  </imageobject>
-	  <textobject>
-	    <phrase>Relationships between the main oof2 classes.</phrase>
-	  </textobject>
-	  <caption>
-        <para>
-	      The principal object hierarchy in &oof2; is that &micros;
-	      contain &images; and &skels;, and &skels; contain &meshes;.
-	      &micros; also contain the pixel selection, pixel groups, and
-	      a &material; map, which assigns &materials; to
-	      pixels. &micros; can optionally contain an <link
-	      linkend="Section-Concepts-Microstructure-Orientation">Orientation
-	      Map</link>, which assigned <xref
-	      linkend="RegisteredClass-Orientation"/>s to pixels.
-        </para>
-        <para>
-          The arrows indicate the flow of information within the
-          program: pixel selections made on &images; are used to
-          generate the pixel groups and the &material; map.  That
-          information is used to create a &skel;, from which &meshes;
-          are constructed.  A &mesh; can be divided into
-          &subproblems;.
-        </para>
-	  </caption>
-	</mediaobject>
+	    <title>Object Organization and Information Flow</title>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/infoflow.png" format="PNG"/>
+	      </imageobject>
+	      <textobject>
+	        <phrase>Relationships between the main oof2 classes.</phrase>
+	      </textobject>
+	      <caption>
+            <para>
+	          The principal object hierarchy in &oof2; is that
+	          &micros; contain &images; and &skels;, and &skels;
+	          contain &meshes;.  &micros; also contain the pixel
+	          selection, <link
+	          linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	          groups</link>, and a &material; map, which assigns
+	          &materials; to pixels. &micros; can optionally contain
+	          an <link
+	          linkend="Section-Concepts-Microstructure-Orientation">Orientation
+	          Map</link>, which assigned <xref
+	          linkend="RegisteredClass-Orientation"/>s to pixels.
+            </para>
+            <para>
+              The arrows indicate the flow of information within the
+              program: pixel selections made on &images; are used to
+              generate the <link
+              linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+              groups</link> and the &material; map.  That information
+              is used to create a &skel;, from which &meshes; are
+              constructed.  A &mesh; can be divided into
+              &subproblems;.
+            </para>
+	      </caption>
+	    </mediaobject>
       </figure>
       <para>
-	To completely and unambiguously specify an &image; or &skel;
-	it's necessary to say which &micro; it lives in.  The
-	<emphasis>path</emphasis> to such an object is the name of its
-	&micro; and the name of the object, separated by a colon.  For
-	example, the path to an &image; named
-	<quote>CrazyAfterAllTheseYears</quote> in a &micro; named
-	<quote>Steel</quote>
-	is <quote>Steel:CrazyAfterAllTheseYears</quote>.
+	    To completely and unambiguously specify an &image; or &skel;
+	    it's necessary to say which &micro; it lives in.  The
+	    <emphasis>path</emphasis> to such an object is the name of its
+	    &micro; and the name of the object, separated by a colon.  For
+	    example, the path to an &image; named
+	    <quote>CrazyAfterAllTheseYears</quote> in a &micro; named
+	    <quote>Steel</quote> is
+	    <quote>Steel:CrazyAfterAllTheseYears</quote>.
       </para>
       <para>
-	Similarly, the path to a &mesh; object is composed of the
-	names of the &mesh;, its &skel;, and its &skel;'s &micro;: a
-	&mesh; named <quote>mush</quote> in a &skel; named
-	<quote>skill</quote> in a &micro; named <quote>micro</quote>
-	is <quote>micro:skill:mush</quote>.  The path to a &micro; is
-	simply the name of the &micro;.
+	    Similarly, the path to a &mesh; object is composed of the
+	    names of the &mesh;, its &skel;, and its &skel;'s &micro;: a
+	    &mesh; named <quote>mush</quote> in a &skel; named
+	    <quote>skill</quote> in a &micro; named <quote>micro</quote>
+	    is <quote>micro:skill:mush</quote>.  The path to a &micro; is
+	    simply the name of the &micro;.
       </para>
       <para>
-	When specifying paths in scripts, give the path name in
-	quotation marks.  For example:
-	<literallayout class="monospaced">
-	  <link linkend="MenuItem-OOF.Skeleton.Delete">OOF.Skeleton.Delete</link>(skeleton='micro:bones')
-	</literallayout>
-	Whenever the GUI needs to know a path, it presents a series of
-	pull down menus.  The top or left hand menu specifies the
-	&micro;, then next one specifies the &image; or &skel;,
-	<foreignphrase>etc</foreignphrase>. (See <xref
-	  linkend="Figure-WhoWidgets"/>.)
-	<figure id="Figure-WhoWidgets">
-	  <title>Path Menus</title>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/whowidget1.png" format="PNG"/>
-	    </imageobject>
-	    <caption>
-	      <para>
-		    Menus for selecting a &mesh; in the <link
-		    linkend="Section-Tasks-FEMesh">FE Mesh</link> task page.
-	      </para>
-	    </caption>
-	  </mediaobject>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/whowidget2.png" format="PNG"/>
-	    </imageobject>
-	    <caption>
-	      <para>
-		    Menus for selecting a &mesh; in the <link
-		    linkend="Section-Graphics-NewLayer">New Graphics
-		    Layer</link> dialog.
-	      </para>
-	    </caption>
-	  </mediaobject>
-	</figure>
+	    When specifying paths in scripts, give the path name in
+	    quotation marks.  For example:
+	    <literallayout class="monospaced">
+	      <link linkend="MenuItem-OOF.Skeleton.Delete">OOF.Skeleton.Delete</link>(skeleton='micro:bones')
+	    </literallayout>
+	    Whenever the GUI needs to know a path, it presents a series of
+	    pull down menus.  The top or left hand menu specifies the
+	    &micro;, then next one specifies the &image; or &skel;,
+	    <foreignphrase>etc</foreignphrase>. (See <xref
+	    linkend="Figure-WhoWidgets"/>.)
       </para>
+	  <figure id="Figure-WhoWidgets">
+	    <title>Path Menus</title>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/whowidget1.png" format="PNG"/>
+	      </imageobject>
+	      <caption>
+	        <para>
+		      Menus for selecting a &mesh; in the <link
+		      linkend="Section-Tasks-FEMesh">FE Mesh</link> task
+		      page.
+	        </para>
+	      </caption>
+	    </mediaobject>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/whowidget2.png" format="PNG"/>
+	      </imageobject>
+	      <caption>
+	        <para>
+		      Menus for selecting a &mesh; in the <link
+		      linkend="Section-Graphics-NewLayer">New Graphics
+		      Layer</link> dialog.
+	        </para>
+	      </caption>
+	    </mediaobject>
+	  </figure>
     </section>
   </section>
 
@@ -209,10 +215,10 @@
       small <emphasis>m</emphasis>).  Before doing anything else in
       &oof2; you must create a &micro;.  Because &oof2; is designed to
       work on images, and images are usually rectangular, &micros;
-      must be rectangular.<footnote><para>Non-rectangular microstructures
-      can be represented within a rectangular &micro; by using
-      elements without any &material;. See the "Nonrectangular Domain"
-      Tutorial.</para></footnote>
+      must be rectangular.<footnote><para>Non-rectangular
+      microstructures can be represented within a rectangular &micro;
+      by using elements without any &material;. See the
+      "Nonrectangular Domain" Tutorial.</para></footnote>
     </para>
     <para>
       Just as photographs, when digitized, are divided into pixels, a
@@ -231,166 +237,167 @@
     <section id="Section-Concepts-Microstructure-Coordinates">
       <title>Coordinate Systems</title>
       <para>
-	Every &micro; has two sizes: a physical size and a pixel size.
-	The <emphasis>physical size</emphasis> is the size of the real
-	microstructure that the &micro; represents,
-	100&mgr;&times;100&mgr;, for example. (See <xref
-	linkend="Section-Concepts-Units"/>.)  The <emphasis>pixel
-	size</emphasis> of a &micro; is the number of pixels along its
-	x and y dimensions.  Note that pixels need not be square: a
-	100&mgr;&times;100&mgr; &micro; might be divided into
-	100&times;160 pixels.
+	    Every &micro; has two sizes: a physical size and a pixel size.
+	    The <emphasis>physical size</emphasis> is the size of the real
+	    microstructure that the &micro; represents,
+	    100&mgr;&times;100&mgr;, for example. (See <xref
+	    linkend="Section-Concepts-Units"/>.)  The <emphasis>pixel
+	    size</emphasis> of a &micro; is the number of pixels along its
+	    x and y dimensions.  Note that pixels need not be square: a
+	    100&mgr;&times;100&mgr; &micro; might be divided into
+	    100&times;160 pixels.
       </para>
       <para>
-	The fact that &micros; have two sizes means that they have two
-	coordinate systems.  We can talk about a physical point (x,y)
-	in the &micro;, where x and y are given in physical units,
-	(that is, in whatever units were used to specify the physical
-	size) and the origin is at the lower left corner of the
-	&micro;.  We can also talk about the position (i,j) of a
-	pixel, where i and j are integers specifying the column and
-	row of the pixel.  Row 0 is the bottom row, and column 0 is
-	the leftmost column.
-	<note>
-	  <para>
-	    Most image processing programs label the pixels as if they
-	    were matrix elements &#x2014; pixel (i,j) is in the
-	    i<superscript>th</superscript> row from the top and the
-	    j<superscript>th</superscript> column from the left.
-	    &oof2; does <emphasis>not</emphasis> do this, choosing
-	    instead to use the same origin and axes for both the
-	    physical and pixel coordinate systems.
-	  </para>
-	</note>
+	    The fact that &micros; have two sizes means that they have two
+	    coordinate systems.  We can talk about a physical point (x,y)
+	    in the &micro;, where x and y are given in physical units,
+	    (that is, in whatever units were used to specify the physical
+	    size) and the origin is at the lower left corner of the
+	    &micro;.  We can also talk about the position (i,j) of a
+	    pixel, where i and j are integers specifying the column and
+	    row of the pixel.  Row 0 is the bottom row, and column 0 is
+	    the leftmost column.
+	    <note>
+	      <para>
+	        Most image processing programs label the pixels as if they
+	        were matrix elements &#x2014; pixel (i,j) is in the
+	        i<superscript>th</superscript> row from the top and the
+	        j<superscript>th</superscript> column from the left.
+	        &oof2; does <emphasis>not</emphasis> do this, choosing
+	        instead to use the same origin and axes for both the
+	        physical and pixel coordinate systems.
+	      </para>
+	    </note>
       </para>
       <para id="Section-Concepts-Microstructure-Coordinates-Screen">
-	A third coordinate system, one that is rarely relevant in
-	&oof2;, is the screen pixel coordinate system. &micros; and
-	&images; can be displayed on the computer screen at different
-	resolutions.  This doesn't change the number of pixels in the
-	&micro;, it only changes the number of screen pixels used to
-	draw one &micro; pixel.  A few parameters to some of the <link
-	linkend="RegisteredClass-DisplayMethod">display methods</link>
-	are in units of the screen pixel size, though.
+	    A third coordinate system, one that is rarely relevant in
+	    &oof2;, is the screen pixel coordinate system. &micros; and
+	    &images; can be displayed on the computer screen at different
+	    resolutions.  This doesn't change the number of pixels in the
+	    &micro;, it only changes the number of screen pixels used to
+	    draw one &micro; pixel.  A few parameters to some of the <link
+	    linkend="RegisteredClass-DisplayMethod">display methods</link>
+	    are in units of the screen pixel size, though.
       </para>
     </section>
     <section id="Section-Concepts-Microstructure-PixelSelection">
       <title>The Pixel Selection</title>
       <para>
-	Many operations on &micros; work on sets of pixels.  Each
-	&micro; keeps track of a set of currently
-	<emphasis>selected</emphasis> pixels.  There are tools to
-	select pixels and to modify the selected set.  Each &micro;
-	has its own set of selected pixels.
+	    Many operations on &micros; work on sets of pixels.  Each
+	    &micro; keeps track of a set of currently
+	    <emphasis>selected</emphasis> pixels.  There are tools to
+	    select pixels and to modify the selected set.  Each &micro;
+	    has its own set of selected pixels.
       </para>
       <para>
-	Commands for selecting pixels are in <xref
-	  linkend="MenuItem-OOF.PixelSelection"/>.  The GUI tools for
-	the same operations are described in <xref
-	  linkend="Section-Tasks-PixelSelection"/> and <xref
-	  linkend="Section-Graphics-PixelSelection"/>.
+	    Commands for selecting pixels are in <xref
+	    linkend="MenuItem-OOF.PixelSelection"/>.  The GUI tools for
+	    the same operations are described in <xref
+	    linkend="Section-Tasks-PixelSelection"/> and <xref
+	    linkend="Section-Graphics-PixelSelection"/>.
       </para>
       <para>
-	The set of selected pixels is used in many other commands.
-	For example, it is possible to assign a &material; to the
-	currently selected pixels, or to put the pixels into a <link
-	linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
-	group</link>.
+	    The set of selected pixels is used in many other commands.
+	    For example, it is possible to assign a &material; to the
+	    currently selected pixels, or to put the pixels into a <link
+	    linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	    group</link>.
       </para>
     </section>
     <section id="Section-Concepts-Microstructure-Pixel_Group">
       <title>Pixel Groups</title>
       <para>
-	Pixel Groups are a way of storing and retrieving named sets of
-	pixels.  The &micro; maintains a list of Pixel Groups and
-	keeps track of which pixels belong to which groups.  Many
-	operations that apply to the <link
-	linkend="Section-Concepts-Microstructure-PixelSelection">Pixel
-	Selection</link> also apply to Pixel Groups.  Pixel Groups can
-	also be used to distinguish pixels from one another when
-	creating &skels;, if the group is marked <link
-	linkend="Section-Concepts-Skeleton-Homogeneity"><constant>meshable</constant></link>.
+	    Pixel Groups are a way of storing and retrieving named sets of
+	    pixels.  The &micro; maintains a list of Pixel Groups and
+	    keeps track of which pixels belong to which groups.  Many
+	    operations that apply to the <link
+	    linkend="Section-Concepts-Microstructure-PixelSelection">Pixel
+	    Selection</link> also apply to Pixel Groups.  Pixel Groups can
+	    also be used to distinguish pixels from one another when
+	    creating &skels;, if the group is marked <link
+	    linkend="Section-Concepts-Skeleton-Homogeneity"><constant>meshable</constant></link>.
       </para>
       <para>
-	Commands for manipulating Pixel Groups are discussed in <xref
-	  linkend="MenuItem-OOF.PixelGroup"/>.
+	    Commands for manipulating Pixel Groups are discussed in <xref
+	    linkend="MenuItem-OOF.PixelGroup"/>.
       </para>
     </section>
     <section id="Section-Concepts-Microstructure-Image">
       <title>Images</title>
       <para>
-	&micros; are usually created from &images;.  An &image; in &oof2;
-	is a digitized micrograph or other digital image.  &images; live
-	inside their &micros; &#x2014; that is, each &image; is associated
-	with one and only one &micro;, and the size of the &image;, in
-	pixels, must be exactly the same as the size of its &micro;.  One
-	&micro;, however, may contain more than one &image; or more than
-	one version of the same image.  This can be useful when different
-	processing techniques are needed to bring out different features
-	of a micrograph.
+	    &micros; are usually created from &images;.  An &image; in
+	    &oof2; is a digitized micrograph or other digital image.
+	    &images; live inside their &micros; &#x2014; that is, each
+	    &image; is associated with one and only one &micro;, and the
+	    size of the &image;, in pixels, must be exactly the same as
+	    the size of its &micro;.  One &micro;, however, may contain
+	    more than one &image; or more than one version of the same
+	    image.  This can be useful when different processing
+	    techniques are needed to bring out different features of a
+	    micrograph.
       </para>
       <para>
-	When pixels are <link
-	linkend="Section-Concepts-Microstructure-PixelSelection">selected</link>
-	in an &image;, they are actually being selected in the &micro;
-	containing the image.  This means that all of the &images; in
-	a &micro; share the same pixel selection.
+	    When pixels are <link
+	    linkend="Section-Concepts-Microstructure-PixelSelection">selected</link>
+	    in an &image;, they are actually being selected in the &micro;
+	    containing the image.  This means that all of the &images; in
+	    a &micro; share the same pixel selection.
       </para>
       <para>
-	Commands for manipulating &images; are in <xref
-	linkend="MenuItem-OOF.Image"/>.  The corresponding GUI is
-	described in <xref linkend="Section-Tasks-Image"/>.  Creating
-	a &micro; directly from an image file is discussed in <xref
-	linkend="Section-Tasks-Microstructure"/> and <xref
-	linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"/>.
+	    Commands for manipulating &images; are in <xref
+	    linkend="MenuItem-OOF.Image"/>.  The corresponding GUI is
+	    described in <xref linkend="Section-Tasks-Image"/>.  Creating
+	    a &micro; directly from an image file is discussed in <xref
+	    linkend="Section-Tasks-Microstructure"/> and <xref
+	    linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile"/>.
       </para>
     </section><!-- Section:Concepts:Microstructure:Image -->
     <section id="Section-Concepts-Microstructure-ActiveArea">
       <title>Active Areas</title>
       <para>
-	It is often convenient to restrict the scope of &oof2;
-	operations to a portion of a &micro;, called the
-	<emphasis>Active Area</emphasis>.  Pixel selections, pixel
-	group operations, and &skel; modifications are all restricted
-	to the current Active Area. &image; and &mesh; operations,
-	however, are not.
+	    It is often convenient to restrict the scope of &oof2;
+	    operations to a portion of a &micro;, called the
+	    <emphasis>Active Area</emphasis>.  Pixel selections, pixel
+	    group operations, and &skel; modifications are all restricted
+	    to the current Active Area. &image; and &mesh; operations,
+	    however, are not.
       </para>
       <para>
-	By default, the Active Area is the whole &micro;.  Commands to
-	manipulate the Active Area are described in <xref
-	linkend="Section-Tasks-ActiveArea"/> and <xref
-	linkend="MenuItem-OOF.ActiveArea"/>.
+	    By default, the Active Area is the whole &micro;.  Commands to
+	    manipulate the Active Area are described in <xref
+	    linkend="Section-Tasks-ActiveArea"/> and <xref
+	    linkend="MenuItem-OOF.ActiveArea"/>.
       </para>
     </section><!-- Section:Concepts:Microstructure:ActiveArea -->
     <section id="Section-Concepts-Microstructure-OrientationMap">
       <title>Orientation Maps</title>
       <para>
-	<classname>Orientation Maps</classname> assign an <link
-	linkend="RegisteredClass-Orientation"><classname>Orientation</classname></link>
-	to every pixel in a &micro;.  They are usually obtained via
-	electron backscatter diffraction <ulink
-	url="http://www.ebsd.com/ebsdexplained.htm"
-	role="external">(EBSD)</ulink>.  A &micro; can contain at most
-	one <classname>Orientation Map</classname>, which must have a
-	pixel size and physical size that match the &micro;'s size.
-	(The easiest way to ensure this is to create the &micro; from
-	the <classname>Orientation Map</classname>, using the <xref
-	linkend="MenuItem-OOF.Microstructure.Create_From_OrientationMap_File"/>
-	command.)
+	    <classname>Orientation Maps</classname> assign an <link
+	    linkend="RegisteredClass-Orientation"><classname>Orientation</classname></link>
+	    to every pixel in a &micro;.  They are usually obtained via
+	    electron backscatter diffraction <ulink
+	    url="http://www.ebsd.com/ebsdexplained.htm"
+	    role="external">(EBSD)</ulink>.  A &micro; can contain at most
+	    one <classname>Orientation Map</classname>, which must have a
+	    pixel size and physical size that match the &micro;'s size.
+	    (The easiest way to ensure this is to create the &micro; from
+	    the <classname>Orientation Map</classname>, using the <xref
+	    linkend="MenuItem-OOF.Microstructure.Create_From_OrientationMap_File"/>
+	    command.)
       </para>
       <para>
-	Commands for manipulating <classname>Orientation
-	Maps</classname> are found in the <xref
-	linkend="MenuItem-OOF.OrientationMap"/> menu in the main
-	&oof2; menu bar.
+	    Commands for manipulating <classname>Orientation
+	    Maps</classname> are found in the <xref
+	    linkend="MenuItem-OOF.OrientationMap"/> menu in the main
+	    &oof2; menu bar.
       </para>
       <para>
-	The crystal orientations in an <classname>Orientation
-	Map</classname> are <emphasis>not</emphasis> automatically
-	used by &materials;.  They are only used if the &material;
-	contains an explicit <link
-	linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-	&property;.
+	    The crystal orientations in an <classname>Orientation
+	    Map</classname> are <emphasis>not</emphasis> automatically
+	    used by &materials;.  They are only used if the &material;
+	    contains an explicit <link
+	    linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	    &property;.
       </para>
     </section><!-- Section:Concepts:OrientationMap -->
   </section><!-- Section:Concepts:Microstructure -->
@@ -403,122 +410,127 @@
       assembling lists of &property; objects, and are assigned to
       &micro; pixels in the <link
       linkend="Section-Tasks-Materials">Materials Page</link>.
+      &materials; can also be assigned to &elem; groups in the <link
+      linkend="Section-Tasks-SkeletonSelection">Skeleton
+      Selection</link>. page.  Assignments to &elem; groups have
+      precedence over assignments to pixels.
     </para>
     <section id="Section-Concepts-Property">
       <title>Properties</title>
       <para>
-	Properties come in a variety of categories.  Most, such as
-	<link
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity"><classname>Elasticity</classname></link>
-	or <link
-	linkend="MenuItem-OOF.Property.Parametrize.Couplings.ThermalExpansion"><classname>ThermalExpansion</classname></link>
-	represents terms in constitutive equations.  Others, such as
-	<link
-	linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>,
-	modify those terms, and at least one, <link
-	linkend="MenuItem-OOF.Property.Parametrize.Color"><classname>Color</classname></link>,
-	serves only a decorative function.
+	    Properties come in a variety of categories.  Most, such as
+	    <link
+	        linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity"><classname>Elasticity</classname></link>
+	    or <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Couplings.ThermalExpansion"><classname>ThermalExpansion</classname></link>
+	    represents terms in constitutive equations.  Others, such as
+	    <link
+	        linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>,
+	    modify those terms, and at least one, <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Color"><classname>Color</classname></link>,
+	    serves only a decorative function.
       </para>
       <para>
-	All of the &properties; predefined in &oof2; are listed by
-	category in <xref linkend="Section-Properties"/> in <xref
-	linkend="Chapter-Reference"/>.  <xref
-	linkend="Chapter-Extending"/> explains how to add new
-	&properties;.
+	    All of the &properties; predefined in &oof2; are listed by
+	    category in <xref linkend="Section-Properties"/> in <xref
+	    linkend="Chapter-Reference"/>.  <xref
+	    linkend="Chapter-Extending"/> explains how to add new
+	    &properties;.
       </para>
       <para>
-	Many &properties; have subcategories.  For example, <link
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity"><classname>Elasticity</classname></link>
-	is divided into <link
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Isotropic"><classname>Isotropic</classname></link>
-	and <link
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic"><classname>Anisotropic</classname></link>,
-	and <classname>Anisotropic</classname> is further divided into
-	<link
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic"><classname>Cubic</classname></link>
-	and all the other crystal symmetries.  Generally, a &material;
-	may contain only one &property; from each category.  Some
-	categories of &properties; make sense only if a property of
-	another category is defined in the same &material; &#x2014; for
-	example, it's an error to include a
-	<classname>Cubic</classname> elasticity without also including
-	an <classname>Orientation</classname>.  &oof2; will notify you
-	of badly formed &materials; when you <link
-	linkend="MenuItem-OOF.Mesh.Solve">solve</link> a &mesh;.
+	    Many &properties; have subcategories.  For example, <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity"><classname>Elasticity</classname></link>
+	    is divided into <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Isotropic"><classname>Isotropic</classname></link>
+	    and <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic"><classname>Anisotropic</classname></link>,
+	    and <classname>Anisotropic</classname> is further divided into
+	    <link
+	        linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic"><classname>Cubic</classname></link>
+	    and all the other crystal symmetries.  Generally, a &material;
+	    may contain only one &property; from each category.  Some
+	    categories of &properties; make sense only if a property of
+	    another category is defined in the same &material; &#x2014;
+	    for example, it's an error to include a
+	    <classname>Cubic</classname> elasticity without also including
+	    an <classname>Orientation</classname>.  &oof2; will notify you
+	    of badly formed &materials; when you <link
+	    linkend="MenuItem-OOF.Mesh.Solve">solve</link> a &mesh;.
       </para>
       <para>
-	When &oof2; starts, it creates a single
-	<emphasis>unnamed</emphasis> instance of each type of
-	&property;.  New instances may be created by <link
-	linkend="MenuItem-OOF.Property.Copy">copying</link> a
-	&property; and giving it a name.  Both named and unnamed
-	&properties; may be used in &materials;.  The commands in the
-	<xref linkend="MenuItem-OOF.Property.Parametrize"/> menu set
-	the parameters (<foreignphrase>e.g</foreignphrase>, Young's
-	modulus, conductivity, or color) for &properties;. Parameters
-	may be set in either named or unnamed &properties;.
+	    When &oof2; starts, it creates a single
+	    <emphasis>unnamed</emphasis> instance of each type of
+	    &property;.  New instances may be created by <link
+	    linkend="MenuItem-OOF.Property.Copy">copying</link> a
+	    &property; and giving it a name.  Both named and unnamed
+	    &properties; may be used in &materials;.  The commands in the
+	    <xref linkend="MenuItem-OOF.Property.Parametrize"/> menu set
+	    the parameters (<foreignphrase>e.g</foreignphrase>, Young's
+	    modulus, conductivity, or color) for &properties;. Parameters
+	    may be set in either named or unnamed &properties;.
       </para>
       <para id="Section-Concepts-Property-Path">
-	&properties; are arranged in a hierarchical tree structure, which
-	is shown in the <link
-	linkend="Section-Materials-Property"><guilabel>Property</guilabel>
-	pane</link> of the <link
-	linkend="Section-Tasks-Materials">Materials</link> task page.  The
-	<quote>path</quote> to a &property; is a colon separated list of
-	the names of the levels of the tree leading to the &property;.
-	For example, the path to cubic elasiticity is
-	<userinput>'Mechanical:Elasticity:Anisotropic:Cubic'</userinput>.
-	The path to a <emphasis>named</emphasis> property is created by
-	appending the name to the path to its unnamed version:
-	<userinput>'Mechanical:Elasticity:Anisotropic:Cubic:salt'</userinput>
-	is a cubic elasticity &property; named <quote>salt</quote>.  Most
-	commands that work on &properties; in scripts refer to them by
-	their paths.  The exceptions are the <xref
-	linkend="MenuItem-OOF.Property.Parametrize"/> and <xref
-	linkend="MenuItem-OOF.LoadData.Property"/> menus, which instead
-	embed the &property; name in the name of the command.  That is,
-	the command to parametrize a cubic elastic property is <xref
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic"/>,
-	and the command to parametrize a cubic elastic property named
-	<quote>salt</quote> is
-	<command>OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic.salt</command>.
-	(Fortunately, the user rarely has to type these names in full.)
-	The arguments for the named and unnamed forms are the same, and
-	are listed in the documentation under <xref
-	linkend="MenuItem-OOF.Property.Parametrize"/>.
+	    &properties; are arranged in a hierarchical tree structure,
+	    which is shown in the <link
+	    linkend="Section-Materials-Property"><guilabel>Property</guilabel>
+	    pane</link> of the <link
+	    linkend="Section-Tasks-Materials">Materials</link> task page.
+	    The <quote>path</quote> to a &property; is a colon separated
+	    list of the names of the levels of the tree leading to the
+	    &property;.  For example, the path to cubic elasiticity is
+	    <userinput>'Mechanical:Elasticity:Anisotropic:Cubic'</userinput>.
+	    The path to a <emphasis>named</emphasis> property is created
+	    by appending the name to the path to its unnamed version:
+	    <userinput>'Mechanical:Elasticity:Anisotropic:Cubic:salt'</userinput>
+	    is a cubic elasticity &property; named <quote>salt</quote>.
+	    Most commands that work on &properties; in scripts refer to
+	    them by their paths.  The exceptions are the <xref
+	    linkend="MenuItem-OOF.Property.Parametrize"/> and <xref
+	    linkend="MenuItem-OOF.LoadData.Property"/> menus, which
+	    instead embed the &property; name in the name of the command.
+	    That is, the command to parametrize a cubic elastic property
+	    is <xref
+	    linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic"/>,
+	    and the command to parametrize a cubic elastic property named
+	    <quote>salt</quote> is
+	    <command>OOF.Property.Parametrize.Mechanical.Elasticity.Anisotropic.Cubic.salt</command>.
+	    (Fortunately, the user rarely has to type these names in
+	    full.)  The arguments for the named and unnamed forms are the
+	    same, and are listed in the documentation under <xref
+	    linkend="MenuItem-OOF.Property.Parametrize"/>.
       </para>
     </section>			<!-- Properties -->
     <section id="Section-Concepts-Material-Orientation">
       <title>Orientations</title>
       <para>
-	Many &properties; are anisotropic: their values depend on the
-	orientation of the crystalline axes. In &oof2;, although the
-	calculations are two dimensional, crystalline orientations are
-	full three dimensional rotations.  They can be specified in a
-	number of ways as subclasses of the <xref
-	linkend="RegisteredClass-Orientation"/> class.
+	    Many &properties; are anisotropic: their values depend on the
+	    orientation of the crystalline axes. In &oof2;, although the
+	    calculations are two dimensional, crystalline orientations are
+	    full three dimensional rotations.  They can be specified in a
+	    number of ways as subclasses of the <xref
+	    linkend="RegisteredClass-Orientation"/> class.
       </para>
       <para>
-	Any &material; that contains an anisotropic &property; must
-	also contain either an <link
-	linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-	&property; or an <link
-	linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-	&property;.  The difference betweeen them is that an <link
-	linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-	&property; has an argument which specifies the orientation,
-	whereas an <link
-	linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-	&property; gets the orientation from the &micro;'s <link
-	linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
-	Map</classname></link>.  The existence of the <link
-	linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
-	Map</classname></link> in a &micro; does not automatically
-	imply that the &micro;'s &materials; will derive their
-	orientations from it.  The <link
-	linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-	&property; must also be present.  This allows some &materials;
-	to get their orientations from the map while others do not.
+	    Any &material; that contains an anisotropic &property; must
+	    also contain either an <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	    &property; or an <link
+	    linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	    &property;.  The difference betweeen them is that an <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	    &property; has an argument which specifies the orientation,
+	    whereas an <link
+	    linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	    &property; gets the orientation from the &micro;'s <link
+	    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+	    Map</classname></link>.  The existence of the <link
+	    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+	    Map</classname></link> in a &micro; does not automatically
+	    imply that the &micro;'s &materials; will derive their
+	    orientations from it.  The <link
+	    linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	    &property; must also be present.  This allows some &materials;
+	    to get their orientations from the map while others do not.
       </para>
       <para>
         A <emphasis>misorientation</emphasis> is the difference in
@@ -579,360 +591,360 @@
     <figure id="Figure-SkeletonAnatomy">
       <title>Anatomy of a Skeleton</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/schematicmesh.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/schematicmesh.eps" format="EPS"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Schematic diagram of a Skeleton</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    The parts of a &skel;.  The green circles mark the <link
-	    linkend="Section-Concepts-Skeleton-Node">nodes</link>, the
-	    lines are the <link
-	    linkend="Section-Concepts-Skeleton-Segment">segments</link>,
-	    and the spaces between the lines are the <link
-	    linkend="Section-Concepts-Skeleton-Element">elements</link>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/schematicmesh.png"
+	                 format="PNG"/>
+	    </imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/schematicmesh.eps" format="EPS"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Schematic diagram of a Skeleton</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        The parts of a &skel;.  The green circles mark the <link
+	        linkend="Section-Concepts-Skeleton-Node">nodes</link>, the
+	        lines are the <link
+	        linkend="Section-Concepts-Skeleton-Segment">segments</link>,
+	        and the spaces between the lines are the <link
+	        linkend="Section-Concepts-Skeleton-Element">elements</link>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
     <section id="Section-Concepts-Skeleton-Periodicity">
       <title>Periodicity</title>
       <para>
-	When a &skel; is constructed, it can be declared to be
-	periodic in the x or y directions, or neither, or both.  If it
-	is periodic, then any modifications performed on one edge will
-	also apply to the opposite edge, Every &node; or &sgmt; on a
-	periodic edge will have a matching partner on the opposite
-	edge.  All skeleton modifications will maintain the
-	periodicity of the skeleton.
+	    When a &skel; is constructed, it can be declared to be
+	    periodic in the x or y directions, or neither, or both.  If it
+	    is periodic, then any modifications performed on one edge will
+	    also apply to the opposite edge, Every &node; or &sgmt; on a
+	    periodic edge will have a matching partner on the opposite
+	    edge.  All skeleton modifications will maintain the
+	    periodicity of the skeleton.
       </para>
       <para>
-	<link linkend="RegisteredClass-PeriodicBC">Periodic</link>
-	<link
-	linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
-	conditions</link> can only be applied to &meshes; derived from
-	periodic &skels;.  However, non-periodic boundary conditions
-	can be applied to either periodic or non-periodic &skels;.
+	    <link linkend="RegisteredClass-PeriodicBC">Periodic</link>
+	    <link
+	        linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+	    conditions</link> can only be applied to &meshes; derived from
+	    periodic &skels;.  However, non-periodic boundary conditions
+	    can be applied to either periodic or non-periodic &skels;.
       </para>
     </section>
     <section id="Section-Concepts-Skeleton-Element">
       <title>Elements</title>
       <para>
-	&skels; are composed of triangular and quadrilateral
-	<emphasis>elements</emphasis>, as shown in <xref
-	  linkend="Figure-SkeletonAnatomy"/>. These are non-overlapping
-	polygons that completely cover the &micro;.  &skel; elements
-	will be converted directly into <link
-	linkend="Section-Concepts-Mesh-Geometry"><classname>Mesh
-	Elements</classname></link> when a &mesh; is created.
+	    &skels; are composed of triangular and quadrilateral
+	    <emphasis>elements</emphasis>, as shown in <xref
+	    linkend="Figure-SkeletonAnatomy"/>. These are non-overlapping
+	    polygons that completely cover the &micro;.  &skel; elements
+	    will be converted directly into <link
+	    linkend="Section-Concepts-Mesh-Geometry"><classname>Mesh
+	    Elements</classname></link> when a &mesh; is created.
       </para>
       <para>
-	Many &skel; operations operate on the set of currently
-	selected elements.  Elements may be selected by the <link
-	  linkend="Section-Tasks-SkeletonSelection">Skeleton
-	Selection Task Page</link> and the <link
-	linkend="Section-Graphics-SkeletonSelection">Skeleton
-	Selection</link> toolbox.
+	    Many &skel; operations operate on the set of currently
+	    selected elements.  Elements may be selected by the <link
+	    linkend="Section-Tasks-SkeletonSelection">Skeleton
+	    Selection Task Page</link> and the <link
+	    linkend="Section-Graphics-SkeletonSelection">Skeleton
+	    Selection</link> toolbox.
       </para>
       <section id="Section-Concepts-Skeleton-Homogeneity">
-	<title>Homogeneity ... or Heterogeneity</title>
-	<para>
-	  &skel; elements inherit their &material; &properties; from
-	  the pixels beneath them in the &micro;.
-	  If the &skel; geometry is to be a good approximation of the
-	  &micro; geometry, then all of the pixels lying beneath an
-	  element should have the same assigned &material;.  The
-	  <emphasis>homogeneity</emphasis> of a &skel; element is a
-	  measure of how well the element achieves this goal. (See
-	  <xref linkend="Figure-homogeneity"/>.)
-	</para>
-	<para>
-	  The homogeneity is computed by finding the area of the
-	  element that overlies each <emphasis>category</emphasis> of
-	  pixel.  <anchor id="Section-Concepts-PixelCategory"/>Pixels
-	  that have different assigned &materials; or belong to
-	  different <link
-	  linkend="Section-Concepts-Microstructure-Pixel_Group"><quote>meshable</quote>
-	  PixelGroups</link> are in different categories.  The
-	  category claiming the largest area of the element is the
-	  <emphasis>dominant</emphasis> category.  The homogeneity is
-	  defined as the ratio of the area of the dominant category to
-	  the area of the element as a whole.  A completely
-	  homogeneous element has a homogeneity of 1.0.  An element
-	  made up of N equal components has a homogeneity of 1/N.  The
-	  &material; assigned to an element is the &material; of its
-	  dominant pixel category.
-	</para>
-	<note>
-	  <para>
-	    The color of the pixels in an &image; in a &micro; does
-	    not directly affect the homogeneity of the elements in a
-	    &skel;.  Only material assignments and group membership
-	    contribute to homogeneity.  However, &image; pixel color
-	    affects materials and groups through the <link
-	    linkend="Section-Concepts-Microstructure-PixelSelection">pixel
-	    selection</link> mechanisms.
-	  </para>
-	</note>
-	<figure id="Figure-homogeneity">
-	  <title>Skeleton Element Homogeneity</title>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/homogeneity.eps"
-		format="EPS"/>
-	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/homogeneity.png"
-		format="PNG"/>
-	    </imageobject>
-	    <textobject>
-	      <phrase>Homogeneity demonstration</phrase>
-	    </textobject>
-	    <caption>
-	      If the three different pixel colors represent different
-	      Materials, then the triangle in the upper right is
-	      completely homogeneous (homogeneity=1.0), the central
-	      triangle is inhomogeneous (homogeneity &ap; 0.5) and the
-	      leftmost triangle is even more inhomogeneous
-	      (homogeneity &ap; 0.3).
-	    </caption>
-	  </mediaobject>
-	</figure>
+	    <title>Homogeneity ... or Heterogeneity</title>
+	    <para>
+	      &skel; elements inherit their &material; &properties; from
+	      the pixels beneath them in the &micro;.
+	      If the &skel; geometry is to be a good approximation of the
+	      &micro; geometry, then all of the pixels lying beneath an
+	      element should have the same assigned &material;.  The
+	      <emphasis>homogeneity</emphasis> of a &skel; element is a
+	      measure of how well the element achieves this goal. (See
+	      <xref linkend="Figure-homogeneity"/>.)
+	    </para>
+	    <para>
+	      The homogeneity is computed by finding the area of the
+	      element that overlies each <emphasis>category</emphasis> of
+	      pixel.  <anchor id="Section-Concepts-PixelCategory"/>Pixels
+	      that have different assigned &materials; or belong to
+	      different <link
+	      linkend="Section-Concepts-Microstructure-Pixel_Group"><quote>meshable</quote>
+	      PixelGroups</link> are in different categories.  The
+	      category claiming the largest area of the element is the
+	      <emphasis>dominant</emphasis> category.  The homogeneity is
+	      defined as the ratio of the area of the dominant category to
+	      the area of the element as a whole.  A completely
+	      homogeneous element has a homogeneity of 1.0.  An element
+	      made up of N equal components has a homogeneity of 1/N.  The
+	      &material; assigned to an element is the &material; of its
+	      dominant pixel category.
+	    </para>
+	    <note>
+	      <para>
+	        The color of the pixels in an &image; in a &micro; does
+	        not directly affect the homogeneity of the elements in a
+	        &skel;.  Only material assignments and group membership
+	        contribute to homogeneity.  However, &image; pixel color
+	        affects materials and groups through the <link
+	        linkend="Section-Concepts-Microstructure-PixelSelection">pixel
+	        selection</link> mechanisms.
+	      </para>
+	    </note>
+	    <figure id="Figure-homogeneity">
+	      <title>Skeleton Element Homogeneity</title>
+	      <mediaobject>
+	        <imageobject>
+	          <imagedata fileref="FIGURES/homogeneity.eps"
+		                 format="EPS"/>
+	        </imageobject>
+	        <imageobject>
+	          <imagedata fileref="FIGURES/homogeneity.png"
+		                 format="PNG"/>
+	        </imageobject>
+	        <textobject>
+	          <phrase>Homogeneity demonstration</phrase>
+	        </textobject>
+	        <caption>
+	          If the three different pixel colors represent different
+	          Materials, then the triangle in the upper right is
+	          completely homogeneous (homogeneity=1.0), the central
+	          triangle is inhomogeneous (homogeneity &ap; 0.5) and the
+	          leftmost triangle is even more inhomogeneous
+	          (homogeneity &ap; 0.3).
+	        </caption>
+	      </mediaobject>
+	    </figure>
       </section>
       <section id="Section-Concepts-Skeleton-Energy">
-	<title>Effective Energy</title>
-	<para>
-	  Many of the tools for modifying &skels;, such as <link
-	  linkend="RegisteredClass-Anneal"><classname>Anneal</classname></link>
-	  and <link
-	  linkend="RegisteredClass-Smooth"><classname>Smooth</classname></link>,
-	  work by reducing an <emphasis>effective energy
-	    functional</emphasis>,
-	  <inlineequation>
-	    <alt role="tex">\(E\)</alt>
-	  </inlineequation>,
-	  of the mesh.  This functional assigns
-	  a number between 0 and 1 to each element.  It is called an
-	  <emphasis>energy</emphasis> because of its role in the <link
-	  linkend="RegisteredClass-Anneal"><classname>Annealing</classname></link>
-	  operation, where it plays the role of the energy in a
-	  statistical mechanical simulated annealing process.
-	</para>
-	<para>
-	  The energy functional has two contributions, a <link
-	  linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
-	  energy</link>,
-	  <inlineequation>
-	    <alt role="tex">\(E_\mathrm{homog.}\)</alt>
-	  </inlineequation>
-	  and a
-	  <link linkend="Section-Concepts-Skeleton-Shape_Energy">shape
-	  energy</link>,
-	  <inlineequation>
-	    <alt role="tex">\(E_\mathrm{shape}\)</alt>
-	  </inlineequation>. Their
-	  relative importance is controlled by a parameter &agr;:
-	  <equation>
-	    <alt role="tex">
-	      \[E = \alpha E_\mathrm{homog.} + (1-\alpha)E_\mathrm{shape} \]
-	    </alt>
-	  </equation>
-	  When <inlineequation>
-	    <alt role="tex">\(\alpha=1\)</alt>
-	  </inlineequation> then &skel; modifications that use
-	  <inlineequation>
-	    <alt role="tex">\(E\)</alt>
-	  </inlineequation> will not consider the shape of
-	  elements at all, and will result in homogeneous but badly
-	  shaped elements. When <inlineequation>
-	    <alt role="tex">\(\alpha=0\)</alt>
-	  </inlineequation>, modifications will not
-	  consider homogeneity, and will result in well shaped but
-	  possibly inhomogeneous elements.  When <inlineequation>
-	    <alt role="tex">\(0&lt;\alpha&lt;1\)</alt>
-	  </inlineequation>,
-	  there will be a trade-off between shape and homogeneity.
-	</para>
-	<section xreflabel="Homegeneity Energy" id="Section-Concepts-Skeleton-Homog_Energy">
-	  <title>Homogeneity Energy</title>
-	  <para>
-	    The homogeneity energy is simply one minus the
-	    homogeneity, so that it is minimized when an element is
-	    completely homogeneous.
-	  </para>
-	</section>
-	<section id="Section-Concepts-Skeleton-Shape_Energy">
-	  <title>Shape Energy</title>
-	  <para>
-	    Finite elements are usually better behaved (the resulting
-	    matrix equations are easier to solve) if the elements do
-	    not have sharp angles or high aspect ratios.  The shape
-	    energy function returns 0 for equilateral triangular or
-	    square quadrilateral elements, and 1 for elements that are
-	    degenerate (ie, have an aspect ratio of 0 or three
-	    collinear vertices).
-	  </para>
-	  <para>
-	    The explicit expression for triangular elements is
-	    <equation>
-	      <alt role="tex">
-		\[ E_\mathrm{shape} = 1 - 4\sqrt{3}\frac{A}{L^2} \]
-	      </alt>
-	    </equation>
-	    where <inlineequation><alt
-	    role="tex">\(A\)</alt></inlineequation> is the area of the
-	    element and <inlineequation><alt
-	    role="tex">\(L^2\)</alt></inlineequation> is the sum of
-	    the squares of the lengths of its sides.
-	  </para>
-	  <para>
-	    For quadrilateral elements the shape energy is found by
-	    first computing a <quote>quality factor</quote>,
-	    <inlineequation><alt
-	    role="tex">\(q_i\)</alt></inlineequation>, for each corner
-	    <inlineequation><alt
-	    role="tex">\(i\)</alt></inlineequation>.
-	    <inlineequation><alt
-	    role="tex">\(q_i\)</alt></inlineequation> is the area of
-	    the parallelogram defined by the two sides of the element
-	    that converge at node <inlineequation><alt
-	    role="tex">\(i\)</alt></inlineequation>, divided by the
-	    sum of the squares of the sides, and normalized so that
-	    its value is 1 for a square.  It's value is always less
-	    than 1 at a corner where the two converging edges have
-	    different lengths or meet at an acute or obtuse angle, and
-	    is zero in the degenerate cases when the edges are
-	    colinear or when the length of one edge is 0.  The shape
-	    energy is defined to be
-	    <equation>
-	      <alt role="tex">
-		\[ E_\mathrm{shape} = 1 - [(1-\epsilon)q_\mathrm{min}
-		+ \epsilon q_\mathrm{opp}] \]
-	      </alt>
-	    </equation>
-	    where <inlineequation><alt
-	    role="tex">\(q_\mathrm{min}\)</alt></inlineequation> is
-	    the minimum (worst) <inlineequation><alt
-	    role="tex">\(q_i\)</alt></inlineequation> in the element,
-	    <inlineequation><alt
-	    role="tex">\(q_\mathrm{opp}\)</alt></inlineequation> is
-	    the <inlineequation><alt
-	    role="tex">\(q\)</alt></inlineequation> at the opposite
-	    corner, and <inlineequation><alt
-	    role="tex">\(\epsilon\)</alt></inlineequation> is a small
-	    number.  (The <inlineequation><alt
-	    role="tex">\(\epsilon\)</alt></inlineequation> term is
-	    required to prevent pathologies that occur when the shape
-	    energy has no dependence on the position of one of the
-	    nodes. <inlineequation><alt
-	    role="tex">\(\epsilon\)</alt></inlineequation> is set to
-	    1.e-5 in the program, but its exact value is
-	    inconsequential.)
-	  </para>
-	</section>
+	    <title>Effective Energy</title>
+	    <para>
+	      Many of the tools for modifying &skels;, such as <link
+	      linkend="RegisteredClass-Anneal"><classname>Anneal</classname></link>
+	      and <link
+	      linkend="RegisteredClass-Smooth"><classname>Smooth</classname></link>,
+	      work by reducing an <emphasis>effective energy
+	      functional</emphasis>,
+	      <inlineequation>
+	        <alt role="tex">\(E\)</alt>
+	        </inlineequation>,
+	        of the mesh.  This functional assigns
+	        a number between 0 and 1 to each element.  It is called an
+	        <emphasis>energy</emphasis> because of its role in the <link
+	        linkend="RegisteredClass-Anneal"><classname>Annealing</classname></link>
+	        operation, where it plays the role of the energy in a
+	        statistical mechanical simulated annealing process.
+	    </para>
+	    <para>
+	      The energy functional has two contributions, a <link
+	      linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
+	      energy</link>,
+	      <inlineequation>
+	        <alt role="tex">\(E_\mathrm{homog.}\)</alt>
+	      </inlineequation>
+	      and a
+	      <link linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+	      energy</link>,
+	      <inlineequation>
+	        <alt role="tex">\(E_\mathrm{shape}\)</alt>
+	        </inlineequation>. Their
+	        relative importance is controlled by a parameter &agr;:
+	        <equation>
+	          <alt role="tex">
+	            \[E = \alpha E_\mathrm{homog.} + (1-\alpha)E_\mathrm{shape} \]
+	          </alt>
+	        </equation>
+	        When <inlineequation>
+	        <alt role="tex">\(\alpha=1\)</alt>
+	        </inlineequation> then &skel; modifications that use
+	        <inlineequation>
+	          <alt role="tex">\(E\)</alt>
+	          </inlineequation> will not consider the shape of
+	          elements at all, and will result in homogeneous but badly
+	          shaped elements. When <inlineequation>
+	          <alt role="tex">\(\alpha=0\)</alt>
+	          </inlineequation>, modifications will not
+	          consider homogeneity, and will result in well shaped but
+	          possibly inhomogeneous elements.  When <inlineequation>
+	          <alt role="tex">\(0&lt;\alpha&lt;1\)</alt>
+	          </inlineequation>,
+	          there will be a trade-off between shape and homogeneity.
+	    </para>
+	    <section xreflabel="Homegeneity Energy" id="Section-Concepts-Skeleton-Homog_Energy">
+	      <title>Homogeneity Energy</title>
+	      <para>
+	        The homogeneity energy is simply one minus the
+	        homogeneity, so that it is minimized when an element is
+	        completely homogeneous.
+	      </para>
+	    </section>
+	    <section id="Section-Concepts-Skeleton-Shape_Energy">
+	      <title>Shape Energy</title>
+	      <para>
+	        Finite elements are usually better behaved (the resulting
+	        matrix equations are easier to solve) if the elements do
+	        not have sharp angles or high aspect ratios.  The shape
+	        energy function returns 0 for equilateral triangular or
+	        square quadrilateral elements, and 1 for elements that are
+	        degenerate (ie, have an aspect ratio of 0 or three
+	        collinear vertices).
+	      </para>
+	      <para>
+	        The explicit expression for triangular elements is
+	        <equation>
+	          <alt role="tex">
+		        \[ E_\mathrm{shape} = 1 - 4\sqrt{3}\frac{A}{L^2} \]
+	          </alt>
+	        </equation>
+	        where <inlineequation><alt
+	        role="tex">\(A\)</alt></inlineequation> is the area of the
+	        element and <inlineequation><alt
+	        role="tex">\(L^2\)</alt></inlineequation> is the sum of
+	        the squares of the lengths of its sides.
+	      </para>
+	      <para>
+	        For quadrilateral elements the shape energy is found by
+	        first computing a <quote>quality factor</quote>,
+	        <inlineequation><alt
+	                            role="tex">\(q_i\)</alt></inlineequation>, for each corner
+	        <inlineequation><alt
+	                            role="tex">\(i\)</alt></inlineequation>.
+	        <inlineequation><alt
+	                            role="tex">\(q_i\)</alt></inlineequation> is the area of
+	        the parallelogram defined by the two sides of the element
+	        that converge at node <inlineequation><alt
+	        role="tex">\(i\)</alt></inlineequation>, divided by the
+	        sum of the squares of the sides, and normalized so that
+	        its value is 1 for a square.  It's value is always less
+	        than 1 at a corner where the two converging edges have
+	        different lengths or meet at an acute or obtuse angle, and
+	        is zero in the degenerate cases when the edges are
+	        colinear or when the length of one edge is 0.  The shape
+	        energy is defined to be
+	        <equation>
+	          <alt role="tex">
+		        \[ E_\mathrm{shape} = 1 - [(1-\epsilon)q_\mathrm{min}
+		        + \epsilon q_\mathrm{opp}] \]
+	          </alt>
+	        </equation>
+	        where <inlineequation><alt
+	        role="tex">\(q_\mathrm{min}\)</alt></inlineequation> is
+	        the minimum (worst) <inlineequation><alt
+	        role="tex">\(q_i\)</alt></inlineequation> in the element,
+	        <inlineequation><alt
+	                            role="tex">\(q_\mathrm{opp}\)</alt></inlineequation> is
+	        the <inlineequation><alt
+	        role="tex">\(q\)</alt></inlineequation> at the opposite
+	        corner, and <inlineequation><alt
+	        role="tex">\(\epsilon\)</alt></inlineequation> is a small
+	        number.  (The <inlineequation><alt
+	        role="tex">\(\epsilon\)</alt></inlineequation> term is
+	        required to prevent pathologies that occur when the shape
+	        energy has no dependence on the position of one of the
+	        nodes. <inlineequation><alt
+	        role="tex">\(\epsilon\)</alt></inlineequation> is set to
+	        1.e-5 in the program, but its exact value is
+	        inconsequential.)
+	      </para>
+	    </section>
       </section>
 
       <section id="Section-Concepts-Skeleton-Illegality">
-	<title>Illegal Elements</title>
-	<para>
-	  The <link
-	  linkend="Section-Concepts-Skeleton-Node">nodes</link> at the
-	  corners of an element are ordered.  The perimeter of the
-	  element is traversed counterclockwise when moving from one
-	  node to the next.  Any operation that breaks this ordering
-	  makes the element <emphasis>illegal</emphasis>.  Elements
-	  with three collinear nodes are also illegal, as are
-	  non-convex quadrilaterals.  (Such elements introduce
-	  singularities and instabilities in the finite element
-	  stiffness matrix.)  <xref linkend="Figure-IllegalDemo"/>
-	  illustrates how node motion may create illegal elements.
-	</para>
-	<para>
-	  Most &skel; tools will refuse to create illegal
-	  elements. The one exception is the <link
-	  linkend="Section-Graphics-MoveNodes">Move Node</link>
-	  toolbox, which allows the user to move nodes by hand.
-	  Sometimes it may be necessary to temporarily make an illegal
-	  element while manually moving a bunch of nodes.
-	</para>
-	<figure id="Figure-IllegalDemo">
-	  <title>Creating Illegal Elements</title>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/illegalmesh.png"
-		format="PNG"/>
-	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/illegalmesh.eps"
-		format="EPS"/>
-	    </imageobject>
-	    <textobject>
-	      <phrase>Before and after pictures of illegal elements.</phrase>
-	    </textobject>
-	    <caption>
-	      <simpara>
-		Moving the node in the left hand figure results in two
-		illegal elements in the right hand figure.  The shaded
-		triangle is illegal because its nodes (numbered 1,2,3)
-		are out of order.  The highlighted quadrilateral is
-		illegal because it is not convex.
-	      </simpara>
-	    </caption>
-	  </mediaobject>
-	</figure>
+	    <title>Illegal Elements</title>
+	    <para>
+	      The <link
+	      linkend="Section-Concepts-Skeleton-Node">nodes</link> at the
+	      corners of an element are ordered.  The perimeter of the
+	      element is traversed counterclockwise when moving from one
+	      node to the next.  Any operation that breaks this ordering
+	      makes the element <emphasis>illegal</emphasis>.  Elements
+	      with three collinear nodes are also illegal, as are
+	      non-convex quadrilaterals.  (Such elements introduce
+	      singularities and instabilities in the finite element
+	      stiffness matrix.)  <xref linkend="Figure-IllegalDemo"/>
+	      illustrates how node motion may create illegal elements.
+	    </para>
+	    <para>
+	      Most &skel; tools will refuse to create illegal
+	      elements. The one exception is the <link
+	      linkend="Section-Graphics-MoveNodes">Move Node</link>
+	      toolbox, which allows the user to move nodes by hand.
+	      Sometimes it may be necessary to temporarily make an illegal
+	      element while manually moving a bunch of nodes.
+	    </para>
+	    <figure id="Figure-IllegalDemo">
+	      <title>Creating Illegal Elements</title>
+	      <mediaobject>
+	        <imageobject>
+	          <imagedata fileref="FIGURES/illegalmesh.png"
+		                 format="PNG"/>
+	        </imageobject>
+	        <imageobject>
+	          <imagedata fileref="FIGURES/illegalmesh.eps"
+		                 format="EPS"/>
+	        </imageobject>
+	        <textobject>
+	          <phrase>Before and after pictures of illegal elements.</phrase>
+	        </textobject>
+	        <caption>
+	          <simpara>
+		        Moving the node in the left hand figure results in two
+		        illegal elements in the right hand figure.  The shaded
+		        triangle is illegal because its nodes (numbered 1,2,3)
+		        are out of order.  The highlighted quadrilateral is
+		        illegal because it is not convex.
+	          </simpara>
+	        </caption>
+	      </mediaobject>
+	    </figure>
       </section>
     </section>
     <section id="Section-Concepts-Skeleton-Node">
       <title>Nodes</title>
       <para>
-	The <emphasis>nodes</emphasis> of a &skel; element are the
-	corners of the element, as shown in <xref
-	  linkend="Figure-SkeletonAnatomy"/>.  Unlike <link
-	linkend="Section-Concepts-Mesh-Geometry">real finite
-	elements</link>, &skel; elements may not have nodes along
-	their edges or in their interiors.
+	    The <emphasis>nodes</emphasis> of a &skel; element are the
+	    corners of the element, as shown in <xref
+	    linkend="Figure-SkeletonAnatomy"/>.  Unlike <link
+	    linkend="Section-Concepts-Mesh-Geometry">real finite
+	    elements</link>, &skel; elements may not have nodes along
+	    their edges or in their interiors.
       </para>
       <para>
-	Many &skel; operations operate on the set of currently
-	selected nodes.  Nodes may be selected by the <link
-	linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
-	Task Page</link> and the <link
-	linkend="Section-Graphics-SkeletonSelection">Skeleton
-	Selection</link> toolbox.
+	    Many &skel; operations operate on the set of currently
+	    selected nodes.  Nodes may be selected by the <link
+	    linkend="Section-Tasks-SkeletonSelection">Skeleton Selection
+	    Task Page</link> and the <link
+	    linkend="Section-Graphics-SkeletonSelection">Skeleton
+	    Selection</link> toolbox.
       </para>
       <formalpara id="Section-Concepts-Pin">
-	<title>Node Mobility</title>
-	<para>
-	  Nodes may be moved when a &skel; is <link
-	  linkend="MenuItem-OOF.Skeleton.Modify">modified</link>.
-	  Different nodes have different degrees of mobility.  The
-	  Nodes at the four corners of a &micro; can never move.  The
-	  Nodes along the edges of a &micro; can move along the edge,
-	  but cannot move into the interior.  All the interior Nodes
-	  can move freely (see <xref
-	  linkend='Figure-node_mobility'/>).
-	  In addition, any Node may be explicitly <link
-	    linkend="MenuItem-OOF.Skeleton.PinNodes">pinned</link>
-	  to prevent it from moving at all.
+	    <title>Node Mobility</title>
+	    <para>
+	      Nodes may be moved when a &skel; is <link
+	      linkend="MenuItem-OOF.Skeleton.Modify">modified</link>.
+	      Different nodes have different degrees of mobility.  The
+	      Nodes at the four corners of a &micro; can never move.  The
+	      Nodes along the edges of a &micro; can move along the edge,
+	      but cannot move into the interior.  All the interior Nodes
+	      can move freely (see <xref
+	      linkend='Figure-node_mobility'/>).
+	      In addition, any Node may be explicitly <link
+	      linkend="MenuItem-OOF.Skeleton.PinNodes">pinned</link>
+	      to prevent it from moving at all.
 
-	  <figure id="Figure-node_mobility">
-	    <title>Default Node Mobility</title>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/node_mobility.png"></imagedata>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/node_mobility.eps"></imagedata>
-	      </imageobject>
-	    </mediaobject>
-	  </figure>
-	</para>
+	      <figure id="Figure-node_mobility">
+	        <title>Default Node Mobility</title>
+	        <mediaobject>
+	          <imageobject>
+		        <imagedata format="PNG" fileref="FIGURES/node_mobility.png"></imagedata>
+	          </imageobject>
+	          <imageobject>
+		        <imagedata format="EPS" fileref="FIGURES/node_mobility.eps"></imagedata>
+	          </imageobject>
+	        </mediaobject>
+	      </figure>
+	    </para>
       </formalpara>
     </section>
     <section id="Section-Concepts-Skeleton-Segment">
@@ -1023,7 +1035,7 @@
         takes them into account when computing &sgmt; homogeneity.
       </para>
       
-        
+      
     </section>
     <section id="Section-Concepts-Skeleton-Groups">
       <title>Groups</title>
@@ -1043,51 +1055,51 @@
     <section id="Section-Concepts-Skeleton-Boundary">
       <title>Boundaries</title>
       <para>
-	&skel; <emphasis>boundaries</emphasis> define the places where
-	<link linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
-	conditions</link> will be applied when solving equations on a
-	&mesh;.  The &mesh; inherits its boundaries from its &skel;.
-	There is no way to create boundaries in a &mesh; directly.
-	Boundaries may coincide with the perimeter of the &skel;, but
-	there is no requirement that they do so.
+	    &skel; <emphasis>boundaries</emphasis> define the places where
+	    <link linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+	    conditions</link> will be applied when solving equations on a
+	    &mesh;.  The &mesh; inherits its boundaries from its &skel;.
+	    There is no way to create boundaries in a &mesh; directly.
+	    Boundaries may coincide with the perimeter of the &skel;, but
+	    there is no requirement that they do so.
       </para>
       <para>
-	Boundaries are created and manipulated by the <link
-	linkend="Section-Tasks-SkeletonBoundaries">Skeleton
-	Boundaries</link> task page. 
+	    Boundaries are created and manipulated by the <link
+	    linkend="Section-Tasks-SkeletonBoundaries">Skeleton
+	    Boundaries</link> task page. 
       </para>
       <section id="Section-Concepts-Skeleton-Boundary-Edge">
-	<title>Edge Boundaries</title>
-	<para>
-	  Edge boundaries are composed of directed sets of conjoined
-	  <link
-	  linkend="Section-Concepts-Skeleton-Segment">segments</link>. Each
-	  &skel; automatically contains edge boundaries named
-	  <userinput>top</userinput>, <userinput>bottom</userinput>,
-	  <userinput>left</userinput>, and
-	  <userinput>right</userinput>. <link
-	  linkend="RegisteredClass-DirichletBC">Dirichlet</link>,
-	  <link linkend="RegisteredClass-NeumannBC">Neumann</link>,
-	  and <link linkend="RegisteredClass-FloatBC">Floating</link>
-	  boundary conditions may be applied at edge boundaries.
-	</para>
+	    <title>Edge Boundaries</title>
+	    <para>
+	      Edge boundaries are composed of directed sets of conjoined
+	      <link
+	          linkend="Section-Concepts-Skeleton-Segment">segments</link>. Each
+	      &skel; automatically contains edge boundaries named
+	      <userinput>top</userinput>, <userinput>bottom</userinput>,
+	      <userinput>left</userinput>, and
+	      <userinput>right</userinput>. <link
+	      linkend="RegisteredClass-DirichletBC">Dirichlet</link>,
+	      <link linkend="RegisteredClass-NeumannBC">Neumann</link>,
+	      and <link linkend="RegisteredClass-FloatBC">Floating</link>
+	      boundary conditions may be applied at edge boundaries.
+	    </para>
       </section>
       <section id="Section-Concepts-Skeleton-Boundary-Point">
-	<title>Point Boundaries</title>
-	<para>
-	  Point boundaries consist of sets of <link
-	  linkend="Section-Concepts-Skeleton-Node">nodes</link>.  Each
-	  &skel; automatically contains point boundaries named
-	  <userinput>topleft</userinput>,
-	  <userinput>topright</userinput>,
-	  <userinput>bottomleft</userinput>, and
-	  <userinput>bottomright</userinput>. <link
-	  linkend="RegisteredClass-DirichletBC">Dirichlet</link>,
-	  <link linkend="RegisteredClass-FloatBC">Floating</link>, and
-	  <link linkend="RegisteredClass-ForceBC">Generalized
-	  Force</link> boundary conditions may be applied at point
-	  boundaries.
-	</para>
+	    <title>Point Boundaries</title>
+	    <para>
+	      Point boundaries consist of sets of <link
+	      linkend="Section-Concepts-Skeleton-Node">nodes</link>.  Each
+	      &skel; automatically contains point boundaries named
+	      <userinput>topleft</userinput>,
+	      <userinput>topright</userinput>,
+	      <userinput>bottomleft</userinput>, and
+	      <userinput>bottomright</userinput>. <link
+	      linkend="RegisteredClass-DirichletBC">Dirichlet</link>,
+	      <link linkend="RegisteredClass-FloatBC">Floating</link>, and
+	      <link linkend="RegisteredClass-ForceBC">Generalized
+	      Force</link> boundary conditions may be applied at point
+	      boundaries.
+	    </para>
       </section>
     </section>
   </section>
@@ -1117,247 +1129,247 @@
     <section id="Section-Concepts-Mesh-Geometry">
       <title>Elements and Nodes</title>
       <para>
-	&mesh; elements are analogous to &skel; <link
-	linkend="Section-Concepts-Skeleton-Element">elements</link>,
-	but they contain more information.  In particular, &mesh;
-	elements can perform <emphasis>finite element
-	interpolation</emphasis> by means of <emphasis>shape
-	functions</emphasis>.  The shape functions form a basis for
-	the expansion of functions on the mesh, just as the series
-	<inlineequation>
-	  <alt role="tex">\((1,\ x,\ x^2,\ x^3,\dots)\)</alt>
-	</inlineequation>
-	forms a basis for the
-	expansion of functions of a real number <inlineequation>
-	  <alt role="tex">\(x\)</alt></inlineequation>.  That is, any
-	function <inlineequation>
-	  <alt role="tex">\(f(r)\)</alt></inlineequation>, where
-	<inlineequation>
-	  <alt role="tex">\(r\)</alt></inlineequation> is a point in
-	  the plane, can be approximated by the sum
-	<equation>
-	  <alt role="tex">
-	    \[
-	      f(r) = \sum_i a_i\,N_i(r)
-	    \]
-	  </alt>
-	</equation>
-	where <inlineequation>
-	  <alt role="tex">\(N_i(r)\)</alt></inlineequation> is the
-	i<superscript>th</superscript> shapefunction and 
-	<inlineequation>
-	  <alt role="tex">\(a_i\)</alt></inlineequation> is its
-	coefficient.  In finite elements, the shape functions are
-	defined so that 
-	<equation>
-	  <alt role="tex">
-	    \[
-	      N_i(r_i) = 1
-	    \]
-	  </alt>
-	</equation>
-	for some position
-	<inlineequation><alt role="tex">\(r_i\)</alt></inlineequation>, and 
-	<equation>
-	  <alt role="tex">
-	    \[
-	      N_i(r_j) = 0
-	    \]
-	  </alt>
-	</equation>
-	for all <inlineequation>
-	  <alt role="tex">\(i\ne j\)</alt></inlineequation>. Therefore, the
-	coefficients are simply given by 
-	<equation id="Eqn-nodecoeff">
-	  <alt role="tex">
-	    \[
-	      a_i = f(r_i).
-	    \]
-	  </alt>
-	</equation>
-	These special positions
-	<inlineequation>
-	  <alt role="tex">\(r_i\)</alt></inlineequation> are called the
-	<emphasis>nodes</emphasis> of the mesh.<footnote>
-	  <simpara>
-	    This an extremely simplified discussion.  Please see a
-	    real finite element text book for the details.
-	  </simpara>
-	</footnote>
-	There are always nodes at the corners of an element, so the
-	nodes of a &skel; element always correspond to nodes of a
-	&mesh; element, but a &mesh; element may have nodes along its
-	edges or even in its interior.
+	    &mesh; elements are analogous to &skel; <link
+	    linkend="Section-Concepts-Skeleton-Element">elements</link>,
+	    but they contain more information.  In particular, &mesh;
+	    elements can perform <emphasis>finite element
+	    interpolation</emphasis> by means of <emphasis>shape
+	    functions</emphasis>.  The shape functions form a basis for
+	    the expansion of functions on the mesh, just as the series
+	    <inlineequation>
+	      <alt role="tex">\((1,\ x,\ x^2,\ x^3,\dots)\)</alt>
+	    </inlineequation>
+	    forms a basis for the
+	    expansion of functions of a real number <inlineequation>
+	    <alt role="tex">\(x\)</alt></inlineequation>.  That is, any
+	    function <inlineequation>
+	    <alt role="tex">\(f(r)\)</alt></inlineequation>, where
+	    <inlineequation>
+	      <alt role="tex">\(r\)</alt></inlineequation> is a point in
+	      the plane, can be approximated by the sum
+	      <equation>
+	        <alt role="tex">
+	          \[
+	          f(r) = \sum_i a_i\,N_i(r)
+	          \]
+	        </alt>
+	      </equation>
+	      where <inlineequation>
+	      <alt role="tex">\(N_i(r)\)</alt></inlineequation> is the
+	      i<superscript>th</superscript> shapefunction and 
+	      <inlineequation>
+	        <alt role="tex">\(a_i\)</alt></inlineequation> is its
+	        coefficient.  In finite elements, the shape functions are
+	        defined so that 
+	        <equation>
+	          <alt role="tex">
+	            \[
+	            N_i(r_i) = 1
+	            \]
+	          </alt>
+	        </equation>
+	        for some position
+	        <inlineequation><alt role="tex">\(r_i\)</alt></inlineequation>, and 
+	        <equation>
+	          <alt role="tex">
+	            \[
+	            N_i(r_j) = 0
+	            \]
+	          </alt>
+	        </equation>
+	        for all <inlineequation>
+	        <alt role="tex">\(i\ne j\)</alt></inlineequation>. Therefore, the
+	        coefficients are simply given by 
+	        <equation id="Eqn-nodecoeff">
+	          <alt role="tex">
+	            \[
+	            a_i = f(r_i).
+	            \]
+	          </alt>
+	        </equation>
+	        These special positions
+	        <inlineequation>
+	          <alt role="tex">\(r_i\)</alt></inlineequation> are called the
+	          <emphasis>nodes</emphasis> of the mesh.<footnote>
+	          <simpara>
+	            This an extremely simplified discussion.  Please see a
+	            real finite element text book for the details.
+	          </simpara>
+	        </footnote>
+	        There are always nodes at the corners of an element, so the
+	        nodes of a &skel; element always correspond to nodes of a
+	        &mesh; element, but a &mesh; element may have nodes along its
+	        edges or even in its interior.
       </para>
       <para>
-	The above <link linkend="Eqn-nodecoeff">equation</link>
-	means that a &field; <inlineequation>
-	  <alt role="tex">\(f\)</alt></inlineequation> can be determined
-	by specifying its values
-	<inlineequation>
-	  <alt role="tex">\(f(x_i)\)</alt></inlineequation> only at the
-	nodes.  Thus we think of the &field; values as living on the
-	nodes of the mesh.  The goal of a finite element solution is
-	to find &field; values at nodes.
+	    The above <link linkend="Eqn-nodecoeff">equation</link>
+	    means that a &field; <inlineequation>
+	    <alt role="tex">\(f\)</alt></inlineequation> can be determined
+	    by specifying its values
+	    <inlineequation>
+	      <alt role="tex">\(f(x_i)\)</alt></inlineequation> only at the
+	      nodes.  Thus we think of the &field; values as living on the
+	      nodes of the mesh.  The goal of a finite element solution is
+	      to find &field; values at nodes.
       </para>
       <para>
-	Why did we bother to explain all this?  &oof2; requires you to
-	choose what kind of finite elements to use when creating a
-	&mesh;.  Different types of elements differ in the shape
-	functions that they provide and in the number and position of
-	their nodes.
+	    Why did we bother to explain all this?  &oof2; requires you to
+	    choose what kind of finite elements to use when creating a
+	    &mesh;.  Different types of elements differ in the shape
+	    functions that they provide and in the number and position of
+	    their nodes.
       </para>
       <para>
-	The polynomial order of the element shape functions determines
-	the order of the interpolation within the element, and
-	therefore affects the accuracy of the solution. (&fields;
-	computed with linear shape functions will be constrained to
-	have constant gradients within elements, for example.)
-	Because shape functions are 1 at one node and 0 at all others,
-	the number of nodes along an element edge determines the order
-	of the shape functions: an edge with nodes only at its
-	endpoints must have linear shape functions, whereas an edge
-	with nodes at its endpoints and one more in its interior must
-	have quadratic shape functions.
+	    The polynomial order of the element shape functions determines
+	    the order of the interpolation within the element, and
+	    therefore affects the accuracy of the solution. (&fields;
+	    computed with linear shape functions will be constrained to
+	    have constant gradients within elements, for example.)
+	    Because shape functions are 1 at one node and 0 at all others,
+	    the number of nodes along an element edge determines the order
+	    of the shape functions: an edge with nodes only at its
+	    endpoints must have linear shape functions, whereas an edge
+	    with nodes at its endpoints and one more in its interior must
+	    have quadratic shape functions.
       </para>
       <para id="Section-Concepts-Mesh-Nodes">
-	There are actually three kinds of nodes: nodes used to store
-	&field; values (<emphasis>function</emphasis> nodes), nodes
-	used to determine the element geometry
-	(<emphasis>mapping</emphasis> nodes), and nodes used for both
-	purposes.  (Nodes determine element geometry by defining a
-	mapping from a <quote>master</quote> element with a standard
-	shape and position to the actual element.  The mapping nodes
-	of the master element are mapped to the nodes of the actual
-	element, and all other points are mapped by using the mapping
-	nodes' shape functions for interpolation.  Non-linear mapping
-	can produce elements with curved edges.)  Elements with the
-	same number of function and mapping nodes are called
-	<emphasis>isoparametric</emphasis>.  Elements with more
-	function nodes than mapping nodes are called
-	<emphasis>subparametric</emphasis>, and elements with more
-	mapping nodes than function nodes are called
-	<emphasis>superparametric</emphasis>.
-	<note>
-	  <para>
-	    Currently, although &oof2; allows high-order iso- and
-	    superparametric elements with non-linear mapping and
-	    curved element edges, it actually doesn't do anything
-	    useful with them.  This is because &mesh; elements are
-	    created from &skel; elements, and &skel; elements all have
-	    straight edges.  The positions of interior nodes are
-	    determined by <emphasis>linear</emphasis> interpolation
-	    between the corner nodes, so the non-linear mapping from
-	    master elements to actual elements is effectively linear.
-	  </para>
-	</note>
+	    There are actually three kinds of nodes: nodes used to store
+	    &field; values (<emphasis>function</emphasis> nodes), nodes
+	    used to determine the element geometry
+	    (<emphasis>mapping</emphasis> nodes), and nodes used for both
+	    purposes.  (Nodes determine element geometry by defining a
+	    mapping from a <quote>master</quote> element with a standard
+	    shape and position to the actual element.  The mapping nodes
+	    of the master element are mapped to the nodes of the actual
+	    element, and all other points are mapped by using the mapping
+	    nodes' shape functions for interpolation.  Non-linear mapping
+	    can produce elements with curved edges.)  Elements with the
+	    same number of function and mapping nodes are called
+	    <emphasis>isoparametric</emphasis>.  Elements with more
+	    function nodes than mapping nodes are called
+	    <emphasis>subparametric</emphasis>, and elements with more
+	    mapping nodes than function nodes are called
+	    <emphasis>superparametric</emphasis>.
+	    <note>
+	      <para>
+	        Currently, although &oof2; allows high-order iso- and
+	        superparametric elements with non-linear mapping and
+	        curved element edges, it actually doesn't do anything
+	        useful with them.  This is because &mesh; elements are
+	        created from &skel; elements, and &skel; elements all have
+	        straight edges.  The positions of interior nodes are
+	        determined by <emphasis>linear</emphasis> interpolation
+	        between the corner nodes, so the non-linear mapping from
+	        master elements to actual elements is effectively linear.
+	      </para>
+	    </note>
       </para>
     </section><!-- Mesh geometry -->
 
     <section id="Section-Concepts-Subproblems">
       <title>SubProblems</title>
       <para>
-	A &mesh; may be divided into a number of &subproblems;, which
-	can be solved independently.  &subproblems; may differ from
-	one another geographically, by including different &elems;.
-	They may also differ in which &fields; and &equations; are
-	defined on them.  For example, you might want to solve one set
-	of equations on particulate inclusions and another set on the
-	matrix in which they're embedded.  Or in a time dependent
-	problem, you might put the fast and slow degrees of freedom in
-	separate subproblems and use different solution methods on
-	each.
+	    A &mesh; may be divided into a number of &subproblems;, which
+	    can be solved independently.  &subproblems; may differ from
+	    one another geographically, by including different &elems;.
+	    They may also differ in which &fields; and &equations; are
+	    defined on them.  For example, you might want to solve one set
+	    of equations on particulate inclusions and another set on the
+	    matrix in which they're embedded.  Or in a time dependent
+	    problem, you might put the fast and slow degrees of freedom in
+	    separate subproblems and use different solution methods on
+	    each.
       </para>
       <para>
-	When a &mesh; is created, a default &subproblem;, called
-	<userinput>default</userinput>, is created as well.  The
-	default &subproblem; includes the entire &mesh;.  Users who
-	don't need to use more complicated &subproblems; can simply
-	use the default, and can more or less forget that
-	&subproblems; exist at all.  (Just think <quote>mesh</quote>
-	when you read <quote>subproblem</quote> and you'll be fine.)
+	    When a &mesh; is created, a default &subproblem;, called
+	    <userinput>default</userinput>, is created as well.  The
+	    default &subproblem; includes the entire &mesh;.  Users who
+	    don't need to use more complicated &subproblems; can simply
+	    use the default, and can more or less forget that
+	    &subproblems; exist at all.  (Just think <quote>mesh</quote>
+	    when you read <quote>subproblem</quote> and you'll be fine.)
       </para>
       <para>
-	&subproblems; are created in the <link
-	linkend="Section-Tasks-FEMesh-Subproblems"><guilabel>Subproblem</guilabel>
-	pane</link> in the <link linkend="Section-Tasks-FEMesh">FE
-	Mesh</link> Task Page.  The various kinds of &subproblems; differ
-	in their geographical extent. A <xref
-	linkend="RegisteredClass-MaterialSubProblem"/> includes all
-	&elems; with a given &material; type.  A <xref
-	linkend="RegisteredClass-PixelGroupSubProblem"/> includes all
-	&elems; which have a majority of their underlying pixels in a
-	given &pixelgroup;.  An <xref
-	linkend="RegisteredClass-EntireMeshSubProblem"/> includes all
-	&elems;.  There are also boolean &subproblems; that are defined in
-	terms of other existing &subproblems;.  The full set is documented
-	in the <xref linkend="RegisteredClass-SubProblemType"/> class.
+	    &subproblems; are created in the <link
+	    linkend="Section-Tasks-FEMesh-Subproblems"><guilabel>Subproblem</guilabel>
+	    pane</link> in the <link linkend="Section-Tasks-FEMesh">FE
+	    Mesh</link> Task Page.  The various kinds of &subproblems; differ
+	    in their geographical extent. A <xref
+	    linkend="RegisteredClass-MaterialSubProblem"/> includes all
+	    &elems; with a given &material; type.  A <xref
+	    linkend="RegisteredClass-PixelGroupSubProblem"/> includes all
+	    &elems; which have a majority of their underlying pixels in a
+	    given &pixelgroup;.  An <xref
+	    linkend="RegisteredClass-EntireMeshSubProblem"/> includes all
+	    &elems;.  There are also boolean &subproblems; that are defined in
+	    terms of other existing &subproblems;.  The full set is documented
+	    in the <xref linkend="RegisteredClass-SubProblemType"/> class.
       </para>
     </section><!-- Subproblem -->
 
     <section id="Section-Concepts-Mesh-Field">
       <title>Fields and Time</title>
       <para>
-	&fields; are the quantities, such as
-	<userinput>Temperature</userinput> and
-	<userinput>Displacement</userinput>, that &oof2; solves
-	for. &fields; have values at all points of the &subproblem; or
-	&subproblems; on which they are defined.  The <link
-	linkend="Section-Tasks-FieldsEquations">Fields &amp;
-	Equations</link> Task Page in &oof2; is used to change the
-	status of &fields;.
-	<itemizedlist>
-	  <listitem id="Section-Concepts-Mesh-Field-Defined">
-	    <simpara>
-	      A &field; that is <emphasis><link
-	      linkend="MenuItem-OOF.Subproblem.Field.Define">defined</link></emphasis>
-	      on a &subproblem; has memory allocated to store its
-	      values at the nodes.
-	    </simpara>
-	  </listitem>
-	  <listitem id="Section-Concepts-Mesh-Field-Active">
-	    <simpara>
-	      Values of a field that is <emphasis><link
-	      linkend="MenuItem-OOF.Subproblem.Field.Activate">active</link></emphasis>
-	      will be found when the &subproblem; is <link
-	      linkend="Section-Tasks-Solver">solved</link>. Only
-	      defined &fields; can be activated.
-	    </simpara>
-	  </listitem>
-	</itemizedlist>
-	If a &field; is defined on two or more geographically
-	overlapping &subproblems; on a &mesh;, then the &field;'s
-	values are the same for each &subproblem; wherever the
-	&subproblems; overlap.  That is, although &fields; are defined
-	on &subproblems;, their values are actually only stored on the
-	&mesh;.
+	    &fields; are the quantities, such as
+	    <userinput>Temperature</userinput> and
+	    <userinput>Displacement</userinput>, that &oof2; solves
+	    for. &fields; have values at all points of the &subproblem; or
+	    &subproblems; on which they are defined.  The <link
+	    linkend="Section-Tasks-FieldsEquations">Fields &amp;
+	    Equations</link> Task Page in &oof2; is used to change the
+	    status of &fields;.
+	    <itemizedlist>
+	      <listitem id="Section-Concepts-Mesh-Field-Defined">
+	        <simpara>
+	          A &field; that is <emphasis><link
+	          linkend="MenuItem-OOF.Subproblem.Field.Define">defined</link></emphasis>
+	          on a &subproblem; has memory allocated to store its
+	          values at the nodes.
+	        </simpara>
+	      </listitem>
+	      <listitem id="Section-Concepts-Mesh-Field-Active">
+	        <simpara>
+	          Values of a field that is <emphasis><link
+	          linkend="MenuItem-OOF.Subproblem.Field.Activate">active</link></emphasis>
+	          will be found when the &subproblem; is <link
+	          linkend="Section-Tasks-Solver">solved</link>. Only
+	          defined &fields; can be activated.
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
+	    If a &field; is defined on two or more geographically
+	    overlapping &subproblems; on a &mesh;, then the &field;'s
+	    values are the same for each &subproblem; wherever the
+	    &subproblems; overlap.  That is, although &fields; are defined
+	    on &subproblems;, their values are actually only stored on the
+	    &mesh;.
       </para>
       <para>
-	&oof2; can handle scalar &fields; (such as
-	<userinput>Temperature</userinput>), vector &fields; (such as
-	<userinput>Displacement</userinput>), and even tensor
-	fields<footnote>
-	  <simpara>
-	    &oof2; can <quote>handle</quote> tensor fields in the
-	    sense that the infrastructure for doing so is present.
-	    There are currently no tensor fields implemented and no
-	    material properties that use them.
-	  </simpara>
-	</footnote>
-	(such as liquid crystal order parameters). 
+	    &oof2; can handle scalar &fields; (such as
+	    <userinput>Temperature</userinput>), vector &fields; (such as
+	    <userinput>Displacement</userinput>), and even tensor
+	    fields<footnote>
+	    <simpara>
+	      &oof2; can <quote>handle</quote> tensor fields in the
+	      sense that the infrastructure for doing so is present.
+	      There are currently no tensor fields implemented and no
+	      material properties that use them.
+	    </simpara>
+	  </footnote>
+	  (such as liquid crystal order parameters). 
       </para>
       <para id="Section-Concepts-Mesh-Time">
-	Each &mesh; also contains a <emphasis>time</emphasis> value.
-	If a time dependent problem has been solved on a &mesh;, the
-	&mesh; will store the values of the &fields; at the starting
-	time, the ending time, and possibly, if <link
-	linkend="Section-Concepts-Outputs">Outputs</link> have been
-	scheduled, at intermediate times as well, but there is always
-	one time and one set of &fields; that describe the current
-	state of the &mesh;. The current time can be changed either by
-	<link
-	linkend="Section-Concepts-Mesh-InitialConditions">initializing</link>
-	the &fields; or by solving time dependent equations.
+	    Each &mesh; also contains a <emphasis>time</emphasis> value.
+	    If a time dependent problem has been solved on a &mesh;, the
+	    &mesh; will store the values of the &fields; at the starting
+	    time, the ending time, and possibly, if <link
+	    linkend="Section-Concepts-Outputs">Outputs</link> have been
+	    scheduled, at intermediate times as well, but there is always
+	    one time and one set of &fields; that describe the current
+	    state of the &mesh;. The current time can be changed either by
+	    <link
+	        linkend="Section-Concepts-Mesh-InitialConditions">initializing</link>
+	    the &fields; or by solving time dependent equations.
       </para>
       <para>
 	    &oof2; sometimes needs to store the first time derivative of a
@@ -1379,7 +1391,7 @@
 	    in the main window's menubar.  If not set, the default is to
 	    use RAM.
       </para>
-      </section><!-- Fields and Time -->
+    </section><!-- Fields and Time -->
 
     <section id="Section-Concepts-Mesh-Flux">
       <title>Fluxes</title>
@@ -1396,633 +1408,633 @@
 	    many different &properties; and &fields;.
       </para>
       <para>
-	&fluxes; don't appear explicitly when setting up a problem,
-	except when specifying <link
-	linkend="RegisteredClass-NeumannBC">Neumann</link> or <link
-	linkend="RegisteredClass-ForceBC">Generalized Force</link>
-	boundary conditions in the <link
-	linkend="Section-Concepts-Mesh-BoundaryCondition">Boundary
-	Condition</link> page.  After obtaining a solution, &fluxes;
-	may be computed for <link
-	  linkend="Section-Graphics-LayerEditor">plots</link> or <link
-	  linkend="Section-Tasks-Analysis"> analysis</link>.
+	    &fluxes; don't appear explicitly when setting up a problem,
+	    except when specifying <link
+	    linkend="RegisteredClass-NeumannBC">Neumann</link> or <link
+	    linkend="RegisteredClass-ForceBC">Generalized Force</link>
+	    boundary conditions in the <link
+	    linkend="Section-Concepts-Mesh-BoundaryCondition">Boundary
+	    Condition</link> page.  After obtaining a solution, &fluxes;
+	    may be computed for <link
+	    linkend="Section-Graphics-LayerEditor">plots</link> or <link
+	    linkend="Section-Tasks-Analysis"> analysis</link>.
       </para>
     </section><!-- Flux -->
 
     <section id="Section-Concepts-Mesh-3D">
       <title>Removing The Third Dimension</title>
       <para>
-	&oof2; uses three dimensional material properties but only
-	solves two dimensional problems. In elasticity, two standard
-	ways of reducing three dimensional systems to two dimensions
-	are <emphasis>plane strain</emphasis> and <emphasis>plane
-	stress</emphasis>.  Plane strain is implemented by
-	constraining the out-of-plane components of the strain to be
-	zero, and plane stress is (usually) implemented by using an
-	effective in-plane elastic modulus.
+	    &oof2; uses three dimensional material properties but only
+	    solves two dimensional problems. In elasticity, two standard
+	    ways of reducing three dimensional systems to two dimensions
+	    are <emphasis>plane strain</emphasis> and <emphasis>plane
+	    stress</emphasis>.  Plane strain is implemented by
+	    constraining the out-of-plane components of the strain to be
+	    zero, and plane stress is (usually) implemented by using an
+	    effective in-plane elastic modulus.
       </para>
       <para>
-	&oof2; has to generalize the concepts of plane-stress and
-	plane-strain because it deals with problems other than
-	elasticity.  Furthermore, since &oof2; allows couplings
-	between &fields;, more than one &field; can
-	contribute to a given &flux;, and these couplings are not
-	known in advance, it is not possible to compute effective
-	in-plane moduli for generalized plane-stress problems.
+	    &oof2; has to generalize the concepts of plane-stress and
+	    plane-strain because it deals with problems other than
+	    elasticity.  Furthermore, since &oof2; allows couplings
+	    between &fields;, more than one &field; can
+	    contribute to a given &flux;, and these couplings are not
+	    known in advance, it is not possible to compute effective
+	    in-plane moduli for generalized plane-stress problems.
       </para>
       <para id="generalized-plane-strain">
-	&oof2;'s approach to the out-of-plane problem is to augment
-	each &field; with the <emphasis>out-of-plane</emphasis>
-	components of its derivatives.  For example, scalar &fields;
-	like <userinput>Temperature</userinput> become a pair of
-	&fields;, <userinput>Temperature</userinput> and
-	<userinput>Temperature_z</userinput>, where
-	<userinput>Temperature_z</userinput> is the z-derivative of
-	the temperature.  <userinput>Displacement</userinput>, which
-	is a two-dimensional vector &field; in the plane, is augmented
-	with <userinput>Displacement_z</userinput>, which is the
-	triplet of partial derivatives
-	<inlineequation>
-	  <alt role="tex">\((\partial u_z/\partial x, \partial
-	    u_z/\partial y, \partial u_z/\partial z\))</alt>
-	</inlineequation>,
-	where
-	<inlineequation>
-	  <alt role="tex">\(u\)</alt>
-	</inlineequation>
-	is the (three dimensional) displacement field.  Then the
-	generalization of plane-strain simply sets these out-of-plane
-	derivatives to zero and excludes them from the solution
-	process.  This is done for &fields; that are marked as <link
-	linkend="MenuItem-OOF.Mesh.Field.In_Plane">
-	<userinput>in-plane</userinput></link> in the <link
-	linkend="Section-Tasks-FieldsEquations">Fields &amp;
-	Equations</link> task page.  Note that &fields; that are
-	in-plane in one &subproblem; must be in-plane in all
-	&subproblems;.
+	    &oof2;'s approach to the out-of-plane problem is to augment
+	    each &field; with the <emphasis>out-of-plane</emphasis>
+	    components of its derivatives.  For example, scalar &fields;
+	    like <userinput>Temperature</userinput> become a pair of
+	    &fields;, <userinput>Temperature</userinput> and
+	    <userinput>Temperature_z</userinput>, where
+	    <userinput>Temperature_z</userinput> is the z-derivative of
+	    the temperature.  <userinput>Displacement</userinput>, which
+	    is a two-dimensional vector &field; in the plane, is augmented
+	    with <userinput>Displacement_z</userinput>, which is the
+	    triplet of partial derivatives
+	    <inlineequation>
+	      <alt role="tex">\((\partial u_z/\partial x, \partial
+	      u_z/\partial y, \partial u_z/\partial z\))</alt>
+	      </inlineequation>,
+	      where
+	      <inlineequation>
+	        <alt role="tex">\(u\)</alt>
+	      </inlineequation>
+	      is the (three dimensional) displacement field.  Then the
+	      generalization of plane-strain simply sets these out-of-plane
+	      derivatives to zero and excludes them from the solution
+	      process.  This is done for &fields; that are marked as <link
+	      linkend="MenuItem-OOF.Mesh.Field.In_Plane">
+	      <userinput>in-plane</userinput></link> in the <link
+	      linkend="Section-Tasks-FieldsEquations">Fields &amp;
+	      Equations</link> task page.  Note that &fields; that are
+	      in-plane in one &subproblem; must be in-plane in all
+	      &subproblems;.
       </para>
       <para id="plane-flux">
-	Plane-stress is generalized by augmenting the system of finite
-	element equations by <link
-	linkend="Section-Concepts-Mesh-Equation-PlaneFlux">plane-flux</link>
-	equations that constrain the out-of-plane components of the
-	&fluxes; to be zero.  This increases the size of the system of
-	linear equations to be solved, but, unlike the method of
-	defining effective in-plane moduli, works even if there are
-	arbitrary couplings between fields.
+	    Plane-stress is generalized by augmenting the system of finite
+	    element equations by <link
+	    linkend="Section-Concepts-Mesh-Equation-PlaneFlux">plane-flux</link>
+	    equations that constrain the out-of-plane components of the
+	    &fluxes; to be zero.  This increases the size of the system of
+	    linear equations to be solved, but, unlike the method of
+	    defining effective in-plane moduli, works even if there are
+	    arbitrary couplings between fields.
       </para>
     </section><!-- Mesh 3D -->
 
     <section id="Section-Concepts-Mesh-Equation">
       <title>Equations</title>
       <para>
-	<link
-	linkend="MenuItem-OOF.Mesh.Equation.Activate">Activating</link>
-	&equations; in the <link
-	linkend="Section-Tasks-FieldsEquations">Fields &amp;
-	Equations</link> task page determines what physics problem
-	&oof2; solves.  There are (currently) two kinds of equations,
-	<link
-	linkend="Section-Concepts-Mesh-Equation-Divergence">divergence</link>
-	equations and <link
-	linkend="Section-Concepts-Mesh-Equation-PlaneFlux">plane-flux</link>
-	equations.
+	    <link
+	        linkend="MenuItem-OOF.Mesh.Equation.Activate">Activating</link>
+	    &equations; in the <link
+	    linkend="Section-Tasks-FieldsEquations">Fields &amp;
+	    Equations</link> task page determines what physics problem
+	    &oof2; solves.  There are (currently) two kinds of equations,
+	    <link
+	        linkend="Section-Concepts-Mesh-Equation-Divergence">divergence</link>
+	    equations and <link
+	    linkend="Section-Concepts-Mesh-Equation-PlaneFlux">plane-flux</link>
+	    equations.
       </para>
       <para>
-	&equations; are activated and deactivated on &subproblems;.
-	When we say that a &subproblem; is <link
-	linkend="Section-Concepts-Mesh-Solving">solved</link>, we
-	really mean that its active &equations; are solved in the
-	portion of the &mesh; that is included in the &subproblem;.
+	    &equations; are activated and deactivated on &subproblems;.
+	    When we say that a &subproblem; is <link
+	    linkend="Section-Concepts-Mesh-Solving">solved</link>, we
+	    really mean that its active &equations; are solved in the
+	    portion of the &mesh; that is included in the &subproblem;.
       </para>
       <para>
-	<xref linkend="Section-Equations"/> in <xref
-	linkend="Chapter-Reference"/> lists all of the predefined
-	&equations; in &oof2;.  <xref linkend='Chapter-Extending'/>
-	explains how to add new &equations;.
+	    <xref linkend="Section-Equations"/> in <xref
+	    linkend="Chapter-Reference"/> lists all of the predefined
+	    &equations; in &oof2;.  <xref linkend='Chapter-Extending'/>
+	    explains how to add new &equations;.
       </para>
       <simplesect id="Section-Concepts-Mesh-Equation-Divergence">
-	<title>Static Divergence Equations</title>
-	<para>
-	  Divergence equations are of the form
-	  <equation id="Eqn-Divergence">
-	    <alt role="tex">
-	      \[
-	      \nabla\cdot\mathrm{flux} + \mathrm{force}
-	      = 0,
-	      \]
-	    </alt>
-	  </equation>
-	  where <inlineequation><alt role="tex">\(\mathrm{force}\)</alt></inlineequation> 
-	  is a generalized force.
-	  Examples are the force balance equation
-	  (<inlineequation>
-	    <alt role="tex">\(\nabla\cdot\sigma = f\)</alt>
-	  </inlineequation>, where f is an actual force) and the heat equation
-	  (<inlineequation>
-	    <alt role="tex">\(\nabla\cdot J = -\partial U/\partial
-	    t\)</alt> </inlineequation>, where the right hand side is
-	    a given rate of change of thermal energy density).
-	</para>
+	    <title>Static Divergence Equations</title>
+	    <para>
+	      Divergence equations are of the form
+	      <equation id="Eqn-Divergence">
+	        <alt role="tex">
+	          \[
+	          \nabla\cdot\mathrm{flux} + \mathrm{force}
+	          = 0,
+	          \]
+	        </alt>
+	      </equation>
+	      where <inlineequation><alt role="tex">\(\mathrm{force}\)</alt></inlineequation> 
+	      is a generalized force.
+	      Examples are the force balance equation
+	      (<inlineequation>
+	      <alt role="tex">\(\nabla\cdot\sigma = f\)</alt>
+	      </inlineequation>, where f is an actual force) and the heat equation
+	      (<inlineequation>
+	      <alt role="tex">\(\nabla\cdot J = -\partial U/\partial
+	      t\)</alt> </inlineequation>, where the right hand side is
+	      a given rate of change of thermal energy density).
+	    </para>
       </simplesect>		<!-- Static Divergence Equations -->
 
       <simplesect id="Section-Concepts-Time-Dependence">
-	<title>Nonstatic Equations</title>
-	<para>
-	  The general form of the time dependent version of the <link
-	  linkend="Eqn-Divergence">divergence equation</link> is
-	  <equation id="Eqn-TimeDivergence">
-	    <alt role="tex">
-	      \[
-	      {\bf M}\frac{\partial^2}{\partial t^2}\mathrm{field}
-	      + {\bf C}\frac{\partial}{\partial t}\mathrm{field}
-	      + \nabla\cdot\mathrm{flux} + \mathrm{force} = 0.
-	      \]
-	    </alt>
-	  </equation>
-	  For first order problems,
-	  <foreignphrase>e.g.</foreignphrase> the heat equation, the
-	  &Mmatrix; term will be zero.  For second order problems the
-	  &Cmatrix; term <emphasis>may</emphasis> be zero.
-	</para>
+	    <title>Nonstatic Equations</title>
+	    <para>
+	      The general form of the time dependent version of the <link
+	      linkend="Eqn-Divergence">divergence equation</link> is
+	      <equation id="Eqn-TimeDivergence">
+	        <alt role="tex">
+	          \[
+	          {\bf M}\frac{\partial^2}{\partial t^2}\mathrm{field}
+	          + {\bf C}\frac{\partial}{\partial t}\mathrm{field}
+	          + \nabla\cdot\mathrm{flux} + \mathrm{force} = 0.
+	          \]
+	        </alt>
+	      </equation>
+	      For first order problems,
+	      <foreignphrase>e.g.</foreignphrase> the heat equation, the
+	      &Mmatrix; term will be zero.  For second order problems the
+	      &Cmatrix; term <emphasis>may</emphasis> be zero.
+	    </para>
       </simplesect><!-- Nonstatic Equations -->
       <simplesect id="Section-Concepts-Mesh-Equation-PlaneFlux">
-	<title>Plane Flux Equations</title>
-	<para>
-	  Plane flux equations implement &oof2;'s generalization of
-	  <link
-	  linkend="Section-Concepts-Mesh-3D">plane-stress</link>.
-	  They simply state that the out-of-plane components of some
-	  flux are zero:
-	  <equation id="Eqn-PlaneFlux">
-	    <alt role="tex">
-	      \[\mathrm{flux}_z = 0.\]
-	    </alt>
-	  </equation>
-	  Examples are the plane-stress equation
-	  <inlineequation>
-	    <alt role="tex">\(\sigma_{iz}=0\)</alt>
-	  </inlineequation>,
-	  <inlineequation>
-	    <alt role="tex">\(i=1,2,3\)</alt>
-	  </inlineequation>,
-	  and the plane-heat-flux equation
-	  <inlineequation><alt role="tex">\(J_z = 0\)</alt></inlineequation>.
-	</para>
+	    <title>Plane Flux Equations</title>
+	    <para>
+	      Plane flux equations implement &oof2;'s generalization of
+	      <link
+	          linkend="Section-Concepts-Mesh-3D">plane-stress</link>.
+	      They simply state that the out-of-plane components of some
+	      flux are zero:
+	      <equation id="Eqn-PlaneFlux">
+	        <alt role="tex">
+	          \[\mathrm{flux}_z = 0.\]
+	        </alt>
+	      </equation>
+	      Examples are the plane-stress equation
+	      <inlineequation>
+	        <alt role="tex">\(\sigma_{iz}=0\)</alt>
+	        </inlineequation>,
+	        <inlineequation>
+	          <alt role="tex">\(i=1,2,3\)</alt>
+	          </inlineequation>,
+	          and the plane-heat-flux equation
+	          <inlineequation><alt role="tex">\(J_z = 0\)</alt></inlineequation>.
+	    </para>
       </simplesect><!-- Plane Flux Equations -->
       <simplesect id="Section-Concepts-Mesh-Equation-Nonlinear">
-	<title>Nonlinear Equations</title>
-	<para>
-	  &oof2; can solve nonlinear versions of Equations <xref
-	  linkend="Eqn-Divergence"/>, <xref
-	  linkend="Eqn-TimeDivergence"/>, and <xref
-	  linkend="Eqn-PlaneFlux"/>, as long as the nonlinearity is
-	  confined to the <inlineequation><alt
-	  role="tex">\(\mathrm{flux}\)</alt></inlineequation> and
-	  <inlineequation><alt
-	  role="tex">\(\mathrm{force}\)</alt></inlineequation> terms.
-	</para>
+	    <title>Nonlinear Equations</title>
+	    <para>
+	      &oof2; can solve nonlinear versions of Equations <xref
+	      linkend="Eqn-Divergence"/>, <xref
+	      linkend="Eqn-TimeDivergence"/>, and <xref
+	      linkend="Eqn-PlaneFlux"/>, as long as the nonlinearity is
+	      confined to the <inlineequation><alt
+	      role="tex">\(\mathrm{flux}\)</alt></inlineequation> and
+	      <inlineequation><alt
+	                          role="tex">\(\mathrm{force}\)</alt></inlineequation> terms.
+	    </para>
       </simplesect>		<!-- Nonlinear Equations -->
       <simplesect>
-	<title>Parameters in Equations</title>
-	<para>
-	  The exact form of the &equations; that &oof2; solves is
-	  determined by a number of things:
-	  <itemizedlist>
-	    <listitem>
-	      <para>
-		The &equations; must be activated, or they won't be
-		solved.
-	      </para>
-	    </listitem>
-	    <listitem>
-	      <para>
-		If the &materials; contain &properties; that
-		contribute to &Mmatrix; or &Cmatrix;, then the time
-		dependent version of equation <xref
-		linkend="Eqn-TimeDivergence"/> will be solved instead
-		of the static version <xref
-		linkend="Eqn-Divergence"/>.
-	      </para>
-	    </listitem>
-	    <listitem>
-	      <para>
-		However, if the &subproblem;'s <link
-		linkend="Section-Concepts-Mesh-Solvers">solver</link> is
-		static, the &Mmatrix; and &Cmatrix; terms in its
-		equations will be ignored, even if &properties;
-		contribute to them.
-	      </para>
-	    </listitem>
-	    <listitem>
-	      <para>
-		The form of the <inlineequation><alt
-		role="tex">\(\mathrm{flux}\)</alt></inlineequation>
-		that appears in equations <xref
-		linkend="Eqn-Divergence"/>, <xref
-		linkend="Eqn-TimeDivergence"/>, or <xref
-		linkend="Eqn-PlaneFlux"/> is determined by the
-		&properties;.  Each &equation; involves a single
-		&flux;.  All of the &material;'s &properties; that
-		contribute to the &flux; will be included, if the
-		&fields; that the &property; requires are defined.
-	      </para>
-	      <para>
-		For example, if a linear <link
-		linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity"><classname>Elasticity</classname></link>
-		&property; is the only &property; present and if the
-		<userinput>Displacement</userinput> &field; is
-		defined, then the stress flux (which is flux for the
-		Force Balance equation) will be <inlineequation><alt
-		role="tex">\(\sigma_{ij} =
-		C_{ijkl}\epsilon_{kl}\)</alt></inlineequation>.  If a
-		<link
-		linkend="MenuItem-OOF.Property.Parametrize.Couplings.ThermalExpansion">Thermal
-		Expansion</link> &property; is present as well and
-		<userinput>Temperature</userinput> is also defined,
-		the stress will be <inlineequation><alt
-		role="tex">\(\sigma_{ij} = C_{ijkl}(\epsilon_{kl} -
-		\alpha_{kl} \Delta T)\)</alt></inlineequation>.
-	      </para>
-	    </listitem>
-	  </itemizedlist>
-	</para>
+	    <title>Parameters in Equations</title>
+	    <para>
+	      The exact form of the &equations; that &oof2; solves is
+	      determined by a number of things:
+	      <itemizedlist>
+	        <listitem>
+	          <para>
+		        The &equations; must be activated, or they won't be
+		        solved.
+	          </para>
+	        </listitem>
+	        <listitem>
+	          <para>
+		        If the &materials; contain &properties; that
+		        contribute to &Mmatrix; or &Cmatrix;, then the time
+		        dependent version of equation <xref
+		        linkend="Eqn-TimeDivergence"/> will be solved instead
+		        of the static version <xref
+		        linkend="Eqn-Divergence"/>.
+	          </para>
+	        </listitem>
+	        <listitem>
+	          <para>
+		        However, if the &subproblem;'s <link
+		        linkend="Section-Concepts-Mesh-Solvers">solver</link> is
+		        static, the &Mmatrix; and &Cmatrix; terms in its
+		        equations will be ignored, even if &properties;
+		        contribute to them.
+	          </para>
+	        </listitem>
+	        <listitem>
+	          <para>
+		        The form of the <inlineequation><alt
+		        role="tex">\(\mathrm{flux}\)</alt></inlineequation>
+		        that appears in equations <xref
+		        linkend="Eqn-Divergence"/>, <xref
+		        linkend="Eqn-TimeDivergence"/>, or <xref
+		        linkend="Eqn-PlaneFlux"/> is determined by the
+		        &properties;.  Each &equation; involves a single
+		        &flux;.  All of the &material;'s &properties; that
+		        contribute to the &flux; will be included, if the
+		        &fields; that the &property; requires are defined.
+	          </para>
+	          <para>
+		        For example, if a linear <link
+		        linkend="MenuItem-OOF.Property.Parametrize.Mechanical.Elasticity"><classname>Elasticity</classname></link>
+		        &property; is the only &property; present and if the
+		        <userinput>Displacement</userinput> &field; is
+		        defined, then the stress flux (which is flux for the
+		        Force Balance equation) will be <inlineequation><alt
+		        role="tex">\(\sigma_{ij} =
+		        C_{ijkl}\epsilon_{kl}\)</alt></inlineequation>.  If a
+		        <link
+		            linkend="MenuItem-OOF.Property.Parametrize.Couplings.ThermalExpansion">Thermal
+		        Expansion</link> &property; is present as well and
+		        <userinput>Temperature</userinput> is also defined,
+		        the stress will be <inlineequation><alt
+		        role="tex">\(\sigma_{ij} = C_{ijkl}(\epsilon_{kl} -
+		        \alpha_{kl} \Delta T)\)</alt></inlineequation>.
+	          </para>
+	        </listitem>
+	      </itemizedlist>
+	    </para>
       </simplesect>		<!-- Parameters in Equations -->
     </section>			<!-- Equation -->
 
     <section id="Section-Concepts-Mesh-BoundaryCondition">
       <title>Boundary Conditions</title>
       <para>
-	&oof2; provides five kinds of <link
-	linkend="RegisteredClass-BC">boundary conditions</link>, <link
-	linkend="RegisteredClass-DirichletBC">Dirichlet</link>, <link
-	linkend="RegisteredClass-NeumannBC">Neumann</link>, <link
-	linkend="RegisteredClass-FloatBC">Floating</link>, <link
-	linkend="RegisteredClass-ForceBC">Generalized Force</link> and <link
-	linkend="RegisteredClass-PeriodicBC">Periodic</link>.
-	They can be applied only at <link
-	linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>
-	that have been defined in the &skel; from which the &mesh; was
-	derived.  The &fields; and &equations; referred to in the
-	boundary conditions need to be <link
-	linkend="Section-Concepts-Mesh-Field-Active">active</link>.
+	    &oof2; provides five kinds of <link
+	    linkend="RegisteredClass-BC">boundary conditions</link>, <link
+	    linkend="RegisteredClass-DirichletBC">Dirichlet</link>, <link
+	    linkend="RegisteredClass-NeumannBC">Neumann</link>, <link
+	    linkend="RegisteredClass-FloatBC">Floating</link>, <link
+	    linkend="RegisteredClass-ForceBC">Generalized Force</link> and <link
+	    linkend="RegisteredClass-PeriodicBC">Periodic</link>.
+	    They can be applied only at <link
+	    linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>
+	    that have been defined in the &skel; from which the &mesh; was
+	    derived.  The &fields; and &equations; referred to in the
+	    boundary conditions need to be <link
+	    linkend="Section-Concepts-Mesh-Field-Active">active</link>.
       </para>
       <itemizedlist>
-	<listitem>
-	  <para>
-	    A <link
-	    linkend="RegisteredClass-DirichletBC">Dirichlet</link>
-	    boundary condition specifies the value of one component of
-	    a &field; along a boundary.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    A <link linkend="RegisteredClass-NeumannBC">Neumann</link>
-	    boundary condition specifies the normal component of a
-	    &flux; on a boundary.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    A <link linkend="RegisteredClass-FloatBC">Floating</link>
-	    boundary condition is like a Dirichlet condition, except
-	    that the &field; values along the boundary can vary by an
-	    unknown offset, which will be solved for.  That is, if the
-	    condition specifies that the field values are
-	    <inlineequation>
-	      <alt role="tex">\(f(x,y)\)</alt>
-	      </inlineequation>,
-	      the actual values will be 
-	      <inlineequation>
-		<alt role="tex">\(f(x,y) + f_0\)</alt>
-	      </inlineequation>
-	      where 
-	      <inlineequation>
-		<alt role="tex">\(f_0\)</alt>
-	      </inlineequation>
-	      is unknown, but has the same value at all points on the
-	      boundary.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    A <link linkend="RegisteredClass-ForceBC">Force</link>
-	    boundary condition specifies the generalized force on each
-	    &node; in the boundary.  It is a discrete version of a
-	    <link linkend="RegisteredClass-NeumannBC">Neumann</link>
-	    condition, appropriate if you really have point sources of
-	    mechanical force or heat flux, for example.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    A <link
-	    linkend="RegisteredClass-PeriodicBC">Periodic</link>
-	    boundary condition specifies that a component of a &field;
-	    on the boundary has the same value as the &field; on the
-	    boundary on the opposite side of the system.  Periodic
-	    boundary conditions can only be applied to &meshes; built
-	    from periodic &skels;.
-	  </para>
-	</listitem>
+	    <listitem>
+	      <para>
+	        A <link
+	        linkend="RegisteredClass-DirichletBC">Dirichlet</link>
+	        boundary condition specifies the value of one component of
+	        a &field; along a boundary.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        A <link linkend="RegisteredClass-NeumannBC">Neumann</link>
+	        boundary condition specifies the normal component of a
+	        &flux; on a boundary.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        A <link linkend="RegisteredClass-FloatBC">Floating</link>
+	        boundary condition is like a Dirichlet condition, except
+	        that the &field; values along the boundary can vary by an
+	        unknown offset, which will be solved for.  That is, if the
+	        condition specifies that the field values are
+	        <inlineequation>
+	          <alt role="tex">\(f(x,y)\)</alt>
+	          </inlineequation>,
+	          the actual values will be 
+	          <inlineequation>
+		        <alt role="tex">\(f(x,y) + f_0\)</alt>
+	          </inlineequation>
+	          where 
+	          <inlineequation>
+		        <alt role="tex">\(f_0\)</alt>
+	          </inlineequation>
+	          is unknown, but has the same value at all points on the
+	          boundary.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        A <link linkend="RegisteredClass-ForceBC">Force</link>
+	        boundary condition specifies the generalized force on each
+	        &node; in the boundary.  It is a discrete version of a
+	        <link linkend="RegisteredClass-NeumannBC">Neumann</link>
+	        condition, appropriate if you really have point sources of
+	        mechanical force or heat flux, for example.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        A <link
+	        linkend="RegisteredClass-PeriodicBC">Periodic</link>
+	        boundary condition specifies that a component of a &field;
+	        on the boundary has the same value as the &field; on the
+	        boundary on the opposite side of the system.  Periodic
+	        boundary conditions can only be applied to &meshes; built
+	        from periodic &skels;.
+	      </para>
+	    </listitem>
       </itemizedlist>
       <para>
-	The <link linkend="Section-Tasks-BoundaryCondition">Boundary
-	Conditions</link> Task Page contains the GUI for constructing
-	and manipulating boundary conditions.  The underlying commands
-	are in the <xref
-	linkend="MenuItem-OOF.Mesh.Boundary_Conditions"/> menu.  The
-	boundary condition objects themselves are in the <xref
-	linkend="RegisteredClass-BC"/> class.
+	    The <link linkend="Section-Tasks-BoundaryCondition">Boundary
+	    Conditions</link> Task Page contains the GUI for constructing
+	    and manipulating boundary conditions.  The underlying commands
+	    are in the <xref
+	    linkend="MenuItem-OOF.Mesh.Boundary_Conditions"/> menu.  The
+	    boundary condition objects themselves are in the <xref
+	    linkend="RegisteredClass-BC"/> class.
       </para>
       <para>
-	Boundary conditions may be explicitly enabled or disabled
-	after they've been defined, using the
-	<guibutton>On/Off</guibutton> button on the <link
-	linkend="Section-Tasks-BoundaryCondition">Boundary
-	Conditions</link> page.  This allows you to switch back and
-	forth easily to see the effects of different boundary
-	conditions on a solution.
+	    Boundary conditions may be explicitly enabled or disabled
+	    after they've been defined, using the
+	    <guibutton>On/Off</guibutton> button on the <link
+	    linkend="Section-Tasks-BoundaryCondition">Boundary
+	    Conditions</link> page.  This allows you to switch back and
+	    forth easily to see the effects of different boundary
+	    conditions on a solution.
       </para>
       <note>
-	<para>
-	  If you are using non-trivial &subproblems;, be careful about
-	  boundary conditions on edges between the &subproblems;.  A
-	  future version of &oof2; will have tools to make it easy to
-	  apply the correct boundary conditions.  But in version 2.1
-	  if you solve for a field in one region, you can get
-	  unexpected field gradients in neighboring elements.
-	</para>
+	    <para>
+	      If you are using non-trivial &subproblems;, be careful about
+	      boundary conditions on edges between the &subproblems;.  A
+	      future version of &oof2; will have tools to make it easy to
+	      apply the correct boundary conditions.  But in version 2.1
+	      if you solve for a field in one region, you can get
+	      unexpected field gradients in neighboring elements.
+	    </para>
       </note>
       <section id="Section-Concepts-Mesh-BoundaryCondition-Profile">
-	<title>Profiles</title>
-	<para>
-	  A <classname>Profile</classname> object describes the
-	  <emphasis>shape</emphasis> of a <link
-	  linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
-	  condition</link>.  That is, a boundary condition fixes some
-	  quantity (a &field; component, for example) on a boundary
-	  and the <classname>Profile</classname> of the boundary
-	  condition specifies how that quantity varies along the
-	  length of the boundary.
-	</para>
-	<para>
-	  There are three kinds of <classname>Profiles</classname>,
-	  used by different kinds of boundary conditions.  The
-	  graphical user interface takes care of selecting the right
-	  kind for you, but if you edit scripts, you need to use the
-	  correct type:
-	</para>
-	<itemizedlist>
-	  <listitem>
+	    <title>Profiles</title>
 	    <para>
-	      Subclasses of <xref linkend="RegisteredClass-ProfileX"/>
-	      are <classname>Profiles</classname> that vary in position
-	      but not in time.  They're used in <link
-	      linkend="RegisteredClass-FloatBC">Floating</link>
-	      boundary conditions.
+	      A <classname>Profile</classname> object describes the
+	      <emphasis>shape</emphasis> of a <link
+	      linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+	      condition</link>.  That is, a boundary condition fixes some
+	      quantity (a &field; component, for example) on a boundary
+	      and the <classname>Profile</classname> of the boundary
+	      condition specifies how that quantity varies along the
+	      length of the boundary.
 	    </para>
-	  </listitem>
-	  <listitem>
 	    <para>
-	      Subclasses of <xref
-	      linkend="RegisteredClass-ProfileXT"/> are
-	      <classname>Profiles</classname> that can vary in time as
-	      well as position.  They're used in <link
-	      linkend="RegisteredClass-NeumannBC">Neumann</link> and
-	      <link linkend="RegisteredClass-ForceBC">Force</link>
-	      boundary conditions.
+	      There are three kinds of <classname>Profiles</classname>,
+	      used by different kinds of boundary conditions.  The
+	      graphical user interface takes care of selecting the right
+	      kind for you, but if you edit scripts, you need to use the
+	      correct type:
 	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      Subclasses of <xref
-	      linkend="RegisteredClass-ProfileXTd"/> are also
-	      <classname>Profiles</classname> that can vary in time
-	      and position, but if they vary in time, the time
-	      derivative must be provided.  They're used in <link
-	      linkend="RegisteredClass-DirichletBC">Dirichlet</link>
-	      boundary conditions.
-	    </para>
-	  </listitem>
-	</itemizedlist>
+	    <itemizedlist>
+	      <listitem>
+	        <para>
+	          Subclasses of <xref linkend="RegisteredClass-ProfileX"/>
+	          are <classname>Profiles</classname> that vary in position
+	          but not in time.  They're used in <link
+	          linkend="RegisteredClass-FloatBC">Floating</link>
+	          boundary conditions.
+	        </para>
+	      </listitem>
+	      <listitem>
+	        <para>
+	          Subclasses of <xref
+	          linkend="RegisteredClass-ProfileXT"/> are
+	          <classname>Profiles</classname> that can vary in time as
+	          well as position.  They're used in <link
+	          linkend="RegisteredClass-NeumannBC">Neumann</link> and
+	          <link linkend="RegisteredClass-ForceBC">Force</link>
+	          boundary conditions.
+	        </para>
+	      </listitem>
+	      <listitem>
+	        <para>
+	          Subclasses of <xref
+	          linkend="RegisteredClass-ProfileXTd"/> are also
+	          <classname>Profiles</classname> that can vary in time
+	          and position, but if they vary in time, the time
+	          derivative must be provided.  They're used in <link
+	          linkend="RegisteredClass-DirichletBC">Dirichlet</link>
+	          boundary conditions.
+	        </para>
+	      </listitem>
+	    </itemizedlist>
       </section><!-- Mesh boundary condition profile -->
     </section><!-- Mesh boundary condition -->
 
     <section id="Section-Concepts-Mesh-InitialConditions">
       <title>Initial Conditions and Time</title>
       <para>
-	In time dependent problems, the initial values of each active
-	&field; must be set.  In static linear problems, setting the
-	initial value is optional, but a good choice of initial value
-	can help the iterative solvers converge quickly.  In static
-	nonlinear problems, the choice of initial values can affect
-	the solution.
+	    In time dependent problems, the initial values of each active
+	    &field; must be set.  In static linear problems, setting the
+	    initial value is optional, but a good choice of initial value
+	    can help the iterative solvers converge quickly.  In static
+	    nonlinear problems, the choice of initial values can affect
+	    the solution.
       </para>
       <para>
-	If the active &equations; include second time derivatives,
-	initial values must also be provided for the &fields;' first
-	time derivatives.
+	    If the active &equations; include second time derivatives,
+	    initial values must also be provided for the &fields;' first
+	    time derivatives.
       </para>
       <para>
-	&field; initialization is a &mesh;-wide operation, and is not
-	specific to a particular &subproblem;.  When a &field; is
-	initialized, a value is assigned to it at all &nodes; where
-	the &field; is defined.
+	    &field; initialization is a &mesh;-wide operation, and is not
+	    specific to a particular &subproblem;.  When a &field; is
+	    initialized, a value is assigned to it at all &nodes; where
+	    the &field; is defined.
       </para>
       <para>
-	The initial values of the &fields; are set in two steps.  In
-	the first step, the initialization method for each &field; is
-	defined (<xref
-	linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>).
-	Initializers can be constants or functions, or they can copy
-	values from another &mesh;.  In the second step, all of the
-	initializers for all of the defined &fields; on the &mesh; are
-	applied simultaneously.  This step can optionally also set the
-	&mesh;'s current time.  See <xref
-	linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/> and
-	<xref
-	linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>.
+	    The initial values of the &fields; are set in two steps.  In
+	    the first step, the initialization method for each &field; is
+	    defined (<xref
+	    linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>).
+	    Initializers can be constants or functions, or they can copy
+	    values from another &mesh;.  In the second step, all of the
+	    initializers for all of the defined &fields; on the &mesh; are
+	    applied simultaneously.  This step can optionally also set the
+	    &mesh;'s current time.  See <xref
+	    linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/> and
+	    <xref
+	        linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>.
       </para>
       <para>
-	&fields; without initializers are unchanged when initializers
-	are applied.  If those &fields; have never been solved or
-	initialized, their values are undetermined, but are probably
-	zero.  It's a good idea to initialize all &fields;.
+	    &fields; without initializers are unchanged when initializers
+	    are applied.  If those &fields; have never been solved or
+	    initialized, their values are undetermined, but are probably
+	    zero.  It's a good idea to initialize all &fields;.
       </para>
     </section> <!--Mesh InitialConditions -->
 
     <section id="Section-Concepts-Mesh-Solvers">
       <title>Solvers</title>
       <para>
-	After &materials; have been defined and assigned to pixels, a
-	&mesh; has been created, &fields; have been defined and
-	activated, equations have been activated and boundary
-	conditions have been applied, the next step in solving a
-	&mesh; is to choose a <link
-	linkend="RegisteredClass-SolverMode">solution method</link>
-	for each &subproblem;.  &oof2; lets you choose a solver in one
-	of two ways:
-	<itemizedlist>
-	  <listitem>
-	    <simpara>
-	      In <link
-	      linkend="RegisteredClass-BasicSolverMode">basic</link>
-	      mode you only need to set some general parameters.  The
-	      specific algorithms that &oof2; will use are chosen
-	      automatically.
-	    </simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      In <link
-	      linkend="RegisteredClass-AdvancedSolverMode">advanced</link>
-	      mode you have to choose the specific algorithms and set
-	      all of their parameters.
-	    </simpara>
-	  </listitem>
-	</itemizedlist>
+	    After &materials; have been defined and assigned to pixels, a
+	    &mesh; has been created, &fields; have been defined and
+	    activated, equations have been activated and boundary
+	    conditions have been applied, the next step in solving a
+	    &mesh; is to choose a <link
+	    linkend="RegisteredClass-SolverMode">solution method</link>
+	    for each &subproblem;.  &oof2; lets you choose a solver in one
+	    of two ways:
+	    <itemizedlist>
+	      <listitem>
+	        <simpara>
+	          In <link
+	          linkend="RegisteredClass-BasicSolverMode">basic</link>
+	          mode you only need to set some general parameters.  The
+	          specific algorithms that &oof2; will use are chosen
+	          automatically.
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          In <link
+	          linkend="RegisteredClass-AdvancedSolverMode">advanced</link>
+	          mode you have to choose the specific algorithms and set
+	          all of their parameters.
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
       </para>
       <para>
-	Both solver modes let you choose a time stepping method.
-	There are three kinds of time steppers:
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      <emphasis>Static</emphasis> steppers don't actually
-	      take any time steps, they just solve for the
-	      instantaneous values of the &fields; at the current
-	      time.  If the &equations; include &Mmatrix; or &Cmatrix;
-	      terms, those terms will be ignored. 
-	      <itemizedlist spacing="compact">
-		<listitem>
-		  <simpara>
-		    <link
-		    linkend="RegisteredClass-BasicStaticDriver">Static
-		    steppers</link> for <link
-		    linkend="RegisteredClass-BasicSolverMode">basic
-		    mode</link>.
-		  </simpara>
-		</listitem>
-		<listitem>
-		  <simpara>
-		    <link
-		    linkend="RegisteredClass-StaticDriver">Static
-		    steppers</link> for <link
-		    linkend="RegisteredClass-AdvancedSolverMode">advanced
-		    mode</link>.
-		  </simpara>
-		</listitem>
-	      </itemizedlist>
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      <emphasis>Uniform</emphasis> steppers take time steps of a fixed
-	      size, which you have to specify.
-	      <itemizedlist spacing="compact">
-		<listitem>
-		  <simpara>
-		    <link
-		    linkend="RegisteredClass-BasicUniformDriver">Uniform
-		    steppers</link> for <link
-		    linkend="RegisteredClass-BasicSolverMode">basic
-		    mode</link>.
-		  </simpara>
-		</listitem>
-		<listitem>
-		  <simpara>
-		    <link
-		    linkend="RegisteredClass-UniformDriver">Uniform
-		    steppers</link> for <link
-		    linkend="RegisteredClass-AdvancedSolverMode">advanced
-		    mode</link>.
-		  </simpara>
-		</listitem>
-	      </itemizedlist>
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      <emphasis>Adaptive</emphasis> steppers adjust the size
-	      of their time steps in order to keep the estimated error
-	      below a given tolerance.  You have to specify the
-	      tolerance and a minimum allowable step size.  Adaptive
-	      steppers have to do more computation than uniform
-	      steppers on each step, but can often achieve the same
-	      accuracy with fewer steps, and therefore are generally
-	      preferred.
-	      <itemizedlist spacing="compact">
-		<listitem>
-		  <simpara>
-		    <link
-		    linkend="RegisteredClass-BasicAdaptiveDriver">Adaptive
-		    steppers</link> for <link
-		    linkend="RegisteredClass-BasicSolverMode">basic
-		    mode</link>.
-		  </simpara>
-		</listitem>
-		<listitem>
-		  <simpara>
-		    <link
-		    linkend="RegisteredClass-AdaptiveDriver">Adaptive
-		    steppers</link> for <link
-		    linkend="RegisteredClass-AdvancedSolverMode">advanced
-		    mode</link>.
-		  </simpara>
-		</listitem>
-	      </itemizedlist>
-	    </para>
-	  </listitem>
-	</itemizedlist>
+	    Both solver modes let you choose a time stepping method.
+	    There are three kinds of time steppers:
+	    <itemizedlist>
+	      <listitem>
+	        <para>
+	          <emphasis>Static</emphasis> steppers don't actually
+	          take any time steps, they just solve for the
+	          instantaneous values of the &fields; at the current
+	          time.  If the &equations; include &Mmatrix; or &Cmatrix;
+	          terms, those terms will be ignored. 
+	          <itemizedlist spacing="compact">
+		        <listitem>
+		          <simpara>
+		            <link
+		                linkend="RegisteredClass-BasicStaticDriver">Static
+		            steppers</link> for <link
+		            linkend="RegisteredClass-BasicSolverMode">basic
+		            mode</link>.
+		          </simpara>
+		        </listitem>
+		        <listitem>
+		          <simpara>
+		            <link
+		                linkend="RegisteredClass-StaticDriver">Static
+		            steppers</link> for <link
+		            linkend="RegisteredClass-AdvancedSolverMode">advanced
+		            mode</link>.
+		          </simpara>
+		        </listitem>
+	          </itemizedlist>
+	        </para>
+	      </listitem>
+	      <listitem>
+	        <para>
+	          <emphasis>Uniform</emphasis> steppers take time steps of a fixed
+	          size, which you have to specify.
+	          <itemizedlist spacing="compact">
+		        <listitem>
+		          <simpara>
+		            <link
+		                linkend="RegisteredClass-BasicUniformDriver">Uniform
+		            steppers</link> for <link
+		            linkend="RegisteredClass-BasicSolverMode">basic
+		            mode</link>.
+		          </simpara>
+		        </listitem>
+		        <listitem>
+		          <simpara>
+		            <link
+		                linkend="RegisteredClass-UniformDriver">Uniform
+		            steppers</link> for <link
+		            linkend="RegisteredClass-AdvancedSolverMode">advanced
+		            mode</link>.
+		          </simpara>
+		        </listitem>
+	          </itemizedlist>
+	        </para>
+	      </listitem>
+	      <listitem>
+	        <para>
+	          <emphasis>Adaptive</emphasis> steppers adjust the size
+	          of their time steps in order to keep the estimated error
+	          below a given tolerance.  You have to specify the
+	          tolerance and a minimum allowable step size.  Adaptive
+	          steppers have to do more computation than uniform
+	          steppers on each step, but can often achieve the same
+	          accuracy with fewer steps, and therefore are generally
+	          preferred.
+	          <itemizedlist spacing="compact">
+		        <listitem>
+		          <simpara>
+		            <link
+		                linkend="RegisteredClass-BasicAdaptiveDriver">Adaptive
+		            steppers</link> for <link
+		            linkend="RegisteredClass-BasicSolverMode">basic
+		            mode</link>.
+		          </simpara>
+		        </listitem>
+		        <listitem>
+		          <simpara>
+		            <link
+		                linkend="RegisteredClass-AdaptiveDriver">Adaptive
+		            steppers</link> for <link
+		            linkend="RegisteredClass-AdvancedSolverMode">advanced
+		            mode</link>.
+		          </simpara>
+		        </listitem>
+	          </itemizedlist>
+	        </para>
+	      </listitem>
+	    </itemizedlist>
       </para>
       <para id="Section-Concepts-Mesh-Solvers-Matrix">
-	All of the steppers have to solve a matrix equation at some
-	point on each step.  The matrix has one row for each
-	&equation; component being solved at every &node; in the
-	&mesh;, and one column for each &field; component at every
-	&node;.  Therefore the matrices can be quite large.  However,
-	they are also generally <emphasis>sparse</emphasis>, meaning
-	that most of their entries are zero.  Large sparse matrix
-	equations are best solved by <emphasis>iterative</emphasis>
-	methods, which don't require the zeros to be stored
-	explicitly, but which only provide approximate solutions.
-	<emphasis>Direct</emphasis> matrix solvers, such as Gaussian
-	elimination, may give more accurate solutions, but require a
-	lot more storage and are not suitable for very large problems.
-	In basic solver mode, you must choose either an <link
-	linkend="RegisteredClass-BasicIterative">iterative</link> or
-	<link linkend="RegisteredClass-BasicDirect">direct</link>
-	matrix method.  In advanced mode, you have to choose two <link
-	linkend="RegisteredClass-MatrixMethod">matrix methods</link>,
-	for symmetric and asymmetric matrices.  The choices include a
-	number of different iterative techniques and a direct solver.
+	    All of the steppers have to solve a matrix equation at some
+	    point on each step.  The matrix has one row for each
+	    &equation; component being solved at every &node; in the
+	    &mesh;, and one column for each &field; component at every
+	    &node;.  Therefore the matrices can be quite large.  However,
+	    they are also generally <emphasis>sparse</emphasis>, meaning
+	    that most of their entries are zero.  Large sparse matrix
+	    equations are best solved by <emphasis>iterative</emphasis>
+	    methods, which don't require the zeros to be stored
+	    explicitly, but which only provide approximate solutions.
+	    <emphasis>Direct</emphasis> matrix solvers, such as Gaussian
+	    elimination, may give more accurate solutions, but require a
+	    lot more storage and are not suitable for very large problems.
+	    In basic solver mode, you must choose either an <link
+	    linkend="RegisteredClass-BasicIterative">iterative</link> or
+	    <link linkend="RegisteredClass-BasicDirect">direct</link>
+	    matrix method.  In advanced mode, you have to choose two <link
+	    linkend="RegisteredClass-MatrixMethod">matrix methods</link>,
+	    for symmetric and asymmetric matrices.  The choices include a
+	    number of different iterative techniques and a direct solver.
       </para>
       <para>
-	If the &materials; have nonlinear &properties;, either the
-	matrix or the right hand side vector will depend on the
-	&field; values, and a nonlinear matrix solver must be
-	selected.  The nonlinear solvers use the linear solvers, so
-	you still need to specify a linear matrix method.  In <link
-	linkend="RegisteredClass-BasicSolverMode">basic</link> solver
-	mode, the nonlinear equations are detected and a nonlinear
-	solver is chosen automatically.  In <link
-	linkend="RegisteredClass-AdvancedSolverMode">advanced</link>
-	mode, you have to select one of &oof2;'s <link
-	linkend="RegisteredClass-NonlinearSolverBase">nonlinear
-	solvers</link>, <xref linkend="RegisteredClass-Newton"/> and
-	<xref linkend="RegisteredClass-Picard"/>.  <xref
-	linkend="RegisteredClass-Newton"/> uses derivative information
-	and generally converges faster than <xref
-	linkend="RegisteredClass-Picard"/>, although it requires more
-	computation per iteration.  If the problem is linear, you
-	should select <link
-	linkend="RegisteredClass-NoNonlinearSolver">None</link> for
-	the nonlinear solver.  <xref
-	linkend="RegisteredClass-Picard"/> and <xref
-	linkend="RegisteredClass-Newton"/> will work on linear
-	problems, but they'll do more work than necessary.
+	    If the &materials; have nonlinear &properties;, either the
+	    matrix or the right hand side vector will depend on the
+	    &field; values, and a nonlinear matrix solver must be
+	    selected.  The nonlinear solvers use the linear solvers, so
+	    you still need to specify a linear matrix method.  In <link
+	    linkend="RegisteredClass-BasicSolverMode">basic</link> solver
+	    mode, the nonlinear equations are detected and a nonlinear
+	    solver is chosen automatically.  In <link
+	    linkend="RegisteredClass-AdvancedSolverMode">advanced</link>
+	    mode, you have to select one of &oof2;'s <link
+	    linkend="RegisteredClass-NonlinearSolverBase">nonlinear
+	    solvers</link>, <xref linkend="RegisteredClass-Newton"/> and
+	    <xref linkend="RegisteredClass-Picard"/>.  <xref
+	    linkend="RegisteredClass-Newton"/> uses derivative information
+	    and generally converges faster than <xref
+	    linkend="RegisteredClass-Picard"/>, although it requires more
+	    computation per iteration.  If the problem is linear, you
+	    should select <link
+	    linkend="RegisteredClass-NoNonlinearSolver">None</link> for
+	    the nonlinear solver.  <xref
+	    linkend="RegisteredClass-Picard"/> and <xref
+	    linkend="RegisteredClass-Newton"/> will work on linear
+	    problems, but they'll do more work than necessary.
       </para>
     </section>			<!--Solvers-->
 
@@ -2030,69 +2042,69 @@
     <section id="Section-Concepts-Mesh-Solving">
       <title>Solving</title>
       <para>
-	The <link linkend="Section-Tasks-Solver">Solver Page</link>
-	lets you solve static, quasi-static, and time dependent
-	systems.  Which one it does depends on the solvers that have
-	been assigned to each &subproblem; and on the setting of the
-	end time with respect to the &mesh;'s current time:
+	    The <link linkend="Section-Tasks-Solver">Solver Page</link>
+	    lets you solve static, quasi-static, and time dependent
+	    systems.  Which one it does depends on the solvers that have
+	    been assigned to each &subproblem; and on the setting of the
+	    end time with respect to the &mesh;'s current time:
       </para>
       <itemizedlist>
-	<listitem>
-	  <para>
-	    To compute a solution to a <emphasis>static</emphasis>
-	    problem, for which static solvers have been chosen for all
-	    active &subproblems;, the end time set on the <link
-	    linkend="Section-Tasks-Solver">Solver Page</link> must be
-	    equal to the current time, or empty.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    To compute the solution to a <emphasis>time
-	    dependent</emphasis> problem, adaptive or uniform solvers
-	    must assigned to the &subproblems;, and the end time must
-	    be set to a time greater than the current time.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    A <emphasis>quasistatic</emphasis> problem is one in which
-	    the &fields; are completely equilibrated at each time
-	    step. To compute a quasistatic solution with &oof2;,
-	    assign static solvers to the &subproblems; and set the end
-	    time to a time greater than the current time.
-	  </para>
-	</listitem>
+	    <listitem>
+	      <para>
+	        To compute a solution to a <emphasis>static</emphasis>
+	        problem, for which static solvers have been chosen for all
+	        active &subproblems;, the end time set on the <link
+	        linkend="Section-Tasks-Solver">Solver Page</link> must be
+	        equal to the current time, or empty.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        To compute the solution to a <emphasis>time
+	        dependent</emphasis> problem, adaptive or uniform solvers
+	        must assigned to the &subproblems;, and the end time must
+	        be set to a time greater than the current time.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        A <emphasis>quasistatic</emphasis> problem is one in which
+	        the &fields; are completely equilibrated at each time
+	        step. To compute a quasistatic solution with &oof2;,
+	        assign static solvers to the &subproblems; and set the end
+	        time to a time greater than the current time.
+	      </para>
+	    </listitem>
       </itemizedlist>
       <para>
-	Time dependent and quasistatic subproblems can be solved
-	together, by setting the end time greater than the start time,
-	and assigning a static solver to some &subproblems; and an
-	adaptive or uniform solver to other &subproblems;.
+	    Time dependent and quasistatic subproblems can be solved
+	    together, by setting the end time greater than the start time,
+	    and assigning a static solver to some &subproblems; and an
+	    adaptive or uniform solver to other &subproblems;.
       </para>
       <para id="Section-Concepts-Mesh-Solving-Times">
-	The starting time for a time dependent or quasistatic
-	computation is determined by the <link
-	linkend="Section-Concepts-Mesh-InitialConditions">initial
-	conditions</link>.  The end time is set by the <guilabel>end
-	time</guilabel> box in the <link
-	linkend="Section-Tasks-Solver">Solver</link> page.  After
-	solving, a solution may be <emphasis>continued</emphasis> by
-	increasing the end time and solving again.  As long as the
-	&materials; and &equations; have not been changed, or the
-	&fields; have not been reinitialized, a continued calculation
-	is indistinguishable from a calculation that used the new end
-	time originally.
+	    The starting time for a time dependent or quasistatic
+	    computation is determined by the <link
+	    linkend="Section-Concepts-Mesh-InitialConditions">initial
+	    conditions</link>.  The end time is set by the <guilabel>end
+	    time</guilabel> box in the <link
+	    linkend="Section-Tasks-Solver">Solver</link> page.  After
+	    solving, a solution may be <emphasis>continued</emphasis> by
+	    increasing the end time and solving again.  As long as the
+	    &materials; and &equations; have not been changed, or the
+	    &fields; have not been reinitialized, a continued calculation
+	    is indistinguishable from a calculation that used the new end
+	    time originally.
       </para>
       <para id="Section-Concepts-Mesh-Solving-Multiple">
-	When multiple &subproblems; are being solved, each is
-	addressed in turn. Because the &subproblems; may not be
-	independent, the whole procedure is iterated until <link
-	linkend="MenuItem-OOF.Settings.Mesh_Defaults.SelfConsistency">consistent</link>
-	answers are obtained.  For time-dependent problems, this
-	iteration takes place at every time step.  For time-dependent
-	problems with adapative solvers, the time step will be the
-	smallest step chosen by all of the solvers.
+	    When multiple &subproblems; are being solved, each is
+	    addressed in turn. Because the &subproblems; may not be
+	    independent, the whole procedure is iterated until <link
+	    linkend="MenuItem-OOF.Settings.Mesh_Defaults.SelfConsistency">consistent</link>
+	    answers are obtained.  For time-dependent problems, this
+	    iteration takes place at every time step.  For time-dependent
+	    problems with adapative solvers, the time step will be the
+	    smallest step chosen by all of the solvers.
       </para>
 
     </section>			<!--Solving-->
@@ -2100,166 +2112,166 @@
     <section id="Section-Concepts-Outputs">
       <title>Outputs and Analyses</title>
       <para>
-	After solving a &mesh;, it's possible to view the resulting
-	&fields; and other quantities that depend on them.  These
-	quantities are generically called
-	<emphasis>Outputs</emphasis>, and are discussed in <xref
-	linkend="Section-Output"/>.  Outputs can be plotted in contour
-	plots (both <link
-	linkend="RegisteredClass-PlainContourDisplay">plain</link> and
-	<link
-	linkend="RegisteredClass-FilledContourDisplay">filled</link>)
-	in the <link linkend="Chapter-Graphics">graphics
-	window</link>, queried at single points with the <link
-	linkend="Section-Graphics-MeshInfo-DataViewer">data
-	viewer</link> in the <link
-	linkend="Section-Graphics-MeshInfo">Mesh Info</link> toolbox
-	in the graphics window, or sent through various analysis
-	routines in the <link
-	linkend="Section-Tasks-Analysis">Analysis</link> and <link
-	linkend="Section-Tasks-BdyAnalysis">Boundary
-	Analysis</link> pages.  The combination of an Output, the
-	<link
-	linkend="RegisteredClass-DataOperation">Operations</link>
-	performed on it, the <link
-	linkend="RegisteredClass-Domain">Domain</link> from which the
-	data is taken, and the way in which the domain is <link
-	linkend="RegisteredClass-SampleSet">sampled</link> is called
-	an <emphasis>Analyis</emphasis>.
+	    After solving a &mesh;, it's possible to view the resulting
+	    &fields; and other quantities that depend on them.  These
+	    quantities are generically called
+	    <emphasis>Outputs</emphasis>, and are discussed in <xref
+	    linkend="Section-Output"/>.  Outputs can be plotted in contour
+	    plots (both <link
+	    linkend="RegisteredClass-PlainContourDisplay">plain</link> and
+	    <link
+	        linkend="RegisteredClass-FilledContourDisplay">filled</link>)
+	    in the <link linkend="Chapter-Graphics">graphics
+	    window</link>, queried at single points with the <link
+	    linkend="Section-Graphics-MeshInfo-DataViewer">data
+	    viewer</link> in the <link
+	    linkend="Section-Graphics-MeshInfo">Mesh Info</link> toolbox
+	    in the graphics window, or sent through various analysis
+	    routines in the <link
+	    linkend="Section-Tasks-Analysis">Analysis</link> and <link
+	    linkend="Section-Tasks-BdyAnalysis">Boundary
+	    Analysis</link> pages.  The combination of an Output, the
+	    <link
+	        linkend="RegisteredClass-DataOperation">Operations</link>
+	    performed on it, the <link
+	    linkend="RegisteredClass-Domain">Domain</link> from which the
+	    data is taken, and the way in which the domain is <link
+	    linkend="RegisteredClass-SampleSet">sampled</link> is called
+	    an <emphasis>Analyis</emphasis>.
       </para>
       <para id="Section-Concepts-Outputs-Scheduled">
-	Analyses can be <emphasis>scheduled</emphasis> to occur at
-	particular times during a solution, by using the <link
-	linkend="Section-Tasks-ScheduledOutput">Scheduled
-	Output</link> page or the commands in the <xref
-	linkend="MenuItem-OOF.Mesh.Scheduled_Output"/> menu.<footnote>
-	<simpara>Scheduled Outputs should really be called something
-	else, to avoid confusion with the <link
-	linkend="Section-Output"><classname>Output</classname></link>
-	classes, to which they are related but are not identical.  We
-	apologize.</simpara></footnote> When Outputs are scheduled,
-	the time stepper will adjust its steps so that it finishes a
-	step at each output time.  Any quantity that can be computed
-	on the <link linkend="Section-Tasks-Analysis">Analysis</link>
-	or <link linkend="Section-Tasks-BdyAnalysis">Boundary
-	Analysis</link> pages can be used as a Scheduled Output.
-	Operations such as updating the <link
-	linkend="Chapter-Graphics">Graphics Window</link> and saving
-	the &mesh; can also be scheduled.
+	    Analyses can be <emphasis>scheduled</emphasis> to occur at
+	    particular times during a solution, by using the <link
+	    linkend="Section-Tasks-ScheduledOutput">Scheduled
+	    Output</link> page or the commands in the <xref
+	    linkend="MenuItem-OOF.Mesh.Scheduled_Output"/> menu.<footnote>
+	    <simpara>Scheduled Outputs should really be called something
+	    else, to avoid confusion with the <link
+	    linkend="Section-Output"><classname>Output</classname></link>
+	    classes, to which they are related but are not identical.  We
+	    apologize.</simpara></footnote> When Outputs are scheduled,
+	    the time stepper will adjust its steps so that it finishes a
+	    step at each output time.  Any quantity that can be computed
+	    on the <link linkend="Section-Tasks-Analysis">Analysis</link>
+	    or <link linkend="Section-Tasks-BdyAnalysis">Boundary
+	    Analysis</link> pages can be used as a Scheduled Output.
+	    Operations such as updating the <link
+	    linkend="Chapter-Graphics">Graphics Window</link> and saving
+	    the &mesh; can also be scheduled.
       </para>
       <para id="Section-Concepts-Mesh-NamedAnalysis">
-	To make it easier to reuse Analyses, they can be given names
-	on the <link linkend="Section-Tasks-Analysis">Analysis</link>
-	or <link linkend="Section-Tasks-BdyAnalysis">Boundary
-	Analysis</link> pages.  A Named Analysis can be retrieved and
-	reused either on the page where it was defined, or as a
-	Scheduled Output. A Named Analysis defined on one &mesh; can
-	be used on any &mesh; on which its <link
-	linkend="Section-Output"><classname>Output</classname></link>
-	is computable and its <xref linkend="RegisteredClass-Domain"/>
-	is defined.
+	    To make it easier to reuse Analyses, they can be given names
+	    on the <link linkend="Section-Tasks-Analysis">Analysis</link>
+	    or <link linkend="Section-Tasks-BdyAnalysis">Boundary
+	    Analysis</link> pages.  A Named Analysis can be retrieved and
+	    reused either on the page where it was defined, or as a
+	    Scheduled Output. A Named Analysis defined on one &mesh; can
+	    be used on any &mesh; on which its <link
+	    linkend="Section-Output"><classname>Output</classname></link>
+	    is computable and its <xref linkend="RegisteredClass-Domain"/>
+	    is defined.
       </para>
     </section>			<!--Outputs-->
     <section id="Section-Concepts-Mesh-Rebuild">
       <title>Rebuilding Meshes</title>
       <para>
-	If a &skel; is modified, such as by moving &nodes;, <link
-	linkend="RegisteredClass-Refine">refining</link> &elems;,
-	defining or removing <link
-	linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>,
-	or undoing or redoing a previous modification, any &meshes;
-	belonging to that &skel; are declared to be <emphasis>out of
-	sync</emphasis>, and most operations on the &meshes; are
-	forbidden until the &meshes; have been <link
-	linkend="RegisteredClass-RebuildMesh">rebuilt</link>.  The
-	rebuilt &mesh; will retain all of the &subproblems; and <link
-	linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
-	conditions</link> of the old &mesh;, and &field; values will
-	be preserved, although they may have to be interpolated onto
-	the new positions of the &nodes;.
+	    If a &skel; is modified, such as by moving &nodes;, <link
+	    linkend="RegisteredClass-Refine">refining</link> &elems;,
+	    defining or removing <link
+	    linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>,
+	    or undoing or redoing a previous modification, any &meshes;
+	    belonging to that &skel; are declared to be <emphasis>out of
+	    sync</emphasis>, and most operations on the &meshes; are
+	    forbidden until the &meshes; have been <link
+	    linkend="RegisteredClass-RebuildMesh">rebuilt</link>.  The
+	    rebuilt &mesh; will retain all of the &subproblems; and <link
+	    linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+	    conditions</link> of the old &mesh;, and &field; values will
+	    be preserved, although they may have to be interpolated onto
+	    the new positions of the &nodes;.
       </para>
     </section>			<!--Rebuilding-->
     <section id="Section-Concepts-Mesh-Status">
       <title>Mesh Status</title>
       <para>
-	A brief description of the state of the current &mesh; is
-	displayed in the <link
-	linkend="Section-Tasks-FEMesh-Info"><guilabel>Info</guilabel></link>
-	pane in the <link linkend="Section-Tasks-FEMesh">FEMesh</link>
-	page and in the <guilabel>Status</guilabel> pane of the <link
-	linkend="Section-Tasks-Solver">Solver</link> page.  Clicking
-	the <guibutton>Details&hellip;</guibutton> button on the <link
-	linkend="Section-Tasks-Solver">Solver</link> page prints more
-	information in the <link
-	linkend="Section-Windows-Messages">Message</link> window.
+	    A brief description of the state of the current &mesh; is
+	    displayed in the <link
+	    linkend="Section-Tasks-FEMesh-Info"><guilabel>Info</guilabel></link>
+	    pane in the <link linkend="Section-Tasks-FEMesh">FEMesh</link>
+	    page and in the <guilabel>Status</guilabel> pane of the <link
+	    linkend="Section-Tasks-Solver">Solver</link> page.  Clicking
+	    the <guibutton>Details&hellip;</guibutton> button on the <link
+	    linkend="Section-Tasks-Solver">Solver</link> page prints more
+	    information in the <link
+	    linkend="Section-Windows-Messages">Message</link> window.
       </para>
       <para>
-	The status messages are:
-	<itemizedlist>
-	  <listitem>
-	    <formalpara>
-	      <title>Unsolved</title>
-	      <para>
-		The &mesh; has been changed in some way since the last
-		time that it was solved, or it has never been solved,
-		but it is ready to be solved.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Unsolvable</title>
-	      <para>
-		The &mesh; cannot be solved for some reason.  The
-		&material; properties may be defined inconsistently.
-		There may be active &fields; that aren't used in any
-		active &equations;, or active &equations; to which no
-		&properties; contribute.  The <link
-		linkend="Section-Concepts-Mesh-3D">third
-		dimension</link> may not be addressed properly.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Solving</title>
-	      <para>
-		The &mesh; is currently being <link
-		linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Solved</title>
-	      <para>
-		The &mesh; has been solved, and hasn't been changed
-		since then.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Failed</title>
-	      <para>
-		A solution was attempted, but it failed for some
-		reason.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Out of sync with Skeleton</title>
-	      <para>
-		The &skel; has been changed in some way after the
-		&mesh; was created, and the &mesh; geometry no longer
-		agrees with it.  Most &mesh; operations cannot be
-		performed until the &mesh; is <link
-		linkend="RegisteredClass-RebuildMesh">rebuilt</link>.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	</itemizedlist>
+	    The status messages are:
+	    <itemizedlist>
+	      <listitem>
+	        <formalpara>
+	          <title>Unsolved</title>
+	          <para>
+		        The &mesh; has been changed in some way since the last
+		        time that it was solved, or it has never been solved,
+		        but it is ready to be solved.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Unsolvable</title>
+	          <para>
+		        The &mesh; cannot be solved for some reason.  The
+		        &material; properties may be defined inconsistently.
+		        There may be active &fields; that aren't used in any
+		        active &equations;, or active &equations; to which no
+		        &properties; contribute.  The <link
+		        linkend="Section-Concepts-Mesh-3D">third
+		        dimension</link> may not be addressed properly.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Solving</title>
+	          <para>
+		        The &mesh; is currently being <link
+		        linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Solved</title>
+	          <para>
+		        The &mesh; has been solved, and hasn't been changed
+		        since then.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Failed</title>
+	          <para>
+		        A solution was attempted, but it failed for some
+		        reason.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Out of sync with Skeleton</title>
+	          <para>
+		        The &skel; has been changed in some way after the
+		        &mesh; was created, and the &mesh; geometry no longer
+		        agrees with it.  Most &mesh; operations cannot be
+		        performed until the &mesh; is <link
+		        linkend="RegisteredClass-RebuildMesh">rebuilt</link>.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	    </itemizedlist>
       </para>
     </section>			<!--Status-->
   </section>			<!-- Mesh -->
@@ -2281,122 +2293,122 @@
     <section id="Section-Concepts-FileFormats-Script">
       <title><constant>script</constant></title>
       <para>
-	The <constant>script</constant> format saves the file as a
-	Python script containing &oof2; <link
-	linkend="MenuItem-OOF">menu commands</link>.  The file is
-	easily editable, and arbitrary Python code can be inserted
-	into it.  However, because the file can contain any valid
-	Python code and is read by the Python interpreter, it presents
-	a (theoretical) security risk.  A malicious Python program
-	<emphasis>could</emphasis> be masquerading as an &oof2; script.
+	    The <constant>script</constant> format saves the file as a
+	    Python script containing &oof2; <link
+	    linkend="MenuItem-OOF">menu commands</link>.  The file is
+	    easily editable, and arbitrary Python code can be inserted
+	    into it.  However, because the file can contain any valid
+	    Python code and is read by the Python interpreter, it presents
+	    a (theoretical) security risk.  A malicious Python program
+	    <emphasis>could</emphasis> be masquerading as an &oof2; script.
       </para>
       <para>
-	<constant>script</constant> files can be loaded into &oof2;
-	by the <xref linkend="MenuItem-OOF.File.Load.Script"/> command.
+	    <constant>script</constant> files can be loaded into &oof2;
+	    by the <xref linkend="MenuItem-OOF.File.Load.Script"/> command.
       </para>
       <formalpara>
-	<title>Example</title>
-	<para>
-	  <literallayout class="monospaced">
-	  <link linkend="MenuItem-OOF.LoadData.FileVersion">OOF.LoadData.FileVersion</link>(number=1.0, format='script)
-	  microname = "MyFavoriteMicrostructure"
-          physicalsize = Point(1.2, 1.2)
-          pixelsize = iPoint(100, 100)
-          <link linkend="MenuItem-OOF.LoadData.Microstructure.New">OOF.LoadData.Microstructure.New</link>(name=microname, size=physicalsize, isize=pixelsize)
-	  </literallayout>
-	  This file contains two &oof2; commands, one of which is written in
-	  terms of three Python variables,
-	  <varname>microname</varname>,
-	  <varname>physicalsize</varname>, and <varname>pixelsize</varname>.
-	</para>
+	    <title>Example</title>
+	    <para>
+	      <literallayout class="monospaced">
+	        <link linkend="MenuItem-OOF.LoadData.FileVersion">OOF.LoadData.FileVersion</link>(number=1.0, format='script)
+	        microname = "MyFavoriteMicrostructure"
+            physicalsize = Point(1.2, 1.2)
+            pixelsize = iPoint(100, 100)
+            <link linkend="MenuItem-OOF.LoadData.Microstructure.New">OOF.LoadData.Microstructure.New</link>(name=microname, size=physicalsize, isize=pixelsize)
+	      </literallayout>
+	      This file contains two &oof2; commands, one of which is written in
+	      terms of three Python variables,
+	      <varname>microname</varname>,
+	      <varname>physicalsize</varname>, and <varname>pixelsize</varname>.
+	    </para>
       </formalpara>
     </section>
     <section id="Section-Concepts-FileFormats-Ascii">
       <title><constant>ascii</constant></title>
       <para>
-	Files in the <constant>ascii</constant> format contain
-	Python-like code that can be easily read and edited, but when
-	loaded into &oof2; is not processed by the Python interpreter.
-	This format does not present any security risk, because the
-	&oof2; routines for reading <constant>ascii</constant> files
-	do not understand arbitrary Python code: they only understand
-	&oof2; menu commands.  There is no danger when loading
-	<constant>ascii</constant> files from unknown sources.  Their
-	disadvantage is that they cannot contain most Python
-	constructions: they can't define variables, import other
-	files,  or make general function calls.
-	<constant>ascii</constant> files are slightly smaller than
-	<constant>script</constant> files.
+	    Files in the <constant>ascii</constant> format contain
+	    Python-like code that can be easily read and edited, but when
+	    loaded into &oof2; is not processed by the Python interpreter.
+	    This format does not present any security risk, because the
+	    &oof2; routines for reading <constant>ascii</constant> files
+	    do not understand arbitrary Python code: they only understand
+	    &oof2; menu commands.  There is no danger when loading
+	    <constant>ascii</constant> files from unknown sources.  Their
+	    disadvantage is that they cannot contain most Python
+	    constructions: they can't define variables, import other
+	    files,  or make general function calls.
+	    <constant>ascii</constant> files are slightly smaller than
+	    <constant>script</constant> files.
       </para>
       <para>
-	To convert an <constant>ascii</constant> file to a
-	<constant>script</constant> file, it's only necessary to
-	prepend <userinput>OOF.LoadData.</userinput> to the beginning
-	of each line in the file.  A <constant>script</constant> file
-	can be converted to an <constant>ascii</constant> file by
-	removing the <userinput>OOF.LoadData.</userinput> from each
-	line, provided that no Python code has been inserted into the
-	file.
+	    To convert an <constant>ascii</constant> file to a
+	    <constant>script</constant> file, it's only necessary to
+	    prepend <userinput>OOF.LoadData.</userinput> to the beginning
+	    of each line in the file.  A <constant>script</constant> file
+	    can be converted to an <constant>ascii</constant> file by
+	    removing the <userinput>OOF.LoadData.</userinput> from each
+	    line, provided that no Python code has been inserted into the
+	    file.
       </para>
       <para>
-	<constant>ascii</constant> files can be loaded into &oof2;
-	by the <xref linkend="MenuItem-OOF.File.Load.Data"/> command.
+	    <constant>ascii</constant> files can be loaded into &oof2;
+	    by the <xref linkend="MenuItem-OOF.File.Load.Data"/> command.
       </para>
       <formalpara>
-	<title>Example</title>
-	<para>
-	  The example <constant>script</constant> file above could be
-	  converted to an <constant>ascii</constant> file by removing
-	  the variable assignments and leaving off the
-	  <command>OOF.LoadData.</command> part of the commands:
-	  <literallayout class="monospaced">
-	  <link linkend="MenuItem-OOF.LoadData.FileVersion">FileVersion</link>(number=1.0, format='ascii')
-          <link linkend="MenuItem-OOF.LoadData.Microstructure.New">Microstructure.New</link>(name="MyFavoriteMicrostructure", size=Point(1.2,1.2), isize=iPoint(100,100))
+	    <title>Example</title>
+	    <para>
+	      The example <constant>script</constant> file above could be
+	      converted to an <constant>ascii</constant> file by removing
+	      the variable assignments and leaving off the
+	      <command>OOF.LoadData.</command> part of the commands:
+	      <literallayout class="monospaced">
+	        <link linkend="MenuItem-OOF.LoadData.FileVersion">FileVersion</link>(number=1.0, format='ascii')
+            <link linkend="MenuItem-OOF.LoadData.Microstructure.New">Microstructure.New</link>(name="MyFavoriteMicrostructure", size=Point(1.2,1.2), isize=iPoint(100,100))
 
-	  </literallayout>
-	</para>
+	      </literallayout>
+	    </para>
       </formalpara>
     </section>
     <section id="Section-Concepts-FileFormats-Binary">
       <title><constant>binary</constant></title>
       <para>
-	The <constant>binary</constant> format has the advantages that
-	it is more accurate than the <constant>script</constant> or
-	<constant>ascii</constant> formats.  By storing the full
-	binary representation of data, it avoids errors introduced by
-	converting numerical values to text and back.
-	<constant>Binary</constant> files are generally smaller and
-	faster to read and write, as well.  They don't have the
-	security problems of <constant>script</constant> files.  Their
-	disadvantage is that they are not user-friendly: they cannot
-	be viewed or edited in a text editor.
+	    The <constant>binary</constant> format has the advantages that
+	    it is more accurate than the <constant>script</constant> or
+	    <constant>ascii</constant> formats.  By storing the full
+	    binary representation of data, it avoids errors introduced by
+	    converting numerical values to text and back.
+	    <constant>Binary</constant> files are generally smaller and
+	    faster to read and write, as well.  They don't have the
+	    security problems of <constant>script</constant> files.  Their
+	    disadvantage is that they are not user-friendly: they cannot
+	    be viewed or edited in a text editor.
       </para>
       <para>
-	<constant>binary</constant> files can be loaded into &oof2;
-	by the <xref linkend="MenuItem-OOF.File.Load.Data"/> command.
+	    <constant>binary</constant> files can be loaded into &oof2;
+	    by the <xref linkend="MenuItem-OOF.File.Load.Data"/> command.
       </para>
       <note>
-	<para>
-	  The binary files are designed to be as portable as possible,
-	  in that they detect and correct for the differences between
-	  big-endian and little-endian computers.  The files cannot be
-	  shared between machines with fundamentally different
-	  representations of floating point numbers, though.
-	</para>
+	    <para>
+	      The binary files are designed to be as portable as possible,
+	      in that they detect and correct for the differences between
+	      big-endian and little-endian computers.  The files cannot be
+	      shared between machines with fundamentally different
+	      representations of floating point numbers, though.
+	    </para>
       </note>
     </section><!-- Section:Concepts:FileFormats:Binary -->
     <section id="Section-Concepts-FileFormats-Abaqus">
       <title><constant>abaqus</constant></title>
       <para>
-	&skels; and &meshes; can be saved in
-	<constant>abaqus</constant> format, which allows them to be
-	read by the <ulink url="http://www.simulia.com/"
-	role="external">Abaqus</ulink> finite element program.  The
-	&oof2; &materials; are not stored in the file because there is
-	in general no simple translation from &oof2; &materials; to
-	Abaqus materials. However, the output file contains comments
-	indicating where the Abaqus materials should be defined, and
-	creates element groups for each &oof2; &material; type.
+	    &skels; and &meshes; can be saved in
+	    <constant>abaqus</constant> format, which allows them to be
+	    read by the <ulink url="http://www.simulia.com/"
+	    role="external">Abaqus</ulink> finite element program.  The
+	    &oof2; &materials; are not stored in the file because there is
+	    in general no simple translation from &oof2; &materials; to
+	    Abaqus materials. However, the output file contains comments
+	    indicating where the Abaqus materials should be defined, and
+	    creates element groups for each &oof2; &material; type.
       </para>
     </section>
   </section><!-- Section-Concepts-FileFormats -->
@@ -2405,16 +2417,16 @@
 
 
 <!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("man_oof2.xml" "book" "chapter")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
+     Local variables:
+     sgml-omittag:t
+     sgml-shorttag:t 
+     sgml-namecase-general:nil
+     sgml-minimize-attributes:nil
+     sgml-always-quote-attributes:t
+     sgml-indent-step:2
+     sgml-indent-data:t
+     sgml-parent-document:("man_oof2.xml" "book" "chapter")
+     sgml-exposed-tags:nil
+     sgml-local-ecat-files:nil
+     End:
 -->

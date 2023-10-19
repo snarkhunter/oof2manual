@@ -13,102 +13,97 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <section id="Section-Tasks-PinNodes">
-    <title>Pin Nodes</title>
+<section id="Section-Tasks-PinNodes">
+  <title>Pin Nodes</title>
+  <para>
+    The Pin Nodes Page contains tools for pinning &nodes; so that they
+    don't move during &skel; <link
+    linkend="MenuItem-OOF.Skeleton.Modify">modifications</link>.  The
+    page provides a GUI for the commands in the <xref
+    linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.  See the
+    documentation for <xref linkend="MenuItem-OOF.Skeleton.PinNodes"/>
+    for an illustration of how pinning can be helpful.
+  </para>
+  <para>
+    The anatomy of the Pin Nodes Page, as shown in <xref
+    linkend="Figure-PinNodesPage"/>, is similar to many other &oof2;
+    task pages.  At the top is a Skeleton Chooser, which selects the
+    &skel; that the rest of the page operates on.  Below the Skeleton
+    Chooser on the left is an <link
+    linkend="Section-PinNodes-Information">information pane</link>,
+    and on the right is the <link
+    linkend="Section-PinNodes-Modification">Modification Pane</link>,
+    containing a set of tools for modifying the set of pinned &nodes;
+    in the selected &skel;.  These tools all reside in the <xref
+    linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.
+  </para>
+  <figure id="Figure-PinNodesPage">
+    <title>The Pin Nodes Page</title>
+    <mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/gui/pinnodes_page.png"
+	               format="PNG"/>
+	  </imageobject>
+    </mediaobject>
+  </figure>
+  <simplesect id="Section-PinNodes-Information">
+    <title>The Information Pane</title>
     <para>
-      The Pin Nodes Page contains tools for pinning &nodes; so that
-      they don't move during &skel; <link
-      linkend="MenuItem-OOF.Skeleton.Modify">modifications</link>.
-      The page provides a GUI for the commands in the <xref
-      linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.  See the
-      documentation for <xref
-      linkend="MenuItem-OOF.Skeleton.PinNodes"/> for an illustration
-      of how pinning can be helpful.
+	  The Information Pane simply displays the number of nodes in the
+	  current &skel; and the number of them that are pinned.
+    </para>
+  </simplesect>
+  <simplesect id="Section-PinNodes-Modification">
+    <title>The Modification Pane</title>
+    <para>
+	  The Modification Pane contains a pull-down menu, labelled
+	  <quote>Method</quote>, for choosing a tool that modifies the
+	  current set of pinned &nodes; in the current &skel;.  For
+	  details on the methods, see the commands in the <xref
+	  linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.  Below the
+	  pull-down menu is a region for displaying the parameters of the
+	  current command, if any.
     </para>
     <para>
-      The anatomy of the Pin Nodes Page, as shown in <xref
-      linkend="Figure-PinNodesPage"/>, is similar to many other &oof2;
-      task pages.  At the top is a Skeleton Chooser, which selects the
-      &skel; that the rest of the page operates on.  Below the
-      Skeleton Chooser on the left is an <link
-      linkend="Section-PinNodes-Information">information pane</link>,
-      and on the right is the <link
-      linkend="Section-PinNodes-Modification">Modification
-      Pane</link>, containing a set of tools for modifying the set of
-      pinned &nodes; in the selected &skel;.  These tools all reside
-      in the <xref linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.
+	  At the bottom of the Modification Pane are a set of buttons:
+	  <itemizedlist>
+	    <listitem>
+	      <para>
+	        The <guibutton>OK</guibutton> button applies the currently
+	        selected modification method to the pinned &nodes; in the
+	        current &skel;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"><guibutton>Undo</guibutton></link>
+	        and <link
+	        linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"><guibutton>Redo</guibutton></link>
+	        buttons undo and redo the latest pinning operations.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Skeleton.PinNodes.UnpinAll"><guibutton>Unpin
+	        All</guibutton></link> button unpins all of the &nodes; in
+	        the &skel;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="MenuItem-OOF.Skeleton.PinNodes.Invert"><guibutton>Invert</guibutton></link>
+	        button pins all of the unpinned &nodes; and unpins all of
+	        the pinned &nodes;.
+	      </para>
+	    </listitem>
+	  </itemizedlist>
     </para>
-    <figure id="Figure-PinNodesPage">
-      <title>The Pin Nodes Page</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/pinnodes_page.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/pinnodes_page.eps"
-	    format="EPS"/>
-	</imageobject>
-      </mediaobject>
-    </figure>
-    <simplesect id="Section-PinNodes-Information">
-      <title>The Information Pane</title>
-      <para>
-	The Information Pane simply displays the number of nodes in
-	the current &skel; and the number of them that are pinned.
-      </para>
-    </simplesect>
-    <simplesect id="Section-PinNodes-Modification">
-      <title>The Modification Pane</title>
-      <para>
-	The Modification Pane contains a pull-down menu, labelled
-	<quote>Method</quote>, for choosing a tool that modifies the
-	current set of pinned &nodes; in the current &skel;.  For
-	details on the methods, see the commands in the <xref
-	linkend="MenuItem-OOF.Skeleton.PinNodes"/> menu.  Below the
-	pull-down menu is a region for displaying the parameters of
-	the current command, if any.
-      </para>
-      <para>
-	At the bottom of the Modification Pane are a set of buttons:
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      The <guibutton>OK</guibutton> button applies the
-	      currently selected modification method to the pinned
-	      &nodes; in the current &skel;.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"><guibutton>Undo</guibutton></link>
-	      and <link
-	      linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"><guibutton>Redo</guibutton></link>
-	      buttons undo and redo the latest pinning operations.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.Skeleton.PinNodes.UnpinAll"><guibutton>Unpin
-	      All</guibutton></link> button unpins all of the &nodes;
-	      in the &skel;.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      The <link
-	      linkend="MenuItem-OOF.Skeleton.PinNodes.Invert"><guibutton>Invert</guibutton></link>
-	      button pins all of the unpinned &nodes; and unpins all
-	      of the pinned &nodes;.
-	    </para>
-	  </listitem>
-	</itemizedlist>
-      </para>
-    </simplesect>
-
-  </section>
+  </simplesect>
+  
+</section>
     
 
   <!-- Keep this comment at the end of the file

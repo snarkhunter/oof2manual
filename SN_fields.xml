@@ -13,114 +13,106 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <section id="Section-Tasks-FieldsEquations">
-    <title>Fields &amp; Equations</title>
-    <para>
-      The Fields &amp; Equations Page specifies which &fields; are
-      defined on the &mesh; which &equations; are active.  It has
-      three parts, as shown in <xref linkend="Figure-FieldsPage"/>.
-      The Subproblem Chooser at the top of the page specifies which &subproblem;
-      is being operated upon.  The <link
-      linkend="Section-FieldPane">Field Pane</link> sets various
-      properties of the &fields;.  The <link
-      linkend="Section-EquationPane">Equation Pane</link> activates
-      &equations;.
-      <figure id="Figure-FieldsPage">
+<section id="Section-Tasks-FieldsEquations">
+  <title>Fields &amp; Equations</title>
+  <para>
+    The Fields &amp; Equations Page specifies which &fields; are
+    defined on the &mesh; which &equations; are active.  It has three
+    parts, as shown in <xref linkend="Figure-FieldsPage"/>.  The
+    Subproblem Chooser at the top of the page specifies which
+    &subproblem; is being operated upon.  The <link
+    linkend="Section-FieldPane">Field Pane</link> sets various
+    properties of the &fields;.  The <link
+    linkend="Section-EquationPane">Equation Pane</link> activates
+    &equations;.
+  </para>
+  <figure id="Figure-FieldsPage">
 	<title>The Fields Page</title>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/fields_page.png"
-	      format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/fields_page.eps"
-	      format="EPS"/>
+	               format="PNG"/>
 	  </imageobject>
 	</mediaobject>
-      </figure>
-      </para>
+  </figure>
 
-    <simplesect id="Section-FieldPane">
-      <title>The Field Pane</title>
-      <para>
-	The Field Pane specifies which &fields; are defined on the
-	&subproblem;, and sets attributes of those &fields;.  The checkboxes
-	for each &field; correspond to commands in the <xref
-	linkend="MenuItem-OOF.Mesh.Field"/> menu.
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      Toggling the <guibutton>defined</guibutton> checkbox
-	      <link
-	      linkend="MenuItem-OOF.Mesh.Field.Define">defines</link>
-	      and <link
-	      linkend="MenuItem-OOF.Mesh.Field.Undefine">undefines</link>
-	      the &field;.  The &mesh; only stores values for defined
-	      &fields;.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      Toggling the <guibutton>active</guibutton> checkbox
-	      <link
-	      linkend="MenuItem-OOF.Mesh.Field.Activate">activates</link>
-	      and <link
-	      linkend="MenuItem-OOF.Mesh.Field.Deactivate">deactivates</link>
-	      the &field;.  The &equations; only solve for active
-	      &fields;.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      &oof2; <link
-	      linkend="generalized-plane-strain">generalizes</link>
-	      the standard concept of plane-strain to apply to
-	      arbitrary coupled &fields;.  Toggling the
-	      <guibutton>in-plane</guibutton> button determines
-	      whether or not the &field; has out-of-plane derivatives,
-	      by invoking <xref
-	      linkend="MenuItem-OOF.Mesh.Field.In_Plane"/> or <xref
-	      linkend="MenuItem-OOF.Mesh.Field.Out_of_Plane"/>.  The
-	      counterpart to generalized plane-strain, <link
-	      linkend="plane-flux">plane-flux</link>, is invoked by
-	      activating the appropriate equation in the <link
-	      linkend="Section-EquationPane">Equation Pane</link>.
-	    </para>
-	    <para>
-	      A &field; that is in-plane on one &subproblem; in a
-	      &mesh; must be in-plane on all &subproblems; in that
-	      &mesh;.
-	    </para>
-	  </listitem>
-	</itemizedlist>
-      </para>
-      <para>
-	The <guibutton>Copy Field State</guibutton> button at the
-	bottom of the pane allows the current set of checkbox
-	settings to be copied to another &subproblem;, possibly in
-	another &mesh;.
-      </para>
-    </simplesect>
-    <simplesect id="Section-EquationPane">
-      <title>The Equation Pane</title>
-      <para>
-	The Equation Pane simply contains a list of the &equations;
-	that &oof2; can solve, and checkboxes which <link
-	linkend="MenuItem-OOF.Subproblem.Equation.Activate">activate</link>
-	and <link
-	linkend="MenuItem-OOF.Subproblem.Equation.Deactivate">deactivate</link>
-	them for the current &subproblem;.  &equations; will be solved
-	only if they are active, if the &fields; they use are defined,
-	and if there are &material; &properties; in the &subproblem;
-	that make contributions to them.
-      </para>
-      <para>
-	The <guibutton>Copy Equation State</guibutton> button at the
-	bottom of the pane copies the current set of active &fields;
-	to another &subproblem;, possibly in a different &mesh;.
-      </para>
-    </simplesect>
-  </section>
+  <simplesect id="Section-FieldPane">
+    <title>The Field Pane</title>
+    <para>
+	  The Field Pane specifies which &fields; are defined on the
+	  &subproblem;, and sets attributes of those &fields;.  The
+	  checkboxes for each &field; correspond to commands in the <xref
+	  linkend="MenuItem-OOF.Mesh.Field"/> menu.
+	  <itemizedlist>
+	    <listitem>
+	      <para>
+	        Toggling the <guibutton>defined</guibutton> checkbox <link
+	        linkend="MenuItem-OOF.Mesh.Field.Define">defines</link>
+	        and <link
+	        linkend="MenuItem-OOF.Mesh.Field.Undefine">undefines</link>
+	        the &field;.  The &mesh; only stores values for defined
+	        &fields;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        Toggling the <guibutton>active</guibutton> checkbox <link
+	        linkend="MenuItem-OOF.Mesh.Field.Activate">activates</link>
+	        and <link
+	        linkend="MenuItem-OOF.Mesh.Field.Deactivate">deactivates</link>
+	        the &field;.  The &equations; only solve for active
+	        &fields;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        &oof2; <link
+	        linkend="generalized-plane-strain">generalizes</link> the
+	        standard concept of plane-strain to apply to arbitrary
+	        coupled &fields;.  Toggling the
+	        <guibutton>in-plane</guibutton> button determines whether
+	        or not the &field; has out-of-plane derivatives, by
+	        invoking <xref
+	        linkend="MenuItem-OOF.Mesh.Field.In_Plane"/> or <xref
+	        linkend="MenuItem-OOF.Mesh.Field.Out_of_Plane"/>.  The
+	        counterpart to generalized plane-strain, <link
+	        linkend="plane-flux">plane-flux</link>, is invoked by
+	        activating the appropriate equation in the <link
+	        linkend="Section-EquationPane">Equation Pane</link>.
+	      </para>
+	      <para>
+	        A &field; that is in-plane on one &subproblem; in a &mesh;
+	        must be in-plane on all &subproblems; in that &mesh;.
+	      </para>
+	    </listitem>
+	  </itemizedlist>
+    </para>
+    <para>
+	  The <guibutton>Copy Field State</guibutton> button at the bottom
+	  of the pane allows the current set of checkbox settings to be
+	  copied to another &subproblem;, possibly in another &mesh;.
+    </para>
+  </simplesect>
+  <simplesect id="Section-EquationPane">
+    <title>The Equation Pane</title>
+    <para>
+	  The Equation Pane simply contains a list of the &equations; that
+	  &oof2; can solve, and checkboxes which <link
+	  linkend="MenuItem-OOF.Subproblem.Equation.Activate">activate</link>
+	  and <link
+	  linkend="MenuItem-OOF.Subproblem.Equation.Deactivate">deactivate</link>
+	  them for the current &subproblem;.  &equations; will be solved
+	  only if they are active, if the &fields; they use are defined,
+	  and if there are &material; &properties; in the &subproblem;
+	  that make contributions to them.
+    </para>
+    <para>
+	  The <guibutton>Copy Equation State</guibutton> button at the
+	  bottom of the pane copies the current set of active &fields; to
+	  another &subproblem;, possibly in a different &mesh;.
+    </para>
+  </simplesect>
+</section>
     
 
   <!-- Keep this comment at the end of the file

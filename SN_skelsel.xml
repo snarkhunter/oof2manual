@@ -38,17 +38,13 @@
     page is selecting and grouping &elems;, &nodes;, or &sgmts;.  Only
     one of the three modes can be active at one time. The Info Area
     simply states how many objects (&elems;, &nodes;, or &sgmts;) are
-    selected.
+    currently selected.
   </para>
-
   <figure id="Figure-SkelSelPage">
     <title>The Skeleton Selection Page</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gui/skelsel_page.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gui/skelsel_page.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gui/skelsel_page.png" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -68,7 +64,7 @@
       The Group Operations Pane consists of three regions.  A central
       list of groups, and two columns of buttons.  The central list
       shows all of the defined groups of &elems;, &nodes;, or &sgmts;
-      (depending on the Mode) in the current &skel; Clicking on a
+      (depending on the Mode) in the current &skel;. Clicking on a
       group selects it for operations by the buttons.
     </para>
     <para>
@@ -87,6 +83,22 @@
 	    will be automatically selected in the group list.
 	  </para>
 	</listitem>
+    <listitem>
+      <para>
+        The <guibutton>Auto</guibutton> invokes <xref
+        linkend="MenuItem-OOF.ElementGroup.Auto_Group"/> <xref
+        linkend="MenuItem-OOF.NodeGroup.Auto_Group"/> or <xref
+        linkend="MenuItem-OOF.SegmentGroup.Auto_Group"/> to
+        automatically add &elems;, &nodes; or &sgmts; to groups
+        according to which <link
+        linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+        groups</link> the objects lie on top of.  The groups will have
+        the same names as the pixel groups.  New groups will be
+        created as necessary.  Existing groups with the same names
+        will <emphasis>not</emphasis> be cleared before objects are
+        added to them.
+      </para>
+    </listitem>
 	<listitem>
 	  <para>
 	    The <guibutton>Rename</guibutton> button invokes either
@@ -119,6 +131,16 @@
 	    objects stored in the deleted group are not affected.
 	  </para>
 	</listitem>
+    <listitem>
+      <para>
+        The <guibutton>Delete All</guibutton> button deletes all of
+        the groups, by invoking either <xref
+        linkend="MenuItem-OOF.ElementGroup.Delete_All"/>, <xref
+        linkend="MenuItem-OOF.NodeGroup.Delete_All"/>, or <xref
+        linkend="MenuItem-OOF.SegmentGroup.Delete_All"/>.  The objects
+        stored in the deleted groups are not affected.
+      </para>
+    </listitem>
       </itemizedlist>
     </para>
     <para>
@@ -157,6 +179,15 @@
 	    linkend="MenuItem-OOF.SegmentGroup.Clear_Group"/>.
 	  </para>
 	</listitem>
+    <listitem>
+      <para>
+        The <guibutton>Clear All</guibutton> button removes all of the
+        members of all of the groups, by invoking either <xref
+        linkend="MenuItem-OOF.ElementGroup.Clear_All"/>, <xref
+        linkend="MenuItem-OOF.NodeGroup.Clear_All"/>, or <xref
+        linkend="MenuItem-OOF.SegmentGroup.Clear_All"/>.
+      </para>
+    </listitem>
 	<listitem>
 	  <para>
 	    The <guibutton>Info</guibutton> button prints information
@@ -191,7 +222,7 @@
     <para>
       The Selection Modification Pane contains tools for making and
       modifying selections in the &skel;.  The pull-down menu labelled
-      <guilabel>Action</guilabel> contains commands from the <xref
+      <guilabel>Method</guilabel> contains commands from the <xref
       linkend="MenuItem-OOF.ElementSelection"/>, <xref
       linkend="MenuItem-OOF.NodeSelection"/>, or <xref
       linkend="MenuItem-OOF.SegmentSelection"/> menus, depending on
@@ -205,7 +236,7 @@
 	<listitem>
 	  <para>
 	    The <guibutton>OK</guibutton> button performs the action
-	    specified by the <guilabel>Action</guilabel> menu.
+	    specified by the <guilabel>Method</guilabel> menu.
 	  </para>
 	</listitem>
 	<listitem>
@@ -254,8 +285,8 @@
       More tools for selecting &skel; components are available in the
       <link linkend="Section-Graphics-SkeletonSelection">Skeleton
       Selection Toolbox</link> in the Graphics Window.  Those tools
-      all rely on mouse input, in contrast with the tools in the
-      Skeleton Selection Page, which are all mouseless.
+      rely on mouse input, in contrast with the tools in the Skeleton
+      Selection Page, which are all mouseless.
     </para>
   </simplesect>
 </section>

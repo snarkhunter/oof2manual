@@ -13,434 +13,421 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <section id="Section-Tasks-Solver">
-    <title>Solver</title>
-    <para>
-      The Solver Page is where it all comes together.  After
-      <itemizedlist spacing="compact">
-	<listitem>
-	  <simpara>
-	    &materials; have been <link
-	    linkend="Section-Tasks-Materials">assigned</link> to a
-	    <link
-	    linkend="Section-Tasks-Microstructure"><classname>Microstructure</classname></link>
-
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    a &skel; has been <link
-	      linkend="Section-Tasks-Skeleton">adapted</link> to it
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    a &mesh; has been <link
-	    linkend="Section-Tasks-FEMesh">created</link> from the
-	    &skel;
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    <link
-	    linkend="Section-Tasks-FieldsEquations"><classname>Fields</classname></link>
-	    and <link
-	    linkend="Section-Tasks-FieldsEquations"><classname>Equations</classname></link>
-	    have been activated on the &mesh;
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    and <link
-	    linkend="Section-Tasks-BoundaryCondition">boundary
-	    conditions</link> have been assigned,
-	  </simpara>
-	</listitem>
-      </itemizedlist>
-      the Solver Page is used to find the solution to the equations.
-    </para>
-    <para>
-      <xref linkend="Figure-SolverPage"/> shows the layout of the
-      Solver Page.  At the top is a Mesh Chooser for selecting the
-      &mesh; to be solved.  The Chooser has three parts, for selecting
-      the &mesh; and the &skel; and &micro; in which it resides.
-      Below the Mesh Chooser is the <link
-      linkend="Section-Tasks-Solver-SolverPane">Solver Pane</link>, where
-      solution methods are assigned to &subproblems;, and below that
-      is the <link linkend="Section-Tasks-Solver-FieldInitPane">Field
-      Initialization Pane</link>, where initial conditions are defined
-      and applied.  At the bottom of the page is the <link
-      linkend="Section-Tasks-Solver-SolutionPane">Solution Pane</link>.
-    </para>
-    <figure id="Figure-SolverPage">
-      <title>The Solver Page</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/solver_page.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/solver_page.eps"
-	    format="EPS"/>
-	</imageobject>
-      </mediaobject>
-    </figure>
-    <simplesect id="Section-Tasks-Solver-SolverPane">
-      <title>The Solver Pane</title>
-      <para>
-	The Solver Pane sets the <link
-	linkend="Section-Concepts-Mesh-Solvers">solution
-	technique</link> that will be used for each &subproblem; when
-	the <guibutton>Solve</guibutton> button is pressed.  It
-	contains a four column list with one row for each &subproblem;
-	defined in the &mesh;, and two rows of buttons that operate on
-	the contents of the list.  Clicking on a row selects it.
-	Double clicking on a row is equivalent to selecting it and
-	then pressing the <link
-	linkend="Section-Tasks-Solver-SolverPane-Set"><guibutton>Set</guibutton></link>
-	button. The list comprises four columns:
-      </para>
-      <itemizedlist>
-	<listitem>
-	  <formalpara>
-	    <title>Order</title>
-	    <para>
-	      When multiple &subproblems; are being <link
-	      linkend="Section-Concepts-Mesh-Solving">solved</link>,
-	      they are addressed sequentially in the order given by
-	      the number in this column.  The order can be changed by
-	      selecting a &subproblem; and clicking one of the
-	      <guibutton>First</guibutton>,
-	      <guibutton>Earlier</guibutton>,
-	      <guibutton>Later</guibutton>, or
-	      <guibutton>Last</guibutton> buttons.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-SolveQ">
-	    <title>Solve?</title>
-	    <para>
-	      The checkbox in this column indicates whether the
-	      &subproblem; should be solved or not.  Clicking it
-	      invokes either the <xref
-	      linkend="MenuItem-OOF.Subproblem.Enable_Solution"/> or
-	      <xref linkend="MenuItem-OOF.Subproblem.Disable_Solution"/>
-	      commands.  It's a quick way of temporarily disabling a
-	      subproblem without having to delete its solver.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Subproblem</title>
-	    <para>
-	      This is just the name of the &subproblem;.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Solver</title>
-	    <para>
-	      This is a short hand description of the <link
-	      linkend="Section-Concepts-Mesh-Solvers">solver</link>
-	      that has been assigned to the &subproblem;.  If no <link
-	      linkend="Section-Concepts-Mesh-Solvers">Solver</link> is
-	      assigned, it will read
-	      <userinput>&lt;none&gt;</userinput>.  To see the full
-	      details, select a line and click the <link
-	      linkend="Section-Tasks-Solver-SolverPane-Set"><guibutton>Set</guibutton></link>
-	      button.
-	    </para>
-	  </formalpara>
-	</listitem>
-      </itemizedlist>
-      <para>
-	The buttons below the &subproblem; list operate on the
-	contents of the list.  Most of them require one &subproblem; to be
-	selected in the list.
-      </para>
-      <itemizedlist>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-Set">
-	    <title>Set</title>
-	    <para>
-	      Assign a solver to a &subproblem; via the <xref
-	      linkend="MenuItem-OOF.Subproblem.Set_Solver"/> command.
-	      The button brings up a dialog box displaying the
-	      currently assigned solver, or the default solver if no
-	      other solver has yet been assigned.  The default is a
+<section id="Section-Tasks-Solver">
+  <title>Solver</title>
+  <para>
+    The Solver Page is where it all comes together.  After
+    <itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      &materials; have been <link
+	      linkend="Section-Tasks-Materials">assigned</link> to a
 	      <link
-	      linkend="RegisteredClass-BasicStaticDriver">static</link>
-	      solver operating in <link
-	      linkend="RegisteredClass-BasicSolverMode">basic</link>
-	      mode, where &oof2; makes most of the detailed parameter
-	      choices automatically.
-	    </para>
-	    <para>
-	      See the discussion for <xref
-	      linkend="MenuItem-OOF.Subproblem.Set_Solver"/> for
-	      details about the various kinds of solvers.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-Copy">
-	    <title>Copy</title>
-	    <para>
-	      Copy a solver from one &subproblem; to another, using
-	      the <xref
-	      linkend="MenuItem-OOF.Subproblem.Copy_Solver"/> command.
-	      The target &subproblem; may be in a different &mesh;.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-CopyAll">
-	    <title>Copy All</title>
-	    <para>
-	      Copy all solvers from this &mesh; to another &mesh;,
-	      using <xref
-	      linkend="MenuItem-OOF.Mesh.Copy_All_Solvers"/>.
-	      Solvers will be copied only for those &subproblems; that
-	      have identical names in the two &meshes;.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-Remove">
-	    <title>Remove</title>
-	    <para>
-	      Remove the solver from the selected &subproblem;, using
-	      <xref linkend="MenuItem-OOF.Subproblem.Remove_Solver"/>.
-	      The &subproblem; will not be solved until a new solver
-	      is <link
-	      linkend="Section-Tasks-Solver-SolverPane-Set">set</link>.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-RemoveAll">
-	    <title>Remove All</title>
-	    <para>
-	      Remove the solvers from all &subproblems;, making the
-	      &mesh; unsolvable until new solvers are assigned.  
-	      See <xref linkend="MenuItem-OOF.Mesh.Remove_All_Solvers"/>.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-SolverPane-Order">
-	    <title>First, Earlier, Later, Last</title>
-	    <para>
-	      These buttons change the order of the list, by moving
-	      the selected &subproblem; up
-	      (<guibutton>First</guibutton> or
-	      <guibutton>Earlier</guibutton>) or down
-	      (<guibutton>Later</guibutton> and
-	      <guibutton>Last</guibutton>).  All of the buttons invoke
-	      the <xref
-	      linkend="MenuItem-OOF.Mesh.ReorderSubproblems"/>
-	      command.
-	    </para>
-	  </formalpara>
-	</listitem>
-      </itemizedlist>
-    </simplesect>		<!--Solver Pane-->
-    
-    <simplesect id="Section-Tasks-Solver-FieldInitPane">
-      <title>The Field Initialization Pane</title>
-      <para>
-	The Initialization Pane is in charge of assigning <link
-	linkend="Section-Concepts-Mesh-InitialConditions">initial
-	values</link> to the &fields; that are defined on the &mesh;.
-	As explained in <xref
-	linkend="Section-Concepts-Mesh-InitialConditions"/>, &field;
-	initialization is a two step process: first an initializer is
-	assigned to a &field;, and then all the initializers are applied.
-      </para>
-      <para>
-	The Initialization pane contains a list with two columns: the
-	names of the &fields; and their initializers.  &fields;
-	without initializers are marked with
-	<userinput>---</userinput>.  Selecting a &field; in the list
-	and clicking the <link
-	linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"><guibutton>Set</guibutton></link>
-	button brings up a dialog box for setting the initializers.
-	Double-clicking on a &field; in the list has the same effect.
-	For more details, see <xref
-	linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>.
-      </para>
-      <para>
-	When solving static problems, it's not necessary to initialize
-	&fields; that are <link
-	linkend="MenuItem-OOF.Mesh.Field.Activate">active</link>,
-	since values will be assigned to them by the solver.  However,
-	the iterative solvers will converge faster if the initial
-	values of the &fields; are close to the actual solution.
-	&fields; that are being used in time dependent problems should
-	always be initialized.
-      </para>
-      <para>
-	Note that changing a &subproblem;'s solver can affect which
-	&fields; can be initialized.  If the &equations; include
-	terms, such as <link
-	linkend="MenuItem-OOF.Property.Parametrize.Mechanical.MassDensity">mass
-	density</link> terms in the <link
-	linkend="Equation-Force_Balance">force balance</link> equation,
-	that contain second time derivatives, <emphasis>and</emphasis>
-	if the solvers are not static, then the first time derivative
-	of the relevant &field; must be initialized as well.  The time
-	derivative &fields; have a <varname>_t</varname> suffix in the
-	list.
-      </para>
-      <para>
-	In <xref linkend="Figure-FieldsPage"/>,
-	<varname>Temperature</varname>'s initializer has been set to a
-	function, <userinput>x+2*y</userinput>, and the initializers
-	for the two components of the displacement have been set to
-	constants, <userinput>0.0</userinput> and
-	<userinput>0.01</userinput>.
-      </para>
-      <para>
-	The buttons below the list operate on the &field; initializers
-	in the &mesh;.
-      </para>
-      <itemizedlist>
-	<listitem>
-	  <formalpara>
-	    <title>Set</title>
-	    <para>
-	      This button brings up a dialog box in which an
-	      initializer can be defined for the currently selected
-	      &field;.  Clicking <guibutton>OK</guibutton> invokes the
-	      <xref
-	      linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>
-	      command.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Copy</title>
-	    <para>
-	      Copy all &field; initializers from the current &mesh;
-	      (as set in the <guilabel>Mesh Chooser</guilabel>) to
-	      another &mesh; (selected in a dialog box), using <xref
-	      linkend="MenuItem-OOF.Mesh.Copy_Field_Initializers"/>.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Clear</title>
-	    <para>
-	      Remove the initializer from the selected &field;, invoking
-	      <xref linkend="MenuItem-OOF.Mesh.Clear_Field_Initializer"/>.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Clear All</title>
-	    <para>
-	      Remove the initializers from all &fields;, invoking
-	      <xref
-	      linkend="MenuItem-OOF.Mesh.Clear_Field_Initializers"/>.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara id="Section-Tasks-Solver-ApplyInit">
-	    <title>Apply</title>
-	    <para>
-	      This button invokes <xref
-	      linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/>
-	      to apply all the &field; initializers that have been
-	      defined in the &mesh;.  It does not change the &mesh;'s
-	      <link linkend="Section-Concepts-Mesh-Time">time</link>.
-	      If the initializers are time dependent, they are
-	      evaluated at the &mesh;'s current time.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Apply at Time</title>
-	    <para>
-	      This button invokes <xref
-	      linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>,
-	      which sets the values of the &fields; and the &mesh;'s
-	      <link linkend="Section-Concepts-Mesh-Time">time</link>,
-	      which is provided by a dialog box.  If any of the
-	      initializers are time dependent, they are evaluated at
-	      the given time.
-	    </para>
-	  </formalpara>
-	</listitem>
-      </itemizedlist>
-    </simplesect>		<!--Field Initialization Pane-->
+	          linkend="Section-Tasks-Microstructure"><classname>Microstructure</classname></link>
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      a &skel; has been <link
+	      linkend="Section-Tasks-Skeleton">adapted</link> to it
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      a &mesh; has been <link
+	      linkend="Section-Tasks-FEMesh">created</link> from the
+	      &skel;
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <link
+	          linkend="Section-Tasks-FieldsEquations"><classname>Fields</classname></link>
+	      and <link
+	      linkend="Section-Tasks-FieldsEquations"><classname>Equations</classname></link>
+	      have been activated on the &subproblems;
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      and <link
+	      linkend="Section-Tasks-BoundaryCondition">boundary
+	      conditions</link> have been assigned,
+	    </simpara>
+	  </listitem>
+    </itemizedlist>
+    the Solver Page is used to find the solution to the equations.
+  </para>
+  <para>
+    <xref linkend="Figure-SolverPage"/> shows the layout of the Solver
+    Page.  At the top is a Mesh Chooser for selecting the &mesh; to be
+    solved.  The Chooser has three parts, for selecting the &mesh; and
+    the &skel; and &micro; in which it resides.  Below the Mesh
+    Chooser is the <link
+    linkend="Section-Tasks-Solver-SolverPane">Solver Pane</link>,
+    where solution methods are assigned to &subproblems;, and below
+    that is the <link
+    linkend="Section-Tasks-Solver-FieldInitPane">Field Initialization
+    Pane</link>, where initial conditions are defined and applied.  At
+    the bottom of the page is the <link
+    linkend="Section-Tasks-Solver-SolutionPane">Solution Pane</link>.
+  </para>
+  <figure id="Figure-SolverPage">
+    <title>The Solver Page</title>
+    <mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/gui/solver_page.png"
+	               format="PNG"/>
+	  </imageobject>
+    </mediaobject>
+  </figure>
+  <simplesect id="Section-Tasks-Solver-SolverPane">
+    <title>The Solver Pane</title>
+    <para>
+	  The Solver Pane sets the <link
+	  linkend="Section-Concepts-Mesh-Solvers">solution
+	  technique</link> that will be used for each &subproblem; when
+	  the <guibutton>Solve</guibutton> button is pressed.  It contains
+	  a four column list with one row for each &subproblem; defined in
+	  the &mesh;, and two rows of buttons that operate on the contents
+	  of the list.  Clicking on a row selects it.  Double clicking on
+	  a row is equivalent to selecting it and then pressing the <link
+	  linkend="Section-Tasks-Solver-SolverPane-Set"><guibutton>Set
+	  Solver</guibutton></link> button. The list comprises four
+	  columns:
+    </para>
+    <itemizedlist>
+	  <listitem>
+	    <formalpara>
+	      <title>Order</title>
+	      <para>
+	        When multiple &subproblems; are being <link
+	        linkend="Section-Concepts-Mesh-Solving">solved</link>,
+	        they are addressed sequentially in the order given by the
+	        number in this column.  The order can be changed by
+	        selecting a &subproblem; and clicking one of the <link
+	        linkend="Section-Tasks-Solver-SolverPane-Order"><guibutton>First</guibutton>,
+	        <guibutton>Earlier</guibutton>,
+	        <guibutton>Later</guibutton>, or
+	        <guibutton>Last</guibutton></link> buttons.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-SolveQ">
+	      <title>Solve?</title>
+	      <para>
+	        The checkbox in this column indicates whether the
+	        &subproblem; should be solved or not.  Clicking it invokes
+	        either the <xref
+	        linkend="MenuItem-OOF.Subproblem.Enable_Solution"/> or
+	        <xref linkend="MenuItem-OOF.Subproblem.Disable_Solution"/>
+	        commands.  It's a quick way of temporarily disabling a
+	        subproblem without having to delete its solver.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara>
+	      <title>Subproblem</title>
+	      <para>
+	        This is just the name of the &subproblem;.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara>
+	      <title>Solver</title>
+	      <para>
+	        This is a short hand description of the <link
+	        linkend="Section-Concepts-Mesh-Solvers">solver</link> that
+	        has been assigned to the &subproblem;.  If no <link
+	        linkend="Section-Concepts-Mesh-Solvers">Solver</link> is
+	        assigned, it will read
+	        <userinput>&lt;none&gt;</userinput>.  To see the full
+	        details, select a line and click the <link
+	        linkend="Section-Tasks-Solver-SolverPane-Set"><guibutton>Set</guibutton></link>
+	        button.
+	      </para>
+	    </formalpara>
+	  </listitem>
+    </itemizedlist>
+    <para>
+	  The buttons immediately below the &subproblem; list operate on
+	  the contents of the list.  Most of them require one
+	  &subproblem; to be selected in the list.
+    </para>
+    <itemizedlist>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-Set">
+	      <title>Set</title>
+	      <para>
+	        Assign a solver to a &subproblem; via the <xref
+	        linkend="MenuItem-OOF.Subproblem.Set_Solver"/> command.
+	        The button brings up a dialog box displaying the currently
+	        assigned solver, or the default solver if no other solver
+	        has yet been assigned.  The default is a <link
+	        linkend="RegisteredClass-BasicStaticDriver">static</link>
+	        solver operating in <link
+	        linkend="RegisteredClass-BasicSolverMode">basic</link>
+	        mode, where &oof2; makes most of the detailed parameter
+	        choices automatically.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-Copy">
+	      <title>Copy</title>
+	      <para>
+	        Copy a solver from one &subproblem; to another, using the
+	        <xref linkend="MenuItem-OOF.Subproblem.Copy_Solver"/>
+	        command.  The target &subproblem; may be in a different
+	        &mesh;.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-CopyAll">
+	      <title>Copy All</title>
+	      <para>
+	        Copy all solvers from this &mesh; to another &mesh;, using
+	        <xref linkend="MenuItem-OOF.Mesh.Copy_All_Solvers"/>.
+	        Solvers will be copied only for those &subproblems; that
+	        have identical names in the two &meshes;.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-Remove">
+	      <title>Remove</title>
+	      <para>
+	        Remove the solver from the selected &subproblem;, using
+	        <xref linkend="MenuItem-OOF.Subproblem.Remove_Solver"/>.
+	        The &subproblem; will not be solved until a new solver is
+	        <link
+	        linkend="Section-Tasks-Solver-SolverPane-Set">set</link>.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-RemoveAll">
+	      <title>Remove All</title>
+	      <para>
+	        Remove the solvers from all &subproblems;, making the
+	        &mesh; unsolvable until new solvers are assigned.  See
+	        <xref linkend="MenuItem-OOF.Mesh.Remove_All_Solvers"/>.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-SolverPane-Order">
+	      <title>First, Earlier, Later, Last</title>
+	      <para>
+	        These buttons change the order of the list, by moving the
+	        selected &subproblem; up (<guibutton>First</guibutton> or
+	        <guibutton>Earlier</guibutton>) or down
+	        (<guibutton>Later</guibutton> and
+	        <guibutton>Last</guibutton>).  All of the buttons invoke
+	        the <xref linkend="MenuItem-OOF.Mesh.ReorderSubproblems"/>
+	        command.
+	      </para>
+	    </formalpara>
+	  </listitem>
+    </itemizedlist>
+  </simplesect>		<!--Solver Pane-->
+  
+  <simplesect id="Section-Tasks-Solver-FieldInitPane">
+    <title>The Field Initialization Pane</title>
+    <para>
+	  The Initialization Pane is in charge of assigning <link
+	  linkend="Section-Concepts-Mesh-InitialConditions">initial
+	  values</link> to the &fields; that are defined on the &mesh;.
+	  As explained in <xref
+	  linkend="Section-Concepts-Mesh-InitialConditions"/>, &field;
+	  initialization is a two step process: first an initializer is
+	  assigned to a &field;, and then all the initializers are
+	  applied.
+    </para>
+    <para>
+	  The Initialization pane contains a list with two columns: the
+	  names of the &fields; and their initializers.  &fields; without
+	  initializers are marked with
+	  <quote><userinput>---</userinput></quote>.  Selecting a &field;
+	  in the list and clicking the <link
+	  linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"><guibutton>Set</guibutton></link>
+	  button brings up a dialog box for setting the initializers.
+	  Double-clicking on a &field; in the list has the same effect.
+	  For more details, see <xref
+	  linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>.
+    </para>
+    <para>
+	  When solving static problems, it's not necessary to initialize
+	  &fields; that are <link
+	  linkend="MenuItem-OOF.Mesh.Field.Activate">active</link>, since
+	  values will be assigned to them by the solver.  However, the
+	  iterative solvers will converge faster if the initial values of
+	  the &fields; are close to the actual solution.  &fields; that
+	  are being used in time dependent problems should always be
+	  initialized.
+    </para>
+    <para>
+	  Note that changing a &subproblem;'s solver can affect which
+	  &fields; can be initialized.  If the &equations; include terms,
+	  such as <link
+	  linkend="MenuItem-OOF.Property.Parametrize.Mechanical.MassDensity">mass
+	  density</link> in the <link
+	  linkend="Equation-Force_Balance">force balance</link> equation,
+	  that contain second time derivatives, <emphasis>and</emphasis>
+	  if the solvers are not static, then the first time derivative of
+	  the relevant &field; must be initialized as well.  The time
+	  derivative &fields; have a <varname>_t</varname> suffix in the
+	  list.
+    </para>
+    <para>
+	  In <xref linkend="Figure-SolverPate"/>,
+	  <varname>Temperature</varname>'s initializer has been set to a
+	  function, <userinput>x+2*y</userinput>, and the initializers for
+	  the two components of the displacement have been set to
+	  constants, <userinput>0.0</userinput> and
+	  <userinput>0.01</userinput>.
+    </para>
+    <para>
+	  The buttons below the list operate on the &field; initializers
+	  in the &mesh;.
+    </para>
+    <itemizedlist>
+	  <listitem>
+	    <formalpara>
+	      <title>Set</title>
+	      <para>
+	        This button brings up a dialog box in which an initializer
+	        can be defined for the currently selected &field;.
+	        Clicking <guibutton>OK</guibutton> invokes the
+	        <xref linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>
+	        command.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara>
+	      <title>Copy</title>
+	      <para>
+	        Copy all &field; initializers from the current &mesh; (as
+	        set in the <guilabel>Mesh Chooser</guilabel>) to another
+	        &mesh; (selected in a dialog box), using <xref
+	        linkend="MenuItem-OOF.Mesh.Copy_Field_Initializers"/>.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara>
+	      <title>Clear</title>
+	      <para>
+	        Remove the initializer from the selected &field;, invoking
+	        <xref
+	        linkend="MenuItem-OOF.Mesh.Clear_Field_Initializer"/>.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara>
+	      <title>Clear All</title>
+	      <para>
+	        Remove the initializers from all &fields;, invoking <xref
+	        linkend="MenuItem-OOF.Mesh.Clear_Field_Initializers"/>.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Section-Tasks-Solver-ApplyInit">
+	      <title>Apply</title>
+	      <para>
+	        This button invokes <xref
+	        linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/> to
+	        apply all the &field; initializers that have been defined
+	        in the &mesh;.  It does not change the &mesh;'s <link
+	        linkend="Section-Concepts-Mesh-Time">time</link>.  If the
+	        initializers are time dependent, they are evaluated at the
+	        &mesh;'s current time.
+	      </para>
+	    </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara>
+	      <title>Apply at Time</title>
+	      <para>
+	        This button invokes <xref
+	        linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>,
+	        which sets the values of the &fields; and the &mesh;'s
+	        <link linkend="Section-Concepts-Mesh-Time">time</link>,
+	        which is provided by a dialog box.  If any of the
+	        initializers are time dependent, they are evaluated at the
+	        given time.
+	      </para>
+	    </formalpara>
+	  </listitem>
+    </itemizedlist>
+  </simplesect>		<!--Field Initialization Pane-->
 
-    <simplesect id="Section-Tasks-Solver-SolutionPane">
-      <title>The Solution Pane</title>
-      <para>
-	The bottom part of the Solver page contains
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      Boxes displaying the &mesh;'s current <link
-	      linkend="Section-Concepts-Mesh-Time">time</link>, and
-	      the desired end time of the calculation.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      A box displaying a brief &mesh; status message, and a
-	      button to request more details.
-	    </para>
-	  </listitem>
-	  <listitem>
-	  <para>
-	    The <guilabel>Solve</guilabel> button.
-	  </para>  
-	  </listitem>
-	</itemizedlist>
-      </para>
-      <para>
-	The current <link
-	linkend="Section-Concepts-Mesh-Time">time</link> cannot be
-	edited. It can only be changed by re-initializing the &mesh;
-	using the <guibutton>Apply at Time</guibutton> button, or by
-	solving a time-dependent problem.
-      </para>
-      <para>
-	The end time can be changed by typing a new value in the box.
-	If only static solvers are being used, the end time can be
-	omitted.  In that case, it's assumed to be equal to the
-	current time.
-      </para>
-      <para>
-	Pressing the <guibutton>Details</guibutton> button in the
-	<guilabel>Status</guilabel> box displays additional status
-	information in the <link
-	linkend="Section-Windows-Messages">Message Window</link>.
-      </para>
-      <para>
-	The <guibutton>Solve</guibutton> calls <xref
-	linkend="MenuItem-OOF.Mesh.Solve"/> to compute a
-	solution. After completing a time dependent solution, the end
-	time is automatically incremented by the length of the time
-	evolution, and the <guibutton>Solve</guibutton> changes to a
-	<guibutton>Continue</guibutton> button.  This allows the
-	solution to be extended by simply pressing the button again.
-	However, if the &fields; are reinitialized or the problem
-	definition is changed in any way, the
-	<guibutton>Continue</guibutton> reverts to a
-	<guibutton>Solve</guibutton> button.
-      </para>
-    </simplesect>
-  </section>			<!--Solution Pane-->
+  <simplesect id="Section-Tasks-Solver-SolutionPane">
+    <title>The Solution Pane</title>
+    <para>
+	  The bottom part of the Solver page contains
+	  <itemizedlist>
+	    <listitem>
+	      <para>
+	        Boxes displaying the &mesh;'s current <link
+	        linkend="Section-Concepts-Mesh-Time">time</link>, and the
+	        desired end time of the calculation.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        A box displaying a brief &mesh; status message, and a
+	        button to request more details.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <guilabel>Solve</guilabel> button.
+	      </para>  
+	    </listitem>
+	  </itemizedlist>
+    </para>
+    <para>
+	  The current <link
+	  linkend="Section-Concepts-Mesh-Time">time</link> cannot be
+	  edited. It can only be changed by re-initializing the &mesh;
+	  using the <guibutton>Apply at Time</guibutton> button, or by
+	  solving a time-dependent problem.
+    </para>
+    <para>
+	  The end time can be changed by typing a new value in the box.
+	  If only static solvers are being used, the end time can be
+	  omitted.  In that case, it's assumed to be equal to the current
+	  time.
+    </para>
+    <para>
+	  Pressing the <guibutton>Details</guibutton> button in the
+	  <guilabel>Status</guilabel> box displays additional status
+	  information in the <link
+	  linkend="Section-Windows-Messages">Message Window</link>.
+    </para>
+    <para>
+	  The <guibutton>Solve</guibutton> button calls <xref
+	  linkend="MenuItem-OOF.Mesh.Solve"/> to compute a solution. After
+	  completing a time dependent solution, the end time is
+	  automatically incremented by the length of the time evolution,
+	  and the <guibutton>Solve</guibutton> changes to a
+	  <guibutton>Continue</guibutton> button.  This allows the
+	  solution to be extended by simply pressing the button again.
+	  However, if the &fields; are reinitialized or the problem
+	  definition is changed in any way, the
+	  <guibutton>Continue</guibutton> reverts to a
+	  <guibutton>Solve</guibutton> button.
+    </para>
+  </simplesect>
+</section>			<!--Solution Pane-->
 
 
   <!-- Keep this comment at the end of the file
