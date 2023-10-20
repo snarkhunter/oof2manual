@@ -423,7 +423,7 @@
 	  solution to be extended by simply pressing the button again.
 	  However, if the &fields; are reinitialized or the problem
 	  definition is changed in any way, the
-	  <guibutton>Continue</guibutton> reverts to a
+	  <guibutton>Continue</guibutton> button reverts to being a
 	  <guibutton>Solve</guibutton> button.
     </para>
   </simplesect>

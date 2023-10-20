@@ -1,8 +1,3 @@
-#  $RCSfile: Makefile,v $
-#  $Revision: 1.9 $
-#  $Author: langer $
-#  $Date: 2011-05-06 17:48:15 $
-
 # Makefile for creating readable docs from the xml files.  For this to
 # work, the current directory needs to have a symbolic link called
 # 'bin' that points to the directory where the executable lives and a

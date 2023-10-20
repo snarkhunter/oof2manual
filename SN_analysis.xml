@@ -13,373 +13,433 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <section id="Section-Tasks-Analysis">
-    <title>Analysis</title>
+<section id="Section-Tasks-Analysis">
+  <title>Analysis</title>
+  <para>
+    The analysis page provides tools to examine the state of the
+    physical system modelled by a given mesh.  The data can be output
+    directly to a file or to the screen, for examination or plotting
+    by other software, or it can be examined by one of the provided
+    statistical tools.
+  </para>
+  <figure id="Figure-AnalysisPage">
+    <title>The Analysis Page</title>
+    <mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/gui/analysis_page.png"
+	               format="PNG"/>
+	  </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    The anatomy of the page is shown in <xref
+    linkend="Figure-AnalysisPage"/>.  It begins with widgets for
+    choosing which &mesh; will be the source of the data.  Below the
+    &mesh; Chooser are the <link
+    linkend="Section-Tasks-Analysis-Time">Time Controls</link>, which
+    selects the <link linkend="Section-Concepts-Mesh-Time">time</link>
+    at which the data will be extracted from the &mesh;.  The main
+    part of the page consists of four panes, <link
+    linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>,
+    <link
+    linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
+    <link
+    linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link>,
+    and <link
+    linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>,
+    which define the analysis operation. At the bottom of the page are
+    the <link linkend="Section-Tasks-Analysis-Named"><guilabel>Named
+    Analysis</guilabel></link> pane, which allows analysis settings to
+    be saved and restored, the <link
+    linkend="Section-Tasks-Analysis-Destination"><guilabel>Destination</guilabel></link>
+    pane, which determine where the results of the analysis are
+    displayed or stored, and the <guilabel>Go</guilabel> button, which
+    performs the analysis.
+  </para>
+  
+  <simplesect id="Section-Tasks-Analysis-Time">
+    <title>Time Controls</title>
     <para>
-      The analysis page provides tools to examine the state of the
-      physical system modelled by a given mesh.  The data can be
-      output directly, for examination or plotting by other software,
-      or it can be examined by one of the provided statistical tools.
+      The analyses performed by this page are all computed on data
+      from a particular time.  If the solution was a static solution,
+      it contains only one time, and the Time Controls are
+      irrelevant. If the solution was a time evolution, the Time
+      Controls determine the time at which the analysis will be done.
     </para>
-    <figure id="Figure-AnalysisPage">
-      <title>The Analysis Page</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/analysis_page.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/analysis_page.eps"
-	    format="EPS"/>
-	</imageobject>
-      </mediaobject>
+    <para>
+	  <xref linkend="Figure-Analysis-Time"/> shows the Time Controls
+	  from <xref linkend="Figure-AnalysisPage"/>.  The central box
+	  displays the selected time.  A new time can be selected by
+	  simply typing it into the box, or by using the buttons on either
+	  side.  The buttons will only change the values to <link
+	  linkend="Section-Concepts-Mesh-Time">times</link> that are
+	  stored in the &mesh; (that is, the start and end times, and
+	  times that were specified in <link
+	  linkend="Section-Tasks-ScheduledOutput">Scheduled
+	  Outputs</link>), but any time between the &mesh;'s earliest and
+	  latest times can be entered into the central box.  If the box
+	  contains a time that's not stored, the analysis will be based on
+	  interpolated &field; values.
+    </para>
+    <para>
+      The buttons marked <quote>Earliest</quote> and
+      <quote>Latest</quote> in <xref linkend="Figure-Analysis-Time"/>
+      set the time to the first and last times stored in the &mesh;.
+      When these are used, the central box will read
+      <userinput>&lt;earliest&gt;</userinput> or
+      <userinput>&lt;latest&gt;</userinput> instead of a numerical
+      time.  These placeholders always refer to the first and last
+      times in the &mesh;, even if the mesh data changes.  The default
+      setting for this widget is
+      <userinput>&lt;latest&gt;</userinput>.
+    </para>
+    <figure id="Figure-Analysis-Time">
+	  <title>The Time Control Widgets</title>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gui/time_controls.png" format="PNG"/>
+	    </imageobject>
+	  </mediaobject>
     </figure>
-    <para>
-      The anatomy of the page is shown in <xref
-      linkend="Figure-AnalysisPage"/>.  It begins with widgets for
-      choosing which &mesh; will be the source of the data.  Below the
-      &mesh; Chooser is the <link linkend="Section-Tasks-Analysis-Time">Time
-      Control</link>, which selects the <link
-      linkend="Section-Concepts-Mesh-Time">time</link> at which the
-      data will be extracted from the &mesh;.  The main part of the
-      page consists of four panes, <link
-      linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>,
-      <link
-      linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
-      <link
-      linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link>,
-      and <link
-      linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>,
-      which define the analysis operation. At the bottom of the page
-      are the <link
-      linkend="Section-Tasks-Analysis-Named"><guilabel>Named
-      Analysis</guilabel></link> pane, which allows analysis settings
-      to be saved and restored; the <link
-      linkend="Section-Tasks-Analysis-Destination"><guilabel>Destination</guilabel></link>
-      pane, which determine where the results of the analysis are
-      displayed or stored, and the <guilabel>Go</guilabel> button,
-      which performs the analysis.
-    </para>
-    <simplesect id="Section-Tasks-Analysis-Time">
-      <title>Time Control</title>
-      <para>
-	<xref linkend="Figure-Analysis-Time"/> shows the Time Controls
-	from <xref linkend="Figure-AnalysisPage"/>.  The central box
-	displays the selected time.  A new time can be selected by
-	simply typing it into the box, or by using the buttons on
-	either side.  The buttons can only change the values to <link
-	linkend="Section-Concepts-Mesh-Time">times</link> that are
-	stored in the &mesh;, but any time between the &mesh;'s
-	earliest and latest times can be typed into the central box.
-	If the box contains a time that's not stored, the analysis
-	will be based on interpolated &field; values.
-      </para>
-      <figure id="Figure-Analysis-Time">
-	<title>The Time Control Widgets</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/timecontrols2.png" format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/timecontrols2.eps" format="EPS"/>
-	  </imageobject>
-	</mediaobject>
-      </figure>
-    </simplesect>
+  </simplesect>
 
-    <simplesect id="Section-Tasks-Analysis-OutputPane">
-      <title>Output Pane</title>
-      <para>
-	This pane selects the output data which will be sampled on
-	the mesh.  The result is one of the available <link
-	linkend="Section-Output">output</link> types.  The buttons at
-	the top of the pane, labelled <guibutton>Scalar</guibutton>
-	and <guibutton>Aggregate</guibutton>, determine whether the
-	pull-down menus below them list the <link
-	linkend="Section-Output-Scalar">scalar outputs</link>
-	(<foreignphrase>e.g,</foreignphrase> a component of a &field;
-	or &flux;) or <link
-	linkend="Section-Output-Aggregate">aggregate outputs</link>
-	(<foreignphrase>e.g,</foreignphrase> all of the components of
-	a &field; or &flux;).
+  <simplesect id="Section-Tasks-Analysis-OutputPane">
+    <title>Output Pane</title>
+    <para>
+	  This pane selects the output data which will be sampled on the
+	  mesh.  The result is one of the available <link
+	  linkend="Section-Output">output</link> types.  The buttons at
+	  the top of the pane, labelled <guibutton>Scalar</guibutton> and
+	  <guibutton>Aggregate</guibutton>, determine whether the
+	  pull-down menus below them list the <link
+	  linkend="Section-Output-Scalar">scalar outputs</link>
+	  (<foreignphrase>e.g,</foreignphrase> a component of a &field; or
+	  &flux;) or <link linkend="Section-Output-Aggregate">aggregate
+	  outputs</link> (<foreignphrase>e.g,</foreignphrase> all of the
+	  components of a &field; or &flux;).
       </para>
     </simplesect>  
     <simplesect id="Section-Tasks-Analysis-OperationPane">
       <title>Operation Pane</title>
       <para>
-	The operation pane determines what actually happens when the
-	<guibutton>Go</guibutton> button is pressed.  The operation is
-	one of the <xref linkend="MenuItem-OOF.Mesh.Analyze"/> menu
-	items. 
+	    The operation pane determines what actually happens when the
+	    <guibutton>Go</guibutton> button is pressed.  The operation is
+	    one of the <xref linkend="MenuItem-OOF.Mesh.Analyze"/> menu
+	    items.
       </para>
     </simplesect>
     <simplesect id="Section-Tasks-Analysis-DomainPane">
       <title>Domain Pane</title>
       <para>
-	The region or subset of the &mesh; on which the operation
-	should be performed is selected here.  The selection will be
-	one of the <xref linkend="RegisteredClass-Domain"/> types.
+	    The region or subset of the &mesh; on which the operation
+	    should be performed is selected here.  The selection will be
+	    one of the <xref linkend="RegisteredClass-Domain"/> types,
+	    which define different ways of defining subregions of various
+	    dimensions.
       </para>
       <para>
-	When the domain is set to <link
-	linkend="RegisteredClass-CrossSectionDomain"><guilabel>Cross
-	Section</guilabel></link>, the pane will look like <xref
-	linkend="Figure-CrossSectionWidget"/>.  <link
-	linkend="RegisteredClass-MeshCrossSection">Cross
-	sections</link> are lines drawn through the &micro;.  They may
-	begin and end on interior points or on edges.  Existing cross
-	sections may be selected with the chooser.  New cross sections
-	may be defined with the <link
-	linkend="MenuItem-OOF.Mesh.Cross_Section.New"><guibutton>New</guibutton></link>
-	button, which brings up a dialog box in which the coordinates
-	of the endpoints must be typed.  New cross sections can also
-	be created graphically using the <link
-	linkend="Section-Graphics-CrossSection">Mesh Cross
-	Section</link> toolbox in the <link
-	linkend="Chapter-Graphics">Graphics</link> window.
+	    When the domain is set to <link
+	    linkend="RegisteredClass-CrossSectionDomain"><guilabel>Cross
+	    Section</guilabel></link>, the pane will look like <xref
+	    linkend="Figure-DomainWidgets"/>.  <link
+	    linkend="RegisteredClass-MeshCrossSection">Cross
+	    sections</link> are lines drawn through the &micro;.  They may
+	    begin and end on interior points or on edges.  Existing cross
+	    sections may be selected with the chooser.  New cross sections
+	    may be defined with the <link
+	    linkend="MenuItem-OOF.Mesh.Cross_Section.New"><guibutton>New</guibutton></link>
+	    button, which brings up a dialog box in which the coordinates
+	    of the endpoints must be typed.  New cross sections can also
+	    be created graphically using the <link
+	    linkend="Section-Graphics-CrossSection">Mesh Cross
+	    Section</link> toolbox in the <link
+	    linkend="Chapter-Graphics">Graphics</link> window.
       </para>
       <para>
-	The remaining buttons, <link
-	linkend="MenuItem-OOF.Mesh.Cross_Section.Copy"><guibutton>Copy</guibutton></link>,
-	<link
-	linkend="MenuItem-OOF.Mesh.Cross_Section.Edit"><guibutton>Edit</guibutton></link>,
-	<link
-	linkend="MenuItem-OOF.Mesh.Cross_Section.Rename"><guibutton>Rename</guibutton></link>,
-	and <link
-	linkend="MenuItem-OOF.Mesh.Cross_Section.Remove"><guibutton>Remove</guibutton></link>
-	do what you would expect them to do.  When a cross section is
-	removed from the chooser here, it is also removed from the
-	<link linkend="Section-Graphics-CrossSection">Mesh Cross
-	Section</link> toolbox.
+	    The remaining buttons in the cross section widget, <link
+	    linkend="MenuItem-OOF.Mesh.Cross_Section.Copy"><guibutton>Copy</guibutton></link>,
+	    <link
+	    linkend="MenuItem-OOF.Mesh.Cross_Section.Edit"><guibutton>Edit</guibutton></link>,
+	    <link
+	    linkend="MenuItem-OOF.Mesh.Cross_Section.Rename"><guibutton>Rename</guibutton></link>,
+	    and <link
+	    linkend="MenuItem-OOF.Mesh.Cross_Section.Remove"><guibutton>Remove</guibutton></link>
+	    do what you would expect them to do.  When a cross section is
+	    removed from the chooser here, it is also removed from the
+	    <link linkend="Section-Graphics-CrossSection">Mesh Cross
+	    Section</link> toolbox.
       </para>
-      <figure id="Figure-CrossSectionWidget">
-	<title>The Cross Section Widget</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/cswidget.png" format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/cswidget.eps" format="EPS"/>
-	  </imageobject>
-	</mediaobject>
+      <para>
+        When the <xref linkend="RegisteredClass-Domain"/> is set to <link
+        linkend="RegisteredClass-SkeletonEdgeBoundaryDomain"><guilabel>Edge
+        Boundary</guilabel></link>, the boundary may lie between two
+        elements, and the quantity being computed may have different
+        results on different sides of the boundary.  Therefore it's
+        necessary to specify which side of the boundary to use by
+        setting the <varname>side</varname> parameter to
+        <userinput>LEFT</userinput> or <userinput>RIGHT</userinput>,
+        as shown in <xref linkend="Figure-DomainWidgets"/>.  See <xref
+        linkend="Enum-SegmentSide"/> for a discussion of how
+        <userinput>LEFT</userinput> and <userinput>RIGHT</userinput>
+        are defined.
+      </para>
+      <para>
+        When <xref linkend="RegisteredClass-Domain"/> is set to <link
+        linkend="RegisteredClass-PixelGroup"><guilabel>Pixel
+        Group</guilabel></link> or <link
+        linkend="RegisteredClass-ElementGroup"><guilabel>Element
+        Group</guilabel></link>, it's possible to choose a group name,
+        or <userinput>&lt;selection&gt;</userinput> to set the domain
+        to the currently selected pixels or &elems;.
+      </para>
+      <figure id="Figure-DomainWidgets">
+	    <title>Two Versions of the Domain Pane</title>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/gui/domainwidgets.png" format="PNG"/>
+	      </imageobject>
+          <caption>
+            <para>
+              When the domain is set to <guilabel>Cross
+              Section</guilabel> the Domain Pane will look like the
+              upper image.  When it's set to <guilabel>Edge
+              Boundary</guilabel>, the pane will look like the lower
+              image.  Other settings are simpler.
+            </para>
+          </caption>
+	    </mediaobject>
       </figure>
-    </simplesect>  
+    </simplesect>
+
+
     <simplesect id="Section-Tasks-Analysis-SamplingPane">
       <title>Sampling Pane </title> 
       <para>
-	Outputs cannot in general be evaluated directly on the
-	domains, they have to be evaluated at particular points on the
-	mesh, and depending on the desired operation, the resulting
-	pointwise data may need to be combined in some way.
+	    Outputs cannot in general be evaluated directly on the
+	    domains, they have to be evaluated at particular points on the
+	    mesh, and depending on the desired operation, the resulting
+	    pointwise data may need to be combined in some way.
       </para>
       <para>
-	The pull-down menu in the sampling pane selects a set of
-	points on which to evaluate the output, and the result is one
-	of the <xref linkend="RegisteredClass-SampleSet"/> objects.
+	    The pull-down menu in the sampling pane selects a set of
+	    points on which to evaluate the output, and the result is one
+	    of the <xref linkend="RegisteredClass-SampleSet"/> objects.
       </para>
       <para>
-	Note that the available sample sets will depend on the current
-	settings of the Domain and Operation panes.
+	    Note that the available sample sets will depend on the current
+	    settings of the <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link> and
+	    <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link> panes.
       </para>
     </simplesect>
 
     <simplesect id="Section-Tasks-Analysis-Named">
       <title>Named Analyses Pane</title>
       <para>
-	The <guilabel>Named Analyses</guilabel> pane <link
-	linkend="Section-Concepts-Mesh-NamedAnalysis">assigns a
-	name</link> to the current settings of the
-	<guilabel>Output</guilabel>, <guilabel>Operation</guilabel>,
-	<guilabel>Domain</guilabel>, and <guilabel>Sampling</guilabel>
-	panes and allows those settings to be reloaded into the panes
-	or to be used as a <link
-	linkend="Section-Concepts-Outputs-Scheduled">Scheduled
-	Output</link> during time evolution computations.
+	    The <guilabel>Named Analyses</guilabel> pane <link
+	    linkend="Section-Concepts-Mesh-NamedAnalysis">assigns a
+	    name</link> to the current settings of the
+	    <link linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>, <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
+	    <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>, and <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>
+	    panes and allows those settings to be reloaded into the panes
+	    or to be used as a <link
+	    linkend="Section-Concepts-Outputs-Scheduled">Scheduled
+	    Output</link> during time evolution computations.
       </para>
       <para>
-	As shown in <xref linkend="Figure-Analysis-Named"/>, the Named
-	Analysis pane consists of a button labeled
-	<guibutton>Create/Delete/etc&hellip;</guibutton> and a pull-down
-	menu named <guilabel>Current</guilabel>.
-      </para>
-      <figure id="Figure-Analysis-Named">
-	<title>The Named Analysis Pane</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/namedanalysis.png" format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/namedanalysis.eps" format="EPS"/>
-	  </imageobject>
-	</mediaobject>
-      </figure>
-      <para>
-	Clicking the <guibutton>Create/Delete/etc&hellip;</guibutton>
-	button brings up a pop-up menu containing these options:
-	<itemizedlist>
-	  <listitem>
-	    <formalpara>
-	      <title>Create&hellip;</title>
-	      <para>
-		 <link
-		 linkend="MenuItem-OOF.Named_Analysis.Create">Create</link>
-		 a new <link
-		 linkend="Section-Concepts-Mesh-NamedAnalysis">Named
-		 Analysis</link> using the current settings of the
-		 <guilabel>Output</guilabel>,
-		 <guilabel>Operation</guilabel>,
-		 <guilabel>Domain</guilabel>, and
-		 <guilabel>Sampling</guilabel> panes.  A dialog box
-		 will appear asking for a name, which may be selected
-		 <link
-		 linkend="Object-automatic">automatically</link>.
-		 Clicking <guibutton>OK</guibutton> creates the Named
-		 Analysis.
-	      </para>
-	    </formalpara>
-	    <para>
-	      The new name must be unique among all Named Analyses on
-	      all &meshes;, including any Named Analyses created on
-	      the <link linkend="Section-Tasks-BdyAnalysis">Boundary
-	      Analysis</link> page.  If the name is not unique,
-	      <userinput>&lt;x&gt;</userinput> will be appended to it,
-	      where <userinput>x</userinput> is an integer.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Save&hellip;</title>
-	      <para>
-		<link
-		linkend="MenuItem-OOF.Named_Analysis.SaveAnalysisDefs">Save</link>
-		the definitions of the Named Analyses to a file.  A
-		file chooser dialog will appear.  The
-		<guilabel>names</guilabel> list in the dialog contains
-		all of the Named Analyses.  The selected ones will be
-		saved when the <guibutton>OK</guibutton> is pressed.
-		Multiple names can be selected by shift-clicking in
-		the list.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Delete&hellip;</title>
-	      <para>
-		A dialog box will appear listing all of the Named
-		Analyses.  Selecting one and clicking
-		<guibutton>OK</guibutton> will <link
-		linkend="MenuItem-OOF.Named_Analysis.Delete">delete</link>
-		it.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	</itemizedlist>
+	    The <guilabel>Named Analysis</guilabel> pane consists of three
+	    buttons labeled <guibutton>New</guibutton>,
+	    <guibutton>Save</guibutton>, and <guilabel>Delete</guilabel>
+	    and a pull-down menu named <guilabel>Current</guilabel>.
+	    <itemizedlist>
+	      <listitem>
+	        <formalpara>
+	          <title>New</title>
+	          <para>
+		        <link
+		        linkend="MenuItem-OOF.Named_Analysis.Create">Create</link>
+		        a new <link
+		        linkend="Section-Concepts-Mesh-NamedAnalysis">Named
+		        Analysis</link> using the current settings of the
+		        <link linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>,
+		        <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
+		        <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>, and
+		        <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link> panes.  A dialog box
+		        will appear asking for a name, which may be generated
+		        <link linkend="Object-automatic">automatically</link>.
+		        Clicking <guibutton>OK</guibutton> creates the Named
+		        Analysis.
+	          </para>
+	        </formalpara>
+	        <para>
+	          The new name must be unique among all Named Analyses on
+	          all &meshes;, including any Named Analyses created on
+	          the <link linkend="Section-Tasks-BdyAnalysis">Boundary
+	          Analysis</link> page.  If the name is not unique,
+	          <userinput>&lt;x&gt;</userinput> will be appended to it,
+	          where <userinput>x</userinput> is an integer.
+	        </para>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Save</title>
+	          <para>
+		        <link
+		        linkend="MenuItem-OOF.Named_Analysis.SaveAnalysisDefs">Save</link>
+		        the definitions of the Named Analyses to a file.  A
+		        file chooser dialog will appear.  The
+		        <guilabel>names</guilabel> list in the dialog contains
+		        all of the Named Analyses.  The selected ones will be
+		        saved when the <guibutton>OK</guibutton> is pressed.
+		        Multiple names can be selected by shift-clicking in
+		        the list.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Delete</title>
+	          <para>
+		        A dialog box will appear listing all of the Named
+		        Analyses.  Selecting one and clicking
+		        <guibutton>OK</guibutton> will <link
+		        linkend="MenuItem-OOF.Named_Analysis.Delete">delete</link>
+		        it.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	    </itemizedlist>
       </para>
       <para>
-	The pulldown menu labelled <guilabel>Current</guilabel>
-	displays the name of the current settings of the
-	<guilabel>Output</guilabel>, <guilabel>Operation</guilabel>,
-	<guilabel>Domain</guilabel>, and <guilabel>Sampling</guilabel>
-	panes.  If no name has been assigned to the current
-	configuration, the menu label will be blank.  Selecting a name
-	in the menu will switch the panes to the selected
-	configuration.
+	    The pulldown menu labelled <guilabel>Current</guilabel>
+	    displays the name of the current settings of the
+	    <link linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>, <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
+	    <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>, and <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>
+	    panes.  If no name has been assigned to the current
+	    configuration, the menu label will be blank.  Selecting a name
+	    in the menu will switch the panes to the selected
+	    configuration.
       </para>
     </simplesect>
 
     <simplesect id="Section-Tasks-Analysis-Destination">
       <title>Destination Pane</title>
       <para>
-	The <guilabel>Destination</guilabel> pane determines where the
-	data generated by the analysis tool will be written.  Data can
-	appear in the <link linkend="Section-Windows-Messages">message
-	window</link>, in a previously specified file, or in a new
-	file.
+	    The <guilabel>Destination</guilabel> pane determines where the
+	    data generated by the analysis tool will be written.  Data can
+	    appear in the <link linkend="Section-Windows-Messages">message
+	    window</link>, in a previously specified file, or in a new
+	    file.
       </para>
       <para>
-	The components of the pane are:
-	<itemizedlist>
-	  <listitem>
+	    The components of the pane are:
+	    <itemizedlist>
+	      <listitem>
+	        <formalpara>
+	          <title>Destination Chooser</title>
+	          <para>
+		        The pull-down menu at the top of the pane selects a
+		        previously defined destination.  Initially, the menu
+		        only contains <userinput>&lt;Message
+		        Window&gt;</userinput>.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
 	    <formalpara>
-	      <title>Destination Chooser</title>
+	      <title>New</title>
 	      <para>
-		The pull-down menu at the top of the pane selects a
-		previously defined destination.  Initially, the menu
-		only contains <userinput>&lt;Message
-		Window&gt;</userinput>.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>New&hellip;</title>
-	      <para>
-		The <guibutton>New&hellip;</guibutton> button brings
-		up a file selector dialog box.  The
-		<varname>mode</varname> parameter is a <xref
-		linkend="Enum-WriteMode"/> and can be set to
-		<userinput>write</userinput> or
-		<userinput>append</userinput>.  If the file already
-		exists, <userinput>write</userinput> changes to
-		<userinput>OVERWRITE</userinput>, to make sure you
-		notice.  Preexisting content in files opened in
-		<userinput>OVERWRITE</userinput> mode will be deleted.
+		    The <guibutton>New</guibutton> button brings up a file
+		    selector dialog box.  The <varname>mode</varname>
+		    parameter is a <xref linkend="Enum-WriteMode"/> and can be
+		    set to <userinput>write</userinput> or
+		    <userinput>append</userinput>.  If the file already
+		    exists, <userinput>write</userinput> changes to
+		    <userinput>OVERWRITE</userinput>, to make sure you notice.
+		    Preexisting content in files opened in
+		    <userinput>OVERWRITE</userinput> mode will be deleted.
 	      </para>
 	    </formalpara>
 	    <para>
 	      If the selected file has already been used for output in
-	      this &oof2; session, the new data will be appended to
-	      it, even if it was opened in
-	      <userinput>write</userinput> or
-	      <userinput>OVERWRITE</userinput> mode, unless it has
-	      been rewound.
+	      this &oof2; session, the new data will be appended to it,
+	      even if it was opened in <userinput>write</userinput> or
+	      <userinput>OVERWRITE</userinput> mode, unless it has been
+	      rewound.
 	    </para>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Rewind</title>
-	      <para>
-		After <link
-		linkend="MenuItem-OOF.Mesh.Analyze.Rewind">rewinding</link>
-		an output file, any new data written to the file will
-		overwrite its previous contents.  The file will
-		<emphasis>not</emphasis> be cleared until new data is
-		written.  This operation has no effect on
-		<userinput>&lt;Message Window&gt;</userinput>.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	  <listitem>
-	    <formalpara>
-	      <title>Clear</title>
-	      <para>
-		Remove all of the files from the list, except for the
-		<userinput>&lt;Message Window&gt;</userinput>.
-		Afterwards, any files opened will be treated as if
-		they're new, so data will be overwritten if they're
-		opened in <userinput>write</userinput> or
-		<userinput>OVERWRITE</userinput> mode.
-	      </para>
-	    </formalpara>
-	  </listitem>
-	</itemizedlist>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Rewind</title>
+	          <para>
+		        After <link
+		        linkend="MenuItem-OOF.Mesh.Analyze.Rewind">rewinding</link>
+		        an output file, any new data written to the file will
+		        overwrite its previous contents.  The file will
+		        <emphasis>not</emphasis> be cleared until new data is
+		        written.  This operation has no effect on
+		        <userinput>&lt;Message Window&gt;</userinput>.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	      <listitem>
+	        <formalpara>
+	          <title>Clear</title>
+	          <para>
+		        Remove all of the files from the list, except for the
+		        <userinput>&lt;Message Window&gt;</userinput>.
+		        Afterwards, any files opened will be treated as if
+		        they're new, so data will be overwritten if they're
+		        opened in <userinput>write</userinput> or
+		        <userinput>OVERWRITE</userinput> mode.
+	          </para>
+	        </formalpara>
+	      </listitem>
+	    </itemizedlist>
       </para>
       <para>
-	A file opened in the <guilabel>Destination</guilabel> pane is
-	handled identically to a file opened as an <xref
-	linkend="RegisteredClass-OutputStream"/> in the <link
-	linkend="Section-Tasks-ScheduledOutput-Destination">Scheduled
-	Output</link> page.  An <xref
-	linkend="RegisteredClass-OutputStream"/> created on that page
-	will appear as a predefined destination on this page.  <link
-	linkend="Section-Tasks-ScheduledOutput-Rewind">Rewinding</link>
-	a file there and on this page have the same effect.
+	    A file opened in the <guilabel>Destination</guilabel> pane is
+	    handled identically to a file opened as an <xref
+	    linkend="RegisteredClass-OutputStream"/> in the <link
+	    linkend="Section-Tasks-ScheduledOutput-Destination">Scheduled
+	    Output</link> page.  An <xref
+	    linkend="RegisteredClass-OutputStream"/> created on that page
+	    will appear as a predefined destination on this page.  <link
+	    linkend="Section-Tasks-ScheduledOutput-Rewind">Rewinding</link>
+	    a file there has the same effect as rewinding it on this page.
       </para>
       <para>
-	The format of the output file can be adjusted by the <xref
-	linkend="MenuItem-OOF.Settings.Output_Formatting"/> menu in
-	the main &oof2; window.
+	    The format of the output file can be adjusted by the <xref
+	    linkend="MenuItem-OOF.Settings.Output_Formatting"/> menu in
+	    the main &oof2; window.
+      </para>
+    </simplesect>
+
+    <simplesect>
+      <title>
+        The Go Button
+      </title>
+      <para>
+        The <guilabel>Go</guilabel> button in the bottom right corner
+        of the page invokes the command in the <xref
+        linkend="MenuItem-OOF.Mesh.Analyze"/> menu specified by the
+        <link
+        linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>
+        pane.  Data from the <link
+        linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>,
+        <link
+        linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>,
+        <link
+        linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>,
+        and <link linkend="Section-Tasks-Analysis-Destination"><guilabel>Destination</guilabel></link> panes are passed as
+        arguments to the command.
+      </para>
+      <para>
+        If the <guilabel>Go</guilabel> button is not sensitized,
+        either some data is missing from one of the panes, the <link
+        linkend="Section-Tasks-Analysis-Time">time widget</link> has
+        an invalid setting, the &mesh; is <link
+        linkend="RegisteredClass-RebuildMesh">out of sync</link> with
+        its &skel;, or the Output is incomputable on the &mesh;.
       </para>
     </simplesect>
   </section>    
