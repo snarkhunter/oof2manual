@@ -28,44 +28,44 @@
     Graphics Window.  It consists of five main panes:
     <itemizedlist>
       <listitem>
-	<para>
-	  The <emphasis>Canvas</emphasis> is where &oof2; draws
-	  &micros;.
-	</para>
+	    <para>
+	      The <emphasis>Canvas</emphasis> is where &oof2; draws
+	      &micros;, &meshes;, and everything else.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The <link linkend="Section-Graphics-Time"><emphasis>Time
-	  Controls</emphasis></link> display and change the time of
-	  the &micros; displayed on the Canvas.
-	</para>
+	    <para>
+	      The <link linkend="Section-Graphics-Time"><emphasis>Time
+	      Controls</emphasis></link> display and change the time of
+	      the &micros; displayed on the Canvas.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The <link
-	  linkend="Section-Graphics-Toolboxes"><emphasis>Toolbox</emphasis></link>
-	  to the left of the Canvas controls how &oof2; responds to
-	  mouse clicks on the Canvas.  The Toolbox also displays
-	  information in response to mouse clicks.  &oof2; contains
-	  many <link linkend="Section-Graphics-Toolboxes">different
-	  Toolboxes</link>.  The Toolbox Chooser at the top of the
-	  Toolbox pane switches between them.
-	</para>
+	    <para>
+	      The <link
+	      linkend="Section-Graphics-Toolboxes"><emphasis>Toolbox</emphasis></link>
+	      to the left of the Canvas controls how &oof2; responds to
+	      mouse clicks on the Canvas.  The Toolbox also displays
+	      information in response to mouse clicks.  &oof2; contains
+	      many <link linkend="Section-Graphics-Toolboxes">different
+	      Toolboxes</link>.  The Toolbox Chooser at the top of the
+	      Toolbox pane switches between them.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The <link linkend="Section-Graphics-LayerList">Layer
-	  List</link> at the bottom of the window lists the contents
-	  of the Canvas.  It also provides a quick way of turning
-	  different parts of the display on and off.
-	</para>
+	    <para>
+	      The <link linkend="Section-Graphics-LayerList">Layer
+	      List</link> at the bottom of the window lists the contents
+	      of the Canvas.  It also provides a quick way of turning
+	      different parts of the display on and off.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The <link linkend="Section-Graphics-ContourMap">Contour
-	  Map</link> to the right of the Canvas displays the colors
-	  used in contour plots.
-	</para>
+	    <para>
+	      The <link linkend="Section-Graphics-ContourMap">Contour
+	      Map</link> to the right of the Canvas displays the colors
+	      used in contour plots.
+	    </para>
       </listitem>
     </itemizedlist>
     The <link linkend="Section-Graphics-MenuBar">Menu Bar</link> at
@@ -77,26 +77,26 @@
     <title>The Graphics Window</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/gfxwindow.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/gfxwindow.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gfx/gfxwindow.png" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
-
+  
   <section id='Section-Graphics-Layer'>
     <title>Layers</title>
     <para>
       The objects displayed in the Canvas are arranged in
       <emphasis>Layers</emphasis>.  Each &layer; obscures the layers
-      below it, and is obscured by the &layer; above it. Each &layer;
-      displays some aspect of a single &oof2; object, either a
-      &micro;, &image;, &skel;, or &mesh;.  Which objects are displayed
-      automatically can be controlled by the New Layer Policy commands
-      in the graphics window's Settings menu.
-      <!-- TODO: Provide links! -->
-      (Some utility layers, such as those that display selected
+      below it, and is obscured by the &layer; above it (although they
+      can be transparent too). Each &layer; displays some aspect of a
+      single &oof2; object, either a &micro;, &image;, &skel;, or
+      &mesh;.  Which objects are displayed automatically can be
+      controlled by the <link
+      linkend="MenuItem-OOF.Graphics_n.Settings.New_Layer_Policy"><guimenuitem>New
+      Layer Policy</guimenuitem></link> command in the graphics
+      window's <link
+      linkend="MenuItem-OOF.Graphics_n.Settings"><guimenu>Settings</guimenu></link>
+      menu.  (Some utility layers, such as those that display selected
       objects, are always created automatically.)
     </para>
     <para>
@@ -121,53 +121,58 @@
     <section id="Section-Graphics-New-Layer-Policy">
       <title>The New Layer Policy</title>
       <para>
-        When a new object, such as an &image; or &skel; is created, &oof2;
-        needs to know whether or not to add it to a graphics window.
-        Previous versions of &oof2; had a confusing policy governing which
-        objects would be displayed and when.  To avoid confusion, there is
-        now one unambiguous policy:
+        When a new object, such as an &image; or &skel; is created,
+        &oof2; needs to know whether or not to create a new Layer to
+        display it in the graphics window.  Previous versions of
+        &oof2; had a confusing policy governing which objects would be
+        displayed and when.  To avoid confusion, the default policy is
+        now unambiguous and easy to explain:
         <warning>
-          Nothing is displayed unless you request that it be displayed.
+          <simpara>
+            Nothing is displayed unless you request that it be
+            displayed.
+          </simpara>
         </warning>
       </para>
       <para>
-        You can change the policy to one of these values:
+        You can set the policy to one of these values:
         <itemizedlist>
           <listitem>
             <simpara>
-              <emphasis>Never</emphasis> is the default. New items are not
-              displayed automatically.  To add items to a graphics window,
-              use the <xref linkend="MenuItem-OOF.Graphics_n.Layer.New"/> menu item.
+              <emphasis>Never</emphasis> is the default. New items are
+              not displayed automatically.  To add items to a graphics
+              window, use the <xref
+              linkend="MenuItem-OOF.Graphics_n.Layer.New"/> menu item.
             </simpara>
           </listitem>
           <listitem>
             <simpara>
-              <emphasis>Always</emphasis> is the opposite of Never. New
-              items are always displayed in all graphics windows.  Images
-              will be displayed as bitmaps.  &skels; and &meshes; will be
-              displayed by their edges.  This probably isn't very useful if
-              you have a lot of objects.
+              <emphasis>Always</emphasis> is the opposite of
+              Never. New items are always displayed in all graphics
+              windows.  Images will be displayed as bitmaps.  &skels;
+              and &meshes; will be displayed by their edges.  This
+              probably isn't very useful if you have a lot of objects.
             </simpara>
           </listitem>
           <listitem>
             <simpara>
               <emphasis>Single</emphasis> is the most like the earlier
               behavior.  Objects will be automatically displayed in an
-              existing graphics window if the window doesn't already contain
-              a similar object.  Each window can contain one &image;, one
-              &skel;, and so forth.
+              existing graphics window but only if the window doesn't
+              already contain a similar object.  Each window can
+              contain one &image;, one &skel;, and so forth.
             </simpara>
           </listitem>
         </itemizedlist>
       </para>
       <para>
-        The policy can be changed in two places.  <xref
+        The policy can be changed in two places. The menu item <xref
         linkend="MenuItem-OOF.Settings.Graphics_Defaults.New_Layer_Policy"/>
-        menu will change it for all new graphics windows, but won't affect
-        windows that are already open.  To change the behavior of open
-        windows, use <xref
-        linkend="MenuItem-OOF.Graphics_n.Settings.New_Layer_Policy"/> in the
-        already opened window.
+        in the main &oof2; window will change it for all new graphics
+        windows, but won't affect windows that are already open.  To
+        change the behavior of an open graphics window, use <xref
+        linkend="MenuItem-OOF.Graphics_n.Settings.New_Layer_Policy"/>
+        in the window's menu bar.
       </para>
     </section>
   </section>
@@ -184,71 +189,79 @@
       top of the Layer List.  
     </para>
     <para>
-      <xref linkend="Figure-LayerList"/> indicates the components of
+      <xref linkend="Figure-LayerList"/> illustrates the components of
       the Layer List.  Each line corresponds to a single &layer;, and
       is made up of the following columns:
       <itemizedlist>
-	<listitem>
-	  <para>
-	    A check button marked <guilabel>Show</guilabel>.  If it's
-	    checked, the &layer; is drawn on the canvas.  If it's not
-	    checked, the &layer; is invisible.  Toggling the button
-	    invokes the <link
-	    linkend="MenuItem-OOF.Graphics_n.Layer.Hide"><command>Hide</command></link>
-	    and <link
-	    linkend="MenuItem-OOF.Graphics_n.Layer.Show"><command>Show</command></link>
-	    commands in the <xref
-	    linkend="MenuItem-OOF.Graphics_n.Layer"/> menu.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
- 	    A button marked <guibutton>Map</guibutton>, which shows
- 	    and hides the <link
- 	    linkend="Section-Graphics-ContourMap">Contour Map</link>
- 	    associated with the layer.  At most one <link
- 	    linkend="Section-Graphics-ContourMap">Contour Map</link>
- 	    may be displayed at one time.  This button is greyed out
- 	    for &layers; which do not display contour data.  For
- 	    contour layers, the button invokes the <link
- 	    linkend="MenuItem-OOF.Graphics_n.Layer.Show_Contour_Map"><command>Show_Contour_Map</command></link>
- 	    and <link
- 	    linkend="MenuItem-OOF.Graphics_n.Layer.Hide_Contour_Map"><command>Hide_Contour_Map</command></link>
- 	    commands in the <xref
- 	    linkend="MenuItem-OOF.Graphics_n.Layer"/> menu.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The class (&image;, &mesh;,
-	    <foreignphrase>etc.</foreignphrase>) and name (in
-	    parentheses) of the object being displayed.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    How the object is being displayed.  This is the name of
-	    the &layer;'s <xref
-	    linkend="RegisteredClass-DisplayMethod"/>.  The amount of
-	    extra detail provided for the <xref
-	    linkend="RegisteredClass-DisplayMethod"/> depends on the
-	    setting of the <link
-	    linkend="MenuItem-OOF.Graphics_n.Settings.Long_Layer_Names"><command>Long
-	    Layer Names</command></link> entry in the <link
-	    linkend="Section-Graphics-MenuBar">Settings menu</link>.
-	  </para>
-	</listitem>
+	    <listitem>
+	      <formalpara>
+            <title>Show</title>
+            <para>
+	          A check button controlling whether or not the layer is
+	          actually drawn.  If it's checked, the &layer; is drawn
+	          on the canvas.  If it's not checked, the &layer; is
+	          invisible.  Toggling the button invokes the <link
+	          linkend="MenuItem-OOF.Graphics_n.Layer.Hide"><command>Hide</command></link>
+	          and <link
+	          linkend="MenuItem-OOF.Graphics_n.Layer.Show"><command>Show</command></link>
+	          commands in the <link
+	          linkend="MenuItem-OOF.Graphics_n.Layer"><guilabel>Layer</guilabel></link>
+	          menu.
+	        </para>
+          </formalpara>
+	    </listitem>
+        <listitem>
+          <formalpara>
+            <title>Freeze</title>
+            <para>
+              When this check button is checked, the layer will not be
+              automatically updated.  Use this to display a &mesh; at
+              two different times, for example.  Toggling the button
+              invokes the <link
+              linkend="MenuItem-OOF.Graphics_n.Layer.Freeze"><command>Freeze</command></link>
+              and
+              <link
+                  linkend="MenuItem-OOF.Graphics_n.Layer.Unfreeze"><command>Unfreeze</command></link>
+              commands in the <link
+              linkend="MenuItem-OOF.Graphics_n.Layer"><guilabel>Layer</guilabel></link> menu.
+            </para>
+          </formalpara>
+        </listitem>
+        <listitem>
+          <formalpara>
+            <title>What</title>
+	        <para>
+	          The class (&image;, &mesh;,
+	          <foreignphrase>etc.</foreignphrase>) and name (in
+	          parentheses) of the object being displayed.
+	        </para>
+          </formalpara>
+	    </listitem>
+	    <listitem>
+          <formalpara>
+            <title>How</title>
+	        <para>
+	          How the object is being displayed.  This is the name of
+	          the &layer;'s <xref
+	          linkend="RegisteredClass-DisplayMethod"/>.  The amount
+	          of extra detail provided for the <xref
+	          linkend="RegisteredClass-DisplayMethod"/> depends on the
+	          setting of the <link
+	          linkend="MenuItem-OOF.Graphics_n.Settings.Long_Layer_Names"><command>Long
+	          Layer Names</command></link> entry in the <link
+	          linkend="Section-Graphics-MenuBar"><guilabel>Settings</guilabel></link>
+	          menu.
+	        </para>
+          </formalpara>
+	    </listitem>
       </itemizedlist>
     </para>
     <figure id="Figure-LayerList">
       <title>The Layer List</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/layerlist.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/layerlist.eps" format="EPS"/>
-	</imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gfx/layerlist.png" format="PNG"/>
+	    </imageobject>
       </mediaobject>
     </figure>
     <para>
@@ -256,52 +269,100 @@
       buttons in it) selects that &layer; for further processing by
       commands in the Graphics Window's <link
       linkend="MenuItem-OOF.Graphics_n.Layer"><command>Layer</command></link>
-      menu and by the <link
-      linkend="Section-Graphics-LayerEditor">Layer Editor</link>.
-      Control-clicking on a selected &layer; will deselect it.
+      menu.  Control-clicking<footnote><simpara>Maybe command
+      clicking.  This seems to be system
+      dependent.</simpara></footnote> on a selected &layer; will
+      deselect it.
     </para>
     <para>
-      To rearrange the order of the &layers; in the list, simply click
-      and drag a &layer; to its new position, as shown in <xref
-      linkend="Figure-LayerListMove"/>.  The &layers; in the canvas
-      will rearrange themselves accordingly.  Dragging a layer invokes
-      the commands <xref
-      linkend="MenuItem-OOF.Graphics_n.Layer.Raise.By"/> and <xref
-      linkend="MenuItem-OOF.Graphics_n.Layer.Lower.By"/>.
-    </para>
-    <para>
-      It's often convenient to repeatedly raise and lower a layer to
-      compare it to an adjacent layer.  To do this easily, use the
-      keyboard accelerators <userinput>control-L</userinput> and
-      <userinput>control-R</userinput>, corresponding to the <link
-      linkend="MenuItem-OOF.Graphics_n.Layer.Raise.One_Level"><command>Raise.One_Level</command></link>
+      To rearrange the order of the &layers; in the list, select a
+      layer and use the <link
+      linkend="MenuItem-OOF.Graphics_n.Layer.Raise"><command>Raise</command></link>
       and <link
-      linkend="MenuItem-OOF.Graphics_n.Layer.Lower.One_Level"><command>Lower.One_Level</command></link>
-      in the <xref linkend="MenuItem-OOF.Graphics_n.Layer"/> menu.
+      linkend="MenuItem-OOF.Graphics_n.Layer.Lower"><command>Lower</command></link>
+      menus in the <link
+      linkend="MenuItem-OOF.Graphics_n.Layer"><command>Layer</command></link>
+      menu.  You can also right-click on a line in the Layer List and
+      use the pop-up menu, which is identical to the
+      <command>Layer</command> menu in the menu bar. The commands and
+      their keyboard shortcuts are:
+      <itemizedlist>
+        <listitem>
+          <para>
+            <command>Raise</command>
+            <itemizedlist>
+              <listitem>
+                <simpara>
+                  <link
+                      linkend="MenuItem-OOF.Graphics_n.Layer.Raise.One_Level"><command>One_Level</command></link>
+                  (<accel>ctrl-R</accel>)
+                </simpara>
+              </listitem>
+              <listitem>
+                <simpara>
+                  <link
+                      linkend="MenuItem-OOF.Graphics_n.Layer.Raise.To_Top"><command>To
+                  Top</command></link> (<accel>ctrl-T</accel>)
+                </simpara>
+              </listitem>
+              <listitem>
+                <simpara>
+                  <link linkend="MenuItem-OOF.Graphics_n.Layer.Raise.By"><command>By</command></link>
+                </simpara>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <command>Lower</command>
+            <itemizedlist>
+              <listitem>
+                <simpara>
+                  <link
+                  linkend="MenuItem-OOF.Graphics_n.Layer.Lower.One_Level"><command>One_Level</command></link>
+                  (<accel>ctrl-L</accel>)
+                </simpara>
+              </listitem>
+              <listitem>
+                <simpara>
+                  <link
+                  linkend="MenuItem-OOF.Graphics_n.Layer.Lower.To_Bottom"><command>To
+                  Top</command></link> (<accel>ctrl-B</accel>)
+                </simpara>
+              </listitem>
+              <listitem>
+                <simpara>
+                  <link
+                      linkend="MenuItem-OOF.Graphics_n.Layer.Lower.By"><command>By</command></link>
+                </simpara>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+      </itemizedlist>
     </para>
-    <figure id="Figure-LayerListMove">
-      <title>Rearranging Layers</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/layerlist2.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/layerlist2.eps" format="EPS"/>
-	</imageobject>
-      </mediaobject>
-    </figure>
     <para>
       In normal operation, the Layer List actually doesn't show all of
       the &layers; that are being displayed on the Canvas.  This is
       because there are a lot of auxiliary &layers;, for showing
       selections and other decorations, that would just clutter up the
       list.  These &layers; are called <emphasis>unlisted</emphasis>
-      layers, and are indicated by a thin horizontal line in the list.
-      The <link
+      layers, and are indicated by thin nearly invisible horizontal
+      lines in the list.  The <link
       linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
       All Layers</command></link> command in the <link
       linkend="Section-Graphics-MenuBar">Settings menu</link> governs
       whether or not the auxiliary &layers; are listed.
+    </para>
+    <para>
+      If you want to change any of the auxiliary layers, to adjust the
+      opacity or color of selected elements for example, you can
+      temporarily toggle <link
+      linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+      All Layers</command></link> on, edit the layer, and then toggle
+      the flag off again.
     </para>
   </section>
 
@@ -354,7 +415,7 @@
       Several aspects of the Contour Map display may be controlled in
       the <link
       linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command></link>
-      menu.  A PDF image of the Contour Map may be saved to a
+      menu.  A PDF or PNG image of the Contour Map may be saved to a
       file with the <link
       linkend="MenuItem-OOF.Graphics_n.File.Save_Contourmap"><command>Save
       Contourmap</command></link> command in the <link
@@ -382,12 +443,9 @@
     <figure id="Figure-TimeControls">
       <title>Graphics Window Time Controls</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/timecontrols.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/timecontrols.eps" format="EPS"/>
-	</imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gfx/timecontrols.png" format="PNG"/>
+	    </imageobject>
       </mediaobject>
     </figure>
     <para>
@@ -400,14 +458,14 @@
       display &mesh; data at their assigned time.
     </para>
     <para>
-      The buttons on the left side marked with arrows change the time
-      to the previous or next time stored in the &mesh; or &meshes;
-      displayed in the window.  The slider in the middle allows the
-      time to be changed continuously between the oldest and newest
-      times.  When the slider is not set to a stored time, the
-      &fields; in the &mesh; are interpolated to the selected time,
-      and the displayed quantities are computed from the interpolated
-      values.
+      The arrow buttons on the left side of the controls change the
+      time to the previous or next time stored in the &mesh; (or
+      &meshes;) displayed in the window.  The slider in the middle
+      allows the time to be changed continuously between the oldest
+      and newest times.  When the slider is not set to a stored time,
+      the &fields; in the &mesh; are interpolated to the selected
+      time, and the displayed quantities are computed from the
+      interpolated values.
     </para>
     <para>
       The text box on the right side of the controls displays the
@@ -418,15 +476,20 @@
       a stored time.
     </para>
     <para>
+      Changing the time via the arrows, slider, or text box invokes
+      the <xref linkend="OOF.Graphics_n.Settings.Time"/> command.
+    </para>
+    <para>
       When a &mesh; is being <link
       linkend="Section-Concepts-Mesh-Solving">solved</link> and the
-      <link linkend="RegisteredClass-GraphicsUpdate">Graphics Update</link>
-      <link linkend="Section-Concepts-Outputs">Output</link> is <link
-      linkend="Section-Tasks-ScheduledOutput">scheduled</link>, the
-      time control and the graphics window always display the latest
-      time.  Similarly, when the Window is being <link
-      linkend="MenuItem-OOF.Graphics_n.File.Animate">animated</link>, the Time
-      Controls display the animation time.
+      <link linkend="RegisteredClass-GraphicsUpdate">Graphics
+      Update</link> is one of the <link
+      linkend="Section-Tasks-ScheduledOutput">scheduled</link>, <link
+      linkend="Section-Concepts-Outputs">Outputs</link>, the time
+      controls and the graphics window always display the latest time.
+      Similarly, when the Window is being <link
+      linkend="MenuItem-OOF.Graphics_n.File.Animate">animated</link>,
+      the time controls display the animation time.
     </para>
   </section>			<!-- Setting the Time -->
 
@@ -445,64 +508,53 @@
     </para>
     <itemizedlist>
       <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.File.Clone"><command>File/Clone</command></link>
-	  creates a new Graphics Window containing the same &layers;
-	  as the current window.
-	</para>
+	    <para>
+	      <link
+	          linkend="MenuItem-OOF.Graphics_n.File.Clone"><command>File/Clone</command></link>
+	      creates a new Graphics Window containing the same &layers;
+	      as the current window.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.File.Save_Image"><command>File/Save&nbsp;Image</command></link>
-	  saves a PDF file containing the current contents of the
-	  Canvas.
-	</para>
+	    <para>
+	      <link
+	      linkend="MenuItem-OOF.Graphics_n.File.Save_Canvas"><command>File/Save&nbsp;Canvas</command></link>
+	      saves a PDF or PNG file containing the current contents of
+	      the entire Canvas.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.File.Animate"><command>File/Animate</command></link>
-	  animates the &layers; in the Window if they display a time
-	  dependent &mesh;.
-	</para>
+        <para>
+          <link
+          linkend="MenuItem-OOF.Graphics_n.File.Save_Canvas_Region"><command>File/Save&nbsp;Canvas&nbsp;Region</command></link>
+          saves a portion of the Canvas.
+        </para>
       </listitem>
       <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.Layer.Delete"><command>Layer/Delete</command></link>
-	  deletes the currently selected &layer; in the Layer List.
-	  It's quicker to delete a &layer; this way than it is to edit
-	  it and delete it in the Layer Editor.
-	</para>
+	    <para>
+	      <link
+	      linkend="MenuItem-OOF.Graphics_n.File.Animate"><command>File/Animate</command></link>
+	      animates the &layers; in the Window if they display a time
+	      dependent &mesh;.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.Layer.Raise.One_Level"><command>Layer/Raise/One&nbsp;Level</command></link>
-	  and <link
-	  linkend="MenuItem-OOF.Graphics_n.Layer.Lower.One_Level"><command>Layer/Lower/One&nbsp;Level</command></link>
-	  are equivalent to the up and down arrows in the Layer List.
-	</para>
+	    <para>
+	      <link
+	          linkend="MenuItem-OOF.Graphics_n.Layer.Raise"><command>Layer/Raise</command></link>
+	      and <link
+	      linkend="MenuItem-OOF.Graphics_n.Layer.Lower"><command>Layer/Lower</command></link>
+          reorder the &layers; in the Canvas.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.Layer.Raise.To_Top"><command>Layer/Raise/To&nbsp;Top</command></link>
-	  and <link
-	  linkend="MenuItem-OOF.Graphics_n.Layer.Lower.To_Bottom"><command>Layer/Raise/To&nbsp;Bottom</command></link>
-	  have no equivalent in the Layer List.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  <link
-	  linkend="MenuItem-OOF.Graphics_n.Layer.Reorder_All"><command>Layer/Reorder&nbsp;All</command></link>
-	  restores the <link linkend="canonicallayerordering">original
-	  ordering</link> of the &layers;, minimizing the amount of
-	  obscured information.
-	</para>
+	    <para>
+	      <link
+	      linkend="MenuItem-OOF.Graphics_n.Layer.Reorder_All"><command>Layer/Reorder&nbsp;All</command></link>
+	      restores the <link linkend="canonicallayerordering">original
+	      ordering</link> of the &layers;, minimizing the amount of
+	      obscured information.
+	    </para>
       </listitem>
       <listitem>
 	<para>

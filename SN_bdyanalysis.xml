@@ -13,72 +13,72 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <section id="Section-Tasks-BdyAnalysis">
-    <title>Boundary Analysis</title>
+<section id="Section-Tasks-BdyAnalysis">
+  <title>Boundary Analysis</title>
+  <para>
+    The Boundary Analysis Page computes quantities on the boundaries
+    of a (presumably solved) mesh. This information can be used to
+    compute the effective properties of materials.  The page is simply
+    a GUI for the <xref
+    linkend="MenuItem-OOF.Mesh.Boundary_Analysis"/> command.  Although
+    it is similar in spirit to the <link
+    linkend="Section-Tasks-Analysis">Analysis Page</link>, it is
+    substantially simpler because there are fewer operationa and fewer
+    choices for domain and sampling.
+  </para>
+  <figure id="Figure-BdyAnalysisPage">
+    <title>The Boundary Analysis Page</title>
+    <mediaobject>
+	  <imageobject>
+	    <imagedata fileref="FIGURES/gui/bdyanalysis_page.png"
+	               format="PNG"/>
+	  </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    As shown in <xref linkend="Figure-BdyAnalysisPage"/>, at the top
+    of the page is a Mesh Chooser, consisting of a set of pull-down
+    menus for choosing the &mesh; (and its &skel; and &micro;) to
+    analyze.  The Time Chooser below it works identically to the one
+    on the <link linkend="Section-Tasks-Analysis-Time">Analysis
+    Page</link>.
+  </para>
+  <para>
+    Below the Time Chooser are two panes: the one on the left contains
+    a list of boundaries, and the one on the right contains a
+    pull-down menu listing the kinds of computations that can be done
+    on the boundaries.  The computations are different kinds of <xref
+    linkend="RegisteredClass-MeshBdyAnalyzer"/>.
+  </para>
+  <para>
+    A computation is done by choosing a boundary on the left, an
+    analysis method on the right, and pressing the
+    <guibutton>Go</guibutton> button. The results will be sent to the
+    destination (file or message window) set by the Destination Pane
+    at the bottom of the window.  The Destination Pane is identical to
+    its counterpart in the <link
+    linkend="Section-Tasks-Analysis-Destination">Analysis Page</link>.
+  </para>
+  <para>
+    <link linkend="Section-Concepts-Mesh-NamedAnalysis">Named
+    Analyses</link> can be created and retrieved here in the same way
+    that they can be created on the <link
+    linkend="Section-Tasks-Analysis-Named">Analysis Page</link>,
+    although the underlying menu commands are different.  This page
+    uses <xref linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Create"/>
+    to create a new Named Analysis, <xref
+    linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Delete"/> to delete
+    one, and <xref
+    linkend="MenuItem-OOF.Mesh.Boundary_Analysis.SaveAnalysisDefs"/>
+    to save one or more.
+  </para>
+  <note>
     <para>
-      The Boundary Analysis Page computes quantities on the boundaries
-      of a (presumably solved) mesh. This information can be used to
-      compute the effective properties of materials.  The page is
-      simply a GUI for the <xref
-      linkend="MenuItem-OOF.Mesh.Boundary_Analysis"/> command.
-      Although it is similar in spirit to the <link
-      linkend="Section-Tasks-Analysis">Analysis Page</link>, it is
-      substantially simpler because there are fewer operationa and
-      fewer choices for domain and sampling.
+      In a future version this page will be merged with the <link
+      linkend="Section-Tasks-Analysis">Analysis Page</link>.
     </para>
-    <figure id="Figure-BdyAnalysisPage">
-      <title>The Boundary Analysis Page</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/bdyanalysis_page.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/bdyanalysis_page.eps"
-	    format="EPS"/>
-	</imageobject>
-      </mediaobject>
-    </figure>
-    <para>
-      As shown in <xref linkend="Figure-BdyAnalysisPage"/>, at the top
-      of the page is a Mesh Chooser, consisting of a set of pull-down
-      menus for choosing the &mesh; (and its &skel; and &micro;) to
-      analyze.  The Time Chooser below it works identically to the one
-      on the <link linkend="Section-Tasks-Analysis-Time">Analysis
-      Page</link>.
-    </para>
-    <para>
-      Below the Time Chooser are two panes: the one on the left
-      contains a list of boundaries, and the one on the right contains
-      a pull-down menu listing the kinds of computations that can be
-      done on the boundaries.  The computations are different kinds of
-      <xref linkend="RegisteredClass-MeshBdyAnalyzer"/>.
-    </para>
-    <para>
-      A computation is done by choosing a boundary on the left, an
-      analysis method on the right, and pressing the
-      <guibutton>Go</guibutton> button. The results will be sent to
-      the destination (file or message window) set by the Destination
-      Pane at the bottom of the window.  The Destination Pane is
-      identical to its counterpart in the <link
-      linkend="Section-Tasks-Analysis-Destination">Analysis
-      Page</link>.
-    </para>
-    <para>
-      <link linkend="Section-Concepts-Mesh-NamedAnalysis">Named
-      Analyses</link> can be created and retrieved here in the same
-      way that they can be created on the <link
-      linkend="Section-Tasks-Analysis-Named">Analysis Page</link>,
-      although the underlying menu commands are different.  This page
-      uses <xref
-      linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Create"/> to create
-      a new Named Analysis, <xref
-      linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Delete"/> to delete
-      one, and <xref
-      linkend="MenuItem-OOF.Mesh.Boundary_Analysis.SaveAnalysisDefs"/>
-      to save one or more.
-    </para>
-  </section>
+  </note>
+</section>
     
 
   <!-- Keep this comment at the end of the file

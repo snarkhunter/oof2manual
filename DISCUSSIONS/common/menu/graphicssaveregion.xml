@@ -10,21 +10,46 @@
 
 <para>
   Save a rectangular region of the contents of the <link
-  linkend='Chapter-Graphics'>Graphics window</link> in a file.  The
-  region is defined by its corners <varname>lowerleft</varname> and
-  <varname>upperright</varname>.  In the GUI,
-  <varname>lowerleft</varname> and <varname>upperright</varname> are
-  initialized to the corners of the currently visible section of the
-  canvas.
+  linkend='Chapter-Graphics'>Graphics window</link> in a file.
+</para>
+<para>
+  In the GUI, the <varname>filename</varname> widget at the top of the
+  dialog box lets you choose the directory and file in which to store
+  the resulting image.  The <guibutton>OK</guibutton> button will be
+  desensitized if the file already exists, unless
+  <varname>overwrite</varname> is <userinput>true</userinput>.
+</para>
+<para>
+  The <varname>pixels</varname> parameter determines the resolution of
+  the saved file.  It is not the same as the number of pixels on the
+  screen or the number of pixels in the &micro;.  If the region is
+  square, the saved file will be
+  <varname>pixels</varname>&times;<varname>pixels</varname> in size.
+  If it's not square, the largest dimension will be
+  <varname>pixels</varname>.  It's necessary to specify
+  <varname>pixels</varname> even when saving in PDF format.
+</para>
+<para>
+  If <varname>background</varname> is <userinput>true</userinput>,
+  then any area of the background that is visible within the region
+  will be drawn in the resulting image.  If it's
+  <userinput>false</userinput>, the background will be transparent (if
+  possible).
+</para>
+<para>
+  <varname>lowerleft</varname> and <varname>upperright</varname>
+  determine the rectangular portion of the Canvas that will be saved.
+  They are positions in <link
+  linkend="Section-Concepts-Microstructure-Coordinates">physical</link>
+  coordinates.  In the GUI, when the <guilabel>Save Canvas
+  Region</guilabel> dialog is opened, <varname>lowerleft</varname> and
+  <varname>upperright</varname> are preset to the corners of the
+  currently visible part of the Canvas.
 </para>
 <note>
   <para>
-    This <command>Save</command> command is <emphasis>not</emphasis>
-    the same as the <command>Save/Image</command> command in the <xref
-    linkend="MenuItem-OOF.File"/> menu.  This command saves everything
-    that's displayed in the graphics window.  <xref
-    linkend="MenuItem-OOF.File.Save.Image"/> saves only a single
-    &image; object.
+    To save the entire Canvas, use <xref
+    linkend="MenuItem-OOF.Graphics_n.File.Save_Canvas"/>.
   </para>
 </note>
 
