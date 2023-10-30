@@ -63,7 +63,7 @@ texify:
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
 
 oof2: always
-	(cd build; make -j 10 DESTDIR=~/stow/oof2-manual install; cd ~/stow; ./switchto oof2-manual)
+	(cd build; make -j 10 DESTDIR=~/stow/oof2-py311 install; cd ~/stow; ./switchto oof2-py311)
 
 oof2_api.xml: oof2
 	bin/oof2 --script xmldump.py --batch --debug

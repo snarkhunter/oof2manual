@@ -18,7 +18,7 @@
     &layers; on the top obscuring layers below them.  When a new
     &layer; is created, it is inserted into the stack in a default
     position. Default positions are assigned to <link
-    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>s,
+    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>,
     and are chosen to reduce the amount of overlap, placing point-like
     displays (<foreignphrase>e.g,</foreignphrase> <xref
     linkend="RegisteredClass-SkeletonNodeSelectionDisplay"/>) above

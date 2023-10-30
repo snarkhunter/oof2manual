@@ -16,9 +16,10 @@
   <para>
     <classname>MeshCrossSectionDisplay</classname> shows the lines in
     the &mesh; along which cross-section data may be computed.  These
-    lines are created by the <xref
-    linkend="Section-Graphics-CrossSection"/> toolbox and the <xref
-    linkend="Section-Tasks-Analysis"/> task page.
+    lines are created by the <link
+    linkend="Section-Graphics-CrossSection">Mesh Cross Section</link>
+    toolbox and the <link
+    linkend="Section-Tasks-Analysis">Analysis</link> task page.
   </para>
   <para>
     The <varname>cross_sections</varname> parameter determines which
