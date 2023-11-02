@@ -17,17 +17,18 @@
   <title>The Pixel Info Toolbox</title>
   <para>
     The Pixel Info Toolbox displays information about pixels of the
-    topmost &micro; and/or &image; displayed in the Canvas.  <xref
-    linkend="Figure-pixelinfo"/> shows the Toolbox and the Canvas.
+    topmost &micro; and/or &image; displayed in the Canvas. Data is
+    displayed only if the Canvas contains a &layer; displaying an
+    &image; or &micro;.  <xref linkend="Figure-pixelinfo"/> shows the
+    Toolbox and the Canvas.
   </para>
   <figure id="Figure-pixelinfo">
     <title>The Pixel Info Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/pixelinfo.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/pixelinfo.eps" format="EPS"/>
+        <!-- TODO: Why does this figure appear blurry in the browser?
+             The png file produced by omnigraffle is crisp. -->
+	    <imagedata fileref="FIGURES/gfx/pixelinfo.png" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -49,90 +50,200 @@
   </para>
   <para>
     The way in which the selected pixel is highlighted in the Canvas
-    may be changed by using the &layereditor; to alter the <xref
-    linkend="RegisteredClass-PixelInfoDisplay"/> display methods that
-    are assigned to the topmost &micro; and &image;.  It will be
-    necessary to enable <link
+    may be changed by editing the <xref
+    linkend="RegisteredClass-PixelInfoDisplay"/> display method that
+    is assigned to the topmost &micro; and &image;.  (Check <link
     linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
     All Layers</command></link> in the <link
-    linkend="Section-Graphics-MenuBar">Settings menu</link> first.
+    linkend="Section-Graphics-MenuBar">Settings menu</link>, then
+    double-click the <classname>PixelInfoDisplay</classname> line in
+    the Layer List.)
   </para>
   <para>
-    The data is displayed in the Toolbox in four different sections.
-    Data is displayed <emphasis>only</emphasis> if the Canvas contains
-    a &layer; displaying an &image; or &micro;.
+    The data is displayed in five different sections below the
+    <guibutton>Update</guibutton> and <guibutton>Clear</guibutton>
+    buttons in the Toolbox:
     <itemizedlist>
       <listitem>
-	<para>
-	  The top section shows data from the topmost &image; in the
-	  display, but only if the topmost &image; &layer; is not
-	  obscured by a &micro; &layer;.  It displays the name of the
-	  &image; (actually, its <link
-	  linkend="Section-Concepts-Path">path</link>) and the <link
-	  linkend="RegisteredClass-RGBColor">RGB</link> or <link
-	  linkend="RegisteredClass-HSVColor">HSV</link> representation
-	  of the selected pixel's color.
-	</para>
+	    <para>
+	      The top section shows data from the topmost &image; in the
+	      display, but only if the topmost &image; &layer; is not
+	      obscured by a &micro; &layer;.  It displays the name of the
+	      &image; (actually, its <link
+	      linkend="Section-Concepts-Path">path</link>) and the <link
+	      linkend="RegisteredClass-RGBColor">RGB</link> or <link
+	      linkend="RegisteredClass-HSVColor">HSV</link> representation
+	      of the selected pixel's color in the image.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The next section shows the name of the &micro; and the pixel
-	  groups that contain the selected pixel.
-	</para>
+	    <para>
+	      The next section shows the name of the &micro; and the pixel
+	      groups that contain the selected pixel.  The
+	      <varname>category</varname> is the integer that identifies
+	      the pixel type when computing &elem; <link
+	      linkend="Section-Concepts-Skeleton-Homogeneity">element
+	      homogeneity</link>.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The next section shows the name of the &material; assigned
-	  to the selected pixel.  If no &material; 
-	</para>
+	    <para>
+          The next section shows the name of the &material; assigned
+          to the selected pixel, or <guilabel>&lt;no
+          material&gt;</guilabel> if there isn't one.
+	    </para>
       </listitem>
       <listitem>
-	<para>
-	  The final section shows the orientation of the pixel.  If
-	  the pixel has a &material; and that &material; has an <link
-	  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-	  &property;, that &property;'s orientation is displayed, as
-	  shown in the top part of <xref
-	  linkend="Figure-PixelInfoOrientation"/>.  If the pixel does
-	  <emphasis>not</emphasis> have an
-	  <classname>Orientation</classname> &property;, but the
-	  &micro; has an <link
-	  linkend="Section-Concepts-Microstructure-OrientationMap">orientation
-	  map</link>, the orientation from the orientation map is
-	  displayed,<footnote><simpara>The orientation is displayed
-	  whether or not the pixel's &material; contains the <link
-	  linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-	  &property;.  If the &material; does not contain the
-	  &property;, the <classname>OrientationMap</classname> will
-	  not actually be used.</simpara></footnote> as shown in the
-	  lower part of <xref linkend="Figure-PixelInfoOrientation"/>.
-	</para>
-	<para>
-	  At the top of the orientation information pane is a pulldown
-	  menu that changes the format in which the orientation is
-	  displayed.  The orientation can be displayed in any of the
-	  <link linkend="RegisteredClass-Orientation">formats</link>
-	  that &oof2; understands, regardless of the format used by
-	  the orientation property or orientation map file.  The
-	  orientation <emphasis>cannot</emphasis> be changed, despite
-	  the presence of sliders and input boxes in <xref
-	  linkend="Figure-PixelInfoOrientation"/>. 
-	</para>
-	<figure id="Figure-PixelInfoOrientation">
-	  <title>Orientation in the Pixel Info Toolbox</title>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/gfx/pixelinfo-orientation.png" format="PNG"/>
-	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/gfx/pixelinfo-orientation.eps" format="EPS"/>
-	    </imageobject>
-	  </mediaobject>
-	</figure>
+	    <para>
+	      The fourth section shows the orientation of the pixel.  If
+	      the pixel has a &material; and that &material; has an <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	      &property;, that &property;'s orientation is displayed, as
+	      shown in the top part of <xref
+	      linkend="Figure-PixelInfoOrientation"/>.  If the pixel does
+	      <emphasis>not</emphasis> have an
+	      <classname>Orientation</classname> &property;, but the
+	      &micro; has an <link
+	      linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+	      map</link>, the orientation from the orientation map is
+	      displayed,<footnote><simpara>The orientation is displayed
+	      whether or not the pixel's &material; contains the <link
+	      linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	      &property;.  If the &material; does not contain the
+	      &property;, the <classname>OrientationMap</classname> will
+	      not actually be used.</simpara></footnote> as shown in the
+	      lower part of <xref linkend="Figure-PixelInfoOrientation"/>.
+	    </para>
+	    <para>
+	      At the top of the orientation information pane is a pulldown
+	      menu that changes the format in which the orientation is
+	      displayed.  The orientation can be displayed in any of the
+	      <link linkend="RegisteredClass-Orientation">formats</link>
+	      that &oof2; understands, regardless of the format used by
+	      the orientation property or orientation map file.  The
+	      orientation <emphasis>cannot</emphasis> be changed, despite
+	      the presence of sliders and input boxes in <xref
+	      linkend="Figure-PixelInfoOrientation"/>.
+	    </para>
+	    <figure id="Figure-PixelInfoOrientation">
+	      <title>Orientation in the Pixel Info Toolbox</title>
+	      <mediaobject>
+	        <imageobject>
+	          <imagedata fileref="FIGURES/gfx/pixelinfo-orientation.png" format="PNG"/>
+	        </imageobject>
+            <caption>
+              <simpara>
+                Two views of the Orientation panel in the Pixel Info
+                Toolbox, pointing out where it indicates whether the
+                orientation information comes from an <link
+                linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+                &property; (top), or an <link
+                linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+                map</link> (bottom).
+              </simpara>
+            </caption>
+	      </mediaobject>
+	    </figure>
       </listitem>
       <listitem>
         <para id="Section-Graphics-PixelInfo-Misorient">
-          TODO: paragraph about misorientation
+          The bottom section of the Pixel Info Toolbox computes
+          misorientations between two pixels &#x2014; the reference
+          point and the current point.  Misorientations can be
+          computed between any two pixels in the &micro; as long as
+          the pixels have an <link
+	      linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+          property or the &micro; contains an
+           <link
+	      linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+	       map</link>.
+        </para>
+        <para>
+          When you first open the Pixel Info Toolbox, the
+          Misorientation pane looks like <xref linkend="Figure-misorientation0"/>.
+        </para>
+        <figure id="Figure-misorientation0">
+          <title>The Empty Misorientation Pane</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="FIGURES/gfx/misorientation0.png"
+                         format="PNG"/>
+            </imageobject>            
+          </mediaobject>
+        </figure>
+        <para>
+          To compute a misorientation, follow these steps:
+          <orderedlist numeration="arabic" spacing="compact">
+            <listitem id="step1">
+              <para>
+                Click on the reference point in the Canvas. Nothing
+                will happen in the <guilabel>Misorientation</guilabel>
+                pane, but if the pixel has an orientation, it will be
+                displayed in the <guilabel>Orientation</guilabel>
+                pane.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                Click <guibutton>Set Reference Point</guibutton> in
+                the <guilabel>Misorientation</guilabel> pane to set
+                the reference point to the point chosen in step <xref
+                linkend="step1"/>. The position and orientation of the
+                reference pixel will be displayed, as shown in the
+                left side of <xref
+                linkend="Figure-misorientation"/>. You can change
+                representation used for the angles, you can't
+                otherwise edit the values in the toolbox directly.
+              </para>
+              <para>
+                The reference pixel is indicated on the Canvas by
+                adding short diagonal segments to its outline, as
+                shown in <xref linkend="Figure-misorientation"/> The
+                color and width of the outline is determined by the
+                <xref linkend="RegisteredClass-PixelInfoDisplay"/>.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                Click on a different pixel in the Canvas.  If that
+                pixel has an orientation, the misorientation between
+                it and the reference pixel will be displayed at the
+                bottom of the Misorientation pane.  The misorientation
+                is calculated assuming that both points have the same
+                crystal symmetry.  To change the symmetry, use the
+                <guibutton>Set</guibutton> button.  (This does
+                <emphasis>not</emphasis> affect the material
+                properties &#x2014; it only changes the displayed
+                misorientation.)
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                To change the queried pixel, simply click on the
+                Canvas again.  To change the reference pixel, click on
+                the pixel in the Canvas, and then click <guibutton>Set
+                Reference Point</guibutton> again.  To clear the
+                reference pixel, use the <guibutton>Clear</guibutton>
+                button at the top of the toolbox.
+              </para>
+            </listitem>
+          </orderedlist>
+          <figure id="Figure-misorientation">
+            <title>Misorientation</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="FIGURES/gfx/misorientation.png"
+                           format="PNG"/>
+              </imageobject>
+              <caption>
+                <para>
+                  The Misorientation pane of the Pixel Info Toolbox
+                  (left), and a section of the Canvas (right) showing
+                  a queried pixel and a reference pixel.
+                </para>
+              </caption>
+            </mediaobject>
+          </figure>
         </para>
       </listitem>
     </itemizedlist>

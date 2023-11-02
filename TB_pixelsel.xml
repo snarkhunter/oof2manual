@@ -25,18 +25,14 @@
     <title>The Pixel Selection Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/pixelselection.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/pixelselection.eps"
-	  format="EPS"/>
+	    <imagedata fileref="FIGURES/gfx/pixelselection.png"
+	               format="PNG"/>
       </imageobject>
       <caption>
-	<para>
-	  The Pixel Selection Toolbox, on the left, and a selection in
-	  progress in the Canvas, on the right.
-	</para>
+	    <para>
+	      The Pixel Selection Toolbox, on the left, and a selection in
+	      progress in the Canvas, on the right.
+	    </para>
       </caption>
     </mediaobject>
   </figure>

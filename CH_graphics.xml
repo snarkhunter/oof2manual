@@ -13,6 +13,9 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<!-- TODO: Add discussion of <topmost> (and other proxies?) when
+     defining graphics layers.
+-->
 
 <chapter id="Chapter-Graphics">
   <title>The Graphics Window</title>
@@ -591,79 +594,83 @@
     </para>
     <para>
       The different Toolboxes each have their own function.  The
-      Toolbox Chooser switches from one Toolbox to
-      another.
+      Toolbox Chooser in the Graphics Window switches from one Toolbox
+      to another.
       <itemizedlist spacing="compact">
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-Viewer">Viewer Toolbox</link>
-	    zooms the Canvas in and out.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-PixelInfo">Pixel Info
-	    Toolbox</link> displays information about individual
-	    pixels in a &micro; or &image;.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-PixelSelection">Pixel
-	    Selection Toolbox</link> contains methods for selecting pixels
-	    in a &micro;.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-SkeletonInfo">Skeleton
-	    Info Toolbox</link> displays information about &skel;
-	    components.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link
-	    linkend="Section-Graphics-SkeletonSelection">Skeleton
-	    Selection Toolbox</link> selects components of a &skel;.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-MoveNodes">Move Nodes
-	    Toolbox</link> allows &skel; &nodes; to be repositioned
-	    manually.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-PinNodes">Pin Nodes
-	    Toolbox</link> <link
-	    linkend="Section-Concepts-Pin">pins</link> &nodes;
-	    manually.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-MeshInfo">Mesh Info
-	    Toolbox</link> displays information about &mesh; components,
-	    and launches the Mesh Data tool for evaluating <link
-	    linkend="Section-Output"><classname>Outputs</classname></link>
-	    at points.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    The <link linkend="Section-Graphics-CrossSection">Mesh
-	    Cross Section Toolbox</link> defines a <link
-	    linkend="RegisteredClass-CrossSectionDomain">cross
-	    section</link> of a &mesh;, along which output values can
-	    be computed.
-	  </para>
-	</listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-Viewer">Viewer Toolbox</link>
+	        zooms the Canvas in and out.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-PixelInfo">Pixel Info
+	        Toolbox</link> displays information about individual
+	        pixels in a &micro; or &image;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-PixelSelection">Pixel
+	        Selection Toolbox</link> contains methods for selecting pixels
+	        in a &micro;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-SkeletonInfo">Skeleton
+	        Info Toolbox</link> displays information about &skel;
+	        components.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link
+	        linkend="Section-Graphics-SkeletonSelection">Skeleton
+	        Selection Toolbox</link> selects components of a &skel;.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-MoveNodes">Move Nodes
+	        Toolbox</link> allows &skel; &nodes; to be repositioned
+	        manually.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-PinNodes">Pin Nodes
+	        Toolbox</link> <link
+	        linkend="Section-Concepts-Pin">pins</link> &nodes;
+	        manually.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-MeshInfo">Mesh Info
+	        Toolbox</link> displays information about &mesh; components,
+	        and launches the Mesh Data tool for evaluating <link
+	        linkend="Section-Output"><classname>Outputs</classname></link>
+	        at points.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        The <link linkend="Section-Graphics-CrossSection">Mesh
+	        Cross Section Toolbox</link> defines a <link
+	        linkend="RegisteredClass-CrossSectionDomain">cross
+	        section</link> of a &mesh;, along which output values can
+	        be computed.
+	      </para>
+	    </listitem>
       </itemizedlist>
       The following sections describe each Toolbox in detail.
     </para>
+
+    <!-- TODO: Why doesn't the Next button on the Toolboxes page go to
+         the first toolbox page?  It goes to the Auxiliary Windows
+         page, as does the Next button on each Toolbox page. -->
 
     &TBviewer;
     &TBpixelinfo;
@@ -674,7 +681,7 @@
     &TBpinnodes;
     &TBmeshinfo;
     &TBmeshcs;
-  </section>
+  </section>                    <!--Section-Graphics-Toolboxes -->
 
 </chapter>
 

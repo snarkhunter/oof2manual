@@ -25,21 +25,18 @@
     linkend="MenuItem-OOF.Graphics_n.Settings.Zoom.OutFocussed">out</link>
     about the clicked point.  The point under the mouse does not
     move.<footnote>
-      <para>
-	More or less.  Keeping the clicked point stationary is not
-	always possible when the edges of the displayed image are near
-	the edges of the Canvas.
-      </para>
-    </footnote>
+    <para>
+	  More or less.  Keeping the clicked point stationary is not
+	  always possible when the edges of the displayed image are near
+	  the edges of the Canvas.
+    </para>
+  </footnote>
   </para>
   <figure id="Figure-Viewer">
     <title>The Viewer Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/viewer.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/viewer.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gfx/viewer.png" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
