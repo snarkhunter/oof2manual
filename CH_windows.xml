@@ -38,14 +38,9 @@
     <figure id="Figure-MessagesWindow">
       <title>The Messages Window</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/windows/messages.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/windows/messages.eps"
-	    format="EPS"/>
-	</imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/windows/messages.png" format="PNG"/>
+	    </imageobject>
       </mediaobject>
     </figure>
     <para>
@@ -63,53 +58,52 @@
       Each one, when checked, includes a different category of
       message:
       <itemizedlist spacing="compact">
-	<listitem>
-	  <para>
-	    <guibutton>Log</guibutton>:  Every &oof2; action
-	    corresponds to a command in the <link
-	      linkend="MenuItem-OOF">OOF</link> menu, listed in <xref
-	      linkend="Chapter-Reference"/>.  As each command is
-	    executed, the command and its arguments are logged in the
-	    Message Window.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    <guibutton>Warning</guibutton>: Warning messages indicate that
-	    something suspicious is going on.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    <guibutton>Report</guibutton>: Informational messages.
-	    The last line in <xref linkend="Figure-MessagesWindow"/>
-	    is a report.  Messages about the status and progress of a
-	    solver are reports.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    <guibutton>Query</guibutton>: Whenever &oof2; asks the
-	    user a question (<quote>Are you sure you want to do
-	    that?</quote>) the question and answer appear in the
-	    Messages Window as a Query.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    <guibutton>Error</guibutton>: Generally, error messages
-	    indicate that a task could not be completed, either due to
-	    user error (entering an illegal parameter, for example) or
-	    programming errors.  Please <ulink
-	    url="http://www.ctcms.nist.gov/oof/oof2.html#bugreport">report</ulink>
-	    programming errors to
-	    <email>oof_bugs@ctcms.nist.gov</email>.
-	  </para>
-	</listitem>
+	    <listitem>
+	      <para>
+	        <guibutton>Log</guibutton>: Every &oof2; action
+	        corresponds to a command in the <link
+	        linkend="MenuItem-OOF">OOF</link> menu, listed in <xref
+	        linkend="Chapter-Reference"/>.  As each command is
+	        executed, the command and its arguments are logged in the
+	        Message Window.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        <guibutton>Warning</guibutton>: Warning messages indicate that
+	        something suspicious is going on.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        <guibutton>Report</guibutton>: Informational messages.
+	        The last line in <xref linkend="Figure-MessagesWindow"/>
+	        is a report.  Messages about the status and progress of a
+	        solver are reports.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        <guibutton>Query</guibutton>: Whenever &oof2; asks the
+	        user a question (<quote>Are you sure you want to do
+	        that?</quote>) the question and answer appear in the
+	        Messages Window as a Query.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        <guibutton>Error</guibutton>: Generally, error messages
+	        indicate that a task could not be completed, either due to
+	        user error (entering an illegal parameter, for example) or
+	        programming errors.  Please <ulink
+	        url="http://www.ctcms.nist.gov/oof/oof2/index.html#bugreport">report</ulink>
+	        programming errors to <email>oof_bugs@nist.gov</email>.
+	      </para>
+	    </listitem>
       </itemizedlist>
     </para>
   </section>
-
+  
   <section id="Section-Windows-ActivityViewer">
     <title>Activity Viewer</title>
     <para>
@@ -117,23 +111,19 @@
       operations.  Every task that might potentially take a long time
       to complete draws a <emphasis>progress bar</emphasis> in the
       Activity Viewer window.  The window is shown in <xref
-	linkend="Figure-ActivityViewer"/>.
+      linkend="Figure-ActivityViewer"/>.
     </para>
     <figure id="Figure-ActivityViewer">
       <title>The Activity Viewer</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/windows/activityviewer.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/windows/activityviewer.eps"
-	    format="EPS"/>
-	</imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/windows/activityviewer.png"
+	                 format="PNG"/>
+	    </imageobject>
       </mediaobject>
     </figure>
     <para>
-      Each task puts two items in the Activity Viewer Window: a
+      Each task puts three items in the Activity Viewer Window: a
       progress bar, a <guibutton>Stop</guibutton> button, and a
       description.  The progress bar indicates how far the task is
       from completion, if possible.  Some tasks are open ended, and
@@ -141,7 +131,12 @@
       Each progress bar includes some text that describes the task
       and, when relevant, how much work it's completed and how much
       work it has left to do.  The <guibutton>Stop</guibutton> button
-      can be pressed to interrupt and abort the task.
+      can be pressed to interrupt and abort the task.<footnote>
+      <para>
+        Some tasks may take a while to stop, depending on how often
+        they're able to check the status of the button.
+      </para>
+      </footnote>
     </para>
     <para>
       After a task finishes, the <guibutton>Stop</guibutton> button
@@ -188,6 +183,17 @@
       <guibutton>Stop All</guibutton> stops all current tasks.
     </para>
     <para>
+      There are no <link linkend="MenuItem-OOF">menu commands</link>
+      associated with the <guibutton>Stop</guibutton> and
+      <guibutton>Stop All</guibutton> buttons.  If you interrupt an
+      operation and then <link
+      linkend="MenuItem-OOF.File.Save.Python_Log">save a
+      script</link>, the script won't show that the operation was
+      interrupted.  If you don't want the operation to be run when you
+      load the script, you will have to use a text editor to delete it
+      from the script before running it.
+    </para>
+    <para>
       The Activity Viewer window appears automatically the first time
       an &oof2; task creates a progress bar. If the window is closed,
       it won't reappear automatically, but it can be resurrected with
@@ -220,20 +226,16 @@
     <figure id="Figure-Console">
       <title>The Console Window</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/windows/console.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/windows/console.eps"
-	    format="EPS"/>
-	</imageobject>
-	<caption>
-	  <para>
-	    The Console Window, with examples of three of its possible
-	    applications.
-	  </para>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/windows/console.png"
+	                 format="PNG"/>
+	    </imageobject>
+	    <caption>
+	      <para>
+	        The Console Window, with examples of three of its possible
+	        applications.
+	      </para>
+	    </caption>
       </mediaobject>
     </figure>
     <para>
@@ -244,33 +246,21 @@
 	<literallayout class="monospaced">&gt;&gt;&gt; foo=1.23
 &gt;&gt;&gt; fish=3.21</literallayout>
       </blockquote>
-and use them like this:
+      and use them like this:
       <informalfigure>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/windows/examplevar.png"
-	      format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/windows/examplevar.eps"
-	      format="EPS"/>
-	  </imageobject>
-	</mediaobject>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/windows/examplevar.png"
+	                   format="PNG"/>
+	      </imageobject>
+	    </mediaobject>
       </informalfigure>
       Naturally, all of the &oof2; modules have been imported into the
       Python environment in the Console, as has the Python math
       module.  This means that the Console can be used to execute
       &oof2; commands as if running in <link
-      linkend="Appendix-TextMode">text mode</link>:
-      <blockquote>
-	<literallayout class="monospaced">&gt;&gt;&gt; OOF.Microstructure.Create_From_ImageFile(filename='K1_small.pgm')
-Enter microstructure_name ['K1_small.pgm']: 'micro'
-Enter height [automatic]: 
-Enter width [automatic]: 
-OOF.Microstructure.Create_From_ImageFile(filename='K1_small.pgm', microstructure_name='micro', height=automatic, width=automatic)
-&gt;&gt;&gt;
-</literallayout>
-      </blockquote>
+      linkend="Appendix-TextMode">text mode</link>.  This is generally
+      more difficult than using the GUI, though.
     </para>
     <para>
       The Console can also be used as a calculator, for debugging, and

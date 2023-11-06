@@ -14,7 +14,7 @@
 -->
 
   <para>
-    <classname>SkeletonNOdeSelectionDisplay</classname> highlights the
+    <classname>SkeletonNodeSelectionDisplay</classname> highlights the
     currently selected &skel; nodes by drawing a dot at each node.
     The <varname>size</varname> argument is the radius of the dot in
     units of the screen pixel size.

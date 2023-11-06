@@ -18,24 +18,20 @@
   <para>
     The Mesh Cross Section Toolbox is used to create <link
     linkend="RegisteredClass-MeshCrossSection">cross sections</link>
-    within a &mesh;.  A cross section is a line (or curve, eventually)
-    drawn in a &mesh; along which output values can be computed by the
-    commands on the <link linkend="Section-Tasks-Analysis">Analysis
-    Page</link>.  When the Mesh Cross Section Toolbox is active,
-    clicking and dragging the mouse on the Canvas will create a new
-    cross section, as shown in <xref linkend="Figure-MeshCSToolbox"/>.
-    In addition, when a contour plot is displayed on the Canvas, the
-    Toolbox provides a quick way of evaluating the contoured values
-    along the cross section.
+    within a &mesh;.  A cross section is a line drawn in a &mesh;
+    along which output values can be computed by the commands on the
+    <link linkend="Section-Tasks-Analysis">Analysis Page</link>.  When
+    the Mesh Cross Section Toolbox is active, clicking and dragging
+    the mouse on the Canvas will create a new cross section, as shown
+    in <xref linkend="Figure-MeshCSToolbox"/>.  When a contour plot is
+    displayed on the Canvas, the Toolbox provides a quick way of
+    evaluating the contoured values along the cross section.
   </para>
   <figure id="Figure-MeshCSToolbox">
     <title>The Mesh Cross Section Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/meshcs.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/meshcs.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gfx/meshcs.png" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -90,7 +86,7 @@
       change the display parameters, first enable <link
       linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
       All Layers</command></link> in the <link
-      linkend="Section-Graphics-MenuBar"><command>Settings</command>
+      linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command>
       menu</link>, select the layer in the <link
       linkend="Section-Graphics-LayerList">Layer List</link>, and
       <link linkend="Section-Graphics-LayerEditor">edit</link> it..

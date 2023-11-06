@@ -40,17 +40,13 @@
     <title>The Pin Nodes Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/pinnodes.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/pinnodes.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gfx/pinnodes.png" format="PNG"/>
       </imageobject>
       <caption>
-	<para>
-	  The Pin Nodes Toolbox and a Canvas displaying some pinned
-	  &nodes;.  (The dots on the &nodes; have been enlarged for
-	  illustrative purposes.)
-	</para>
+	    <para>
+	      The Pin Nodes Toolbox and a Canvas displaying some pinned
+	      &nodes;.  
+	    </para>
       </caption>
     </mediaobject>
   </figure>
@@ -68,28 +64,28 @@
     are provided here for convenience:
     <itemizedlist>
       <listitem>
-	<para>
-	  The <link
-	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Undo"><guibutton>Undo</guibutton></link>
-	  and <link
-	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Redo"><guibutton>Redo</guibutton></link>
-	  buttons undo and redo the latest pinning operations.
-	</para>
+	    <simpara>
+	      The <link
+	      linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Undo"><guibutton>Undo</guibutton></link>
+	      and <link
+	      linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Redo"><guibutton>Redo</guibutton></link>
+	      buttons undo and redo the latest pinning operations.
+	    </simpara>
       </listitem>
       <listitem>
-	<para>
-	  The <link
-	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.UnPinAll"><guibutton>UnPinAll</guibutton></link>
-	  button unpins all the &nodes;.
-	</para>
+	    <simpara>
+	      The <link
+	      linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.UnPinAll"><guibutton>UnPinAll</guibutton></link>
+	      button unpins all the &nodes;.
+	    </simpara>
       </listitem>
       <listitem>
-	<para>
-	  The <link
-	  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Invert"><guibutton>Invert</guibutton></link>
-	  button pins all of the unpinned &nodes; and unpins all of
-	  the pinned ones.
-	</para>
+	    <simpara>
+	      The <link
+	      linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Invert"><guibutton>Invert</guibutton></link>
+	      button pins all of the unpinned &nodes; and unpins all of the
+	      pinned ones.
+	    </simpara>
       </listitem>
     </itemizedlist>
   </para>
@@ -98,12 +94,12 @@
     dot.  The size and color of the dot may be changed by enabling
     <link
     linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
-    All Layers</command></link> in the <link
-    linkend="Section-Graphics-MenuBar">Settings menu</link>, and then
-    editing the <xref linkend="RegisteredClass-PinnedNodesDisplay"/>
-    &layer;.  The predefined <xref
-      linkend="RegisteredClass-PinnedNodesDisplay"/> &layer; displays
-    the pinned &nodes; in the topmost &skel;.
+    All Layers</command></link> in the window's <link
+    linkend="MenuItem-OOF.Graphics_n.Settings">Settings menu</link>,
+    and then editing the <xref
+    linkend="RegisteredClass-PinnedNodesDisplay"/> &layer;.  The
+    predefined <xref linkend="RegisteredClass-PinnedNodesDisplay"/>
+    &layer; displays the pinned &nodes; in the topmost &skel;.
   </para>
 </section>
 

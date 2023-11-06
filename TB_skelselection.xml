@@ -32,12 +32,8 @@
     <title>The Skeleton Selection Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/skelselection.png"
+	    <imagedata fileref="FIGURES/gfx/skelselection.png"
 	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/skelselection.eps"
-	  format="EPS"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -75,7 +71,8 @@
     The buttons and entry fields in the box labelled
     <guilabel>History</guilabel> work exactly like those in the <link
     linkend="Section-Graphics-PixelSelection-History">Pixel Selection
-    Toolbox</link>.  Refer to that discussion for the details.
+    Toolbox</link>.  Refer to that discussion for the details.  Each
+    mode has its own History.
   </para>
   <para>
     The way in which selected &elems;, &nodes;, and &sgmts; are
@@ -90,8 +87,8 @@
     parameters for these &layers;, it is necessary first to enable
     <link
     linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
-    All Layers</command></link> in the <link
-    linkend="Section-Graphics-MenuBar">Settings menu</link>.
+    All Layers</command></link> in the window's <link
+    linkend="MenuItem-OOF.Graphics_n.Settings">Settings</link> menu.
   </para>
 </section>
 

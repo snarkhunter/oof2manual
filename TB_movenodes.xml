@@ -43,16 +43,13 @@
     <title>The Move Nodes Toolbox</title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gfx/movenodes.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gfx/movenodes.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gfx/movenodes.png" format="PNG"/>
       </imageobject>
       <caption>
-	<para>
-	  The Move Nodes Toolbox and a portion of the Canvas, showing
-	  a &node; in motion.
-	</para>
+	    <para>
+	      The Move Nodes Toolbox and the Canvas, showing a &node;
+	      being moved by the mouse.
+	    </para>
       </caption>
     </mediaobject>
   </figure>
@@ -73,14 +70,15 @@
     <guilabel>x</guilabel> and <guilabel>y</guilabel> boxes, and the
     &node; will be highlighted in the Canvas by a pink dot.<footnote>
       <para>
-	To change the appearance of the pink dot, use the
-	&layereditor; to modify the <xref
-	linkend="RegisteredClass-MoveNodeDisplay"/> that's assigned to
-	the topmost &skel;.  This is a predefined &layer;.  It will be
-	necessary to enable <link
-	linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
-	All Layers</command></link> in the <link
-	linkend="Section-Graphics-MenuBar">Settings menu</link> first.
+	    To change the appearance of the pink dot, use the
+	    &layereditor; to modify the <xref
+	    linkend="RegisteredClass-MoveNodeDisplay"/> that's assigned to
+	    the topmost &skel;.  This is a predefined &layer;.  It will be
+	    necessary to enable <link
+	    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
+	    All Layers</command></link> in the window's <link
+	    linkend="MenuItem-OOF.Graphics_n.Settings">Settings</link>
+	    menu first.
       </para>
     </footnote>
     To move the &node;, type new coordinates in the boxes and click
@@ -110,8 +108,8 @@
     linkend="MenuItem-OOF.Skeleton.Redo"><guibutton>Redo</guibutton></link>
     buttons at the bottom of the Toolbox are duplicates of the
     <guibutton>Undo</guibutton> and <guibutton>Redo</guibutton>
-    buttons on the <link linkend="Section-Tasks-Skeleton">Skeleton Task
-    Page</link>.
+    buttons on the <link linkend="Section-Tasks-Skeleton">Skeleton
+    Task Page</link>.
   </para>
 </section>
 

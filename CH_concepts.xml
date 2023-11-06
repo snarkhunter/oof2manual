@@ -128,7 +128,7 @@
 	          groups</link>, and a &material; map, which assigns
 	          &materials; to pixels. &micros; can optionally contain
 	          an <link
-	          linkend="Section-Concepts-Microstructure-Orientation">Orientation
+	          linkend="Section-Concepts-Microstructure-OrientationMap">Orientation
 	          Map</link>, which assigned <xref
 	          linkend="RegisteredClass-Orientation"/>s to pixels.
             </para>
