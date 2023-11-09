@@ -13,62 +13,59 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    At its heart, &oof2; is driven by a set of
-    <emphasis>commands</emphasis>.  These commands are arranged
-    hierarchically into <emphasis>menus</emphasis>.  A menu is a list
-    of commands, or of submenus, or both.  Don't confuse this sense of
-    the word <quote>menu</quote> with the kind of pull-down menu that
-    appears in a graphical user interface.  The menus that appear in
-    the &oof2; graphical user interface are derived from the
-    underlying command menus, but there are commands that don't appear
-    in pull-down menus.  However, every action taken in the interface
-    corresponds to a command, and the scripts that &oof2; <link
-    linkend="MenuItem-OOF.File.Save.Python_Log">saves</link> and <link
-    linkend="MenuItem-OOF.File.Load.Script">loads</link> are simply
-    lists of commands.  Therefore, to find out how things really work,
-    it's necessary to learn the menu commands.  This section contains
-    a reference page for each of the commands, arranged
-    hierarchically.
-  </para>
+<para>
+  At its heart, &oof2; is driven by a set of
+  <emphasis>commands</emphasis>.  These commands are arranged
+  hierarchically into <emphasis>menus</emphasis>.  A menu is a list of
+  commands, or of submenus, or both.  Don't confuse this sense of the
+  word <quote>menu</quote> with the kind of pull-down menu that
+  appears in a graphical user interface.  The menus that appear in the
+  &oof2; graphical user interface are derived from the underlying
+  command menus, but there are commands that don't appear in pull-down
+  menus.  However, every action taken in the interface corresponds to
+  a command, and the scripts that &oof2; <link
+  linkend="MenuItem-OOF.File.Save.Python_Log">saves</link> and <link
+  linkend="MenuItem-OOF.File.Load.Script">loads</link> are simply
+  lists of commands.  Therefore, to find out how things really work,
+  it's necessary to learn the menu commands.  This section contains a
+  reference page for each of the commands, arranged hierarchically.
+</para>
 
-  <para>
-    &oof2; menu commands are Python expressions.
-    <command>OOF</command> is a Python object representing the
-    main menu. <command>OOF.File</command> is one of the submenus
-    in the main menu, and <command>OOF.File.Quit</command> is a
-    command (function) in the <command>OOF.File</command> menu.
-    It can be called by putting parentheses after it:
-    <command>OOF.File.Quit()</command>.  If you like, you can
-    drive &oof2; by entering commands directly in the <link
-    linkend='Section-Windows-Console'>Console</link> window (but it's
-    probably easier to use the GUI).
-  </para>
+<para>
+  &oof2; menu commands are Python expressions.  <command>OOF</command>
+  is a Python object representing the main
+  menu. <command>OOF.File</command> is one of the submenus in the main
+  menu, and <command>OOF.File.Quit</command> is a command (function)
+  in the <command>OOF.File</command> menu.  It can be called by
+  putting parentheses after it: <command>OOF.File.Quit()</command>.
+  If you like, you can drive &oof2; by entering commands directly in
+  the <link linkend='Section-Windows-Console'>Console</link> window
+  (but it's probably easier to use the GUI).
+</para>
 
-  <para>
-    Most commands take arguments. which are listed in the manual on
-    the reference page for each command.  Arguments must be specified
-    as Python <emphasis>keyword</emphasis> arguments, meaning that
-    they are of the form
-    <varname>name</varname>=<userinput>value</userinput> and appear
-    inside the parentheses after the command name,
-    <foreignphrase>e.g</foreignphrase>:
-    <literallayout class="monospaced">
+<para>
+  Most commands take arguments. which are listed in the manual on the
+  reference page for each command.  Arguments must be specified as
+  Python <emphasis>keyword</emphasis> arguments, meaning that they are
+  of the form <varname>name</varname>=<userinput>value</userinput> and
+  appear inside the parentheses after the command name,
+  <foreignphrase>e.g</foreignphrase>:
+  <literallayout class="monospaced">
        <link
 	  linkend="MenuItem-OOF.Skeleton.New">OOF.Skeleton.New</link>(name='bones',
                         microstructure='example_ms',
                         x_elements=12, y_elements=12,
                         skeleton_geometry=TriSkeleton(arrangement='moderate'))
-    </literallayout>
-    The order in which the arguments appear does not matter, but each
-    argument value must be the correct type.  In this example,
-    <varname>name</varname> and <varname>microstructure</varname> are
-    character strings, <varname>x_elements</varname> and
-    <varname>y_elements</varname> are integers, and
-    <varname>TriSkeleton</varname> is an example of an &oof2; <link
-    linkend="Section-RegisteredClasses"><classname>RegisteredClass</classname></link>.
-    <classname>RegisteredClasses</classname> also take arguments, and
-    the same rules apply to them.
+  </literallayout>
+  The order in which the arguments appear does not matter, but each
+  argument value must be the correct type.  In this example,
+  <varname>name</varname> and <varname>microstructure</varname> are
+  character strings, <varname>x_elements</varname> and
+  <varname>y_elements</varname> are integers, and
+  <varname>TriSkeleton</varname> is an example of an &oof2; <link
+  linkend="Section-RegisteredClasses"><classname>RegisteredClass</classname></link>.
+  <classname>RegisteredClasses</classname> also take arguments, and
+  the same rules apply to them.
   </para>
 
 

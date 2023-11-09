@@ -91,11 +91,15 @@
 	  groups</link> have different categories.
 	  <note>
 	    <para>
-	      This category definition is slightly different from the
-	      one used in calculating &skel; element <link
-	      linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>,
-	      in that it ignores the <link
-	      linkend="Section-Concepts-Microstructure-Pixel_Group"><varname>meshable</varname></link> flag on pixel groups.
+	      This category definition is slightly different from the one
+	      used in calculating &skel; element <link
+	      linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>.
+	      It includes <emphasis>all</emphasis> pixel attributes, such
+	      as membership in <link
+	      linkend="Section-Concepts-Microstructure-ActiveArea">Active
+	      Areas</link>, and ignores the <link
+	      linkend="Section-Concepts-Microstructure-Pixel_Group"><varname>meshable</varname></link>
+	      flag on pixel groups.
 	    </para>
 	  </note>
 	</para>
