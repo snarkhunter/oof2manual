@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: newlayer.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,18 +8,142 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    The <command>New</command> command in the <xref
-    linkend="MenuItem-OOF.Graphics_n.Layer"/> menu doesn't actually
-    create a new graphics &layer;.  Instead, it opens and clears the
-    &layereditor; window.  The &layereditor; can then create a new
-    &layer;.
-  </para>
-  <para>
-    In text mode, this command doesn't do anything.  To create
-    graphics layers in text mode, use the &layereditor; commands in
-    the <xref linkend="MenuItem-OOF.LayerEditor.LayerSet"/> menu.
-  </para>
+<para>
+  A &layer; is added to a Graphics Window by invoking the menu
+  <guimenuitem>Layer/New</guimenuitem> command in the window's menu
+  bar.  This runs the <xref
+  linkend="MenuItem-OOF.Graphics_n.Layer.New"/> command.  <xref
+  linkend="Figure-newlayer"/> illustrates the dialog box corresponding
+  to the command.
+</para>
+<para>
+  There are three parameters which define a graphics &layer;:
+  <itemizedlist>
+    <listitem>
+      <para>
+        <varname>category</varname> &emdash; The type of object being
+        displayed.  This includes the objects
+        <link linkend="Section-Concepts-Path">defining the simulation</link>
+        (&skel;, &image;,
+        <foreignphrase>etc</foreignphrase>), as well as some special
+        objects (the <link
+        linkend="Section-Concepts-Microstructure-PixelSelection">pixel
+        selection</link> and the top bitmap).
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <varname>what</varname> &emdash; The <link
+        linkend="Section-Concepts-Path">path</link> to the actual
+        object being displayed, which is an object of the given
+        <varname>category</varname>, or a <link
+        linkend="proxies">proxy</link>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <varname>how</varname> &emdash; The <xref
+        linkend="RegisteredClass-DisplayMethod"/> by which the object
+        will be displayed.
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<figure id="Figure-newlayer">
+  <title>The New Graphics Layer dialog</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/gfx/newlayer.png" format="PNG">
+      </imagedata>
+    </imageobject>
+    <caption>
+      <simpara>
+        Two views of the New Graphics Layer
+        dialog. <varname>category</varname> is set to
+        <userinput>Skeleton</userinput>.  The three boxes labelled
+        <varname>category</varname>, <varname>what</varname>, and
+        <varname>how</varname> define the new &layer;.  The dialog on
+        the left is creating a &layer; that will explicitly display
+        the &skel; whose path is
+        <userinput>microstructure:skel</userinput>.  The dialog on the
+        right is creating a &layer; with the proxy
+        <userinput>&lt;topmost&gt;</userinput>, implicitly referring
+        to the &skel; used in the topmost explicit &layer;.
+      </simpara>
+    </caption>
+  </mediaobject>
+</figure>
+<para>
+  In the <guilabel>New Graphics Layer</guilabel> dialog, the
+  pull-down menus for <varname>what</varname> and
+  <varname>how</varname> change according to the current
+  <varname>category</varname> setting.  The
+  <varname>what</varname> menu lists the existing objects in the
+  category, and the the <varname>how</varname> menu lists the
+  <xref linkend="RegisteredClass-DisplayMethod"/>s that are
+  capable of displaying them.
+</para>
+<para id="proxies">
+  The parameter <varname>what</varname> can be explicitly set to the
+  <link linkend="Section-Concepts-Path">path</link> to an object.  It
+  can also be set to a <emphasis>proxy</emphasis> object, which
+  implicitly defines the &layer; by referring to another &layer; in
+  the display.  In the dialog box, the proxies appear in the
+  first pull-down menu in the <varname>what</varname> section, in the
+  form of characters enclosed in angle brackets
+  (<foreignphrase>e.g,</foreignphrase>
+  <userinput>&lt;topmost&gt;</userinput> or <userinput>&lt;top
+  bitmap&gt;</userinput>).
+</para>
+<para>
+  The available proxies depend on the current
+  <varname>category</varname>.  They are:
+  <itemizedlist>
+    <listitem>
+      <userinput>&lt;topmost&gt;</userinput> &emdash; the object in
+      the topmost non-proxy &layer; that can be displayed by the
+      selected <xref linkend="RegisteredClass-DisplayMethod"/>.
+    </listitem>
+    <listitem>
+      <userinput>&lt;top bitmap&gt;</userinput> &emdash; the object in
+      the topmost non-proxy &layer; that is being displayed as a
+      bitmap.
+    </listitem>
+    <listitem>
+      <userinput>&lt;contourable&gt;</userinput> &emdash; the object
+      in the topmost non-proxy layer; that contains data that can be
+      displayed as a contour plot.
+    </listitem>
+    <listitem>
+      <userinput>&lt;top activearea&gt;</userinput> &emdash; the <link
+      linkend="Section-Concepts-Microstructure-ActiveArea">Active
+      Area</link> of the &micro; in the topmost non-proxy &layer; that is
+      displaying a &micro;.
+    </listitem>
+    <listitem>
+      <userinput>&lt;top microstructure&gt;</userinput> &emdash; the
+      &micro; in the top non-proxy &layer; that is displaying a
+      &micro;.
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  When proxies are used in
+  scripts, they appear as simple quoted strings, with the angle
+  brackets included, <foreignphrase>e.g</foreignphrase>:
+  <literallayout class="monospaced">
+      OOF.Graphics_1.Layer.New(
+          category='Skeleton',
+          <emphasis role="bold">what='&lt;topmost&gt;'</emphasis>,
+          how=SkeletonEdgeDisplay(color=TranslucentGray(value=0.6,alpha=1),width=2))
+  </literallayout>
+</para>
+<para>
+  Proxy objects are heavily used in the predefined &layers;
+  contained in every new Graphics Window.  They are used, for
+  example, to show the selected pixels in the topmost &micro; or
+  &image;, or the selected &elems; in the topmost &skel;.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

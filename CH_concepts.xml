@@ -197,7 +197,11 @@
 	        <para>
 		      Menus for selecting a &mesh; in the <link
 		      linkend="Section-Graphics-NewLayer">New Graphics
-		      Layer</link> dialog.
+		      Layer</link> dialog.  The &micro; (named
+              <userinput>tinman</userinput>) is on top, followed by the
+              &skel; (<userinput>scarecrow</userinput>, and the &mesh;
+              (currently set to <userinput>lion</userinput>, but about
+              to be changed to <userinput>toto</userinput>).
 	        </para>
 	      </caption>
 	    </mediaobject>

@@ -163,7 +163,7 @@ tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
       optional arguments specifying whether or not the &equation; contains
       first-order (kinetic) or second-order (dynamic) time
       derivatives.  This facility is still under development, and so
-      the documentation is incomplett.<!-- TODO: Finish this -->
+      the documentation is incomplete.<!-- TODO: Finish this -->
     </para>
     <para>
       As an example, the following code fully defines the quantities

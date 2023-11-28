@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: CH_graphics.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-04-15 21:12:40 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -101,8 +96,16 @@
       Layer Policy</guimenuitem></link> command in the graphics
       window's <link
       linkend="MenuItem-OOF.Graphics_n.Settings"><guimenu>Settings</guimenu></link>
-      menu.  (Some utility layers, such as those that display selected
-      objects, are always created automatically.)
+      menu.
+    </para>
+    <para>
+      The display also includes a number of <link
+      linkend="auxlayers">auxiliary layers</link>, which draw things
+      like the currently selected &elems; and &nodes;.  These layers
+      are created automatically when a Graphics Window is opened, and
+      are listed in <xref linkend="Section-Graphics-LayerList"/>.
+      They can be modified, hidden, or even deleted like any other
+      &layer;.
     </para>
     <para>
       Each &layer; is drawn on the Canvas by a <xref
@@ -123,6 +126,17 @@
       the <link linkend="Section-Graphics-LayerList">Layer
       List</link>.
     </para>
+    <para>
+      New &layers; are created by the <link
+      linkend="MenuItem-OOF.Graphics_n.Layer.New"><guimenuitem>New</guimenuitem></link>
+      item in the window's <link
+      linkend="MenuItem-OOF.Graphics_n.Layer"><guimenuitem>Layer</guimenuitem></link>
+      menu.  See <xref linkend="MenuItem-OOF.Graphics_n.Layer.New"/>
+      for all the details.
+    </para>
+
+
+    
     <section id="Section-Graphics-New-Layer-Policy">
       <title>The New Layer Policy</title>
       <para>
@@ -360,9 +374,9 @@
       linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command></link>
       menu governs whether or not the auxiliary &layers; are listed.
     </para>
-    <para>
+    <para id="auxlayers">
       The auxiliary layers are (from top to bottom):
-      <itemizedlist spacing="compact">
+      <itemizedlist spacing="compact" id="auxlayers">
         <listitem>
           <para>
             <xref
@@ -444,7 +458,7 @@
           <para>
             A <link
             linkend="RegisteredClass-BitmapOverlayDisplayMethod">bitmap
-            overlay/</link> for selected pixels.
+            overlay</link> for selected pixels.
           </para>
         </listitem>
         <listitem>

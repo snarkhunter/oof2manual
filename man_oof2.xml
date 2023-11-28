@@ -151,6 +151,9 @@ linkend='Section-Concepts-Mesh-Equation'><classname>Equations</classname></link>
 linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
 <!ENTITY layers "<link
 linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
+
+<!-- TODO: Make sure layereditor and layerset aren't used anywhere
+      and delete these entities -->
 <!ENTITY layerset "<link
 linkend='Section-Graphics-LayerSet'><classname>LayerSet</classname></link>">
 <!ENTITY layersets "<link
@@ -187,6 +190,7 @@ linkend='Section-Graphics-LayerEditor'>Layer Editor</link>">
 
 <!ENTITY oof2rc "<link linkend='Section-oof2rc'><filename>.oof2rc</filename></link>">
 <!ENTITY hellip "&#8230;">
+<!ENTITY emdash "&#x2014;">
 ]>
 
 <!-- The reference pages for all menuitems should refer to the

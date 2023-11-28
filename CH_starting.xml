@@ -250,7 +250,7 @@
 	        <entry>
 	          <para>
 		        Load a Python <link
-		        linkend="MenuItem-OOF.File.Load.Script">script</link>.<footnote
+		        linkend="MenuItem-OOF.File.LoadStartUp.Script">script</link>.<footnote
 		        id="Footnote:fileoptions">
 		        <simpara>
 		          This option may be present more than once.  Files
@@ -285,7 +285,7 @@
 	        <entry>
 	          <para>
 		        Load an &oof2; <link
-		        linkend="MenuItem-OOF.File.Load.Data"> data file
+		        linkend="MenuItem-OOF.File.LoadStartUp.Data"> data file
 		        </link>.<footnoteref linkend="Footnote:fileoptions"/>
 	          </para>
 	        </entry>
