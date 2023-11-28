@@ -14,3 +14,4 @@
 
 OOF.Windows.Graphics.New()
 OOF.Help.API_Listing(filename='oof2_api.xml', format='xml')
+OOF.File.Quit()
