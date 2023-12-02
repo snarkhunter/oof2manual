@@ -677,13 +677,19 @@
 	      linkend="Section-Concepts-Microstructure-Pixel_Group"><quote>meshable</quote>
 	      PixelGroups</link> are in different categories.  The
 	      category claiming the largest area of the element is the
-	      <emphasis>dominant</emphasis> category.  The homogeneity is
-	      defined as the ratio of the area of the dominant category to
-	      the area of the element as a whole.  A completely
-	      homogeneous element has a homogeneity of 1.0.  An element
-	      made up of N equal components has a homogeneity of 1/N.  The
-	      &material; assigned to an element is the &material; of its
-	      dominant pixel category.
+	      <emphasis>dominant category</emphasis>, and the pixels in
+	      that category are the <emphasis>dominant pixels</emphasis>.
+	      The homogeneity is defined as the ratio of the area of the
+	      dominant category to the area of the element as a whole.  A
+	      completely homogeneous element has a homogeneity of 1.0.  An
+	      element made up of N equal components has a homogeneity of
+	      1/N.  The &material; assigned to an element is the
+	      &material; of its dominant pixel category.<footnote>
+          <para>
+            This assignment can be overridden by <xref
+            linkend="MenuItem-OOF.ElementGroup.Assign_Material"/>.
+          </para>
+          </footnote>
 	    </para>
 	    <note>
 	      <para>

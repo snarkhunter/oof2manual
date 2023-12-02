@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: expand_by_elements.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:40 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,6 +8,7 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<!-- TODO: IS THIS DETAIL NEEDED IF EXPAND_NODE_SELECTION HAS FIGURES? -->
   <para>
     <classname>ExpandByElements</classname> is used as the
     <varname>criterion</varname> parameter of <xref

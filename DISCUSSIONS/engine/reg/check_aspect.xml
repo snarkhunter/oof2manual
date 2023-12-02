@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: check_aspect.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:37 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -22,10 +17,15 @@
   high aspect ratios.
 </para>
 <para>
-  The aspect ratio of both triangular and quatrilateral &elems; is
-  the square root of the ratio of the eigenvalues of the in-plane
-  moment of inertia tensor of the element's corners.  If corner
-  <inlineequation><alt role="tex">n</alt></inlineequation>
+  The aspect ratio of a rectangle is its length divided by its width,
+  or <foreignphrase>vice versa</foreignphrase>.  That definition
+  doesn't work well for trianglar or non-rectangular quadrilateral
+  &elems;.  The definition used in &oof2; is the square root of the
+  ratio of the eigenvalues of the in-plane moment of inertia tensor of
+  the element's corners.
+</para>
+<para>
+  If corner <inlineequation><alt role="tex">n</alt></inlineequation>
   is at position
   <inlineequation>
     <alt role="tex">
@@ -35,10 +35,10 @@
   and the center of the element is
   <inlineequation>
     <alt role="tex">
-      \( \bar{\mathbf{x}} \)
+      \( \bar{\mathbf{x}} \),
     </alt>
   </inlineequation>
-  then the moment of inertia is
+  then the moment of inertia tensor is
   <equation>
     <alt role="tex">
       \[M_{ij} = \sum_n (\mathbf{x}^n_i-\bar{\mathbf{x}}_i)
@@ -65,82 +65,51 @@
   remove skinny triangles from a &skel;, use the <xref
   linkend="RegisteredClass-Rationalize"/> &skel; modifier.
 </para>
-  <figure id="Figure-badaspect">
-    <title>Elements <emphasis>not</emphasis> Refined</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/check_mark/badaspect.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/check_mark/badaspect.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A collection of high aspect ratio elements that nevertheless
-	  won't be refined by <classname>CheckAspectRatio</classname>.
-	  (a) and (b) are triangles.  (c) and (d) don't have a clear
-	  distinction between long and short edges, and (e) doesn't
-	  have its long edges on opposite sides of the element.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
-
-  <para>
-    <xref linkend="Figure-aspect"/> shows a &skel; containing one
-    skinny quadrilateral and one skinny triangle. <xref
-    linkend="Figure-aspect-refined"/> shows the result of refining the
-    element.  Unlike <xref
-    linkend="RegisteredClass-CheckHomogeneity"/>, which marks all the
-    &sgmts; of its target &elems;,
-    <classname>CheckAspectRatio</classname> marks only the long
-    &sgmts;, so not all of the sides have been subdivided.
-  </para>
-    <figure id="Figure-aspect">
-      <title>Elements with High Aspect Ratios</title>
-      <mediaobject>
+<para>
+  <xref linkend="Figure-aspect"/> shows a &skel; containing one skinny
+  quadrilateral and one skinny triangle. <xref
+  linkend="Figure-aspect-refined"/> shows the result of refining the
+  elements.  Unlike <xref
+  linkend="RegisteredClass-CheckHomogeneity"/>, which marks all the
+  &sgmts; of its target &elems;,
+  <classname>CheckAspectRatio</classname> marks only the long &sgmts;,
+  so not all of the sides have been subdivided.
+</para>
+<figure id="Figure-aspect">
+  <title>Elements with High Aspect Ratios</title>
+  <mediaobject>
 	<imageobject>
 	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect0.png"></imagedata>
-	</imageobject>
-	<imageobject>
-	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect0.eps"></imagedata>
 	</imageobject>
 	<caption>
 	  <para>
 	    A &skel; containing two elements with a high aspect ratio.
-        The aspect ratio of the highlighted quadrilateral is about 6, and
-        the aspect ratio of the highlighted triangle is about 15.
+	    The aspect ratio of the highlighted quadrilateral is about 6,
+	    and the aspect ratio of the highlighted triangle is about 15.
 	  </para>
 	</caption>
-      </mediaobject>
-    </figure>
-    <figure id="Figure-aspect-refined">
-      <title>Refining Elements with High Aspect Ratios</title>
-      <mediaobject>
+  </mediaobject>
+</figure>
+<figure id="Figure-aspect-refined">
+  <title>Refining Elements with High Aspect Ratios</title>
+  <mediaobject>
 	<imageobject>
 	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect1.png"></imagedata>
 	</imageobject>
-	<imageobject>
-	  <imagedata format="EPS" fileref="FIGURES/check_mark/aspect1.eps"></imagedata>
-	</imageobject>
 	<caption>
 	  <para>
-	    The &skel; produced by refining with
-	    <userinput>modifier=<link
+	    The &skel; produced by refining with <userinput>modifier=<link
 	    linkend="RegisteredClass-Refine">Refine</link>(targets=CheckAspectRatio(threshold=5.0,
-        only_quads=False),
-	    divider=<link
+	    only_quads=False), divider=<link
 	    linkend="RegisteredClass-Bisection">Bisection</link>(),
-        rules='Quick', alpha=1)</userinput>.  The quad was divided
-        into two elements with aspect ratios near 3, but the triangle
-        was turned into a quad with aspect ratio 8 and a new triangle
-        wtih aspect ratio 15.
+	    rules='Quick', alpha=1)</userinput>.  The quad was divided
+	    into two elements with aspect ratios near 3, but the triangle
+	    was turned into a quad with aspect ratio 8 and a new triangle
+	    with aspect ratio 15, no better than the original triangle.
 	  </para>
 	</caption>
-      </mediaobject>
-    </figure>
+  </mediaobject>
+</figure>
 
 
 

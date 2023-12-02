@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: expand_node.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,24 +8,49 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <command>ExpandNodeSelection</command> selects nodes by selecting
-    the neighbors of the currently selected &nodes;.  The
-    <varname>criterion</varname> parameter determines exactly which
-    other &nodes; are considered to be neighbors.  For illustrations,
-    see the reference pages for the subclasses of <xref
-    linkend="RegisteredClass-ExpandCriterion"/>.
-  </para>
-  <para>
-    Expanding the &node; selection is useful when applying &skel;
-    <link linkend="RegisteredClass-SkeletonModifier">modifier</link>
-    to a portion of a &skel;.  For example, to improve the resolution
-    of a boundary in a &micro;, it's convenient to <xref
-    linkend="RegisteredClass-Anneal"/> the &nodes; that are close to
-    the boundary.  To do this, select the &nodes; on the boundary,
-    expand the selection, and then <xref
-    linkend="RegisteredClass-Anneal"/> the selected &nodes;.
-  </para>
+<para>
+  <command>ExpandNodeSelection</command> selects nodes by selecting
+  the neighbors of the currently selected &nodes;.  The
+  <varname>criterion</varname> parameter determines exactly which
+  other &nodes; are considered to be neighbors.
+</para>
+<para>
+  Expanding the &node; selection is useful when applying &skel; <link
+  linkend="RegisteredClass-SkeletonModifier">modifier</link> to a
+  portion of a &skel;.  For example, to improve the resolution of a
+  boundary in a &micro;, it's convenient to <xref
+  linkend="RegisteredClass-Anneal"/> the &nodes; that are close to the
+  boundary.  To do this, select the &nodes; on the boundary, expand
+  the selection, and then <xref linkend="RegisteredClass-Anneal"/> the
+  selected &nodes;.
+</para>
+<para>
+  The <varname>criterion</varname> parameter determines which
+  addtional &nodes; are selected.  If it's set to <userinput>By
+  Elements</userinput>, all &nodes; that share an &elem; with a
+  currently selected &node; are selected.  If it's set to
+  <userinput>By Segments</userinput>, all &nodes; that share a &sgmt;
+  with a selected &node; are selected.  The difference is illustrated
+  in <xref linkend="Figure-expandnodeselection"/>.
+</para>
+
+<figure id="Figure-expandnodeselection">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/skel_selection/expand_nodes.png"
+                 format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        (a) A &skel; with three selected &nodes;.  (b) After expanding
+        the &node; selection by segments. (c) After expanding the
+        selection by elements.  Three selected &nodes; in (c) are not
+        selected in (b) because they are not connected directly by
+        segments to the selected nodes in (a).
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 <!-- Keep this comment at the end of the file
   Local variables:

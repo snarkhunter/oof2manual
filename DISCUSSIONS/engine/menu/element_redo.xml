@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: element_redo.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:23 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,23 +8,24 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<para>
+  Each &skel; maintains a stack of previous &elem; selections.
+  Whenever &elems; are selected or deselected, a new version is pushed
+  onto the stack.  The <link
+  linkend="MenuItem-OOF.ElementSelection.Undo"><command>Undo</command></link>
+  command pops the latest version off of the stack, thereby reverting
+  to the previously selected set of &elems;.  The
+  <command>Redo</command> command undoes the <command>Undo</command>,
+  replacing the most recently popped selection onto the stack.
+</para>
+<note>
   <para>
-    Each &skel; maintains a stack of previous &elem; selections.
-    Whenever &elems; are selected or deselected, a new version is
-    pushed onto the stack.  The <link
+    Undone modifications can be redone only if no new &elem;
+    selections have been made since the time of the last <link
     linkend="MenuItem-OOF.ElementSelection.Undo"><command>Undo</command></link>
-    pops the latest version off of the stack, thereby reverting to the
-    previously selected set of &elems;.  The <command>Redo</command>
-    command undoes the <command>Undo</command>, replacing the most
-    recently popped selection onto the stack.
+    command.
   </para>
-  <note>
-    <para>
-      Undone modifications can be redone only if no new &elem;
-      selections have been made since the time of the last <link
-      linkend="MenuItem-OOF.ElementSelection.Undo"><command>Undo</command></link>.
-    </para>
-  </note>
+</note>
 
 
 

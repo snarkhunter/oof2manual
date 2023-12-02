@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: bymaterial.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:22 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,26 +8,43 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Select &skel; &elems; whose &material; is named by the
-    <varname>material</varname> parameter. An &elem;'s &material; is
-    the &material; assigned to the <link
-    linkend="Section-Concepts-Skeleton-Homogeneity">dominant
-    pixel</link> in the set of &micro; pixels underlying the &elem;.
-  </para>
-  <para>
-    If <varname>material</varname> is set to
-    <userinput>'&lt;None&gt;'</userinput>, then &elems; with no
-    &material; will be selected.  This can happen only if there are
-    pixels in the &micro; with no assigned &material;.  If
-    <varname>material</varname> is
-    <userinput>'&lt;Any&gt;'</userinput>, then &elems; with any
-    &material; will be selected.  Choosing &elems; with
-    <userinput>'&lt;Any&gt;'</userinput> is exactly like choosing them
-    with <userinput>'&lt;None&gt;'</userinput> and then <link
-    linkend="MenuItem-OOF.ElementSelection.Invert"><command>Invert</command></link>ing
-    the selection.
-  </para>
+<para>
+  Select &skel; &elems; whose &material; is named by the
+  <varname>material</varname> parameter. An &elem;'s &material; is
+  the &material; assigned to the <link
+  linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+  pixel</link> in the set of &micro; pixels underlying the &elem;.
+</para>
+<para>
+  In the GUI, the pull down menu for the <varname>material</varname>
+  parameter includes all of the defined &materials; as well as the
+  strings <userinput>&lt;Any&gt;</userinput> and
+  <userinput>&lt;None&gt;</userinput>.  If <varname>material</varname>
+  is set to <userinput>'&lt;None&gt;'</userinput>, then &elems; with
+  no &material; will be selected.  This can happen only if there are
+  pixels in the &micro; with no assigned &material;.  If
+  <varname>material</varname> is <userinput>'&lt;Any&gt;'</userinput>,
+  then &elems; with any &material; will be selected.  Choosing &elems;
+  with <userinput>'&lt;Any&gt;'</userinput> is exactly like choosing
+  them with <userinput>'&lt;None&gt;'</userinput> and then <link
+  linkend="MenuItem-OOF.ElementSelection.Invert"><command>Invert</command></link>ing
+  the selection.
+</para>
+<figure>
+  <title>Selecting Elements by Material</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/skel_selection/select_by_matl.png"
+                 format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        A portion of the Skeleton Selection page showing the
+        &material; list when selecting &elems;.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 
   <!-- Keep this comment at the end of the file

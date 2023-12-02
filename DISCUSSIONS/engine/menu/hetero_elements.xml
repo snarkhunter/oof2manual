@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: hetero_elements.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,49 +8,31 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Select &skel; &elems; that are <link
-    linkend="Section-Concepts-Skeleton-Homogeneity">heterogeneous</link>.
-    Any &elem; whose homogeneity is less than the given
-    <varname>threshold</varname> will be selected.
-  </para>
-  <figure id="Figure-HeteroElements">
-    <title>Selecting Heterogeneous Elements</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heteroelems0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heteroelems0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; containing some heterogeneous &elems;.  The pixels
-	  have been grouped by <link
+<para>
+  Select &skel; &elems; that are <link
+  linkend="Section-Concepts-Skeleton-Homogeneity">heterogeneous</link>.
+  Any &elem; whose homogeneity is less than the given
+  <varname>threshold</varname> will be selected.
+</para>
+<figure id="Figure-HeteroElements">
+  <title>Selecting Heterogeneous Elements</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/select_elhomog.png"
+	             format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    (a) A &skel; containing some heterogeneous &elems;.  The
+	    pixels have been grouped by <link
 	    linkend="MenuItem-OOF.Image.AutoGroup">color</link>, so
-	  &elems; straddling two colors are inhomogeneous.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heteroelems1.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heteroelems1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  &elems; (in red) that are less than 90% homogeneous have
-	  been selected.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+	    &elems; straddling two or more colors are inhomogeneous.  (b)
+	    The &elems; (in red) that are less than 80% homogeneous have
+	    been selected.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:
