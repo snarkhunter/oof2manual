@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: hetero_segments.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,49 +8,37 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Select &skel; &sgmts; that are <link
-    linkend="Section-Concepts-SegmentHomogeneity">heterogeneous</link>.
-    Any &sgmt; whose homogeneity is less than the given
-    <varname>threshold</varname> will be selected.
-  </para>
-  <figure id="Figure-HeteroSegments">
-    <title>Selecting Heterogeneous Segments</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heterosegs0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heterosegs0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; containing some heterogeneous &sgmts;.  The pixels
-	  have been grouped by <link
+<para>
+  Select &skel; &sgmts; that are <link
+  linkend="Section-Concepts-SegmentHomogeneity">heterogeneous</link>.
+  Any &sgmt; whose homogeneity is less than the given
+  <varname>threshold</varname> will be selected.
+</para>
+<figure id="Figure-HeteroSegments">
+  <title>Selecting Heterogeneous Segments</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/heterosegs.png"
+	             format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    (a) A &skel; containing some heterogeneous &sgmts;.  The
+	    pixels have been grouped by <link
 	    linkend="MenuItem-OOF.Image.AutoGroup">color</link>, so
-	  &sgmts; straddling two colors are inhomogeneous.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heterosegs1.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/heterosegs1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  &sgmts; (heavy black lines) that are less than 90%
-	  homogeneous have been selected.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+	    &sgmts; straddling two colors are inhomogeneous. (b) After
+	    selecting with
+	    <varname>threshold</varname>=<userinput>0.9</userinput>,
+	    &sgmts; that are less than 90% homogeneous have been selected
+	    and are marked by heavy green lines. (c) The same, but with
+	    <varname>threshold</varname>=<userinput>0.5</userinput>.  Only
+	    one segment is selected.  (Unless a segment crosses three or
+	    more pixel categories, it is impossible for its homogeneity to
+	    be less than 0.5.)
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

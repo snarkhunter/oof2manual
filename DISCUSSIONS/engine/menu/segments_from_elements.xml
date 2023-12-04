@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: segments_from_elements.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:27 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,87 +9,38 @@
 -->
 
 
-  <para>
-    <command>OOF.SegmentSelection.Select_From_Selected_Elements</command>
-    provides three ways of selecting &sgmts; based on a pre-existing
-    &elem; selection.  The two parameters <varname>internal</varname>
-    and <varname>boundary</varname> control which &sgmts; will be
-    selected.  If <varname>internal</varname> is true, then the
-    &sgmts; that are shared by exactly two selected &elems; will be
-    selected.  If <varname>boundary</varname> is true, then the
-    &sgmts; that are part of only one selected &elem; will be
-    selected.
-  </para>
+<para>
+  <command>OOF.SegmentSelection.Select_From_Selected_Elements</command>
+  provides three ways of selecting &sgmts; based on a pre-existing
+  &elem; selection.  The two parameters <varname>internal</varname>
+  and <varname>boundary</varname> control which &sgmts; will be
+  selected.  If <varname>internal</varname> is true, then the &sgmts;
+  that are shared by exactly two selected &elems; will be selected.
+  If <varname>boundary</varname> is true, then the &sgmts; that are
+  part of only one selected &elem; will be selected.
+</para>
 
-  <figure id="Figure-segs_from_elems">
-    <title>Selecting Segments from Selected Elements</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	fileref="FIGURES/skel_selection/segs_from_elems0.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/segs_from_elems0.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; containing some selected &elems;, in pink.	  
-	</para>
+<figure id="Figure-segs_from_elems">
+  <title>Selecting Segments from Selected Elements</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata format="PNG"
+	             fileref="FIGURES/skel_selection/segs_from_elements.png"/>
+    </imageobject>
+    <caption>
+	  <para>
+	  A &skel; containing some selected &elems;, in red, and the three
+      ways of selecting &sgmts; from them. (a)
+      <varname>internal</varname>=<userinput>False</userinput> and
+      <varname>boundary</varname>=<userinput>True</userinput>. (b)
+      <varname>internal</varname>=<userinput>True</userinput> and
+      <varname>boundary</varname>=<userinput>False</userinput>. (c)
+      <varname>internal</varname>=<userinput>True</userinput> and
+      <varname>boundary</varname>=<userinput>True</userinput>.
+      </para>
       </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	fileref="FIGURES/skel_selection/segs_from_elems1.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/segs_from_elems1.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  Segments (in green) selected with
-	  <varname>internal</varname>=<userinput>0</userinput> and
-	  <varname>boundary</varname>=<userinput>1</userinput>.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	fileref="FIGURES/skel_selection/segs_from_elems2.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/segs_from_elems2.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  Segments (in green) selected with
-	  <varname>internal</varname>=<userinput>1</userinput> and
-	  <varname>boundary</varname>=<userinput>0</userinput>.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	fileref="FIGURES/skel_selection/segs_from_elems3.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/segs_from_elems3.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  Segments (in green) selected with both
-	  <varname>internal</varname>=<userinput>1</userinput> and
-	  <varname>boundary</varname>=<userinput>1</userinput>.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

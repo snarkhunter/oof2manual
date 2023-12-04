@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: node_undo.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,19 +8,23 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Each &skel; maintains a stack of previous &node; selections.
-    Whenever &nodes; are selected or deselected, a new
-    version is pushed onto the stack.  The <command>Undo</command>
-    pops the latest version off of the stack, thereby reverting to the
-    previously selected set of &nodes;.  The popped set is not
-    destroyed &#x2014; it can be recovered with the <xref
-    linkend="MenuItem-OOF.NodeSelection.Redo"/> command.
-  </para>
-  <para>
-    The selection stack is not infinite.  When it is full, the oldest
-    selection will be lost when a new selection is made.
-  </para>
+<para>
+  Each &skel; maintains a stack of previous &node; selections.
+  Whenever &nodes; are selected or deselected, a new version is pushed
+  onto the stack.  The <command>Undo</command> pops the latest version
+  off of the stack, thereby reverting to the previously selected set
+  of &nodes;.  The popped set is not destroyed &#x2014; it can be
+  recovered with the <xref linkend="MenuItem-OOF.NodeSelection.Redo"/>
+  command.
+</para>
+<para>
+  The selection stack is not infinite.  When it is full, the oldest
+  selection will be lost when a new selection is made.  The size of
+  the stack can be changed with <xref
+  linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Skeleton_Selection.Node"/>
+  or <xref
+  linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Skeleton_Selection.All"/>.
+</para>
 
 
 

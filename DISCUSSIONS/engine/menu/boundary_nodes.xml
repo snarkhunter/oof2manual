@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: boundary_nodes.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:21 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,38 +8,34 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Select all the &nodes; on the internal boundaries of the &skel;.
-    These are the &nodes; that are part of &elems; that have different
-    dominant <link linkend="Section-Concepts-PixelCategory">pixel
-    categories</link>.  That is, the dominant pixel types within the
-    &elems; have different assigned &materials; or belong to different
-    <link linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
-    groups</link>.
-  </para>
-  <para>
-    Note that the resulting &node; selection does not
-    include &nodes; that are on the exterior of the &micro;, except
-    where an interior boundary reaches the perimeter.
-  </para>
-  <figure id="Figure-boundary_nodes">
-    <title>Selecting Internal Boundary Nodes</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_internal_boundary.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS" fileref="FIGURES/skel_selection/nodes_internal_boundary.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  With pixels grouped according to the three colors in the
-	  image, the pixels on the internal boundaries are shown by
-	  the large blue dots.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  Select all the &nodes; on the internal boundaries of the &skel;.
+  These are the &nodes; that are part of &elems; that have different
+  dominant <link linkend="Section-Concepts-PixelCategory">pixel
+  categories</link>.  That is, the dominant pixel types within the
+  &elems; have different assigned &materials; or belong to different
+  <link linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+  groups</link>.
+</para>
+<para>
+  Note that the resulting &node; selection does not include &nodes;
+  that are on the exterior of the &micro;, except where an interior
+  boundary reaches the perimeter.
+</para>
+<figure id="Figure-boundary_nodes">
+  <title>Selecting Internal Boundary Nodes</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_internal_boundary.png"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    With pixels groups defined by the four colors in the image,
+	    the internal boundary nodes are the shown by the blue dots.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:
