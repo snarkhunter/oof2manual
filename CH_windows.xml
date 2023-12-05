@@ -79,7 +79,8 @@
 	        <guibutton>Report</guibutton>: Informational messages.
 	        The last line in <xref linkend="Figure-MessagesWindow"/>
 	        is a report.  Messages about the status and progress of a
-	        solver are reports.
+	        solver are reports, as is any text added by <xref
+	        linkend="MenuItem-OOF.File.Annotate_Log"/>.
 	      </para>
 	    </listitem>
 	    <listitem>
