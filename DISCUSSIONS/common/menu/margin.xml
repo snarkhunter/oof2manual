@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: margin.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,13 +8,32 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
- <para>
-    Zooming to <link
-    linkend='MenuItem-OOF.Graphics_n.Settings.Zoom.Fill_Window'>full
-    size</link> leaves a blank margin around the display.  The given
-    <varname>fraction</varname> specifies the width of the margin, as
-    a fraction of the total display size.
+<para>
+  Zooming to <link
+  linkend='MenuItem-OOF.Graphics_n.Settings.Zoom.Fill_Window'>full
+  size</link> leaves a blank margin around the display.  The given
+  <varname>fraction</varname> specifies the width of the margin, as
+  a fraction of the total display size.  If the canvas and its
+  contents do not have the same aspect ratio, the margins will be
+  unequal, and the setting applies to the smaller dimension.
+</para>
+<figure>
+  <title>The Display Margin</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/margin.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      An &image; zoomed to full size in the canvas with the margin
+      set to <userinput>0.05</userinput>, indicated by the arrows. 
+    </caption>
+  </mediaobject>
+</figure>
+<note>
+  <para>
+    Changing the margin does not automatically zoom the canvas.  
   </para>
+</note>
 
 <!-- Keep this comment at the end of the file
   Local variables:

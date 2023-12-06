@@ -51,7 +51,7 @@
   The <varname>frame_rate</varname> parameter determines how many
   time slices will be displayed each second.  &oof2; will attempt to
   display the requisite number, but may not be able to attain it if
-  it's displaying a lot of data.  A future version (later than 2.1.1)
+  it's displaying a lot of data.  A future version (later than 2.3.2)
   may be able to precompute and cache frames to speed up the
   animation.
 </para>

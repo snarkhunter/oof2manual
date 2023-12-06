@@ -37,10 +37,12 @@
   <userinput>false</userinput>, the background will be transparent (if
   possible).
 </para>
-<para>
-  To save just a portion of the Canvas, use <xref
-  linkend="MenuItem-OOF.Graphics_n.File.Save_Canvas_Region"/>.
-</para>
+<note>
+  <para>
+    To save just a portion of the Canvas, use <xref
+    linkend="MenuItem-OOF.Graphics_n.File.Save_Canvas_Region"/>.
+  </para>
+</note>
 
 <!-- Keep this comment at the end of the file
   Local variables:

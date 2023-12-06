@@ -557,8 +557,9 @@
       </mediaobject>
     </figure>
     <para>
-      Layers that display time-dependent content all have a parameter
-      named <varname>when</varname>.  Only &layers; for which
+      <xref linkend="RegisteredClass-DisplayMethod"/>s that display
+      time-dependent content all have a parameter named
+      <varname>when</varname>.  Only &layers; for which
       <varname>when</varname> is set to <link
       linkend="Object-Placeholder-Time"><guilabel>&lt;latest&gt;</guilabel></link>
       will be affected by the window's time setting.  Layers that have
@@ -679,7 +680,7 @@
 	      </para>
 	    </listitem>
       </itemizedlist>
-      The following sections describe each Toolbox in detail.
+      Follow the links above for detailed descriptions of each Toolbox.
     </para>
 
     <!-- TODO: Why doesn't the Next button on the Toolboxes page go to
@@ -696,6 +697,7 @@
     &TBmeshinfo;
     &TBmeshcs;
   </section>                    <!--Section-Graphics-Toolboxes -->
+
 
 </chapter>
 

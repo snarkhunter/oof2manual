@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: longlayers.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:16 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,17 +8,16 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    When <command>Long_Layer_Names</command> is
-    <emphasis>on</emphasis>, the <link
-    linkend="Section-Graphics-LayerList">Layer List</link> in the
-    <link linkend="Chapter-Graphics">Graphics</link> window shows the
-    full set of parameters for each &layer;.  Often this is too much
-    information.  When <command>Long_Layer_Names</command> is
-    <emphasis>off</emphasis>, only the displayed object and <xref
-    linkend="RegisteredClass-DisplayMethod"/> are shown, without
-    arguments.
-  </para>
+<para>
+  When <command>Long_Layer_Names</command> is <emphasis>on</emphasis>,
+  the <link linkend="Section-Graphics-LayerList">Layer List</link> in
+  the <link linkend="Chapter-Graphics">Graphics</link> window shows
+  the full set of parameters for each &layer;.  Often this is too much
+  information.  When <command>Long_Layer_Names</command> is
+  <emphasis>off</emphasis>, only the displayed object and <xref
+  linkend="RegisteredClass-DisplayMethod"/> are shown, with
+  abbreviated arguments.
+</para>
 
 
 <!-- Keep this comment at the end of the file

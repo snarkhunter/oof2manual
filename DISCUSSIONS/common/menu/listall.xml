@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: listall.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:16 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,47 +8,49 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    The <link linkend="Section-Graphics-LayerList">Layer list</link>
-    in the <link linkend="Chapter-Graphics">Graphics</link> window
-    usually only shows the primary &layers;: those that show &images;,
-    &skels;, and &meshes;.  It does not show the predefined
-    &layers; for <link linkend="Section-Tasks-PixelSelection">pixel
-    selections</link>, <link
-    linkend="Section-Tasks-SkeletonSelection">Skeleton
-    selections</link>, &actives;, <foreignphrase>etc</foreignphrase>.
-    In order to <link
-    linkend="MenuItem-OOF.Graphics_n.Layer.Edit">modify</link> (or
-    <link
-    linkend="MenuItem-OOF.Graphics_n.Layer.Delete">delete</link>) the
-    predefined layers in the GUI, it's necessary first to <link
-      linkend="MenuItem-OOF.Graphics_n.Layer.Select">select</link>
-    them.  In order to select them, it's necessary to turn on
-    <command>List_All_Layers</command>.
-  </para>
-  <para>
-    <command>List_All_Layers</command> has no effect in scripts or in
-    text mode.  In GUI mode, unlisted layers are indicated by thin
-    horizontal lines in the layer list, as shown in <xref
-    linkend="Figure-unlisted"/>.
-  </para>
-  <figure id="Figure-unlisted">
-    <title>Unlisted Layers</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/unlisted.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/unlisted.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  Lines marking unlisted &layers; in the Graphics window's layer
-	  list.
-	</simpara>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  The <link linkend="Section-Graphics-LayerList">Layer list</link> in
+  the <link linkend="Chapter-Graphics">Graphics</link> window usually
+  only shows the primary &layers;: those that show &images;, &skels;,
+  and &meshes;.  It does not show the predefined &layers; for <link
+  linkend="Section-Tasks-PixelSelection">pixel selections</link>,
+  <link linkend="Section-Tasks-SkeletonSelection">Skeleton
+  selections</link>, &actives;, <foreignphrase>etc</foreignphrase>.
+  In order to <link
+  linkend="MenuItem-OOF.Graphics_n.Layer.Edit">modify</link> (or <link
+  linkend="MenuItem-OOF.Graphics_n.Layer.Delete">delete</link>) the
+  predefined layers in the GUI, it's necessary first to <link
+  linkend="MenuItem-OOF.Graphics_n.Layer.Select">select</link> them.
+  In order to select them, it's necessary to turn on
+  <command>List_All_Layers</command>.
+</para>
+<para>
+  <command>List_All_Layers</command> has no effect in scripts or in
+  text mode.  In GUI mode, unlisted layers are indicated by thin
+  horizontal lines in the layer list, as shown in <xref
+  linkend="Figure-unlisted"/>.
+</para>
+<figure id="Figure-unlisted">
+  <title>Unlisted Layers</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/listalllayers.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+        The top image shows the Graphics Window's Layer List when
+        <command>List_All_Layers</command> is off.  The arrows mark
+        the faint lines denoting the unlisted &layers;.  The bottom
+        image shows a portion of the list when
+        <command>List_All_Layers</command> is on.  It is necessary to
+        scroll to see the whole list.  Most of the &layers;
+        are predefined auxiliary &layers; not normally displayed.  At
+        this position in the list, only one of the normally listed
+        layers (indicated by the pink box) is visible.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 <!-- Keep this comment at the end of the file
   Local variables:

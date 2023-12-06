@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: settime.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-13 21:24:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -16,7 +11,7 @@
 <para>
   This command sets the <link
   linkend="Section-Graphics-Time">time</link> for the <link
-  linkend="Chapter-Graphics">graphics windoow</link>.  All &mesh;
+  linkend="Chapter-Graphics">graphics window</link>.  All &mesh;
   &layers; whose <varname>when</varname> parameter is set to <link
   linkend="Object-Placeholder-Time"><userinput>latest</userinput></link>
   will be displayed at the given time, unless the &layer; is <link

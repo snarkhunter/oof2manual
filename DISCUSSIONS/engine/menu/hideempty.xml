@@ -1,0 +1,61 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<para>
+  When <command>Hide_Empty_Mesh_Elements</command> is on, &elems; of a
+  &mesh; which have no assigned &material; are not drawn by any <xref
+  linkend="RegisteredClass-DisplayMethod"/>.  Some display methods,
+  such as <xref linkend="RegisteredClass-FilledContourDisplay"/>,
+  never draw these elements in any case, even if
+  <command>Hide_Empty_Mesh_Elements</command> is off.
+</para>
+<note>
+  <para>
+    The default value of <command>Hide_Empty_Mesh_Elements</command>
+    is off.  If a &mesh; doesn't appear in the graphics window, ensure
+    that the elements aren't empty, or that empty elements are being
+    shown.
+  </para>
+</note>
+<figure id="hideempty">
+  <title>Hiding Empty Mesh Elements</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/hideempty.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        A &material; is assigned only to the blue region in (a), a
+        &mesh; was created from it, and a <link
+        linkend="RegisteredClass-FilledContourDisplay"> contour
+        plot</link> displayed on the &mesh;.  (b) shows the just the
+        &mesh; and the contour plot with
+        <command>Hide_Empty_Mesh_Elements</command> off, and (c) shows
+        them with <command>Hide_Empty_Mesh_Elements</command> on.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

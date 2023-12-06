@@ -12,10 +12,10 @@
   Set how the current graphics window will create new layers when new
   &images;, &skels;, or &meshes; are created.  The
   <varname>policy</varname> applies only to this window.  To set the
-  policy for all future windows, use
-  <menuchoice><guimenu>Settings/Graphics Defaults/New Layer
-  Policy</guimenu></menuchoice> in the main &oof2; window.  See <xref
-  linkend="Section-Graphics-New-Layer-Policy"/>.
+  policy for all future windows, use <link
+  linkend="MenuItem-OOF.Settings.Graphics_Defaults.New_Layer_Policy"><guimenu>Settings/Graphics
+  Defaults/New Layer Policy</guimenu></link> in the main &oof2;
+  window.  See <xref linkend="Section-Graphics-New-Layer-Policy"/>.
 </para>
 
 <!-- Keep this comment at the end of the file
