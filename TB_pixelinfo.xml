@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: TB_pixelinfo.xml,v $
-  $Revision: 1.5 $
-  $Author: langer $
-  $Date: 2011-05-03 18:53:02 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -65,55 +60,69 @@
     buttons in the Toolbox:
     <itemizedlist>
       <listitem>
-	    <para>
-	      The top section shows data from the topmost &image; in the
-	      display, but only if the topmost &image; &layer; is not
-	      obscured by a &micro; &layer;.  It displays the name of the
-	      &image; (actually, its <link
-	      linkend="Section-Concepts-Path">path</link>) and the <link
-	      linkend="RegisteredClass-RGBColor">RGB</link> or <link
-	      linkend="RegisteredClass-HSVColor">HSV</link> representation
-	      of the selected pixel's color in the image.
-	    </para>
+        <formalpara>
+          <title>Image and Pixel</title>
+	      <para>
+	        The top section shows data from the topmost &image; in the
+	        display, but only if the topmost &image; &layer; is not
+	        obscured by a &micro; &layer;.  It displays the name of
+	        the &image; (actually, its <link
+	        linkend="Section-Concepts-Path">path</link>) and the <link
+	        linkend="RegisteredClass-RGBColor">RGB</link> or <link
+	        linkend="RegisteredClass-HSVColor">HSV</link>
+	        representation of the selected pixel's color in the image.
+	      </para>
+        </formalpara>
       </listitem>
       <listitem>
-	    <para>
-	      The next section shows the name of the &micro; and the pixel
-	      groups that contain the selected pixel.  The
-	      <varname>category</varname> is the integer that identifies
-	      the pixel type when computing &elem; <link
-	      linkend="Section-Concepts-Skeleton-Homogeneity">element
-	      homogeneity</link>.
-	    </para>
+        <formalpara>
+          <title>Microstructure and Groups</title>
+	      <para>
+	        The next section shows the name of the &micro; and the
+	        pixel groups that contain the selected pixel.  The
+	        <varname>category</varname> is the integer that identifies
+	        the pixel type when computing &elem; <link
+	        linkend="Section-Concepts-Skeleton-Homogeneity">element
+	        homogeneity</link>.
+	      </para>
+        </formalpara>
       </listitem>
       <listitem>
-	    <para>
-          The next section shows the name of the &material; assigned
-          to the selected pixel, or <guilabel>&lt;no
-          material&gt;</guilabel> if there isn't one.
-	    </para>
+        <formalpara>
+          <title>Material</title>
+	      <para>
+            The next section shows the name of the &material; assigned
+            to the selected pixel, or <guilabel>&lt;no
+            material&gt;</guilabel> if there isn't one.
+	      </para>
+        </formalpara>
       </listitem>
       <listitem>
-	    <para>
-	      The fourth section shows the orientation of the pixel.  If
-	      the pixel has a &material; and that &material; has an <link
-	      linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-	      &property;, that &property;'s orientation is displayed, as
-	      shown in the top part of <xref
-	      linkend="Figure-PixelInfoOrientation"/>.  If the pixel does
-	      <emphasis>not</emphasis> have an
-	      <classname>Orientation</classname> &property;, but the
-	      &micro; has an <link
-	      linkend="Section-Concepts-Microstructure-OrientationMap">orientation
-	      map</link>, the orientation from the orientation map is
-	      displayed,<footnote><simpara>The orientation is displayed
-	      whether or not the pixel's &material; contains the <link
-	      linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-	      &property;.  If the &material; does not contain the
-	      &property;, the <classname>OrientationMap</classname> will
-	      not actually be used.</simpara></footnote> as shown in the
-	      lower part of <xref linkend="Figure-PixelInfoOrientation"/>.
-	    </para>
+        <formalpara>
+          <title>Orientation</title>
+	      <para>
+	        The fourth section shows the orientation of the pixel.  If
+	        the pixel has a &material; and that &material; has an
+	        <link
+	        linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	        &property;, that &property;'s orientation is displayed, as
+	        shown in the top part of <xref
+	        linkend="Figure-PixelInfoOrientation"/>.  If the pixel
+	        does <emphasis>not</emphasis> have an
+	        <classname>Orientation</classname> &property;, but the
+	        &micro; has an <link
+	        linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+	        map</link>, the orientation from the orientation map is
+	        displayed,<footnote><simpara>The orientation is displayed
+	        whether or not the pixel's &material; contains the <link
+	        linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+	        &property;.  If the &material; does not contain the
+	        &property;, the <classname>OrientationMap</classname> will
+	        not actually be used.</simpara></footnote> as shown in the
+	        lower part of <xref
+	        linkend="Figure-PixelInfoOrientation"/>.
+	      </para>
+        </formalpara>
 	    <para>
 	      At the top of the orientation information pane is a pulldown
 	      menu that changes the format in which the orientation is
@@ -146,18 +155,20 @@
 	    </figure>
       </listitem>
       <listitem>
-        <para id="Section-Graphics-PixelInfo-Misorient">
-          The bottom section of the Pixel Info Toolbox computes
-          misorientations between two pixels &#x2014; the reference
-          point and the current point.  Misorientations can be
-          computed between any two pixels in the &micro; as long as
-          the pixels have an <link
-	      linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-          property or the &micro; contains an
-           <link
-	      linkend="Section-Concepts-Microstructure-OrientationMap">orientation
-	       map</link>.
-        </para>
+        <formalpara id="Section-Graphics-PixelInfo-Misorient">
+          <title>Misorientations</title>
+          <para>
+            The bottom section of the Pixel Info Toolbox computes
+            misorientations between two pixels &#x2014; the reference
+            point and the current point.  Misorientations can be
+            computed between any two pixels in the &micro; as long as
+            the pixels have an <link
+            linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+            property or the &micro; contains an <link
+            linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+            map</link>.
+          </para>
+        </formalpara>
         <para>
           When you first open the Pixel Info Toolbox, the
           Misorientation pane looks like <xref linkend="Figure-misorientation0"/>.

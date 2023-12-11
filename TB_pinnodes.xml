@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: TB_pinnodes.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:11 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -45,7 +40,7 @@
       <caption>
 	    <para>
 	      The Pin Nodes Toolbox and a Canvas displaying some pinned
-	      &nodes;.  
+	      &nodes; (yellow dots).  
 	    </para>
       </caption>
     </mediaobject>

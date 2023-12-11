@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: renameimage.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:50 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,13 +8,13 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    This command renames an &image; within an existing &micro;.  If
-    the given <varname>name</varname> is not unique among all the
-    existing &image; names in the &micro;, then
-    <userinput>&lt;x&gt;</userinput> will be appended to the name,
-    where <userinput>x</userinput> is an integer.
-  </para>
+<para>
+  This command renames an &image; within an existing &micro;.  If the
+  given <varname>name</varname> is not unique among all the existing
+  &image; names in the &micro;, then <userinput>&lt;x&gt;</userinput>
+  will be appended to the name, where <userinput>x</userinput> is an
+  integer.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

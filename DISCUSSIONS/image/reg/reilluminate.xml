@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: reilluminate.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:52 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,47 +8,41 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Compensate for uneven lighting in an &image;.  The average
-    brightness in a neighborhood of size <varname>radius</varname>
-    around each pixel is compared to the average brightness of the
-    whole &image;, and the pixel value is scaled by the resulting
-    ratio. The <varname>radius</varname> is specified in units of the
-    pixel size, and should be large compared to the size of the
-    features in the image, but small compared to the size of the image
-    itself.
-  </para>
-  <figure id="Figure-Reilluminate">
-    <title>Reilluminating an Image</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/kral.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/kral.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A micrograph of cementite and austenite phases in steel
-	  (courtesy of M. Kral).
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/reilluminate.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/reilluminate.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The result of reilluminating the image with
-	  <varname>radius</varname>=10.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  Compensate for uneven lighting in an &image;.  The average
+  brightness in a neighborhood of size <varname>radius</varname>
+  around each pixel is compared to the average brightness of the
+  whole &image;, and the pixel value is scaled by the resulting
+  ratio. The <varname>radius</varname> is specified in units of the
+  pixel size, and should be large compared to the size of the
+  features in the image, but small compared to the size of the image
+  itself.
+</para>
+<figure id="Figure-Reilluminate">
+  <title>Reilluminating an Image</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/kral.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    A micrograph of cementite and austenite phases in steel
+	    (courtesy of M. Kral).
+	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/reilluminate.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The result of reilluminating the image with
+	    <varname>radius</varname>=10.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 <!-- Keep this comment at the end of the file
   Local variables:

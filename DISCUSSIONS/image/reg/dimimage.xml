@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: dimimage.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:51 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,49 +8,42 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Dim the given <varname>image</varname> by making each pixel
-    blacker.  Each color component <emphasis>x</emphasis> (red, green,
-    or blue) is replaced by
-    <emphasis>x</emphasis> &times; <varname>factor</varname>.  If
-    <varname>factor</varname> is 1, then there is no change, but if
-    <varname>factor</varname> is 0, the image becomes completely
-    black.  Values between 0 and 1 are most useful.
-  </para>
-  <para>
-    Compare to <xref linkend="MenuItem-OOF.Image.Modify.Fade"/>.
-  </para>
-  <figure id="Figure-Dim">
-    <title>Dimming an Image</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/raw.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A micrograph of
-	  Si<subscript>3</subscript>N<subscript>4</subscript>
-	  (courtesy of C.-H. Hsueh).
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/dim.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/dim.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The image after being dimmed with <varname>factor</varname>=0.5.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  Dim the given <varname>image</varname> by making each pixel blacker.
+  Each color component <emphasis>x</emphasis> (red, green, or blue) is
+  replaced by <emphasis>x</emphasis> &times;
+  <varname>factor</varname>.  If <varname>factor</varname> is 1, then
+  there is no change, but if <varname>factor</varname> is 0, the image
+  becomes completely black.  Values between 0 and 1 are most useful.
+</para>
+<para>
+  Compare to <xref linkend="MenuItem-OOF.Image.Modify.Fade"/>.
+</para>
+<figure id="Figure-Dim">
+  <title>Dimming an Image</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    A micrograph of
+	    Si<subscript>3</subscript>N<subscript>4</subscript>
+	    (courtesy of C.-H. Hsueh).
+	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/dim.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The image after being dimmed with <varname>factor</varname>=0.5.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 <!-- Keep this comment at the end of the file
   Local variables:

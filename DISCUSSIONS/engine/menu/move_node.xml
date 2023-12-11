@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: move_node.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,18 +9,18 @@
 -->
 
 
-  <para>
-    Move a &skel; &node; to a new position.  The &node; to be moved is
-    the one closest to the given <varname>origin</varname> point.  It
-    will be moved to the given <varname>destination</varname>.
-  </para>
-  <para>
-    Moves that create <link
-      linkend="Section-Concepts-Skeleton-Illegality">illegal</link>
-    &elems; will be prohibited unless they have been explicitly
-    approved by calling <xref
-      linkend="MenuItem-OOF.Graphics_n.Toolbox.Move_Nodes.AllowIllegal"/>.
-  </para>
+<para>
+  Move a &skel; &node; to a new position.  The &node; to be moved is
+  the one closest to the given <varname>origin</varname> point.  It
+  will be moved to the given <varname>destination</varname>.
+</para>
+<para>
+  Moves that create <link
+  linkend="Section-Concepts-Skeleton-Illegality">illegal</link>
+  &elems; will be prohibited unless they have been explicitly approved
+  by calling <xref
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Move_Nodes.AllowIllegal"/>.
+</para>
 
 
 

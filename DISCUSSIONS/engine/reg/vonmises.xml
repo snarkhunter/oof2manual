@@ -15,8 +15,8 @@
   of a symmetric three dimensional rank 2 &flux; tensor that can be
   computed by the &oof2; <link
   linkend="Section-Output"><classname>Outputs</classname></link>.  If
-  the stress is <inlinequation><alt
-  role="tex">\(\sigma\)</alt></inlinequation>, the von Mises stress is
+  the stress is <inlineequation><alt
+  role="tex">\(\sigma\)</alt></inlineequation>, the von Mises stress is
   <equation>
     <alt role="tex">
       \[ \sigma_{VM} = \sqrt{\frac32 \sum_{ij}\sigma_{ij}\sigma_{ij} -

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: threshold.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:53 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,44 +8,38 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Convert an &image; to black and white, by making each pixel whose
-    equivalent gray value is greater than <varname>T</varname> to
-    white, and each pixel whose gray value is less than
-    <varname>T</varname> to black.
-  </para>
-  <figure id="Figure-ThresholdImage">
-    <title>Thresholding an Image</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/raw.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A micrograph of
-	  Si<subscript>3</subscript>N<subscript>4</subscript>
-	  (courtesy of C.-H. Hsueh).
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/threshold.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/imageops/threshold.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The image after being thresholded with
-	  <varname>T</varname>=0.5.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  Convert an &image; to black and white, by making each pixel whose
+  equivalent gray value is greater than <varname>T</varname> to
+  white, and each pixel whose gray value is less than
+  <varname>T</varname> to black.
+</para>
+<figure id="Figure-ThresholdImage">
+  <title>Thresholding an Image</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    A micrograph of
+	    Si<subscript>3</subscript>N<subscript>4</subscript>
+	    (courtesy of C.-H. Hsueh).
+	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/threshold.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The image after being thresholded with
+	    <varname>T</varname>=0.5.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 <!-- Keep this comment at the end of the file
   Local variables:

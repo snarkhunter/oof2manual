@@ -10,20 +10,28 @@
 
 
 <para>
-  When moving &nodes; manually with the <link
-  linkend="Section-Graphics-MoveNodes">Move Nodes</link> toolbox, it
-  can sometimes be necessary or convenient to temporarily create <link
-  linkend="Section-Concepts-Skeleton-Illegality">illegal</link> &skel;
-  &elems;.  Creating such &elems; is prohibited unless
-  <command>AllowIllegal</command> has first been called with
-  <varname>allowed</varname> set to 1.  Illegal &elems; will then be
-  allowed until <command>AllowIllegal</command> is called with
-  <varname>allowed</varname>=0.
+  Set the aspect ratio (height/width) of the <link
+  linkend='Section-Graphics-ContourMap'>contour map</link> display.
 </para>
+<figure>
+  <title>Contour Map Aspect Ratio</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/gfx/contouraspect.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        Two views of the <link
+        linkend="Section-Graphics-ContourMap">Contour Map</link> with
+        different aspect ratios.  On the left
+        <varname>ratio</varname>=5, and on the right
+        <varname>ratio</varname>=15.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
-
-
-  <!-- Keep this comment at the end of the file
+<!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t
   sgml-shorttag:t 

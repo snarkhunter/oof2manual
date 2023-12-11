@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: undoimage.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:50 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,21 +8,22 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Each &image; in a &micro; has associated with it a stack of
-    modified versions of the &image;.  When the &image; is <link
-    linkend="MenuItem-OOF.Image.Modify">modified</link>, the new
-    version is pushed onto the stack.  The <command>Undo</command>
-    command pops the topmost version off the stack, thereby reverting
-    to the next older version.  The popped version is not destroyed,
-    however.  It can be recovered with <xref
-    linkend="MenuItem-OOF.Image.Redo"/>.
-  </para>
-  <para>
-    The &image; stack has a limited depth.  When the stack is full,
-    the oldest versions of an &image; will be lost when new
-    modifications are made.
-  </para>
+<para>
+  Each &image; in a &micro; has associated with it a stack of
+  modified versions of the &image;.  When the &image; is <link
+  linkend="MenuItem-OOF.Image.Modify">modified</link>, the new
+  version is pushed onto the stack.  The <command>Undo</command>
+  command pops the topmost version off the stack, thereby reverting
+  to the next older version.  The popped version is not destroyed,
+  however.  It can be recovered with <xref
+  linkend="MenuItem-OOF.Image.Redo"/>.
+</para>
+<para>
+  The &image; stack has a limited depth.  When the stack is full,
+  the oldest versions of an &image; will be lost when new
+  modifications are made.  The size of the stack can be changed with
+  <xref linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Image"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

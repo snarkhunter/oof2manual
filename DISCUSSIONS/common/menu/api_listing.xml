@@ -33,11 +33,12 @@
   </para>
   <para>
     The XML output assumes the <ulink url="http://www.docbook.org"
-    role="external">DocBook</ulink> DTD.  It also assumes the existence of
-    a large number of external files containing the verbose descriptions of
-    the commands and other &oof2; objects.  Anyone who wishes to
-    generate the manual themselves can acquire these files by sending
-    e-mail to <email>oof_manager@ctcms.nist.gov</email>.
+    role="external">DocBook</ulink> DTD.  Processing it requires a
+    large number of external files containing the verbose descriptions
+    of the commands, images, and other &oof2; objects.  These files
+    are not distributed with &oof2;.  Anyone who wishes to generate
+    the manual themselves can acquire these files by sending e-mail to
+    <email>oof_manager@list.nist.gov</email>.
   </para>
 
 <!-- Keep this comment at the end of the file
