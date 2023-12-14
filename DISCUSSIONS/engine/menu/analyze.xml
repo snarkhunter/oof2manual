@@ -1,83 +1,76 @@
 <!-- 
-  $RCSfile: analyze.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:21 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@list.nist.gov.
 -->
 
-
-  <para>
-    The <command>Analyze</command> menu contains commands that
-    perform operations <link
-      linkend="Section-Output"><classname>Outputs</classname></link>
-    at various places on a &mesh;.  
-  </para>
-  <para>
-    Generally, four things must be specified for each analysis:
-    <orderedlist spacing="compact">
-      <listitem>
-	<formalpara>
-	  <title>Output</title>
-	  <para>
-	    This is the quantity that's being operated on, for
-	    example, a &field; component or strain. It's specified by
-	    the <varname>data</varname> argument to the
-	    <command>Analyze</command> menu command.
-	    <classname>Outputs</classname> are defined in <xref
-	    linkend="Section-Output"/>.
-	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<formalpara>
-	  <title>Operation</title>
-	  <para>
-	    The <classname>Operation</classname> is what happens to the
-	    <classname>Output</classname>.  It can be printed directly
-	    to the screen or to a file, or it can be subjected to
-	    various statistical operations.  The operation is
-	    determined by the particular command in the
-	    <command>Analyze</command> menu.
-	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<formalpara>
-	  <title>Domain</title>
-	  <para>
-	    The <xref linkend="RegisteredClass-Domain"/> determines to
-	    what part of the &mesh; the
-	    <classname>Operation</classname> will be applied.  It's
-	    set by the <varname>domain</varname> parameter of the
-	    <command>Analyze</command> menu command.
-	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<formalpara>
-	  <title>Sample Set</title>
-	  <para>
-	    The <xref linkend="RegisteredClass-SampleSet"/> determines
-	    how the data is evaluated within the
-	    <classname>domain</classname>.  It's set by the
-	    <varname>sampling</varname> argument of the
-	    <command>Analyze</command> menu command.  Not all <xref
-	    linkend="RegisteredClass-SampleSet"/> methods make sense
-	    for all <classname>Domains</classname> and
-	    <classname>Operations</classname>.
-	  </para>
-	</formalpara>
-      </listitem>
-    </orderedlist>
-  </para>
+<para>
+  The <command>Analyze</command> menu contains commands that perform
+  operations <link
+  linkend="Section-Output"><classname>Outputs</classname></link> at
+  various places on a &mesh;.
+</para>
+<para>
+  Generally, four things must be specified for each analysis:
+  <orderedlist spacing="compact">
+    <listitem>
+	  <formalpara>
+	    <title>Output</title>
+	    <para>
+	      This is the quantity that's being operated on, for example,
+	      a &field; component or strain. It's specified by the
+	      <varname>data</varname> argument to the
+	      <command>Analyze</command> menu command.
+	      <classname>Outputs</classname> are defined in <xref
+	      linkend="Section-Output"/>.
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
+	  <formalpara>
+	    <title>Operation</title>
+	    <para>
+	      The <classname>Operation</classname> is what happens to the
+	      <classname>Output</classname>.  It can be printed directly
+	      to the screen or to a file, or it can be subjected to
+	      various statistical operations.  The operation is determined
+	      by the particular command in the <command>Analyze</command>
+	      menu.
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
+	  <formalpara>
+	    <title>Domain</title>
+	    <para>
+	      The <xref linkend="RegisteredClass-Domain"/> determines to
+	      what part of the &mesh; the <classname>Operation</classname>
+	      will be applied.  It's set by the <varname>domain</varname>
+	      parameter of the <command>Analyze</command> menu command.
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
+	  <formalpara>
+	    <title>Sample Set</title>
+	    <para>
+	      The <xref linkend="RegisteredClass-SampleSet"/> determines
+	      how the data is evaluated within the
+	      <classname>domain</classname>.  It's set by the
+	      <varname>sampling</varname> argument of the
+	      <command>Analyze</command> menu command.  Not all <xref
+	      linkend="RegisteredClass-SampleSet"/> methods make sense for
+	      all <classname>Domains</classname> and
+	      <classname>Operations</classname>.
+	    </para>
+	  </formalpara>
+    </listitem>
+  </orderedlist>
+</para>
 
 
   <!-- Keep this comment at the end of the file

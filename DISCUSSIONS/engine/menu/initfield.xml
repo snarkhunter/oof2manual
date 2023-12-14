@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: initfield.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,24 +8,33 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<para>
+  Assign an initializer to the given &field; on the given &mesh;.  The
+  &field; must already be <link
+  linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>.
+</para>
+<para>
+  The <varname>initializer</varname> will be evaluated at every <link
+  linkend='Section-Concepts-Mesh-Geometry'>node</link> of the &mesh;.
+  Different kinds of &fields; (<foreignphrase>i.e</foreignphrase>,
+  scalar and vector) require different kinds of initializers.  The GUI
+  makes it impossible to apply a scalar initializer to a vector
+  &field;, but it's necessary to be careful when writing scripts.  The
+  different kinds of initializers are described in <xref
+  linkend="RegisteredClass-ScalarFieldInit"/> and <xref
+  linkend="RegisteredClass-TwoVectorFieldInit"/>.
+</para>
+<note>
   <para>
-    Assign values to the given &field; on the given &mesh;.  The
-    &field; must already be <link
-    linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>.
+    Assigning an initializer to a &field; does not actually change the
+    &field;'s values until <xref
+    linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/> or <xref
+    linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/> is
+    called, via the <guibutton>Apply</guibutton> or <guibutton>Apply
+    at time</guibutton> buttons on the <link
+    linkend="Section-Tasks-Solver">Solver Page</link>.
   </para>
-  <para>
-    The <varname>initializer</varname> will be evaluated at every
-    <link linkend='Section-Concepts-Mesh-Geometry'>node</link> of the
-    &mesh;.  Different kinds of &fields;
-    (<foreignphrase>i.e</foreignphrase>, scalar and vector) require
-    different kinds of initializers.  The GUI makes it impossible to
-    apply a scalar initializer to a vector &field;, but it's necessary
-    to be careful when writing scripts.  The different kinds of
-    initializers are described in <xref
-    linkend="RegisteredClass-ScalarFieldInit"/> and <xref
-    linkend="RegisteredClass-TwoVectorFieldInit"/>.
-
-  </para>
+</note>
   
 
 

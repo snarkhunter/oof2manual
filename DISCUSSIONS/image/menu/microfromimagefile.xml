@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: microfromimagefile.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:49 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -12,52 +7,49 @@
   distributing modified versions of this software, you first contact
   the authors at oof_manager@ctcms.nist.gov.
 -->
-  <para>
-    This is probably the most useful way to create a &micro;.  It
-    creates a &micro; object with the same <link
-    linkend='Section-Concepts-Microstructure-Coordinates'>pixel
-    size</link> as the given &image; and then loads the &image; into
-    the &micro;.
-  </para>
-  <para>
-    The <varname>filename</varname> parameter specifies the file
-    containing the &image;.  The image format is deduced from the file
-    name.  Almost any standard format is acceptable.
-  </para>
-  <para>
-    The <varname>microstructure_name</varname> parameter specifies the
-    name of the new &micro;.  If it is set to <xref
-    linkend="Object-automatic"/>, the &micro; name will be the same as
-    the <varname>filename</varname>.  In either case, if another
-    &micro; exists with the same name,
-    <userinput>&lt;x&gt;</userinput> will be appended to the name,
-    where <userinput>x</userinput> is an integer chosen to make the
-    name unique.
+<para>
+  This is probably the most useful way to create a &micro;.  It
+  creates a &micro; object with the same <link
+  linkend='Section-Concepts-Microstructure-Coordinates'>pixel
+  size</link> as the given &image; and then loads the &image; into the
+  &micro;.
 </para>
-  <para>
-    The physical size of the &micro; and &image; are taken from the
-    <varname>height</varname> and <varname>width</varname> parameters.
-    If one of the parameters is <link
-    linkend="Object-automatic"><constant>automatic</constant></link>,
-    then its value is computed from the other parameter and the aspect
-    ratio of the image, with the assumption that the pixels are
-    square.  If <emphasis>both</emphasis> parameters are
-    <constant>automatic</constant>, then it is assumed that pixels are
-    of unit width and height, so the physical size of the &micro; will
-    be numerically equal to its pixel size.
-  </para>
-  <para>
-    Loading an &image; on the command line with 
-    <literallayout class="monospaced">
-      oof2 <link linkend="CommandLineArg-image"><userinput>--image</userinput> <filename>imagefile</filename></link>
-    </literallayout>
-    is equivalent to the command
+<para>
+  The <varname>filename</varname> parameter specifies the file
+  containing the &image;.  The image format is deduced from the file
+  name.  Almost any standard format is acceptable.
+</para>
+<para>
+  The <varname>microstructure_name</varname> parameter specifies the
+  name of the new &micro;.  If it is set to <xref
+  linkend="Object-automatic"/>, the &micro; name will be the same as
+  the <varname>filename</varname>.  In either case, if another &micro;
+  exists with the same name, <userinput>&lt;x&gt;</userinput> will be
+  appended to the name, where <userinput>x</userinput> is an integer
+  chosen to make the name unique.
+</para>
+<para>
+  The physical size of the &micro; and &image; are taken from the
+  <varname>height</varname> and <varname>width</varname> parameters.
+  If one of the parameters is <link
+  linkend="Object-automatic"><constant>automatic</constant></link>,
+  then its value is computed from the other parameter and the aspect
+  ratio of the image, with the assumption that the pixels are square.
+  If <emphasis>both</emphasis> parameters are
+  <constant>automatic</constant>, then it is assumed that pixels are
+  of unit width and height, so the physical size of the &micro; will
+  be numerically equal to its pixel size.
+</para>
+<para>
+  Loading an &image; on the command line with 
+  <literallayout class="monospaced">
+      oof2 <link linkend="CommandLineArg-image"><userinput>--image</userinput> <filename>imagefile</filename></link></literallayout>
+      is equivalent to the command
     <literallayout class="monospaced">
       <link linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile">OOF.Microstructure.Create_From_ImageFile</link>(filename='imagefile',
                                                microstructure_name='imagefile',
                                                height=automatic,
-                                               width=automatic).
-    </literallayout>
+                                               width=automatic). </literallayout>
   </para>
 
 <!-- Keep this comment at the end of the file

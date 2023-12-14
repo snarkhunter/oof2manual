@@ -5,21 +5,23 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@list.nist.gov.
 -->
 
 <para>
-  <command>OOF.Mesh.Modify</command> changes the given &mesh; by
-  applying the given <varname>modifier</varname> to it.  For details,
-  see the <xref linkend='RegisteredClass-MeshModification'/>
-  subclasses.
+  The <command>Boundary_Analysis</command> menu contains commands that
+  perform operation on <link
+  linkend="Section-Output"><classname>Outputs</classname></link> on
+  the <link
+  linkend="Section-Tasks-SkeletonBoundaries">boundaries</link> of a
+  &mesh;, which are implicitly defined by its &skel; boundaries.
 </para>
 <para>
-  Unlike in &skel; <link
-  linkend='MenuItem-OOF.Skeleton.Modify'>modification</link>, &oof2;
-  does not maintain a stack of previous &meshes;, so there is no
-  <command>Undo</command> command in the <xref
-  linkend="MenuItem-OOF.Mesh"/> menu.  You've been warned.
+  The boundary analysis commands compute quantities that can be useful
+  to know when finding the effective modulus of a material, namely the
+  average of a &field; over a boundary and the integral of a &flux;.
+  &oof2; does not actually compute effective moduli, because that
+  calculation depends on certain assumptions that it cannot make.
 </para>
 
 

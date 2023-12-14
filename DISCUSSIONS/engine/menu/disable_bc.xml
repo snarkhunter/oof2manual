@@ -22,10 +22,6 @@
     linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
   </para>
   <para>
-    The <xref linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Enable"/>
-    command enables a previously disabled boundary condition.
-  </para>
-  <para>
     When a <link linkend="RegisteredClass-BC">boundary
     condition</link> is in a disabled state, new <link
     linkend="RegisteredClass-BC">boundary conditions</link> that

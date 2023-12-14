@@ -83,6 +83,8 @@
 	      <para>
 	        A &field; that is in-plane on one &subproblem; in a &mesh;
 	        must be in-plane on all &subproblems; in that &mesh;.
+            Toggling the <guibutton>in-plane</guibutton> for a field in one
+            &subproblem; will change its state in all &subproblems;.
 	      </para>
 	    </listitem>
 	  </itemizedlist>

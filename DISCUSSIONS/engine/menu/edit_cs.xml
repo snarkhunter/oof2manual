@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: edit_cs.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:23 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,21 +8,20 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <quote>Edit</quote> the cross section named
-    <varname>name</varname> in the given <varname>mesh</varname>.
-    Actually, the cross section is just replaced by the given
-    <varname>cross_section</varname>, which must be an object of the
-    <xref linkend="RegisteredClass-MeshCrossSection"/> class.  The GUI
-    buttons for editing cross sections in the <link
-      linkend="Section-Graphics-CrossSection">Cross Section
-      toolbox</link> and the <link
-      linkend="Section-Tasks-Analysis">Analysis page</link> do the
-    actual editing: they fill in a dialog box with the parameters for
-    the cross section, and let the user change them.  Then they issue
-    the <command>OOF.Mesh.Cross_Section.Edit</command> with the new
-    cross section.
-  </para>
+<para>
+  <quote>Edit</quote> the cross section named <varname>name</varname>
+  in the given <varname>mesh</varname>.  Actually, the cross section
+  is just replaced by the given <varname>cross_section</varname>,
+  which must be an object of the <xref
+  linkend="RegisteredClass-MeshCrossSection"/> class.  The GUI buttons
+  for editing cross sections in the <link
+  linkend="Section-Graphics-CrossSection">Cross Section toolbox</link>
+  and the <link linkend="Section-Tasks-Analysis">Analysis page</link>
+  do the actual editing: they fill in a dialog box with the parameters
+  for the cross section, and let the user change them.  Then they
+  issue the <command>OOF.Mesh.Cross_Section.Edit</command> command
+  with the new cross section.
+ </para>
 
 
   <!-- Keep this comment at the end of the file

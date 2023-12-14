@@ -1,16 +1,11 @@
 <!-- 
-  $RCSfile: applyinittime.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-22 18:51:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@nist.gov.
+  the authors at oof_manager@list.nist.gov.
 -->
 
 <para>
@@ -18,9 +13,9 @@
   linkend="Section-Concepts-Mesh-InitialConditions">initializers</link>
   at the &mesh;'s current <link
   linkend="Section-Concepts-Mesh-Time">time</link>,
-  <emphasis>and</emphasis> setthe &mesh;'s <link
+  <emphasis>and</emphasis> set the &mesh;'s <link
   linkend="Section-Concepts-Mesh-Time">time</link> to the given
-  value..  This sets the values of the &fields; at all of the &nodes;
+  value.  This sets the values of the &fields; at all of the &nodes;
   where the &fields; are <link
   linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>, if an
   initializer has been <link

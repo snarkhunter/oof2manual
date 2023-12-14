@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: definefield.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-04-08 20:00:00 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,25 +8,31 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Defining a &field; on a &mesh; means that the &field; has values
-    that can be computed on the &mesh;: memory is allocated to store
-    the components of the &field; at the <link
-      linkend="Section-Concepts-Mesh-Geometry">nodes</link> of the
-    &mesh;, and values can be interpolated within the &mesh; elements.
-  </para>
-  <para>
-    When a &field; is first defined, its components are all zero
-    everywhere.  To assign &field; values, use <xref
-    linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/> and <xref
-    linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/>.  To solve
-    for &field; values, the &field; must be <link
-    linkend="MenuItem-OOF.Subproblem.Field.Activate">activated</link>,
-    an &equation; involving the &field; must be <link
-    linkend="MenuItem-OOF.Subproblem.Equation.Activate">activated</link>,
-    and the &mesh; must be <link
-    linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
-  </para>
+<para>
+  This command is deprecated and not available in the user interface,
+  but will still work in scripts. New scripts should use <xref
+  linkend="MenuItem-OOF.Subproblem.Field.Define"/> instead.
+</para>
+<para>
+  This command defines a &field; on a &mesh;'s default &subproblem;.
+  Defining a &field; on a &mesh; means that the &field; has values
+  that can be computed on the &mesh;: memory is allocated to store the
+  components of the &field; at the <link
+  linkend="Section-Concepts-Mesh-Geometry">nodes</link> of the &mesh;,
+  and values can be interpolated within the &mesh; elements.
+</para>
+<para>
+  When a &field; is first defined, its components are all zero
+  everywhere.  To assign &field; values, use <xref
+  linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/> and <xref
+  linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers"/>.  To solve
+  for &field; values, the &field; must be <link
+  linkend="MenuItem-OOF.Subproblem.Field.Activate">activated</link>,
+  an &equation; involving the &field; must be <link
+  linkend="MenuItem-OOF.Subproblem.Equation.Activate">activated</link>,
+  and the &mesh; must be <link
+  linkend="MenuItem-OOF.Mesh.Solve">solved</link>.
+</para>
 
 
 

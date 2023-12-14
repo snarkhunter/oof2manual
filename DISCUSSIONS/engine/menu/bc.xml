@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: bc.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:21 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,56 +8,56 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    This menu contains commands for creating, copying, renaming, and
-    deleting boundary conditions in &meshes;.
-  </para>
-  <para>
-    &oof2; provides five kinds of boundary conditions:
-    <itemizedlist>
-      <listitem>
-	<simpara>
-	  <link linkend="RegisteredClass-DirichletBC">Dirichlet</link>
-	  boundary conditions set the values of &field; components.
-	</simpara>
-      </listitem>
-      <listitem>
-	<simpara>
-	  <link linkend="RegisteredClass-NeumannBC">Neumann</link>
-	  boundary conditions set the values of &flux; components.
-	</simpara>
-      </listitem>
-      <listitem>
-	<simpara>
-	<link linkend="RegisteredClass-FloatBC">Floating</link>
-	boundary conditions set the values of &field; components, but
-	only up to an unspecified offset.
-	</simpara>
-      </listitem>
-      <listitem>
-	<link linkend="RegisteredClass-ForceBC">Generalized
-	Force</link> boundary conditions set the forces on a set of
-	nodes.
-      </listitem>
-      <listitem>
-	<link linkend="RegisteredClass-PeriodicBC">Periodic</link> boundary
-	conditions set the values of &field; components for two periodic edge
-	boundaries to be equal.
-      </listitem>
-    </itemizedlist>
-    See the discussions of each type of condition in the <xref
-    linkend="RegisteredClass-BC"/> section.
-  </para>
-  <para>
-    Boundary conditions can be applied to a &mesh; only at <link
-    linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>
-    that have been defined in the &skel; from which the &mesh; was
-    derived.  The &fields; and &equations; referred to in the boundary
-    conditions need to be <link
-    linkend="Section-Concepts-Mesh-Field-Active">active</link>.
-  </para>
-  <para>
-  </para>
+<para>
+  This menu contains commands for creating, copying, renaming, and
+  deleting boundary conditions in &meshes;.
+</para>
+<para>
+  &oof2; provides five kinds of boundary conditions:
+  <itemizedlist>
+    <listitem>
+	  <simpara>
+	    <link linkend="RegisteredClass-DirichletBC">Dirichlet</link>
+	    boundary conditions set the values of &field; components.
+	  </simpara>
+    </listitem>
+    <listitem>
+	  <simpara>
+	    <link linkend="RegisteredClass-NeumannBC">Neumann</link>
+	    boundary conditions set the values of &flux; components.
+	  </simpara>
+    </listitem>
+    <listitem>
+	  <simpara>
+	    <link linkend="RegisteredClass-FloatBC">Floating</link>
+	    boundary conditions set the values of &field; components, but
+	    only up to an unspecified offset.
+	  </simpara>
+    </listitem>
+    <listitem>
+	  <link linkend="RegisteredClass-ForceBC">Generalized
+	  Force</link> boundary conditions set the forces on a set of
+	  nodes.
+    </listitem>
+    <listitem>
+	  <link linkend="RegisteredClass-PeriodicBC">Periodic</link> boundary
+	  conditions set the values of &field; components for two periodic edge
+	  boundaries to be equal.
+    </listitem>
+  </itemizedlist>
+  See the discussions of each type of condition in the <xref
+  linkend="RegisteredClass-BC"/> section.
+</para>
+<para>
+  Boundary conditions can be applied to a &mesh; only at <link
+  linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>
+  that have been defined in the &skel; from which the &mesh; was
+  derived.  The &fields; and &equations; referred to in the boundary
+  conditions need to be <link
+  linkend="Section-Concepts-Mesh-Field-Active">active</link>.
+</para>
+<para>
+</para>
 
 
 <!-- Keep this comment at the end of the file

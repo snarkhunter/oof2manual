@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: newnamedbdyanal.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-21 21:34:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -32,7 +27,7 @@
   Outputs</link>.
 </para>
 <para>
-  In the GUI, this command is invoked from the<guilabel>Named
+  In the GUI, this command is invoked from the <guilabel>Named
   Analyses</guilabel> pane in the <link
   linkend="Section-Tasks-BdyAnalysis">Boundary Analysis</link> page.
 </para>

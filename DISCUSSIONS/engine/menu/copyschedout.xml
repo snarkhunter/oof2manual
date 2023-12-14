@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: copyschedout.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-15 21:12:40 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -16,15 +11,15 @@
 <para>
   Copy the given <link
   linkend="Section-Concepts-Outputs-Scheduled">Scheduled
-  Output</link>, including its <xref
-  linkend="RegisteredClass-ScheduledOutput"/>, <xref
+  Output</link> from <varname>mesh</varname> to <varname>targetmesh</varname>.
+  The linkend="RegisteredClass-ScheduledOutput"/>, and its <xref
   linkend="RegisteredClass-Schedule"/>, <xref
   linkend="RegisteredClass-ScheduleType"/>, and <xref
-  linkend="RegisteredClass-OutputDestination"/>.  The
-  <varname>targetmesh</varname> can be the same as the source &mesh;.
-  If a <xref linkend="RegisteredClass-ScheduledOutput"/> with the same
-  name already exists in the target &mesh;, a new name will be created
-  by appending <userinput>&lt;x&gt;</userinput>, where
+  linkend="RegisteredClass-OutputDestination"/> will all be copied.
+  The target can be the same as the source.  If a <xref
+  linkend="RegisteredClass-ScheduledOutput"/> with the same name
+  already exists in the target &mesh;, a new name will be created by
+  appending <userinput>&lt;x&gt;</userinput>, where
   <userinput>x</userinput> is an integer.
 </para>
 

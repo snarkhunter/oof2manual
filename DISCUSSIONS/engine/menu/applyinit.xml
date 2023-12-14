@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: applyinit.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-22 18:51:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -25,7 +20,7 @@
   the &field;.
 </para>
 <para>
-  To set <link linkend="Section-Concepts-Mesh-Time">time</link> as
+  To set the <link linkend="Section-Concepts-Mesh-Time">time</link> as
   well as the &field; values, use <xref
   linkend="MenuItem-OOF.Mesh.Apply_Field_Initializers_at_Time"/>
   instead.

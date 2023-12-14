@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: oof.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -66,7 +61,7 @@
   linkend="Section-RegisteredClasses"><classname>RegisteredClass</classname></link>.
   <classname>RegisteredClasses</classname> also take arguments, and
   the same rules apply to them.
-  </para>
+</para>
 
 
 <!-- Keep this comment at the end of the file
