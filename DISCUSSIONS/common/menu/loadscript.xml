@@ -19,9 +19,11 @@
     using the <link
     linkend="Section-Concepts-FileFormats-Script"><constant>script</constant></link>
     format, or log files of &oof2; sessions.  It can also execute
-    <emphasis>any</emphasis> Python script.  Loading the log of an
-    &oof2; session will recreate the session, more or less.  See the remarks in
-    <xref linkend="MenuItem-OOF.File.Save.Python_Log"/>.
+    <emphasis>any</emphasis><footnote><simpara>It needs to be a
+    well-written script using a compatible version of
+    Python.</simpara></footnote> Python script.  Loading the log of an
+    &oof2; session will recreate the session, more or less.  See the
+    remarks in <xref linkend="MenuItem-OOF.File.Save.Python_Log"/>.
   </para>
 
 <!--

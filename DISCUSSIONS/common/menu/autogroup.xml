@@ -12,7 +12,10 @@
   Automatically assign every <link
   linkend="Section-Concepts-Microstructure-ActiveArea">active</link>
   pixel in the &micro; to a &pixelgroup; according to the criterion
-  given by <varname>grouper</varname>.  Unlike <xref
+  given by <varname>grouper</varname>.
+</para>
+<para>
+  Unlike <xref
   linkend="MenuItem-OOF.Image.AutoGroup"/>, this command is designed
   to handle noisy images (but not too noisy), and it can group pixels
   according to <link
@@ -37,7 +40,13 @@
   are within a set number of standard deviations of the group's mean,
   which is also determined by the <varname>grouper</varname>.  The
   <varname>grouper</varname> has a parameter <varname>sigma0</varname>
-  which is the minimum standard deviation of a group. (Any deviation
+  which is the minimum standard deviation of a group<footnote>
+  <simpara>
+    Note that because the minimum difference between two pixel values
+    in most images is 1/256=0.004, any <varname>sigma0</varname>
+    smaller than that is effectively zero.
+  </simpara>
+  </footnote>. (Any deviation
   smaller than <varname>sigma0</varname> will be set equal to
   <varname>sigma0</varname>.)  Using a small <varname>sigma0</varname>
   will tend to create many groups, each containing a small range of
@@ -46,71 +55,207 @@
   each.
 </para>
 <para>
-  There are three steps in the process:
+  There are four steps in the process:
   <itemizedlist>
     <listitem>
       <para>
-	Preliminary groups are created from statistically similar
-	pixels.  <command>AutoGroup</command> keeps track of the mean
-	and standard deviation of the groups that it's creating.  It
-	selects a pixel at random and sees if that pixel's value is
-	within <varname>delta</varname> standard deviations of the
-	mean of any existing pixel group (where "existing" means any
-	of the groups already created during this call to
-	<command>AutoGroup</command>).  If it is, then the pixel is
-	added to the group and the group's mean and deviation are
-	recomputed.  If the pixel is close to the mean of more than
-	one group, the closest one is used (ie, the one whose mean is
-	the fewest standard deviations from the pixel value).  After
-	recomputing the mean, the group is compared to all other
-	groups, and if it's within <varname>gamma</varname> deviations
-	of one, the two groups are merged.  Again, if more than one is
-	found, the closest one is used.  The mean and deviation of the
-	merged group is recomputed and checked against the remaining
-	groups recursively until no more merges are found.
+	    Preliminary groups are created from statistically similar
+	    pixels.  <command>AutoGroup</command> keeps track of the mean
+	    and standard deviation of the groups that it's creating.  It
+	    selects a pixel at random and sees if that pixel's value is
+	    within <varname>delta</varname> standard deviations of the
+	    mean of any existing pixel group (where "existing" means any
+	    of the groups already created during this call to
+	    <command>AutoGroup</command>).  If it is, then the pixel is
+	    added to the group and the group's mean and deviation are
+	    recomputed.  If the pixel value is close to the mean of more
+	    than one group, the closest one is used (ie, the one whose
+	    mean is the fewest standard deviations from the pixel value).
+	    After recomputing the mean, the group is compared to all other
+	    groups, and if its mean is within <varname>gamma</varname>
+	    deviations of another group's, the two groups are merged.
+	    Again, if more than merge is possible, the closest one is
+	    used.  The mean and deviation of the merged group are
+	    recomputed and checked against the remaining groups
+	    recursively until no more merges are found.
       </para>
       <para>
-	If the pixel being examined is not within
-	<varname>delta</varname> standard deviations of any group, a
-	new group is created for it, and a standard deviation of
-	<varname>sigma0</varname> is imposed.  If at any time adding a
-	pixel brings the standard deviation (or one if its components,
-	if it's a vector) below <varname>sigma0</varname>, the
-	deviation is reset to <varname>sigma0</varname>.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-	After putting pixels into preliminary groups, each group is
-	split into contiguous pieces, where each piece is a single
-	connected set of pixels.  Any sets containing fewer than
-	<varname>minsize</varname> pixels are absorbed into the
-	neighboring groups.  If there are multiple groups neighboring
-	a pixel, the pixel is added to the group with the nearest
-	mean, measured in terms of the group's standard deviation.
+	    If the pixel being examined is not within
+	    <varname>delta</varname> standard deviations of any group, a
+	    new group is created for it, and a standard deviation of
+	    <varname>sigma0</varname> is imposed.  If at any time adding a
+	    pixel brings the standard deviation (or one if its components,
+	    if it's a vector) below <varname>sigma0</varname>, the
+	    deviation is reset to <varname>sigma0</varname>.
       </para>
     </listitem>
     <listitem>
       <para>
-	If the parameter <varname>contiguous</varname> is
-	<userinput>false</userinput>, the groups that were split in
-	the previous step are reassembled, so the final &pixelgroups;
-	may be discontiguous.
+	    After putting pixels into preliminary groups, each group is
+	    split into contiguous pieces, where each piece is a single
+	    connected set of pixels.  Any sets containing fewer than
+	    <varname>minsize</varname> pixels are absorbed into the
+	    neighboring groups.  If there are multiple groups neighboring
+	    a pixel, the pixel is added to the group with the nearest
+	    mean, measured in terms of the group's standard deviation.
       </para>
     </listitem>
     <listitem>
       <para>
-	Finally, the groups are sorted by size, largest to smallest,
-	and each group is given a name, determined by the
-	<varname>name_template</varname> parameter.  A
-	<userinput>%n</userinput> in the name will be replaced by an
-	integer, starting from 0.  If <varname>name_template</varname>
-	does not contain <userinput>%n</userinput>, one will be
-	appended to it.
+	    If the parameter <varname>contiguous</varname> is
+	    <userinput>false</userinput>, the groups that were split in
+	    the previous step are reassembled, so the final &pixelgroups;
+	    may be discontiguous.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	    Finally, the groups are sorted by size, largest to smallest,
+	    and each group is given a name, determined by the
+	    <varname>name_template</varname> parameter.  A
+	    <userinput>%n</userinput> in the name will be replaced by an
+	    integer, starting from 0.  If <varname>name_template</varname>
+	    does not contain <userinput>%n</userinput>, one will be
+	    appended to it.
       </para>
     </listitem>
   </itemizedlist>
 </para>
+<refsect2>
+  <title>An example</title>
+  <para>
+    <xref linkend="Figure-autogroup0"/> shows a 500&times;502 pixel
+    &image; created by a drawing program that uses antialiasing.  Only
+    four colors were explicitly used to make the image, but due to
+    antialiasing and other mysterious processes, the image contains
+    many more colors.  Grouping naively using <xref
+    linkend="MenuItem-OOF.Image.AutoGroup"/> produces 1009 separate
+    pixel groups, many containing a single pixel.  The green pixels in
+    <xref linkend="Figure-autogroup1"/> show one of the larger groups,
+    containing 42247 pixels.
+  </para>
+  <figure id="Figure-autogroup0">
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/autogroup/autogroup0.png"
+                   format="PNG"/>
+      </imageobject>
+      <caption>
+        <para>
+          An antialiased image nominally containing four colors.
+        </para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-autogroup1">
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/autogroup/autogroup1.png"
+                   format="PNG"/>
+      </imageobject>
+      <caption>
+        <para>
+          One of the pixel groups created by <xref
+          linkend="MenuItem-OOF.Image.AutoGroup"/> is highlighted in
+          green.
+        </para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <para>
+    On the other hand, when using the <command>AutoGroup</command>
+    described here (<foreignphrase>i.e,</foreignphrase> in the <xref
+    linkend="MenuItem-OOF.PixelGroup"/> menu, or the
+    <guibutton>Auto</guibutton> button on the <link
+    linkend="Section-Tasks-Microstructure">Microstructure
+    page</link><!-- no space here!
+    --><footnote><simpara>
+      I'm beginning to regret giving the same name to both commands.
+      </simpara></footnote>)
+    the pixel colors don't have to match exactly within a group.
+    Finding the best set of parameters for
+    <command>AutoGroup</command> can require a bit of experimentation.
+    For example, using the command
+    <literallayout class="monospaced">
+      OOF.PixelGroup.AutoGroup(
+         grouper=ColorGrouper(image='swoops.png:swoops.png',<emphasis role="bold">sigma0=0.2</emphasis>),
+         <emphasis role="bold">delta=2</emphasis>,
+         <emphasis role="bold">gamma=2</emphasis>,
+         <emphasis role="bold">minsize=0</emphasis>,
+         contiguous=True,
+         name_template='group_%n', clear=True)
+    </literallayout>
+    with a large <varname>sigma0</varname>, widely different colors
+    are grouped together.  As shown in <xref
+    linkend="Figure-autogroup2"/> the pink and white pixels have been
+    put into a single group.  <varname>sigma0</varname> is too large.
+  </para>
+  <para>
+    Making <varname>sigma0</varname> smaller (0.02)
+    <literallayout class="monospaced">
+      OOF.PixelGroup.AutoGroup(
+      grouper=ColorGrouper(image='swoops.png:swoops.png',<emphasis role="bold">sigma0=0.02</emphasis>),
+      delta=2,
+      gamma=2,
+      minsize=0,
+      contiguous=True,
+      name_template='group_%n', clear=True)
+    </literallayout>
+    produces a single large group for each contiguous colored region
+    in the image, but leaves over 1000 small groups along the edges of
+    the regions, as shown in <xref linkend="Figure-autogroup3"/>.
+  </para>
+  <para>
+    Setting <varname>minsize</varname>=<userinput>100</userinput>
+    finally produces just 5 groups (4 if
+    <varname>contiguous</varname>=<userinput>False</userinput>).  Each
+    of the 5 colored regions in <xref linkend="Figure-autogroup0"/> forms
+    its own group.
+  </para>
+  <figure id="Figure-autogroup2">
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/autogroup/autogroup2.png" format="PNG"/>
+      </imageobject>
+      <caption>
+        <para>
+          A pixel group (in green) created with a large value of
+          <varname>sigma0</varname>.  Two different colors are grouped
+          together.
+        </para>
+      </caption>
+    </mediaobject>
+  </figure>
+  <figure id="Figure-autogroup3">
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="FIGURES/autogroup/autogroup3.png"
+          format="PNG"/>
+        </imageobject>
+        <caption>
+          <para>
+            After grouping with a small <varname>sigma0</varname> the
+            large colored regions are grouped correctly, except for
+            pixels on their boundaries.  The pixels shown in green above
+            are the ones incorrectly placed into small groups.
+            Increasing <varname>minsize</varname> will force these
+            pixels to be absorbed into the neighboring groups.
+          </para>
+        </caption>
+    </mediaobject>
+  </figure>
+</refsect2>
+    <!--
+       OOF.PixelGroup.AutoGroup(grouper=ColorGrouper(image='swoops.png:swoops.png',sigma0=0.02), delta=2, gamma=2, minsize=5, contiguous=False, name_template='group_%n', clear=True)
+-->
+    
+    <!--
+        OOF.PixelGroup.AutoGroup(grouper=ColorGrouper(image='swoops.png:swoops.png',sigma0=0.002),
+        delta=2, gamma=2, minsize=100, contiguous=True,
+        name_template='group_%n', clear=True)
+    -->
+    
+
 
 <!-- Keep this comment at the end of the file
   Local variables:

@@ -8,10 +8,6 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-<!-- TODO: Add discussion of <topmost> (and other proxies?) when
-     defining graphics layers.
--->
-
 <chapter id="Chapter-Graphics">
   <title>The Graphics Window</title>
   

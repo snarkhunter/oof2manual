@@ -35,16 +35,19 @@
 
 <caution>
   <para>
-    Images produced by drawing programs that use antialiasing to
-    smooth lines are generally not suitable candidates for
-    <command>AutoGroup</command>.  Even if an antialiased image
-    appears to contain only a few colors, it will generally have many
-    slightly different colors at the borders between regions, and
-    <command>AutoGroup</command> will create a large number of
-    groups.
+    This tool does not work well on noisy experimental micrographs,
+    because pixels whose colors differ only due to noise will be put
+    into different groups.  It also doesn't work well on artifical
+    micrographs produced by drawing programs, if the programs use
+    antialiasing to smooth lines and boundaries.  Even if an
+    antialiased image appears to contain only a few colors, it will
+    generally have many slightly different colors at the borders
+    between regions, and <command>AutoGroup</command> will create a
+    large number of small groups.
   </para>
   <para>
-    Two better ways of creating pixel groups from antialiased images are
+    Better ways of creating pixel groups from noisy or antialiased
+    images are
     <itemizedlist>
       <listitem>
         <para>
@@ -57,11 +60,17 @@
       <listitem>
         <para>
           Use <xref linkend="MenuItem-OOF.PixelGroup.AutoGroup"/> (the
-          <guibutton>Auto</guibutton> on the <link
+          <guibutton>Auto</guibutton> button on the <link
           linkend="Section-Tasks-Microstructure">Microstructure
           page</link>), which groups similarly colored pixels without
           requiring that they be identical.
         </para>
+      </listitem>
+      <listitem>
+        Create a clean image (<foreignphrase>i.e,</foreignphrase> one
+        with exactly one color per material) using the segmenting
+        tools in other image processing packages, load the clean image
+        into &oof2;, and then use <command>AutoGroup</command> on it.
       </listitem>
     </itemizedlist>
   </para>
