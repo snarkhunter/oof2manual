@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: microfromimage.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:49 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -12,25 +7,39 @@
   distributing modified versions of this software, you first contact
   the authors at oof_manager@ctcms.nist.gov.
 -->
-  <para>
-    This menu command creates a second &micro; based on an &image;
-    already loaded in another &micro;.  The new &micro; will have the
-    same physical size and pixel size as the old &micro;, but will not
-    inherit any other data from it (except for the &image;).
-  </para>
-  <para>
-    The <varname>name</varname> parameter is the name of the new
-    &micro;.  If set to <link
-    linkend="Object-automatic"><constant>automatic</constant></link>
-    (by checking the box in the GUI or entering
-    <userinput>automatic</userinput> without quotation marks in
-    scripts) the &micro; name will be taken from the &image; name.
-  </para>
-  <para>
-    The <varname>image</varname> parameter must be a <link
-    linkend="Section-Concepts-Path">path</link> to an existing &image;
-    object.
-  </para>
+
+<para>
+  This command creates a second &micro; based on an &image; already
+  loaded in another &micro;.
+</para>
+<para>
+  The <varname>name</varname> parameter is the name of the new
+  &micro;.  If set to <link
+  linkend="Object-automatic"><constant>automatic</constant></link> the
+  &micro; name will be taken from the &image; name.
+</para>
+<para>
+  The <varname>image</varname> parameter must be a <link
+  linkend="Section-Concepts-Path">path</link> to an existing &image;
+  object.
+</para>
+<para>
+  The new &micro; will have the same pixel size as the given
+  <varname>image</varname>.  Its physical size will be the same as the
+  size of the &micro; containing <varname>image</varname> old &micro;
+  if both <varname>width</varname> and <varname>height</varname> are
+  <constant>automatic</constant>.  If one dimension is numeric and the
+  other is <constant>automatic</constant>, the &micro; will be scaled
+  to that new size while preserving the aspect ratio of the original
+  &micro;.  If both dimensions are numeric, the new &micro; might have
+  a different aspect ratio from the original.
+</para>
+<para>
+  Other than the &image; and size, the new &micro; will not inherit
+  any other data from the original.  It will have no &materials;,
+  <link linkend="Section-Concepts-Microstructure-Pixel_Group"> pixel
+  groups</link>, or &skels;.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

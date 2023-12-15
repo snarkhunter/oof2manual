@@ -21,9 +21,10 @@
 </para>
 <para>
   The <varname>microstructure_name</varname> parameter specifies the
-  name of the new &micro;.  If it is set to <xref
-  linkend="Object-automatic"/>, the &micro; name will be the same as
-  the <varname>filename</varname>.  In either case, if another &micro;
+  name of the new &micro;.  If it is set to <link
+  linkend="Object-automatic"><constant>automatic</constant></link>,
+  the &micro; name will be the same as the
+  <varname>filename</varname>.  In either case, if another &micro;
   exists with the same name, <userinput>&lt;x&gt;</userinput> will be
   appended to the name, where <userinput>x</userinput> is an integer
   chosen to make the name unique.
@@ -49,7 +50,7 @@
       <link linkend="MenuItem-OOF.Microstructure.Create_From_ImageFile">OOF.Microstructure.Create_From_ImageFile</link>(filename='imagefile',
                                                microstructure_name='imagefile',
                                                height=automatic,
-                                               width=automatic). </literallayout>
+                                               width=automatic)</literallayout>
   </para>
 
 <!-- Keep this comment at the end of the file
