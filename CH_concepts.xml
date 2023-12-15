@@ -1264,8 +1264,8 @@
 	      <para>
 	        Currently, although &oof2; allows high-order iso- and
 	        superparametric elements with non-linear mapping and
-	        curved element edges, it actually doesn't do anything
-	        useful with them.  This is because &mesh; elements are
+	        curved element edges, it actually doesn't take full
+	        advantage of them.  This is because &mesh; elements are
 	        created from &skel; elements, and &skel; elements all have
 	        straight edges.  The positions of interior nodes are
 	        determined by <emphasis>linear</emphasis> interpolation

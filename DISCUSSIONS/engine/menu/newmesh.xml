@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: newmesh.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,40 +8,38 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Create a new &mesh; from a &skel;.
-  </para>
-  <para>
-    The <varname>name</varname> parameter provides a name for the new
-    &mesh;.  It must be unique among all &meshes; in the given &skel;.
-    If it is not unique, it will be made so by appending
-    <userinput>&lt;x&gt;</userinput> to it, where
-    <userinput>x</userinput> is a suitable integer.
-  </para>
-  <para>
-    The <varname>element_types</varname> parameter specifies which
-    <link linkend="Section-Concepts-Mesh-Geometry">types of finite
-    elements</link> to use in the mesh.  The list must contain the
-    names of elements, and contain exactly one name for each type of
-    element present in the &skel;.  That is, if the &skel; contains
-    triangular elements, <varname>element_types</varname> must contain
-    exactly one of the values listed in <xref
-    linkend="Enum-Element3"/>.  If the &skel; contains both triangular
-    and quadrilateral elements, <varname>element_types</varname> must
-    contain one name from <xref linkend="Enum-Element3"/> and one from
-    <xref linkend="Enum-Element4"/>.
-  </para>
-  <para>
-    It is important to choose compatible triangular and
-    quadrilateral &mesh; elements: nodes on the edges of a finite
-    element must match up with nodes on its neighboring elements, so
-    it's a mistake to mix 6-noded triangles (with three nodes on an
-    edge) with 4-noded quads (with only two nodes on an edge).
-    Diagrams of the element types are included in the documentation
-    for <xref linkend="Enum-Element3"/> and <xref
-    linkend="Enum-Element4"/>.
-    <!-- TODO: Add the diagrams! -->
-  </para>
+<para>
+  Create a new &mesh; from a &skel;.
+</para>
+<para>
+  The <varname>name</varname> parameter provides a name for the new
+  &mesh;.  It must be unique among all &meshes; in the given &skel;.
+  If it is not unique, it will be made so by appending
+  <userinput>&lt;x&gt;</userinput> to it, where
+  <userinput>x</userinput> is a suitable integer.
+</para>
+<para>
+  The <varname>element_types</varname> parameter specifies which <link
+  linkend="Section-Concepts-Mesh-Geometry">types of finite
+  elements</link> to use in the mesh.  The list must contain the names
+  of elements, and contain exactly one name for each type of element
+  present in the &skel;.  That is, if the &skel; contains triangular
+  elements, <varname>element_types</varname> must contain exactly one
+  of the values listed in <xref linkend="Enum-Element3"/>.  If the
+  &skel; contains both triangular and quadrilateral elements,
+  <varname>element_types</varname> must contain one name from <xref
+  linkend="Enum-Element3"/> and one from <xref
+  linkend="Enum-Element4"/>.
+</para>
+<para>
+  It is important to choose compatible triangular and quadrilateral
+  &mesh; elements: nodes on the edges of a finite element must match
+  up with nodes on its neighboring elements, so it's a mistake to mix
+  6-noded triangles (with three nodes on an edge) with 4-noded quads
+  (with only two nodes on an edge).  Diagrams of the element types are
+  included in the documentation for <xref linkend="Enum-Element2"/>,
+  <xref linkend="Enum-Element3"/>, and <xref linkend="Enum-Element4"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
