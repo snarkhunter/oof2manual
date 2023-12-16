@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: delnamedanal.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-21 21:36:15 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,15 +8,15 @@
   the authors at oof_manager@nist.gov.
 -->
 
-
 <para>
   Delete a <link linkend="Section-Concepts-Mesh-NamedAnalysis">Named
   Analysis</link> created by <xref
   linkend="MenuItem-OOF.Named_Analysis.Create"/>.
 </para>
 <para>
-  In the GUI, this command is invoked from the<guilabel>Named
-  Analyses</guilabel> pane in the <link
+  In the GUI, this command is invoked from the <link
+  linkend="Section-Tasks-Analysis-Named"><guilabel>Named
+  Analyses</guilabel></link> pane in the <link
   linkend="Section-Tasks-Analysis">Analysis</link> page.
 </para>
 

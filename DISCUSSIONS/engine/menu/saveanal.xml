@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: saveanal.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-22 18:51:31 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -20,10 +15,9 @@
   linkend="MenuItem-OOF.Named_Analysis.Create"/>.
 </para>
 <para>
-  In the GUI, this command is invoked by choosing
-  <guilabel>Save</guilabel> from the
-  <guilabel>Create/Delete/etc&hellip;</guilabel> pop-up menu in the
-  <guilabel>Named Analyses</guilabel> pane in the <link
+  In the GUI, this command is invoked from the <link
+  linkend="Section-Tasks-Analysis-Named"><guilabel>Named
+  Analyses</guilabel></link> pane in the <link
   linkend="Section-Tasks-Analysis">Analysis</link> page.
 </para>
 

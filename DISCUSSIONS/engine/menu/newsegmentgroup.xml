@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: newsegmentgroup.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,18 +8,17 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Create a new &sgmtgroup; in a &skel;.  The new group will be empty
-    until &sgmts; are <link
-    linkend='MenuItem-OOF.SegmentGroup.Add_to_Group'>added</link> to
-    it.
-  </para>
-  <para>
-    The given <varname>name</varname> must be unique among all
-    &sgmtgroups; in the &skel;.  If it is not unique, it will be made
-    so by appending <userinput>&lt;x&gt;</userinput> , where
-    <userinput>x</userinput> is an appropriate integer.
-  </para>
+<para>
+  Create a new &sgmtgroup; in a &skel;.  The new group will be empty
+  until &sgmts; are <link
+  linkend='MenuItem-OOF.SegmentGroup.Add_to_Group'>added</link> to it.
+</para>
+<para>
+  The given <varname>name</varname> must be unique among all
+  &sgmtgroups; in the &skel;.  If it is not unique, it will be made
+  so by appending <userinput>&lt;x&gt;</userinput>, where
+  <userinput>x</userinput> is an appropriate integer.
+</para>
 
 
 <!-- Keep this comment at the end of the file

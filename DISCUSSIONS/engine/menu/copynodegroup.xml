@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: copynodegroup.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:22 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,12 +8,12 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Copy a &nodegroup;.  The given <varname>new_name</varname> must be
-    unique among all &nodegroups; in the &skel;.  If it is not unique,
-    it will be made so by appending <userinput>&lt;x&gt;</userinput> ,
-    where <userinput>x</userinput> is an appropriate integer.
-  </para>
+<para>
+  Copy a &nodegroup;.  The given <varname>new_name</varname> must be
+  unique among all &nodegroups; in the &skel;.  If it is not unique,
+  it will be made so by appending <userinput>&lt;x&gt;</userinput>,
+  where <userinput>x</userinput> is an appropriate integer.
+</para>
 
 
 <!-- Keep this comment at the end of the file
