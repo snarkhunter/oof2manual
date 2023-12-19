@@ -1,44 +1,30 @@
 <!-- 
-  $RCSfile: theme.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:18 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@list.nist.gov.
 -->
 
-  <para>
-    This command sets the color scheme and widget shapes used in the
-    GUI.  OOF2 uses the <ulink url="http://www.gtk.org"
-    role="external"><application>gtk+</application></ulink> graphics
-    toolkit from Gnome.  Gnome themes may be downloaded from <ulink
-    url="http://art.gnome.org/themes/gtk2/" role="external"/>.  &oof2;
-    will look for themes in the system themes directory and in the
-    <filename>.themes</filename> subdirectory in the your home
-    directory.
-  </para>
-  <para>
-    To automatically set the theme for all &oof2; sessions,
-    put this command in the file
-    <filename>.oof2rc</filename> in your home directory, for example:
-    <literallayout class="monospaced">
-      OOF.Settings.Theme(theme="Metal")
-    </literallayout>
-    Alternatively, it's possible to set the theme for
-    <emphasis>all</emphasis> <application>gtk+</application> programs
-    by putting a line like this:
-    <literallayout>
-      gtk-theme-name = "Metal"
-    </literallayout>
-    in the <filename>.gtkrc-2.0</filename> file in your home
-    directory.
-  </para>
+<para>
+  This command sets the color scheme and widget styles used in the
+  GUI.  OOF2 uses the <ulink url="http://www.gtk.org"
+  role="external"><application>Gtk3</application></ulink> graphics
+  toolkit from Gnome.  Gnome themes may be downloaded from various
+  places on the web (search for <quote>gtk3 themes</quote>).  &oof2;
+  will look for themes in various system directories and in the
+  <filename>.themes</filename> subdirectory in your home directory.
+</para>
+<para>
+  To automatically set the theme for all &oof2; sessions, put this
+  command in the file <filename>.oof2rc</filename> in your home
+  directory.  For example:
+  <literallayout class="monospaced">
+    OOF.Settings.Theme(theme="HighContrastInverse")
+  </literallayout>
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
