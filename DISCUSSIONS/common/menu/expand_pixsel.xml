@@ -11,8 +11,7 @@
 <para>
   Expand the <link
   linkend="Section-Concepts-Microstructure-PixelSelection">pixel
-  selection</link> in the &micro; called
-  <varname>microstructure</varname> by selecting all pixels within a
+  selection</link> by selecting all pixels within a
   distance <varname>radius</varname> of a currently selected pixel.
   The radius is given in units of the &micro; pixel size.
 </para>

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: undo_pixsel.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:19 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,19 +8,20 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    A &micro; maintains a stack of sets of selected pixels.  Whenever
-    pixels are selected or deselected, a new selection set is pushed
-    onto the stack. The <command>Undo</command>
-    command pops the topmost set off the stack, thereby reverting
-    to the next older selection.  The popped version is not destroyed,
-    however.  It can be recovered with <xref
-    linkend="MenuItem-OOF.PixelSelection.Redo"/>.
-  </para>
-  <para>
-    The stack has a limited depth.  When the stack is full, the oldest
-    selections will be lost when new selections are made.
-  </para>
+<para>
+  A &micro; maintains a stack of sets of selected pixels.  Whenever
+  pixels are selected or deselected, a new selection set is pushed
+  onto the stack. The <command>Undo</command> command pops the topmost
+  set off the stack, thereby reverting to the next older selection.
+  The popped version is not destroyed, however.  It can be recovered
+  with <xref linkend="MenuItem-OOF.PixelSelection.Redo"/>.
+</para>
+<para>
+  The stack has a limited depth.  When the stack is full, the oldest
+  selections will be lost when new selections are made.  The size of
+  the stack can be changed with <xref
+  linkend="OOF.Settings.UndoBuffer_Size.Pixel_Selection"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
