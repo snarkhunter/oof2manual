@@ -12,7 +12,6 @@
 # it in OOFWEBDIR/oof2man.
 
 # "make publish" copies the local output to the CTCMS web server.
-#
 
 XMLFILES = CH_graphics.xml CH_tasks.xml CH_windows.xml SN_skel.xml     \
 man_oof2.xml oof2_api.xml CH_overview.xml CH_concepts.xml SN_micro.xml

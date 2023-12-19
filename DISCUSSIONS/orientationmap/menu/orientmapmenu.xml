@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: orientmapmenu.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:54 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,18 +8,19 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    An <link
-    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
-    Map</classname></link> specifies the orientation of the
-    crystalline axes at every point in a &micro;.  This menu contains
-    commands for manipulating <classname>Orientation Maps</classname>.
-  </para>
-  <para>
-    This menu was introduced in &oof2; version 2.0.4. It only appears
-    if &oof2; was built with the
-    <userinput>--enable-orientationmap</userinput> option.
-  </para>
+<para>
+  An <link
+  linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+  Map</classname></link> specifies the orientation of the crystalline
+  axes at every point in a &micro;.  This menu contains commands for
+  manipulating <classname>Orientation Maps</classname>.
+</para>
+<para>
+  There is no <link linkend="Chapter-Tasks">Task Page</link> devoted
+  to orientation maps. The commands are in the menu bar of the main
+  &oof2; window.
+</para>
+
 
 <!-- Keep this comment at the end of the file
   Local variables:

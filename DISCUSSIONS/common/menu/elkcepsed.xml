@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: elkcepsed.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:15 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,110 +8,45 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <command>Elkcepsed</command> is the opposite of <link
-    linkend="MenuItem-OOF.PixelSelection.Despeckle"><command>Despeckle</command></link>.
-    Instead of filling holes in the selection by selecting more
-    pixels, it deselects small islands and peninsulas of of selected
-    pixels.  Compare to <link
-    linkend="MenuItem-OOF.PixelSelection.Despeckle"><command>Despeckle</command></link>,
-    which fills in small holes in the selection.
-  </para>
-  <para>
-    The <varname>microstructure</varname> parameter specifies the &micro;
-    where the selection resides.
-  </para>
-  <para>
-    The algorithm works by recursively deselecting all selecting
-    pixels with fewer than <varname>neighbors</varname> selected
-    neighbors.  Values greater than 4 are prohibited because they will
-    always deselect the entire &micro;.  For examples, see <xref
-      linkend="Figure-elkcepsed"/>.
-  </para>
-  <figure id="Figure-elkcepsed">
-    <title>Gnilkcepsed the Pixel Selection</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/despeckle/d00.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata scale="50" fileref="FIGURES/despeckle/d00.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  A pixel selection (in red) containing some extra pixels to
-	  be trimmed with <command>Elkcepsed</command>.
-	</simpara>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/despeckle/e1.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata scale="50" fileref="FIGURES/despeckle/e1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  The result of running <command>Elkcepsed</command> with
-	  <varname>neighbors</varname>=1.  Only isolated single pixels have
-	  been deselected.
-	</simpara>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/despeckle/e2.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata scale="50" fileref="FIGURES/despeckle/e2.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  The result of running <command>Elkcepsed</command> with
-	  <varname>neighbors</varname>=2.  Isolated single pixels and
-	  <emphasis>straight</emphasis> lines one pixel wide have been
-	  deselected.
-	</simpara>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/despeckle/e3.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata scale="50" fileref="FIGURES/despeckle/e3.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  The result of running <command>Elkcepsed</command> with
-	  <varname>neighbors</varname>=3.  Isolated single pixels and
-	  <emphasis>curved</emphasis> lines one pixel wide have been
-	  deselected.
-	</simpara>
-      </caption>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/despeckle/e4.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata scale="50" fileref="FIGURES/despeckle/e4.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  The result of running <command>Elkcepsed</command> with
-	  <varname>neighbors</varname>=4.  The edges of solid features
-	  have been eroded.
-	</simpara>
-      </caption>
-    </mediaobject>
-    </mediaobject>
-  </figure>
+<para>
+  <command>Elkcepsed</command> is the opposite of <link
+  linkend="MenuItem-OOF.PixelSelection.Despeckle"><command>Despeckle</command></link>.
+  Instead of filling holes in the selection by selecting more pixels,
+  it deselects small islands and peninsulas of of selected pixels.
+</para>
+<para>
+  The <varname>microstructure</varname> parameter specifies the
+  &micro; where the selection resides.
+</para>
+<para>
+  The algorithm works by recursively deselecting all selecting pixels
+  with fewer than <varname>neighbors</varname> selected neighbors
+  (examing the 8 immediately adjacent pixels).  Values greater than 4
+  are prohibited because they will always deselect the entire &micro;.
+</para>
+<figure id="Figure-elkcepsed">
+  <title>Gnilkcepsed the Pixel Selection</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/elkcepsed.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+        The lefthand image shows a set of selected pixels, in red.
+        The other images show the results of running
+        <command>Elkcepsed</command> with various values of
+        <varname>neighbors</varname>.  For
+        <varname>neighbors</varname>=1, only isolated single pixels
+        have been deselected.  With <varname>neighbors</varname>=2,
+        <emphasis>straight</emphasis> lines one pixel wide have also been deselected.  With
+        <varname>neighbors</varname>=3, <emphasis>curved</emphasis> lines one pixel wide
+        have also been deselected.  Finally, with
+        <varname>neighbors</varname>=4, smaller blobs and protrusions
+        are deselected.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 
 

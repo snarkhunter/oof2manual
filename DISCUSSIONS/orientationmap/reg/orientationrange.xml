@@ -11,8 +11,12 @@
 <para>
   Select all pixels whose <link
   linkend="Section-Concepts-Material-Orientation">orientation</link>
-  is within the given <varname>misorientation</varname> of a reference
-  <varname>orientation</varname>.
+  in the &micro;'s <link
+  linkend="Section-Concepts-Microstructure-OrientationMap">Orientation
+  Map</link> is within the given <varname>misorientation</varname> of
+  a reference <varname>orientation</varname>.  This command does not
+  work with orientations given by the <xref
+  linkend="Property-Orientation"/> &property;.
 </para>
 <para>
   The misorientations are computed as if all of the materials pixels

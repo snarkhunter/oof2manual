@@ -50,7 +50,7 @@
       </imageobject>
     </mediaobject>
   </figure>
-  <simplesect id="Section-MicrostructurePage-Buttons">
+  <section id="Section-MicrostructurePage-Buttons">
     <title>Microstructure Page Buttons</title>
     <para>
       The buttons all correspond in a straightforward fashion to items
@@ -163,9 +163,9 @@
 	</listitem>
       </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 
-  <simplesect id="Section-MicrostructurePage-InfoPane">
+  <section id="Section-MicrostructurePage-InfoPane">
     <title>The Info Pane</title>
     <para>
       The Info Pane on the left lists the <link
@@ -175,8 +175,8 @@
       linkend="Section-Concepts-Microstructure-OrientationMap">orientation
       maps</link> it contains.
     </para>
-  </simplesect>
-  <simplesect id="Section-MicrostructurePage-GroupPane">
+  </section>
+  <section id="Section-MicrostructurePage-GroupPane">
     <title>The Pixel Group Pane</title>
     <para>
       The Pixel Group Pane creates and manipulates <link
@@ -235,7 +235,7 @@
       button prints information about the group in the <link
       linkend="Section-Windows-Messages">Message window</link>.
     </para>
-  </simplesect>
+  </section>
 </section>
 
 

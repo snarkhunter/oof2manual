@@ -16,7 +16,7 @@
   linkend="MenuItem-OOF.Material.Assign">assign</link> &materials; to
   the pixels in each pixel group.  The <command>AutoGroup</command>
   command performs the first part of this process, creating pixel
-  groups for each color of pixel in the given &image;.
+  groups for each color of pixel in the given &image;. 
 </para>
 <para>
   The <varname>name_template</varname> parameter specifies how the
@@ -32,10 +32,16 @@
   RGB color channels.  It may be advisable to manually <link
   linkend="MenuItem-OOF.PixelGroup.Rename">rename</link> the groups.
 </para>
+<para>
+  This command operates on all pixels in the &image;, not just the
+  <link
+  linkend="Section-Concepts-Microstructure-ActiveArea">active</link>
+  ones.
+</para>
 
 <caution>
   <para>
-    This tool does not work well on noisy experimental micrographs,
+    This command does not work well on noisy experimental micrographs,
     because pixels whose colors differ only due to noise will be put
     into different groups.  It also doesn't work well on artifical
     micrographs produced by drawing programs, if the programs use

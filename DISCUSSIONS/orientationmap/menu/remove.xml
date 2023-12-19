@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: remove.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:54 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,12 +8,13 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    This command removes an <link
-    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
-	Map</classname></link> from a &micro;, and allows a new map to
-    be <link linkend="MenuItem-OOF.OrientationMap.Load">loaded</link>.
-  </para>
+<para>
+  This command removes an <link
+  linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+  Map</classname></link> from a &micro;, and allows a new map to be
+  <link linkend="MenuItem-OOF.OrientationMap.Load">loaded</link>.  A
+  &micro; can only contain one <classname>Orientation Map</classname>.
+</para>
 
 
 <!-- Keep this comment at the end of the file

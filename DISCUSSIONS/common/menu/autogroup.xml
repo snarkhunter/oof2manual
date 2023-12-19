@@ -12,7 +12,11 @@
   Automatically assign every <link
   linkend="Section-Concepts-Microstructure-ActiveArea">active</link>
   pixel in the &micro; to a &pixelgroup; according to the criterion
-  given by <varname>grouper</varname>.
+  given by <varname>grouper</varname>.  This command is invoked by the
+  <guibutton>Auto</guibutton> button in the <link
+  linkend="Section-MicrostructurePage-GroupPane">Pixel Group</link>
+  pane in the <link
+  linkend="Section-Tasks-Microstructure">Microstructure Page</link>.
 </para>
 <para>
   Unlike <xref

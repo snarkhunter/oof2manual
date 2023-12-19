@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: pixelgroup.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,32 +8,31 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    This menu contains commands for creating and manipulating <link
-    linkend='Section-Concepts-Microstructure-Pixel_Group'><classname>PixelGroups</classname></link>.
-    <classname>PixelGroups</classname> are named sets of pixels in a
-    &micro;.  Many &oof2; operations work on either the currently
-    <link
-    linkend="Section-Concepts-Microstructure-PixelSelection">selected
-    pixels</link> or on a <classname>PixelGroup</classname> &#x2014; for
-    example, &materials; can be <link
-    linkend="MenuItem-OOF.Material.Assign">assigned</link> either to
-    pixels in a group or to pixels in the selection.  In some sense,
-    <classname>PixelGroups</classname> are simply
-    <emphasis>named</emphasis> pixel selections.
-  </para>
-  <para>
-    <classname>PixelGroups</classname> also play a role in creating
-    &skels;: if a group is marked <constant>meshable</constant>, then
-    the &skel; <link
-    linkend="MenuItem-OOF.Skeleton.Modify">modification</link> methods
-    try to place element edges on the boundaries of the group.  That
-    is, membership in <constant>meshable</constant> groups is
-    considered when computing the <link
-    linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>
-    of a &skel; element.  The <constant>meshable</constant> flag is
-    set by <xref linkend="MenuItem-OOF.PixelGroup.Meshable"/>.
-  </para>
+<para>
+  This menu contains commands for creating and manipulating <link
+  linkend='Section-Concepts-Microstructure-Pixel_Group'><classname>PixelGroups</classname></link>.
+  <classname>PixelGroups</classname> are named sets of pixels in a
+  &micro;.  Many &oof2; operations work on either the currently <link
+  linkend="Section-Concepts-Microstructure-PixelSelection">selected
+  pixels</link> or on a <classname>PixelGroup</classname> &#x2014; for
+  example, &materials; can be <link
+  linkend="MenuItem-OOF.Material.Assign">assigned</link> either to
+  pixels in a group or to pixels in the selection.  In some sense,
+  <classname>PixelGroups</classname> are simply
+  <emphasis>named</emphasis> pixel selections.
+</para>
+<para>
+  <classname>PixelGroups</classname> also play a role in creating
+  &skels;: if a group is marked <constant>meshable</constant>, then
+  the &skel; <link
+  linkend="MenuItem-OOF.Skeleton.Modify">modification</link> methods
+  try to place element edges on the boundaries of the group.  That is,
+  membership in <constant>meshable</constant> groups is considered
+  when computing the <link
+  linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>
+  of a &skel; element.  The <constant>meshable</constant> flag is set
+  by <xref linkend="MenuItem-OOF.PixelGroup.Meshable"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
