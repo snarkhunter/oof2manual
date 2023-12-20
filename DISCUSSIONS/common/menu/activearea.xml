@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: activearea.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:14 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -32,7 +27,7 @@
 </para>
 <para>
   The GUI tools for manipulating Active Areas are on the <link
-  linkend="Section-Tasks-ActiveArea">Active Area</link> Page.
+  linkend="Section-Tasks-Active_Area">Active Area</link> Page.
 </para>
 <caution>
   <para>

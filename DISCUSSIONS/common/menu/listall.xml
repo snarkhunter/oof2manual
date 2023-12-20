@@ -13,7 +13,7 @@
   the <link linkend="Chapter-Graphics">Graphics</link> window usually
   only shows the primary &layers;: those that show &images;, &skels;,
   and &meshes;.  It does not show the predefined &layers; for <link
-  linkend="Section-Tasks-PixelSelection">pixel selections</link>,
+  linkend="Section-Tasks-Pixel_Selection">pixel selections</link>,
   <link linkend="Section-Tasks-SkeletonSelection">Skeleton
   selections</link>, &actives;, <foreignphrase>etc</foreignphrase>.
   In order to <link

@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: TB_pixelsel.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:11 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -18,7 +13,7 @@
   <para>
     The Pixel Selection Toolbox selects pixels in the topmost &micro;
     or &image; displayed in the Canvas.  It augments the <link
-    linkend="Section-Tasks-PixelSelection">Pixel Selection Task
+    linkend="Section-Tasks-Pixel_Selection">Pixel Selection Task
     Page</link> by providing ways of selecting pixels with the mouse.
   </para>
   <figure id="Figure-pixelseltoolbox">
@@ -69,7 +64,7 @@
     also correspond to commands in the <xref
     linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select"/> menu.
     These functions are all available on the <link
-    linkend="Section-Tasks-PixelSelection">Pixel Selection Task
+    linkend="Section-Tasks-Pixel_Selection">Pixel Selection Task
     Page</link>, but are duplicated in the Toolbox for convenience.
   </para>
   <para id="Section-Graphics-PixelSelection-History">

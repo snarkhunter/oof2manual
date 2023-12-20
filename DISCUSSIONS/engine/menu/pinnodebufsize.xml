@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: pinnodebufsize.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,21 +8,21 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<para>
+  This command sets the size of the buffer used to store old sets of
+  <link linkend="Section-Concepts-Pin">pinned nodes</link> in a
+  &skel;.  The buffer enables the <link
+  linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"><command>Undo</command></link>
+  and <link
+  linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"><command>Redo</command></link>
+  commands in the node pinning menu.  Using a larger buffer size will
+  use more memory but enable more operations to be undone.
+</para>
+<warning>
   <para>
-    This command sets the size of the buffer used to store old sets of
-    <link linkend="Section-Concepts-Pin">pinned nodes</link> in a
-    &skel;.  The buffer enables the <link
-    linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"><command>Undo</command></link>
-    and <link
-    linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"><command>Redo</command></link>
-    commands in the node pinning menu.  Using a larger buffer size
-    will use more memory but enable more operations to be undone.
+    Reducing the buffer size can cause data loss.
   </para>
-  <warning>
-    <para>
-      Reducing the buffer size can cause data loss.
-    </para>
-  </warning>
+</warning>
 
 <!-- Keep this comment at the end of the file
   Local variables:

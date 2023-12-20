@@ -297,7 +297,7 @@
 	    Commands for selecting pixels are in <xref
 	    linkend="MenuItem-OOF.PixelSelection"/>.  The GUI tools for
 	    the same operations are described in <xref
-	    linkend="Section-Tasks-PixelSelection"/> and <xref
+	    linkend="Section-Tasks-Pixe_Selection"/> and <xref
 	    linkend="Section-Graphics-PixelSelection"/>.
       </para>
       <para>
@@ -369,7 +369,7 @@
       <para>
 	    By default, the Active Area is the whole &micro;.  Commands to
 	    manipulate the Active Area are described in <xref
-	    linkend="Section-Tasks-ActiveArea"/> and <xref
+	    linkend="Section-Tasks-Active_Area"/> and <xref
 	    linkend="MenuItem-OOF.ActiveArea"/>.
       </para>
     </section><!-- Section:Concepts:Microstructure:ActiveArea -->

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: numericaldiff.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-28 21:24:08 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -28,8 +23,13 @@
   The default value of the relative perturbation is
   10<superscript>-5</superscript>.  An absolute perturbation less than
   16 times the double precision <ulink role="external"
-  linkend="http://en.wikipedia.org/wiki/Machine_epsilon">machine
+  url="http://en.wikipedia.org/wiki/Machine_epsilon"> machine
   epsilon</ulink> will never be used.
+</para>
+<para>
+  In the GUI, this command is invoked from the
+  <guimenuitem>Settings</guimenuitem> menu in the main &oof2; window's
+  menubar.
 </para>
 
 

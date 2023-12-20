@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_active.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:10 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,7 +8,7 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-<section id="Section-Tasks-ActiveArea">
+<section id="Section-Tasks-Active_Area">
   <title>Active Area</title>
   
   <para>
@@ -101,7 +96,7 @@
     <para>
 	  The Active Area Modification pane is similar to the Modification
 	  Panes in the <link linkend="Section-Tasks-Image">Image</link>
-	  and <link linkend="Section-Tasks-PixelSelection">Pixel
+	  and <link linkend="Section-Tasks-Pixel_Selection">Pixel
 	  Selection</link> pages.  At the top is a pull-down menu of
 	  methods of modifying the Active Area of the current &micro;.
 	  The modifiers in this menu correspond to commands in the <xref

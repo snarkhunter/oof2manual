@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_skel.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:11 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -41,7 +36,7 @@
   <para>
     The layout of the Skeleton Page follows that of the <link
     linkend="Section-Tasks-Image">Image</link> and <link
-    linkend="Section-Tasks-PixelSelection">Pixel Selection</link>
+    linkend="Section-Tasks-Pixel_Selection">Pixel Selection</link>
     pages.  At the top of the page is a Skeleton Chooser, which
     selects the &skel; to which the operations on the page apply.
     Like the <link linkend="Figure-ImagePage">Image Chooser</link> on
