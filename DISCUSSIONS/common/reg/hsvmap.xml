@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: hsvmap.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:20 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,63 +8,52 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <link
-    linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
-    translate numbers into colors, for use in contour plots.
-    <classname>HSVMap</classname> maps colors in the color wheel order
-    used in the <link linkend="RegisteredClass-HSVColor">HSV</link>
-    color scheme.  All of the colors have the same saturation and
-    value, but the hue varies with the value being plotted.
-  </para>
-  <para>
-    The <varname>saturation</varname> and <varname>value</varname>
-    parameters determine the fixed saturation and value of all the
-    colors in the map.  The <varname>phase_shift</varname> determines
-    which hue will correspond to the minimum value of the data.
-    (Since the map is periodic, it also corresponds to the maximum
-    value.)
-  </para>
-  <figure id="Figure-HSVMap">
-    <title>The HSV Color Map</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/hsvmap.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/hsvmap.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The HSV color map with the default values,
-	  <varname>saturation</varname>=1,
-	  <varname>value</varname>=1.0, and
-	  <varname>phase_shift</varname>=0.  High values are on top.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/hsvmap-1-0.5-60.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/hsvmap-1-0.5-60.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The HSV color map with 
-	  <varname>saturation</varname>=1,
-	  <varname>value</varname>=0.5, and
-	  <varname>phase_shift</varname>=60.  High values are on top.
-	</para>
-      </caption>
-    </mediaobject>
-
-  </figure>
+<para>
+  <link
+      linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
+  translate numbers into colors, for use in contour plots.
+  <classname>HSVMap</classname> maps colors in the color wheel order
+  used in the <link linkend="RegisteredClass-HSVColor">HSV</link>
+  color scheme.  All of the colors have the same saturation and
+  value, but the hue varies with the value being plotted.
+</para>
+<para>
+  The <varname>saturation</varname> and <varname>value</varname>
+  parameters determine the fixed saturation and value of all the
+  colors in the map.  The <varname>phase_shift</varname> determines
+  which hue will correspond to the minimum value of the data.
+  (Since the map is periodic, it also corresponds to the maximum
+  value.)
+</para>
+<para>
+  Because the map is periodic, it might not be a good way to represent
+  your data.  Consider using <xref
+  linkend="RegisteredClass-SpectralMap"/> instead, if your data isn't
+  also periodic.
+</para>
+<figure id="Figure-HSVMap">
+  <title>The HSV Color Map</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/colormaps/hsv.png"
+	             format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+        The left image shows the HSV color map with the default
+        parameters,
+        <varname>saturation</varname>=<userinput>1</userinput>,
+        <varname>value</varname>=<userinput>1.0</userinput>, and
+        <varname>phase_shift</varname>=<userinput>0</userinput>.  In
+        the right image,
+        <varname>saturation</varname>=<userinput>1</userinput>,
+        <varname>value</varname>=<userinput>0.5</userinput>, and
+        <varname>phase_shift</varname>=<userinput>60</userinput>.
+        High values are on top.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

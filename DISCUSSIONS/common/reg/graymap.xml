@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: graymap.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:20 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,32 +8,27 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <link
-    linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
-    translate numbers into colors, for use in contour plots.
-    <classname>GrayMap</classname> produces a linear gray scale --
-    numbers scaled to be between 0 and 1 translate directly into gray
-    values between 0 and 1.
-  </para>
-  <figure id="Figure-GrayMap">
-    <title>The Gray Color Map</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/graymap.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/graymap.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The Gray color map.  High values are on top.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  <link
+  linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
+  translate numbers into colors, for use in contour plots.
+  <classname>GrayMap</classname> produces a linear gray scale &emdash;
+  numbers scaled to be between 0 and 1 translate directly into gray
+  values between 0 and 1.
+</para>
+<figure id="Figure-GrayMap">
+  <title>The Gray Color Map</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/colormaps/gray.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The Gray color map.  High values are on top.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

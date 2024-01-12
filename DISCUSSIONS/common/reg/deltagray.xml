@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: deltagray.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:19 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,19 +8,19 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <classname>DeltaGray</classname> is a <xref
-    linkend="RegisteredClass-ColorDifference"/> object, used as a
-    parameter when selecting pixels in &images;.  It specifies the
-    difference between two colors by converting them to grayscale, and
-    comparing the results.  The difference between two colors is less
-    than <classname>DeltaGray</classname> if the absolute value of the
-    difference of the average of their red, green, and blue components
-    is less than <varname>delta_gray</varname>.
-    <varname>delta_gray</varname> is a floating point number between 0
-    and 1 inclusive, where 0 indicates no intensity difference, and 1
-    indicates the maximum possible difference.
-  </para>
+<para>
+  <classname>DeltaGray</classname> is a <xref
+  linkend="RegisteredClass-ColorDifference"/> object, used as a
+  parameter when selecting pixels in &images;.  It specifies the
+  difference between two colors by converting them to grayscale, and
+  comparing the results.  The difference between two colors is less
+  than <classname>DeltaGray</classname> if the absolute value of the
+  difference of the average of their red, green, and blue components
+  is less than <varname>delta_gray</varname>.
+  <varname>delta_gray</varname> is a floating point number between 0
+  and 1 inclusive, where 0 indicates no intensity difference, and 1
+  indicates the maximum possible difference.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: tequilamap.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:21 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,32 +8,27 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <link
-    linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
-    translate numbers into colors, for use in contour plots.
-    <classname>TequilaSunrise</classname> uses the colors of a Tequila
-    Sunrise (grenadine on the bottom, orange juice on top).
-  </para>
+<para>
+  <link
+  linkend="RegisteredClass-ColorMap"><classname>ColorMaps</classname></link>
+  translate numbers into colors, for use in contour plots.
+  <classname>TequilaSunrise</classname> uses the colors of a Tequila
+  Sunrise (grenadine on the bottom, orange juice on top).
+</para>
 
-  <figure id="Figure-TequilaMap">
-    <title>The Tequila Sunrise Color Map</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/tequilamap.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/colormaps/tequilamap.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The tequila sunrise color map.  High values are on top.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<figure id="Figure-TequilaMap">
+  <title>The Tequila Sunrise Color Map</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/colormaps/tequilasunrise.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The tequila sunrise color map.  High values are on top.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

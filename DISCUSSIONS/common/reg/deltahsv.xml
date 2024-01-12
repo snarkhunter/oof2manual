@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: deltahsv.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:19 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,25 +8,26 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <classname>DeltaHSV</classname> is a <xref
-    linkend="RegisteredClass-ColorDifference"/> object, used as a
-    parameter when selecting pixels in &images;.  It specifies the
-    difference between two colors by comparing their <link
-    linkend="RegisteredClass-HSVColor">HSV</link> representations.
-    The difference between two colors is less than
-    <classname>DeltaHSV</classname> if the absolute value of the
-    differences of their hues, saturations, and values are less than
-    <varname>delta_hue</varname>, <varname>delta_saturation</varname>,
-    and <varname>delta_value</varname>, respectively.
-    <varname>delta_hue</varname> and
-    <varname>delta_saturation</varname> are dimensionless floating
-    point numbers between 0 and 1, since hue and saturatation must be
-    between 0 and 1.  A color <varname>value</varname> is given by an
-    angle, so <varname>delta_value</varname> is in degrees.  The
-    absolute difference between two angles is always taken to be the
-    shorter distance around the unit circle.
-  </para>
+<para>
+  <classname>DeltaHSV</classname> is a <xref
+  linkend="RegisteredClass-ColorDifference"/> object, used as a
+  parameter when selecting pixels in &images;.  It specifies the
+  difference between two colors by comparing their <link
+  linkend="RegisteredClass-HSVColor">HSV</link> representations.  The
+  difference between two colors is less than
+  <classname>DeltaHSV</classname> if the absolute value of the
+  differences of their hues, saturations, and values are
+  <emphasis>all</emphasis> less than <varname>delta_hue</varname>,
+  <varname>delta_saturation</varname>, and
+  <varname>delta_value</varname>, respectively.
+  <varname>delta_hue</varname> and <varname>delta_saturation</varname>
+  are dimensionless floating point numbers between 0 and 1, since hue
+  and saturatation must be between 0 and 1.  A color
+  <varname>value</varname> is given by an angle, so
+  <varname>delta_value</varname> is in degrees.  The absolute
+  difference between two angles is always taken to be the shorter
+  distance around the unit circle.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:
