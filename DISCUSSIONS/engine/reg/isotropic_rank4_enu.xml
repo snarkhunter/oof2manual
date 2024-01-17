@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: isotropic_rank4_enu.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:41 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,28 +8,28 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <classname>IsotropicRank4TensorEnu</classname> is a <link
-    linkend="RegisteredClass-IsotropicRank4Tensor">rank 4 tensor with
-    isotropic symmetry</link>, expressed in terms of the Young's modulus
-    and Poisson ratio.
-  </para>
-  <para>
-    <varname>young</varname> is the Young's modulus,
-    <equation>
-      <alt role="tex">
-	\[\frac{(C_{11}-C_{12})(C_{11}+2C_{12})}{C_{11}+C_{12}}\]
-      </alt>
-    </equation>
-  </para>
-  <para>
-    <varname>poisson</varname> is the Poisson's ratio,
-    <equation>
-      <alt role="tex">
-	\[\frac{C_{12}}{C_{11}+C_{12}}\]
-      </alt>
-    </equation>
-  </para>
+<para>
+  <classname>IsotropicRank4TensorEnu</classname> is a <link
+  linkend="RegisteredClass-IsotropicRank4Tensor">rank 4 tensor with
+  isotropic symmetry</link>, expressed in terms of the Young's modulus
+  and Poisson's ratio.
+</para>
+<para>
+  <varname>young</varname> is the Young's modulus,
+  <equation>
+    <alt role="tex">
+	  \[\frac{(C_{11}-C_{12})(C_{11}+2C_{12})}{C_{11}+C_{12}}\]
+    </alt>
+  </equation>
+</para>
+<para>
+  <varname>poisson</varname> is the Poisson's ratio,
+  <equation>
+    <alt role="tex">
+	  \[\frac{C_{12}}{C_{11}+C_{12}}\]
+    </alt>
+  </equation>
+</para>
 
 
 

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: editlayer.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:15 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,19 +8,23 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Load the &layerset; of the currently <link
-    linkend="MenuItem-OOF.Graphics_n.Layer.Select">selected</link>
-    &layer; into the &layereditor;, opening and raising the
-    &layereditor; window if necessary.  The selected &layer; will be
-    highlighted and ready to edit in the &layereditor;'s list of <link
-    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>.
-  </para>
-  <para>
-    In text mode, this command doesn't do anything.  To edit graphics
-    &layers; in text mode, use the &layereditor; commands in the <xref
-    linkend="MenuItem-OOF.LayerEditor.LayerSet"/> menu.
-  </para>
+<para>
+  Replace the <userinput>n</userinput><superscript>th</superscript>
+  &layer; of the canvas with a new one defined by
+  <varname>category</varname>, <varname>what</varname>, and
+  <varname>how</varname>.  Those parameters have the same meaning that
+  they have in <xref linkend="MenuItem-OOF.Graphics_n.Layer.New"/>.
+</para>
+<para>
+  In the GUI, a &layer; can be edited by selecting it in the Layer
+  List at the bottom of the Graphics Window and choosing
+  <command>Edit</command> from the <guimenu>Layer</guimenu> menu, or
+  by double clicking in the Layer List.  Either method will open a
+  dialog box preloaded with the parameters describing layer number
+  <varname>n</varname>.  All parameters other than
+  <varname>n</varname> can be changed in the dialog.
+</para>
+
 
 <!-- Keep this comment at the end of the file
   Local variables:

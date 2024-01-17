@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: domain.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:39 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,34 +8,33 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-
-  <para>
-    <classname>Domain</classname> objects are part of the
-    post-solution analysis framework, in which useful data is
-    extracted from the mesh.  You select an <link
-    linkend="MenuItem-OOF.Mesh.Analyze">operation</link> (like <xref
-    linkend="MenuItem-OOF.Mesh.Analyze.Direct_Output"/>, if you want
-    to see the data, or <xref
-    linkend="MenuItem-OOF.Mesh.Analyze.Average"/>), a
-    <classname>Domain</classname>, and a <link
-    linkend="RegisteredClass-SampleSet">Sampling</link>.
-  </para>
-  <para>
-    The <classname>Domain</classname> is the subset of the &mesh; to
-    which the sampling is applied.  All the samples thus generated
-    will lie within the domain, or in some cases within the domain's
-    bounding box.
-  </para>
-  <para>
-    All domains are ways of specifying an area on the mesh, and differ
-    in how this area is specified.  You may select an element group
-    selection, a <link linkend="RegisteredClass-PixelGroup">pixel
-    group or selection</link>, a <link
-    linkend="RegisteredClass-MeshCrossSection">cross section</link>,
-    or the <link linkend="RegisteredClass-EntireMesh">entire
-    mesh</link>.  Exactly how the domain is interpreted by the output
-    operation depends on the sampling.
-  </para>
+<para>
+  <classname>Domain</classname> objects are part of the
+  post-solution analysis framework, in which useful data is
+  extracted from the mesh.  You select an <link
+  linkend="MenuItem-OOF.Mesh.Analyze">operation</link> (like <xref
+  linkend="MenuItem-OOF.Mesh.Analyze.Direct_Output"/>, if you want
+  to see the data, or <xref
+  linkend="MenuItem-OOF.Mesh.Analyze.Average"/>), a
+  <classname>Domain</classname>, and a <link
+  linkend="RegisteredClass-SampleSet">Sampling</link>.
+</para>
+<para>
+  The <classname>Domain</classname> is the subset of the &mesh; to
+  which the sampling is applied.  All the samples thus generated
+  will lie within the domain, or in some cases within the domain's
+  bounding box.
+</para>
+<para>
+  All domains are ways of specifying an area on the mesh, and differ
+  in how this area is specified.  You may select an element group
+  selection, a <link linkend="RegisteredClass-PixelGroup">pixel
+  group or selection</link>, a <link
+  linkend="RegisteredClass-MeshCrossSection">cross section</link>,
+  or the <link linkend="RegisteredClass-EntireMesh">entire
+  mesh</link>.  Exactly how the domain is interpreted by the output
+  operation depends on the sampling.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

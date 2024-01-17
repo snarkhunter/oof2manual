@@ -11,7 +11,7 @@
 <para>
   Specify lattice symmetry using the International or Hermann-Mauguin
   names for point groups, as listed in the <ulink
-  url="https://en.wikipedia.org/wiki/Crystallographic_point_group#The_correspondence_between_different_notations"
+  url="https://en.wikipedia.org/wiki/Crystallographic_point_group%23The_correspondence_between_different_notations"
   role="external">table of point groups</ulink> at Wikipedia.  &oof2;
   uses the short Hermann-Mauguin notation.
 </para>

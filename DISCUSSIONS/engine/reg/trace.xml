@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: trace.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:48 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,16 +9,16 @@
 -->
 
 
-  <para>
-    <classname>Trace</classname> is one of the <link
-    linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
-    of a symmetric three dimensional rank 2 tensor quantity that can
-    be computed by the &oof2; <link
-    linkend="Section-Output"><classname>Outputs</classname></link>.
-    The trace of a tensor is the sum of its diagonal entries.  The
-    trace of the stress tensor is proportional to the hydrostatic
-    pressure, for example.
-  </para>
+<para>
+  <classname>Trace</classname> is one of the <link
+  linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
+  of a symmetric three dimensional rank 2 tensor quantity that can be
+  computed by the &oof2; <link
+  linkend="Section-Output"><classname>Outputs</classname></link>.  The
+  trace of a tensor is the sum of its diagonal entries.  The trace of
+  the stress tensor is proportional to the hydrostatic pressure, for
+  example.
+</para>
 
 
 

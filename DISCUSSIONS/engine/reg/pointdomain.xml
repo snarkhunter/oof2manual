@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: pointdomain.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-27 21:32:31 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -12,22 +7,22 @@
   distributing modified versions of this software, you first contact
   the authors at oof_manager@nist.gov.
 -->
-  <para>
-    <classname>Domain</classname> objects are part of the
-    post-solution <link
-    linkend="MenuItem-OOF.Mesh.Analyze">analysis</link> framework, in
-    which useful data is extracted from the &mesh;. The
-    <classname>Domain</classname> is the subset of the &mesh; to which
-    the <link linkend="RegisteredClass-SampleSet">sampling</link> is
-    applied.  When the domain is set to
-    <classname>SinglePoint</classname>, output is evaluated at a
-    single point inside the specified &mesh;.
-  </para>
-  <para>
-    <classname>SinglePoint</classname> domains support <link
-    linkend="RegisteredClass-SampleSet">sampling</link> methods in the
-    <link linkend="Sampling-point">point</link> category.
-  </para>
+
+<para>
+  <classname>Domain</classname> objects are part of the post-solution
+  <link linkend="MenuItem-OOF.Mesh.Analyze">analysis</link> framework,
+  in which useful data is extracted from the &mesh;. The
+  <classname>Domain</classname> is the subset of the &mesh; to which
+  the <link linkend="RegisteredClass-SampleSet">sampling</link> is
+  applied.  When the domain is set to
+  <classname>SinglePoint</classname>, output is evaluated at a single
+  point inside the specified &mesh;.
+</para>
+<para>
+  <classname>SinglePoint</classname> domains support <link
+  linkend="RegisteredClass-SampleSet">sampling</link> methods in the
+  <link linkend="Sampling-point">point</link> category.
+</para>
 
 
   <!-- Keep this comment at the end of the file

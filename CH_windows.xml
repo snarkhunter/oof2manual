@@ -97,7 +97,7 @@
 	        indicate that a task could not be completed, either due to
 	        user error (entering an illegal parameter, for example) or
 	        programming errors.  Please <ulink
-	        url="http://www.ctcms.nist.gov/oof/oof2/index.html#bugreport">report</ulink>
+	        url="http://www.ctcms.nist.gov/oof/oof2/index.html%23bugreport">report</ulink>
 	        programming errors to <email>oof_bugs@nist.gov</email>.
 	      </para>
 	    </listitem>

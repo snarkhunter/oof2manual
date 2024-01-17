@@ -8,72 +8,20 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-<!-- TODO: IS THIS DETAIL NEEDED IF EXPAND_NODE_SELECTION HAS FIGURES? -->
+<para>
+  <classname>ExpandBySegments</classname> is used as the
+  <varname>criterion</varname> parameter of <xref
+  linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/>.  It
+  expands the current &node; selection by selecting all &nodes; that
+  share a &sgmt; with a &node; that is already selected.  When a
+  &skel; contains quadrilateral &elems;,
+  <classname>ExpandBySegments</classname> may select fewer &nodes;
+  than its colleague <xref
+  linkend="RegisteredClass-ExpandByElements"/> will.  See <xref
+  linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/> for an
+  illustration.
+</para>
 
-  <para>
-    <classname>ExpandBySegments</classname> is used as the
-    <varname>criterion</varname> parameter of <xref
-    linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/>.  It
-    expands the current &node; selection by selecting all &nodes; that
-    share a &sgmt; with a &node; that is already selected.  When a
-    &skel; contains quadrilateral &elems;,
-    <classname>ExpandBySegments</classname> may select fewer &nodes;
-    than its colleague <xref
-    linkend="RegisteredClass-ExpandByElements"/> will.
-  </para>
-
-  <figure id="Figure-ExpandBySegments">
-    <title>Expansion of Node Selection by Neighboring Segments</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	  fileref="FIGURES/skel_selection/nodes_expand0.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	  fileref="FIGURES/skel_selection/nodes_expand0.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; containing some selected &nodes; (blue dots).
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	  fileref="FIGURES/skel_selection/nodes_expand3.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	  fileref="FIGURES/skel_selection/nodes_expand3.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &sgmts; (in green) through which the &node; selection
-	  will be expanded.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	  fileref="FIGURES/skel_selection/nodes_expand4.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	  fileref="FIGURES/skel_selection/nodes_expand4.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The expanded set of &nodes; (still in blue).  The smaller
-	  dark red dots mark nodes that are <emphasis>not</emphasis>
-	  selected, but would have been selected by <xref
-	  linkend="RegisteredClass-ExpandByElements"/>.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

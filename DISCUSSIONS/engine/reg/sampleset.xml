@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: sampleset.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-04-27 21:32:31 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,69 +8,68 @@
   the authors at oof_manager@nist.gov.
 -->
 
-
-  <para>
-    <classname>SampleSet</classname> objects are part of the
-    post-solution <link
-    linkend="MenuItem-OOF.Mesh.Analyze">analysis</link> framework, in
-    which useful data is extracted from the &mesh;. The <link
-    linkend="RegisteredClass-Domain"><classname>Domain</classname></link>
-    is the subset of the &mesh; to which the sampling is applied. The
-    <classname>SampleSet</classname> determines how samples are taken
-    within the domain.
-  </para>
-  <para>
-    Most of the <classname>SampleSet</classname> subclasses listed
-    below come in two versions.  The version whose name begins with
-    <classname>Stat</classname> is used when the data is going to be
-    sent through a statistical function.  The other version is used
-    when the data will be sent directly to the screen or a file.  The
-    two versions are identical, except that the direct output version
-    has additional parameters that govern which auxiliary data will
-    be displayed.  These additional parameters all have names
-    beginning with <varname>show_</varname>.
-  </para>
-  <para>
-    Not all kinds of <classname>SampleSet</classname> are appropriate
-    for all kinds of <link
-    linkend="RegisteredClass-Domain"><classname>Domains</classname></link>.
-    The reference page for each type of <xref
-    linkend="RegisteredClass-Domain"/> says which categories of
-    <classname>SampleSets</classname> it is compatible with.  The
-    categories are:
-    <variablelist>
-      <varlistentry id="Sampling-point">
-	<term>point</term>
-	<listitem>
-	  <para>Data is evaluated at individual points within the domain.</para>
-	</listitem>
-      </varlistentry>
-      <varlistentry id="Sampling-pixel">
-	<term>pixel</term>
-	<listitem>
-	  <para>Data is evaluated at the centers of pixels.</para>
-	</listitem>
-      </varlistentry>
-      <varlistentry id="Sampling-element">
-	<term>element</term>
-	<listitem>
-	  <para>Data is integrated over the area of &mesh; &elems;.</para>
-	</listitem>
-      </varlistentry>
-      <varlistentry id="Sampling-line">
-	<term>line</term>
-	<listitem>
-	  <para>Data is evaluated at points along a line.</para>
-	</listitem>
-      </varlistentry>
-      <varlistentry id="Sampling-bentline">
-	<term>bent line</term>
-	<listitem>
-	  <para>Data is evaluated along a joined set of line segments.</para>
-	</listitem>
-      </varlistentry>
-    </variablelist>
-  </para>
+<para>
+  <classname>SampleSet</classname> objects are part of the
+  post-solution <link
+  linkend="MenuItem-OOF.Mesh.Analyze">analysis</link> framework, in
+  which useful data is extracted from the &mesh;. The <link
+  linkend="RegisteredClass-Domain"><classname>Domain</classname></link>
+  is the subset of the &mesh; to which the sampling is applied. The
+  <classname>SampleSet</classname> determines how samples are taken
+  within the domain.
+</para>
+<para>
+  Most of the <classname>SampleSet</classname> subclasses listed below
+  come in two versions.  The version whose name begins with
+  <classname>Stat</classname> is used when the data is going to be
+  sent through a statistical function.  The other version is used when
+  the data will be sent directly to the screen or a file.  The two
+  versions are identical, except that the direct output version has
+  additional parameters that govern which auxiliary data will be
+  displayed.  These additional parameters all have names beginning
+  with <varname>show_</varname>.
+</para>
+<para>
+  Not all kinds of <classname>SampleSet</classname> are appropriate
+  for all kinds of <link
+  linkend="RegisteredClass-Domain"><classname>Domains</classname></link>.
+  The reference page for each type of <xref
+  linkend="RegisteredClass-Domain"/> says which categories of
+  <classname>SampleSets</classname> it is compatible with.  The
+  categories are:
+  <variablelist>
+    <varlistentry id="Sampling-point">
+	  <term>point</term>
+	  <listitem>
+	    <para>Data is evaluated at individual points within the domain.</para>
+	  </listitem>
+    </varlistentry>
+    <varlistentry id="Sampling-pixel">
+	  <term>pixel</term>
+	  <listitem>
+	    <para>Data is evaluated at the centers of pixels.</para>
+	  </listitem>
+    </varlistentry>
+    <varlistentry id="Sampling-element">
+	  <term>element</term>
+	  <listitem>
+	    <para>Data is integrated over the area of &mesh; &elems;.</para>
+	  </listitem>
+    </varlistentry>
+    <varlistentry id="Sampling-line">
+	  <term>line</term>
+	  <listitem>
+	    <para>Data is evaluated at points along a line.</para>
+	  </listitem>
+    </varlistentry>
+    <varlistentry id="Sampling-bentline">
+	  <term>bent line</term>
+	  <listitem>
+	    <para>Data is evaluated along a joined set of line segments.</para>
+	  </listitem>
+    </varlistentry>
+  </variablelist>
+</para>
 
 
 

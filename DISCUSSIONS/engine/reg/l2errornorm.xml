@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: l2errornorm.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:41 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,34 +8,34 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <classname>L2ErrorNorm</classname> is one way of computing the
-    error in an element when using the <xref
-    linkend="RegisteredClass-ZZ_Estimator"/> to drive finite element
-    mesh <link
-    linkend="RegisteredClass-AdaptiveMeshRefine">adaptation</link>.
-    The relative percent error is
-    <equation>
-      <alt role="tex">
-	\[
-	\mathrm{percent\ error} = \frac{\int_\Omega\,
-	(\sigma^* - \sigma_h)^T
-	(\sigma^* - \sigma_h)\, d\Omega}
-	{\int_\Omega\,\sigma^{*T} \sigma^*\,d\Omega} \times 100
-	\]
-      </alt>
-    </equation>
-    where
-    <inlineequation>
-      <alt role="tex">\(\sigma^*\)</alt>
-    </inlineequation>
-    and
-    <inlineequation>
-      <alt role="tex">\(\sigma_h\)</alt>
-    </inlineequation>
-    are the recovered stress and the finite element stress,
-    respectively.  The integral is over the area of the mesh element.
-  </para>
+<para>
+  <classname>L2ErrorNorm</classname> is one way of computing the error
+  in an element when using the <xref
+  linkend="RegisteredClass-ZZ_Estimator"/> to drive finite element
+  mesh <link
+  linkend="RegisteredClass-AdaptiveMeshRefine">adaptation</link>.  The
+  relative percent error is
+  <equation>
+    <alt role="tex">
+	  \[
+	  \mathrm{percent\ error} = \frac{\int_\Omega\,
+	  (\sigma^* - \sigma_h)^T
+	  (\sigma^* - \sigma_h)\, d\Omega}
+	  {\int_\Omega\,\sigma^{*T} \sigma^*\,d\Omega} \times 100
+	  \]
+    </alt>
+  </equation>
+  where
+  <inlineequation>
+    <alt role="tex">\(\sigma^*\)</alt>
+  </inlineequation>
+  and
+  <inlineequation>
+    <alt role="tex">\(\sigma_h\)</alt>
+  </inlineequation>
+  are the recovered stress and the finite element stress,
+  respectively.  The integral is over the area of the mesh element.
+</para>
 
   
   <!-- Keep this comment at the end of the file

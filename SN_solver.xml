@@ -237,28 +237,26 @@
   </simplesect>		<!--Solver Pane-->
   
   <simplesect id="Section-Tasks-Solver-FieldInitPane">
-    <title>The Field Initialization Pane</title>
+    <title>The Initialization Pane</title>
     <para>
 	  The Initialization Pane is in charge of assigning <link
 	  linkend="Section-Concepts-Mesh-InitialConditions">initial
-	  values</link> to the &fields; that are defined on the &mesh;.
-	  As explained in <xref
-	  linkend="Section-Concepts-Mesh-InitialConditions"/>, &field;
+	  values</link> to the &fields; and <link
+	  linkend="RegisteredClass-FloatBC">floating boundary
+	  conditions</link> that are defined on the &mesh;.  As explained
+	  in <xref linkend="Section-Concepts-Mesh-InitialConditions"/>,
 	  initialization is a two step process: first an initializer is
-	  assigned to a &field;, and then all the initializers are
-	  applied.
+	  assigned to a &field; or boundary condition, and then all the
+	  initializers are applied.
     </para>
     <para>
 	  The Initialization pane contains a list with two columns: the
-	  names of the &fields; and their initializers.  &fields; without
-	  initializers are marked with
-	  <quote><userinput>---</userinput></quote>.  Selecting a &field;
-	  in the list and clicking the <link
-	  linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"><guibutton>Set</guibutton></link>
-	  button brings up a dialog box for setting the initializers.
-	  Double-clicking on a &field; in the list has the same effect.
-	  For more details, see <xref
-	  linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>.
+	  names of the &fields; (or boundary conditions) and their
+	  initializers.  Items without initializers are marked with
+	  <quote><userinput>---</userinput></quote>.  Selecting an item in
+	  the list and clicking the <guibutton>Set</guibutton> button
+	  brings up a dialog box for setting the initializers.
+	  Double-clicking on an item has the same effect.
     </para>
     <para>
 	  When solving static problems, it's not necessary to initialize
@@ -266,25 +264,28 @@
 	  linkend="MenuItem-OOF.Mesh.Field.Activate">active</link>, since
 	  values will be assigned to them by the solver.  However, the
 	  iterative solvers will converge faster if the initial values of
-	  the &fields; are close to the actual solution.  &fields; that
-	  are being used in time dependent problems should always be
-	  initialized.
+	  the &fields; are close to the actual solution.  &fields; and
+	  floating boundary conditions that are being used in time
+	  dependent problems should always be initialized.
     </para>
     <para>
 	  Note that changing a &subproblem;'s solver can affect which
-	  &fields; can be initialized.  If the &equations; include terms,
+	  items can be initialized.  If the &equations; include terms,
 	  such as <link
 	  linkend="MenuItem-OOF.Property.Parametrize.Mechanical.MassDensity">mass
 	  density</link> in the <link
 	  linkend="Equation-Force_Balance">force balance</link> equation,
 	  that contain second time derivatives, <emphasis>and</emphasis>
 	  if the solvers are not static, then the first time derivative of
-	  the relevant &field; must be initialized as well.  The time
-	  derivative &fields; have a <varname>_t</varname> suffix in the
-	  list.
+	  the relevant &fields; and boundary conditions must be
+	  initialized as well.  The time derivative &fields; have a
+	  <varname>_t</varname> suffix in the list.  For some reason, the
+	  first time derivative of a boundary condition is set
+	  differently, via an additional parameter in the
+	  <guibutton>Set</guibutton> dialog.
     </para>
     <para>
-	  In <xref linkend="Figure-SolverPate"/>,
+	  In <xref linkend="Figure-SolverPage"/>,
 	  <varname>Temperature</varname>'s initializer has been set to a
 	  function, <userinput>x+2*y</userinput>, and the initializers for
 	  the two components of the displacement have been set to
@@ -292,8 +293,8 @@
 	  <userinput>0.01</userinput>.
     </para>
     <para>
-	  The buttons below the list operate on the &field; initializers
-	  in the &mesh;.
+	  The buttons below the list operate on the initializers in the
+	  &mesh;.
     </para>
     <itemizedlist>
 	  <listitem>
@@ -301,10 +302,14 @@
 	      <title>Set</title>
 	      <para>
 	        This button brings up a dialog box in which an initializer
-	        can be defined for the currently selected &field;.
+	        can be defined for the currently selected item.
 	        Clicking <guibutton>OK</guibutton> invokes the
 	        <xref linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/>
-	        command.
+            or <xref
+            linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Set_BC_Initializer"/>
+            command, depending on whether a &field; or a <link
+            linkend="RegisterdClass-FloatBC">floating boundary
+            condition</link> is selected in the list.
 	      </para>
 	    </formalpara>
 	  </listitem>
@@ -312,7 +317,7 @@
 	    <formalpara>
 	      <title>Copy</title>
 	      <para>
-	        Copy all &field; initializers from the current &mesh; (as
+	        Copy all initializers from the current &mesh; (as
 	        set in the <guilabel>Mesh Chooser</guilabel>) to another
 	        &mesh; (selected in a dialog box), using <xref
 	        linkend="MenuItem-OOF.Mesh.Copy_Field_Initializers"/>.
@@ -323,9 +328,10 @@
 	    <formalpara>
 	      <title>Clear</title>
 	      <para>
-	        Remove the initializer from the selected &field;, invoking
-	        <xref
-	        linkend="MenuItem-OOF.Mesh.Clear_Field_Initializer"/>.
+	        Remove the initializer from the selected item, invoking
+	        <xref linkend="MenuItem-OOF.Mesh.Clear_Field_Initializer"/>
+            or <xref
+            linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Clear_BC_Initializer"/>.
 	      </para>
 	    </formalpara>
 	  </listitem>
@@ -333,7 +339,7 @@
 	    <formalpara>
 	      <title>Clear All</title>
 	      <para>
-	        Remove the initializers from all &fields;, invoking <xref
+	        Remove the initializers from all items, invoking <xref
 	        linkend="MenuItem-OOF.Mesh.Clear_Field_Initializers"/>.
 	      </para>
 	    </formalpara>

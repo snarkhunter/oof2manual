@@ -8,68 +8,19 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-<!-- TODO: IS THIS DETAIL NEEDED IF EXPAND_NODE_SELECTION HAS FIGURES? -->
-  <para>
-    <classname>ExpandByElements</classname> is used as the
-    <varname>criterion</varname> parameter of <xref
-    linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/>.  It
-    expands the current &node; selection by selecting all &nodes; that
-    share an &elem; with a &node; that is already selected.  When a
-    &skel; contains quadrilateral &elems;,
-    <classname>ExpandByElements</classname> may select more &nodes;
-    than its colleague <xref
-    linkend="RegisteredClass-ExpandBySegments"/> will.
-  </para>
-
-  <figure id="Figure-ExpandByElements">
-    <title>Expansion of Node Selection by Neighboring Elements</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="GIF"
-	fileref="FIGURES/skel_selection/nodes_expand0.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/nodes_expand0.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; containing some selected &nodes; (blue dots).
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="GIF"
-	fileref="FIGURES/skel_selection/nodes_expand1.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/nodes_expand1.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &elems; (in pink) through which the &node; selection
-	  will be expanded.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="GIF"
-	fileref="FIGURES/skel_selection/nodes_expand2.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	fileref="FIGURES/skel_selection/nodes_expand2.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The expanded set of &nodes;.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  <classname>ExpandByElements</classname> is used as the
+  <varname>criterion</varname> parameter of <xref
+  linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/>.  It
+  expands the current &node; selection by selecting all &nodes; that
+  share an &elem; with a &node; that is already selected.  When a
+  &skel; contains quadrilateral &elems;,
+  <classname>ExpandByElements</classname> may select more &nodes; than
+  its colleague <xref linkend="RegisteredClass-ExpandBySegments"/>
+  will.  See <xref
+  linkend="MenuItem-OOF.NodeSelection.Expand_Node_Selection"/> for an
+  illustration.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

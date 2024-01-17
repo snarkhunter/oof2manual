@@ -16,7 +16,7 @@
   linkend="Section-Concepts-FileFormats-Ascii"><userinput>ascii</userinput></link>
   or <link
   linkend="Section-Concepts-FileFormats-Binary"><userinput>binary</userinput></link>
-  data files.  The commands in the &oof2; <xref
+  data files.  The commands in the <xref
   linkend="MenuItem-OOF.File.Save"/> menu create these data files when
   the file format is set to <link
   linkend="Section-Concepts-FileFormats-Ascii"><userinput>ascii</userinput></link>

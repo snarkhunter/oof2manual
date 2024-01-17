@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: 2nd_invariant.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:35 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,24 +9,23 @@
 -->
 
 
-  <para>
-    <classname>SecondInvariant</classname> is one of the <link
-    linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
-    of a symmetric three dimensional rank 2 tensor quantity that can
-    be computed by the &oof2; <link
-    linkend="Section-Output"><classname>Outputs</classname></link>.
-    The second invariant of a three dimensional symmetric rank 2
-    tensor <inlineequation>
-      <alt role="tex">\(A\)</alt></inlineequation> is
-    <informalequation>
-      <alt role="tex">
-	\[
-	A_{11}A_{33} + A_{11}A_{22} + A_{22}A_{33} -
-	A_{12}^2 - A_{13}^2 - A_{23}^2.
-	\]
-      </alt>
-    </informalequation>
-  </para>
+<para>
+  <classname>SecondInvariant</classname> is one of the <link
+  linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
+  of a symmetric three dimensional rank 2 tensor quantity that can be
+  computed by the &oof2; <link
+  linkend="Section-Output"><classname>Outputs</classname></link>.  The
+  second invariant of a three dimensional symmetric rank 2 tensor
+  <inlineequation> <alt role="tex">\(A\)</alt></inlineequation> is
+  <informalequation>
+    <alt role="tex">
+	  \[
+	  A_{11}A_{33} + A_{11}A_{22} + A_{22}A_{33} -
+	  A_{12}^2 - A_{13}^2 - A_{23}^2.
+	  \]
+    </alt>
+  </informalequation>
+</para>
 
 
 

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: magnitude.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:42 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,15 +9,15 @@
 -->
 
 
-  <para>
-    <classname>Magnitude</classname> is one of the <link
-    linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
-    of a vector quantity that can be computed by the &oof2; <link
-    linkend="Section-Output"><classname>Outputs</classname></link>.
-    The magnitude of a vector is the square root of the sum of the
-    squares of its components (L2 norm).
-  </para>
-
+<para>
+  <classname>Magnitude</classname> is one of the <link
+  linkend="RegisteredClass-Invariant"><classname>Invariants</classname></link>
+  of a vector quantity that can be computed by the &oof2; <link
+  linkend="Section-Output"><classname>Outputs</classname></link>.  The
+  magnitude of a vector or tensor is the square root of the sum of the
+  squares of its components (L2 norm).
+</para>
+  
 
 
   <!-- Keep this comment at the end of the file

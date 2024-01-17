@@ -1,0 +1,63 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@ctcms.nist.gov.
+-->
+
+<para>
+  <classname>IsotropicRank4TensorCij</classname> is a rank 4 tensor
+  with isotropic symmetry.  It is parametrized by its two
+  independent components, <varname>c11</varname> and
+  <varname>c12</varname>.
+</para>
+<para>
+  The dialog box for setting the value of the tensor is shown in
+  <xref linkend="Figure-isocij"/>.  Although the tensor only has two
+  independent components, there are three different numbers that can
+  be changed in the dialog: C<subscript>11</subscript>,
+  C<subscript>12</subscript>, and C<subscript>44</subscript>.
+  Changing any of them will update the others.  If
+  C<subscript>11</subscript> or C<subscript>12</subscript> is changed,
+  a new C<subscript>44</subscript> will be computed when the user hits
+  return or clicks elsewhere.  If C<subscript>44</subscript> is
+  changed, C<subscript>12</subscript> will be recomputed.
+</para>
+
+<figure id="Figure-isocij">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref='FIGURES/rank4/iso_cij.png' format='PNG'/>
+    </imageobject>
+    <caption>
+      <para>
+        (a) The dialog box for setting
+        <varname>C<subscript>ij</subscript></varname>.  (b)  Entering
+        a new value for <varname>C<subscript>12</subscript></varname>
+        leaves the widgets in an inconsistent state, but (c) clicking
+        on any other GUI element, or hitting return, updates the value
+        of C<subscript>44</subscript> to agree with
+        the new C<subscript>12</subscript>.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../../man_oof2.xml" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
