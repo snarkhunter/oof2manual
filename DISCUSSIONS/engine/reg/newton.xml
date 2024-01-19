@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: newton.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-28 21:24:09 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -67,7 +62,7 @@
   more computations on each iteration and quite possibly also require
   more iterations.  The parameters used for the numerical
   differentiation may be set by the <xref
-  linkend="MenuItem-OOF.Settings.Mesh_Defaults.Numerical_Differentiation"/>
+  linkend="MenuItem-OOF.Settings.Solver.Numerical_Differentiation"/>
   command.
 </para>
 

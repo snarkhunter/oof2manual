@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: setcachetype.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-29 20:21:53 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -18,7 +13,8 @@
   <link linkend="Section-Concepts-Mesh-Time">time</link> data stored
   with a &mesh; is kept in memory or in temporary files on disk.
   Storing the data in memory is faster, as long as there is enough
-  RAM.
+  RAM.  When switching from one cache type to the other, the data in
+  the cache is preserved.
 </para>
 <para>
   <classname>SetMeshDataCacheType</classname> is a <xref

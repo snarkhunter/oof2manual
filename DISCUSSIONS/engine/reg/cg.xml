@@ -38,6 +38,9 @@
   <classname>CG</classname> uses the
   <classname>ConjugateGradient</classname> class from <ulink
   url="https://eigen.tuxfamily.org/" role="external">Eigen</ulink>.
+  See <ulink
+  url="https://eigen.tuxfamily.org/dox/classEigen_1_1ConjugateGradient.html"
+  role="external"/>.
 </para>
 
   <!-- Keep this comment at the end of the file

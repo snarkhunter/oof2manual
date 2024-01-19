@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: ration_specified.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:45 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,21 +8,60 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <classname>SpecificRationalization</classname> is used as the
-    value of the <varname>method</varname> parameter in the <xref
-    linkend="RegisteredClass-Rationalize"/> &skel; <link
-    linkend="RegisteredClass-SkeletonModifier">modifier</link>.  It
-    applies the <link
-    linkend="RegisteredClass-Rationalizer">rationalization
-    tools</link> listed in the <varname>rationalizers</varname>
-    parameter to the &elems; in its target set.  The target set is
-    determined by the <varname>targets</varname> parameter of <xref
-      linkend="RegisteredClass-Rationalize"/>.  &elems; in the target
-    set are examined only if they meet the criteria spelled out by the
-    parameters of the <xref linkend="RegisteredClass-Rationalizer"/>
-    being used.
-  </para>
+<para>
+  When the <varname>method</varname> parameter for the &skel; <link
+  linkend="RegisteredClass-SkeletonModifier">modifier</link> <xref
+  linkend="RegisteredClass-Rationalize"/> is set to
+  <classname>SpecificRationalization</classname>, the specific tools
+  listed by the <varname>rationalizers</varname> parameter will be
+  used to reduce the number of poorly shaped &elems;.  Each <xref
+  linkend="RegisteredClass-Rationalizer"/> will be applied to the
+  &elems; that meet the criteria determined by its arguments.
+</para>
+<para>
+  In scripts, <varname>rationalizers</varname> is a list of <xref
+  linkend="RegisteredClass-Rationalizer"/> constructors, like this:
+  <literallayout class="monospaced">
+    OOF.Skeleton.Modify(
+      skeleton='pi:skeleton',
+      modifier=Rationalize(
+         targets=AllElements(),
+         criterion=AverageEnergy(alpha=0.3),
+         method=SpecificRationalization(
+            <emphasis role="bold">rationalizers=[QuadSplit(angle=150),
+                           RemoveBadTriangle(acute_angle=15,obtuse_angle=150)]</emphasis>
+            ),
+        iterations=1))
+  </literallayout>
+</para>
+<para>
+  In the GUI, after selecting <userinput>Specified</userinput> for the
+  <varname>method</varname> parameter of the <xref
+  linkend="RegisteredClass-Rationalize"/> &skel; modifier, the widgets
+  shown in <xref linkend="Figure-SpecificRationalization"/> will
+  appear.  The check marks select the particular <xref
+  linkend="RegisteredClass-Rationalizer"/>s to be used.  The
+  parameters for each <classname>Rationalizer</classname> are listed
+  below its name.
+</para>
+<figure id="Figure-SpecificRationalization">
+  <title>Selecting Rationalization Tools</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata format="PNG" fileref="FIGURES/specificrationalizers.png"/>
+    </imageobject>
+    <caption>
+      <para>
+        A section of the <link
+        linkend="Section-Tasks-Skeleton"><guilabel>Skeleton</guilabel></link>
+        page when using <xref linkend="RegisteredClass-Rationalize"/>.
+        Two of the three <xref
+        linkend="RegisteredClass-Rationalizer"/>s are selected and
+        will be applied.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 
 
