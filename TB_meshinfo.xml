@@ -87,7 +87,7 @@
 	      </para>
 	    </listitem>
 	    <listitem>
-	      <para id="Section-Graphics-MeshInfo-NodeType">
+	      <para><anchor id="Section-Graphics-MeshInfo-NodeType"/>
 	        A list of the <link
 	        linkend="Section-Concepts-Mesh-Nodes"><classname>Nodes</classname></link>
 	        of the <classname>Element</classname>.  Two types of Nodes
@@ -273,7 +273,7 @@
 	      </para>
 	    </listitem>
 	    <listitem>
-	      <para id="Section-Graphics-MeshInfo-DataViewer-Freeze">
+	      <para><anchor id="Section-Graphics-MeshInfo-DataViewer-Freeze"/>
 	        When the <guibutton>Time</guibutton> checkbox in the
 	        <guilabel>Freeze</guilabel> frame is checked, the data
 	        displayed in the window will not be updated when the time

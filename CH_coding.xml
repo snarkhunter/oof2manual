@@ -456,7 +456,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
       links below each task lead to detailed documentation):
       <itemizedlist>
 	<listitem>
-	  <para id="para-propertyType">
+	  <para><anchor id="para-propertyType"/>
 	    <emphasis>Identification.</emphasis> &properties; have
 	    names by which they are identified in the user interface.
 	    They also have a <emphasis>propertyType</emphasis>.  A
@@ -528,7 +528,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
 	  </itemizedlist>
 	</listitem>
 	<listitem>
-	  <para id="para-precomputation">
+	  <para><anchor id="para-precomputation"/>
 	    <emphasis>Precomputation.</emphasis> When constructing the
 	    finite element stiffness matrix, the &oof2; program loops
 	    over all &elems; and asks their &materials; to ask their
@@ -561,7 +561,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
 	  </itemizedlist>
 	</listitem>
 	<listitem>
-	  <para id="para-computation">
+	  <para><anchor id="para-computation"/>
 	    <emphasis>Computation.</emphasis> &properties; can make
 	    contributions to the finite element stiffness matrix and
 	    to the right-hand side vector of external

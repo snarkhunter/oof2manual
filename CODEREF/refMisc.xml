@@ -450,7 +450,7 @@ std::string MyError::pythonequiv() const {
 	    The function <methodname>message</methodname> should
 	    return a string indicating what caused the exception.
 	  </para>
-	  <para id="Function-registerErrorClass">
+	  <para><anchor id="Function-registerErrorClass"/>
 	    All new exception subclasses must be swigged, and the
 	    Python function <function>registerErrorClass</function>
 	    must be called with the swigged class as its argument.

@@ -293,7 +293,7 @@ the authors at oof_manager@nist.gov.
 	    </para>
       </listitem>
       <listitem>
-	    <para id="Section-Tasks-ScheduledOutput-Rewind">
+	    <para><anchor id="Section-Tasks-ScheduledOutput-Rewind"/>
 	      The <link
 	      linkend="MenuItem-OOF.Mesh.Scheduled_Output.Destination.Rewind"><guibutton>Rewind</guibutton></link>
 	      button is only useful if the selected <xref

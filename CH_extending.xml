@@ -45,7 +45,7 @@
       to write the source files.  The contents of the source files are
       discussed in other sections.
     </para>
-    <para id="para-internal_extension">
+    <para><anchor id="para-internal_extension"/>
       There are two ways of building &oof2; extensions.  Users
       building &oof2; from the source distribution can include code
       for an extension in the <filename>SRC/EXTENSIONS</filename>
@@ -54,7 +54,7 @@
       automatically when &oof2; starts.  These extensions are called
       <emphasis>internal</emphasis> extensions.
     </para>
-    <para id="para-external_extension">
+    <para><anchor id="para-external_extension"/>
       &oof2; can also load extensions built independently of the
       installation process, possibly after the fact.  Such extensions are
       called <emphasis>external</emphasis> extensions.  Adding

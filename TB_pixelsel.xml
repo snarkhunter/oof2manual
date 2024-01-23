@@ -67,7 +67,7 @@
     linkend="Section-Tasks-Pixel_Selection">Pixel Selection Task
     Page</link>, but are duplicated in the Toolbox for convenience.
   </para>
-  <para id="Section-Graphics-PixelSelection-History">
+  <para><anchor id="Section-Graphics-PixelSelection-History"/>
     The box labelled <guilabel>History</guilabel> shows the
     position(s) of the last mouse click in <link
     linkend="Section-Concepts-Microstructure-Coordinates">physical</link>

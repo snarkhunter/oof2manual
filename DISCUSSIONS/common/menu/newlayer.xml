@@ -83,7 +83,7 @@
   <xref linkend="RegisteredClass-DisplayMethod"/>s that are
   capable of displaying them.
 </para>
-<para id="proxies">
+<para><anchor id="proxies"/>
   The parameter <varname>what</varname> can be explicitly set to the
   <link linkend="Section-Concepts-Path">path</link> to an object.  It
   can also be set to a <emphasis>proxy</emphasis> object, which

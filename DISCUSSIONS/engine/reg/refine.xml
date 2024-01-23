@@ -147,7 +147,7 @@
   </para>
 
   <caution>
-    <para id="Anchor:over-refinement">
+    <para><anchor id="Anchor:over-refinement"/>
       One should not abuse Refinement to the point where elements
       become too small.  <xref linkend="Figure-abused"/> shows a part
       of &skel; that has been refined to the pixel resolution &#x2014; many

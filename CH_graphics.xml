@@ -111,7 +111,7 @@
       linkend="RegisteredClass-DisplayMethod"/> subclasses, and
       indicates which types of object each subclass can draw.  
     </para>
-    <para id="canonicallayerordering">
+    <para><anchor id="canonicallayerordering"/>
       When new &layers; are added to a Canvas, &oof2; attempts to
       insert them so as to minimize the amount of useful information
       that each &layer; obscures in the &layers; below it.  &layers;
@@ -370,7 +370,7 @@
       linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command></link>
       menu governs whether or not the auxiliary &layers; are listed.
     </para>
-    <para id="auxlayers">
+    <para><anchor id="auxlayers"/>
       The auxiliary layers are (from top to bottom):
       <itemizedlist spacing="compact" id="auxlayers">
         <listitem>

@@ -273,7 +273,7 @@
 	      </para>
 	    </note>
       </para>
-      <para id="Section-Concepts-Microstructure-Coordinates-Screen">
+      <para><anchor id="Section-Concepts-Microstructure-Coordinates-Screen"/>
 	    A third coordinate system, one that is rarely relevant in
 	    &oof2;, is the screen pixel coordinate system. &micros; and
 	    &images; can be displayed on the computer screen at different
@@ -473,7 +473,7 @@
 	    modulus, conductivity, or color) for &properties;. Parameters
 	    may be set in either named or unnamed &properties;.
       </para>
-      <para id="Section-Concepts-Property-Path">
+      <para><anchor id="Section-Concepts-Property-Path"/>
 	    &properties; are arranged in a hierarchical tree structure,
 	    which is shown in the <link
 	    linkend="Section-Materials-Property"><guilabel>Property</guilabel>
@@ -928,7 +928,8 @@
 	    linkend="Section-Graphics-SkeletonSelection">Skeleton
 	    Selection</link> toolbox.
       </para>
-      <formalpara id="Section-Concepts-Pin">
+      <anchor id="Section-Concepts-Pin"/>
+      <formalpara>
 	    <title>Node Mobility</title>
 	    <para>
 	      Nodes may be moved when a &skel; is <link
@@ -1242,7 +1243,7 @@
 	    with nodes at its endpoints and one more in its interior must
 	    have quadratic shape functions.
       </para>
-      <para id="Section-Concepts-Mesh-Nodes">
+      <para><anchor id="Section-Concepts-Mesh-Nodes"/>
 	    There are actually three kinds of nodes: nodes used to store
 	    &field; values (<emphasis>function</emphasis> nodes), nodes
 	    used to determine the element geometry
@@ -1368,7 +1369,7 @@
 	  </footnote>
 	  (such as liquid crystal order parameters). 
       </para>
-      <para id="Section-Concepts-Mesh-Time">
+      <para><anchor id="Section-Concepts-Mesh-Time"/>
 	    Each &mesh; also contains a <emphasis>time</emphasis> value.
 	    If a time dependent problem has been solved on a &mesh;, the
 	    &mesh; will store the values of the &fields; at the starting
@@ -1390,7 +1391,7 @@
 	    stores the first derivative of
 	    <varname>Displacement</varname>.
       </para>
-      <para id="Section-Concepts-Mesh-Cache">
+      <para><anchor id="Section-Concepts-Mesh-Cache"/>
 	    Storing all of the &field; values at each time can use a lot
 	    of memory. &oof2; can cache the values either in RAM or in
 	    temporary files on a disk.  The cache type for any &mesh; can
@@ -1452,7 +1453,7 @@
 	    known in advance, it is not possible to compute effective
 	    in-plane moduli for generalized plane-stress problems.
       </para>
-      <para id="generalized-plane-strain">
+      <para><anchor id="generalized-plane-strain"/>
 	    &oof2;'s approach to the out-of-plane problem is to augment
 	    each &field; with the <emphasis>out-of-plane</emphasis>
 	    components of its derivatives.  For example, scalar &fields;
@@ -1483,7 +1484,7 @@
 	      in-plane in one &subproblem; must be in-plane in all
 	      &subproblems;.
       </para>
-      <para id="plane-flux">
+      <para><anchor id="plane-flux"/>
 	    Plane-stress is generalized by augmenting the system of finite
 	    element equations by <link
 	    linkend="Section-Concepts-Mesh-Equation-PlaneFlux">plane-flux</link>
@@ -1999,7 +2000,7 @@
 	      </listitem>
 	    </itemizedlist>
       </para>
-      <para id="Section-Concepts-Mesh-Solvers-Matrix">
+      <para><anchor id="Section-Concepts-Mesh-Solvers-Matrix"/>
 	    All of the steppers have to solve a matrix equation at some
 	    point on each step.  The matrix has one row for each
 	    &equation; component being solved at every &node; in the
@@ -2092,7 +2093,7 @@
 	    and assigning a static solver to some &subproblems; and an
 	    adaptive or uniform solver to other &subproblems;.
       </para>
-      <para id="Section-Concepts-Mesh-Solving-Times">
+      <para><anchor id="Section-Concepts-Mesh-Solving-Times"/>
 	    The starting time for a time dependent or quasistatic
 	    computation is determined by the <link
 	    linkend="Section-Concepts-Mesh-InitialConditions">initial
@@ -2106,7 +2107,7 @@
 	    is indistinguishable from a calculation that used the new end
 	    time originally.
       </para>
-      <para id="Section-Concepts-Mesh-Solving-Multiple">
+      <para><anchor id="Section-Concepts-Mesh-Solving-Multiple"/>
 	    When multiple &subproblems; are being solved, each is
 	    addressed in turn. Because the &subproblems; may not be
 	    independent, the whole procedure is iterated until <link
@@ -2149,7 +2150,8 @@
 	    linkend="RegisteredClass-SampleSet">sampled</link> is called
 	    an <emphasis>Analyis</emphasis>.
       </para>
-      <para id="Section-Concepts-Outputs-Scheduled">
+      <para>
+        <anchor id="Section-Concepts-Outputs-Scheduled"/>
 	    Analyses can be <emphasis>scheduled</emphasis> to occur at
 	    particular times during a solution, by using the <link
 	    linkend="Section-Tasks-ScheduledOutput">Scheduled
@@ -2169,7 +2171,8 @@
 	    linkend="Chapter-Graphics">Graphics Window</link> and saving
 	    the &mesh; can also be scheduled.
       </para>
-      <para id="Section-Concepts-Mesh-NamedAnalysis">
+      <para>
+        <anchor id="Section-Concepts-Mesh-NamedAnalysis"/>
 	    To make it easier to reuse Analyses, they can be given names
 	    on the <link linkend="Section-Tasks-Analysis">Analysis</link>
 	    or <link linkend="Section-Tasks-BdyAnalysis">Boundary

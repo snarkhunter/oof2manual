@@ -155,7 +155,8 @@
 	    </figure>
       </listitem>
       <listitem>
-        <formalpara id="Section-Graphics-PixelInfo-Misorient">
+        <anchor id="Section-Graphics-PixelInfo-Misorient"/>
+        <formalpara>
           <title>Misorientations</title>
           <para>
             The bottom section of the Pixel Info Toolbox computes

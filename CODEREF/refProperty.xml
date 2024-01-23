@@ -807,7 +807,7 @@ int Elasticity::integration_order(const CSubProblem *subproblem, const Element *
 	  this properly requires a brief review of the finite element
 	  machinery.
 	</para>
-	<para id="fluxmatrix_discussion">
+	<para><anchor id="fluxmatrix_discussion"/>
 	  Let <inlineequation>
 	    <alt role="tex">\(u_n(r)\)</alt>
 	  </inlineequation>
@@ -1773,7 +1773,7 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	  <classname>Property</classname>'s contribution to the output
 	  quantity.
 	</para>
-	<para id="Class-Property-output-example">
+	<para><anchor id="Class-Property-output-example"/>
 	  Here is an example of a fairly complicated
 	  <methodname>output</methodname> function, from
 	  <filename>SRC/engine/property/thermalexpansion/thermalexpansion.C</filename>

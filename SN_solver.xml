@@ -114,7 +114,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-SolveQ">
+        <anchor id="Section-Tasks-Solver-SolverPane-SolveQ"/>
+	    <formalpara>
 	      <title>Solve?</title>
 	      <para>
 	        The checkbox in this column indicates whether the
@@ -159,7 +160,8 @@
     </para>
     <itemizedlist>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-Set">
+        <anchor id="Section-Tasks-Solver-SolverPane-Set"/>
+	    <formalpara>
 	      <title>Set</title>
 	      <para>
 	        Assign a solver to a &subproblem; via the <xref
@@ -176,7 +178,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-Copy">
+        <anchor id="Section-Tasks-Solver-SolverPane-Copy"/>
+	    <formalpara>
 	      <title>Copy</title>
 	      <para>
 	        Copy a solver from one &subproblem; to another, using the
@@ -187,7 +190,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-CopyAll">
+        <anchor id="Section-Tasks-Solver-SolverPane-CopyAll"/>
+	    <formalpara>
 	      <title>Copy All</title>
 	      <para>
 	        Copy all solvers from this &mesh; to another &mesh;, using
@@ -198,7 +202,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-Remove">
+        <anchor id="Section-Tasks-Solver-SolverPane-Remove"/>
+	    <formalpara>
 	      <title>Remove</title>
 	      <para>
 	        Remove the solver from the selected &subproblem;, using
@@ -210,7 +215,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-RemoveAll">
+        <anchor id="Section-Tasks-Solver-SolverPane-RemoveAll"/>
+	    <formalpara>
 	      <title>Remove All</title>
 	      <para>
 	        Remove the solvers from all &subproblems;, making the
@@ -220,7 +226,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-SolverPane-Order">
+        <anchor id="Section-Tasks-Solver-SolverPane-Order"/>        
+	    <formalpara>
 	      <title>First, Earlier, Later, Last</title>
 	      <para>
 	        These buttons change the order of the list, by moving the
@@ -345,7 +352,8 @@
 	    </formalpara>
 	  </listitem>
 	  <listitem>
-	    <formalpara id="Section-Tasks-Solver-ApplyInit">
+        <anchor id="Section-Tasks-Solver-ApplyInit"/>
+	    <formalpara>
 	      <title>Apply</title>
 	      <para>
 	        This button invokes <xref
