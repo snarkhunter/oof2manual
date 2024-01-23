@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: bulkanalysis.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-13 21:24:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -30,14 +25,14 @@
   <guilabel>Sampling</guilabel> panes on the <link
   linkend="Section-Tasks-Analysis">Analysis</link> page.  To avoid
   resetting the parameters, it is possible to give a <link
-  linkref="MenuItem-OOF.Named_Analysis.Create">name</link> to a set of
+  linkend="MenuItem-OOF.Named_Analysis.Create">name</link> to a set of
   Analysis parameters, and then schedule a <xref
   linkend="RegisteredClass-NamedAnalysisOutput"/> instead of a
   <classname>BulkAnalysis</classname>.
 </para>
 <para>
   The <xref linkend="RegisteredClass-OutputDestination"/> for a
-  <classname>BulkAnalysis</classname> must be a <xref
+  <classname>BulkAnalysis</classname> must be an <xref
   linkend="RegisteredClass-OutputStream"/> (file) or a <xref
   linkend="RegisteredClass-MessageWindowStream"/>.
 </para>

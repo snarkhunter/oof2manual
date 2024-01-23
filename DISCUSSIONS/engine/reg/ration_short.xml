@@ -1,124 +1,66 @@
 <!-- 
-  $RCSfile: ration_short.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:45 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>RemoveShortSide</classname> is a <xref
-    linkend="RegisteredClass-Rationalizer"/> applied by the <xref
-    linkend="RegisteredClass-Rationalize"/> &skel; <link
-    linkend="RegisteredClass-SkeletonModifier">modifier</link>.  It
-    removes the shortest segment of a quadrilateral &elem;, thus
-    converting the &elem; into a triangle.  When used as part of a
-    <xref linkend="RegisteredClass-SpecificRationalization"/>,
-    <classname>RemoveShortSide</classname> is applied only to &elems;
-    in which the ratio of the length of the second shortest side to
-    the length of shortest side is greater than the given
-    <varname>ratio</varname>.
-  </para>
-  <para>
-    <xref linkend="Table:ration_short"/> summarizes the conditions
-    under which <classname>RemoveShortSide</classname> applies, and
-    the consequences of its application.
-  </para>
-  <table id='Table:ration_short'>
-    <title>Rationalizing Short-sided Quadrilaterals</title>
-    <tgroup cols='2'>
-      <colspec colnum='1' colname='c1'/>
-      <colspec colnum='2' colname='c2'/>
-      <tbody>
-	<row>
-	  <entry align='center'>Condition</entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG"
-		fileref="FIGURES/ration/short_condition.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS"
-		fileref="FIGURES/ration/short_condition.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry align='center'>Cases</entry>
-	  <entry align='center'>End-results</entry>
-	</row>
-	<row>
-	  <entry namest='c1' nameend='c2' align='center'>When neighboring
-	    a Quadrilateral</entry>
-	</row>
-	<row>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG"
-		fileref="FIGURES/ration/short_qq.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS"
-		fileref="FIGURES/ration/short_qq.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG"
-		fileref="FIGURES/ration/short_qq_fixed.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS"
-		fileref="FIGURES/ration/short_qq_fixed.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry namest='c1' nameend='c2' align='center'>When neighboring
-	    a Triangle</entry>
-	</row>
-	<row>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG"
-		fileref="FIGURES/ration/short_qt.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS"
-		fileref="FIGURES/ration/short_qt.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG"
-		fileref="FIGURES/ration/short_qt_fixed.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS"
-		fileref="FIGURES/ration/short_qt_fixed.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-      </tbody>
-    </tgroup>
-  </table>
+<para>
+  <classname>RemoveShortSide</classname> is a <xref
+  linkend="RegisteredClass-Rationalizer"/> applied by the <xref
+  linkend="RegisteredClass-Rationalize"/> &skel; <link
+  linkend="RegisteredClass-SkeletonModifier">modifier</link>.  It
+  removes the shortest segment or segments of a quadrilateral &elem;.
+  When used as part of a <xref
+  linkend="RegisteredClass-SpecificRationalization"/>,
+  <classname>RemoveShortSide</classname> is applied to &elems; in two
+  categories:
+  <itemizedlist>
+    <listitem>
+      <para>
+        The quadrilateral has one short side, as shown in lines (a)
+        and (b) in <xref linkend="Figure-rationalshort"/>.  The
+        rationalizer is used if the ratio of the lengths of the two
+        shortest sides is greater than the given
+        <varname>ratio</varname>.  The target element is converted
+        into a triangle, and a neighboring &elem; is either converted
+        into a triangle or deleted, depending on its shape.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        The quadrilateral has two short sides opposite one another, as
+        shown in line (c) of <xref linkend="Figure-rationalshort"/>.
+        The rationalizer is applied if the ratio of the length of the
+        shorter long edge to the length of the longer short edge is
+        greater than <varname>ratio</varname>.  The target &elem; is
+        deleted and the neighboring &elems; are either turned into
+        triangles or deleted.
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<figure id="Figure-rationalshort">
+  <title>Applying <classname>RemoveShortSide</classname></title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/ration/short.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      In (a), the highlighted quadrilateral &elem; has one short side
+      neighboring a triangle. The short side is removed,
+      turning the &elem; into a triangle and deleting the neighbor.
+      In (b), the neighbor is a quadrilateral and is turned into a
+      triangle.  In (c) the highlighted &elem; is a quadrilateral with
+      two opposing short sides.  The &elem; is removed, along with the
+      neighboring triangle on the right.  The quadrilateral on the
+      left becomes a triangle.
+    </caption>
+  </mediaobject>  
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

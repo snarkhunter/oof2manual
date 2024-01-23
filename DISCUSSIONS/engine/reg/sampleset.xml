@@ -19,7 +19,7 @@
   within the domain.
 </para>
 <para>
-  Most of the <classname>SampleSet</classname> subclasses listed below
+  Most of the <classname>SampleSet</classname> subclasses 
   come in two versions.  The version whose name begins with
   <classname>Stat</classname> is used when the data is going to be
   sent through a statistical function.  The other version is used when

@@ -25,7 +25,7 @@
   the element's corners.
 </para>
 <para>
-  If corner <inlineequation><alt role="tex">n</alt></inlineequation>
+  If corner <inlineequation><alt role="tex">\( n \)</alt></inlineequation>
   is at position
   <inlineequation>
     <alt role="tex">
@@ -35,9 +35,9 @@
   and the center of the element is
   <inlineequation>
     <alt role="tex">
-      \( \bar{\mathbf{x}} \),
+      \( \bar{\mathbf{x}} \)
     </alt>
-  </inlineequation>
+  </inlineequation>,
   then the moment of inertia tensor is
   <equation>
     <alt role="tex">

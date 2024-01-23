@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: schedout.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-13 21:24:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -25,17 +20,18 @@
 	  These include anything that can be computed on the <link
 	  linkend="Section-Tasks-Analysis">Analysis</link> or <link
 	  linkend="Section-Tasks-BdyAnalysis">Boundary Analysis</link>
-	  pages.  A new analysis operation can be created using the
-	  <xref linkend="RegisteredClass-BulkAnalysis"/> or <xref
+	  pages.  A new analysis operation can be created using the <xref
+	  linkend="RegisteredClass-BulkAnalysis"/> or <xref
 	  linkend="RegisteredClass-BoundaryAnalysis"/> classes, or an
-	  existing named analysis can be re-used by using he <xref
-	  linkend="RegisteredClass-NamedAnalysisOutput"/> class.
-	  Named Analyses can be created by using the <link
+	  existing named analysis can be re-used by using the <xref
+	  linkend="RegisteredClass-NamedAnalysisOutput"/> class.  Named
+	  Analyses can be created by using the <link
 	  linkend="Section-Tasks-Analysis-Named"><guilabel>Named
 	  Analyses</guilabel></link> pane on the <link
 	  linkend="Section-Tasks-Analysis">Analysis</link> or <link
 	  linkend="Section-Tasks-BdyAnalysis">Boundary Analysis</link>
-	  pages, or the <xref linkend="MenuItem-OOF.Named_Analysis.Create"/> or
+	  pages, or the <xref
+	  linkend="MenuItem-OOF.Named_Analysis.Create"/> or
 	  <xref linkend="MenuItem-OOF.Mesh.Boundary_Analysis.Create"/>
 	  commands.
 	</para>
@@ -65,9 +61,9 @@
       <formalpara>
 	<title>Time Step Statistics</title>
 	<para>
-	  The time stepping methods print statistics on their step
-	  sizes at the end of a calculation.  The same information can
-	  be saved in a file by added <xref
+	  The time stepping methods print statistics on their step sizes
+	  at the end of a calculation.  The same information can be saved
+	  in a file by adding <xref
 	  linkend="RegisteredClass-StepStatistics"/> to the Scheduled
 	  Outputs.
 	</para>

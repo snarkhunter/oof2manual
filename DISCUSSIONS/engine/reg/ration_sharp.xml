@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: ration_sharp.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:44 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,167 +8,66 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    <classname>RemoveBadTriangle</classname> is a <xref
-    linkend="RegisteredClass-Rationalizer"/> applied by the <xref
-    linkend="RegisteredClass-Rationalize"/> &skel; <link
-    linkend="RegisteredClass-SkeletonModifier">modifier</link>.  It
-    removes triangular &elems; with excessively acute or obtuse
-    interior angles from a &skel;.  When used as part of a <xref
-    linkend="RegisteredClass-SpecificRationalization"/>, triangles
-    will be removed only if they have an interior angle less than
-    <varname>acute_angle</varname> or greater than
-    <varname>obtuse_angle</varname>.
-  </para>
+<para>
+  <classname>RemoveBadTriangle</classname> is a <xref
+  linkend="RegisteredClass-Rationalizer"/> applied by the <xref
+  linkend="RegisteredClass-Rationalize"/> &skel; <link
+  linkend="RegisteredClass-SkeletonModifier">modifier</link>.  It
+  removes triangular &elems; with excessively acute or obtuse
+  interior angles from a &skel;.  When used as part of a <xref
+  linkend="RegisteredClass-SpecificRationalization"/>, triangles
+  will be removed only if they have an interior angle less than
+  <varname>acute_angle</varname> or greater than
+  <varname>obtuse_angle</varname>.
+</para>
+<para>
+  <xref linkend="Figure-removebad0"/> shows the effect of
+  <classname>RemoveBadTriangle</classname> when it's acting on acute
+  angles.  <xref linkend="Figure-removebad1"/> shows its effect on
+  triangles with obtuse angles.
+</para>
 
-  <para>
-    <xref linkend="Table:ration_sharp"/> illustrates the triggering
-    conditions and final results of applying
-    <classname>RemoveBadTriangle</classname>.  As shown in the table,
-    removing an &elem; affects its immediate neighbors.
-  </para>
- 
-    <table id='Table:ration_sharp'>
-    <title>Rationalizing Sharp-angled Triangles</title>
-    <tgroup cols='4'>
-      <colspec colnum='1' colname='c1'/>
-      <colspec colnum='2' colname='c2'/>
-      <colspec colnum='3' colname='c3'/>
-      <colspec colnum='4' colname='c4'/>
-      <thead>
-	<row>
-	  <entry namest='c1' nameend='c2' align='center'>Acute Triangles</entry>
-	  <entry namest='c3' nameend='c4' align='center'>Obtuse Triangles</entry>
-	</row>
-      </thead>
-      <tbody>
-	<row>
-	  <entry namest='c1' nameend='c4'
-	    align='center'>Condition</entry>
-	</row>
-	<row>
-	  <entry namest='c1' nameend='c2' align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpA_condition.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpA_condition.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry namest='c3' nameend='c4' align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpW_condition.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpW_condition.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry align='center'>Cases</entry>
-	  <entry align='center'>End-results</entry>
-	  <entry align='center'>Cases</entry>
-	  <entry align='center'>End-results</entry>
-	</row>
-	<row>
-	  <entry namest='c1' nameend='c4' align='center'>When neighboring
-	    a Quadrilateral</entry>
-	</row>
-	<row>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpA_tq.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpA_tq.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpA_tq_fixed.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpA_tq_fixed.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpW_tq.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpW_tq.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpW_tq_fixed.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpW_tq_fixed.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-	<row>
-	  <entry namest='c1' nameend='c4' align='center'>When neighboring
-	    a Triangle</entry>
-	</row>
-	<row>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpA_tt.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpA_tt.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpA_tt_fixed.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpA_tt_fixed.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpW_tt.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpW_tt.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	  <entry align='center'>
-	    <mediaobject>
-	      <imageobject>
-		<imagedata format="PNG" fileref="FIGURES/ration/sharpW_tt_fixed.png"/>
-	      </imageobject>
-	      <imageobject>
-		<imagedata format="EPS" fileref="FIGURES/ration/sharpW_tt_fixed.eps"/>
-	      </imageobject>
-	    </mediaobject>
-	  </entry>
-	</row>
-      </tbody>
-    </tgroup>
-  </table>
+<figure id="Figure-removebad0">
+  <title>Removing Bad Acute Angles</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/ration/badsharptri.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        The results of applying
+        <classname>RemoveBadTriangle</classname> to the highlighted
+        triangular &elems; in the left images are shown in the right
+        images.  In the top pair, the target &elem; and its neighbor,
+        also a triangle, are both removed.  In the bottom pair, the
+        neighbor is a quadrilateral (also highlighted) and is reduced
+        to a triangle (highlighted on the right).
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+<figure id="Figure-removebad1">
+  <title>Removing Bad Obtuse Angles</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/ration/badwidetri.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        The results of applying
+        <classname>RemoveBadTriangle</classname> to the highlighted
+        excessively obtuse triangles in the left images are shown in
+        the right images.  The neighboring &elems; which are also
+        modified are highlighted in both columns.  In the top pair of
+        images, the neighbor is a triangle and is split in two after
+        merging with the target triangle. In the bottom two pairs, the
+        neighbor is a quadrilateral, which is either bisected or
+        trisected after merging with the target triangle.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

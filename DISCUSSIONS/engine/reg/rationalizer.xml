@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: rationalizer.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:45 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,30 +8,12 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    The <classname>Rationalizer</classname> class contains the tools
-    used by the <xref linkend="RegisteredClass-Rationalize"/> <xref
-      linkend="RegisteredClass-SkeletonModifier"/> to remove badly
-    shaped &elems; from a &skel;.
-  </para>
-  <para>
-    When the <varname>method</varname> parameter of <xref
-      linkend="RegisteredClass-Rationalize"/> is set to <xref
-      linkend="RegisteredClass-SpecificRationalization"/>, the
-    <classname>Rationalizer</classname> tools to be used are listed in
-    the <varname>rationalizers</varname> parameter of <xref
-      linkend="RegisteredClass-SpecificRationalization"/>.
-  </para>
-  <para>
-    When the <varname>method</varname> parameter is set to <xref
-      linkend="RegisteredClass-AutomaticRationalization"/>, all of the
-    <classname>Rationalizer</classname> tools are used.
-  </para>
-  <para>
-    For more details, see <xref
-    linkend="RegisteredClass-Rationalize"/>, as well as the pages for
-    the individual <classname>Rationalizer</classname> classes.
-  </para>
+<para>
+  The <classname>Rationalizer</classname> class contains the tools
+  used by the <xref linkend="RegisteredClass-Rationalize"/> <xref
+  linkend="RegisteredClass-SkeletonModifier"/> to remove badly shaped
+  &elems; from a &skel;.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

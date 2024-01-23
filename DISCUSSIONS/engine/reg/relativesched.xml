@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: relativesched.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-18 20:58:36 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -24,9 +19,9 @@
 <para>
   For example, if the <xref linkend="RegisteredClass-Schedule"/> is
   <xref linkend="RegisteredClass-Periodic"/> with
-  <varname>delay</varname>=0 and <varname>interval</varname>=0.1, the
-  initial time for the simulation is 0.05, then the output times will
-  be 0.15, 0.25, 0.35, and so on.
+  <varname>delay</varname>=0 and <varname>interval</varname>=0.1, and
+  the initial time for the simulation is 0.05, then the output times
+  will be 0.15, 0.25, 0.35, and so on.
 </para>
 <para>
   Compare to <xref linkend="RegisteredClass-AbsoluteOutputSchedule"/>.
