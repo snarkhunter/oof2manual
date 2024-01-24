@@ -1,63 +1,80 @@
 <!-- 
-  $RCSfile: geographic.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:41 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>GeographicQ2T</classname> is a <xref
-    linkend="RegisteredClass-SplitQuadMethod"/>, used as the
-    <varname>split_how</varname> parameter in when <link
-    linkend="RegisteredClass-SplitQuads">splitting</link>
-    quadrilateral &elems; into triangles.
-  </para>
-  <para>
-    A quadrilateral has a four neighboring &elems;.  If it has two
-    neighbors of one type (defined by their dominant <link
-    linkend="Section-Concepts-PixelCategory">pixel
-    category</link>) and two of another, arranged as in <xref
-    linkend="Figure-split_pattern"/>(a), and if the &elem; itself is
-    inhomogeneous, then there's a good chance that dividing it along
-    the diagonal shown in (b) will improve the homogeneity of the &skel;.
-  </para>
-  <figure id="Figure-split_pattern">
-    <title>Splitting Quads Geographically</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG" fileref="FIGURES/split_pattern.png"></imagedata>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS" fileref="FIGURES/split_pattern.eps"></imagedata>
-      </imageobject>
-      <caption>
-	<para>
-	  (a) A central element (marked by the '?') and its neighbors
-	  (n0, n1, n2, and n3).  The central element is a candidate
-	  for splitting with <classname>GeographicQ2T</classname>. (b)
-	  Actual material boundary. (c) New elements created by <xref
-	  linkend="RegisteredClass-SplitQuads"/> and
-	  <classname>GeographicQ2T</classname>.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
-  <para>
-    <classname>GeographicQ2T</classname> can be fast because it only
-    examines quads with a high likelyhood of being splittable.
-    However, it can skip over splittable quads if the &skel; is not
-    already sufficiently refined and one of the neighbors has the
-    wrong type. <xref linkend="RegisteredClass-TrialAndErrorQ2T"/> is
-    slower but more thorough.
-  </para>
+<para>
+  <classname>GeographicQ2T</classname> is a <xref
+  linkend="RegisteredClass-SplitQuadMethod"/>, used as the
+  <varname>split_how</varname> parameter in when <link
+  linkend="RegisteredClass-SplitQuads">splitting</link> quadrilateral
+  &elems; into triangles.
+</para>
+<para>
+  An interior quadrilateral has four neighboring &elems;.  If it has two
+  neighbors of one type (defined by their dominant <link
+  linkend="Section-Concepts-PixelCategory">pixel category</link>) and
+  two of another, arranged as in <xref
+  linkend="Figure-split_pattern"/>(a), and if the &elem; itself is
+  inhomogeneous, then there's a chance that dividing it along the
+  diagonal shown in (b) will improve the homogeneity of the &skel;.
+</para>
+<figure id="Figure-split_pattern">
+  <title>Splitting Quads Geographically</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata format="PNG" fileref="FIGURES/splitquads/splitpattern.png"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    (a) A central &elem; (marked by the '?') and its neighbors
+	    e<subscript>0</subscript>, e<subscript>1</subscript>,
+	    e<subscript>2</subscript>, and e<subscript>3</subscript>.  The
+	    central element is a candidate for splitting with
+	    <classname>GeographicQ2T</classname> because
+	    e<subscript>0</subscript> and e<subscript>1</subscript> have
+	    the same category, and e<subscript>2</subscript> and
+	    e<subscript>3</subscript> have the same category.  The
+	    category of the central element is not a factor in the
+	    decision to attempt to apply <xref
+	    linkend="RegisteredClass-SplitQuads"/>.  (b) New elements
+	    created by <xref linkend="RegisteredClass-SplitQuads"/> and
+	    <classname>GeographicQ2T</classname>. 
+	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+      <imagedata format="PNG"
+                 fileref="FIGURES/splitquads/badsplitpattern.png"/>
+    </imageobject>
+    <caption>
+      <para>
+        (c) In this example <classname>GeographicQ2T</classname> fails
+        to split the central element correctly, even though the
+        e<subscript>0</subscript> and e<subscript>1</subscript> have
+        the same pixel category (pink) and e<subscript>2</subscript>
+        and e<subscript>3</subscript> have the same category (white).
+        (d) Dividing along the geographical boundary has created two
+        inhomogeneous &elems;.  This modification will be rejected
+        unless it was done with a very small <varname>alpha</varname>.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+<para>
+  <classname>GeographicQ2T</classname> can be fast because it only
+  examines quads with a high likelihood of being splittable.  However,
+  it can skip over splittable quads if the &skel; is not already
+  sufficiently refined and one of the neighbors has the wrong
+  type. <xref linkend="RegisteredClass-TrialAndErrorQ2T"/> is slower
+  but more thorough.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

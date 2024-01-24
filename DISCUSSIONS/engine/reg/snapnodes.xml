@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -25,16 +25,13 @@
   <title>Transition Points</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/transition.png"></imagedata>
-    </imageobject>
-    <imageobject>
-	  <imagedata format="EPS" fileref="FIGURES/transition.eps"></imagedata>
+	  <imagedata format="PNG" fileref="FIGURES/snapnodes/transition.png"></imagedata>
     </imageobject>
     <caption>
 	  <para>
-	    The &elem; in the middle has two transition points (marked
-	    with an X) where the &sgmts; cross from the green to the
-	    magenta pixels.
+	    The central &elem; has two transition points (marked with
+	    circles) where the &sgmts; cross from the blue to the white
+	    pixels.
 	  </para>
     </caption>
   </mediaobject>
@@ -44,35 +41,40 @@
   <orderedlist numeration="arabic">
     <listitem>
 	  <para>
-	    Scan the current &skel; to find candidate &nodes; for
-	    snapping.  The candidates are identified by the
-	    <varname>targets</varname> parameter.
+	    Scan the current &skel; and build a list of candidate &nodes;
+	    for snapping.  The candidates are identified by the
+	    <varname>targets</varname> parameter.  Randomize the list.
 	  </para>
     </listitem>
-    <listitem>
+    <listitem id="nloop">
       <para>
         Loop over candidate nodes, <emphasis>N</emphasis>.
         <orderedlist numeration="loweralpha">
           <listitem>
             <para>
-              Loop over the candidates neighbor nodes, <emphasis>M</emphasis>.
+              Loop over the candidate's neighbor nodes, <emphasis>M</emphasis>.
             </para>
           </listitem>
           <listitem>
             <para>
               If the segment <emphasis>NM</emphasis> hasn't been
-              looked at already, try moving each node, or both at
-              once, to all the transition points on any of their
-              &sgmts;.  Pick the combination move that best satisfies
-              the specified acceptance <varname>criterion</varname>.
+              examined already, try moving each node, or both at once,
+              to all the transition points on any of their &sgmts;.
+              Pick the combination move that best satisfies the
+              specified acceptance <varname>criterion</varname>.
             </para>
           </listitem>
           <listitem>
             <para>
-              Remove node <emphasis>NM</emphasis> from the list of
-              candidate nodes.
-              Move node <emphasis>M</emphasis> to the top of the list,
-              so that it's examined next in the outer loop.
+              Remove node <emphasis>N</emphasis> from the list of
+              candidate nodes.  Move node <emphasis>M</emphasis> to
+              the top of the list, so that it's examined next.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Go back to step <xref linkend="nloop"/> until the list
+              is empty.
             </para>
           </listitem>
         </orderedlist>
@@ -83,41 +85,28 @@
 
 
 <para>
-  Here's a simple example of snapping nodes of heterogeneous elements.
-  <xref linkend="Figure-before_snap"/> shows a &skel; that features
-  some heterogeneous elements.  The resulting &skel; (after applying
+  <xref linkend="Figure-snap"/> shows a &skel; that features some
+  heterogeneous elements and the result of applying
   <classname>SnapNodes</classname> with <code>targets=<link
-  linkend="RegisteredClass-SnapAll">SnapAl</link>l()</code> and
+  linkend="RegisteredClass-SnapAll">SnapAll</link>()</code> and
   <code>criterion=<link
-  linkend="RegisteredClass-AverageEnergy">AverageEnergy</link>(alpha=1)</code>
-  is shown in <xref linkend="Figure-after_snap"/>.  Some, but not all,
-  of the material boundaries have been resolved nicely.  It won't be
-  possible to do much better than this with SnapNodes alone.
+  linkend="RegisteredClass-AverageEnergy">AverageEnergy</link>(alpha=0.85)</code>
+  to it.  Some, but not all, of the material boundaries have been
+  resolved nicely.
 </para>
 
-<figure id="Figure-before_snap">
-  <title>Before Snapping Nodes</title>
+<figure id="Figure-snap">
+  <title>Snapping Nodes</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/snapshot/unsnapped.png"/>
+	  <imagedata format="PNG" fileref="FIGURES/snapnodes/snapnodes.png"/>
     </imageobject>
     <caption>
 	  <para>
-	    A &skel; with heterogeneous &elems;.
-	  </para>
-    </caption>
-  </mediaobject>
-</figure>
-<figure id="Figure-after_snap">
-  <title>After Snapping Nodes with <varname>alpha</varname>=0.85</title>
-  <mediaobject>
-    <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/snapshot/snapped.png"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    After snapping nodes. In many places the element boundaries
-	    now follow the pixel boundaries.
+	    A &skel; with heterogeneous &elems;, on the left, and the
+	    result of applying <classname>SnapNodes</classname> with
+	    <code>alpha=0.85</code>, on the right.  In many places the
+	    element boundaries now follow the pixel boundaries.
 	  </para>
     </caption>
   </mediaobject>
@@ -126,40 +115,56 @@
 <para>
   Snapping &nodes; (like all &skel; modifications) tends to produce
   badly-shaped elements when done with large values of
-  <varname>alpha</varname>.  <xref linkend="Figure-oversnapped"/>
-  shows what happens if <varname>alpha</varname> is increased to 0.9
-  in the previous operation. The element edges follow the lower right
-  part of the blue region and the upper left part of the red region
-  much more closely.  However there are now some very badly shaped
-  elements, marked in green in the figure.  The upper two triangles
-  are really quadrilaterals with a very short side where they join,
-  and the lower triangle is really a quadrilateral with a nearly
-  180&deg; angle at one node.
+  <varname>alpha</varname>.  The image on the left in <xref
+  linkend="Figure-oversnapped"/> shows what happens if
+  <varname>alpha</varname> is increased to 0.9 in the previous
+  operation. The element edges follow the upper-right part of the blue
+  region and the upper-left part of the red region much more closely.
+  However the &elems; marked in green and labeled
+  <quote>Degenerate</quote> are very badly shaped.  They appear to be
+  triangles, but the upper two are quadrilaterals with a very short
+  side where they join, and the lower one is actually a quadrilateral
+  with a nearly 180&deg; angle at one node.  The first two have <link
+  linkend="Section-Concepts-Skeleton-Shape_Energy">shape
+  energies</link> of 0.99, and the third's is 0.93.
 </para>
 <para>
-  However, <classname>SnapNodes</classname> is really a homogeneity
-  oriented operation, and works best when given a large
-  <varname>alpha</varname>.  It can be useful to allow it to create
-  badly shaped &elems;, and to clean up afterwards by applying the
-  <xref linkend="RegisteredClass-Rationalize"/> <link
-  linkend="MenuItem-OOF.Skeleton.Modify">Skeleton modifier</link>.  In
-  this case, <xref linkend="RegisteredClass-Rationalize"/> will merge
-  nodes to convert the &elems; with short edges into triangles, and
-  will subdivide the wide angled quadrilaterals into two triangles.
-  The two very inhomogeneous &elems; in the upper right could be fixed
-  by <xref linkend="RegisteredClass-SplitQuads"/>.
+  The two &elems; marked in green and labeled
+  <quote>Inhomogeneous</quote> in <xref linkend="Figure-oversnapped"/>
+  illustrate a configuration that is impossible to improve with
+  <classname>SnapNodes</classname> alone.  It's not possible to fix
+  these &elems; just by moving &nodes;.
 </para>
+<para>
+  However, it can be useful to allow <classname>SnapNodes</classname>
+  to create badly shaped &elems;, and to clean up afterwards by
+  applying other tools.  The right hand &skel; in <xref
+  linkend="Figure-oversnapped"/> shows the result of applying <xref
+  linkend="RegisteredClass-Rationalize"/> and <xref
+  linkend="RegisteredClass-SplitQuads"/> to the problem &elems; on the
+  left.  These tools can often fix messes left behind by
+  <classname>SnapNodes</classname>.
+</para>
+
 <figure id="Figure-oversnapped">
-  <title>After Snapping Nodes with <varname>alpha</varname>=0.9</title>
+  <title>Snapping Nodes with a Large <varname>alpha</varname></title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/snapshot/oversnapped.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/snapnodes/oversnapped.png" format="PNG"/>
     </imageobject>
     <caption>
       <para>
-        Snapping nodes with a large <varname>alpha</varname> leads to
-        badly shaped but more homogenous elements that follow the
-        material boundaries better.
+        The &skel; on the left is the result of using
+        <classname>SnapNodes</classname> with a large
+        <varname>alpha</varname>, which has produced some badly shaped
+        &elems; and failed to make all of the rest homogeneous.  The
+        &skel; on the right is the result of applying <xref
+        linkend="RegisteredClass-Rationalize"/> and <xref
+        linkend="RegisteredClass-SplitQuads"/> to the &skel; on the
+        left.  The degenerate quadrilaterals have been converted to
+        triangles by merging nodes (although that's not obvious in the
+        image) and splitting the obtuse angle.  The inhomogeneous
+        quads have each been split into two homogeneous triangles.
       </para>
     </caption>
   </mediaobject>

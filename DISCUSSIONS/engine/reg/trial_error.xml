@@ -1,40 +1,36 @@
 <!-- 
-  $RCSfile: trial_error.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:48 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>TrialAndErrorQ2T</classname> is a <xref
-    linkend="RegisteredClass-SplitQuadMethod"/>, used as the
-    <varname>split_how</varname> parameter in when <link
-    linkend="RegisteredClass-SplitQuads">splitting</link>
-    quadrilateral &elems; into triangles.
-  </para>
-  <para>
-    <classname>TrialAndErrorQ2T</classname> tentatively splits each
-    quad along both of its diagonals.  The
-    <varname>criterion</varname> given to the <xref
-    linkend="RegisteredClass-SplitQuads"/> method will decide which of
-    the results to accept, if any.
-  </para>
-  <para>
-    When the &skel; is sufficiently refined so that all &elems; have
-    the correct <link
-    linkend="Section-Concepts-PixelCategory">dominant
-    pixel type</link>, using <xref
-    linkend="RegisteredClass-GeographicQ2T"/> is usually more
-    efficient than <classname>TrialAndErrorQ2T</classname>.
-  </para>
+<para>
+  <classname>TrialAndErrorQ2T</classname> is a <xref
+  linkend="RegisteredClass-SplitQuadMethod"/>, used as the
+  <varname>split_how</varname> parameter in when <link
+  linkend="RegisteredClass-SplitQuads">splitting</link> quadrilateral
+  &elems; into triangles.
+</para>
+<para>
+  <classname>TrialAndErrorQ2T</classname> tentatively splits each quad
+  along both of its diagonals.  The <varname>criterion</varname> given
+  to the <xref linkend="RegisteredClass-SplitQuads"/> method will
+  decide which of the results to accept, if any.
+</para>
+<para>
+  When the &skel; is sufficiently refined so that all &elems; have the
+  correct <link linkend="Section-Concepts-PixelCategory">dominant
+  pixel type</link>, using <xref
+  linkend="RegisteredClass-GeographicQ2T"/> can be more efficient than
+  <classname>TrialAndErrorQ2T</classname>.
+  <classname>TrialAndErrorQ2T</classname> works better if the
+  neighboring elements are not sufficiently homogeneous or if the
+  boundary does not extend past the target &elem;.
+</para>
 
 
   <!-- Keep this comment at the end of the file

@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 
@@ -38,12 +38,12 @@
 	    linkend="RegisteredClass-RefinementTarget"/> for the details.
 	  </para>
 	  <para>
-	    <xref linkend='Figure-refine0'/> shows a &skel; that needs to
+	    <xref linkend='Figure-refine'/> (a) shows a &skel; that needs to
 	    have its heterogeneous elements refined.  Setting
 	    <varname>targets</varname> to <userinput><xref
 	    linkend="RegisteredClass-CheckHomogeneity"/></userinput> marks
 	    the edges of all elements whose homogeneity is less than 90%,
-	    as shown in <xref linkend="Figure-refine1"/>.
+	    as shown in <xref linkend="Figure-refine"/> (b).
 	  </para>
     </listitem>
     <listitem>
@@ -75,7 +75,7 @@
 	    in <xref linkend="Section-Concepts-Skeleton-Energy"/>.
 	  </para>
 	  <para>
-	    <xref linkend="Figure-refine2"/> shows the result of
+	    <xref linkend="Figure-refine"/> shows the result of
 	    refining a mesh using
 	    <varname>divider</varname>=<userinput><link
 	    linkend="RegisteredClass-Bisection">Bisection</link></userinput>
@@ -85,135 +85,76 @@
   </orderedlist>
 
   <figure id="Figure-refine">
-      <title>Refining a Skeleton</title>
-      <mediaobject id="Figure-refine0" xreflabel='Figure
-	                                              "Refining a Skeleton" (a)'>
+    <title>Refining a Skeleton</title>
+    <mediaobject id="Figure-refine0">
+	  <imageobject>
+	    <imagedata fileref="FIGURES/refinement/refine.png" format="PNG"/>
+	  </imageobject>
+	  <caption>
+	    <para>
+	      (a) A &skel; ripe for refinement.  (b) The <userinput><link
+	      linkend="RegisteredClass-CheckHomogeneity">CheckHomogeneity</link>(threshold=0.9)</userinput>
+	      <xref linkend="RegisteredClass-RefinementTarget"/>
+	      operator marks the &sgmts; of the heterogeneous &elems;.
+	      The marked &sgmts; are drawn in green and the inhomogeneous
+	      &elems; are red.<footnote><simpara> In actual &oof2;
+	      operation, the marked &sgmts; and &elems; are not
+	      shown.</simpara></footnote> (c) The result of refining the
+	      marked edges with <varname>divider</varname> set to
+	      <userinput><link
+	      linkend="RegisteredClass-Bisection">Bisection</link></userinput>
+	      and <varname>rules</varname> set to <userinput><link
+	      linkend="Enum-RuleSet">Quick</link></userinput>.
+	      </para>
+	  </caption>
+    </mediaobject>
+  </figure>
+</para>
+
+<caution>
+  <anchor id="Anchor:over-refinement"/>
+  <para>
+    One should not abuse Refinement to the point where &elems; become
+    too small.  <xref linkend="Figure-abused"/> shows a part of &skel;
+    that has been refined to the pixel resolution &#x2014; many
+    elements along the boundary represent a single pixel. This is not
+    only unphysical (the jagged pixel boundaries are an artifact of
+    the digitization of the micrograph) but can introduce unnecessary
+    numerical anomalies, such as stress concentrations, at corner
+    nodes.<footnote><para>Of course, if you know that the pixels in an image
+    <emphasis>do</emphasis> represent physical features, you should
+    refine the &skel; until they are resolved.</para></footnote>
+  </para>
+  <para>
+    Instead of abusing refinement, it is better to employ other
+    modification strategies.  The right half of <xref
+    linkend="Figure-abused"/> shows the same portion of the &skel; on
+    the left, but with different modification tools applied.  This
+    &skel; has been refined less, but the elements have been adapted
+    to the &micro; by using <xref
+    linkend="RegisteredClass-TransitionPoints"/> instead of <xref
+    linkend="RegisteredClass-Bisection"/>, and by using the
+    <varname>minlength</varname> parameter of <xref
+    linkend="RegisteredClass-SegmentDivider"/> to prevent the creation
+    of small &elems;.
+    <figure id="Figure-abused">
+	  <title>Excessive and Appropriate Refinement</title>
+	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/refinement/refine0.png"
-	                 format="PNG"/>
-	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/refinement/refine0.eps"
-	                 format="EPS"/>
+	      <imagedata format="PNG"
+	                 fileref="FIGURES/refinement/refinedpixels.png"></imagedata>
 	    </imageobject>
 	    <caption>
 	      <para>
-	        a) A &skel; ripe for refinement.
-	  </para>
-	</caption>
-      </mediaobject>
-      <mediaobject id="Figure-refine1" xreflabel='Figure "Refining a
-	Skeleton" (b)'>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/refinement/refine1.png" format="PNG"/>
-	    </imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine1.pdf"
-	    format="PDF"/>
-	</imageobject>
-	<caption>
-	  <para>
-	    b) The <userinput><link
-	    linkend="RegisteredClass-CheckHomogeneity">CheckHomogeneity</link>(threshold=0.9)</userinput>
-	    <xref linkend="RegisteredClass-RefinementTarget"/>
-	    operator marks the edges of the heterogeneous elements.
-	    The marked edges are drawn in bold.  (In actual &oof2;
-	    operation, the marked edges are not shown.)
-	  </para>
-	</caption>
-      </mediaobject>
-      <mediaobject id="Figure-refine2" xreflabel='Figure "Refining a
-	Skeleton" (c)'>
-	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine2.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/refinement/refine2.eps"
-	    format="EPS"/>
-	</imageobject>
-	<caption>
-	  <para>
-	    c) The result of refining the marked edges with
-	    <varname>divider</varname> set to <userinput><link
-	    linkend="RegisteredClass-Bisection">Bisection</link></userinput>
-        and <varname>rules</varname> set to
-        <userinput>Quick</userinput>.
-        <!-- TODO: Provide links for Quick and Large rules -->
-	  </para>
-	</caption>
-      </mediaobject>
+            Portions of two &skels; that have been over-refined (left)
+            and properly refined (right).  The over-refined &skel; is
+            probably resolving nonphysical details of the image.
+	      </para>
+	    </caption>
+	  </mediaobject>
     </figure>
   </para>
-
-  <caution>
-    <para><anchor id="Anchor:over-refinement"/>
-      One should not abuse Refinement to the point where elements
-      become too small.  <xref linkend="Figure-abused"/> shows a part
-      of &skel; that has been refined to the pixel resolution &#x2014; many
-      elements along the boundary represent a single pixel. This is
-      not only unphysical (the jagged pixel boundaries are an artifact
-      of the digitization of the micrograph) but can introduce
-      unnecessary numerical anomalies, such as stress concentrations,
-      at corner nodes.
-    </para>
-    <para>
-      Instead of abusing refinement, it is better to employ other
-      modification strategies.  <xref linkend="Figure-not_abused"/>
-      shows the same portion of the &skel; shown in <xref
-      linkend="Figure-abused"/> but with different modification tools
-      applied.  This &skel; has been refined less, but the elements
-      have been adapted to the &micro; by using <xref
-      linkend="RegisteredClass-TransitionPoints"/> instead of <xref linkend="RegisteredClass-Bisection"/>.
-      <figure id="Figure-abused">
-	<title>Excessive Refinement</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata format="PNG"
-	      fileref="FIGURES/refinement/pixels-overrefined.png"></imagedata>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata format="EPS"
-	      fileref="FIGURES/refinement/pixels-overrefined.eps"></imagedata>
-	  </imageobject>
-	  <caption>
-	    <para>
-	      A part of a &skel; that has been refined to the
-	      pixel resolution.
-	    </para>
-	  </caption>
-	</mediaobject>
-      </figure>
-      <figure id="Figure-not_abused">
-	<title>Appropriate Refinement</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata format="PNG"
-	      fileref="FIGURES/refinement/pixels-wellrefined.png"></imagedata>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata format="EPS"
-	      fileref="FIGURES/refinement/pixels-wellrefined.eps"></imagedata>
-	  </imageobject>
-	  <caption>
-	    <para>
-	      Instead of excessive refinement, other tools have
-	      been applied.
-	    </para>
-	  </caption>
-	</mediaobject>
-      </figure>
-    </para>
-
-    <para>
-      As seen, refining too much does not necessarily yield an optimal
-      result. One can, however, prevent this over-refinement by
-      adjusting the refinement <varname>criterion</varname>.  Setting
-      it to <xref linkend="RegisteredClass-MinimumArea"/> causes
-      &oof2; to reject any refinement that results in an element whose
-      area is smaller than a specified value.
-    </para>
-  </caution>
+</caution>
 
   <!-- Keep this comment at the end of the file
   Local variables:
