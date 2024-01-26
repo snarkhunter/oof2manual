@@ -12,5 +12,6 @@ oof2man.tgz
 bin
 tmpdir
 publish
+publish-draft
 local
 build*

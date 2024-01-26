@@ -43,6 +43,11 @@ publish: local
 	ssh genie.nist.gov /usr/site/bin/updatewww
 	touch publish
 
+publish-draft: local
+	rsync -vrt --delete-excluded -e ssh --rsync-path=/usr/bin/rsync $(OOFWEBDIR)/oof2man/* genie.nist.gov:/u/WWW/langer/oof2man-draft
+	ssh genie.nist.gov /usr/site/bin/updatewww
+	touch publish-draft
+
 # Build the file that users can download to create a local copy of
 # the manual.  
 oof2man.tgz: $(TEMPDIR) saxonize.ext texify figs 
