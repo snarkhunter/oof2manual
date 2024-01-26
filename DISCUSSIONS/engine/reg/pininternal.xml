@@ -13,6 +13,9 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<para> TODO: point out that the nodes might not be exactly on a pixel
+bdy. "Internal" is defined by element category</para>
+
   <para>
     <link linkend='MenuItem-OOF.Skeleton.PinNodes'>Pin</link> internal
     boundary nodes.  Internal boundary nodes are those that are along

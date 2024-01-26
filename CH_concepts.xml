@@ -691,6 +691,18 @@
           </para>
           </footnote>
 	    </para>
+        <para>
+          The <emphasis>homogeneity index</emphasis>, which can be
+          found in the <guilabel>Skeleton Status</guilabel> pane in
+          the <link
+          linkend="Section-Tasks-Skeleton"><guilabel>Skeleton
+          Page</guilabel></link>, is the area weighted average
+          homogeneity of all of the &elems; in a &skel;.  In other
+          words, it is the fraction of the &skel;'s area in which the
+          &elems; dominant category matches the underlying pixel
+          category.  If &skel; that perfectly matches the &micro; its
+          homogeneity index is 1.0.
+        </para>
 	    <note>
 	      <para>
 	        The color of the pixels in an &image; in a &micro; does

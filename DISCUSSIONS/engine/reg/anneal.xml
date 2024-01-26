@@ -252,7 +252,9 @@
         displayed on top of the &micro; material image from <xref
         linkend="Figure-anneal_initial"/>.  The only spot where the
         &skel; visibly deviates from the material boundaries is at the
-        right end of the yellow/orange interface.
+        right end of the yellow/orange interface.  That could be
+        cleaned up easily with <xref
+        linkend="RegisteredClass-SnapNodes"/>.
       </para>
     </caption>
   </mediaobject>
