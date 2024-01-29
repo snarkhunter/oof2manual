@@ -94,13 +94,13 @@
 	  </imageobject>
 	  <caption>
 	    <para>
-	      (a) A node (red dot) moves to its average position (black
+	      (a) A node (red dot) moves to the average position (black
 	      dot) of its four neighboring nodes (green dots). The move is
 	      affecting the four neighboring elements (yellow).  (b) The
 	      node has moved to the average position. If the move doesn't
 	      satisfy the given <varname>criterion</varname> (computed on
 	      the four affected elements), it will move back to its
-	      original poisiton.
+	      original position.
 	    </para>
 	  </caption>
     </mediaobject>
