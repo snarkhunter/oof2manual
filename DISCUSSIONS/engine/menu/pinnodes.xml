@@ -13,6 +13,8 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
+<!-- TODO: Review and update docs for this and all menu items -->
+
   <para>
     &nodes; that are <emphasis>pinned</emphasis> will not move during
     &skel; <link

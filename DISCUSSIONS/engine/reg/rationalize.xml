@@ -5,156 +5,170 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>Rationalize</classname> fixes badly-shaped &elems; in a
-    &skel; by either removing them or modifying them and their
-    immediate neighbors.  Besides being ugly, badly shaped elements
-    can impair the convergence and accuracy of the finite element
-    method.
-  </para>
-  <para>
-    &oof2; contains a number of different <xref
-    linkend="RegisteredClass-Rationalizer"/> tools for rationalizing
-    &skels;.  The <varname>method</varname> parameter determines
-    whether the various tools will be applied <link
-    linkend="RegisteredClass-AutomaticRationalization">automatically</link>
-    or whether only a <link
-    linkend="RegisteredClass-SpecificRationalization">specific</link>
-    set of <link linkend="RegisteredClass-Rationalizer">tools</link>
-    should be used.  Automatic rationalizing works better with a small
-    set of target &elems;. Specific rationalizing works well with any
-    number of &elems;.
-  </para>
-
-  <para>
-    The <xref linkend="RegisteredClass-Rationalizer"/> tools are
-    applied sequentially.  The general procedure for applying each
-    tool is as follows:
-    <orderedlist numeration="arabic">
-      <listitem>
-	<para>
-	  Scan the current &skel; for <varname>target</varname>
-	  elements according to the given <link
-	  linkend="RegisteredClass-SkelModTargets"><varname>targets</varname>
-	  parameter</link>.  The list of target &elems; is shuffled to
-	  prevent artifacts from the original internal &elem;
-	  ordering.
-	</para>
-      </listitem>
-      <listitem id="Rationalize:apply">
-	<para>
-	  Apply the <xref linkend="RegisteredClass-Rationalizer"/> to
-	  each &elem; in the target set.  When using <xref
-	  linkend="RegisteredClass-SpecificRationalization"/>, only
-	  the &elems; meeting the criteria specified in the <xref
-	  linkend="RegisteredClass-Rationalizer"/><classname>'s</classname>
-	  parameters are examined.  When using <xref
-	  linkend="RegisteredClass-AutomaticRationalization"/>, all
-	  &elems; are examined.  The <xref
-	  linkend="RegisteredClass-Rationalizer"/> returns a list of
-	  possible new &elem; configurations.
-	</para>
-      </listitem>
-      <listitem id="Rationalize:replace">
-	<para>
-	  Apply the given <link
-	  linkend="RegisteredClass-SkelModCriterion">acceptance
-	  <varname>criterion</varname></link> to the new
-	  configurations, and choose the best one, if any.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  Any new &elems; created in step <xref
-	  linkend="Rationalize:replace"/> are added to the target
-	  list, but only if the <varname>criterion</varname> is not of
-	  the <xref linkend="RegisteredClass-Unconditional"/>
-	  variety.<footnote>
+<para>
+  <classname>Rationalize</classname> fixes badly-shaped &elems; in a
+  &skel; by either removing them or modifying them and their immediate
+  neighbors.  Besides being ugly, badly shaped elements can impair the
+  convergence and accuracy of the finite element method.
+</para>
+<para>
+  &oof2; contains three <xref linkend="RegisteredClass-Rationalizer"/>
+  tools that modify different kinds of poorly shaped &elems;.  The
+  types are all illustrated in <xref linkend="Figure-rationalize"/>:
+  <itemizedlist>
+    <listitem>
+      <para>
+        <emphasis>short</emphasis>: Quadrilaterals with one or two
+        very short sides are removed or converted into triangles by
+        <xref linkend="RegisteredClass-RemoveShortSide"/>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <emphasis>wide</emphasis>: Quadrilaterals with a large obtuse
+        interior angle are split into triangles by by <xref
+        linkend="RegisteredClass-QuadSplit"/>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <emphasis>flat</emphasis>: Triangles with a large obtuse
+        interior angle are eliminated by <xref
+        linkend="RegisteredClass-RemoveBadTriangle"/>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <emphasis>sharp</emphasis>: Triangles with a small acute
+        interior angle are also eliminated by <xref
+        linkend="RegisteredClass-RemoveBadTriangle"/>.  (There is overlap
+        between the definitions of <emphasis>flat</emphasis> and
+        <emphasis>sharp</emphasis>, but the two categories are both
+        handled together by <xref
+        linkend="RegisteredClass-RemoveBadTriangle"/> so it doesn't matter.)
+      </para>
+    </listitem>
+  </itemizedlist>
+  The <varname>method</varname> parameter determines whether the
+  various tools will be applied <link
+  linkend="RegisteredClass-AutomaticRationalization">automatically</link>
+  or whether only a <link
+  linkend="RegisteredClass-SpecificRationalization">specific</link>
+  set of <link linkend="RegisteredClass-Rationalizer">tools</link>
+  should be used.  Automatic rationalizing works better with a small
+  set of target &elems; because it tries every method on every
+  &elem;. Specific rationalizing only applies the tools to &elems;
+  that meet given criteria on angles and lengths, so it does less work
+  can can be used with any number of &elems;.
+</para>
+<figure id="Figure-rationalize">
+  <title>Rationalizing a Skeleton</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata format="PNG"
+	             fileref="FIGURES/ration/rationalize.png"/>
+    </imageobject>
+    <caption>
+	  <para>
+        (a) The selected red &elems; have the indicated flaws. (b) The
+        result of rationalizing the selected elements, using
+        <literallayout class="monospaced">
+          OOF.Skeleton.Modify(
+             skeleton='swoops.png:skeleton',
+             modifier=Rationalize(
+                <emphasis role="bold">targets=SelectedElements(),</emphasis>
+                criterion=AverageEnergy(alpha=0.3),
+                <emphasis role="bold">method=SpecificRationalization(
+                   rationalizers=[RemoveShortSide(ratio=5),
+                                  QuadSplit(angle=150),
+                                  RemoveBadTriangle(acute_angle=15,obtuse_angle=150)]),</emphasis>
+             iterations=1))</literallayout>
+        The <quote>flat</quote> and <quote>sharp</quote> &elems; have
+        been eliminated (causing neighboring &elems; to be
+        subdivided), the <quote>short</quote> quadrilateral has been
+        converted into a triangle, and the <quote>wide</quote>
+        quadrilateral has been subdivided.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
+<para>
+  The <xref linkend="RegisteredClass-Rationalizer"/> tools are applied
+  sequentially.  The general procedure for applying each tool is as
+  follows:
+  <orderedlist numeration="arabic">
+    <listitem>
+	  <para>
+	    Scan the current &skel; for <varname>target</varname> elements
+	    according to the given <link
+	    linkend="RegisteredClass-SkelModTargets"><varname>targets</varname>
+	    parameter</link>.  The list of target &elems; is shuffled to
+	    prevent artifacts from the original internal &elem; ordering.
+	  </para>
+    </listitem>
+    <listitem id="Rationalize:apply">
+	  <para>
+	    Apply the <xref linkend="RegisteredClass-Rationalizer"/> to
+	    each &elem; in the target set.  When using <xref
+	    linkend="RegisteredClass-SpecificRationalization"/>, only the
+	    &elems; meeting the criteria specified in the <xref
+	    linkend="RegisteredClass-Rationalizer"/><classname>'s</classname>
+	    parameters are examined.  When using <xref
+	    linkend="RegisteredClass-AutomaticRationalization"/>, all
+	    &elems; are examined.  The <xref
+	    linkend="RegisteredClass-Rationalizer"/> returns a list of
+	    possible new &elem; configurations.
+	  </para>
+    </listitem>
+    <listitem id="Rationalize:replace">
+	  <para>
+	    Apply the given <link
+	    linkend="RegisteredClass-SkelModCriterion">acceptance
+	    <varname>criterion</varname></link> to the new configurations,
+	    and choose the best one, if any.
+	  </para>
+    </listitem>
+    <listitem>
+	  <para>
+	    Any new &elems; created in step <xref
+	    linkend="Rationalize:replace"/> are added to the target list,
+	    but only if the <varname>criterion</varname> is not <xref
+	    linkend="RegisteredClass-Unconditional"/>.<footnote>
 	    <para>
 	      This is to avoid infinite loops.
 	    </para>
 	  </footnote>
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  Return to step <xref linkend="Rationalize:apply"/> until all
-	  &elems; in the target list have been visited.
-	</para>
-      </listitem>
-    </orderedlist>
-  </para>
+	  </para>
+    </listitem>
+    <listitem>
+	  <para>
+	    Return to step <xref linkend="Rationalize:apply"/> until all
+	    &elems; in the target list have been visited.
+	  </para>
+    </listitem>
+  </orderedlist>
+  It is often necessary to apply the tools more than once, since
+  fixing one bad &elem; can create others.  If the
+  <varname>iterations</varname> parameter is greater than 1, the
+  entire sequence will be repeated.
+</para>
 
-  <tip>
-    <para>
-      <link linkend="RegisteredClass-RemoveShortSide">Remove Short
-      Sides</link> and <link linkend="RegisteredClass-QuadSplit">Split
-      Wide Quads</link> inevitably create triangles and these
-      triangles are not guaranteed to have good shapes. Thus, it's a
-      good idea always to include <link
-      linkend="RegisteredClass-RemoveBadTriangle">Remove Bad
-      Triangles</link> in the set of tools to apply.  It will always
-      be applied <emphasis>after</emphasis> the other
-      <classname>Rationalizers</classname>.
-    </para>
-  </tip>
+<tip>
   <para>
-    <xref linkend="Figure-before_rationalize"/> shows a &skel;
-    featuring six badly-shaped &elems; &#x2014; two
-    <emphasis>sharp</emphasis> triangles, a <emphasis>flat</emphasis>
-    triangle, a quadrilateral with a <emphasis>wide</emphasis>
-    interior angle, and two quadrilaterals sharing a
-    <emphasis>short</emphasis> &sgmt;.
+    <link linkend="RegisteredClass-RemoveShortSide">Remove Short
+    Sides</link> and <link linkend="RegisteredClass-QuadSplit">Split
+    Wide Quads</link> inevitably create triangles and these triangles
+    are not guaranteed to have good shapes. Thus, it's a good idea
+    always to include <link
+    linkend="RegisteredClass-RemoveBadTriangle">Remove Bad
+    Triangles</link> in the set of tools to apply.  It will be applied
+    <emphasis>after</emphasis> the other
+    <classname>Rationalizers</classname>.
   </para>
-  <figure id="Figure-before_rationalize">
-    <title>Badly-shaped Elements</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	  fileref="FIGURES/ration/badelements.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata format="EPS"
-	  fileref="FIGURES/ration/badelements.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &elems; that will be rationalized are highlighted in
-	  red.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
-  <para>
-    The rationalized &skel; is presented in <xref
-    linkend="Figure-after_rationalize"/>.  The short-sided
-    quadrilaterals have been replaced with triangles, the sharp
-    triangles have been eliminated, the wide quadrilateral has been
-    split into two triangles, and the flat triangle has merged with a
-    neighboring triangle and morphed into three triangles.
-  </para>    
-  <figure id="Figure-after_rationalize">
-    <title>After Rationalization</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata format="PNG"
-	  fileref="FIGURES/ration/rationalized.png"/>
-      </imageobject>
-      <imageobject>
-	<imagedata scale="50" format="EPS"
-	  fileref="FIGURES/ration/rationalized.eps"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &elems; affected by the rationalization are highlighted
-	  in red.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+</tip>
 
   <!-- Keep this comment at the end of the file
   Local variables:
