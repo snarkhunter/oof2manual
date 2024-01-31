@@ -44,11 +44,12 @@
       <para>
         <emphasis>sharp</emphasis>: Triangles with a small acute
         interior angle are also eliminated by <xref
-        linkend="RegisteredClass-RemoveBadTriangle"/>.  (There is overlap
-        between the definitions of <emphasis>flat</emphasis> and
-        <emphasis>sharp</emphasis>, but the two categories are both
-        handled together by <xref
-        linkend="RegisteredClass-RemoveBadTriangle"/> so it doesn't matter.)
+        linkend="RegisteredClass-RemoveBadTriangle"/>.  (There is
+        overlap between the definitions of <emphasis>flat</emphasis>
+        and <emphasis>sharp</emphasis>, but the two categories are
+        both handled by <xref
+        linkend="RegisteredClass-RemoveBadTriangle"/> so the ambiguity
+        is unimportant.)
       </para>
     </listitem>
   </itemizedlist>
