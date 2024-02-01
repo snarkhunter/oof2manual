@@ -1,110 +1,30 @@
 <!-- 
-  $RCSfile: arrangement.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:21 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-
-  <para>
-    When <xref linkend="MenuItem-OOF.Skeleton.New"/> is creating a new
-    &skel; with triangular &elems;, it builds a rectangular array of
-    quadrilaterals and divides each quad diagonally into two
-    triangles.  The arrangement of the diagonals is determined by an
-    <classname>Arrangement</classname> object.  <xref
-      linkend="Figure-arrangement"/> illustrates the possibilities.
-  </para>
-  <figure id="Figure-arrangement">
-    <title>Diagonal Arrangements for Triangular Skeletons</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/conservative.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/conservative.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The <userinput>conservative</userinput> arrangement, with
-	  diagonals leaning to the right.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/liberal.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/liberal.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The <userinput>liberal</userinput> arrangement, with
-	  diagonals leaning to the left.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/moderate.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/moderate.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The <userinput>moderate</userinput> arrangement, with
-	  diagonals leaning to the right and to the left.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/middling.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/middling.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The <userinput>middling</userinput> arrangement, with
-	  diagonals leaning to the left and to the right.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/anarchic.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/arrangements/anarchic.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The <userinput>anarchic</userinput> arrangement, with
-	  diagonals leaning whichever way they please.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  When <xref linkend="MenuItem-OOF.Skeleton.New"/> is creating a new
+  &skel; with triangular &elems;, it builds a rectangular array of
+  quadrilaterals and divides each quad diagonally into two
+  triangles.  The arrangement of the diagonals is determined by an
+  <classname>Arrangement</classname> object.  <xref
+  linkend="Figure-arrangement"/> illustrates the possibilities.
+</para>
+<figure id="Figure-arrangement">
+  <title>Diagonal Arrangements for Triangular Skeletons</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/arrangements.png"
+	             format="PNG"/>
+    </imageobject>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

@@ -1,45 +1,40 @@
 <!-- 
-  $RCSfile: colornorm.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:49 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
+<para>
+  <classname>ColorNorms</classname> are different ways of measuring
+  the difference between <link
+  linkend="RegisteredClass-OpaqueColor"><classname>Colors</classname></link>.
+  They're used in the <link
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Burn"><command>Burn</command></link>
+  pixel selection algorithm.<footnote>
   <para>
-    <classname>ColorNorms</classname> are different ways of measuring
-    the difference between <link
-    linkend="RegisteredClass-Color"><classname>Colors</classname></link>.
-    They're used in the <link
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Burn"><command>Burn</command></link>
-    pixel selection algorithm.<footnote>
-      <para>
 	<link
-	linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Burn"><command>Burn</command></link>
+	    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Burn"><command>Burn</command></link>
 	could have been defined using the <xref
 	linkend="RegisteredClass-ColorDifference"/> classes instead,
 	but it wasn't, for historical reasons.
-      </para>
-    </footnote>
   </para>
-  <para>
-    The difference between two colors in the <userinput>L1</userinput>
-    norm is the average of the absolute values of the differences of
-    their red, green, and blue values.  That is, it's the difference
-    of the gray value equivalents of the colors.
-  </para>
-  <para>
-    The difference between two colors in the <userinput>L2</userinput>
-    norm is the square root of the sum of the squares of the
-    differences of their red, green, and blue values.
-  </para>
+</footnote>
+</para>
+<para>
+  The difference between two colors in the <userinput>L1</userinput>
+  norm is the average of the absolute values of the differences of
+  their red, green, and blue values.  That is, it's the difference
+  of the gray value equivalents of the colors.
+</para>
+<para>
+  The difference between two colors in the <userinput>L2</userinput>
+  norm is the square root of the sum of the squares of the
+  differences of their red, green, and blue values.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

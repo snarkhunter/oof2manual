@@ -2335,12 +2335,11 @@
 	    <title>Example</title>
 	    <para>
 	      <literallayout class="monospaced">
-	        <link linkend="MenuItem-OOF.LoadData.FileVersion">OOF.LoadData.FileVersion</link>(number=1.0, format='script)
-	        microname = "MyFavoriteMicrostructure"
-            physicalsize = Point(1.2, 1.2)
-            pixelsize = iPoint(100, 100)
-            <link linkend="MenuItem-OOF.LoadData.Microstructure.New">OOF.LoadData.Microstructure.New</link>(name=microname, size=physicalsize, isize=pixelsize)
-	      </literallayout>
+         <link linkend="MenuItem-OOF.LoadData.FileVersion">OOF.LoadData.FileVersion</link>(number=1.0, format='script)
+         microname = "MyFavoriteMicrostructure"
+         physicalsize = Point(1.2, 1.2)
+         pixelsize = iPoint(100, 100)
+         <link linkend="MenuItem-OOF.LoadData.Microstructure.New">OOF.LoadData.Microstructure.New</link>(name=microname, size=physicalsize, isize=pixelsize)</literallayout>
 	      This file contains two &oof2; commands, one of which is written in
 	      terms of three Python variables,
 	      <varname>microname</varname>,
@@ -2387,10 +2386,8 @@
 	      the variable assignments and leaving off the
 	      <command>OOF.LoadData.</command> part of the commands:
 	      <literallayout class="monospaced">
-	        <link linkend="MenuItem-OOF.LoadData.FileVersion">FileVersion</link>(number=1.0, format='ascii')
-            <link linkend="MenuItem-OOF.LoadData.Microstructure.New">Microstructure.New</link>(name="MyFavoriteMicrostructure", size=Point(1.2,1.2), isize=iPoint(100,100))
-
-	      </literallayout>
+         <link linkend="MenuItem-OOF.LoadData.FileVersion">FileVersion</link>(number=1.0, format='ascii')
+         <link linkend="MenuItem-OOF.LoadData.Microstructure.New">Microstructure.New</link>(name="MyFavoriteMicrostructure", size=Point(1.2,1.2), isize=iPoint(100,100))</literallayout>
 	    </para>
       </formalpara>
     </section>
