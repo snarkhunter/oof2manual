@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: basicdirect.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-25 02:42:41 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -17,14 +12,10 @@
   <classname>BasicDirect</classname> is a <link
   linkend="Section-Concepts-Mesh-Solvers-Matrix">matrix equation
   solver</link> used in <xref
-  linkend="RegisteredClass-BasicSolverMode"/>.  It uses the <ulink
-  role="external" url="http://www.netlib.org/lapack/">LAPACK</ulink>
-  <ulink role="external"
-  url="http://http://www.netlib.org/lapack/double/dgesv.f"><function>dgesv</function></ulink>
-  function to solve equations via LU decomposition.  This requires the
-  matrix to to converted from the sparse format used in &oof2; to a
-  full represention, which uses a lot of memory.  It may be faster and
-  more accurate for small matrices, however.
+  linkend="RegisteredClass-BasicSolverMode"/>.  It uses the
+  <xref linkend="RegisteredClass-SimplicialLDLT"/> method for
+  symmetric matrices and the <xref
+  linkend="RegisteredClass-SparseQR"/> method for asymmetric matrices.
 </para>
 
 

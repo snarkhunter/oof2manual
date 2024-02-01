@@ -9,12 +9,13 @@
 -->
 
 <para>
-  <classname>HSVColor</classname> specifies a <xref
+  <classname>HSVAColor</classname> specifies a <xref
   linkend="RegisteredClass-OpaqueColor"/> in terms of its
-  <varname>hue</varname>, <varname>saturation</varname>, and
-  <varname>value</varname>.  We stole our algorithm for converting
-  between <link linkend="RegisteredClass-RGBColor">RGB</link> and HSV
-  from <ulink url="http://www.cs.rit.edu/~ncs/color/t_convert.html"
+  <varname>hue</varname>, <varname>saturation</varname>,
+  <varname>value</varname> and opacity (<varname>alpha</varname>).  We
+  stole our algorithm for converting between <link
+  linkend="RegisteredClass-RGBColor">RGB</link> and HSV from <ulink
+  url="http://www.cs.rit.edu/~ncs/color/t_convert.html"
   role="external"/>.
 </para>
 <para>
@@ -32,6 +33,11 @@
   <varname>value</varname> is the brightness of the color.  It too is
   a floating point number between 0 and 1, where 0 is darkest and 1 is
   brightest.
+</para>
+<para>
+  <varname>alpha</varname> is the opacity of the color. It is a
+  floating point number between 0 and 1, where 0 is completely
+  transparent and 1 is completely opaque.
 </para>
 
   <!-- Keep this comment at the end of the file

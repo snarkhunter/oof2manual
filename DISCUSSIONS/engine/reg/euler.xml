@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: euler.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-04-27 21:32:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <para>
-  The <ulink url="http://en.wikipedia.org/wiki/Euler%27s_method"
+  The <ulink url="http://en.wikipedia.org/wiki/Euler_method"
   role="external">Forward Euler method</ulink> is the simplest method
   of numerically integrating ordinary differential equations. The
   individual steps are very quick to compute, but the method is often

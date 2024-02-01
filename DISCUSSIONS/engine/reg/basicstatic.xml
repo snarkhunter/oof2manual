@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: basicstatic.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-29 20:21:51 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -21,7 +16,7 @@
   linkend="Section-Concepts-Mesh-Solving">solving</link> static or
   quasi-static systems.  Quasi-static systems are those in which the
   beginning and end times are <emphasis>not</emphasis> identical, but
-  either the equations have to time derivatives, or the stepper is
+  either the equations have no time derivatives, or the stepper is
   static.  The solution of a quasi-static system is a sequence of
   static equilibrium solutions at different times.
 </para>

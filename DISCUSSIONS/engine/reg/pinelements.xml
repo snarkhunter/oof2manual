@@ -1,89 +1,49 @@
 <!-- 
-  $RCSfile: pinelements.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:43 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <link linkend='MenuItem-OOF.Skeleton.PinNodes'>Pin</link> the
-    &nodes; of the currently selected &elems; in the given &skel;.
-  </para>
-  <para>
-    The two parameters, <varname>internal</varname> and
-    <varname>boundary</varname> determine exactly which &nodes; will
-    be pinned.  If <varname>internal</varname> is
-    <userinput>true</userinput>, then &nodes; that are completely
-    surrounded by selected &elems; will be pinned.  If
-    <varname>boundary</varname> is <userinput>true</userinput>, then
-    &nodes; that are only partially surrounded by selected &elems;
-    will be pinned.  If both are <userinput>true</userinput>, then all
-    &nodes; of the selected &elems; will be pinned. <xref
-      linkend="Figure-pinelements"/> illustrates the different
-    scenarios.
-  </para>
-  <figure id="Figure-pinelements">
-    <title>Pinning Nodes of Selected Elements</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pineleminternal.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pineleminternal.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  &nodes; pinned with
-	  <varname>internal</varname>=<userinput>1</userinput> and
-	  <varname>boundary</varname>=<userinput>0</userinput>.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pinelemboundary.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pinelemboundary.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  &nodes; pinned with
-	  <varname>internal</varname>=<userinput>0</userinput> and
-	  <varname>boundary</varname>=<userinput>1</userinput>.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pinelemall.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pinelemall.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  &nodes; pinned with
-	  <varname>internal</varname>=<userinput>1</userinput> and
-	  <varname>boundary</varname>=<userinput>1</userinput>.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  <link linkend='MenuItem-OOF.Skeleton.PinNodes'>Pin</link> the
+  &nodes; of the currently selected &elems; in the given &skel;.
+</para>
+<para>
+  The two parameters, <varname>internal</varname> and
+  <varname>boundary</varname> determine exactly which &nodes; will be
+  pinned.  If <varname>internal</varname> is
+  <userinput>true</userinput>, then &nodes; that are completely
+  surrounded by selected &elems; will be pinned.  If
+  <varname>boundary</varname> is <userinput>true</userinput>, then
+  &nodes; that are only partially surrounded by selected &elems; will
+  be pinned.  If both are <userinput>true</userinput>, then all
+  &nodes; of the selected &elems; will be pinned. <xref
+  linkend="Figure-pinelements"/> illustrates the different scenarios.
+</para>
+<figure id="Figure-pinelements">
+  <title>Pinning Nodes of Selected Elements</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pinnodes/pinelements.png"
+	             format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+        A &skel; containing some red selected &elems;.  The yellow
+        pinned &nodes; came from running
+        <classname>Pin_Selected_Elements</classname> with (a)
+        <code>internal=True</code> and <code>boundary=True</code>. (b)
+        <code>internal=False</code> and
+        <code>boundary=True</code>. (c) <code>internal=True</code> and
+        <code>boundary=False</code>.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

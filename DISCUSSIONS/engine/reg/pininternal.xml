@@ -1,72 +1,82 @@
 <!-- 
-  $RCSfile: pininternal.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:43 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-<para> TODO: point out that the nodes might not be exactly on a pixel
-bdy. "Internal" is defined by element category</para>
+<para>
+  <link linkend='MenuItem-OOF.Skeleton.PinNodes'>Pin</link> internal
+  boundary nodes.  Internal boundaries lie between
+  regions of different <link
+  linkend='Section-Concepts-PixelCategory'>pixel categories</link> in
+  a &micro;.
+</para>
 
-  <para>
-    <link linkend='MenuItem-OOF.Skeleton.PinNodes'>Pin</link> internal
-    boundary nodes.  Internal boundary nodes are those that are along
-    the boundaries of regions of different <link
-    linkend='Section-Concepts-PixelCategory'>pixel categories</link>
-    in the &micro;.
-  </para>
-  <para>
-    Pinning internal boundaries is especially useful to clean up a
-    &skel; after it has adapted to the material boundaries of a
-    &micro;.  <xref linkend="Figure-pininternal"/> shows a &skel; with
-    pinned internal boundary nodes.  <xref
-    linkend="Figure-pinsmooth"/> shows the same &skel; after having
-    been <link linkend="RegisteredClass-Smooth">smoothed</link>.  The
-    pinned nodes have not moved, although the
-    <varname>targets</varname> parameter for <xref
-    linkend="RegisteredClass-Smooth"/> was set to <xref
-    linkend="RegisteredClass-AllNodes"/>.
+<para>
+  Pinning internal boundaries is especially useful when cleaning up a
+  &skel; that has been adapted to the material boundaries of a
+  &micro;.  <xref linkend="Figure-pininternal"/>(a) shows a &skel;
+  with pinned internal boundary nodes.  <xref
+  linkend="Figure-pininternal"/>(b) shows the same &skel; after having
+  been <link linkend="RegisteredClass-Smooth">smoothed</link>.  The
+  pinned nodes have not moved, although the <varname>targets</varname>
+  parameter for <xref linkend="RegisteredClass-Smooth"/> was set to
+  <xref linkend="RegisteredClass-AllNodes"/>.
+</para>
 
-  </para>
-  <figure id="Figure-pininternal">
-    <title>Pinning Internal Boundary Nodes</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pininternal.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pininternal.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  Pinned nodes are shown in black.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
-  <figure id="Figure-pinsmooth">
-    <title>Smoothing with Pinned Internal Boundary Nodes</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pinsmooth.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pinnodes/pinsmooth.eps"
-	  format="EPS"/>
-      </imageobject>
-    </mediaobject>
-  </figure>
+<figure id="Figure-pininternal">
+  <title>Pinning Internal Boundary Nodes</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pinnodes/pininternal.png"
+	             format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    (a) Before, and (b) after <link
+	    linkend="RegisteredClass-Smooth">smoothing</link> a &skel;
+	    with pinned internal boundary &nodes;.  The pinned &nodes; are
+	    marked with yellow dots.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+<para>
+  Note that &nodes; on internal boundaries in a &skel; do not
+  necessarily lie exactly on the pixel boundaries in a &micro;.  A
+  &node; is considered to be on an internal boundary if it is part of
+  two &elems; with different <link
+  linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+  pixels</link>.  <xref linkend="Figure-pininternal-detail"/>(a) shows
+  a detail from <xref linkend="Figure-pininternal"/>(a) where the
+  pinned &nodes; are clearly not on the pixel boundaries.  When the
+  &elems; are colored according to their <link
+  linkend="Section-Concepts-Skeleton-Homogeneity">dominant
+  pixels</link> as in <xref linkend="Figure-pininternal-detail"/>(b),
+  it is clear that the pinned nodes are actually boundary nodes of the
+  &skel;.
+</para>
+<figure id="Figure-pininternal-detail">
+  <title>Detail of Internal Boundary Nodes</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/pinnodes/interiorbdy.png"
+                 format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        The pinned internal boundary &nodes; do not necessarily lie on
+        the pixel boundaries in (a) but they do lie on the &skel;
+        boundaries in (b).
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

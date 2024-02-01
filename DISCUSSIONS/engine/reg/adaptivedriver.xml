@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: adaptivedriver.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-25 17:32:37 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -38,8 +33,8 @@
   If the error cannot be reduced below <varname>tolerance</varname>
   without using a step size below <varname>minstep</varname>, the
   computation will be aborted.  Often this means that the problem is
-  badly posed, or that the <varname>errorscaling</varname> is in
-  appropriate.
+  badly posed, or that the <varname>errorscaling</varname> is
+  inappropriate.
 </para>
 <para>
   <varname>errorscaling</varname> defines what is really meant by
