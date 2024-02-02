@@ -1,16 +1,11 @@
 <!-- 
-  $RCSfile: ipoint.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:19 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <refentry id='Object-iPoint'>
@@ -43,8 +38,10 @@
     <para>
       An <classname>iPoint</classname> is a point in the plane with
       integer coordinates.  It is used to locate a pixel in a &micro;
-      or &image; The x and y coordinates are therefore lengths in
-      units of the pixel size.  The origin is at the lower left corner
+      or &image;. The x and y coordinates are therefore lengths in
+      <link
+      linkend="Section-Concepts-Microstructure-Coordinates">units of
+      the pixel size</link>.  The origin is at the lower left corner
       of the <classname>Image</classname> or
       <classname>Microstructure</classname>.
     </para>

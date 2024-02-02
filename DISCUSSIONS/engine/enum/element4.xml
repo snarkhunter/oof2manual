@@ -5,17 +5,13 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
   Various kinds of 4 cornered finite elements.  Different types have
   different numbers of function and mapping nodes.  <xref
   linkend="Figure-element4"/> shows their geometries.
-</para>
-<para>
-  See <xref linkend="Section-Concepts-Mesh-Geometry"/> for important
-  details.
 </para>
 
 <figure id="Figure-element4">

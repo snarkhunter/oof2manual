@@ -7,4 +7,10 @@ the OOF2 code, and add the missing documentation.
 
 Get rid of all references to Layer Sets and the Layer Editor.
 
-Go over all Chapters, Sections, and Toolbox pages.
+Check for "ERROR" and "Error" in the build output to find bad links.
+
+Regenerate png files from all OmniGraffle files that embed
+screenshots.  Export at 144 dpi instead of 72 dpi, and put scale="37" 
+in the imagedata tag.
+
+Try updating saxon.  MacPorts has 9.5.1.  

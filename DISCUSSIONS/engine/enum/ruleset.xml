@@ -96,7 +96,19 @@
 <para>
   The full set of 66 refinement rules is in
   <filename>SRC/engine/refinemethod.py</filename> in the &oof2; source
-  code, along with ascii art diagrams for each.
+  code, along with ascii art diagrams like this for each:
+  <literallayout class="monospaced">
+   #  3---------------2   3---------------2   3---------------2
+   #  |               |   |\              |   |              /|
+   #  |               |   | \             |   |             / |
+   #  |               |   |  \            |   |            /  |
+   #  d---------------c   d   \           c   d           /   c
+   #  |\             /|   |\   \         /|   |\         /   /|
+   #  | \           / |   | \   \       / |   | \       /   / |
+   #  |  \         /  |   |  \   \     /  |   |  \     /   /  |
+   #  |   \       /   |   |   \   \   /   |   |   \   /   /   |
+   #  |    \     /    |   |    \   \ /    |   |    \ /   /    |
+   #  0-----a---b-----1   0-----a---b-----1   0-----a---b-----1 </literallayout>
 </para>
 
   <!-- Keep this comment at the end of the file

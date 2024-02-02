@@ -63,9 +63,10 @@
       </listitem>
     </itemizedlist>
     The menu bar at the top of the window contains commands that
-    adjust the behavior of the window and provide alternate ways of
-    performing some basic tasks.  The menu items are described at
-    <xref linkend="MenuItem-OOF.Graphics_n.File"/>, <xref
+    adjust the behavior of the window, save the contents of the
+    Canvas, and provide alternate ways of performing some basic tasks.
+    The menu items are described at <xref
+    linkend="MenuItem-OOF.Graphics_n.File"/>, <xref
     linkend="MenuItem-OOF.Graphics_n.Layer"/>, and <xref
     linkend="MenuItem-OOF.Graphics_n.Settings"/>.
   </para>

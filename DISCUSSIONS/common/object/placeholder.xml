@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <refentry id="Object-Placeholder">
@@ -60,16 +60,11 @@
 	    <imagedata fileref="FIGURES/sel_placeholder.png"
 		       format="PNG"/>
 	  </imageobject>
-
-	  <imageobject>
-	    <imagedata fileref="FIGURES/sel_placeholder.eps"
-		       format="EPS"/>
-	  </imageobject>
 	  <caption>
 	    <para>
-	      A menu listing a bunch of groups, plus the placeholders
-	      <guilabel>&lt;selection&gt;</guilabel> and
-	      <guilabel>&lt;every&gt;</guilabel>. 
+	      An action shot of a menu listing a bunch of groups, plus the
+	      placeholders <guilabel>&lt;selection&gt;</guilabel> and
+	      <guilabel>&lt;every&gt;</guilabel>.
 	    </para>
 	  </caption>
 	</mediaobject>
@@ -114,20 +109,14 @@
 	to the currently selected pixels:
 	<blockquote>
 	  <literallayout class="monospaced">
-	    <xref linkend="MenuItem-OOF.Material.Assign"/>(material='material',
-	    microstructure='microstructure',
-	    pixels=<userinput>selection</userinput>)
-	  </literallayout>
+	    <xref linkend="MenuItem-OOF.Material.Assign"/>(material='material', microstructure='microstructure', pixels=<userinput>selection</userinput>) </literallayout>
 	</blockquote>
 	The following command, on the other hand, assigns a &material;
 	to all pixels in the group (perversely) named
 	<quote>selection</quote>:
 	<blockquote>
 	  <literallayout class="monospaced">
-	    <xref linkend="MenuItem-OOF.Material.Assign"/>(material='material',
-	    microstructure='microstructure',
-	    pixels=<userinput>'selection'</userinput>)
-	  </literallayout>
+	    <xref linkend="MenuItem-OOF.Material.Assign"/>(material='material', microstructure='microstructure', pixels=<userinput>"selection"</userinput>) </literallayout>
 	</blockquote>
       </para>
     </refsect2>

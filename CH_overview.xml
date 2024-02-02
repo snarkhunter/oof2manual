@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 
@@ -233,7 +233,7 @@
     <para>
       This manual was written in <ulink url="http://docbook.org"
       role="external">DocBook</ulink> 4.5 XML, and converted to html
-      with <ulink url="http://saxon.sourceforge.net/"
+      with <ulink url="https://www.saxonica.com"
       role="external"><application>saxon</application></ulink> 6.5.3.
     </para>
   </section>
