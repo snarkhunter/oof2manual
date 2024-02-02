@@ -1,9 +1,4 @@
 <!--
-    $RCSfile: SN_skelbdy.xml,v $
-    $Revision: 1.3 $
-    $Author: langer $
-    $Date: 2011-05-02 15:47:05 $
-
 This software was produced by NIST, an agency of the
 U.S. government, and by statute is not subject to copyright in the
 United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@ the authors at oof_manager@nist.gov.
 -->
 
 <section id="Section-Tasks-SkeletonBoundaries">
-  <title>Skeleton Boundaries</title>
+  <title>The Skeleton Boundaries Page</title>
   <para>
     The Skeleton Boundaries Page creates and edits &skel; <link
     linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>.
@@ -43,7 +38,7 @@ the authors at oof_manager@nist.gov.
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/skelbdy_page.png"
-	               format="PNG"/>
+                   contentwidth="802px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>
@@ -63,7 +58,7 @@ the authors at oof_manager@nist.gov.
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="FIGURES/gui/skelbdyexample.png"
-	                 format="PNG"/>
+                     contentwidth="348px" format="PNG"/>
 	    </imageobject>
 	    <caption>
 	      <para>
@@ -114,7 +109,7 @@ the authors at oof_manager@nist.gov.
 		    <mediaobject>
 		      <imageobject>
 		        <imagedata fileref="FIGURES/gui/newbdybox.png"
-		                   format="PNG"/>
+                           contentwidth="330px" format="PNG"/>
 		      </imageobject>
 		    </mediaobject>
 	      </figure>

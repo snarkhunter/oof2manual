@@ -1,20 +1,15 @@
 <!--
-  $RCSfile: SN_material.xml,v $
-  $Revision: 1.5 $
-  $Author: langer $
-  $Date: 2014/05/19 19:31:12 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <section id="Section-Tasks-Materials">
-  <title>Materials</title>
+  <title>The Materials Page</title>
   
   <para>
     The Materials Page is where &materials; are built and assigned to
@@ -38,7 +33,7 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/material_page.png"
-	               format="PNG"/>
+                   contentwidth="801px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>
@@ -73,7 +68,7 @@
 	    <mediaobject>
 	      <imageobject>
 	        <imagedata fileref="FIGURES/gui/expandprop.png"
-		               format="PNG"/>
+                       contentwidth="518px" format="PNG"/>
 	      </imageobject>
 	    </mediaobject>
 	  </figure>
@@ -170,8 +165,8 @@
 		    <title>The Hexagonal Elasticity Property Dialog Box</title>
 		    <mediaobject>
 		      <imageobject>
-		        <imagedata
-		            fileref="FIGURES/gui/hexpropdialog.png" format="PNG"/>
+		        <imagedata fileref="FIGURES/gui/hexpropdialog.png"
+                           format="PNG" contentwidth="538px" />
 		      </imageobject>
 		    </mediaobject>
 	      </figure>
@@ -196,11 +191,11 @@
 	        linkend="MenuItem-OOF.Property.Parametrize.Orientation">orientation</link>.
           </para>
           <figure id="Figure-colorprop">
-            <title>The Color Property Dialong Box</title>
+            <title>The Color Property Dialog Box</title>
             <mediaobject>
               <imageobject>
                 <imagedata fileref="FIGURES/gui/propdialog.png"
-                           format="PNG"/>
+                           contentwidth="937px" format="PNG"/>
               </imageobject>
               <caption>
                 <para>
@@ -324,7 +319,7 @@
 		    <mediaobject>
 		      <imageobject>
 		        <imagedata fileref="FIGURES/gui/assignmat.png"
-		                   format="PNG"/>
+                           contentwidth="300px" format="PNG"/>
 		      </imageobject>
 		      <caption>
 		        <para>

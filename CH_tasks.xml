@@ -39,22 +39,23 @@
     <figure id="Figure-MainWindow">
       <title>The Main &oof2; Window</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/mainwindow.png" format="PNG"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Annotated image of the main oof2 window.</phrase>
-	</textobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/gui/mainwindow.png" format="PNG"
+                     contentwidth="1102px"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Annotated image of the main oof2 window.</phrase>
+	    </textobject>
       </mediaobject>
     </figure>
 
     <note>
       <para>
-	Your version of &oof2; may not look exactly like the
-	illustrations in this manual. You can change the color scheme,
-	widget set, and font used in the GUI via the <xref
-	linkend="MenuItem-OOF.Settings.Fonts"/> menu and <xref
-	linkend="MenuItem-OOF.Settings.Theme"/> command.
+	    Your version of &oof2; may not look exactly like the
+	    illustrations in this manual. You can change the color scheme,
+	    widget set, and font used in the GUI via the <xref
+	    linkend="MenuItem-OOF.Settings.Fonts"/> menu and <xref
+	    linkend="MenuItem-OOF.Settings.Theme"/> command.
       </para>
     </note>
     <para>

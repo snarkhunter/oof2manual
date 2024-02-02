@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_fields.xml,v $
-  $Revision: 1.6 $
-  $Author: langer $
-  $Date: 2011-04-19 21:33:29 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-FieldsEquations">
-  <title>Fields &amp; Equations</title>
+  <title>The Fields &amp; Equations Page</title>
   <para>
     The Fields &amp; Equations Page specifies which &fields; are
     defined on the &mesh; which &equations; are active.  It has three
@@ -31,7 +26,7 @@
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/fields_page.png"
-	               format="PNG"/>
+                   contentwidth="810px" format="PNG"/>
 	  </imageobject>
 	</mediaobject>
   </figure>

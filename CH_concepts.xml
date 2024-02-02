@@ -179,7 +179,8 @@
 	    <title>Path Menus</title>
 	    <mediaobject>
 	      <imageobject>
-	        <imagedata fileref="FIGURES/whowidget1.png" format="PNG"/>
+	        <imagedata fileref="FIGURES/whowidget1.png" format="PNG"
+                       contentwidth="808px"/>
 	      </imageobject>
 	      <caption>
 	        <para>
@@ -191,7 +192,8 @@
 	    </mediaobject>
 	    <mediaobject>
 	      <imageobject>
-	        <imagedata fileref="FIGURES/whowidget2.png" format="PNG"/>
+	        <imagedata fileref="FIGURES/whowidget2.png" format="PNG"
+                       contentwidth="478px"/>
 	      </imageobject>
 	      <caption>
 	        <para>
@@ -596,11 +598,8 @@
       <title>Anatomy of a Skeleton</title>
       <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/schematicmesh.png"
-	                 format="PNG"/>
-	    </imageobject>
-	    <imageobject>
-	      <imagedata fileref="FIGURES/schematicmesh.eps" format="EPS"/>
+	      <imagedata fileref="FIGURES/skelanatomy.png"
+                     contentwidth="318px" format="PNG"/>
 	    </imageobject>
 	    <textobject>
 	      <phrase>Schematic diagram of a Skeleton</phrase>
@@ -718,12 +717,8 @@
 	      <title>Skeleton Element Homogeneity</title>
 	      <mediaobject>
 	        <imageobject>
-	          <imagedata fileref="FIGURES/homogeneity.eps"
-		                 format="EPS"/>
-	        </imageobject>
-	        <imageobject>
 	          <imagedata fileref="FIGURES/homogeneity.png"
-		                 format="PNG"/>
+                         contentwidth="331px" format="PNG"/>
 	        </imageobject>
 	        <textobject>
 	          <phrase>Homogeneity demonstration</phrase>
@@ -899,15 +894,12 @@
 	      <title>Creating Illegal Elements</title>
 	      <mediaobject>
 	        <imageobject>
-	          <imagedata fileref="FIGURES/illegalmesh.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-	          <imagedata fileref="FIGURES/illegalmesh.eps"
-		                 format="EPS"/>
+	          <imagedata fileref="FIGURES/illegal.png"
+                         format="PNG" contentwidth="654px"/>
 	        </imageobject>
 	        <textobject>
-	          <phrase>Before and after pictures of illegal elements.</phrase>
+	          <phrase>Before and after pictures of illegal
+	          elements.</phrase>
 	        </textobject>
 	        <caption>
 	          <simpara>
@@ -1000,7 +992,8 @@
 	      <title>Homogeneity of a Segment</title>
 	      <mediaobject>
 	        <imageobject>
-		      <imagedata format="PNG" fileref="FIGURES/seg_homogeneity1.png"/>
+		      <imagedata fileref="FIGURES/seg_homogeneity1.png"
+                         format="PNG" contentwidth="237px"/>
 	        </imageobject>
 	        <caption>
 		      <para>
@@ -1038,7 +1031,8 @@
           <title>Segment Homogeneity Subtleties</title>
           <mediaobject>
             <imageobject>
-              <imagedata format="PNG" fileref="FIGURES/seg_homogeneity2.png"/>
+              <imagedata fileref="FIGURES/seg_homogeneity2.png"
+                         format="PNG" contentwidth="314px"/>
             </imageobject>
           </mediaobject>
         </figure>

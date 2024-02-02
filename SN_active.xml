@@ -5,11 +5,11 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <section id="Section-Tasks-Active_Area">
-  <title>Active Area</title>
+  <title>The Active Area Page</title>
   
   <para>
     <link linkend="Section-Concepts-Microstructure-ActiveArea">Active
@@ -35,7 +35,7 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/active_page.png"
-	               format="PNG"/>
+                   contentwidth="828px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>
@@ -144,7 +144,7 @@
 		      <mediaobject>
 		        <imageobject>
 		          <imagedata fileref="FIGURES/gui/override.png"
-                             format="PNG"/>
+                             contentwidth="244px" format="PNG"/>
 		        </imageobject>
 		      </mediaobject>
 	        </figure>

@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_analysis.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-05-03 18:53:02 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-Analysis">
-  <title>Analysis</title>
+  <title>The Analysis Page</title>
   <para>
     The analysis page provides tools to examine the state of the
     physical system modelled by a given mesh.  The data can be output
@@ -27,7 +22,7 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/analysis_page.png"
-	               format="PNG"/>
+                   contentwidth="880px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>
@@ -97,7 +92,8 @@
 	  <title>The Time Control Widgets</title>
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/gui/time_controls.png" format="PNG"/>
+	      <imagedata fileref="FIGURES/gui/time_controls.png"
+                     contentwidth="385px" format="PNG"/>
 	    </imageobject>
 	  </mediaobject>
     </figure>
@@ -196,7 +192,8 @@
 	    <title>Two Versions of the Domain Pane</title>
 	    <mediaobject>
 	      <imageobject>
-	        <imagedata fileref="FIGURES/gui/domainwidgets.png" format="PNG"/>
+	        <imagedata fileref="FIGURES/gui/domainwidgets.png"
+                       contentwidth="577px" format="PNG"/>
 	      </imageobject>
           <caption>
             <para>

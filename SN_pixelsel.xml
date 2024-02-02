@@ -9,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-Pixel_Selection">
-  <title>Pixel Selection</title>
+  <title>The Pixel Selection Page</title>
 
   <para>
     The Pixel Selection Page contains tools for creating and modifying
@@ -37,11 +37,12 @@
     <title>The Pixel Selection Page</title>
     <mediaobject>
 	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/pixsel_page.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gui/pixsel_page.png" format="PNG"
+                   contentwidth="824px"/>
 	  </imageobject>
     </mediaobject>
   </figure>
-      
+  
   <simplesect id="Section-PixSel-Modification">
     <title>The Pixel Selection Modification Pane</title>
     <para>
@@ -79,11 +80,11 @@
 	  The <link
 	  linkend="MenuItem-OOF.PixelSelection.Clear"><guibutton>Clear</guibutton></link>
 	  button clears the pixel selection in the current &micro;.
-      </para>
-    </simplesect>
+    </para>
+  </simplesect>
 
-  </section>
-    
+</section>
+
 
   <!-- Keep this comment at the end of the file
   Local variables:

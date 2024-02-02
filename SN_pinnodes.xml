@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_pinnodes.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:11 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-PinNodes">
-  <title>Pin Nodes</title>
+  <title>The Pin Nodes Page</title>
   <para>
     The Pin Nodes Page contains tools for pinning &nodes; so that they
     don't move during &skel; <link
@@ -42,7 +37,7 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/pinnodes_page.png"
-	               format="PNG"/>
+                   contentwidth="802px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>

@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_bdycond.xml,v $
-  $Revision: 1.6 $
-  $Author: langer $
-  $Date: 2011-05-02 21:36:51 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-BoundaryCondition">
-  <title>Boundary Conditions</title>
+  <title>The Boundary Conditions Page</title>
   <para>
     The Boundary Conditions Page is where <link
     linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
@@ -68,7 +63,8 @@
     <title>The Boundary Conditions Page</title>
     <mediaobject>
 	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/bc_page.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gui/bc_page.png" format="PNG"
+                   contentwidth="810px"/>
 	  </imageobject>
     </mediaobject>
   </figure>
@@ -124,7 +120,7 @@
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/gui/newbc.png"
-			             format="PNG"/>
+                         contentwidth="421px" format="PNG"/>
 	        </imageobject>
 	      </mediaobject>
 	    </figure>

@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_bdyanalysis.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-04-21 21:34:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-BdyAnalysis">
-  <title>Boundary Analysis</title>
+  <title>The Boundary Analysis Page</title>
   <para>
     The Boundary Analysis Page computes quantities on the boundaries
     of a (presumably solved) mesh. This information can be used to
@@ -31,7 +26,7 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/bdyanalysis_page.png"
-	               format="PNG"/>
+                   contentwidth="893px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>

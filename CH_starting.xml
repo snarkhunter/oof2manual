@@ -656,17 +656,17 @@
 	    and is due to a bug in &oof2;, you may want to click
 	    <guibutton>Abort</guibutton> to quit the program.  Please file
 	    a <ulink
-	    url="http://www.ctcms.nist.gov/oof/oof2/index.html%23bugreport">bug
+	    url="http://www.ctcms.nist.gov/oof/oof2/#bugreport">bug
 	    report</ulink>!
       </para>
       <figure id="Figure-ErrorDialog">
 	    <title>The Error Dialog Box</title>
-	    <mediaobject>
-	      <imageobject>
-	        <imagedata fileref="FIGURES/errordialog.png"
-                       format="PNG" contentwidth="100%"/>
-	      </imageobject>
-	    </mediaobject>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="FIGURES/errordialog.png"
+                       format="PNG" contentwidth="453px"/>
+          </imageobject>
+        </mediaobject>
       </figure>
       <para>
 	    If you abort &oof2; from the error dialog, or if something
@@ -713,117 +713,117 @@
     <figure id="Figure-Tutorial">
       <title>The Tutorial Window</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/tutorial.png"
-                 format="PNG" contentwidth="100%"/>
-	</imageobject>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/tutorial.png" format="PNG" contentwidth="510px"/>
+	    </imageobject>
       </mediaobject>
     </figure>
     <para>
       The following tutorials are available:
       <itemizedlist spacing="compact">
-	<listitem>
-	  <formalpara>
-	    <title>Basics</title>
-	    <para>
-	      This tutorial begins by introducing the features of the
-	      Tutorial window, and then defines the most important
-	      &oof2; terminology.  It introduces just enough &oof2;
-	      commands to bring up all the major windows, and points
-	      out their features.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>A Simple Example</title>
-	    <para>
-	      This tutorial presents a simple but complete &oof2;
-	      calculation.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Microstructure</title>
-	    <para>
-	      This tutorial goes into more detail about the care and
-	      feeding of an &oof2; &micro;.  It shows how to create
-	      one from an &image;, perform &image; modifications,
-	      select pixels, and create pixel groups.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Skeleton</title>
-	    <para>
-	      This tutorial does for the &oof2; &skel; what the
-	      previous one did for the &micro;.  It demonstrates how
-	      to create a &skel; and to modify it so that it conforms
-	      to its &micro;.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Moving Nodes</title>
-	    <para>
-	      This tutorial goes into more depth on the topic of node
-	      motion, which is one way of modifying an &oof2;
-	      &skel;. It also discusses the important topic of <link
-	      linkend="Section-Concepts-Microstructure-ActiveArea">Active
-	      Areas</link>, which restrict the scope of &oof2;
-	      operations.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Skeleton Boundaries</title>
-	    <para>
-	      This tutorial demonstrates how to create boundaries
-	      in a &skel;.  Boundaries are useful because boundary
-	      conditions are applied to them.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Postprocessing</title>
-	    <para>
-	      This tutorial describes some of the ways of
-	      extracting data from an &oof2; calculation.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Nonrectangular Domain</title>
-	    <para>
-	      This tutorial demonstrates how to solve a problem on a
-	      non-rectangular &micro;.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Adaptive Mesh Refinement</title>
-	    <para>
-	      This tutorial describes how to refine a &mesh; after
-	      obtaining a solution in order to obtain a better solution.
-	    </para>
-	  </formalpara>
-	</listitem>
-	<listitem>
-	  <formalpara>
-	    <title>Solving Time Dependent Systems</title>
-	    <para>
-	      This tutorial demonstrates how to solve a time-dependent
-	      problem with &oof2;.
-	    </para>
-	  </formalpara>
-	</listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Basics</title>
+	        <para>
+	          This tutorial begins by introducing the features of the
+	          Tutorial window, and then defines the most important
+	          &oof2; terminology.  It introduces just enough &oof2;
+	          commands to bring up all the major windows, and points
+	          out their features.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>A Simple Example</title>
+	        <para>
+	          This tutorial presents a simple but complete &oof2;
+	          calculation.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Microstructure</title>
+	        <para>
+	          This tutorial goes into more detail about the care and
+	          feeding of an &oof2; &micro;.  It shows how to create
+	          one from an &image;, perform &image; modifications,
+	          select pixels, and create pixel groups.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Skeleton</title>
+	        <para>
+	          This tutorial does for the &oof2; &skel; what the
+	          previous one did for the &micro;.  It demonstrates how
+	          to create a &skel; and to modify it so that it conforms
+	          to its &micro;.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Moving Nodes</title>
+	        <para>
+	          This tutorial goes into more depth on the topic of node
+	          motion, which is one way of modifying an &oof2;
+	          &skel;. It also discusses the important topic of <link
+	          linkend="Section-Concepts-Microstructure-ActiveArea">Active
+	          Areas</link>, which restrict the scope of &oof2;
+	          operations.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Skeleton Boundaries</title>
+	        <para>
+	          This tutorial demonstrates how to create boundaries in a
+	          &skel;.  Boundaries are useful because boundary
+	          conditions are applied to them.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Postprocessing</title>
+	        <para>
+	          This tutorial describes some of the ways of extracting
+	          data from an &oof2; calculation.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Nonrectangular Domain</title>
+	        <para>
+	          This tutorial demonstrates how to solve a problem on a
+	          non-rectangular &micro;.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Adaptive Mesh Refinement</title>
+	        <para>
+	          This tutorial describes how to refine a &mesh; after
+	          obtaining a solution in order to obtain a better
+	          solution.
+	        </para>
+	      </formalpara>
+	    </listitem>
+	    <listitem>
+	      <formalpara>
+	        <title>Solving Time Dependent Systems</title>
+	        <para>
+	          This tutorial demonstrates how to solve a time-dependent
+	          problem with &oof2;.
+	        </para>
+	      </formalpara>
+	    </listitem>
       </itemizedlist>
     </para>
   </section>

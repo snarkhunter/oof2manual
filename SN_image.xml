@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: SN_image.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-05-02 15:47:05 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-Image">
-  <title>Image</title>
+  <title>The Image Page</title>
   
   <para>
     &images; are the way in which the geometry of a microstructure is
@@ -30,7 +25,8 @@
     <title>The Image Page</title>
     <mediaobject>
 	  <imageobject>
-	    <imagedata fileref="FIGURES/gui/image_page.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gui/image_page.png" format="PNG"
+                   contentwidth="801px"/>
 	  </imageobject>
     </mediaobject>
   </figure>
@@ -78,11 +74,7 @@
 		      <mediaobject>
 		        <imageobject>
 		          <imagedata fileref="FIGURES/gui/copyimage.png"
-		                     format="PNG"/>
-		        </imageobject>
-		        <imageobject>
-		          <imagedata fileref="FIGURES/gui/copyimage.eps"
-		                     format="EPS"/>
+		                     format="PNG" contentwidth="332px"/>
 		        </imageobject>
 		        <caption>
 		          <para>

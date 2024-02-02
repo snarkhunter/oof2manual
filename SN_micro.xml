@@ -9,7 +9,7 @@
 -->
 
 <section id="Section-Tasks-Microstructure">
-  <title>Microstructure</title>
+  <title>The Microstructure Page</title>
 
   <para>
     The &oof2; &micro; is the digitized representation of a physical
@@ -43,10 +43,8 @@
     </title>
     <mediaobject>
       <imageobject>
-	<imagedata fileref="FIGURES/gui/microstructure_page.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/gui/microstructure_page.eps" format="EPS"/>
+	    <imagedata fileref="FIGURES/gui/micropage.png" format="PNG"
+                   contentwidth="802px"/>
       </imageobject>
     </mediaobject>
   </figure>

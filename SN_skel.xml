@@ -5,11 +5,11 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@.nist.gov.
 -->
 
 <section id="Section-Tasks-Skeleton">
-  <title>Skeleton</title>
+  <title>The Skeleton Page</title>
   
   <para>
     An &oof2; &skel; is a bare-bones object containing geometric
@@ -49,7 +49,7 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/gui/skeleton_page.png"
-	               format="PNG"/>
+                   contentwidth="802px" format="PNG"/>
 	  </imageobject>
     </mediaobject>
   </figure>

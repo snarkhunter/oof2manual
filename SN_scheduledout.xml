@@ -1,9 +1,4 @@
 <!--
-    $RCSfile: SN_scheduledout.xml,v $
-    $Revision: 1.6 $
-    $Author: langer $
-    $Date: 2011-04-21 21:34:24 $
-
 This software was produced by NIST, an agency of the
 U.S. government, and by statute is not subject to copyright in the
 United States.  Recipients of this software assume all
@@ -14,7 +9,7 @@ the authors at oof_manager@nist.gov.
 -->
 
 <section id="Section-Tasks-ScheduledOutput">
-  <title>Scheduled Output</title>
+  <title>The Scheduled Output Page</title>
   <para>
     The Scheduled Output page determines what additional actions
     &oof2; will perform while computing a time dependent solution.
@@ -62,7 +57,8 @@ the authors at oof_manager@nist.gov.
     <title>The Scheduled Output Window</title>
     <mediaobject>
       <imageobject>
-	    <imagedata fileref="FIGURES/gui/scheduled_page.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gui/scheduled_page.png"
+                   contentwidth="802px" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
