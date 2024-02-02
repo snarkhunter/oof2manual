@@ -26,6 +26,11 @@ DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif --font
 # mktexpk if it's not using kpathsea. 
 TEMPDIR = tmpdir
 
+SAXON = ../xsl/java/saxon.jar
+## TODO: More up-to-date saxon from MacPorts raises lots of warnings
+## and errors.  Is there any point in updating?
+#SAXON = /opt/local/share/java/saxon9he.jar
+
 # # Build the version that we put on our web site.  This has to be
 # # manually copied over.
 # publish: $(TEMPDIR) saxonize.web texify figs
@@ -58,10 +63,10 @@ oof2man.tgz: $(TEMPDIR) saxonize.ext texify figs
 
 saxonize.web: $(XMLFILES)
 	mkdir $(TEMPDIR)/equations
-	(cd $(TEMPDIR); rm -f *.html; java -jar ../xsl/java/saxon.jar ../man_oof2.xml ../xsl/oofchunk.xsl nist.exit.script=1)
+	(cd $(TEMPDIR); rm -f *.html; java -jar $(SAXON) ../man_oof2.xml ../xsl/oofchunk.xsl nist.exit.script=1)
 
 saxonize.ext: $(XMLFILES)
-	(cd $(TEMPDIR); rm -f *.html; java -jar ../xsl/java/saxon.jar ../man_oof2.xml ../xsl/oofchunk.xsl)
+	(cd $(TEMPDIR); rm -f *.html; java -jar $(SAXON) ../man_oof2.xml ../xsl/oofchunk.xsl)
 
 texify:
 	(cd $(TEMPDIR); latex tex-math-inlines.tex && $(DVI2BITMAP) --verbose=quiet --query=bitmaps tex-math-inlines | awk '{printf "img[src=\"%s\"] {margin-bottom:%dpx;}\n",$$2,$$6-$$4}' > inline.css)
@@ -109,11 +114,11 @@ test.html: test.xml
 	docbook2html  -l dtd/xml.dcl test.xml
 
 test2.html: test.xml
-	java -jar /sw/share/java/saxon/saxon.jar -o test2.html test.xml /sw/share/xml/xsl/docbook-xsl/html/docbook.xsl
+	java -jar $(SAXON) -o test2.html test.xml /sw/share/xml/xsl/docbook-xsl/html/docbook.xsl
 
 sandbox.html: sandbox.xml oof2.css
 	-mkdir sandbox
-	(cd sandbox; rm -f *.html; java -jar ../xsl/java/saxon.jar ../sandbox.xml ../xsl/oofchunk.xsl)
+	(cd sandbox; rm -f *.html; java -jar $(SAXON) ../sandbox.xml ../xsl/oofchunk.xsl)
 	cp -f oof2.css sandbox
 	cp -f templates/*.html sandbox
 	/Library/WebServer/Documents/CSS/ctcmsWeb.py --from=sandbox --to=/Users/langer/Sites/sandbox --machine=localhost
@@ -121,7 +126,7 @@ sandbox.html: sandbox.xml oof2.css
 
 sandboxtex.html: sandboxtex.xml oof2.css
 	-mkdir sandboxtex
-	(cd sandboxtex; rm -f *.html; java -jar ../xsl/java/saxon.jar ../sandboxtex.xml ../xsl/oofchunk.xsl)
+	(cd sandboxtex; rm -f *.html; java -jar $(SAXON) ../sandboxtex.xml ../xsl/oofchunk.xsl)
 	(cd sandboxtex; latex tex-math-inlines.tex && $(DVI2BITMAP) --verbose=quiet --query=bitmaps tex-math-inlines | awk '{printf "img[src=\"%s\"] {margin-bottom:%dpx;}\n",$$2,$$6-$$4}' > inline.css)
 	(cd sandboxtex; latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
 	#cp -f oof2.css sandboxtex
