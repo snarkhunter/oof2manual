@@ -34,7 +34,8 @@
       <title>The Messages Window</title>
       <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/windows/messages.png" format="PNG"/>
+	      <imagedata fileref="FIGURES/windows/messages.png"
+                     contentwidth="760px" format="PNG"/>
 	    </imageobject>
       </mediaobject>
     </figure>
@@ -114,7 +115,7 @@
       <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="FIGURES/windows/activityviewer.png"
-	                 format="PNG"/>
+	                 contentwidth="410px" format="PNG"/>
 	    </imageobject>
       </mediaobject>
     </figure>
@@ -224,7 +225,7 @@
       <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="FIGURES/windows/console.png"
-	                 format="PNG"/>
+                     contentwidth="688px" format="PNG"/>
 	    </imageobject>
 	    <caption>
 	      <para>
@@ -247,7 +248,7 @@
 	    <mediaobject>
 	      <imageobject>
 	        <imagedata fileref="FIGURES/windows/examplevar.png"
-	                   format="PNG"/>
+                       contentwidth="380px" format="PNG"/>
 	      </imageobject>
 	    </mediaobject>
       </informalfigure>
