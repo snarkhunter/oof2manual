@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: TB_meshinfo.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:07 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -38,7 +33,8 @@
     <title>The Mesh Info Toolbox</title>
     <mediaobject>
       <imageobject>
-	    <imagedata fileref="FIGURES/gfx/meshinfo.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gfx/meshinfo.png"
+                   contentwidth="636px" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -176,7 +172,8 @@
       <title>The Mesh Data Viewer</title>
       <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/gfx/meshdata0.png" format="PNG"/>
+	      <imagedata fileref="FIGURES/gfx/meshdata0.png"
+                     contentwidth="298px" format="PNG"/>
 	    </imageobject>
       </mediaobject>
     </figure>
@@ -254,7 +251,8 @@
       <title>The Mesh Data Viewer, Collapsed</title>
       <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/gfx/meshdata1.png" format="PNG"/>
+	      <imagedata fileref="FIGURES/gfx/meshdata1.png"
+                     contentwidth="298px" format="PNG"/>
 	    </imageobject>
       </mediaobject>
     </figure>

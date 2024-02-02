@@ -35,7 +35,8 @@
     <title>The Pin Nodes Toolbox</title>
     <mediaobject>
       <imageobject>
-	    <imagedata fileref="FIGURES/gfx/pinnodes.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gfx/pinnodes.png"
+                   contentwidth="691px" format="PNG"/>
       </imageobject>
       <caption>
 	    <para>

@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: TB_skelinfo.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:07 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -30,7 +25,8 @@
     <title>The Skeleton Info Toolbox</title>
     <mediaobject>
       <imageobject>
-	    <imagedata fileref="FIGURES/gfx/skeletoninfo.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gfx/skeletoninfo.png"
+                   contentwidth="801px" format="PNG"/>
       </imageobject>
       <caption>
 	    <para>

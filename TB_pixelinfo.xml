@@ -21,9 +21,8 @@
     <title>The Pixel Info Toolbox</title>
     <mediaobject>
       <imageobject>
-        <!-- TODO: Why does this figure appear blurry in the browser?
-             The png file produced by omnigraffle is crisp. -->
-	    <imagedata fileref="FIGURES/gfx/pixelinfo.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gfx/pixelinfo.png"
+                   contentwidth="810px" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -138,7 +137,9 @@
 	      <title>Orientation in the Pixel Info Toolbox</title>
 	      <mediaobject>
 	        <imageobject>
-	          <imagedata fileref="FIGURES/gfx/pixelinfo-orientation.png" format="PNG"/>
+	          <imagedata
+                  fileref="FIGURES/gfx/pixelinfo-orientation.png"
+                  contentwidth="461px" format="PNG"/>
 	        </imageobject>
             <caption>
               <simpara>
@@ -179,7 +180,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="FIGURES/gfx/misorientation0.png"
-                         format="PNG"/>
+                         contentwidth="402px" format="PNG"/>
             </imageobject>            
           </mediaobject>
         </figure>
@@ -245,7 +246,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata fileref="FIGURES/gfx/misorientation.png"
-                           format="PNG"/>
+                           contentwidth="820px" format="PNG"/>
               </imageobject>
               <caption>
                 <para>
