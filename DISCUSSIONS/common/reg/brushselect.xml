@@ -1,69 +1,67 @@
 <!-- 
-  $RCSfile: brushselect.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:19 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Select a contiguous set of pixels by sweeping the mouse over them.
-    The mouse acts like a paintbrush with a size and shape given by
-    the <varname>style</varname> parameter.
-  </para>
-  <para>
-    The <varname>source</varname> parameter is the <link
-    linkend="Section-Concepts-Path">path</link> to a &micro; or
-    &image;.  If it's an &image;, the selection is made in the &micro;
-    in which the &image; resides.
-  </para>
-  <para>
-    The <varname>points</varname> parameter is a <link
-    linkend="Object-list">Python list</link> of <link
-    linkend="Object-Point"><classname>Points</classname></link> in the
-    &micro;.  The selected pixels will be those that are under the
-    brush when the brush is centered on one of the specified
-    <varname>points</varname> or on any point on the line segments
-    joining them.
-  </para>
-  <para>
-    The <varname>shift</varname> and <varname>ctrl</varname>
-    parameters govern how the current selection
-    (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
-    this operation) is merged with the previous selection (the objects
-    already selected) to form a new selection, as shown in <xref
-    linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-    shift and control keys were depressed during the mouse click that
-    initiated this command.
-  </para>
+<para>
+  Select a contiguous set of pixels by sweeping the mouse over them.
+  The mouse acts like a paintbrush with a size and shape given by the
+  <varname>style</varname> parameter.
+</para>
+<para>
+  The <varname>source</varname> parameter is the <link
+  linkend="Section-Concepts-Path">path</link> to a &micro; or &image;.
+  If it's an &image;, the selection is made in the &micro; in which
+  the &image; resides.
+</para>
+<para>
+  The <varname>points</varname> parameter is a <link
+  linkend="Object-list">Python list</link> of <link
+  linkend="Object-Point"><classname>Points</classname></link> in the
+  &micro;.  The selected pixels will be those that are under the brush
+  when the brush is centered on one of the specified
+  <varname>points</varname> or on any point on the line segments
+  joining them.
+</para>
+<para>
+  The <varname>shift</varname> and <varname>ctrl</varname> parameters
+  govern how the current selection
+  (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
+  this operation) is merged with the previous selection (the objects
+  already selected) to form a new selection, as shown in <xref
+  linkend="Table:ShiftCtrl"/>.  They indicate whether
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>)
+  the shift and control keys were depressed during the mouse click
+  that initiated this command.
+</para>
 
-  <figure id="Figure-brush">
-    <title>Selecting Pixels with the Brush</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/brush.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/brush.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  Pixels selected with the brush, using the <xref
-	  linkend="RegisteredClass-CircleBrush"/> style with
-	  <varname>radius</varname>=2.0 (the &micro; is 200&times;200,
-	  in physical units).
-	</simpara>
-      </caption>
-    </mediaobject>
-  </figure>
+<figure id="Figure-brush">
+  <title>Selecting Pixels with the Brush</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/brush.png"
+                 contentwidth="660px" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+        (a) Click and drag to select pixels, as partially illustrated
+        by the yellow curve.  The brush shape is drawn around the
+        mouse cursor. In this example it's a <xref
+        linkend="RegisteredClass-GfxCircleBrush"/> with
+        <code>radius=3.0</code>.  The cursor's path is drawn as well.
+        (The &micro; is 92&times;91, in physical units).
+      </simpara>
+      <simpara>
+	    (b) The pixels selected in (a).
+	  </simpara>
+    </caption>
+  </mediaobject>
+</figure>
 
 
   

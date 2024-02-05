@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -76,7 +76,8 @@
   <title>Active Area Examples</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/active/active1.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/active/active1.png"
+                 contentwidth="666" format="PNG"/>
     </imageobject>
     <caption>
 	  <simpara>
@@ -91,7 +92,8 @@
     </mediaobject>
     <mediaobject>
       <imageobject>
-	    <imagedata fileref="FIGURES/active/active2.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/active/active2.png"
+                   contentwidth="967" format="PNG"/>
       </imageobject>
       <caption>
 	    <simpara>

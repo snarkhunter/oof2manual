@@ -53,7 +53,8 @@
   <title>The New Graphics Layer dialog</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/gfx/newlayer.png" format="PNG">
+      <imagedata fileref="FIGURES/gfx/newlayer.png"
+                 contentwidth="786" format="PNG">
       </imagedata>
     </imageobject>
     <caption>

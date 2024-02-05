@@ -5,9 +5,8 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
-
 
 <para>
   Set the aspect ratio (height/width) of the <link
@@ -17,7 +16,8 @@
   <title>Contour Map Aspect Ratio</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/gfx/contouraspect.png" format="PNG"/>
+      <imagedata fileref="FIGURES/gfx/contouraspect.png"
+                 contentwidth="278px" format="PNG"/>
     </imageobject>
     <caption>
       <para>

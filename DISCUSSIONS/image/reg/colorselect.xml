@@ -5,61 +5,58 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Select pixels that are similar in color to the pixel at a given
-    location (the reference pixel).  When using the <link
-    linkend="Section-Graphics-PixelSelection">Pixel Selection
-    Toolbox</link>, this location is given by a mouse click. In text
-    mode the location is the first entry in the
-    <varname>points</varname> list.  Pixels selected in this way are
-    not necessarily contiguous.
-  </para>
-  <para>
-    The <varname>source</varname> parameter must be the <link
-    linkend="Section-Concepts-Path">path</link> to an &image;.  The
-    selection is made in the &micro; in which the &image; resides.
-  </para>
-  <para>
-    Pixels will be selected if their color lies within a box of size
-    2 &times; <varname>range</varname> in the three dimensional space
-    defined by the three components of the color.  The different types
-    of <xref linkend="RegisteredClass-ColorDifference"/> define the
-    box in different ways.
-  </para>
-  <para>
-    The <varname>shift</varname> and <varname>ctrl</varname>
-    parameters govern how the current selection
-    (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
-    this operation) is merged with the previous selection (the objects
-    already selected) to form a new selection, as shown in <xref
-    linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>True</userinput>) or not (<userinput>False</userinput>) the
-    shift and control keys were depressed during the mouse click that
-    initiated this command.
-  </para>
+<para>
+  Select pixels that are similar in color to the pixel at a given
+  location (the reference pixel).  When using the <link
+  linkend="Section-Graphics-PixelSelection">Pixel Selection
+  Toolbox</link>, this location is given by a mouse click. In text
+  mode the location is the first entry in the
+  <varname>points</varname> list.  Pixels selected in this way are not
+  necessarily contiguous.
+</para>
+<para>
+  The <varname>source</varname> parameter must be the <link
+  linkend="Section-Concepts-Path">path</link> to an &image;.  The
+  selection is made in the &micro; in which the &image; resides.
+</para>
+<para>
+  Pixels will be selected if their color lies within a box of size 2
+  &times; <varname>range</varname> in the three dimensional space
+  defined by the three components of the color.  The different types
+  of <xref linkend="RegisteredClass-ColorDifference"/> define the box
+  in different ways.
+</para>
+<para>
+  The <varname>shift</varname> and <varname>ctrl</varname> parameters
+  govern how the current selection
+  (<foreignphrase>i.e,</foreignphrase> the set of objects defined by
+  this operation) is merged with the previous selection (the objects
+  already selected) to form a new selection, as shown in <xref
+  linkend="Table:ShiftCtrl"/>.  They indicate whether
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>)
+  the shift and control keys were depressed during the mouse click
+  that initiated this command.
+</para>
 
-  <figure id="Figure-colorselect">
-    <title>Selecting Pixels by Color</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/colorselect.png" format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/colorselect.eps" format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  Pixels selected with the <classname>Color</classname>
-	  selector, with
-	  <varname>range</varname>=<userinput>DeltaRGB(delta_red=0.1,
-	  delta_green=0.1, delta_blue=0.1)</userinput>.
-	</simpara>
-      </caption>
-    </mediaobject>
-  </figure>
+<figure id="Figure-colorselect">
+  <title>Selecting Pixels by Color</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/colorselect.png"
+                 contentwidth="312px" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+	    Pixels selected with the <classname>Color</classname>
+	    selector, with
+	    <varname>range</varname>=<userinput>DeltaGray(delta_gray=0.1)</userinput>.
+	  </simpara>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

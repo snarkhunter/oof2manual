@@ -1,39 +1,35 @@
 <!-- 
-  $RCSfile: reorderlayers.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:18 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Graphics &layers; are conceptually organized in a stack, with
-    &layers; on the top obscuring layers below them.  When a new
-    &layer; is created, it is inserted into the stack in a default
-    position. Default positions are assigned to <link
-    linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>,
-    and are chosen to reduce the amount of overlap, placing point-like
-    displays (<foreignphrase>e.g,</foreignphrase> <xref
-    linkend="RegisteredClass-SkeletonNodeSelectionDisplay"/>) above
-    line-like displays (<foreignphrase>e.g,</foreignphrase> <xref
-    linkend="RegisteredClass-SkeletonSegmentSelectionDisplay"/>), and
-    line-like displays above two dimensional displays
-    (<foreignphrase>e.g,</foreignphrase> <xref
-    linkend="RegisteredClass-BitmapDisplayMethod"/>).  The commands in
-    the <link
-    linkend="MenuItem-OOF.Graphics_n.Layer.Raise"><command>Raise</command></link>
-    and <link
-    linkend="MenuItem-OOF.Graphics_n.Layer.Lower"><command>Lower</command></link>
-    menus interfere with this automatic ordering.  The
-    <command>Reorder_All</command> command restores it.
-  </para>
+<para>
+  Graphics &layers; are conceptually organized in a stack, with
+  &layers; on the top obscuring layers below them.  When a new &layer;
+  is created, it is inserted into the stack in a default
+  position. Default positions are assigned to <link
+  linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>,
+  and are chosen to reduce the amount of overlap, placing point-like
+  displays (<foreignphrase>e.g,</foreignphrase> <xref
+  linkend="RegisteredClass-SkeletonNodeSelectionDisplay"/>) above
+  line-like displays (<foreignphrase>e.g,</foreignphrase> <xref
+  linkend="RegisteredClass-SkeletonSegmentSelectionDisplay"/>), and
+  line-like displays above two dimensional displays
+  (<foreignphrase>e.g,</foreignphrase> <xref
+  linkend="RegisteredClass-BitmapDisplayMethod"/> or <xref
+  linkend="RegisteredClass-SkeletonElementSelectionDisplay"/>).  The
+  commands in the <link
+  linkend="MenuItem-OOF.Graphics_n.Layer.Raise"><command>Raise</command></link>
+  and <link
+  linkend="MenuItem-OOF.Graphics_n.Layer.Lower"><command>Lower</command></link>
+  menus interfere with this automatic ordering.  The
+  <command>Reorder_All</command> command restores it.
+</para>
 
 
 <!-- Keep this comment at the end of the file

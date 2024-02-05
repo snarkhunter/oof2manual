@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -59,33 +59,21 @@
   <title>Selecting Pixels with the Burn Algorithm</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/pixelselect/burn.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/pixelselect/burn.eps" format="EPS"/>
+	  <imagedata fileref="FIGURES/pixelselect/burn.png"
+                 contentwidth="650px" format="PNG"/>
     </imageobject>
     <caption>
 	  <simpara>
-	    Pixels selected with the <classname>Burn</classname>
+	    (a) Pixels selected with the <classname>Burn</classname>
 	    selector with <varname>local_flammability</varname>=0.03,
 	    <varname>global_flammability</varname>=0.1,
 	    <varname>color_space_norm</varname>=<userinput>'L1'</userinput>,
 	    and <varname>next_nearest</varname>=0.
 	  </simpara>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/pixelselect/burn2.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/pixelselect/burn2.eps" format="EPS"/>
-    </imageobject>
-    <caption>
-	  <simpara>
-	    The same selection made with both flammabilities set to
-	    0.2.  The fire has spread further and selected more pixels.
-	  </simpara>
+      <simpara>
+        (b) The same selection made with both flammabilities set to
+        0.2.  The fire has spread further and selected more pixels.
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

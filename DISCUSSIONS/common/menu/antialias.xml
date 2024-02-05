@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -30,7 +30,8 @@
   <title>Antialiasing Lines</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/antialias_lines.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/gfx/antialias_lines.png"
+                 contentwidth="733px" format="PNG"/>
     </imageobject>
     <caption>
       <para>
@@ -54,7 +55,8 @@
   <title>Antialiasing Filled Polygons</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/antialias_filled.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/gfx/antialias_filled.png"
+                 contentwidth="632px" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>

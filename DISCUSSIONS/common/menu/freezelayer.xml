@@ -33,10 +33,11 @@
 </para>
 <para>
   In text mode and in scripts, the &layer; is specified by its
-  position <varname>n</varname> in the window's layer list.  The
-  unlisted layers must be counted when computing <varname>n</varname>.
-  This command isn't very friendly in scripts, because it can be hard
-  to determine the parameter <varname>n</varname>.
+  position <varname>n</varname> in the window's layer list.  The <link
+  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">unlisted</link>
+  layers must be counted when computing <varname>n</varname>.  This
+  command isn't very friendly in scripts, because it can be hard to
+  determine the parameter <varname>n</varname>.
 </para>
 <para>
   Frozen &layers; can be thawed with <xref

@@ -1,26 +1,26 @@
 <!-- 
-  $RCSfile: toolbox.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:18 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    The <link linkend="Section-Graphics-Toolboxes">Toolboxes</link>
-    occupy the left hand pane of 
-    the <link linkend="Chapter-Graphics">Graphics</link> window.
-    Different toolboxes allow the user to perform different tasks.
-    Each toolbox invokes commands in its own submenu of the
-    <command>Toolbox</command> menu.
-  </para>
+<para>
+  The <link linkend="Section-Graphics-Toolboxes">Toolboxes</link>
+  occupy the left hand pane of the <link
+  linkend="Chapter-Graphics">Graphics</link> window.  Different
+  toolboxes allow the user to perform different tasks.  Each toolbox
+  invokes commands in its own submenu of the
+  <command>Toolbox</command> menu.
+</para>
+<para>
+  This section only covers the menu commands associated with each
+  Toolbox.  See <xref linkend="Section-Graphics-Toolboxes"/> for
+  details about each Toolbox's role and how to use its GUI.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

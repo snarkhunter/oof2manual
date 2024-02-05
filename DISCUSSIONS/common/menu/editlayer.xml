@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -24,7 +24,14 @@
   <varname>n</varname>.  All parameters other than
   <varname>n</varname> can be changed in the dialog.
 </para>
-
+<para>
+  In text mode and in scripts, the &layer; is specified by its
+  position <varname>n</varname> in the window's layer list.  The <link
+  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">unlisted</link>
+  and invisible layers must be counted when computing
+  <varname>n</varname>.  This command isn't very friendly in scripts,
+  because it can be hard to determine <varname>n</varname>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
