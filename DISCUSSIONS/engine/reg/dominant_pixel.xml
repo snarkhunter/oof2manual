@@ -1,125 +1,73 @@
 <!-- 
-  $RCSfile: dominant_pixel.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:39 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 
-  <para>
-    <command>PixelElementSelect</command> is a <link
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Element">selection
-    method</link> that selects &elems; in response to a mouse click in
-    the <link linkend="Chapter-Graphics">graphics window</link> when
-    the <link linkend="Section-Graphics-SkeletonSelection">Skeleton
-    Selection</link> toolbox is active and is set to
-    <quote>Element</quote> mode. It selects all &elems; with the same
-    <link linkend="Section-Concepts-PixelCategory">dominant pixel
-    type</link> as the pixel that was selected with the mouse. See
-    <xref linkend="Figure-dompixsel"/> for some examples.
-  </para>
-  <para>
-    <varname>skeleton</varname> is the &skel; from which the &elems; are
-    to be selected.
-  </para>
-  <para>
-    <varname>points</varname> is a <xref linkend="Object-list"/> of
-    <xref linkend="Object-Point"/> objects.
-    <classname>PixelElementSelect</classname> will select those
-    &elems; whose dominant <link
-    linkend="Section-Concepts-PixelCategory">pixel category</link> is
-    the same as that of the pixel containing the first point in the
-    list. 
-  </para>
-  <para>
-    The <varname>shift</varname> and <varname>ctrl</varname>
-    parameters govern how the current selection
-    (<foreignphrase>i.e,</foreignphrase> the set of &elems; defined by
-    this operation) is merged with the previous selection (the &elems;
-    already selected) to form a new selection, as shown in <xref
-    linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-    shift and control keys were depressed during the mouse click that
-    initiated this command.
-  </para>
-  <figure id="Figure-dompixsel">
-    <title>Selecting Elements by Pixel Type</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; for a &micro; with three pixel types (shown by
-	  shades of blue and yellow).
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element1.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  Clicking on the point shown selects all the elements (shown
-	  in red) whose dominant pixel is yellow.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element2.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element2.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The mouse indicates a pixel that is <emphasis>not</emphasis>
-	  the dominant type for the element surrounding it.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element3.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/dominant_element3.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  Clicking on a non-dominant (submissive?) pixel does
-	  <emphasis>not</emphasis> select the element in which the
-	  mouse was clicked!
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
-
-
+<para>
+  <command>PixelElementSelect</command> is a <link
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Element">selection
+  method</link> that selects &elems; in response to a mouse click in
+  the <link linkend="Chapter-Graphics">graphics window</link> when
+  the <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+  Selection</link> toolbox is active and is set to
+  <quote>Element</quote> mode. It selects all &elems; with the same
+  <link linkend="Section-Concepts-PixelCategory">dominant pixel
+  type</link> as the pixel that was selected with the mouse. See
+  <xref linkend="Figure-dompixsel"/> for some examples.
+</para>
+<para>
+  <varname>skeleton</varname> is the &skel; from which the &elems; are
+  to be selected.
+</para>
+<para>
+  <varname>points</varname> is a <xref linkend="Object-list"/> of
+  <xref linkend="Object-Point"/> objects.
+  <classname>PixelElementSelect</classname> will select those
+  &elems; whose dominant <link
+  linkend="Section-Concepts-PixelCategory">pixel category</link> is
+  the same as that of the pixel containing the first point in the
+  list. 
+</para>
+<para>
+  The <varname>shift</varname> and <varname>ctrl</varname> parameters
+  govern how the current selection
+  (<foreignphrase>i.e,</foreignphrase> the set of &elems; defined by
+  this operation) is merged with the previous selection (the &elems;
+  already selected) to form a new selection, as shown in <xref
+  linkend="Table:ShiftCtrl"/>.  They indicate whether
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>)
+  the shift and control keys were depressed during the mouse click
+  that initiated this command.
+</para>
+<figure id="Figure-dompixsel">
+  <title>Selecting Elements by Pixel Type</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/dominantpixel.png"
+                 contentwidth="647px" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+	    A &skel; for a &micro; with four pixel types.  Clicking on the
+	    point shown in (a) selects all &elems; whose dominant pixel is
+	    blue, shown by the bright red &elems; in (b).
+      </simpara>
+      <simpara>
+        (c) and (d) illustrate how this process might be confusing.
+        In (c) the clicked point is <emphasis>not</emphasis> the
+        dominant pixel for the clicked &elem;.  A white pixel has been
+        selected, so in (d) the white &elems; are selected, which does
+        not include the clicked &elem;.
+      </simpara>
+    </caption>
+  </mediaobject>
+</figure>
 
   <!-- Keep this comment at the end of the file
   Local variables:

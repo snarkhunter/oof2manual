@@ -1,87 +1,66 @@
 <!-- 
-  $RCSfile: circle_element.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:37 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-
-  <para>
-    <command>CircleElementSelect</command> is a <link
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Element">selection
-    method</link> that selects &elems; in response to a mouse click in
-    the <link linkend="Chapter-Graphics">graphics window</link> when
-    the <link linkend="Section-Graphics-SkeletonSelection">Skeleton
-    Selection</link> toolbox is active and is set to
-    <quote>Element</quote> mode.  It selects all &elems; lying within
-    a circle swept out by dragging the mouse, as shown in <xref
-    linkend="Figure-circle_elements"/>.  Click the mouse in the center
-    of the circle and drag out along a radius.  Only those &elems;
-    that are completely within the circle will be selected.
-  </para>
-  <para>
-    <varname>skeleton</varname> is the &skel; from which the &elems; are
-    to be selected.
-  </para>
-  <para>
-    <varname>points</varname> is a <xref linkend="Object-list"/> of
-    <xref linkend="Object-Point"/> objects.  The first point in the
-    list is the center of the circle, and the second point is a point
-    on the circumference.  Any other points in the list will be ignored.
-  </para>
-  <para>
-    The <varname>shift</varname> and <varname>ctrl</varname>
-    parameters govern how the current selection
-    (<foreignphrase>i.e,</foreignphrase> the set of &elems; defined by
-    this operation) is merged with the previous selection (the &elems;
-    already selected) to form a new selection, as shown in <xref
-    linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-    shift and control keys were depressed during the mouse click that
-    initiated this command.
-  </para>
-  <figure id="Figure-circle_elements">
-    <title>Selecting a Circular Set of Elements</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/circle_elements0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/circle_elements0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; while some &elems; are being selected with
-	  <classname>CircleElementSelect</classname>.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/circle_elements1.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/circle_elements1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &elems; that were selected are marked in red.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  <command>CircleElementSelect</command> is a <link
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Element">selection
+  method</link> that selects &elems; in response to a mouse click in
+  the <link linkend="Chapter-Graphics">graphics window</link> when the
+  <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+  Selection</link> toolbox is active and is set to
+  <quote>Element</quote> mode.  It selects all &elems; lying within a
+  circle swept out by dragging the mouse, as shown in <xref
+  linkend="Figure-circle_elements"/>.  Click the mouse in the center
+  of the circle and drag out along a radius.  Only those &elems; that
+  are completely within the circle will be selected.
+</para>
+<para>
+  <varname>skeleton</varname> is the &skel; from which the &elems; are
+  to be selected.
+</para>
+<para>
+  <varname>points</varname> is a <xref linkend="Object-list"/> of
+  <xref linkend="Object-Point"/> objects.  The first point in the
+  list is the center of the circle, and the second point is a point
+  on the circumference.  Any other points in the list will be ignored.
+</para>
+<para>
+  The <varname>shift</varname> and <varname>ctrl</varname>
+  parameters govern how the current selection
+  (<foreignphrase>i.e,</foreignphrase> the set of &elems; defined by
+  this operation) is merged with the previous selection (the &elems;
+  already selected) to form a new selection, as shown in <xref
+  linkend="Table:ShiftCtrl"/>.  They indicate whether
+  (<userinput>True</userinput>) or not
+  (<userinput>False</userinput>) the shift and control keys were
+  depressed during the mouse click that initiated this command.
+</para>
+<figure id="Figure-circle_elements">
+  <title>Selecting a Circular Set of Elements</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/circle_elements.png"
+                 contentwidth="650px" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+        (a) Click on the center of the circle and drag to the desired
+        radius, as shown by the yellow arrow.
+	  </simpara>
+      <simpara>
+        (b) The bright red &elems; were selected in (a).  Only those
+        &elems; that were completely within the circle are included.
+      </simpara>
+    </caption>
+  </mediaobject>
+</figure>
 
 
 
