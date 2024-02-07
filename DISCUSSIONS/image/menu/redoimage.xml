@@ -5,20 +5,20 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
-  Each &image; in a &micro; has associated with it a stack of modified
-  versions of the &image;.  When the &image; is <link
+  Each &image; in a &micro; has associated with it a buffer of
+  modified versions of the &image;.  When the &image; is <link
   linkend="MenuItem-OOF.Image.Modify">modified</link>, the new version
-  is pushed onto the stack.  The <link
+  is stored in the buffer.  The <link
   linkend="MenuItem-OOF.Image.Undo"><command>Undo</command></link>
-  command pops the topmost version off the stack, thereby reverting to
-  the next older version.  The <command>Redo</command> command, undoes
-  the <link
+  command restores the next oldest version from the buffer, thereby
+  reverting to the next older version.  The <command>Redo</command>
+  command, undoes the <link
   linkend="MenuItem-OOF.Image.Undo"><command>Undo</command></link>, by
-  replacing the most recently popped &image; onto the stack.
+  restoring the next newest &image; from the buffer.
 </para>
 <note>
   <para>

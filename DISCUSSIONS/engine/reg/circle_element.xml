@@ -28,7 +28,7 @@
 <para>
   <varname>points</varname> is a <xref linkend="Object-list"/> of
   <xref linkend="Object-Point"/> objects.  The first point in the
-  list is the center of the circle, and the second point is a point
+  list is the center of the circle, and the last point is a point
   on the circumference.  Any other points in the list will be ignored.
 </para>
 <para>

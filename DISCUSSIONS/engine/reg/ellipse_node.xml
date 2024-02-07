@@ -1,89 +1,83 @@
 <!-- 
-  $RCSfile: ellipse_node.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:39 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 
-  <para>
-    <command>EllipseNodeSelect</command> is a <link
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Node">selection
-    method</link> that selects &nodes;
-    in response to a mouse click in the <link
-    linkend="Chapter-Graphics">graphics window</link> when the <link
-    linkend="Section-Graphics-SkeletonSelection">Skeleton
-    Selection</link> toolbox is active and is set to
-    <quote>Node</quote> mode.  It selects all &nodes; lying within a
-    ellipse swept out by dragging the mouse, as shown in <xref
-      linkend="Figure-ellipse_nodes"/>.  The ellipse is defined by the
-    rectangle that bounds it.  Click the mouse on one corner of the
-    rectangle and drag to the diagonally opposite corner.
-  </para>
-  <para>
-    <varname>skeleton</varname> is the &skel; from which the &nodes; are
-    to be selected.
-  </para>
-  <para>
-    <varname>points</varname> is a <xref linkend="Object-list"/> of
-    <xref linkend="Object-Point"/> objects.  The first point in the
-    list is one corner of the rectangle bounding the ellipse, and the
-    second point is the diagonally opposite corner. Any other points
-    in the list will be ignored.
-  </para>
-  <para>
-    The <varname>shift</varname> and <varname>ctrl</varname>
-    parameters govern how the current selection
-    (<foreignphrase>i.e,</foreignphrase> the set of &nodes; defined by
-    this operation) is merged with the previous selection (the &nodes;
-    already selected) to form a new selection, as shown in <xref
-    linkend="Table:ShiftCtrl"/>.  They indicate whether
-    (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-    shift and control keys were depressed during the mouse click that
-    initiated this command.
-  </para>
-  <figure id="Figure-ellipse_nodes">
-    <title>Selecting a Elliptical Set of Nodes</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/ellipse_nodes0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/ellipse_nodes0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; while some &nodes; are being selected with
-	  <classname>EllipseNodeSelect</classname>.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/ellipse_nodes1.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_selection/ellipse_nodes1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &nodes; that were selected are marked with blue dots.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
+<para>
+  <command>EllipseNodeSelect</command> is a <link
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Node">selection
+  method</link> that selects &nodes; in response to a mouse click in
+  the <link linkend="Chapter-Graphics">graphics window</link> when the
+  <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+  Selection</link> toolbox is active and is set to <quote>Node</quote>
+  mode.  It selects all &nodes; lying within a ellipse swept out by
+  dragging the mouse, as shown in <xref
+  linkend="Figure-ellipse_nodes"/>.  The ellipse is defined by the
+  rectangle that bounds it.  Click the mouse on one corner of the
+  rectangle and drag to the diagonally opposite corner.
+</para>
+<para>
+  <varname>skeleton</varname> is the &skel; from which the &nodes; are
+  to be selected.
+</para>
+<para>
+  <varname>points</varname> is a <xref linkend="Object-list"/> of
+  <xref linkend="Object-Point"/> objects.  The first point in the list
+  is one corner of the rectangle bounding the ellipse, and the last
+  point is the diagonally opposite corner. Any other points in the
+  list will be ignored.
+</para>
+<para>
+  The <varname>shift</varname> and <varname>ctrl</varname> parameters
+  govern how the current selection
+  (<foreignphrase>i.e,</foreignphrase> the set of &nodes; defined by
+  this operation) is merged with the previous selection (the &nodes;
+  already selected) to form a new selection, as shown in <xref
+  linkend="Table:ShiftCtrl"/>.  They indicate whether
+  (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
+  shift and control keys were depressed during the mouse click that
+  initiated this command.
+</para>
+<figure id="Figure-ellipse_nodes">
+  <title>Selecting a Elliptical Set of Nodes</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes0.png"
+	             format="PNG"/>
+    </imageobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes0.eps"
+	             format="EPS"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    A &skel; while some &nodes; are being selected with
+	    <classname>EllipseNodeSelect</classname>.
+	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes1.png"
+	             format="PNG"/>
+    </imageobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes1.eps"
+	             format="EPS"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The &nodes; that were selected are marked with blue dots.
+	  </para>
+    </caption>
+  </mediaobject>
+</figure>
 
 
 
