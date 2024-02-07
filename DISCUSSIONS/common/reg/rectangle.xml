@@ -34,7 +34,7 @@
   this operation) is merged with the previous selection (the objects
   already selected) to form a new selection, as shown in <xref
   linkend="Table:ShiftCtrl"/>.  They indicate whether
-  (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>) the
   shift and control keys were depressed during the mouse click that
   initiated this command.
 </para>

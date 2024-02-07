@@ -23,11 +23,10 @@
   selection is made in the &micro; in which the &image; resides.
 </para>
 <para>
-  Pixels will be selected if their color lies within a box of size 2
-  &times; <varname>range</varname> in the three dimensional space
-  defined by the three components of the color.  The different types
-  of <xref linkend="RegisteredClass-ColorDifference"/> define the box
-  in different ways.
+  Pixels will be selected if their color lies within the given
+  <varname>range</varname> of the reference color.  The different
+  types of <xref linkend="RegisteredClass-ColorDifference"/> define
+  the range in different ways.
 </para>
 <para>
   The <varname>shift</varname> and <varname>ctrl</varname> parameters
@@ -46,13 +45,15 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/pixelselect/colorselect.png"
-                 contentwidth="312px" format="PNG"/>
+                 contentwidth="648" format="PNG"/>
     </imageobject>
     <caption>
 	  <simpara>
-	    Pixels selected with the <classname>Color</classname>
-	    selector, with
-	    <varname>range</varname>=<userinput>DeltaGray(delta_gray=0.1)</userinput>.
+        (a) Click the mouse on a representative pixel.
+      </simpara>
+      <simpara>
+	    (b) The pixels selected by the mouse click in (a), with
+	    <code>range=DeltaGray(delta_gray=0.1)</code>.
 	  </simpara>
     </caption>
   </mediaobject>

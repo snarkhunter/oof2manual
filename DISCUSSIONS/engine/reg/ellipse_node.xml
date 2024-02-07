@@ -8,7 +8,6 @@
   the authors at oof_manager@nist.gov.
 -->
 
-
 <para>
   <command>EllipseNodeSelect</command> is a <link
   linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Node">selection
@@ -40,41 +39,25 @@
   this operation) is merged with the previous selection (the &nodes;
   already selected) to form a new selection, as shown in <xref
   linkend="Table:ShiftCtrl"/>.  They indicate whether
-  (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-  shift and control keys were depressed during the mouse click that
-  initiated this command.
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>)
+  the shift and control keys were depressed during the mouse click
+  that initiated this command.
 </para>
 <figure id="Figure-ellipse_nodes">
   <title>Selecting a Elliptical Set of Nodes</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes0.png"
-	             format="PNG"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes0.eps"
-	             format="EPS"/>
+	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes.png"
+                 contentwidth="654px" format="PNG"/>
     </imageobject>
     <caption>
-	  <para>
-	    A &skel; while some &nodes; are being selected with
-	    <classname>EllipseNodeSelect</classname>.
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes1.png"
-	             format="PNG"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/skel_selection/ellipse_nodes1.eps"
-	             format="EPS"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The &nodes; that were selected are marked with blue dots.
-	  </para>
+	  <simpara>
+        (a) Click and drag, as shown by the yellow arrow, to define a
+        rectangle.  The ellipse fits inside the rectangle.
+	  </simpara>
+      <simpara>
+        (b) The blue &nodes; were selected in (a).
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

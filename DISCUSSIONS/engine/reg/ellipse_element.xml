@@ -34,15 +34,15 @@
   list will be ignored.
 </para>
 <para>
-  The <varname>shift</varname> and <varname>ctrl</varname>
-  parameters govern how the current selection
+  The <varname>shift</varname> and <varname>ctrl</varname> parameters
+  govern how the current selection
   (<foreignphrase>i.e,</foreignphrase> the set of &elems; defined by
   this operation) is merged with the previous selection (the &elems;
   already selected) to form a new selection, as shown in <xref
   linkend="Table:ShiftCtrl"/>.  They indicate whether
-  (<userinput>1</userinput>) or not (<userinput>0</userinput>) the
-  shift and control keys were depressed during the mouse click that
-  initiated this command.
+  (<userinput>True</userinput>) or not (<userinput>False</userinput>)
+  the shift and control keys were depressed during the mouse click
+  that initiated this command.
 </para>
 <figure id="Figure-ellipse_elements">
   <title>Selecting a Elliptical Set of Elements</title>
@@ -60,7 +60,7 @@
 	  </simpara>
       <simpara>
         (b) The bright red selected &elems; are the ones that are
-        completely within the ellipse in (a).
+        completely within the ellipse.
       </simpara>
     </caption>
   </mediaobject>
