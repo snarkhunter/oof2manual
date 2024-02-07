@@ -5,22 +5,25 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
-  A &micro; maintains a stack of sets of selected pixels.  Whenever
-  pixels are selected or deselected, a new selection set is pushed
-  onto the stack. The <command>Undo</command> command pops the topmost
-  set off the stack, thereby reverting to the next older selection.
-  The popped version is not destroyed, however.  It can be recovered
-  with <xref linkend="MenuItem-OOF.PixelSelection.Redo"/>.
+  Undo the most recent pixel selection operation in the given
+  <varname>microstructure</varname>.  To undo the
+  <command>Undo</command>, use <xref
+  linkend="MenuItem-OOF.PixelSelection.Redo"/>.
 </para>
 <para>
-  The stack has a limited depth.  When the stack is full, the oldest
-  selections will be lost when new selections are made.  The size of
-  the stack can be changed with <xref
-  linkend="OOF.Settings.UndoBuffer_Size.Pixel_Selection"/>.
+  The number of times that <command>Undo</command> can be used is
+  limited by the size of the undo buffer.  When the buffer is full,
+  the oldest selections will be lost when new selections are made. The
+  buffer size can be changed by <xref
+  linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Pixel_Selection"/>.
+</para>
+<para>
+  This command is equivalent to <xref
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Undo"/>.
 </para>
 
 <!-- Keep this comment at the end of the file

@@ -5,36 +5,27 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-
-  <para>
-    As well as keeping track of which &nodes; are currently <link
-    linkend="MenuItem-OOF.Skeleton.PinNodes">pinned</link>, each
-    &skel; maintains a stack of previous sets of pinned &nodes;.
-    Whenever nodes are pinned or unpinned, a new set is pushed onto
-    the stack.  The <command>Undo</command> command operates on the
-specified &skel;, popping the latest
-    configuration off of the stack, thereby reverting to the previous
-    set of pinned &nodes;.  The popped version is not destroyed &#x2014; it
-    can be recovered with the <xref
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Redo"/>
-    command.
-  </para>
-  <para>
-     The <varname>skeleton</varname> parameter is the fully-qualified name
-     of the &skel; on which to operate.
-  </para>
-  <para>
-    The stack is not infinite.  When it is full, the oldest set of
-    pinned &nodes; will be lost to make room for a new one.
-  </para>
-  <para>
-    <command>OOF.Graphics_n.Toolbox.Pin_Nodes.Undo</command> is
-    equivalent to <xref
-    linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"/>.
-  </para>
+<para>
+  Undo the most recent &node; pinning operation in the given
+  <varname>skeleton</varname>.  To undo the <command>Undo</command>,
+  use <xref linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"/>.
+</para>
+<para>
+  The number of times that <command>Undo</command> can be used is
+  limited by the size of the undo buffer.  When the buffer is full,
+  the oldest selections will be lost when new selections are made. The
+  buffer size can be changed by <xref
+  linkend="OOF.Settings.UndoBuffer_Size.Pinned_Nodes"/>.
+</para>
+<para>
+  This command is equivalent to <xref
+  linkend="MenuItem-OOF.Skeleton.PinNodes.Undo"/>, which perform the
+  same task from the <link linkend="Section-Tasks-PinNodes">Pin
+  Nodes</link> page in the main &oof2; window.
+</para>
 
 
 

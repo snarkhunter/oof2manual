@@ -5,28 +5,24 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
-  Each &skel; maintains a stack of previous &elem; selections.
-  Whenever &elems; are selected or deselected, a new version is pushed
-  onto the stack.  The <link
-  linkend="MenuItem-OOF.ElementSelection.Undo"><command>Undo</command></link>
-  command pops the latest version off of the stack, thereby reverting
-  to the previously selected set of &elems;.  The
-  <command>Redo</command> command undoes the <command>Undo</command>,
-  replacing the most recently popped selection onto the stack.
+  Redo a previously <link
+  linkend="MenuItem-OOF.NodeSelection.Undo">undone</link> &elem;
+  selection in the given <varname>skeleton</varname>.  Undone
+  selections can be redone only if no new selections have been made
+  since the time of the last <link
+  linkend="MenuItem-OOF.NodeSelection.Undo"><command>Undo</command></link>.
 </para>
-<note>
-  <para>
-    Undone modifications can be redone only if no new &elem;
-    selections have been made since the time of the last <link
-    linkend="MenuItem-OOF.ElementSelection.Undo"><command>Undo</command></link>
-    command.
-  </para>
-</note>
-
+<para>
+  This command is equivalent to <xref
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Element.Redo"/>,
+  which performs the same task from the <link
+  linkend="Section-Graphics-SkeletonSelection">Skeleton
+  Selection</link> toolbox in the Graphics window.
+</para>
 
 
 <!-- Keep this comment at the end of the file

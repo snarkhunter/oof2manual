@@ -1,36 +1,33 @@
 <!-- 
-  $RCSfile: pinnodes_undo.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:26 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    As well as keeping track of which &nodes; are currently <link
-    linkend="MenuItem-OOF.Skeleton.PinNodes">pinned</link>, each
-    &skel; maintains a stack of previous sets of pinned &nodes;.
-    Whenever nodes are pinned or unpinned, a new set is pushed onto
-    the stack.  The <command>Undo</command> command pops the latest
-    version off of the stack, thereby reverting to the previous set of
-    pinned &nodes;.  The popped version is not destroyed &#x2014; it can be
-    recovered with the <xref
-    linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"/> command.
-  </para>
-  <para>
-    The stack is not infinite.  When it is full, the oldest set of
-    pinned &nodes; will be lost to make room for a new one.
-  </para>
-
-
-
+<para>
+  Undo the latest change to the given <varname>skeleton</varname>'s
+  set of <link linkend="MenuItem-OOF.Skeleton.PinNodes">pinned</link>
+  &nodes;.  To undo the <command>Undo</command>, use <xref
+  linkend="MenuItem-OOF.Skeleton.PinNodes.Redo"/>.
+</para>
+<para>
+  The number of times that <command>Undo</command> can be used is
+  limiited by the size of the undo buffer. When the buffer is full,
+  the oldest set of pinned &nodes; will be lost when a new
+  modification is made.  The buffer size can be changed by <xref
+  linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Pinned_Nodes"/>.
+</para>
+<para>
+  This command is is equivalent to <xref
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pin_Nodes.Undo"/>, which
+  performs the same task when invoked from the <link
+  linkend="Section-Graphics-PinNodes">Pin Nodes Toolbox</link>.
+</para>
+  
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

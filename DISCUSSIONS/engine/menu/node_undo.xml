@@ -5,28 +5,28 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
-  Each &skel; maintains a stack of previous &node; selections.
-  Whenever &nodes; are selected or deselected, a new version is pushed
-  onto the stack.  The <command>Undo</command> pops the latest version
-  off of the stack, thereby reverting to the previously selected set
-  of &nodes;.  The popped set is not destroyed &#x2014; it can be
-  recovered with the <xref linkend="MenuItem-OOF.NodeSelection.Redo"/>
-  command.
+  Undo the most recent &node; selection operation in the given
+  <varname>skeleton</varname>.  To undo the <command>Undo</command>,
+  use <xref linkend="MenuItem-OOF.NodeSelection.Redo"/>.
 </para>
 <para>
-  The selection stack is not infinite.  When it is full, the oldest
-  selection will be lost when a new selection is made.  The size of
-  the stack can be changed with <xref
+  The number of times that <command>Undo</command> can be used is
+  limited by the size of the undo buffer.  When the buffer is full,
+  the oldest selections will be lost when new selections are made. The
+  buffer size can be changed by
+  <xref
   linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Skeleton_Selection.Node"/>
   or <xref
   linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Skeleton_Selection.All"/>.
 </para>
-
-
+<para>
+  This command is equivalent to <xref
+  linkend="Menu-OOF.Graphics_n.Toolbox.Select_Node.Undo"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

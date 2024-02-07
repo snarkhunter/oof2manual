@@ -5,12 +5,12 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
   This menu contains commands for selecting pixels in a &micro;. Each
-  &micro; has one current pixel selection state and a stack of past
+  &micro; has one current pixel selection state and a buffer of past
   selections, which are accessible through the <link
   linkend="MenuItem-OOF.PixelSelection.Undo"><command>Undo</command></link>
   and <link
