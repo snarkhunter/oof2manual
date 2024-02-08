@@ -152,15 +152,6 @@ linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
 <!ENTITY layers "<link
 linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
 
-<!-- TODO: Make sure layereditor and layerset aren't used anywhere
-      and delete these entities -->
-<!ENTITY layerset "<link
-linkend='Section-Graphics-LayerSet'><classname>LayerSet</classname></link>">
-<!ENTITY layersets "<link
-linkend='Section-Graphics-Layer'><classname>LayerSets</classname></link>">
-<!ENTITY layereditor "<link
-linkend='Section-Graphics-LayerEditor'>Layer Editor</link>">
-
 <!ENTITY xhat "
  <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
 <!ENTITY yhat "

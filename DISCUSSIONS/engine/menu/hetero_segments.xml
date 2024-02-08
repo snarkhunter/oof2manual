@@ -5,14 +5,13 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
-  Select &skel; &sgmts; that are <link
-  linkend="Section-Concepts-SegmentHomogeneity">heterogeneous</link>.
-  Any &sgmt; whose homogeneity is less than the given
-  <varname>threshold</varname> will be selected.
+  Select &skel; &sgmts; that are heterogeneous.  Any &sgmt; whose
+  homogeneity is less than the given <varname>threshold</varname> will
+  be selected.
 </para>
 <figure id="Figure-HeteroSegments">
   <title>Selecting Heterogeneous Segments</title>

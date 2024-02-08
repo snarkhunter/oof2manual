@@ -198,7 +198,7 @@
 	      <caption>
 	        <para>
 		      Menus for selecting a &mesh; in the <link
-		      linkend="Section-Graphics-NewLayer">New Graphics
+		      linkend="MenuItem-OOF.Graphics_n.Layer.New">New Graphics
 		      Layer</link> dialog.  The &micro; (named
               <userinput>tinman</userinput>) is on top, followed by the
               &skel; (<userinput>scarecrow</userinput>, and the &mesh;
@@ -299,7 +299,7 @@
 	    Commands for selecting pixels are in <xref
 	    linkend="MenuItem-OOF.PixelSelection"/>.  The GUI tools for
 	    the same operations are described in <xref
-	    linkend="Section-Tasks-Pixe_Selection"/> and <xref
+	    linkend="Section-Tasks-Pixel_Selection"/> and <xref
 	    linkend="Section-Graphics-PixelSelection"/>.
       </para>
       <para>
@@ -1433,7 +1433,7 @@
 	    linkend="Section-Concepts-Mesh-BoundaryCondition">Boundary
 	    Condition</link> page.  After obtaining a solution, &fluxes;
 	    may be computed for <link
-	    linkend="Section-Graphics-LayerEditor">plots</link> or <link
+	    linkend="Chapter-Graphics">plots</link> or <link
 	    linkend="Section-Tasks-Analysis"> analysis</link>.
       </para>
     </section><!-- Flux -->
@@ -2099,7 +2099,8 @@
 	    and assigning a static solver to some &subproblems; and an
 	    adaptive or uniform solver to other &subproblems;.
       </para>
-      <para><anchor id="Section-Concepts-Mesh-Solving-Times"/>
+      <para>
+        <anchor id="Section-Concepts-Mesh-Solving-Times"/>
 	    The starting time for a time dependent or quasistatic
 	    computation is determined by the <link
 	    linkend="Section-Concepts-Mesh-InitialConditions">initial
@@ -2113,11 +2114,12 @@
 	    is indistinguishable from a calculation that used the new end
 	    time originally.
       </para>
-      <para><anchor id="Section-Concepts-Mesh-Solving-Multiple"/>
+      <para>
+        <anchor id="Section-Concepts-Mesh-Solving-Multiple"/>
 	    When multiple &subproblems; are being solved, each is
 	    addressed in turn. Because the &subproblems; may not be
 	    independent, the whole procedure is iterated until <link
-	    linkend="MenuItem-OOF.Settings.Mesh_Defaults.SelfConsistency">consistent</link>
+	    linkend="MenuItem-OOF.Settings.Solver.Self_Consistency">consistent</link>
 	    answers are obtained.  For time-dependent problems, this
 	    iteration takes place at every time step.  For time-dependent
 	    problems with adapative solvers, the time step will be the

@@ -84,9 +84,8 @@
       All Layers</command></link> in the <link
       linkend="MenuItem-OOF.Graphics_n.Settings"><command>Settings</command>
       menu</link>, select the layer in the <link
-      linkend="Section-Graphics-LayerList">Layer List</link>, and
-      <link linkend="Section-Graphics-LayerEditor">edit</link> it..
-      To turn off the display, it's easier to set the
+      linkend="Section-Graphics-LayerList">Layer List</link> and edit
+      it.  To turn off the display, it's easier to set the
       <guilabel>current</guilabel> cross section to
       <userinput>&lt;None&gt;</userinput>, rather than to hide the
       <xref linkend="RegisteredClass-MeshCrossSectionDisplay"/>

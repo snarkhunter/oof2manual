@@ -77,7 +77,7 @@
 </para>
 <para>
   &oof2; can automatically create <link
-  linkend="Section-Concepts-Microstructure->Pixel_Group">pixel
+  linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
   groups</link> based on data in the orientation map file.  The
   <varname>groups</varname> parameter can contain a list of tuples,
   each of which contains a group name template and an integer.  The

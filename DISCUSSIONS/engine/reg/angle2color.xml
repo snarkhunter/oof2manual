@@ -1,33 +1,27 @@
 <!-- 
-  $RCSfile: angle2color.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:36 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-
-  <para>
-    The <classname>Angle2Color</classname> class is used to convert
-    <link
-    linkend="RegisteredClass-Orientation"><classname>Orientations</classname></link>
-    to <link
-    linkend="RegisteredClass-Color"><classname>Colors</classname></link>,
-    either for display purposes (see <xref
-    linkend="RegisteredClass-OrientationDisplay"/> and <xref
-    linkend="RegisteredClass-OrientationMapDisplay"/>) or for
-    converting <link
-    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
-    Maps</classname></link> to &images; (see <xref
-    linkend="MenuItem-OOF.OrientationMap.Convert_to_Image"/>).
-  </para>
+<para>
+  The <classname>Angle2Color</classname> class is used to convert
+  <link
+  linkend="RegisteredClass-Orientation"><classname>Orientations</classname></link>
+  to <link
+  linkend="RegisteredClass-OpaqueColor"><classname>Colors</classname></link>,
+  either for display purposes (see <xref
+  linkend="RegisteredClass-OrientationDisplay"/> and <xref
+  linkend="RegisteredClass-OrientationMapDisplay"/>) or for converting
+  <link
+  linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+  Maps</classname></link> to &images; (see <xref
+  linkend="MenuItem-OOF.OrientationMap.Convert_to_Image"/>).
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

@@ -310,7 +310,7 @@
             or <xref
             linkend="MenuItem-OOF.Mesh.Boundary_Conditions.Set_BC_Initializer"/>
             command, depending on whether a &field; or a <link
-            linkend="RegisterdClass-FloatBC">floating boundary
+            linkend="RegisteredClass-FloatBC">floating boundary
             condition</link> is selected in the list.
 	      </para>
 	    </formalpara>

@@ -694,7 +694,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
 	</imageobject>
 	<caption>
 	  <para>
-	    Two output widgets, from the &layereditor; window.  The
+	    Two output widgets, from the NOT THE LAYEREDITOR window.  The
 	    top widget, labelled <literal>what</literal>, lists scalar
 	    outputs and determines what will be plotted in the
 	    graphics window.  The lower widget, labelled

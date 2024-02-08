@@ -224,7 +224,7 @@
       </para>
       <para>
 	    Note that the available sample sets will depend on the current
-	    settings of the <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link> and
+	    settings of the <link linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link> and
 	    <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link> panes.
       </para>
     </simplesect>
@@ -236,7 +236,7 @@
 	    linkend="Section-Concepts-Mesh-NamedAnalysis">assigns a
 	    name</link> to the current settings of the
 	    <link linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>, <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
-	    <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>, and <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>
+	    <link linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link>, and <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>
 	    panes and allows those settings to be reloaded into the panes
 	    or to be used as a <link
 	    linkend="Section-Concepts-Outputs-Scheduled">Scheduled
@@ -259,7 +259,7 @@
 		        Analysis</link> using the current settings of the
 		        <link linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>,
 		        <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
-		        <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>, and
+		        <link linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link>, and
 		        <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link> panes.  A dialog box
 		        will appear asking for a name, which may be generated
 		        <link linkend="Object-automatic">automatically</link>.
@@ -310,7 +310,7 @@
 	    The pulldown menu labelled <guilabel>Current</guilabel>
 	    displays the name of the current settings of the
 	    <link linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>, <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link>,
-	    <link linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>, and <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>
+	    <link linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link>, and <link linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>
 	    panes.  If no name has been assigned to the current
 	    configuration, the menu label will be blank.  Selecting a name
 	    in the menu will switch the panes to the selected
@@ -424,7 +424,7 @@
         pane.  Data from the <link
         linkend="Section-Tasks-Analysis-OutputPane"><guilabel>Output</guilabel></link>,
         <link
-        linkend="Section-Tasks_Analyis-DomainPane"><guilabel>Domain</guilabel></link>,
+        linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link>,
         <link
         linkend="Section-Tasks-Analysis-SamplingPane"><guilabel>Sampling</guilabel></link>,
         and <link linkend="Section-Tasks-Analysis-Destination"><guilabel>Destination</guilabel></link> panes are passed as

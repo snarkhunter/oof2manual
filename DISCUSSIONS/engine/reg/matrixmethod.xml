@@ -25,18 +25,6 @@
   solver (<xref linkend="RegisteredClass-ConjugateGradient"/>) to be
   used in those cases.
 </para>
-<para>
-  The matrices that arise in finite element calculations are generally
-  <emphasis>sparse</emphasis>, meaning that many of their entries are
-  zero.  Sparse matrices can be stored efficiently by only retaining
-  the non-zero values.  The <emphasis>iterative</emphasis>
-  <classname>MatrixMethods</classname> have the advantageous property
-  of not requiring storage for the full matrix.  <link
-  linkend="RegisteredClass-DirectMatrixSolver">Direct</link> solvers,
-  on the other hand, generate intermediate values at all matrix
-  entries, and so their storage requirements are much larger.
-</para>
-
 
   <!-- Keep this comment at the end of the file
   Local variables:

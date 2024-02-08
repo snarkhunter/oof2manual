@@ -44,20 +44,20 @@
     determined by the <xref
     linkend="RegisteredClass-SkeletonInfoDisplay"/> display
     &layer;.<footnote>
+
     <para>
       This &layer; is predefined and always displays the topmost
       &skel;.  It will be necessary to enable <link
       linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
-      All Layers</command></link> in the <link
-      linkend="Section-Graphics-MenuBar"><command>Settings</command>
-      menu</link> in order to edit the &layer;.
+      All Layers</command></link> in the Graphics Window's
+      <guimenu>Settings</guimenu> menu in order to edit the &layer;.
     </para></footnote>
-    The <guibutton>Clear</guibutton> button at the bottom
-    of the Toolbox erases the highlighting and clears the data
-    listing.  The <guibutton>Prev</guibutton> and
-    <guibutton>Next</guibutton> buttons on either side cycle through
-    the previously selected objects (changing the Toolbox mode, if
-    necessary).
+
+    The <guibutton>Clear</guibutton> button at the bottom of the
+    Toolbox erases the highlighting and clears the data listing.  The
+    <guibutton>Prev</guibutton> and <guibutton>Next</guibutton>
+    buttons on either side cycle through the previously selected
+    objects (changing the Toolbox mode, if necessary).
   </para>
   <simplesect id="Toolbox-SkeletonInfo-ElementMode">
     <title>Element Mode</title>

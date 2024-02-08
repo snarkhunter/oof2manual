@@ -66,8 +66,7 @@
     <guilabel>x</guilabel> and <guilabel>y</guilabel> boxes, and the
     &node; will be highlighted in the Canvas by a pink dot.<footnote>
       <para>
-	    To change the appearance of the pink dot, use the
-	    &layereditor; to modify the <xref
+	    To change the appearance of the pink dot, edit the <xref
 	    linkend="RegisteredClass-MoveNodeDisplay"/> that's assigned to
 	    the topmost &skel;.  This is a predefined &layer;.  It will be
 	    necessary to enable <link

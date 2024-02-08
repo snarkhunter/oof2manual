@@ -33,14 +33,12 @@
   quads or 3-noded triangles) merging triangles does not reduce the
   number of degrees of freedom.
 </para>
-
-
 <para>
   <xref linkend="Figure-merge"/>(a) shows a few highlighted
   triangle pairs to be merged. The resulting &skel; is shown in
   <xref linkend="Figure-merge"/>(b).
 </para>
-<figure id="Figure-before_merge">
+<figure id="Figure-merge">
   <title>Merging Triangles</title>
   <mediaobject>
     <imageobject>

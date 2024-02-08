@@ -18,7 +18,7 @@
   limited by the size of the undo buffer.  When the buffer is full,
   the oldest selections will be lost when new selections are made. The
   buffer size can be changed by <xref
-  linkend="OOF.Settings.UndoBuffer_Size.Pinned_Nodes"/>.
+  linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Pinned_Nodes"/>.
 </para>
 <para>
   This command is equivalent to <xref

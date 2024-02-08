@@ -102,13 +102,13 @@
   </para>
   <para>
     The way in which the selected pixels are highlighted in the Canvas
-    may be changed by using the &layereditor; to alter the <xref
-    linkend="RegisteredClass-BitmapOverlayDisplayMethod"/> display method that's
-    assigned to the Pixel Selection category.  It will be necessary to
-    enable <link
+    may be changed by editing the <xref
+    linkend="RegisteredClass-BitmapOverlayDisplayMethod"/> display
+    method that's assigned to the Pixel Selection category.  It will
+    be necessary to enable <link
     linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers"><command>List
-    All Layers</command></link> in the <link
-    linkend="Section-Graphics-MenuBar">Settings menu</link> first.
+    All Layers</command></link> in the Graphics Window's
+    <guimenu>Settings</guimenu> menu first.
   </para>
 </section>
 

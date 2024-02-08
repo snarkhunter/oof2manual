@@ -849,7 +849,7 @@ RegisteredParameter('modifier', SkeletonModifier, tip='use this modifier')</prog
 	  <para>
 	    The <guilabel>category</guilabel> menu in the
 	    <guilabel>Displayed Object</guilabel> pane of the
-	    &layereditor; is a widget for a
+	    NOT THE LAYEREDITOR is a widget for a
 	    <classname>WhoClassParameter</classname>.
 	  </para>
 	</refsection><!-- WhoClassParameter -->

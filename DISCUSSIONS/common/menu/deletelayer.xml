@@ -1,35 +1,28 @@
 <!-- 
-  $RCSfile: deletelayer.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:15 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Delete a graphics &layer; from its &layerset; and from the <link
-    linkend="Chapter-Graphics">Graphics window</link>.  If the &layer;
-    is the last &layer; in its &layerset;, the &layerset; will be
-    deleted as well.
-  </para>
-  <para>
-    In GUI mode, this command operates on the currently <link
-    linkend="MenuItem-OOF.Graphics_n.Layer.Select">selected</link>
-    &layer;.  In text mode and in scripts, the &layer; is specified by
-    its position <varname>n</varname> in the window's layer list.  The
-    <link
-    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">unlisted</link>
-    layers must be counted when computing <varname>n</varname>.  This
-    command isn't very friendly in scripts, because it can be hard to
-    determine <varname>n</varname>.
-  </para>
+<para>
+  Delete a graphics &layer; from the <link
+  linkend="Chapter-Graphics">Graphics window</link>.
+</para>
+<para>
+  In GUI mode, this command operates on the currently <link
+  linkend="MenuItem-OOF.Graphics_n.Layer.Select">selected</link>
+  &layer;.  In text mode and in scripts, the &layer; is specified by
+  its position <varname>n</varname> in the window's layer list.  The
+  <link
+  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">unlisted</link>
+  layers must be counted when computing <varname>n</varname>.  This
+  command isn't very friendly in scripts, because it can be hard to
+  determine <varname>n</varname>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

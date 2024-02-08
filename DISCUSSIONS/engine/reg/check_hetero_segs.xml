@@ -20,14 +20,12 @@
 </para>
 
 <para>
-  All &sgmts; whose <link
-  linkend="Section-Concepts-SegmentHomogeneity">homogeneity</link>
-  is less than the given <varname>threshold</varname> will be
-  refined, as long as they're in the set described by the
-  <varname>choose_from</varname> parameter.
+  All &sgmts; whose homogeneity is less than the given
+  <varname>threshold</varname> will be refined, as long as they're in
+  the set described by the <varname>choose_from</varname> parameter.
   (<varname>choose_from</varname> is a <xref
-  linkend="RegisteredClass-SegmentChooser"/> object that can
-  restrict the scope of the refinement.  Leave it set to <xref
+  linkend="RegisteredClass-SegmentChooser"/> object that can restrict
+  the scope of the refinement.  Leave it set to <xref
   linkend="RegisteredClass-FromAllSegments"/> for unrestricted
   operation.)
 </para>

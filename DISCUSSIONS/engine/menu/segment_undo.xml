@@ -25,7 +25,7 @@
 </para>
 <para>
   This command is equivalent to <xref
-  linkend="Menu-OOF.Graphics_n.Toolbox.Select_Segment.Undo"/>.
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Select_Segment.Undo"/>.
 </para>
 
 <!-- Keep this comment at the end of the file
