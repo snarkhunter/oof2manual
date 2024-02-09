@@ -1,51 +1,53 @@
 <!-- 
-  $RCSfile: squarebrush.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:20 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
+<para>
+  The <classname>SquareBrush</classname> is used when selecting pixels
+  with the <link
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Brush"><classname>Brush</classname></link>
+  selection tool in the <link
+  linkend="Section-Graphics-PixelSelection">Pixel Selection</link>
+  toolbox. All pixels within a square centered on the mouse are
+  selected as the mouse moves over the image.  The edge of the square
+  is twice<footnote>
   <para>
-    The <classname>SquareBrush</classname> is used when selecting
-    pixels with the <link
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Brush"><classname>Brush</classname></link>
-    selection tool in the <link
-    linkend="Section-Graphics-PixelSelection">Pixel Selection</link>
-    toolbox.  It selects all pixels within a square of side 2 &times;
-    <varname>size</varname> of the mouse.  The <varname>size</varname>
-    is given in <link
-    linkend="Section-Concepts-Microstructure-Coordinates"><emphasis>physical</emphasis></link>
-    units.
+    So that a square brush with <code>size=R</code> is about the same
+    size as a <link linkend="RegisteredClass-GfxCircleBrush">circular
+    brush</link> with <code>radius=R</code>.
   </para>
-  <figure id="Figure-SquareBrush">
-    <title>Selection with a Square Brush</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/squarebrush.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/pixelselect/squarebrush.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<simpara>
-	  A selection made with the square brush, with
-	  <varname>size</varname>=15.  The physical size of the
-	  &micro; is 200&times;200.  Compare with the circular brush in
-	  <xref linkend="Figure-CircleBrush"/>.
-	</simpara>
-      </caption>
-    </mediaobject>
-  </figure>
+  </footnote> the given <varname>size</varname> parameter, which is given
+  in  <link
+  linkend="Section-Concepts-Microstructure-Coordinates"><emphasis>physical</emphasis></link>
+  units.
+
+</para>
+<figure id="Figure-SquareBrush">
+  <title>Selection with a Square Brush</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/pixelselect/squarebrush.png"
+                 contentwidth="648px" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+	    (a) A selection being made with the square brush, with
+	    <code>size=8</code>.  The physical size of the
+	    &micro; is 92&times;91.
+      </simpara>
+      <simpara>
+        (b) The selection made in (a).  Compare with the circular brush in
+	    <xref linkend="Figure-CircleBrush"/>.
+	  </simpara>
+    </caption>
+  </mediaobject>
+</figure>
 
 
   
