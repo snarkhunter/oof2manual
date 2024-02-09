@@ -110,8 +110,8 @@
 <para>
   Smoothing usually converges quickly and each iteration is not very
   expensive, so it's reasonable to perform a fixed small number of
-  iterations, for example by setting <code>iterations=<link
-  linkend="RegisteredClass-FixedIterations">FixedIterations</link>(iterations=5)</code>.
+  iterations, for example by setting <code>iterations= <link
+  linkend="RegisteredClass-FixedIteration">FixedIteration</link>(iterations=5)</code>.
   It is also possible to use <link
   linkend="RegisteredClass-ConditionalIteration">conditional
   iteration</link>, which can repeatedly smooth the &skel; until the

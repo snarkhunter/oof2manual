@@ -1,54 +1,49 @@
 <!-- 
-  $RCSfile: orientationdisplay.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:43 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    The <classname>OrientationDisplay</classname> draws each pixel in
-    a &micro;, colored according to the crystalline orientation.  of
-    the &material; assigned to the pixel.  The orientation comes from
-    the &material;'s <link
-    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-    or <link
-    linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
-    &property;, whichever is present.
-  </para>
-  <para>
-    Technically, it's a mistake for a &material; to have both an
-    <classname>Orientation</classname> and an
-    <classname>OrientationMap</classname> &property;.  However, this
-    error isn't always detected when a &micro; is displayed.  If both
-    &properties; are present, whichever &property; was added to the
-    &material; first will be displayed.
-  </para>
-  <para>
-    The <varname>colorscheme</varname> parameter describes how the
-    orientation angles are to be converted to colors for the display.
-  </para>
-  <para>
-    If the assigned &material; has no Orientation &property;, then the
-    <link linkend="RegisteredClass-Color">Color</link> given by
-    <varname>no_orientation</varname> is used.  If the pixel doesn't
-    have a &material;, then the <varname>no_material</varname> <link
-    linkend="RegisteredClass-Color">Color</link> is used.
-  </para>
-  <para>
-    To display an <link
-    linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
-    Map</classname></link> before it's used in a &material; and
-    &property;, see <xref
-    linkend="RegisteredClass-OrientationMapDisplay"/>.
-  </para>
+<para>
+  The <classname>OrientationDisplay</classname> draws each pixel in a
+  &micro;, colored according to the crystalline orientation.  of the
+  &material; assigned to the pixel.  The orientation comes from the
+  &material;'s <link
+  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+  or <link
+  linkend="MenuItem-OOF.Property.Parametrize.OrientationMap"><classname>OrientationMap</classname></link>
+  &property;, whichever is present.
+</para>
+<para>
+  Technically, it's a mistake for a &material; to have both an
+  <classname>Orientation</classname> and an
+  <classname>OrientationMap</classname> &property;.  However, this
+  error isn't always detected when a &micro; is displayed.  If both
+  &properties; are present, whichever &property; was added to the
+  &material; first will be displayed.
+</para>
+<para>
+  The <varname>colorscheme</varname> parameter describes how the
+  orientation angles are to be converted to colors for the display.
+</para>
+<para>
+  If the assigned &material; has no Orientation &property;, then the
+  <link linkend="RegisteredClass-TranslucentColor">Color</link> given
+  by <varname>no_orientation</varname> is used.  If the pixel doesn't
+  have a &material;, then the <varname>no_material</varname> <link
+  linkend="RegisteredClass-TranslucentColor">Color</link> is used.
+</para>
+<para>
+  To display an <link
+  linkend="Section-Concepts-Microstructure-OrientationMap"><classname>Orientation
+  Map</classname></link> before it's used in a &material; and
+  &property;, see <xref
+  linkend="RegisteredClass-OrientationMapDisplay"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
