@@ -74,7 +74,8 @@
     <title>The Graphics Window</title>
     <mediaobject>
       <imageobject>
-	    <imagedata fileref="FIGURES/gfx/gfxwindow.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/gfx/gfxwindow.png"
+                   contentwidth="1058px" format="PNG"/>
       </imageobject>
     </mediaobject>
   </figure>
@@ -275,7 +276,8 @@
       <title>The Layer List</title>
       <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/gfx/layerlist.png" format="PNG"/>
+	      <imagedata fileref="FIGURES/gfx/layerlist.png"
+                     contentwidth="904px" format="PNG"/>
 	    </imageobject>
       </mediaobject>
     </figure>
@@ -372,7 +374,7 @@
       menu governs whether or not the auxiliary &layers; are listed.
     </para>
     <para><anchor id="auxlayers"/>
-      The auxiliary layers are (from top to bottom):
+      The auxiliary layers are (from top to bottom in their standard order):
       <itemizedlist spacing="compact" id="auxlayers">
         <listitem>
           <para>
@@ -488,7 +490,8 @@
       <title>The Contour Map Pane</title>
       <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="FIGURES/gfx/contourmap.png" format="PNG"/>
+	      <imagedata fileref="FIGURES/gfx/contourmap.png"
+                     contentwidth="768px" format="PNG"/>
 	    </imageobject>
 	    <caption>
 	      <para>
@@ -546,10 +549,8 @@
       <title>Graphics Window Time Controls</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/timecontrols.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gfx/timecontrols.eps" format="EPS"/>
+	  <imagedata fileref="FIGURES/gfx/timecontrols.png"
+                 contentwidth="570px" format="PNG"/>
 	</imageobject>
       </mediaobject>
     </figure>
