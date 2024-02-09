@@ -421,6 +421,17 @@
       Selection</link>. page.  Assignments to &elem; groups have
       precedence over assignments to pixels.
     </para>
+    <para>
+      When a &material; is assigned to a pixel, the pixel does not get
+      its own copy of the &material;.  All pixels that have the same
+      &material; refer to the same &material; data, and if that data
+      is changed, the material properties of all of the pixels change
+      as well.  The same applies to &properties;.  Adding a &property;
+      to a &material; does not give that &material; its own copy of
+      the &property; data.  Multiple &materials; can use one
+      &property;, and modifying that &property; will change the
+      &material; and affect all pixels that use the &material;.
+    </para>
     <section id="Section-Concepts-Property">
       <title>Properties</title>
       <para>
@@ -483,7 +494,7 @@
 	    linkend="Section-Tasks-Materials">Materials</link> task page.
 	    The <quote>path</quote> to a &property; is a colon separated
 	    list of the names of the levels of the tree leading to the
-	    &property;.  For example, the path to cubic elasiticity is
+	    &property;.  For example, the path to cubic elasticity is
 	    <userinput>'Mechanical:Elasticity:Anisotropic:Cubic'</userinput>.
 	    The path to a <emphasis>named</emphasis> property is created
 	    by appending the name to the path to its unnamed version:

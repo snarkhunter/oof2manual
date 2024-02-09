@@ -87,6 +87,14 @@
 	        button brings up a dialog box for naming the copied
 	        &property;.
 	      </para>
+          <para>
+            Note that one &property; can be assigned to more than one
+            &material;, and that editing a &property; after assigning
+            it to a &material; changes it in all the &materials; to
+            which it's been assigned.  If you want two &properties; of
+            the same kind to have different parameters, you
+            <emphasis>must</emphasis> make a copy.
+          </para>
 	    </listitem>
 	    <listitem id="Section-PropertyPane-Parametrize">
 	      <para>
