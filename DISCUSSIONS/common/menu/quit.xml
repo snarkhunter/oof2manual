@@ -1,24 +1,27 @@
 <!-- 
-  $RCSfile: quit.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
-  <para>
-    Quit &oof2;.  If any non-trivial commands have been executed since
-    the last time the command log was <link
-    linkend="MenuItem-OOF.File.Save.Python_Log">saved</link>, the
-    program will ask for confirmation before quitting and give the
-    user a chance to save the log file.
-  </para>
+
+<para>
+  Quit &oof2;.  If any non-trivial commands have been executed since
+  the last time the command log was <link
+  linkend="MenuItem-OOF.File.Save.Python_Log">saved</link>, the
+  program will ask for confirmation before quitting and give the user
+  a chance to save the log file.
+</para>
+<para>
+  This command itself is never automatically included in a log
+  file.  If you want &oof2; to quit after running a script, you can
+  put <command>OOF.File.Quit()</command> in the script manually, or
+  you can run &oof2; in <link
+  linkend="CommandLineArg-batch">batch</link> mode.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

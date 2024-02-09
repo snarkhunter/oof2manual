@@ -1,31 +1,26 @@
 <!-- 
-  $RCSfile: edit_bc.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:23 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <command>OOF.Mesh.Boundary_Conditions.Edit</command> replaces one
-    <link linkend="RegisteredClass-BC">boundary condition</link> with
-    another in the given &mesh;.  All attributes of the boundary
-    condition may be changed, even the <link
-    linkend="Section-Concepts-Skeleton-Boundary">boundary</link> to
-    which it applies.
-  </para>
-  <para>
-    The <varname>name</varname> parameter is the name of the boundary
-    condition to be replaced.  The <varname>condition</varname>
-    parameter is the boundary condition that replaces it.
-  </para>
+<para>
+  <command>OOF.Mesh.Boundary_Conditions.Edit</command> replaces one
+  <link linkend="RegisteredClass-BC">boundary condition</link> with
+  another in the given &mesh;.  All attributes of the boundary
+  condition may be changed, even the <link
+  linkend="Section-Concepts-Skeleton-Boundary">boundary</link> to
+  which it applies.
+</para>
+<para>
+  The <varname>name</varname> parameter is the name of the boundary
+  condition to be replaced.  The <varname>condition</varname>
+  parameter is the boundary condition that replaces it.
+</para>
 
 
   <!-- Keep this comment at the end of the file

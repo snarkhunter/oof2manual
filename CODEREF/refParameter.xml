@@ -574,7 +574,7 @@ RegisteredParameter('modifier', SkeletonModifier, tip='use this modifier')</prog
 	    <emphasis>representations</emphasis> of the same thing,
 	    rather than different things that happen to be in the same
 	    category.  For example, <xref
-	    linkend="RegisteredClass-Color"/> is a
+	    linkend="RegisteredClass-OpaqueColor"/> is a
 	    <classname>ConvertibleRegisteredClass</classname>, since
 	    the different representations (<xref
 	    linkend="RegisteredClass-RGBColor"/>, <xref

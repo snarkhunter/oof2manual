@@ -1,16 +1,11 @@
 <!-- 
-  $RCSfile: list.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:19 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <refentry id="Object-list" xreflabel="list">
@@ -30,28 +25,28 @@
     <itemizedlist>
       <title>Examples</title>
       <listitem>
-	<simpara>
-	  <userinput>[1,2,3]</userinput> is a list of integers.
-	</simpara>
+	    <simpara>
+	      <userinput>[1,2,3]</userinput> is a list of integers.
+	    </simpara>
       </listitem>
       <listitem>
-	<simpara>
-	  <userinput>[Point(1.23, 4.56)]</userinput> is a list
-	  containing a single <link
-	  linkend="Object-Point"><classname>Point</classname></link>
-	  object.
-	</simpara>
+	    <simpara>
+	      <userinput>[Point(1.23, 4.56)]</userinput> is a list
+	      containing a single <link
+	      linkend="Object-Point"><classname>Point</classname></link>
+	      object.
+	    </simpara>
       </listitem>
       <listitem>
-	<simpara>
-	  <userinput>[[1,2,3], [4,5,6], [7,8]]</userinput> is a list
-	  of lists of integers.
-	</simpara>
+	    <simpara>
+	      <userinput>[[1,2,3], [4,5,6], [7,8]]</userinput> is a list
+	      of lists of integers.
+	    </simpara>
       </listitem>
       <listitem>
-	<simpara>
-	  <userinput>[]</userinput> is an empty list.
-	</simpara>
+	    <simpara>
+	      <userinput>[]</userinput> is an empty list.
+	    </simpara>
       </listitem>
     </itemizedlist>
   </refsect1>

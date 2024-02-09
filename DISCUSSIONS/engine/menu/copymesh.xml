@@ -1,46 +1,40 @@
 <!-- 
-  $RCSfile: copymesh.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:22 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Copy an existing &mesh;.  The new &mesh; has the same &skel; and
-    &micro; as the old &mesh;, as well as the same <link
-    linkend="Section-Concepts-Mesh-Geometry">types of finite
-    elements</link>.
-  </para>
-  <para>
-    If <varname>copy_field</varname> is true, then the new &mesh; will
-    have the same defined and active &fields; as the original &mesh;,
-    and the &fields; will have the same values.  If
-    <varname>copy_field</varname> is false, then no &fields; will be
-    defined in the new &mesh;.
-  </para>
-  <para>
-    If <varname>copy_equation</varname> is true, then all &equations;
-    that are active in the old &mesh; will be active in the new
-    &mesh;.  If it is false, then no equations will be active in the
-    new &mesh;.
-  </para>
-  <para>
-    If <varname>copy_bc</varname> is true, then <link
-    linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
-    conditions</link> will be copied from the old &mesh; to the new.
-    It it is false, the new &mesh; will not have any boundary
-    conditions.  It <emphasis>will</emphasis> have <link
-    linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>,
-    though, because boundaries are defined in the &skel;.
-  </para>
+<para>
+  Copy an existing &mesh;.  The new &mesh; has the same &skel; and
+  &micro; as the old &mesh;, as well as the same <link
+  linkend="Section-Concepts-Mesh-Geometry">types of finite
+  elements</link>.
+</para>
+<para>
+  If <varname>copy_field</varname> is true, then the new &mesh; will
+  have the same defined and active &fields; as the original &mesh;,
+  and the &fields; will have the same values.  If
+  <varname>copy_field</varname> is false, then no &fields; will be
+  defined in the new &mesh;.
+</para>
+<para>
+  If <varname>copy_equation</varname> is true, then all &equations;
+  that are active in the old &mesh; will be active in the new &mesh;.
+  If it is false, then no equations will be active in the new &mesh;.
+</para>
+<para>
+  If <varname>copy_bc</varname> is true, then <link
+  linkend="Section-Concepts-Mesh-BoundaryCondition">boundary
+  conditions</link> will be copied from the old &mesh; to the new.  It
+  it is false, the new &mesh; will not have any boundary conditions.
+  It <emphasis>will</emphasis> have <link
+  linkend="Section-Concepts-Skeleton-Boundary">boundaries</link>,
+  though, because boundaries are defined in the &skel;.
+</para>
 
 
 <!-- Keep this comment at the end of the file

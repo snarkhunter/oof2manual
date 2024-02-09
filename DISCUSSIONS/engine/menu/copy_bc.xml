@@ -1,45 +1,40 @@
 <!-- 
-  $RCSfile: copy_bc.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:22 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <command>OOF.Mesh.Boundary_Conditions.Copy</command> copies a
-    existing <link linkend="RegisteredClass-BC">boundary
-    condition</link>.  It can be copied from one boundary to another
-    within a &mesh;, or to a completely different &mesh;.
-  </para>
-  <para>
-    The <varname>current</varname> parameter is the name of the &mesh;
-    <emphasis>from</emphasis> which the boundary condition will be
-    copied.  The <varname>mesh</varname> parameter is the name of the
-    &mesh; <emphasis>to</emphasis> which it will be copied.
-  </para>
-  <para>
-    The <varname>name</varname> must be unique among all of the
-    boundary condition names in the target &mesh;.  If it is not
-    unique, then <userinput>&lt;x&gt;</userinput> will be appended to
-    it, where <userinput>x</userinput> is a suitable integer.  If the
-    name is <xref linkend="Object-automatic"/>, a name will be
-    assigned automatically.
-  </para>
-  <para>
-    The <varname>boundary</varname> parameter specifies the boundary
-    to which the copied boundary condition will apply. It must be the
-    name of an existing <link
-    linkend="Section-Concepts-Skeleton-Boundary">boundary</link> in
-    the &skel; of the target &mesh;.
-  </para>
+<para>
+  <command>OOF.Mesh.Boundary_Conditions.Copy</command> copies a
+  existing <link linkend="RegisteredClass-BC">boundary
+  condition</link>.  It can be copied from one boundary to another
+  within a &mesh;, or to a completely different &mesh;.
+</para>
+<para>
+  The <varname>current</varname> parameter is the name of the &mesh;
+  <emphasis>from</emphasis> which the boundary condition will be
+  copied.  The <varname>mesh</varname> parameter is the name of the
+  &mesh; <emphasis>to</emphasis> which it will be copied.
+</para>
+<para>
+  The <varname>name</varname> must be unique among all of the boundary
+  condition names in the target &mesh;.  If it is not unique, then
+  <userinput>&lt;x&gt;</userinput> will be appended to it, where
+  <userinput>x</userinput> is a suitable integer.  If the name is
+  <xref linkend="Object-automatic"/>, a name will be assigned
+  automatically.
+</para>
+<para>
+  The <varname>boundary</varname> parameter specifies the boundary to
+  which the copied boundary condition will apply. It must be the name
+  of an existing <link
+  linkend="Section-Concepts-Skeleton-Boundary">boundary</link> in the
+  &skel; of the target &mesh;.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

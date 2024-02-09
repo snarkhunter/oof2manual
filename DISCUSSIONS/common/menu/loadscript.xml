@@ -1,43 +1,26 @@
 <!-- 
-  $RCSfile: loadscript.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:16 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    This command executes Python scripts, such as files created by the
-    commands in the <xref linkend="MenuItem-OOF.File.Save"/> menu
-    using the <link
-    linkend="Section-Concepts-FileFormats-Script"><constant>script</constant></link>
-    format, or log files of &oof2; sessions.  It can also execute
-    <emphasis>any</emphasis><footnote><simpara>It needs to be a
-    well-written script using a compatible version of
-    Python.</simpara></footnote> Python script.  Loading the log of an
-    &oof2; session will recreate the session, more or less.  See the
-    remarks in <xref linkend="MenuItem-OOF.File.Save.Python_Log"/>.
-  </para>
+<para>
+  This command executes Python scripts, such as files created by the
+  commands in the <xref linkend="MenuItem-OOF.File.Save"/> menu using
+  the <link
+  linkend="Section-Concepts-FileFormats-Script"><constant>script</constant></link>
+  format, or log files of &oof2; sessions.  It can also execute
+  <emphasis>any</emphasis><footnote><simpara>It needs to be a
+  well-written script using a compatible version of
+  Python.</simpara></footnote> Python script.  Loading the log of an
+  &oof2; session will recreate the session, more or less.  See the
+  remarks in <xref linkend="MenuItem-OOF.File.Save.Python_Log"/>.
+</para>
 
-<!--
-  <para>
-    By loading a saved script, one can easily reproduce the previous
-    status down to every minute detail. However, due to the randomness
-    of some &skel; operations, it may produce something different. To
-    avoid this, one should run &oof2; in a <emphasis>debug</emphasis>
-    mode (see <xref linkend='Table:options'/>) when saving/loading a
-    script : randomness will be contained in a
-    <emphasis>debug</emphasis>. Unfortunately, it may not work, if a
-    script is ported to another platform.
-  </para>
--->
 
 <!-- Keep this comment at the end of the file
   Local variables:

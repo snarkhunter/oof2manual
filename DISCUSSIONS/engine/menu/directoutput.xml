@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: directoutput.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-04-20 21:30:10 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,24 +8,23 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Output data points directly, either to the screen or to a file.
-    <varname>destination</varname> must be a <xref
-    linkend="RegisteredClass-MessageWindowStream"/> or a <xref
-    linkend="RegisteredClass-OutputStream"/>.
-  </para>
-  <para>
-    A header will be printed to identify the data.  Each line of the
-    header will begin with a comment character, which can be set by
-    <xref
-    linkend="MenuItem-OOF.Settings.Output_Formatting.Comment_Character"/>.
-    Multiple columns of data will be separated by a separator
-    character, which can be set by <xref
-    linkend="MenuItem-OOF.Settings.Output_Formatting.Separator"/>.  If
-    <xref
-    linkend="MenuItem-OOF.Settings.Output_Formatting.Show_Time"/> is
-    set, the header will include the current &mesh; time.
-  </para>
+<para>
+  Output data points directly, either to the screen or to a file.
+  <varname>destination</varname> must be a <xref
+  linkend="RegisteredClass-MessageWindowStream"/> or a <xref
+  linkend="RegisteredClass-OutputStream"/>.
+</para>
+<para>
+  A header will be printed to identify the data.  Each line of the
+  header will begin with a comment character, which can be set by
+  <xref
+  linkend="MenuItem-OOF.Settings.Output_Formatting.Comment_Character"/>.
+  Multiple columns of data will be separated by a separator character,
+  which can be set by <xref
+  linkend="MenuItem-OOF.Settings.Output_Formatting.Separator"/>.  If
+  <xref linkend="MenuItem-OOF.Settings.Output_Formatting.Show_Time"/>
+  is set, the header will include the current &mesh; time.
+</para>
 
 
 <!-- Keep this comment at the end of the file

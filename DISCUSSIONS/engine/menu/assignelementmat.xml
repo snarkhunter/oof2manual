@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: assignelementmat.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-08 20:47:56 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -12,9 +7,10 @@
   distributing modified versions of this software, you first contact
   the authors at oof_manager@nist.gov.
 -->
+
 <para>
-  Assigning a &material; to a &skel; &elem; is a way of overriding the
-  &material; assigned to pixels by <xref
+  Assigning a &material; to a &skel; &elemgroup; is a way of
+  overriding the &material; assigned to pixels by <xref
   linkend="MenuItem-OOF.Material.Assign"/>.  Normally an &elem;'s
   &material; is implicitly inherited from the &elem;'s <link
   linkend="Section-Concepts-Skeleton-Homogeneity">dominant
@@ -28,8 +24,8 @@
   If an &elem; is in more than one &elemgroup;, the &elem;'s
   &material; is the last one assigned to any of the groups to which
   the &elem; belongs.  If a &material; is assigned to a group that
-  already has an explicitly assigned &material;, the new &material;
-  replaces the old one.
+  already had an explicitly assigned &material;, the new &material;
+  replaces the old one for all &elems; in the group.
 </para>
 <para>
   If an explicitly assigned &material; is removed with <xref

@@ -1,24 +1,19 @@
 <!-- 
-  $RCSfile: deactivate_selection.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:15 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <link linkend="MenuItem-OOF.ActiveArea">Deactivate</link> the
-    selected pixels. The activity of the unselected pixels is not
-    changed.  See <xref
-    linkend="MenuItem-OOF.ActiveArea.Deactivate_Group"/>.
-  </para>
+<para>
+  <link linkend="MenuItem-OOF.ActiveArea">Deactivate</link> the
+  selected pixels. The activity of the unselected pixels is not
+  changed.  See <xref
+  linkend="MenuItem-OOF.ActiveArea.Deactivate_Group"/>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

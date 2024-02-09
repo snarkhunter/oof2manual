@@ -1,27 +1,22 @@
 <!-- 
-  $RCSfile: graphicsraise.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:15 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Bring a <link linkend='Chapter-Graphics'>Graphics window</link> to
-    the front, so that it's not obscured by other windows.  The <xref
-    linkend='MenuItem-OOF.Windows.Graphics'/> menu contains one of
-    these commands for each Graphics window.  The <quote>n</quote> at
-    the end of the command should be replaced by the number of the
-    graphics window, <foreignphrase>e.g</foreignphrase>,
-    <command>Graphics_2</command> raises window number two.
-  </para>
+<para>
+  Bring a <link linkend='Chapter-Graphics'>Graphics window</link> to
+  the front, so that it's not obscured by other windows.  The <xref
+  linkend='MenuItem-OOF.Windows.Graphics'/> menu contains one of these
+  commands for each Graphics window.  The <quote>n</quote> at the end
+  of the command should be replaced by the number of the graphics
+  window, <foreignphrase>e.g</foreignphrase>,
+  <command>Graphics_2</command> raises window number two.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

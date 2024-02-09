@@ -1,33 +1,27 @@
 <!-- 
-  $RCSfile: invert_pin.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:24 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-
-  <para>
-    The <command>Invert</command> command is called by the <link
-    linkend="Section-Graphics-PinNodes">Pin Nodes</link> toolbox in
-    the <link linkend="Chapter-Graphics">graphics</link> window.  It
-    <link linkend="Section-Concepts-Pin">unpins</link> all of the
-    <link linkend="Section-Concepts-Pin">pinned</link> &nodes; and
-    pins all of the unpinned &nodes; in the &skel; given as an
-    argument. When run from the graphics window, this will be the
-    topmost &skel; displayed in the window.
-  </para>
-  <para>
-     The <varname>skeleton</varname> parameter is the fully-qualified name
-     of the &skel; on which to operate.
-  </para>
+<para>
+  The <command>Invert</command> command is called by the <link
+  linkend="Section-Graphics-PinNodes">Pin Nodes</link> toolbox in
+  the <link linkend="Chapter-Graphics">graphics</link> window.  It
+  <link linkend="Section-Concepts-Pin">unpins</link> all of the
+  <link linkend="Section-Concepts-Pin">pinned</link> &nodes; and
+  pins all of the unpinned &nodes; in the &skel; given as an
+  argument. When run from the graphics window, this will be the
+  topmost &skel; displayed in the window.
+</para>
+<para>
+  The <varname>skeleton</varname> parameter is the fully-qualified name
+  of the &skel; on which to operate.
+</para>
 
 
   <!-- Keep this comment at the end of the file

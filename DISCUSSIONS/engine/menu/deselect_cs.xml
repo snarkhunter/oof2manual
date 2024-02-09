@@ -1,24 +1,19 @@
 <!-- 
-  $RCSfile: deselect_cs.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:23 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <command>OOF.Mesh.Cross_Section.Deselect</command> deselects the
-    currently selected cross section in the given &mesh;.  See <xref
-    linkend="MenuItem-OOF.Mesh.Cross_Section.Select"/> for a
-    description of the selected cross section.
-  </para>
+<para>
+  <command>OOF.Mesh.Cross_Section.Deselect</command> deselects the
+  currently selected cross section in the given &mesh;.  See <xref
+  linkend="MenuItem-OOF.Mesh.Cross_Section.Select"/> for a description
+  of the selected cross section.
+</para>
 
 
 

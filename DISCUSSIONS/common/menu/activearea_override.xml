@@ -1,35 +1,30 @@
 <!-- 
-  $RCSfile: activearea_override.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:14 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    It's often necessary to switch back and forth between using an
-    &active; to restrict &oof2; operations and working without an
-    &active;.  In these situations, it's a nuisance to be continually
-    changing the currently active pixels. The
-    <command>Override</command> menu command comes in handy here.
-    When switched <emphasis>on</emphasis>, the entire &micro; gets
-    temporarily activated, regardless of the current &active;.  When
-    switched <emphasis>off</emphasis>, the current &active; is again
-    in effect.
-  </para>
-  <para>
-    In particular, it's convenient to override the current &active;
-    when it's necessary to select more pixels in order to <link
-    linkend="MenuItem-OOF.ActiveArea.Activate_Selection">add</link>
-    them to the &active;.
-  </para>
+<para>
+  It's often necessary to switch back and forth between using an
+  &active; to restrict &oof2; operations and working without an
+  &active;.  In these situations, it's a nuisance to be continually
+  changing the currently active pixels. The
+  <command>Override</command> menu command comes in handy here.  When
+  switched <emphasis>on</emphasis>, the entire &micro; gets
+  temporarily activated, regardless of the current &active;.  When
+  switched <emphasis>off</emphasis>, the current &active; is again in
+  effect.
+</para>
+<para>
+  In particular, it's convenient to override the current &active;
+  when it's necessary to select more pixels in order to <link
+  linkend="MenuItem-OOF.ActiveArea.Activate_Selection">add</link>
+  them to the &active;.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

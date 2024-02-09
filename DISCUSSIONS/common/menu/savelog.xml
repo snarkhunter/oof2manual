@@ -1,52 +1,46 @@
 <!-- 
-  $RCSfile: savelog.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:18 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
-  <para>
-    At any point in an &oof2; session, one can save a log file of all
-    of the commands that have been executed.  The file is a Python
-    <link linkend="Section-Concepts-FileFormats-Script">script</link>.
-    Subsequently loading the file with <xref
-    linkend="MenuItem-OOF.File.Load.Script"/> or with the <link
-    linkend="CommandLineArg-script"><userinput>--script</userinput></link>
-    command line argument will recreate the &oof2; session.
-    <note>
-      <para>
-	Loading a saved script may not <emphasis>exactly</emphasis>
-	reproduce an &oof2; session if the script contains commands
-	that use the random number generator, such as many of the
-	<link
-	linkend="RegisteredClass-SkeletonModifier"><classname>Skeleton</classname>
-	modification</link> methods.  The randomness of the random
-	number generator can be made predictable (on a given computer)
-	by always using the <link
-	linkend="CommandLineArg-seed"><userinput>--seed</userinput></link>
-	command line argument, but of course then the numbers aren't
-	truly random.
-      </para>
-    </note>
-    <note>
-      <para>
-	Saving and reloading a log file is an inefficient way of
-	restoring an &oof2; session, because each command is
-	re-executed when the file is loaded.  It is more efficient to
-	use the other commands in the <xref
-	linkend="MenuItem-OOF.File.Save"/> menu to save the
-	<emphasis>objects</emphasis> (&micros;, &skels;, and &meshes;)
-	that &oof2; creates.
-      </para>
-    </note>
-  </para>
+
+<para>
+  At any point in an &oof2; session, one can save a log file of all of
+  the commands that have been executed.  The file is a Python <link
+  linkend="Section-Concepts-FileFormats-Script">script</link>.
+  Subsequently loading the file with <xref
+  linkend="MenuItem-OOF.File.Load.Script"/> or with the <link
+  linkend="CommandLineArg-script"><userinput>--script</userinput></link>
+  command line argument will recreate the &oof2; session.
+  <note>
+    <para>
+	  Loading a saved script may not <emphasis>exactly</emphasis>
+	  reproduce an &oof2; session if the script contains commands that
+	  use the random number generator, such as many of the <link
+	  linkend="RegisteredClass-SkeletonModifier"><classname>Skeleton</classname>
+	  modification</link> methods.  The randomness of the random
+	  number generator can be made predictable (on a given computer)
+	  by always using the <link
+	  linkend="CommandLineArg-seed"><userinput>--seed</userinput></link>
+	  command line argument, but of course then the numbers aren't
+	  truly random.
+    </para>
+  </note>
+  <note>
+    <para>
+	  Saving and reloading a log file is an inefficient way of
+	  restoring an &oof2; session, because each command is re-executed
+	  when the file is loaded.  It is more efficient to use the other
+	  commands in the <xref linkend="MenuItem-OOF.File.Save"/> menu to
+	  save the <emphasis>objects</emphasis> (&micros;, &skels;, and
+	  &meshes;) that &oof2; creates.
+    </para>
+  </note>
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

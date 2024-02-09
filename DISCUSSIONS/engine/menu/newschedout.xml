@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: newschedout.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-13 21:24:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,25 +8,25 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Define a new output operation to be performed while solving a
-    time-dependent problem on a &mesh;.  To be computed, the operation
-    must have a schedule defined by <xref
-    linkend="MenuItem-OOF.Mesh.Scheduled_Output.Schedule"/> and a
-    destination set by <xref
-    linkend="MenuItem-OOF.Mesh.Scheduled_Output.Destination"/>.
-  </para>
-  <para>
-    Every operation in a &mesh; needs to have a unique name.  If the
-    given <varname>name</varname> parameter is already in use in the
-    &mesh;, a suffix of the form <userinput>&lt;x&gt;</userinput> will
-    be appended.
-  </para>
-  <para>
-    The <varname>output</varname> parameter defines the operation to
-    be performed.  It can be any member of the <xref
-    linkend="RegisteredClass-ScheduledOutput"/> class.
-  </para>
+<para>
+  Define a new output operation to be performed while solving a
+  time-dependent problem on a &mesh;.  To be computed, the operation
+  must have a schedule defined by <xref
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Schedule"/> and a
+  destination set by <xref
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Destination"/>.
+</para>
+<para>
+  Every operation in a &mesh; needs to have a unique name.  If the
+  given <varname>name</varname> parameter is already in use in the
+  &mesh;, a suffix of the form <userinput>&lt;x&gt;</userinput> will
+  be appended.
+</para>
+<para>
+  The <varname>output</varname> parameter defines the operation to
+  be performed.  It can be any member of the <xref
+  linkend="RegisteredClass-ScheduledOutput"/> class.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

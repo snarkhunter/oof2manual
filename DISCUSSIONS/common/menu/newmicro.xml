@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: newmicro.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-05-02 15:47:05 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -19,7 +14,7 @@
   linkend='MenuItem-OOF.Microstructure.Create_From_Image'/> or <xref
   linkend='MenuItem-OOF.Microstructure.Create_From_ImageFile'/>.  To
   create a &micro; from an <link
-  linkend="Section-Concepts-Microstructure-OrientationMap">ebsd
+  linkend="Section-Concepts-Microstructure-OrientationMap">EBSD
   orientation map</link>, see <xref
   linkend="MenuItem-OOF.Microstructure.Create_From_OrientationMap_File"/>.
 </para>

@@ -1,46 +1,44 @@
 <!-- 
-  $RCSfile: profileStart.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
-  <para>
-    <emphasis>Profiling</emphasis> is the process of measuring how
-    slow a program is.  The &oof2; profiler measures time spent in
-    Python routines.
-  </para>
-  <para>
-    <varname>filename</varname> is the name of a file where the
-    profiling data will be stored.  This data is not in a human
-    readable form.  After profiling is complete, view the file with
-    the <filename>gfxprof.py</filename> python script, which may be
-    found in the <filename>SRC/common/EXTRA</filename> subdirectory of
-    the &oof2; source code.
-  </para>
-  <para>
-    <varname>fudge</varname> is a measure of how much time is spent in
-    the internal workings of the profiling machinery, rather than in
-    the code that's being profiled.  The correct value varies from
-    computer to computer.  Use <xref
-    linkend="MenuItem-OOF.Help.Debug.Profile.FudgeFinder"/> to estimate the
-    value.
-  </para>
-  <para>
-    The &oof2; profiling code is based on the Python profiler.  When
-    the &oof2; profiler was written, the Python profiler did not
-    handle excepctions correctly.  The &oof2; profiler measures
-    elapsed time, not cpu time, on the theory that elapsed time is
-    what really matters, and because the granlarity on cpu time
-    measurements is too coarse.
-  </para>
+
+THE PROFILE MENU IS COMMENTED OUT IN MAINMENU.PY SO THIS FILE IS NOT USED
+
+<para>
+  <emphasis>Profiling</emphasis> is the process of measuring how
+  slow a program is.  The &oof2; profiler measures time spent in
+  Python routines.
+</para>
+<para>
+  <varname>filename</varname> is the name of a file where the
+  profiling data will be stored.  This data is not in a human
+  readable form.  After profiling is complete, view the file with
+  the <filename>gfxprof.py</filename> python script, which may be
+  found in the <filename>SRC/common/EXTRA</filename> subdirectory of
+  the &oof2; source code.
+</para>
+<para>
+  <varname>fudge</varname> is a measure of how much time is spent in
+  the internal workings of the profiling machinery, rather than in
+  the code that's being profiled.  The correct value varies from
+  computer to computer.  Use <xref
+  linkend="MenuItem-OOF.Help.Debug.Profile.FudgeFinder"/> to estimate the
+  value.
+</para>
+<para>
+  The &oof2; profiling code is based on the Python profiler.  When
+  the &oof2; profiler was written, the Python profiler did not
+  handle excepctions correctly.  The &oof2; profiler measures
+  elapsed time, not cpu time, on the theory that elapsed time is
+  what really matters, and because the granlarity on cpu time
+  measurements is too coarse.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

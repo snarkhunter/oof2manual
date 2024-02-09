@@ -1,38 +1,33 @@
 <!-- 
-  $RCSfile: new_bc.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:25 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <command>OOF.Mesh.Boundary_Conditions.New</command> creates a new
-    named <link linkend="RegisteredClass-BC">boundary condition</link>
-    in the given &mesh;.
-  </para>
-  <para>
-    The <varname>name</varname> parameter is the name that will be
-    assigned to the boundary condition.  All future operations on the
-    boundary condition will refer to it by this name.  The name must
-    be unique among all of the boundary condition names in the mesh.
-    If it is not unique, then <userinput>&lt;x&gt;</userinput> will be
-    appended to it, where <userinput>x</userinput> is a suitable
-    integer.  If the name is <xref linkend="Object-automatic"/>, a
-    name will be assigned automatically.
-  </para>
-  <para>
-    The <varname>condition</varname> parameter is the new boundary
-    condition to which the name is being applied.  It must be an
-    instance of the <xref linkend="RegisteredClass-BC"/> class. 
-  </para>
+<para>
+  <command>OOF.Mesh.Boundary_Conditions.New</command> creates a new
+  named <link linkend="RegisteredClass-BC">boundary condition</link>
+  in the given &mesh;.
+</para>
+<para>
+  The <varname>name</varname> parameter is the name that will be
+  assigned to the boundary condition.  All future operations on the
+  boundary condition will refer to it by this name.  The name must
+  be unique among all of the boundary condition names in the mesh.
+  If it is not unique, then <userinput>&lt;x&gt;</userinput> will be
+  appended to it, where <userinput>x</userinput> is a suitable
+  integer.  If the name is <xref linkend="Object-automatic"/>, a
+  name will be assigned automatically.
+</para>
+<para>
+  The <varname>condition</varname> parameter is the new boundary
+  condition to which the name is being applied.  It must be an
+  instance of the <xref linkend="RegisteredClass-BC"/> class. 
+</para>
 
 
 

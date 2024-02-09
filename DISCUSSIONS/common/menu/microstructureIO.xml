@@ -1,185 +1,174 @@
 <!-- 
-  $RCSfile: microstructureIO.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:17 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    This menu contains all the commands that describe a &micro; in
-    &oof2; data files. The commands are used in all three of the data
-    file formats described in <xref
-    linkend="Section-Concepts-FileFormats"/>.  The commands are
-    described here so that users can edit <link
-    linkend="Section-Concepts-FileFormats-Script"><constant>script</constant></link>
-    or <link
-    linkend="Section-Concepts-FileFormats-Ascii"><constant>ascii</constant></link>
-    files, or can construct &oof2; &micros; in an external program.
-  </para>
-  <para>
-    &micros; are saved in data files by the <xref
-    linkend="MenuItem-OOF.File.Save.Microstructure"/>, <xref
-    linkend="MenuItem-OOF.File.Save.Skeleton"/>, and <xref
-    linkend="MenuItem-OOF.File.Save.Mesh"/> commands.  &micro; data
-    files themselves contain the following commands (the examples
-    define a complete 3&times;3 &micro;):
-    <orderedlist>
-      <listitem>
-	<para>
-	  A <link
-	  linkend="MenuItem-OOF.LoadData.FileVersion"><command>FileVersion</command></link>
-	  command.  All data files must begin with one of these.
-	</para>
-	<formalpara>
-	  <title>Example</title>
+<para>
+  This menu contains all the commands that describe a &micro; in
+  &oof2; data files. The commands are used in all three of the data
+  file formats described in <xref
+  linkend="Section-Concepts-FileFormats"/>.  The commands are
+  described here so that users can edit <link
+  linkend="Section-Concepts-FileFormats-Script"><constant>script</constant></link>
+  or <link
+  linkend="Section-Concepts-FileFormats-Ascii"><constant>ascii</constant></link>
+  files, or can construct &oof2; &micros; in an external program.
+</para>
+<para>
+  &micros; are saved in data files by the <xref
+  linkend="MenuItem-OOF.File.Save.Microstructure"/>, <xref
+  linkend="MenuItem-OOF.File.Save.Skeleton"/>, and <xref
+  linkend="MenuItem-OOF.File.Save.Mesh"/> commands.  &micro; data
+  files themselves contain the following commands (the examples
+  define a complete 3&times;3 &micro;):
+  <orderedlist>
+    <listitem>
 	  <para>
-	    <literallayout class="monospaced">FileVersion(number=1.0, format='ascii')</literallayout>
+	    A <link
+	    linkend="MenuItem-OOF.LoadData.FileVersion"><command>FileVersion</command></link>
+	    command.  All data files must begin with one of these.
 	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<para>
-	  A <link
-	  linkend="MenuItem-OOF.LoadData.Microstructure.New"><command>Microstructure.New</command></link>
-	  command, to create a new <quote>empty</quote> &micro;,
-	  containing physical and pixel sizes and nothing else.
-	</para>
-	<formalpara>
-	  <title>Example</title>
-	  <para><literallayout class="monospaced">Microstructure.New(name='tiny3', size=Point(3,3), isize=iPoint(3,3))
-</literallayout></para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<para>
-	   Any number (zero or more) of <link
-	   linkend="MenuItem-OOF.LoadData.Image.New"><command>Image.New</command></link>
-	   commands, which add &images; to the &micro;. These can come
-	   at any point in the file after the &micro; has been
-	   created.
-	</para>
-	<formalpara>
-	  <title>Example</title>
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout class="monospaced">FileVersion(number=1.0, format='ascii')</literallayout>
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
 	  <para>
-	    <literallayout
-	      class="monospaced">Image.New(name='tiny3.ppm',
+	    A <link
+	    linkend="MenuItem-OOF.LoadData.Microstructure.New"><command>Microstructure.New</command></link>
+	    command, to create a new <quote>empty</quote> &micro;,
+	    containing physical and pixel sizes and nothing else.
+	  </para>
+	  <formalpara>
+	    <title>Example</title>
+	    <para><literallayout class="monospaced">Microstructure.New(name='tiny3', size=Point(3,3), isize=iPoint(3,3))
+        </literallayout></para>
+	  </formalpara>
+    </listitem>
+    <listitem>
+	  <para>
+	    Any number (zero or more) of <link
+	    linkend="MenuItem-OOF.LoadData.Image.New"><command>Image.New</command></link>
+	    commands, which add &images; to the &micro;. These can come
+	    at any point in the file after the &micro; has been
+	    created.
+	  </para>
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout
+	          class="monospaced">Image.New(name='tiny3.ppm',
 	      microstructure='tiny3',
 	      pixels=RGBData8(rgbvalues=[257, 257, 14649, 257, 257,
 	      14649, 0, 0, 15163, 21331, 21331, 64507, 21331, 21331,
 	      64507, 64764, 64764, 64764, 21331, 21331, 64507, 21331,
 	      21331, 64507, 64764, 64764, 64764]))</literallayout> 
-	  </para>
-	</formalpara>
-      </listitem>
-      <listitem id="Definition:Category">
-	<para>
-	  A <link
-	  linkend="MenuItem-OOF.LoadData.Microstructure.Categories"><command>Microstructure.Categories</command></link>
-	  command, which categorizes each pixel in the &micro;.  A
-	  pixel <emphasis>category</emphasis> is an integer.  Pixels
-	  with different assigned &materials; or belonging to
-	  different <link
-	  linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
-	  groups</link> have different categories.
-	  <note>
-	    <para>
-	      This category definition is slightly different from the one
-	      used in calculating &skel; element <link
-	      linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>.
-	      It includes <emphasis>all</emphasis> pixel attributes, such
-	      as membership in <link
-	      linkend="Section-Concepts-Microstructure-ActiveArea">Active
-	      Areas</link>, and ignores the <link
-	      linkend="Section-Concepts-Microstructure-Pixel_Group"><varname>meshable</varname></link>
-	      flag on pixel groups.
 	    </para>
-	  </note>
-	</para>
-	<formalpara>
-	  <title>Example</title>
+	  </formalpara>
+    </listitem>
+    <listitem id="Definition:Category">
 	  <para>
-	    <literallayout class="monospaced">Microstructure.Categories(microstructure='tiny3', categories=[[0, 0, 0], [1, 1, 0], [1, 1, 0]])</literallayout>
+	    A <link
+	    linkend="MenuItem-OOF.LoadData.Microstructure.Categories"><command>Microstructure.Categories</command></link>
+	    command, which categorizes each pixel in the &micro;.  A
+	    pixel <emphasis>category</emphasis> is an integer.  Pixels
+	    with different assigned &materials; or belonging to
+	    different <link
+	    linkend="Section-Concepts-Microstructure-Pixel_Group">pixel
+	    groups</link> have different categories.
+	    <note>
+	      <para>
+	        This category definition is slightly different from the one
+	        used in calculating &skel; element <link
+	        linkend="Section-Concepts-Skeleton-Homogeneity">homogeneity</link>.
+	        It includes <emphasis>all</emphasis> pixel attributes, such
+	        as membership in <link
+	        linkend="Section-Concepts-Microstructure-ActiveArea">Active
+	        Areas</link>, and ignores the <link
+	        linkend="Section-Concepts-Microstructure-Pixel_Group"><varname>meshable</varname></link>
+	        flag on pixel groups.
+	      </para>
+	    </note>
 	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<para>
-	  Zero or more material &property; definitions from the <xref
-	  linkend="MenuItem-OOF.LoadData.Property"/> menu.  The
-	  properties must all have names.
-	</para>
-	<formalpara>
-	  <title>Example</title>
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout class="monospaced">Microstructure.Categories(microstructure='tiny3', categories=[[0, 0, 0], [1, 1, 0], [1, 1, 0]])</literallayout>
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
 	  <para>
-	    <literallayout class="monospaced">Property.Color(name='color1', color=RGBColor(red=0.000000, green=0.000000, blue=1.000000))
-Property.Color(name='color2', color=RGBColor(red=0.000000, green=1.000000, blue=0.000000))
-Property.Elasticity.Anisotropic.Cubic(name='cubicelastic', cijkl=CubicRank4TensorCij(c11=1.0,c12=0.5,c44=0.25))
-Property.Elasticity.Isotropic(name='isoelastic', cijkl=IsotropicRank4TensorCij(c11=1.0,c12=0.5))
-Property.Thermal.ThermalExpansion.Anisotropic.Cubic(name='cubicexp', alpha=CubicRank2Tensor(xx=1.000000), T0=0.0)
-Property.Thermal.ThermalExpansion.Isotropic(name='isothermexp', alpha=1.0, T0=0.0)
-</literallayout>
+	    Zero or more material &property; definitions from the <xref
+	    linkend="MenuItem-OOF.LoadData.Property"/> menu.  The
+	    properties must all have names.
 	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<para>
-	  Zero or more <link
-	  linkend="MenuItem-OOF.LoadData.Material"><command>Material</command></link>
-	  commands, defining &materials; in terms of the defined
-	  &properties;.
-	</para>
-	<formalpara>
-	  <title>Example</title>
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout class="monospaced">Property.Color(name='color1', color=RGBColor(red=0.000000, green=0.000000, blue=1.000000))
+          Property.Color(name='color2', color=RGBColor(red=0.000000, green=1.000000, blue=0.000000))
+          Property.Elasticity.Anisotropic.Cubic(name='cubicelastic', cijkl=CubicRank4TensorCij(c11=1.0,c12=0.5,c44=0.25))
+          Property.Elasticity.Isotropic(name='isoelastic', cijkl=IsotropicRank4TensorCij(c11=1.0,c12=0.5))
+          Property.Thermal.ThermalExpansion.Anisotropic.Cubic(name='cubicexp', alpha=CubicRank2Tensor(xx=1.000000), T0=0.0)
+          Property.Thermal.ThermalExpansion.Isotropic(name='isothermexp', alpha=1.0, T0=0.0)
+          </literallayout>
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
 	  <para>
-	    <literallayout>Material(name='material1', properties=['Color:color1', 'Elasticity:Isotropic:isoelastic', 'Thermal:ThermalExpansion:Isotropic:isothermexp'])
-Material(name='material2', properties=['Color:color2', 'Elasticity:Anisotropic:Cubic:cubicelastic', 'Thermal:ThermalExpansion:Anisotropic:Cubic:cubicexp'])</literallayout>
+	    Zero or more <link
+	    linkend="MenuItem-OOF.LoadData.Material"><command>Material</command></link>
+	    commands, defining &materials; in terms of the defined
+	    &properties;.
 	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<para>
-	  Commands from the <link
-	  linkend="MenuItem-OOF.LoadData.Microstructure.DefineCategory"><command>Microstructure.DefineCategory</command></link>
-	  menu to specify which &materials; and pixel groups belong to
-	  the pixels in each category.  If a category has no
-	  &material; and no pixel groups, it doesn't appear.
-	</para>
-	<formalpara>
-	  <title>Example</title>
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout>Material(name='material1', properties=['Color:color1', 'Elasticity:Isotropic:isoelastic', 'Thermal:ThermalExpansion:Isotropic:isothermexp'])
+          Material(name='material2', properties=['Color:color2', 'Elasticity:Anisotropic:Cubic:cubicelastic', 'Thermal:ThermalExpansion:Anisotropic:Cubic:cubicexp'])</literallayout>
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
 	  <para>
-	    <literallayout id="monospaced">Microstructure.DefineCategory.Material(microstructure='tiny3', category=0, material='material2')
-Microstructure.DefineCategory.Material(microstructure='tiny3', category=1, material='material1')</literallayout>
+	    Commands from the <link
+	    linkend="MenuItem-OOF.LoadData.Microstructure.DefineCategory"><command>Microstructure.DefineCategory</command></link>
+	    menu to specify which &materials; and pixel groups belong to
+	    the pixels in each category.  If a category has no
+	    &material; and no pixel groups, it doesn't appear.
 	  </para>
-	</formalpara>
-      </listitem>
-      <listitem>
-	<para>
-	  A single <link
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout id="monospaced">Microstructure.DefineCategory.Material(microstructure='tiny3', category=0, material='material2')
+          Microstructure.DefineCategory.Material(microstructure='tiny3', category=1, material='material1')</literallayout>
+	    </para>
+	  </formalpara>
+    </listitem>
+    <listitem>
+	  <para>
+	    A single <link
 	    linkend="MenuItem-OOF.LoadData.Microstructure.EndCategories"><command>Microstructure.EndCategories</command></link> command.
-	</para>
-	<formalpara>
-	  <title>Example</title>
-	  <para>
-	    <literallayout class="monospaced">Microstructure.EndCategories(microstructure='tiny3')</literallayout>
 	  </para>
-	</formalpara>
-      </listitem>
-    </orderedlist>
-  </para>
-
-
-
-  <para>
-    
-  </para>
+	  <formalpara>
+	    <title>Example</title>
+	    <para>
+	      <literallayout class="monospaced">Microstructure.EndCategories(microstructure='tiny3')</literallayout>
+	    </para>
+	  </formalpara>
+    </listitem>
+  </orderedlist>
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
