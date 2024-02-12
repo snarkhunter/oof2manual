@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <section id="Section-Graphics-PinNodes" role="toolbox">
@@ -36,12 +36,14 @@
     <mediaobject>
       <imageobject>
 	    <imagedata fileref="FIGURES/gfx/pinnodes.png"
-                   contentwidth="691px" format="PNG"/>
+                   contentwidth="706px" format="PNG"/>
       </imageobject>
       <caption>
 	    <para>
 	      The Pin Nodes Toolbox and a Canvas displaying some pinned
-	      &nodes; (yellow dots).  
+	      &nodes; (yellow dots).  The coordinates of the mouse and the
+          &node; closest to it are shown in the toolbox, as well as
+          the pinned status of the &node;.
 	    </para>
       </caption>
     </mediaobject>
