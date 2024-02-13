@@ -1,39 +1,32 @@
 <!-- 
-  $RCSfile: select_cs.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:27 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <command>OOF.Mesh.Cross_Section.Select</command> marks a cross
-    section in the given &mesh; as the currently selected cross
-    section.
-  </para>
-  <para>
-    The <link linkend="Section-Graphics-CrossSection">Mesh Cross
-    Section toolbox</link> operates on the currently selected cross
-    section, and the <xref
-    linkend="RegisteredClass-MeshCrossSectionDisplay"/> can
-    automatically display it.  However, unlike <link
-    linkend="Section-Concepts-Microstructure-PixelSelection">pixel</link>
-    and <link linkend="Section-Graphics-SkeletonSelection">Skeleton
-    selections</link>, no menu commands operate directly on the
-    selected cross section.  This is because all cross sections have
-    <link linkend="MenuItem-OOF.Mesh.Cross_Section.New">names</link>,
-    so the menu commands can simply refer to them by name.
-  </para>
-  <para>
-    New cross sections are automatically selected when they are created.
-  </para>
+<para>
+  <command>OOF.Mesh.Cross_Section.Select</command> marks a cross
+  section in the given &mesh; as the currently selected cross section.
+</para>
+<para>
+  The <link linkend="Section-Graphics-CrossSection">Mesh Cross Section
+  toolbox</link> operates on the currently selected cross section, and
+  the <xref linkend="RegisteredClass-MeshCrossSectionDisplay"/> can
+  automatically display it.  However, unlike <link
+  linkend="Section-Concepts-Microstructure-PixelSelection">pixel</link>
+  and <link linkend="Section-Graphics-SkeletonSelection">Skeleton
+  selections</link>, no menu commands operate directly on the selected
+  cross section.  This is because all cross sections have <link
+  linkend="MenuItem-OOF.Mesh.Cross_Section.New">names</link>, so the
+  menu commands can simply refer to them by name.
+</para>
+<para>
+  New cross sections are automatically selected when they are created.
+</para>
 
 
 

@@ -76,7 +76,7 @@
 	  </imageobject>
     </mediaobject>
   </figure>
-  <simplesect id="Section-Tasks-Solver-SolverPane">
+  <section id="Section-Tasks-Solver-SolverPane">
     <title>The Solver Pane</title>
     <para>
 	  The Solver Pane sets the <link
@@ -236,9 +236,9 @@
 	    </formalpara>
 	  </listitem>
     </itemizedlist>
-  </simplesect>		<!--Solver Pane-->
+  </section>		<!--Solver Pane-->
   
-  <simplesect id="Section-Tasks-Solver-FieldInitPane">
+  <section id="Section-Tasks-Solver-FieldInitPane">
     <title>The Initialization Pane</title>
     <para>
 	  The Initialization Pane is in charge of assigning <link
@@ -376,9 +376,9 @@
 	    </formalpara>
 	  </listitem>
     </itemizedlist>
-  </simplesect>		<!--Field Initialization Pane-->
+  </section>		<!--Field Initialization Pane-->
 
-  <simplesect id="Section-Tasks-Solver-SolutionPane">
+  <section id="Section-Tasks-Solver-SolutionPane">
     <title>The Solution Pane</title>
     <para>
 	  The bottom part of the Solver page contains
@@ -435,7 +435,7 @@
 	  <guibutton>Continue</guibutton> button reverts to being a
 	  <guibutton>Solve</guibutton> button.
     </para>
-  </simplesect>
+  </section>
 </section>			<!--Solution Pane-->
 
 

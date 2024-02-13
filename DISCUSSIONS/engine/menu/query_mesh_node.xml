@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: query_mesh_node.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:26 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,24 +8,18 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    Display information about the &mesh; &node; closest to the given
-    <varname>target</varname> point.  This command has no effect if
-    the GUI is not running.  Data is displayed for the topmost &mesh;
-    displayed in the graphics window in which the command was issued.
-  </para>
+<para>
+  Display information about the &mesh; &node; closest to the given
+  <varname>target</varname> point.  This command has no effect if the
+  GUI is not running.  Data is displayed for the topmost &mesh;
+  displayed in the graphics window in which the command was issued.
+</para>
   
-  <!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
+  <!-- Keep this comment at the end of the file Local variables:
+       sgml-omittag:t sgml-shorttag:t sgml-namecase-general:nil
+       sgml-minimize-attributes:nil sgml-always-quote-attributes:t
+       sgml-indent-step:2 sgml-indent-data:t
+       sgml-parent-document:("../../man_oof2.xml" "book" "chapter"
+       "refentry" "refsect1") sgml-exposed-tags:nil
+       sgml-local-ecat-files:nil End:
   -->

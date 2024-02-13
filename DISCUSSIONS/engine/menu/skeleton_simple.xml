@@ -1,32 +1,41 @@
 <!-- 
-  $RCSfile: skeleton_simple.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:28 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
+<para>
+  Create a &skel; by converting the pixels of the &micro; directly
+  into elements.  If <varname>skeleton_geometry</varname> is <xref
+  linkend='RegisteredClass-QuadSkeleton'/>, then each pixel leads to
+  one quadrilateral element.  If <varname>skeleton_geometry</varname>
+  is <xref linkend='RegisteredClass-TriSkeleton'/>, each pixel will be
+  split into two triangular elements, with the direction of the split
+  determined by the <xref linkend="RegisteredClass-TriSkeleton"/>
+  <link
+  linkend="Enum-Arrangement"><varname>arrangement</varname></link>
+  parameter.
+</para>
+<caution>
   <para>
-    Create a &skel; by converting the pixels of the &micro; directly
-    into elements.  If <varname>skeleton_geometry</varname> is <xref
-    linkend='RegisteredClass-QuadSkeleton'/>, then each pixel leads to
-    one quadrilateral element.  If
-    <varname>skeleton_geometry</varname> is <xref
-    linkend='RegisteredClass-TriSkeleton'/>, each pixel will be split
-    into two triangular elements, with the direction of the split
-    determined by the <xref linkend="RegisteredClass-TriSkeleton"/>
-    <varname>arrangement</varname> parameter.  The various geometries
-    are illustrated in <xref linkend="Figure-initskel"/>.
+    This is almost always not the best way to create a &skel;.  It
+    creates too many &elems;, forcing the finite element solvers to do
+    unnecessary work.  It also turns smooth boundaries into (probably
+    unphysical) jagged boundaries.  See the discussion of <link
+    linkend="over-refinement">over-refinement</link> on the <xref
+    linkend="RegisteredClass-Refine"/> page.
   </para>
-
-
+  <para>
+    Instead of using <command>Simple</command>, consider creating a
+    coarser &skel; with <xref linkend="OOF.Skeleton.New"/> and <link
+    linkend="MenuItem-OOF.Skeleton.Modify">modifying</link> it where
+    higher resolution is required.
+  </para>
+</caution>
 
 
 

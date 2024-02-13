@@ -9,20 +9,22 @@
 -->
 
 <para>
-  Construct a new <link
-  linkend='Section-Concepts-Mesh-BoundaryCondition-NamedProfile'>named
-  <classname>Profile</classname></link> object.  The new
-  <classname>Profile</classname> is stored in a global list,
-  accessible to all &meshes;.
+  Activating a &field; on a &subproblem; means that the components of
+  the &field; will be found when the &subproblem; is <link
+  linkend="MenuItem-OOF.Mesh.Solve">solved</link>, if the &field;
+  appears in any <link
+  linkend="MenuItem-OOF.Mesh.Equation.Activate">active</link>
+  &equations;.
 </para>
 <para>
-  The given <varname>name</varname> must be unique. If it is not
-  unique, the string <userinput>&lt;x&gt;</userinput> will be
-  appended to it, where <userinput>x</userinput> is a suitable
-  integer.  If the given name is <link
-  linkend="Object-automatic"><userinput>automatic</userinput></link>,
-  then a boring but unique name will be generated automatically.
+  Only &fields; that have been <link
+  linkend="MenuItem-OOF.Mesh.Field.Define">defined</link> may be
+  activated.  Fields that have been defined but
+  <emphasis>not</emphasis> activated are passive fields: they may
+  still be used in active &equations;, but they are treated as
+  constants instead of as variables.
 </para>
+
 
 <!-- Keep this comment at the end of the file
   Local variables:
@@ -33,7 +35,7 @@
   sgml-always-quote-attributes:t
   sgml-indent-step:2
   sgml-indent-data:t
-  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-parent-document:("../../../man_oof2.xml" "refsect1")
   sgml-exposed-tags:nil
   sgml-local-ecat-files:nil
   End:

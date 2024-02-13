@@ -37,7 +37,7 @@
 	  </imageobject>
     </mediaobject>
   </figure>
-  <simplesect id="Section-Materials-Property">
+  <section id="Section-Materials-Property">
     <title>The Property Pane</title>
     <para>
 	  Most of the Property Pane is occupied by a hierarchical list of
@@ -130,8 +130,8 @@
 	  &property; can be added to more than one &material;.
     </para>
 
-  </simplesect>
-  <simplesect id="Section-Materials-PropDialogs">
+  </section>
+  <section id="Section-Materials-PropDialogs">
     <title>Property Parametrization Dialogs</title>
     <para>
 	  Clicking the <link
@@ -228,8 +228,8 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-Materials-Material">
+  </section>
+  <section id="Section-Materials-Material">
     <title>The Material Pane</title>
     <para>
 	  The Material Pane is where &properties; constructed in the
@@ -360,7 +360,7 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 </section>
     
 

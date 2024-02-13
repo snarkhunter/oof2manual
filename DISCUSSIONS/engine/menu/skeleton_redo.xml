@@ -1,38 +1,20 @@
 <!-- 
-  $RCSfile: skeleton_redo.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:27 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Each &skel; maintains a stack of previous incarnations of itself.
-    Whenever a &skel; is <link
-    linkend="MenuItem-OOF.Skeleton.Modify">modified</link>, a new
-    version is pushed onto the stack.  The <link
-    linkend="MenuItem-OOF.Skeleton.Undo"><command>Undo</command></link>
-    pops the latest version off of the stack, thereby reverting to the
-    previous version of the &skel;.  The <command>Redo</command>
-    command undoes the <command>Undo</command>, replacing the most
-    recently popped &skel; onto the stack.
-  </para>
-  <note>
-    <para>
-      Undone modifications can be redone only if no new modifications
-      have been made to the &skel; since the time of the last <link
-      linkend="MenuItem-OOF.Skeleton.Undo"><command>Undo</command></link>.
-    </para>
-  </note>
-
-
+<para>
+  Redo a previously <link
+  linkend="MenuItem-OOF.Skeleton.Undo">undone</link> &skel;
+  modification.  Undone modifications can be redone only if no new
+  modifications have been made since the time of the last <link
+  linkend="MenuItem-OOF.Skeleton.Undo"><command>Undo</command></link>.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

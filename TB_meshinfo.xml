@@ -56,7 +56,7 @@
     buttons on either side cycle through the previously selected
     objects (changing the Toolbox mode, if necessary).
   </para>
-  <simplesect id="Toolbox-MeshInfo-ElementMode">
+  <section id="Toolbox-MeshInfo-ElementMode">
     <title>Element Mode</title>
     <para>
       In Element mode, the <classname>Element</classname> being
@@ -116,8 +116,8 @@
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Toolbox-MeshInfo-NodeMode">
+  </section>
+  <section id="Toolbox-MeshInfo-NodeMode">
     <title>Node Mode</title>
     <para>
       In Node mode, the <classname>Node</classname> being queried is
@@ -149,8 +149,8 @@
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-Graphics-MeshInfo-DataViewer">
+  </section>
+  <section id="Section-Graphics-MeshInfo-DataViewer">
     <title>The Data Viewer</title>
     <para>
       The values of &fields;, &fluxes; and other &mesh;-dependent <link
@@ -292,7 +292,7 @@
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 </section>
   
 

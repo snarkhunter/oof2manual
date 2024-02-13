@@ -15,7 +15,7 @@
   various places on a &mesh;.
 </para>
 <para>
-  Generally, four things must be specified for each analysis:
+  Generally, five things must be specified for each analysis:
   <orderedlist spacing="compact">
     <listitem>
 	  <formalpara>
@@ -68,6 +68,18 @@
 	      <classname>Operations</classname>.
 	    </para>
 	  </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+        <title>Destination</title>
+        <para>
+          The <xref linkend="RegisteredClass-OutputDestination"/>
+          determines where the output goes &emdash; to a file, the
+          Message Window, or a Graphics Window.  Different kinds of
+          <clasname>Operation</clasname> require different kinds of
+          <classname>Destinations</classname>.
+        </para>
+      </formalpara>
     </listitem>
   </orderedlist>
 </para>

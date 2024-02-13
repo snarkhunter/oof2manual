@@ -49,15 +49,15 @@
     It may be necessary to resize the Graphics Window to see the whole
     Toolbox.
   </para>
-  <simplesect id="Toolbox-MeshCS-Source">
+  <section id="Toolbox-MeshCS-Source">
     <title>Source</title>
     <para>
       The <guilabel>Source</guilabel> pane lists the &mesh; that's
       displayed in the Canvas and says what data is being plotted in
       the topmost contour plot &layer;.
     </para>
-  </simplesect>
-  <simplesect id="Toolbox-MeshCS-CS">
+  </section>
+  <section id="Toolbox-MeshCS-CS">
     <title>Cross Section</title>
     <para>
       The <guilabel>Cross Section</guilabel> pane allows the user to
@@ -132,8 +132,8 @@
       linkend="MenuItem-OOF.Mesh.Cross_Section.Remove"><guibutton>Remove</guibutton></link>
       button deletes the current cross section.
     </para>
-  </simplesect>
-   <simplesect id="Toolbox-MeshCS-Output">
+  </section>
+   <section id="Toolbox-MeshCS-Output">
     <title>Output</title>
     <para>
       The <link
@@ -155,7 +155,7 @@
       linkend="MenuItem-OOF.Settings.Output_Formatting"/> menu in the
       main &oof2; window.
     </para>
-  </simplesect>
+  </section>
 </section>
 
 <!-- Keep this comment at the end of the file

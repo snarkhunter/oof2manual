@@ -39,7 +39,7 @@
 	  </imageobject>
     </mediaobject>
   </figure>
-  <simplesect id="Section-ActivePage-NamedArea">
+  <section id="Section-ActivePage-NamedArea">
     <title>The Named Area Pane</title>
     <para>
 	  The Named Area Pane contains the machinery needed to give names
@@ -90,8 +90,8 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-ActivePage-Modifier">
+  </section>
+  <section id="Section-ActivePage-Modifier">
     <title>The Modification Pane</title>
     <para>
 	  The Active Area Modification pane is similar to the Modification
@@ -152,7 +152,7 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 </section>
     
 

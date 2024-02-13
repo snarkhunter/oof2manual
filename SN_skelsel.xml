@@ -54,7 +54,7 @@
     current mode.  The Selection Modification Pane selects and
     deselects the same objects.
   </para>
-  <simplesect id="Section-SkeletonSelection-Group">
+  <section id="Section-SkeletonSelection-Group">
     <title>The Group Operations Pane</title>
     <para>
       The Group Operations Pane consists of three regions.  A central
@@ -212,8 +212,8 @@
 	</listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-SkeletonSelection-Modification">
+  </section>
+  <section id="Section-SkeletonSelection-Modification">
     <title>The Selection Modification Pane</title>
     <para>
       The Selection Modification Pane contains tools for making and
@@ -284,7 +284,7 @@
       rely on mouse input, in contrast with the tools in the Skeleton
       Selection Page, which are all mouseless.
     </para>
-  </simplesect>
+  </section>
 </section>
 
 

@@ -1541,7 +1541,7 @@
 	    &equations; in &oof2;.  <xref linkend='Chapter-Extending'/>
 	    explains how to add new &equations;.
       </para>
-      <simplesect id="Section-Concepts-Mesh-Equation-Divergence">
+      <section id="Section-Concepts-Mesh-Equation-Divergence">
 	    <title>Static Divergence Equations</title>
 	    <para>
 	      Divergence equations are of the form
@@ -1564,9 +1564,9 @@
 	      t\)</alt> </inlineequation>, where the right hand side is
 	      a given rate of change of thermal energy density).
 	    </para>
-      </simplesect>		<!-- Static Divergence Equations -->
+      </section>		<!-- Static Divergence Equations -->
 
-      <simplesect id="Section-Concepts-Time-Dependence">
+      <section id="Section-Concepts-Time-Dependence">
 	    <title>Nonstatic Equations</title>
 	    <para>
 	      The general form of the time dependent version of the <link
@@ -1585,8 +1585,8 @@
 	      &Mmatrix; term will be zero.  For second order problems the
 	      &Cmatrix; term <emphasis>may</emphasis> be zero.
 	    </para>
-      </simplesect><!-- Nonstatic Equations -->
-      <simplesect id="Section-Concepts-Mesh-Equation-PlaneFlux">
+      </section><!-- Nonstatic Equations -->
+      <section id="Section-Concepts-Mesh-Equation-PlaneFlux">
 	    <title>Plane Flux Equations</title>
 	    <para>
 	      Plane flux equations implement &oof2;'s generalization of
@@ -1609,8 +1609,8 @@
 	          and the plane-heat-flux equation
 	          <inlineequation><alt role="tex">\(J_z = 0\)</alt></inlineequation>.
 	    </para>
-      </simplesect><!-- Plane Flux Equations -->
-      <simplesect id="Section-Concepts-Mesh-Equation-Nonlinear">
+      </section><!-- Plane Flux Equations -->
+      <section id="Section-Concepts-Mesh-Equation-Nonlinear">
 	    <title>Nonlinear Equations</title>
 	    <para>
 	      &oof2; can solve nonlinear versions of Equations <xref
@@ -1622,8 +1622,8 @@
 	      <inlineequation><alt
 	                          role="tex">\(\mathrm{force}\)</alt></inlineequation> terms.
 	    </para>
-      </simplesect>		<!-- Nonlinear Equations -->
-      <simplesect>
+      </section>		<!-- Nonlinear Equations -->
+      <section>
 	    <title>Parameters in Equations</title>
 	    <para>
 	      The exact form of the &equations; that &oof2; solves is
@@ -1687,7 +1687,7 @@
 	        </listitem>
 	      </itemizedlist>
 	    </para>
-      </simplesect>		<!-- Parameters in Equations -->
+      </section>		<!-- Parameters in Equations -->
     </section>			<!-- Equation -->
 
     <section id="Section-Concepts-Mesh-BoundaryCondition">

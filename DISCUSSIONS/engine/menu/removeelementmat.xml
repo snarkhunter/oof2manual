@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: removeelementmat.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-08 20:47:57 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -16,11 +11,23 @@
 <para>
   <xref linkend="MenuItem-OOF.ElementGroup.Remove_Material"/> undoes
   the effect of <xref
-  linkend="MenuItem-OOF.ElementGroup.Assign_Material"/>.  After a
-  &material; has been removed from an &elemgroup;, all &elem;'s in the
-  group will inherit their &material; from the &elem;'s <link
-  linkend="Section-Concepts-Skeleton-Homogeneity">dominant
-  pixel</link>.
+  linkend="MenuItem-OOF.ElementGroup.Assign_Material"/>.
+</para>
+<para>
+  If an &elem; is in more than one &elemgroup;, the &elem;'s
+  &material; is the chronologically last one assigned to any of the
+  groups to which the &elem; belongs.  Calling
+  <command>Remove_Material</command> causes the &material; to be
+  recomputed if necessary.  If after the removal none of an &elem;'s
+  groups have an assigned &material;, the implicitly inherited
+  &material; from the <link
+  linked="Section-Concepts-Skeleton-Homogeneity">dominant pixel</link>
+  will be used instead.
+</para>
+<para>
+  To verify what &material; is assigned to an &elem;, use the <link
+  linkend="Section-Graphics-SkeletonInfo">Skeleton Info</link>
+  toolbox.
 </para>
 <para>
   In the GUI, <xref

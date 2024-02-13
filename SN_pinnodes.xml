@@ -41,14 +41,14 @@
 	  </imageobject>
     </mediaobject>
   </figure>
-  <simplesect id="Section-PinNodes-Information">
+  <section id="Section-PinNodes-Information">
     <title>The Information Pane</title>
     <para>
 	  The Information Pane simply displays the number of nodes in the
 	  current &skel; and the number of them that are pinned.
     </para>
-  </simplesect>
-  <simplesect id="Section-PinNodes-Modification">
+  </section>
+  <section id="Section-PinNodes-Modification">
     <title>The Modification Pane</title>
     <para>
 	  The Modification Pane contains a pull-down menu, labelled
@@ -96,7 +96,7 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
+  </section>
   
 </section>
     

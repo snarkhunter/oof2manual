@@ -39,7 +39,7 @@
     there are two parts to the Image Chooser: one for selecting a
     &micro; and one for selecting one of the &images; within it.
   </para>
-  <simplesect id="Section-ImagePage-Buttons">
+  <section id="Section-ImagePage-Buttons">
     <title>Buttons</title>
     <para>
 	  The buttons below the Image Chooser perform some basic
@@ -123,8 +123,8 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-ImagePage-Info">
+  </section>
+  <section id="Section-ImagePage-Info">
     <title>The Image Information Pane</title>
     <para>
 	  The Image Information Pane displays information about the
@@ -133,8 +133,8 @@
 	  and any comments that might have been stored within the image
 	  file.
     </para>
-  </simplesect>
-  <simplesect id="Section-ImagePage-Modification">
+  </section>
+  <section id="Section-ImagePage-Modification">
     <title>The Image Modification Pane</title>
     <para>
 	  The Image Modification Pane contains tools for modifying
@@ -173,7 +173,7 @@
       Just be sure that the modified image is the same size (in
       pixels) as the &micro;.
     </para>
-  </simplesect>
+  </section>
 </section>
     
 

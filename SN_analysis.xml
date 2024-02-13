@@ -52,7 +52,7 @@
     performs the analysis.
   </para>
   
-  <simplesect id="Section-Tasks-Analysis-Time">
+  <section id="Section-Tasks-Analysis-Time">
     <title>Time Controls</title>
     <para>
       The analyses performed by this page are all computed on data
@@ -97,9 +97,9 @@
 	    </imageobject>
 	  </mediaobject>
     </figure>
-  </simplesect>
+  </section>
 
-  <simplesect id="Section-Tasks-Analysis-OutputPane">
+  <section id="Section-Tasks-Analysis-OutputPane">
     <title>Output Pane</title>
     <para>
 	  This pane selects the output data which will be sampled on the
@@ -114,8 +114,8 @@
 	  outputs</link> (<foreignphrase>e.g,</foreignphrase> all of the
 	  components of a &field; or &flux;).
       </para>
-    </simplesect>  
-    <simplesect id="Section-Tasks-Analysis-OperationPane">
+    </section>  
+    <section id="Section-Tasks-Analysis-OperationPane">
       <title>Operation Pane</title>
       <para>
 	    The operation pane determines what actually happens when the
@@ -123,8 +123,8 @@
 	    one of the <xref linkend="MenuItem-OOF.Mesh.Analyze"/> menu
 	    items.
       </para>
-    </simplesect>
-    <simplesect id="Section-Tasks-Analysis-DomainPane">
+    </section>
+    <section id="Section-Tasks-Analysis-DomainPane">
       <title>Domain Pane</title>
       <para>
 	    The region or subset of the &mesh; on which the operation
@@ -206,10 +206,10 @@
           </caption>
 	    </mediaobject>
       </figure>
-    </simplesect>
+    </section>
 
 
-    <simplesect id="Section-Tasks-Analysis-SamplingPane">
+    <section id="Section-Tasks-Analysis-SamplingPane">
       <title>Sampling Pane </title> 
       <para>
 	    Outputs cannot in general be evaluated directly on the
@@ -227,9 +227,9 @@
 	    settings of the <link linkend="Section-Tasks-Analysis-DomainPane"><guilabel>Domain</guilabel></link> and
 	    <link linkend="Section-Tasks-Analysis-OperationPane"><guilabel>Operation</guilabel></link> panes.
       </para>
-    </simplesect>
+    </section>
 
-    <simplesect id="Section-Tasks-Analysis-Named">
+    <section id="Section-Tasks-Analysis-Named">
       <title>Named Analyses Pane</title>
       <para>
 	    The <guilabel>Named Analyses</guilabel> pane <link
@@ -316,9 +316,9 @@
 	    in the menu will switch the panes to the selected
 	    configuration.
       </para>
-    </simplesect>
+    </section>
 
-    <simplesect id="Section-Tasks-Analysis-Destination">
+    <section id="Section-Tasks-Analysis-Destination">
       <title>Destination Pane</title>
       <para>
 	    The <guilabel>Destination</guilabel> pane determines where the
@@ -409,9 +409,9 @@
 	    linkend="MenuItem-OOF.Settings.Output_Formatting"/> menu in
 	    the main &oof2; window.
       </para>
-    </simplesect>
+    </section>
 
-    <simplesect>
+    <section>
       <title>
         The Go Button
       </title>
@@ -438,7 +438,7 @@
         linkend="RegisteredClass-RebuildMesh">out of sync</link> with
         its &skel;, or the Output is incomputable on the &mesh;.
       </para>
-    </simplesect>
+    </section>
   </section>    
 
   <!-- Keep this comment at the end of the file

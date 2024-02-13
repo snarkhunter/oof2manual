@@ -22,20 +22,15 @@
 </para>
 <para>
   If an &elem; is in more than one &elemgroup;, the &elem;'s
-  &material; is the last one assigned to any of the groups to which
-  the &elem; belongs.  If a &material; is assigned to a group that
-  already had an explicitly assigned &material;, the new &material;
-  replaces the old one for all &elems; in the group.
-</para>
-<para>
-  If an explicitly assigned &material; is removed with <xref
-  linkend="MenuItem-OOF.ElementGroup.Remove_Material"/>, the implicitly
-  inherited &material; will be used.
+  &material; is the chronologically last one assigned to any of the
+  groups to which the &elem; belongs.  If a &material; is assigned to
+  a group that already had an explicitly assigned &material;, the new
+  &material; replaces the old one for all &elems; in the group.
 </para>
 <para>
   In the GUI, <xref
-  linkend="MenuItem-OOF.ElementGroup.Remove_Material"/> is invoked by
-  the <guibutton>Remove</guibutton> button in the
+  linkend="MenuItem-OOF.ElementGroup.Assign_Material"/> is invoked by
+  the <guibutton>Assign</guibutton> button in the
   <guilabel>Material</guilabel> subpane of the <guilabel>Element group
   operations</guilabel> pane in the <link
   linkend="Section-Tasks-SkeletonSelection"><guilabel>Skeleton

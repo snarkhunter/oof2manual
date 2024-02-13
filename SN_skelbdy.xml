@@ -42,7 +42,7 @@ the authors at oof_manager@nist.gov.
 	  </imageobject>
     </mediaobject>
   </figure>
-  <simplesect id="Section-SkelBdy-BoundaryList">
+  <section id="Section-SkelBdy-BoundaryList">
     <title>The Boundary List Pane</title>
     <para>
 	  Clicking on the name of a boundary in the Boundary List Pane
@@ -152,7 +152,7 @@ the authors at oof_manager@nist.gov.
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 </section>
 
 

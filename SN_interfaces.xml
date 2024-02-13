@@ -53,7 +53,7 @@ IT'S CURRENTLY COMMENTED OUT in CH_tasks.xml/>
 	</imageobject>
       </mediaobject>
     </figure>
-    <simplesect id="Section-Interfaces-InterfaceList">
+    <section id="Section-Interfaces-InterfaceList">
       <title>The Interfaces List Pane</title>
       <para>
 	Clicking on the name of an interface in the Interfaces pane on
@@ -112,7 +112,7 @@ IT'S CURRENTLY COMMENTED OUT in CH_tasks.xml/>
 	  </listitem>
 	</itemizedlist>
       </para>
-    </simplesect>
+    </section>
 
   </section>
     

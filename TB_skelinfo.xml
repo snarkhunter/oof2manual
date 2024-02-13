@@ -59,7 +59,7 @@
     buttons on either side cycle through the previously selected
     objects (changing the Toolbox mode, if necessary).
   </para>
-  <simplesect id="Toolbox-SkeletonInfo-ElementMode">
+  <section id="Toolbox-SkeletonInfo-ElementMode">
     <title>Element Mode</title>
     <para>
       In Element mode, the &elem; being queried is highlighted with a
@@ -172,8 +172,8 @@
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Toolbox-SkeletonInfo-NodeMode">
+  </section>
+  <section id="Toolbox-SkeletonInfo-NodeMode">
     <title>Node Mode</title>
     <para>
       In Node Mode, the &node; being queried is highlighted in the
@@ -241,8 +241,8 @@
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Toolbox-SkeletonInfo-SegmentMode">
+  </section>
+  <section id="Toolbox-SkeletonInfo-SegmentMode">
     <title>Segment Mode</title>
     <para>
       In Segment Mode, the &sgmt; being queried is highlighted in the
@@ -320,7 +320,7 @@
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 </section>
 
 <!-- Keep this comment at the end of the file

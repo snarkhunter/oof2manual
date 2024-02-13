@@ -112,7 +112,7 @@
 </para>
 
 <caution>
-  <anchor id="Anchor:over-refinement"/>
+  <anchor id="over-refinement"/>
   <para>
     One should not abuse Refinement to the point where &elems; become
     too small.  <xref linkend="Figure-abused"/> shows a part of &skel;

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: query_skel_elem_id.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-15 21:12:41 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,14 +8,14 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    This command is just like <xref
-    linkend="MenuItem-OOF.Graphics_n.Toolbox.Skeleton_Info.QueryElement"/>,
-    except that the argument is the numerical id of the &elem; and not
-    a position.  It's used by the <link
-    linkend="Section-Graphics-SkeletonInfo">Skeleton Info</link>
-    toolbox.
-  </para>
+<para>
+  This command is just like <xref
+  linkend="MenuItem-OOF.Graphics_n.Toolbox.Skeleton_Info.QueryElement"/>,
+  except that the argument is the numerical id of the &elem; and not a
+  position.  It's used by the <link
+  linkend="Section-Graphics-SkeletonInfo">Skeleton Info</link>
+  toolbox.
+</para>
   
   <!-- Keep this comment at the end of the file
   Local variables:

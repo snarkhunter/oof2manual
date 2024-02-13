@@ -39,7 +39,7 @@
     it's necessary to specify the &skel; containing the &mesh; and the
     &micro; containing the &skel;.
   </para>
-  <simplesect id="Section-Tasks-FEMesh-Buttons">
+  <section id="Section-Tasks-FEMesh-Buttons">
     <title>FE Mesh Buttons</title>
     <para>
       The buttons below the Mesh Chooser perform common &mesh;
@@ -91,8 +91,8 @@
 	</listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-Tasks-FEMesh-Info">
+  </section>
+  <section id="Section-Tasks-FEMesh-Info">
     <title>The Info Pane</title>
     <para>
       The <guilabel>Info</guilabel> pane displays information about
@@ -116,8 +116,8 @@ Status: Out of sync with Skeleton
       linkend="Section-Tasks-FEMesh-Modification"><guilabel>Mesh
       Operations</guilabel></link> pane.
     </para>
-  </simplesect>
-  <simplesect id="Section-Tasks-FEMesh-Subproblems">
+  </section>
+  <section id="Section-Tasks-FEMesh-Subproblems">
     <title>The Subproblems Pane</title>
     <para>
       The <guilabel>Subproblems</guilabel> pane manages &subproblems;.
@@ -210,8 +210,8 @@ Status: Out of sync with Skeleton
 	    </listitem>
       </itemizedlist>
     </para>
-  </simplesect>
-  <simplesect id="Section-Tasks-FEMesh-Modification">
+  </section>
+  <section id="Section-Tasks-FEMesh-Modification">
     <title>The Mesh Operations Pane</title>
     <para>
       The <guilabel>Mesh Operations</guilabel> pane works just like
@@ -248,7 +248,7 @@ Status: Out of sync with Skeleton
 	</para>
       </listitem>
     </itemizedlist>
-  </simplesect>
+  </section>
 </section>
     
 

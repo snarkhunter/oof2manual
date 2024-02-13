@@ -43,7 +43,7 @@
     </mediaobject>
   </figure>
   
-  <simplesect id="Section-PixSel-Modification">
+  <section id="Section-PixSel-Modification">
     <title>The Pixel Selection Modification Pane</title>
     <para>
 	  The Pixel Selection Modification Pane follows the same layout as
@@ -81,7 +81,7 @@
 	  linkend="MenuItem-OOF.PixelSelection.Clear"><guibutton>Clear</guibutton></link>
 	  button clears the pixel selection in the current &micro;.
     </para>
-  </simplesect>
+  </section>
 
 </section>
 

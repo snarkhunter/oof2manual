@@ -13,15 +13,18 @@
   &skel; with triangular &elems;, it builds a rectangular array of
   quadrilaterals and divides each quad diagonally into two
   triangles.  The arrangement of the diagonals is determined by an
-  <classname>Arrangement</classname> object.  <xref
-  linkend="Figure-arrangement"/> illustrates the possibilities.
+  <classname>Arrangement</classname> object, which is a parameter for
+  <xref linkend="RegisteredClass-TriSkeleton"/>.
+</para>
+<para>
+  <xref linkend="Figure-arrangement"/> illustrates the possibilities.
 </para>
 <figure id="Figure-arrangement">
   <title>Diagonal Arrangements for Triangular Skeletons</title>
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/arrangements.png"
-	             format="PNG"/>
+                 contentwidth="913px" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>

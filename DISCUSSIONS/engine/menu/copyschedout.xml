@@ -12,7 +12,7 @@
   Copy the given <link
   linkend="Section-Concepts-Outputs-Scheduled">Scheduled
   Output</link> from <varname>mesh</varname> to <varname>targetmesh</varname>.
-  The linkend="RegisteredClass-ScheduledOutput"/>, and its <xref
+  The <xref linkend="RegisteredClass-ScheduledOutput"/>, and its <xref
   linkend="RegisteredClass-Schedule"/>, <xref
   linkend="RegisteredClass-ScheduleType"/>, and <xref
   linkend="RegisteredClass-OutputDestination"/> will all be copied.

@@ -5,23 +5,22 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Each &skel; maintains a stack of previous incarnations of itself.
-    Whenever a &skel; is <link
-    linkend="MenuItem-OOF.Skeleton.Modify">modified</link>, a new
-    version is pushed onto the stack.  The <command>Undo</command>
-    pops the latest version off of the stack, thereby reverting to the
-    previous version of the &skel;.  The popped version is not
-    destroyed &#x2014; it can be recovered with the <xref
-    linkend="MenuItem-OOF.Skeleton.Redo"/> command.
-  </para>
-  <para>
-    The &skel; stack is not infinite.  When it is full, the oldest
-    version of a &skel; will be lost when a new modification is made.
-  </para>
+<para>
+  Undo the most recent &skel; <link
+  linkend="MenuItem-OOF.Skeleton.Modify">modification</link>.  To undo
+  the <command>Undo</command> use <xref
+  linkend="MenuItem-OOF.Skeleton.Redo"/>.
+</para>
+<para>
+  The number of times that <command>Undo</command> can be used is
+  limited by the size of the undo buffer.  When the buffer is full,
+  the oldest versions of the &skel; will be lost when new
+  modifications are made.  The buffer size can be changed by <xref
+  linkend="MenuItem-OOF.Settings.UndoBuffer_Size.Skeleton"/>.
+</para>
 
 
 

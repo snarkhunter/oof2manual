@@ -31,7 +31,7 @@
 	</mediaobject>
   </figure>
 
-  <simplesect id="Section-FieldPane">
+  <section id="Section-FieldPane">
     <title>The Field Pane</title>
     <para>
 	  The Field Pane specifies which &fields; are defined on the
@@ -89,8 +89,8 @@
 	  of the pane allows the current set of checkbox settings to be
 	  copied to another &subproblem;, possibly in another &mesh;.
     </para>
-  </simplesect>
-  <simplesect id="Section-EquationPane">
+  </section>
+  <section id="Section-EquationPane">
     <title>The Equation Pane</title>
     <para>
 	  The Equation Pane simply contains a list of the &equations; that
@@ -108,7 +108,7 @@
 	  bottom of the pane copies the current set of active &fields; to
 	  another &subproblem;, possibly in a different &mesh;.
     </para>
-  </simplesect>
+  </section>
 </section>
     
 

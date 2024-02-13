@@ -54,7 +54,7 @@
     </mediaobject>
   </figure>
 
-  <simplesect id="Section-SkeletonPage-Buttons">
+  <section id="Section-SkeletonPage-Buttons">
     <title>Buttons</title>
     <para>
 	  Below the Skeleton Chooser is a row of buttons for performing
@@ -146,9 +146,9 @@
 	    </listitem>
 	  </itemizedlist>
     </para>
-  </simplesect>
+  </section>
 
-  <simplesect id="Section-Skeleton-Modify">
+  <section id="Section-Skeleton-Modify">
       <title>The Skeleton Modification Pane</title>
       <para>
 	    The Skeleton Modification Pane contains tools for modifying a
@@ -193,7 +193,7 @@
 	      </listitem>
 	    </itemizedlist>
       </para>
-  </simplesect>
+  </section>
 </section>
 
   <!-- Keep this comment at the end of the file
