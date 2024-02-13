@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: const_threevec_init.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2011-04-29 03:18:01 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -18,12 +13,12 @@
   <classname>ConstThreeVectorFieldInit</classname> objects are used as
   the <varname>initializer</varname> argument in the <xref
   linkend="MenuItem-OOF.Mesh.Set_Field_Initializer"/> command when
-  assigning initial values to vector fields on a &mesh;.  The
-  parameters <varname>cx</varname>.  <varname>cy</varname> and
-  <varname>cz</varname> are the <emphasis>x</emphasis>,
-  <emphasis>y</emphasis>, and <emphasis>z</emphasis> components of a
-  vector value, which is assigned to the field at all points in the
-  &mesh;.
+  assigning initial values to three dimensional vector fields on a
+  &mesh;.  The parameters <varname>cx</varname>.
+  <varname>cy</varname> and <varname>cz</varname> are the
+  <emphasis>x</emphasis>, <emphasis>y</emphasis>, and
+  <emphasis>z</emphasis> components of a vector value, which is
+  assigned to the field at all points in the &mesh;.
 </para>
 
 

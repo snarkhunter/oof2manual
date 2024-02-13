@@ -8,7 +8,6 @@
   the authors at oof_manager@nist.gov.
 -->
 
-
 <para>
   The <command>TogglePin</command> command is called by the <link
   linkend="Section-Graphics-PinNodes">Pin Nodes</link> toolbox in the

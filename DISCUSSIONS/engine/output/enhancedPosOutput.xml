@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: enhancedPosOutput.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-04-08 20:00:00 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,20 +8,25 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    The <classname>enhanced</classname> <link
-    linkend="Section-Output-Position"><classname>PositionOutput</classname></link>
-    returns the original position of a point plus a given multiple of
-    the Displacement Field.  The scale factor,
-    <varname>factor</varname>, can be any real number.  Setting it to
-    <userinput>1</userinput> makes the <classname>enhanced</classname>
-    output identical to the <link
-    linkend="Output-Position-actual"><classname>actual</classname></link>
-    output, and setting it to <userinput>0</userinput> makes it
-    identical to the <link
-    linkend="Output-Position-original"><classname>original</classname></link>
-    output.
-  </para>
+<para>
+  The <classname>enhanced</classname> <link
+  linkend="Section-Output-Position"><classname>PositionOutput</classname></link>
+  returns the original position of a point plus a given multiple of
+  the Displacement Field.  The scale factor,
+  <varname>factor</varname>, can be any real number.  Setting it to
+  <userinput>1</userinput> makes the <classname>enhanced</classname>
+  output identical to the <link
+  linkend="Output-Position-actual"><classname>actual</classname></link>
+  output, and setting it to <userinput>0</userinput> makes it
+  identical to the <link
+  linkend="Output-Position-original"><classname>original</classname></link>
+  output.
+</para>
+<para>
+  If the displacement &field; isn't defined on the &mesh;, then
+  <classname>enhanced</classname> simply returns the undisplaced
+  position.
+</para>
 
 
 <!-- Keep this comment at the end of the file

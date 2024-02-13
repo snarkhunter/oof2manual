@@ -31,9 +31,9 @@
   </para>
   <para>
     Instead of using <command>Simple</command>, consider creating a
-    coarser &skel; with <xref linkend="OOF.Skeleton.New"/> and <link
-    linkend="MenuItem-OOF.Skeleton.Modify">modifying</link> it where
-    higher resolution is required.
+    coarser &skel; with <xref linkend="MenuItem-OOF.Skeleton.New"/>
+    and <link linkend="MenuItem-OOF.Skeleton.Modify">modifying</link>
+    it to obtain higher resolution only where necessary.
   </para>
 </caution>
 

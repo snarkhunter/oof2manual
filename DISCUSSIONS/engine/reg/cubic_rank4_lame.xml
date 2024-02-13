@@ -1,45 +1,40 @@
 <!-- 
-  $RCSfile: cubic_rank4_lame.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:38 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>CubicRank4TensorLame</classname> is a <link
-    linkend="RegisteredClass-CubicRank4Tensor">rank 4 tensor with
-    cubic symmetry</link>, expressed in Lam&eacute; coefficients.
-  </para>
-  <para>
-    <varname>lmbda</varname> is the Lam&eacute; <inlineequation>
-      <alt role="tex">\(\lambda\)</alt>
-    </inlineequation>
-    coefficient, which is equal to <inlineequation>
-      <alt role="tex">\(C_{12}\)</alt>
-    </inlineequation>. (The
-    word <quote>lambda</quote> is a Python keyword, so it can't be
-    used as a variable unless it's spelled wrong.)
-  </para>
-  <para>
-    <varname>mu</varname> is the Lam&eacute; <inlineequation>
-      <alt role="tex">\(\mu\)</alt>
-    </inlineequation>
-    coefficient, equal to
-    <inlineequation>
-      <alt role="tex">\((C_{11}-C_{12})/2\)</alt></inlineequation>.
-  </para>
-  <para>
-    <varname>aniso</varname> is the anisotropy coefficient, equal to
-    <inlineequation>
-      <alt role="tex">\(2C_{44}/(C_{11}-C_{12})\)</alt></inlineequation>.
+<para>
+  <classname>CubicRank4TensorLame</classname> is a <link
+  linkend="RegisteredClass-CubicRank4Tensor">rank 4 tensor with
+  cubic symmetry</link>, expressed in Lam&eacute; coefficients.
+</para>
+<para>
+  <varname>lmbda</varname> is the Lam&eacute; <inlineequation>
+  <alt role="tex">\(\lambda\)</alt>
+</inlineequation>
+coefficient, which is equal to <inlineequation>
+<alt role="tex">\(C_{12}\)</alt>
+</inlineequation>. (The
+word <quote>lambda</quote> is a Python keyword, so it can't be
+used as a variable unless it's spelled wrong.)
+</para>
+<para>
+  <varname>mu</varname> is the Lam&eacute; <inlineequation>
+  <alt role="tex">\(\mu\)</alt>
+</inlineequation>
+coefficient, equal to
+<inlineequation>
+  <alt role="tex">\((C_{11}-C_{12})/2\)</alt></inlineequation>.
+</para>
+<para>
+  <varname>aniso</varname> is the anisotropy coefficient, equal to
+  <inlineequation>
+    <alt role="tex">\(2C_{44}/(C_{11}-C_{12})\)</alt></inlineequation>.
   </para>
 
 

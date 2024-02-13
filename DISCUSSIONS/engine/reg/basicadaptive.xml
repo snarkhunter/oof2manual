@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: basicadaptive.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2011-04-25 17:32:37 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -33,7 +28,7 @@
 <para>
   <classname>BasicAdaptiveDriver</classname> automatically uses the
   <xref linkend="RegisteredClass-SS22"/> method with
-  <varname>theta1</varname>=<varname>theta2</varname>=<userinput>0.5</userinput>
+  <code>theta1 = theta2 = 0.5</code>
   if the equations contain second order <link
   linkend="Section-Concepts-Time-Dependence">time derivatives</link>.
   It uses <xref linkend="RegisteredClass-CrankNicolson"/> otherwise.

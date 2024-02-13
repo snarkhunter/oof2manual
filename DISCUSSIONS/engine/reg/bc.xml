@@ -1,25 +1,20 @@
 <!-- 
-  $RCSfile: bc.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:36 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    Boundary conditions are applied by the <xref
-    linkend='MenuItem-OOF.Mesh.Boundary_Conditions'/> menu and the
-    <link linkend='Section-Tasks-BoundaryCondition'>Boundary
-    Conditions</link> GUI task page.  Details of the different types of
-    boundary conditions are discussed in the subclass sections.
-  </para>
+<para>
+  Boundary conditions are applied by the <xref
+  linkend='MenuItem-OOF.Mesh.Boundary_Conditions'/> menu and the <link
+  linkend='Section-Tasks-BoundaryCondition'>Boundary Conditions</link>
+  GUI task page.  Details of the different types of boundary
+  conditions are discussed in the subclass sections.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: allmeshtimes.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-29 03:18:01 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -16,9 +11,9 @@
 
 <para>
   <classname>AllMeshTimes</classname>, when used as an argument to
-  <xref linkend="MenuItem-OOF.Graphics_n.File.Animate"/> instructs the
-  <link linkend="Chapter-Graphics">Graphics</link> window to construct
-  an animation using all of the <link
+  <xref linkend="MenuItem-OOF.Graphics_n.File.Animate"/>. It instructs
+  the <link linkend="Chapter-Graphics">Graphics</link> window to
+  construct an animation using all of the <link
   linkend="Section-Concepts-Mesh-Time">cached times</link> in any
   &mesh; that is being displayed in the window.
 </para>

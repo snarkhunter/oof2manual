@@ -89,7 +89,7 @@
 	        &micro;, so it doesn't need any modification.  However, it
 	        probably creates far more elements than are necessary to
 	        represent the &micro; and also includes unphysical <link
-	        linkend="Anchor:over-refinement">jagged edges</link>.
+	        linkend="over-refinement">jagged edges</link>.
 	      </para>
 	    </listitem>
 	    <listitem>

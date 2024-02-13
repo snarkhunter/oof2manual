@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: discreteptsampleset.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-29 20:21:53 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -26,7 +21,7 @@
   from specified points in the <classname>Domain</classname>.
 </para>
 <para>
-  The <classname>SpacedGridSampleSet</classname> belongs to the <link
+  The <classname>DiscretePointSampleSet</classname> belongs to the <link
   linkend="Sampling-point">point</link> SampleSet category.
 </para>
 <para>

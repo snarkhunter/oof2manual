@@ -1,32 +1,25 @@
 <!-- 
-  $RCSfile: orientation.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:35 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    The <command>Orientation</command> &property; defines how the
-    crystalline axes of a &material; are aligned with respect to
-    &oof2;'s lab (screen) coordinates.  In the &oof2; coordinate
-    system, <emphasis>x</emphasis> is to the right,
-    <emphasis>y</emphasis> is up, and <emphasis>z</emphasis> points
-    out of the screen.<footnote>
-      <simpara>
+<para>
+  The <command>Orientation</command> &property; defines how the
+  crystalline axes of a &material; are aligned with respect to
+  &oof2;'s lab (screen) coordinates.  In the &oof2; coordinate system,
+  <emphasis>x</emphasis> is to the right, <emphasis>y</emphasis> is
+  up, and <emphasis>z</emphasis> points out of the screen.<footnote>
+  <simpara>
 	Assuming a canonical orientation of the computer screen.
 	If you're lying in bed with your laptop dangling from your
 	knees, adjust the coordinates accordingly.
-      </simpara>
-    </footnote>
-  </para>
+  </simpara></footnote>
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

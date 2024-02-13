@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: basicuniform.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-25 02:42:42 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -28,10 +23,9 @@
   too large) or much less efficient (if the step size is too small).
 </para>
 <para>
-  <classname>BasicAdaptiveDriver</classname> automatically uses the
-  <xref linkend="RegisteredClass-SS22"/> method with
-  <varname>theta1</varname>=<varname>theta2</varname>=<userinput>0.5</userinput>
-  if the equations contain second order <link
+  <classname>BasicUniformDriver</classname> automatically uses the
+  <xref linkend="RegisteredClass-SS22"/> method with <code>theta1 =
+  theta2 = 0.5</code> if the equations contain second order <link
   linkend="Section-Concepts-Time-Dependence">time derivatives</link>.
   It uses <xref linkend="RegisteredClass-CrankNicolson"/> otherwise.
 </para>

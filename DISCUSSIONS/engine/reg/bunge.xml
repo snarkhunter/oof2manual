@@ -1,65 +1,60 @@
 <!-- 
-  $RCSfile: bunge.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:36 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    A <classname>Bunge</classname> object represents the orientation
-    of a three dimensional object, assumed to be a crystal, in three
-    dimensional space in terms of three angles,
-    <inlineequation>
-      <alt role="tex">\(\phi_1\)</alt>
+<para>
+  A <classname>Bunge</classname> object represents the orientation
+  of a three dimensional object, assumed to be a crystal, in three
+  dimensional space in terms of three angles,
+  <inlineequation>
+    <alt role="tex">\(\phi_1\)</alt>
     </inlineequation>,
     <inlineequation>
       <alt role="tex">\(\Theta\)</alt>
-    </inlineequation>,
-    and <inlineequation>
+      </inlineequation>,
+      and <inlineequation>
       <alt role="tex">\(\phi_2\)</alt>
-    </inlineequation>,
-    corresponding to rotations which
-    bring the lab (or screen) axes &xhat;, &yhat;, and &zhat; into
-    coincidence with the crystalline &ahat;, &bhat;, and &chat;, axes,
-    respectively.  This is the conventional usage of the texture
-    community, and is the <emphasis>opposite</emphasis> of the usual
-    sense for rotations in &oof2;.
-  </para>
-  <para>
-    With this important difference, it resembles the <xref
-    linkend="RegisteredClass-X"/> convention, in that the axis
-    selection and ordering are the same.  The <inlineequation>
-      <alt role="tex">\(\phi_1\)</alt>
-    </inlineequation>
-    rotation is about the initial
-    <emphasis>laboratory</emphasis> axis &zhat;, the second
-    <inlineequation>
-      <alt role="tex">\(\Theta\)</alt>
-    </inlineequation>
-    rotation is about the rotated laboratory &xhat; axis, and the
-    third
-    <inlineequation>
-      <alt role="tex">\(\phi_2\)</alt>
-    </inlineequation>
-    rotation is about the rotated
-    &zhat; axis.
-  </para>
-  <para>
-    The &oof2; implementation of this method actually constructs the
-    usual &oof2; rotation matrix (which takes the crystalline axes
-    into the laboratory axes), but does so from the conventionally
-    specified Bunge parameters.  Users familiar with the
-    <classname>Bunge</classname> convention can thus use previously
-    obtained or instrument provided angles directly.
-  </para>
+      </inlineequation>,
+      corresponding to rotations which
+      bring the lab (or screen) axes &xhat;, &yhat;, and &zhat; into
+      coincidence with the crystalline &ahat;, &bhat;, and &chat;, axes,
+      respectively.  This is the conventional usage of the texture
+      community, and is the <emphasis>opposite</emphasis> of the usual
+      sense for rotations in &oof2;.
+</para>
+<para>
+  With this important difference, it resembles the <xref
+  linkend="RegisteredClass-X"/> convention, in that the axis
+  selection and ordering are the same.  The <inlineequation>
+  <alt role="tex">\(\phi_1\)</alt>
+</inlineequation>
+rotation is about the initial
+<emphasis>laboratory</emphasis> axis &zhat;, the second
+<inlineequation>
+  <alt role="tex">\(\Theta\)</alt>
+</inlineequation>
+rotation is about the rotated laboratory &xhat; axis, and the
+third
+<inlineequation>
+  <alt role="tex">\(\phi_2\)</alt>
+</inlineequation>
+rotation is about the rotated
+&zhat; axis.
+</para>
+<para>
+  The &oof2; implementation of this method actually constructs the
+  usual &oof2; rotation matrix (which takes the crystalline axes
+  into the laboratory axes), but does so from the conventionally
+  specified Bunge parameters.  Users familiar with the
+  <classname>Bunge</classname> convention can thus use previously
+  obtained or instrument provided angles directly.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

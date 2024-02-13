@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: conditional_iteration.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:38 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,40 +8,40 @@
   the authors at oof_manager@ctcms.nist.gov.
 -->
 
-  <para>
-    When the <varname>iteration</varname> parameter of an iterative
-    <xref linkend="RegisteredClass-SkeletonModifier"/> (such as <xref
-    linkend="RegisteredClass-Anneal"/> or <xref
-    linkend="RegisteredClass-Smooth"/>) is set to
-    <classname>ConditionalIteration</classname>, &oof2; will stop
-    modifying the &skel; when a specified condition is met.
-  </para>
-  <para>
-    The <varname>condition</varname> parameter determines the
-    stopping criterion.  See the <xref
-      linkend="RegisteredClass-ConditionSelector"/> class for the details.
-  </para>
-  <para>
-    Iteration doesn't necessarily stop immediately when the
-    <varname>condition</varname> is satisfied.  If the
-    <varname>extra</varname> parameter is non-zero, &oof2; will
-    iterate for another <varname>extra</varname> iterations, and only
-    stop if the <varname>condition</varname> remains satisfied for all
-    of them.  That is, the &skel; modification operation stops after
-    the <varname>condition</varname> is met for
-    <varname>extra+1</varname> consecutive iterations.
-  </para>
-  <para>
-    To prevent runaway operations, the &skel; modification operation
-    will always stop after <varname>maximum</varname> iterations have
-    been performed.
-  </para>
-  <para>
-    Here's a sample of the output for an <xref
-    linkend="RegisteredClass-Anneal"/> operation, using
-    <varname>condition</varname>=<xref
-    linkend="RegisteredClass-AcceptanceRate"/>(<varname>acceptance_rate</varname>=<userinput>10</userinput>)
-    and <varname>extra</varname>=<userinput>3</userinput>.
+<para>
+  When the <varname>iteration</varname> parameter of an iterative
+  <xref linkend="RegisteredClass-SkeletonModifier"/> (such as <xref
+  linkend="RegisteredClass-Anneal"/> or <xref
+  linkend="RegisteredClass-Smooth"/>) is set to
+  <classname>ConditionalIteration</classname>, &oof2; will stop
+  modifying the &skel; when a specified stopping criterion is met.
+</para>
+<para>
+  The <varname>condition</varname> parameter determines the
+  stopping criterion.  See the <xref
+  linkend="RegisteredClass-ConditionSelector"/> class for the details.
+</para>
+<para>
+  Iteration doesn't necessarily stop immediately when the
+  <varname>condition</varname> is satisfied.  If the
+  <varname>extra</varname> parameter is non-zero, &oof2; will
+  iterate for another <varname>extra</varname> iterations, and only
+  stop if the <varname>condition</varname> remains satisfied for all
+  of them.  That is, the &skel; modification operation stops after
+  the <varname>condition</varname> is met for
+  <code>extra+1</code> consecutive iterations.
+</para>
+<para>
+  To prevent runaway operations, the &skel; modification operation
+  will always stop after <varname>maximum</varname> iterations have
+  been performed.
+</para>
+<para>
+  Here's a sample of the output for an <xref
+  linkend="RegisteredClass-Anneal"/> operation, using
+  <code>condition=<xref
+  linkend="RegisteredClass-AcceptanceRate"/>(acceptance_rate=10</code>)
+  and <code>extra=3</code>.
     <literallayout class="monospaced">
 Iteration 21: E = 4.2672e+00, deltaE=-1.4758e-02 ( 0.346%), Acceptance Rate = 13.0%
 Iteration 22: E = 4.2056e+00, deltaE=-7.3972e-03 ( 0.176%), Acceptance Rate = 14.1%

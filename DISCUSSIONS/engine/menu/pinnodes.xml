@@ -27,7 +27,8 @@
   <title>Pinning Skeleton Nodes</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/pinnodes/pinned.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/pinnodes/pinned.png"
+                 contentwidth="659px" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>

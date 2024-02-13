@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: pyroelectricity.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-05-26 15:30:05 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,48 +8,49 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>PyroElectricity</classname> is a coupling property
-    which, at its simplest, makes a contribution to the <xref
-    linkend="Flux-Total_Polarization"/> &flux; proportional to the
-    difference between the local <xref linkend="Field-Temperature"/>
-    &field; and some specified reference temperature,
-    <varname>T0</varname>.
+<para>
+  <classname>PyroElectricity</classname> is a coupling property
+  which, at its simplest, makes a contribution to the <xref
+  linkend="Flux-Total_Polarization"/> &flux; proportional to the
+  difference between the local <xref linkend="Field-Temperature"/>
+  &field; and some specified reference temperature,
+  <varname>T0</varname>.
 </para>
-  <para>
-    In practice, the picture is more complicated than this.  For
-    systems which have <link
-    linkend='PropertyType-Elasticity'>elasticity</link>, <link
-    linkend='PropertyType-ThermalExpansion'>thermal expansion</link>,
-    and <link
-    linkend='PropertyType-PiezoElectricity'>piezoelectricity</link>,
-    users may wish to model the phenomenon of secondary
-    pyroelectricity, in which an effective pyroelectric coupling
-    arises as a result of the interactions of the other three
-    properties, with a coefficient proportional to the product of the
-    other three coefficients.
-  </para>
-  <para>
-    In &oof2;, this effect can be included by adding a
-    <classname>Pyroelectricity</classname> property to your material
-    and setting the <varname>coefficient_type</varname> parameter to
-    <userinput>Constant stress</userinput>.  The additional
-    ("secondary") contribution will be added in automatically.
-  </para>
-  <para>
-    Note that the property allows users to specify the pyroelectric
-    coefficient at constant strain, also.  In this case, &oof2; will
-    assume that the user has fully specified the desired pyroelectric
-    physics, and will not compute a secondary pyroelectric
-    contribution.
-  </para>
-  <para>
-    A &material; with a <classname>PyroElectricity</classname>
-    &property; must also contain an <link
-    linkend="PropertyType-Orientation">orientation</link>
-    <classname>property</classname>.  There is no isotropic
-    pyroelectricity.
-  </para>
+<para>
+  In practice, the picture is more complicated than this.  For
+  systems which have <link
+  linkend='PropertyType-Elasticity'>elasticity</link>, <link
+  linkend='PropertyType-ThermalExpansion'>thermal expansion</link>,
+  and <link
+  linkend='PropertyType-PiezoElectricity'>piezoelectricity</link>,
+  users may wish to model the phenomenon of secondary
+  pyroelectricity, in which an effective pyroelectric coupling
+  arises as a result of the interactions of the other three
+  properties, with a coefficient proportional to the product of the
+  other three coefficients.
+</para>
+<para>
+  In &oof2;, this effect can be included by adding a
+  <classname>Pyroelectricity</classname> property to your material
+  and setting the <varname>coefficient_type</varname> parameter to
+  <userinput>Constant stress</userinput>.  The additional
+  ("secondary") contribution will be added in automatically.
+</para>
+<para>
+  The <varname>coefficient_type</varname> can also be set to
+  <userinput>Constant strain</userinput>.  In this case, &oof2;
+  assumes that the desired pyroelectric physics have been already
+  included in the elasticity, thermal expansion, and piezoelectric
+  properties, and will not compute a secondary pyroelectric
+  contribution.
+</para>
+<para>
+  A &material; with a <classname>PyroElectricity</classname>
+  &property; must also contain an <link
+  linkend="PropertyType-Orientation">orientation</link>
+  <classname>property</classname>.  There is no isotropic
+  pyroelectricity.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:
