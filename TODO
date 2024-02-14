@@ -5,7 +5,10 @@ coincidence with the lab axes" with something clearer.
 Find all instances of "MISSING" in oof2_api.xml, find their sources in
 the OOF2 code, and add the missing documentation.
 
-Get rid of all references to Layer Sets and the Layer Editor.
+Pages for all predefined display layers should have xrefs to the
+commands that set the default values of their parameters.
+
+Get rid of all references to Layer Sets and the Layer Editor.  DONE, I think
 
 Check for "ERROR" and "Error" in the build output to find bad links.
 
@@ -13,4 +16,4 @@ Regenerate png files from all OmniGraffle files that embed
 screenshots.  Export at 144 dpi instead of 72 dpi, and put scale="37" 
 in the imagedata tag.
 
-Try updating saxon.  MacPorts has 9.5.1.  
+Try updating saxon.  MacPorts has 9.5.1.   WILL REQUIRE SOME WORK

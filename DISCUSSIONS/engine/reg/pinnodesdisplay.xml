@@ -1,34 +1,29 @@
 <!-- 
-  $RCSfile: pinnodesdisplay.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:44 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>PinnedNodesDisplay</classname> highlights the nodes
-    which are <link linkend="Section-Graphics-PinNodes">pinned</link>
-    in a &skel;.  Each pinned node is marked with a dot whose radius is
-    given, in screen pixel units, by the <varname>size</varname>
-    argument.
-  </para>
-  <para>
-    A single <classname>PinnedNodesDisplay</classname> is created
-    automatically in each <link linkend='Chapter-Graphics'>Graphics
-    Window</link> and is not normally visible in the window's layer
-    list. To edit its properties, first select <link
-    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
-    All Layers</link> in the graphics window's <menuchoice>
-    <guimenu>Settings</guimenu> </menuchoice> menu.
-  </para>
+<para>
+  <classname>PinnedNodesDisplay</classname> highlights the nodes
+  which are <link linkend="Section-Graphics-PinNodes">pinned</link>
+  in a &skel;.  Each pinned node is marked with a dot whose radius is
+  given, in screen pixel units, by the <varname>size</varname>
+  argument.
+</para>
+<para>
+  A single <classname>PinnedNodesDisplay</classname> is created
+  automatically in each <link linkend='Chapter-Graphics'>Graphics
+  Window</link> and is not normally visible in the window's layer
+  list. To edit its properties, first select <link
+  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
+  All Layers</link> in the graphics window's <menuchoice>
+  <guimenu>Settings</guimenu> </menuchoice> menu.
+</para>
 
 
 <!-- Keep this comment at the end of the file

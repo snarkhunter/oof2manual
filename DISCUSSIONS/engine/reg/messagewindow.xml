@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: messagewindow.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-15 21:12:42 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -20,7 +15,9 @@
   data to the &oof2; <link linkend="Section-Windows-Messages">Message
   Window</link>.  It otherwise acts just like a <xref
   linkend="RegisteredClass-OutputStream"/>, which sends data to a
-  file.
+  file, except that <classname>MessageWindowStream</classname> can't
+  be <link
+  linkend="MenuItem-OOF.Mesh.Scheduled_Output.Destination.Rewind">rewound</link>.
 </para>
 
  <!-- Keep this comment at the end of the file
