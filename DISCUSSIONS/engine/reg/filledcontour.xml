@@ -1,41 +1,36 @@
 <!-- 
-  $RCSfile: filledcontour.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:40 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>FilledContourDisplay</classname> draws a contour plot of
-    a <link
-    linkend="Section-Output-Scalar"><classname>ScalarOutput</classname></link>
-    quantity on a &mesh;.  The regions between successive contour
-    levels are colored according to a color map.
-  </para>
-  <para>
-    The arguments <varname>what</varname>, <varname>where</varname>,
-    <varname>min</varname>,
-    <varname>max</varname>,<varname>levels</varname>, and
-    <varname>nbins</varname> have the same meaning as in <xref
-      linkend="RegisteredClass-PlainContourDisplay"/>.
-  </para>
-  <para>
-    The <varname>colormap</varname> argument determines how the output
-    values are translated into colors. The map translates real numbers
-    in the range (0,1) into colors.  Contour levels are associated
-    with colors by scaling the range (<varname>min</varname>,
-    <varname>max</varname>) to (0, 1), and applying the color map.
-    The region between one contour level and the next higher level is
-    filled with the color associated with the lower of the two levels.
-  </para>
+<para>
+  <classname>FilledContourDisplay</classname> draws a contour plot of
+  a <link
+  linkend="Section-Output-Scalar"><classname>ScalarOutput</classname></link>
+  quantity on a &mesh;.  The regions between successive contour
+  levels are colored according to a color map.
+</para>
+<para>
+  The arguments <varname>what</varname>, <varname>where</varname>,
+  <varname>min</varname>,
+  <varname>max</varname>,<varname>levels</varname>, and
+  <varname>nbins</varname> have the same meaning as in <xref
+  linkend="RegisteredClass-PlainContourDisplay"/>.
+</para>
+<para>
+  The <varname>colormap</varname> argument determines how the output
+  values are translated into colors. The map translates real numbers
+  in the range (0,1) into colors.  Contour levels are associated
+  with colors by scaling the range (<varname>min</varname>,
+  <varname>max</varname>) to (0, 1), and applying the color map.
+  The region between one contour level and the next higher level is
+  filled with the color associated with the lower of the two levels.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: gfxupdate.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-13 21:24:30 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -27,7 +22,9 @@
   Only the &layers; that have their <varname>when</varname> parameter
   set to <link
   linkend="Object-Placeholder-Time"><userinput>latest</userinput></link>
-  will be redrawn when the window is updated.
+  will be redrawn when the window is updated.  The other &layers; are
+  always drawn at the times explicitly specified by their
+  <varname>when</varname> parameters.
 </para>
 
   <!-- Keep this comment at the end of the file

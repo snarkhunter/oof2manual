@@ -1,60 +1,86 @@
 <!-- 
-  $RCSfile: meshcsdisplay.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:42 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
+<para>
+  <classname>MeshCrossSectionDisplay</classname> shows the lines in
+  the &mesh; along which cross-section data may be computed.  These
+  lines are created by the <link
+  linkend="Section-Graphics-CrossSection">Mesh Cross Section</link>
+  toolbox and the <link
+  linkend="Section-Tasks-Analysis">Analysis</link> task page.
+</para>
+<para>
+  A single <classname>MeshCrossSectionDisplay</classname> is created
+  automatically in each <link linkend='Chapter-Graphics'>Graphics
+  Window</link> and is not normally visible in the window's layer
+  list. To edit its properties, first select <link
+  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
+  All Layers</link> in the graphics window's <menuchoice>
+  <guimenu>Settings</guimenu> </menuchoice> menu.
+</para>
+<para>
+  The predefined <classname>MeshCrossSectionDisplay</classname>
+  displays the cross section that is selected in the <link
+  linkend="Section-Graphics-CrossSection">Mesh Cross Section</link>
+  toolbox.  In order to display additional cross sections, add a new
+  <classname>MeshCrossSectionDisplay</classname> with <xref
+  linkend="MenuItem-OOF.Graphics_n.Layer.New"/>.
+</para>
+<para>
+  The <varname>cross_sections</varname> parameter determines which
+  cross sections are displayed.  As shown in <xref
+  linkend="Figure-newcs"/>, the widget for setting
+  <varname>cross_sections</varname> contains a check button and a
+  list.  If the check button is not checked, one or more cross
+  sections can be chosen from the list.  If the button is checked, the
+  list is ignored and the cross section that is currently selected in
+  the <link linkend="Section-Graphics-CrossSection">Mesh Cross
+  Section</link> toolbox will be displayed.
+</para>
+<para>
+  In text mode, <varname>cross_sections</varname> can be set either to
+  <userinput>selection</userinput> or to a list of cross section
+  names, <foreignphrase>e.g,</foreignphrase> <userinput>['cs',
+  'cs2'].</userinput>
+</para>
+<para>
+  The <varname>linewidth</varname> parameter is the width of the
+  displayed cross section. It is an integer in units of the screen
+  pixel size.
+</para>
+<figure id="Figure-newcs">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/crosssection.png"
+                 format="PNG" contentwidth="851px"/>
+    </imageobject>
+    <caption>
+      <para>
+        When creating a new graphics &layer; for displaying cross
+        sections, the <varname>cross_sections</varname> parameter can be
+        set to (a) a subset of the defined cross sections, or (b) the
+        currently selected cross section.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+<tip>
   <para>
-    <classname>MeshCrossSectionDisplay</classname> shows the lines in
-    the &mesh; along which cross-section data may be computed.  These
-    lines are created by the <link
-    linkend="Section-Graphics-CrossSection">Mesh Cross Section</link>
-    toolbox and the <link
-    linkend="Section-Tasks-Analysis">Analysis</link> task page.
+    It is a good idea always to have one
+    <classname>MeshCrossSectionDisplay</classname> set to display
+    the selected cross section.  Without it, nothing will be drawn
+    when you create a new cross section in the toolbox.  So don't
+    delete the predefined layer or change its
+    <varname>cross_sections</varname> parameter.
   </para>
-  <para>
-    The <varname>cross_sections</varname> parameter determines which
-    cross sections are displayed.  In GUI mode, activating the
-    <guibutton>Selected</guibutton> button displays only the currently
-    selected cross section.  If the button is not activated, one or
-    more of the existing cross sections may be chosen from the list.
-  </para>
-  <para>
-    In text mode, <varname>cross_sections</varname> can be set either
-    to <userinput>selected</userinput> or to a list of names of cross
-    sections, <foreignphrase>e.g,</foreignphrase> <userinput>['cs',
-    'cs2'].</userinput>
-  </para>
-  <tip>
-    <para>
-      It is a good idea always to have one
-      <classname>MeshCrossSectionDisplay</classname> set to display
-      the selected cross section.
-    </para>
-  </tip>
-  <para>
-    The <varname>linewidth</varname> parameter is the width of the
-    displayed cross section. It is an integer in units of the screen
-    pixel size.
-  </para>
-  <para>
-    A single <classname>MeshCrossSectionDisplay</classname> is created
-    automatically in each <link linkend='Chapter-Graphics'>Graphics
-    Window</link> and is not normally visible in the window's layer
-    list. To edit its properties, first select <link
-    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
-    All Layers</link> in the graphics window's <menuchoice>
-    <guimenu>Settings</guimenu> </menuchoice> menu.
-  </para>
+</tip>
 
 
 <!-- Keep this comment at the end of the file
