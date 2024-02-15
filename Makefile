@@ -7,14 +7,18 @@
 # set to ~/Sites.  If you don't have a local server, set OOFWEBDIR to
 # any empty writable directory outside of tmpdir.
 
+# All xml files that are *not* part of the reference section generated
+# by OOF2's xmlmenudump need to be listed in the file xmlfilelist in
+# this directory.  The list needs to be in the order in which the
+# files are included in the main document.  This ordering is used in
+# the "See Also" sections of the reference pages.  If it's wrong, some
+# pages will be less pretty.
+
 # "make local" generates html from the xml source files, using the xml
 # tools, and then wraps the html output in NIST boilerplate and puts
 # it in OOFWEBDIR/oof2man.
 
 # "make publish" copies the local output to the CTCMS web server.
-
-XMLFILES = CH_graphics.xml CH_tasks.xml CH_windows.xml SN_skel.xml     \
-man_oof2.xml oof2_api.xml CH_overview.xml CH_concepts.xml SN_micro.xml
 
 # On macOS with macports, dvi2bitmap needs to be built with
 # --with-kpathsea --enable-fontgen
@@ -25,6 +29,10 @@ DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif --font
 # TMPDIR environment variable that dvi2bitmap uses to communicate with
 # mktexpk if it's not using kpathsea. 
 TEMPDIR = tmpdir
+
+# There's no need to explicitly list all of the xml files in the
+# dependencies.  They're included by man_oof2.xml, which depends on
+# oof2_api.xml, and oof2_api.ml is always rebuilt.
 
 SAXON = ../xsl/java/saxon.jar
 ## TODO: More up-to-date saxon from MacPorts raises lots of warnings
@@ -61,11 +69,11 @@ oof2man.tgz: $(TEMPDIR) saxonize.ext texify figs
 	tar -czf oof2man.tgz oof2man
 	-rm -rf oof2man
 
-saxonize.web: $(XMLFILES)
+saxonize.web: oof2_api.xml
 	mkdir $(TEMPDIR)/equations
 	(cd $(TEMPDIR); rm -f *.html; java -jar $(SAXON) ../man_oof2.xml ../xsl/oofchunk.xsl nist.exit.script=1)
 
-saxonize.ext: $(XMLFILES)
+saxonize.ext: oof2_api.xml
 	(cd $(TEMPDIR); rm -f *.html; java -jar $(SAXON) ../man_oof2.xml ../xsl/oofchunk.xsl)
 
 texify:
@@ -75,7 +83,7 @@ texify:
 oof2: always
 	(cd build; make -j 10 DESTDIR=~/stow/oof2-py311 install; cd ~/stow; ./switchto oof2-py311)
 
-oof2_api.xml: oof2
+oof2_api.xml: oof2 xmlfilelist
 	bin/oof2 --script xmldump.py --quiet --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
 	mv -f tmp oof2_api.xml

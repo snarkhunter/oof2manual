@@ -1,0 +1,57 @@
+# This software was produced by NIST, an agency of the U.S. government,
+# and by statute is not subject to copyright in the United States.
+# Recipients of this software assume all responsibilities associated
+# with its operation, modification and maintenance. However, to
+# facilitate maintenance we ask that before distributing modified
+# versions of this software, you first contact the authors at
+# oof_manager@nist.gov.
+
+# This file lists the xml source files used to build the oof2 manual,
+# in the order in which they're imported.  It's used to build a table
+# of xml ids so that xmldump.py can create sensible cross references.
+
+# This list does not include oof2_api.xml or the files that are used
+# to create it.  The list is used before oof2_api.xml is generated.
+
+# Blank lines and lines beginning with '#' are ignored.
+
+CH_overview.xml
+CH_starting.xml
+CH_concepts.xml
+
+CH_tasks.xml
+# CH_tasks includes:
+SN_micro.xml
+SN_image.xml
+SN_pixelsel.xml
+SN_active.xml
+SN_material.xml
+# SN_interfaces.xml  (commented out until the interface branch is complete)
+SN_skel.xml
+SN_pinnodes.xml
+SN_skelsel.xml
+SN_skelbdy.xml
+SN_femesh.xml
+SN_fields.xml
+SN_bdycond.xml
+SN_scheduledout.xml
+SN_solver.xml
+SN_analysis.xml
+SN_bdyanalysis.xml
+
+CH_graphics.xml
+# CH_graphics includes:
+TB_viewer.xml
+TB_pixelinfo.xml
+TB_pixelsel.xml
+TB_skelinfo.xml
+TB_skelselection.xml
+TB_movenodes.xml
+TB_pinnodes.xml
+TB_meshinfo.xml
+TB_meshcs.xml
+
+CH_windows.xml
+CH_extending.xml
+CH_coding.xml
+appendices.xml
