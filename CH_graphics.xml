@@ -685,6 +685,7 @@
          the first toolbox page?  It goes to the Auxiliary Windows
          page, as does the Next button on each Toolbox page. -->
 
+    <!-- if a new file is imported here, add it to xmlfilelist -->
     &TBviewer;
     &TBpixelinfo;
     &TBpixelselection;

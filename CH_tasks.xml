@@ -82,6 +82,7 @@
     </para>
   </section>
 
+  <!-- If a new file is imported here, add it to xmlfilelist -->
   &TPmicro;
   &TPimage;
   &TPpixsel;
