@@ -8,6 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
+
 <para>
   <classname>SnapNodes</classname> moves &nodes; to improve the
   &elems;' <xref linkend="Section-Concepts-Skeleton-Homog_Energy"/>.
@@ -25,7 +26,8 @@
   <title>Transition Points</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/snapnodes/transition.png"></imagedata>
+	  <imagedata fileref="FIGURES/snapnodes/transition.png"
+                 contentwidth="238px" format="PNG" />
     </imageobject>
     <caption>
 	  <para>
@@ -90,7 +92,7 @@
   <classname>SnapNodes</classname> with <code>targets=<link
   linkend="RegisteredClass-SnapAll">SnapAll</link>()</code> and
   <code>criterion=<link
-  linkend="RegisteredClass-AverageEnergy">AverageEnergy</link>(alpha=0.85)</code>
+  linkend="RegisteredClass-AverageEnergy">AverageEnergy</link>(alpha=0.7)</code>
   to it.  Some, but not all, of the material boundaries have been
   resolved nicely.
 </para>
@@ -99,15 +101,18 @@
   <title>Snapping Nodes</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/snapnodes/snapnodes.png"/>
+	  <imagedata fileref="FIGURES/snapnodes/snapnodes.png"
+                 contentwidth="666px" format="PNG"/>
     </imageobject>
     <caption>
-	  <para>
-	    A &skel; with heterogeneous &elems;, on the left, and the
-	    result of applying <classname>SnapNodes</classname> with
-	    <code>alpha=0.85</code>, on the right.  In many places the
-	    element boundaries now follow the pixel boundaries.
-	  </para>
+	  <simpara>
+	    (a) A &skel; with heterogeneous &elems;.
+      </simpara>
+      <simpara>
+        (b) The result of applying <classname>SnapNodes</classname>
+        with <code>alpha=0.7</code>.  In many places the element
+        boundaries now follow the pixel boundaries.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
@@ -115,34 +120,35 @@
 <para>
   Snapping &nodes; (like all &skel; modifications) tends to produce
   badly-shaped elements when done with large values of
-  <varname>alpha</varname>.  The image on the left in <xref
-  linkend="Figure-oversnapped"/> shows what happens if
-  <varname>alpha</varname> is increased to 0.9 in the previous
-  operation. The element edges follow the upper-right part of the blue
-  region and the upper-left part of the red region much more closely.
-  However the &elems; marked in green and labeled
-  <quote>Degenerate</quote> are very badly shaped.  They appear to be
-  triangles, but the upper two are quadrilaterals with a very short
-  side where they join, and the lower one is actually a quadrilateral
-  with a nearly 180&deg; angle at one node.  The first two have <link
-  linkend="Section-Concepts-Skeleton-Shape_Energy">shape
-  energies</link> of 0.99, and the third's is 0.93.
+  <varname>alpha</varname>.  The &skel; in <xref
+  linkend="Figure-oversnapped"/>(a) is the result of increasing
+  <varname>alpha</varname> to 0.9 in the previous operation. The
+  element edges follow the upper-right part of the blue region and the
+  upper-left part of the red region much more closely.  However the
+  three &elems; marked in green and labeled <quote>Degenerate</quote>
+  are very badly shaped.  They appear to be triangles, but the two
+  smaller ones are quadrilaterals with a very short side where they
+  join, and the other is actually a quadrilateral with a nearly
+  180&deg; angle at one node.  The <link
+  linkend="Section-Concepts-Skeleton-Shape_Energy">shape energy</link>
+  of the first two is almost maximally bad, 0.99, and the third's is
+  0.93.
 </para>
 <para>
-  The two &elems; marked in green and labeled
-  <quote>Inhomogeneous</quote> in <xref linkend="Figure-oversnapped"/>
-  illustrate a configuration that is impossible to improve with
-  <classname>SnapNodes</classname> alone.  It's not possible to fix
-  these &elems; just by moving &nodes;.
+  The upper two green &elems; labeled <quote>Inhomogeneous</quote> in
+  <xref linkend="Figure-oversnapped"/> illustrate a configuration that
+  is impossible to improve with <classname>SnapNodes</classname>
+  alone.  It's not possible to fix these &elems; just by moving
+  &nodes;.
 </para>
 <para>
   However, it can be useful to allow <classname>SnapNodes</classname>
   to create badly shaped &elems;, and to clean up afterwards by
-  applying other tools.  The right hand &skel; in <xref
-  linkend="Figure-oversnapped"/> shows the result of applying <xref
+  applying other tools.  The &skel; in <xref
+  linkend="Figure-oversnapped"/>(b) is the result of applying <xref
   linkend="RegisteredClass-Rationalize"/> and <xref
-  linkend="RegisteredClass-SplitQuads"/> to the problem &elems; on the
-  left.  These tools can often fix messes left behind by
+  linkend="RegisteredClass-SplitQuads"/> to the problem &elems; in
+  (a).  These tools can often fix messes left behind by
   <classname>SnapNodes</classname>.
 </para>
 
@@ -150,22 +156,26 @@
   <title>Snapping Nodes with a Large <varname>alpha</varname></title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/snapnodes/oversnapped.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/snapnodes/oversnapped.png"
+                 contentwidth="654px" format="PNG"/>
     </imageobject>
     <caption>
-      <para>
-        The &skel; on the left is the result of using
-        <classname>SnapNodes</classname> with a large
-        <varname>alpha</varname>, which has produced some badly shaped
-        &elems; and failed to make all of the rest homogeneous.  The
-        &skel; on the right is the result of applying <xref
+      <simpara>
+        (a) The result of using <classname>SnapNodes</classname> with
+        a large <varname>alpha</varname>, <userinput>0.9</userinput>,
+        on the &skel; in <xref linkend="Figure-snap"/>(a). It has
+        produced some badly shaped &elems; and failed to make all of
+        the rest homogeneous.
+      </simpara>
+      <simpara>
+        (b) The result of applying <xref
         linkend="RegisteredClass-Rationalize"/> and <xref
-        linkend="RegisteredClass-SplitQuads"/> to the &skel; on the
-        left.  The degenerate quadrilaterals have been converted to
-        triangles by merging nodes (although that's not obvious in the
-        image) and splitting the obtuse angle.  The inhomogeneous
+        linkend="RegisteredClass-SplitQuads"/> to the &skel; in (a).
+        The degenerate quadrilaterals have been converted to triangles
+        by merging nodes (although that's not obvious in the image)
+        and by splitting the large obtuse angle.  The inhomogeneous
         quads have each been split into two homogeneous triangles.
-      </para>
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

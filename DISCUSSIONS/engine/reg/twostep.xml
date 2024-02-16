@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: twostep.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-29 20:21:54 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -26,14 +21,11 @@
 </para>
 <para>
   <classname>TwoStep</classname> works by stepping over the interval
-  from time <inlineequation><alt
-  role="tex">\(t_0\)</alt></inlineequation> to time
-  <inlineequation><alt role="tex">\(t_1\)</alt></inlineequation>
-  twice, once in a single step of size <inlineequation><alt
-  role="tex">\(\Delta t=t_1-t_0\)</alt></inlineequation> and once in
-  two steps of size <inlineequation><alt role="tex">\(\Delta
-  t/2\)</alt></inlineequation>.  The difference between the results is
-  a measure of the error incurred by the stepping method.
+  from time t<subscript>0</subscript> to time
+  t<subscript>1</subscript> twice, once in a single step of size
+  &Dgr;t=t<subscript>1</subscript>-t<subscript>0</subscript> and once
+  in two steps of size &Dgr;t/2.  The difference between the results
+  is a measure of the error incurred by the stepping method.
   <varname>singlestep</varname> sets the <xref
   linkend="RegisteredClass-TimeStepper"/> for the individual steps.
 </para>

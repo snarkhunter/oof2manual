@@ -25,9 +25,8 @@
 	linkend="RegisteredClass-Anneal"/> does.  It only applies to
 	modifiers that sometimes have a finite number of choices to make,
 	such as <xref linkend="RegisteredClass-SnapNodes"/>.
-  </para>
-</footnote>
-the one that lowers the energy the most is accepted.
+  </para></footnote>
+  the one that lowers the energy the most is accepted.
 </para>
 <para>
   The parameter <varname>alpha</varname> plays a critical role, since
@@ -41,21 +40,17 @@ the one that lowers the energy the most is accepted.
   <title>A Node Move</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/criteria/average_example.png"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata format="EPS"
-	             fileref="FIGURES/criteria/average_example.eps"/>
+	  <imagedata fileref="FIGURES/avgenergy.png"
+                 contentwidth="699px" format="PNG"/>
     </imageobject>
   </mediaobject>
 </figure>
 <para>
   This node move will lower the total <link
   linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
-  energy</link> by 0.13 but it will elevate the total <link
+  energy</link> by 0.12 but it will elevate the total <link
   linkend="Section-Concepts-Skeleton-Shape_Energy">shape energy</link>
-  by 0.46.  If <link
+  by 0.53.  If <link
   linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity
   energy</link> and <link
   linkend="Section-Concepts-Skeleton-Shape_Energy">shape energy</link>
@@ -63,7 +58,7 @@ the one that lowers the energy the most is accepted.
   move will not be accepted by the
   <classname>AverageEnergy</classname> criterion &#x2014; it increases
   the overall energy level.  The move becomes possible only if
-  <varname>alpha</varname> is greater than 0.8.
+  <varname>alpha</varname> is greater than 0.82.
 </para>
 
   <!-- Keep this comment at the end of the file

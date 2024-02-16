@@ -1,47 +1,42 @@
 <!-- 
-  $RCSfile: xyz.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:49 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    An <classname>XYZ</classname> object represents the orientation of
-    a three dimensional object, assumed to be a crystal, in three
-    dimensional space in terms of Euler angles conventionally denoted
-    &phi;, &theta;, and &psi;.  In the <classname>XYZ</classname>
-    convention, as implied by the name, these represent rotations
-    successively about each axis.  Similarly to the <xref
-    linkend="RegisteredClass-Abg"/> Euler angles, these define
-    rotations which take the crystal basis vectors &ahat;, &bhat;, and
-    &chat; into coincidence with the lab (or screen) basis vectors
-    &xhat;, &yhat;, and &zhat;, respectively.  The first rotation,
-    associated with &phi;, is about the initial crystalline &ahat;
-    axis, the second by &theta; about the rotated crystalline &bhat;
-    axis, and the third by &psi; about the doubly-rotated crystalline
-    &chat; axis.
-  </para>
-  <para>
-    This rotation scheme is one member of a family of rotation
-    schemes, all of which differ only in the order in which the
-    rotation axes are specified for the successive rotations
-    associated with the Euler angles.  The <classname>XYZ</classname>
-    convention is used in the aerodynamics community, where the angles
-    correspond to the pitch, roll, and yaw of a vehicle.  In other
-    conventions, such as <xref linkend="RegisteredClass-X"/>, when
-    &theta; is small, then &phi; and &psi; have similar effects,
-    which can be numerically inconvenient.  This convention avoids
-    this feature. The nomenclature comes from the second edition of
-    "Classical Mechanics" by H. Goldstein.
-  </para>
+<para>
+  An <classname>XYZ</classname> object represents the orientation of
+  a three dimensional object, assumed to be a crystal, in three
+  dimensional space in terms of Euler angles conventionally denoted
+  &phi;, &theta;, and &psi;.  In the <classname>XYZ</classname>
+  convention, as implied by the name, these represent rotations
+  successively about each axis.  Similarly to the <xref
+  linkend="RegisteredClass-Abg"/> Euler angles, these define
+  rotations which take the crystal basis vectors &ahat;, &bhat;, and
+  &chat; into coincidence with the lab (or screen) basis vectors
+  &xhat;, &yhat;, and &zhat;, respectively.  The first rotation,
+  associated with &phi;, is about the initial crystalline &ahat;
+  axis, the second by &theta; about the rotated crystalline &bhat;
+  axis, and the third by &psi; about the doubly-rotated crystalline
+  &chat; axis.
+</para>
+<para>
+  This rotation scheme is one member of a family of rotation
+  schemes, all of which differ only in the order in which the
+  rotation axes are specified for the successive rotations
+  associated with the Euler angles.  The <classname>XYZ</classname>
+  convention is used in the aerodynamics community, where the angles
+  correspond to the pitch, roll, and yaw of a vehicle.  In other
+  conventions, such as <xref linkend="RegisteredClass-X"/>, when
+  &theta; is small, then &phi; and &psi; have similar effects,
+  which can be numerically inconvenient.  This convention avoids
+  this feature. The nomenclature comes from the second edition of
+  <quote>Classical Mechanics</quote> by H. Goldstein.
+</para>
 
 
 <!-- Keep this comment at the end of the file
