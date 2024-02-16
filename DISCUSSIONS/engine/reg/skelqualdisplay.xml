@@ -1,98 +1,78 @@
 <!-- 
-  $RCSfile: skelqualdisplay.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:47 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>SkeletonQualityDisplay</classname> fills each &skel;
-    &elem; with a single color, determined by the effective <link
-    linkend="Section-Concepts-Skeleton-Energy">energy</link> of the
-    &elem;.
-  </para>
-  <para>
-    The <varname>alpha</varname> parameter controls the relative
-    importance of <link
-    linkend="Section-Concepts-Skeleton-Shape_Energy">shape</link> and
-    <link
-    linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity</link>
-    when computing the energy. 
-  </para>
-  <para>
-    The <varname>colormap</varname> argument governs the translation
-    from scalar values to colors.
-  </para>
-  <para>
-    <varname>min</varname> and <varname>max</varname> determine the
-    range of energies to display.  They should be real numbers between
-    0 and 1, or the special object <xref linkend="Object-automatic"/>.
-    If they're set to <xref linkend="Object-automatic"/>, the limits
-    will be determined by the extremes of the data.
-  </para>
-  <figure id="Figure-SkeletonQualityDisplay">
-    <title>The Skeleton Quality Display</title>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_quality/skelqual0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_quality/skelqual0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  A &skel; for a &micro; with three types of pixels.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_quality/skelqual_alpha0.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_quality/skelqual_alpha0.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The &skel; as displayed with
-	  <classname>SkeletonQuality</classname> with
-	  <varname>alpha</varname>=0 and the <xref
-	  linkend="RegisteredClass-ThermalMap"/>
-	  <varname>colormap</varname>.  The poorly shaped &elems; are
-	  brighter.
-	</para>
-      </caption>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_quality/skelqual_alpha1.png"
-	  format="PNG"/>
-      </imageobject>
-      <imageobject>
-	<imagedata fileref="FIGURES/skel_quality/skelqual_alpha1.eps"
-	  format="EPS"/>
-      </imageobject>
-      <caption>
-	<para>
-	  The same display, with <varname>alpha</varname>=1,
-	  highlighting the inhomogeneous &elems;.
-	</para>
-      </caption>
-    </mediaobject>
-  </figure>
-  
+<para>
+  <classname>SkeletonQualityDisplay</classname> fills each &skel;
+  &elem; with a single color, determined by the effective <link
+  linkend="Section-Concepts-Skeleton-Energy">energy</link> of the
+  &elem;.
+</para>
+<para>
+  The <varname>alpha</varname> parameter controls the relative
+  importance of <link
+  linkend="Section-Concepts-Skeleton-Shape_Energy">shape</link> and
+  <link
+      linkend="Section-Concepts-Skeleton-Homog_Energy">homogeneity</link>
+  when computing the energy. 
+</para>
+<para>
+  The <varname>colormap</varname> argument governs the translation
+  from scalar values to colors.
+</para>
+<para>
+  <varname>min</varname> and <varname>max</varname> determine the
+  range of energies to display.  They should be real numbers between
+  0 and 1, or the special object <xref linkend="Object-automatic"/>.
+  If they're set to <xref linkend="Object-automatic"/>, the limits
+  will be determined by the extremes of the data.
+</para>
+<figure id="Figure-SkeletonQualityDisplay">
+  <title>The Skeleton Quality Display</title>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/display/skelquality.png"
+                 contentwidth="767px" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <simpara>
+	    (a) A &skel; for a &micro; with three types of pixels.  The
+	    initial 10&times;10 rectangular grid has been <link
+	    linkend="RegisteredClass-Refine">refined</link> twice by <xref
+	    linkend="RegisteredClass-Bisection"/> with
+	    <code>alpha=0.3</code>.
+	  </simpara>
+      <simpara>
+        (b) The <classname>SkeletonQualityDisplay</classname> with
+        <code>alpha=0</code> and the <xref
+        linkend="RegisteredClass-ThermalMap"/> color map with
+        <code>min = max = automatic</code>.  The scale (on the right)
+        goes from 0 (black) to 0.64 (white).  Because
+        <code>alpha=0</code> the energy depends only on shape, so the
+        poorly shaped &elems; are highlighted.
+      </simpara>
+      <simpara>
+        (c) The same display, but with <code>alpha=0.8</code>.  The
+        inhomogeneous &elems; and the poorly shaped &elems; are both
+        highlighted. The color scale goes from 0 (black) to 0.46
+        (white).
+      </simpara>
+      <simpara>
+        (d) The same display, again, but with <code>alpha=1</code>.
+        Only the homogeneity contributes to the energy, so only the
+        inhomogeneous &elems; are colored.  The color scale goes from
+        0 (black) to 0.50 (white).
+      </simpara>
+    </caption>
+  </mediaobject>
+</figure>
+
 
 <!-- Keep this comment at the end of the file
   Local variables:

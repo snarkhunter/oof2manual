@@ -1,72 +1,65 @@
 <!-- 
-  $RCSfile: quaternion.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:44 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    A <classname>Quaternion</classname> object represents the
-    orientation of a three dimensional object, assumed to be a
-    crystal, in three dimensional space in terms of four parameters
-    which obey an interesting algebra.  This representation of
-    orientations is not common, but has its roots in the rigid-body
-    mechanics community.
-  </para>
-  <para>
-    The parameters correspond to a physical rotation in a similar way
-    to the <xref linkend="RegisteredClass-Axis"/> convention.  Given a
-    rotation angle
-    <inlineequation>
-      <alt role="tex">\(\theta\)</alt>
-    </inlineequation>
-    and a normalized rotation axis
-    <inlineequation>
-      <alt role="tex">\( \hat{\mathrm{\bf n}} \)</alt>
-    </inlineequation>, the quaternion parameters follow
-    directly:
+<para>
+  A <classname>Quaternion</classname> object represents the
+  orientation of a three dimensional object, assumed to be a
+  crystal, in three dimensional space in terms of four parameters
+  which obey an interesting algebra.  This representation of
+  orientations is not common, but has its roots in the rigid-body
+  mechanics community.
+</para>
+<para>
+  The parameters correspond to a physical rotation in a similar way
+  to the <xref linkend="RegisteredClass-Axis"/> convention.  Given a
+  rotation angle
+  <!-- not sure why emacs doesn't indent this properly -->
+  <inlineequation>
+    <alt role="tex">\(\theta\)</alt>
+  </inlineequation>
+  and a normalized rotation axis
+  <inlineequation>
+    <alt role="tex">\( \hat{\mathrm{\bf n}} \)</alt>
+    </inlineequation>, the quaternion parameters follow directly:
     <inlineequation>
       <alt role="tex">\(e_0\)</alt>
     </inlineequation>
-    is the cosine of half the
-    rotation angle, and
+    is the cosine of half the rotation angle, and
     <inlineequation>
       <alt role="tex">\(e_1\)</alt>
-    </inlineequation>,
-    <inlineequation>
-      <alt role="tex">\(e_2\)</alt>
-    </inlineequation>,
-    and
-    <inlineequation>
-      <alt role="tex">\(e_3\)</alt>
-    </inlineequation>
-    are,
-    respectively, the x, y, and z components of    
-    <inlineequation>
-      <alt role="tex">\( \hat{\mathrm{\bf n}} \)</alt>
-    </inlineequation>
-    multiplied by the sine of half the rotation angle.
-  </para>
-  <para>
-    As in the case of the <xref linkend="RegisteredClass-Axis"/>
-    convention, the specified rotation brings the crystalline &ahat;,
-    &bhat;, and &chat; axes into coincidence with the laboratory (or
-    screen) axes &xhat;, &yhat;, and &zhat; respectively.  The
-    components of 
-    <inlineequation>
-      <alt role="tex">\( \hat{\mathrm{\bf n}} \)</alt>
-    </inlineequation>
-    are preserved by this rotation, and so may be specified in either
-    the crystalline or laboratory coordinate system.
-  </para>
+      </inlineequation>,
+      <inlineequation>
+        <alt role="tex">\(e_2\)</alt>
+        </inlineequation>,
+        and
+        <inlineequation>
+          <alt role="tex">\(e_3\)</alt>
+        </inlineequation>
+        are, respectively, the x, y, and z components of
+        <inlineequation>
+          <alt role="tex">\( \hat{\mathrm{\bf n}} \)</alt>
+        </inlineequation>
+        multiplied by the sine of half the rotation angle.
+</para>
+<para>
+  As in the case of the <xref linkend="RegisteredClass-Axis"/>
+  convention, the specified rotation brings the crystalline &ahat;,
+  &bhat;, and &chat; axes into coincidence with the laboratory (or
+  screen) axes &xhat;, &yhat;, and &zhat; respectively.  The
+  components of 
+  <inlineequation>
+    <alt role="tex">\( \hat{\mathrm{\bf n}} \)</alt>
+  </inlineequation>
+  are preserved by this rotation, and so may be specified in either
+  the crystalline or laboratory coordinate system.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

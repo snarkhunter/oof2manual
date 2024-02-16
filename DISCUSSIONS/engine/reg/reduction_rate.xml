@@ -1,51 +1,46 @@
 <!-- 
-  $RCSfile: reduction_rate.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:45 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    When the <varname>condition</varname> parameter of a <xref
-    linkend="RegisteredClass-ConditionalIteration"/> is set to
-    <classname>ReductionRate</classname>, iteration of a <xref
-    linkend="RegisteredClass-SkeletonModifier"/> will stop when the
-    rate of decrease of the <link
-    linkend="Section-Concepts-Skeleton-Energy">effective energy</link>
-    of the &skel; falls below the given
-    <varname>reduction_rate</varname> threshold.
-  </para>
-  <para>
-    The energy reduction rate is defined as
-    <equation>
-      <alt role="tex">
-	\[
-	\mathrm{Reduction\ Rate} = 
-	\frac{E_\mathrm{before} - E_\mathrm{after}}{E_\mathrm{before}}
-	\times 100
-	\]
-      </alt>
-    </equation>
-    where
-    <inlineequation>
-      <alt role="tex">\(E_\mathrm{before}\)</alt>
-    </inlineequation>
-    and
-    <inlineequation>
-      <alt role="tex">\(E_\mathrm{after}\)</alt>
-    </inlineequation>
-    are the total &skel; energies before
-    and after the last iteration of the <xref
-    linkend="RegisteredClass-SkeletonModifier"/>.
-  </para>
+<para>
+  When the <varname>condition</varname> parameter of a <xref
+  linkend="RegisteredClass-ConditionalIteration"/> is set to
+  <classname>ReductionRate</classname>, iteration of a <xref
+  linkend="RegisteredClass-SkeletonModifier"/> will stop when the
+  rate of decrease of the <link
+  linkend="Section-Concepts-Skeleton-Energy">effective energy</link>
+  of the &skel; falls below the given
+  <varname>reduction_rate</varname> threshold.
+</para>
+<para>
+  The energy reduction rate is defined as
+  <equation>
+    <alt role="tex">
+	  \[
+	  \mathrm{Reduction\ Rate} = 
+	  \frac{E_\mathrm{before} - E_\mathrm{after}}{E_\mathrm{before}}
+	  \times 100
+	  \]
+    </alt>
+  </equation>
+  where
+  <inlineequation>
+    <alt role="tex">\(E_\mathrm{before}\)</alt>
+  </inlineequation>
+  and
+  <inlineequation>
+    <alt role="tex">\(E_\mathrm{after}\)</alt>
+  </inlineequation>
+  are the total &skel; energies before
+  and after the last iteration of the <xref
+  linkend="RegisteredClass-SkeletonModifier"/>.
+</para>
 
   <!-- Keep this comment at the end of the file
   Local variables:

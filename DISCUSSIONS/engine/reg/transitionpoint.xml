@@ -1,26 +1,21 @@
 <!-- 
-  $RCSfile: trisection.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:48 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
   <link linkend="RegisteredClass-Refine">Refining</link> &skel;
-  elements with <varname>divider</varname> set to
+  &elems; with <varname>divider</varname> set to
   <classname>TransitionPoints</classname> divides each marked edge
-  into up to three &sgmts; at the points are points where the original
-  &sgmt; crosses a boundary between two types of pixels.
-  The parameter <varname>minlength</varname> sets a minimum size (in
-  pixel units) for the subdivided segments.
+  into up to three &sgmts; at the points where the original &sgmt;
+  crosses a boundary between two types of pixels.  The parameter
+  <varname>minlength</varname> sets a minimum size (in pixel units)
+  for the subdivided segments.
 </para>
 <para>
   The computation of these transition points involves the same
@@ -41,14 +36,17 @@
     <title>Transition Points</title>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="FIGURES/refinement/transpts.png"/>
+        <imagedata fileref="FIGURES/refinement/transpts.png"
+                   contentwidth="407px" format="PNG"/>
       </imageobject>
     </mediaobject>
     <caption>
       <simpara>
         An element overlying three types of pixels. The green circles
         mark transition points on the edges.  The red arrows mark
-        points which look like transition points, but aren't.
+        points which look like transition points, but aren't, because
+        they're (probably) an artifact of the discretization of the
+        image.
       </simpara>
     </caption>
   </figure>

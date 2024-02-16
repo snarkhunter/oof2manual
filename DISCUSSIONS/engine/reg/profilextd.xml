@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: profilextd.xml,v $
-  $Revision: 1.1 $
-  $Author: langer $
-  $Date: 2011-04-28 21:24:09 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -24,8 +19,8 @@
 </para>
 <para>
   Profiles specified by <classname>ProfileXTd</classname> can depend
-  on both position and time.  If they're time dependent, the time
-  derivative must be specified.
+  on both position and time.  If they're time dependent, the first two
+  time derivatives must be specified.
 </para>
 <para>
   The <xref linkend="RegisteredClass-ContinuumProfileXTd"/>, <xref

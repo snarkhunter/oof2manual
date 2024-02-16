@@ -1,43 +1,38 @@
 <!-- 
-  $RCSfile: skeletonselbdydisplay.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:47 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>SelectedSkeletonBoundaryDisplay</classname> displays
-    the currently selected <link
-    linkend="Section-Concepts-Skeleton-Boundary">Skeleton
-    Boundary</link>. Skeleton Boundaries are selected and deselected
-    by the <link linkend="Section-Tasks-SkeletonBoundaries">Skeleton
-    Boundaries task page.</link>
-  </para>
-  <para>
-    The <varname>linewidth</varname> and <varname>arrowsize</varname>
-    arguments apply when an edge boundary is selected, while the
-    <varname>dotsize</varname> argument applies when a point boundary
-    is selected. All three arguments are in units of the screen pixel
-    size.
-  </para>
-  <para>
-    A single <classname>SelectedSkeletonBoundaryDisplay</classname> is
-    created automatically in each <link
-    linkend='Chapter-Graphics'>Graphics Window</link> and is not
-    normally visible in the window's layer list. To edit its
-    properties, first select <link
-    linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
-    All Layers</link> in the graphics window's <menuchoice>
-    <guimenu>Settings</guimenu> </menuchoice> menu.
-  </para>
+<para>
+  <classname>SelectedSkeletonBoundaryDisplay</classname> displays
+  the currently selected <link
+  linkend="Section-Concepts-Skeleton-Boundary">Skeleton
+  Boundary</link>. Skeleton Boundaries are selected and deselected
+  by the <link linkend="Section-Tasks-SkeletonBoundaries">Skeleton
+  Boundaries task page.</link>
+</para>
+<para>
+  The <varname>linewidth</varname> and <varname>arrowsize</varname>
+  arguments apply when an edge boundary is selected, while the
+  <varname>dotsize</varname> argument applies when a point boundary
+  is selected. All three arguments are in units of the screen pixel
+  size.
+</para>
+<para>
+  A single <classname>SelectedSkeletonBoundaryDisplay</classname> is
+  created automatically in each <link
+  linkend='Chapter-Graphics'>Graphics Window</link> and is not
+  normally visible in the window's layer list. To edit its
+  properties, first select <link
+  linkend="MenuItem-OOF.Graphics_n.Settings.List_All_Layers">List
+  All Layers</link> in the graphics window's <menuchoice>
+  <guimenu>Settings</guimenu> </menuchoice> menu.
+</para>
 
 <!-- Keep this comment at the end of the file
   Local variables:

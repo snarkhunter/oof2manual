@@ -1,28 +1,23 @@
 <!-- 
-  $RCSfile: skelmodcriterion.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:47 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
-  <para>
-    <classname>SkelModCriterion</classname> objects are used as the
-    <varname>criterion</varname> parameter for many (but not all)
-    <xref linkend='RegisteredClass-SkeletonModifier'/> operations.
-    Modifications are accepted or rejected depending on whether or not
-    they satisfy the particular criterion.  However, any modification
-    that creates <link
-    linkend='Section-Concepts-Skeleton-Illegality'>illegal
-    elements</link> will always be rejected.
-  </para>
+<para>
+  <classname>SkelModCriterion</classname> objects are used as the
+  <varname>criterion</varname> parameter for many (but not all)
+  <xref linkend='RegisteredClass-SkeletonModifier'/> operations.
+  Modifications are accepted or rejected depending on whether or not
+  they satisfy the particular criterion.  Any modification
+  that creates <link
+  linkend='Section-Concepts-Skeleton-Illegality'>illegal
+  elements</link> will always be rejected.
+</para>
 
 
 <!-- Keep this comment at the end of the file
