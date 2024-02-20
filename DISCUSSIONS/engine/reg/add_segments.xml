@@ -53,12 +53,8 @@
   <title>Adding Segments to a Boundary</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_bdymod/add_segments0.png"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata format="EPS"
-	             fileref="FIGURES/skel_bdymod/add_segments0.eps"/>
+	  <imagedata fileref="FIGURES/skel_bdymod/add_segments0.png"
+                 format="PNG" contentwidth="653px"/>
     </imageobject>
     <caption>
 	  <para>
@@ -70,8 +66,8 @@
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_bdymod/add_segments1.png"/>
+	  <imagedata fileref="FIGURES/skel_bdymod/add_segments1.png"
+                 format="PNG" contentwidth="317px"/>
     </imageobject>
     <caption>
 	  <para>
@@ -84,12 +80,8 @@
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_bdymod/add_segments2.png"/>
-    </imageobject>
-    <imageobject>
-	  <imagedata format="EPS"
-	             fileref="FIGURES/skel_bdymod/add_segments3.eps"/>
+	  <imagedata fileref="FIGURES/skel_bdymod/add_segments2.png"
+                 format="PNG" contentwidth="660px"/>
     </imageobject>
     <caption>
 	  <para>

@@ -86,7 +86,7 @@ oof2: always
 oof2_api.xml: oof2 xmlfilelist
 	bin/oof2 --script xmldump.py --quiet --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
-	mv -f tmp oof2_api.xml
+	sed s/Messages_1/Messages_n/g tmp > oof2_api.xml
 
 $(TEMPDIR): always
 	-rm -rf $(TEMPDIR)

@@ -41,8 +41,8 @@
   <title>Removing Segments from a Boundary</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_bdymod/remove_segments0.png"/>
+	  <imagedata fileref="FIGURES/skel_bdymod/remove_segments0.png"
+                 format="PNG" contentwidth="660px"/>
     </imageobject>
     <caption>
 	  <para>
@@ -55,8 +55,8 @@
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_bdymod/remove_segments1.png"/>
+	  <imagedata fileref="FIGURES/skel_bdymod/remove_segments1.png"
+                 format="PNG" contentwidth="320px"/>
     </imageobject>
     <caption>
 	  <para>

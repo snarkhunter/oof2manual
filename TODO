@@ -17,3 +17,5 @@ screenshots.  Export at 144 dpi instead of 72 dpi, and put scale="37"
 in the imagedata tag.
 
 Try updating saxon.  MacPorts has 9.5.1.   WILL REQUIRE SOME WORK
+
+Add images for all DisplayMethod subclasses.
