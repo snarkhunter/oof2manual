@@ -24,7 +24,7 @@
     appendix  toc,title
     article/appendix  nop
     article   toc,title
-    book      toc,title
+    book      toc,title,figure
     chapter   toc,title
     part      toc,title
     preface   toc,title
