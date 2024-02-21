@@ -5,31 +5,30 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
   Some pixel selection tools such as <xref
   linkend='MenuItem-OOF.Graphics_1.Toolbox.Pixel_Select.Burn'/> or
-  <xref
-      linkend='MenuItem-OOF.Graphics_1.Toolbox.Pixel_Select.Color'/>
+  <xref linkend='MenuItem-OOF.Graphics_1.Toolbox.Pixel_Select.Color'/>
   tend to leave small holes in the selection due to imperfections of
   the micrograph or other reasons.  With only a few holes, it's
   possible to fill them manually with other tools in the <link
   linkend="Section-Graphics-PixelSelection">Pixel Selection</link>
   toolbox, but this quickly gets tedious. The
-  <command>Despeckle</command> fills these holes efficiently.
+  <command>Despeckle</command> command fills these holes efficiently.
 </para>
 
 <note>
   <para>
     Note that it's the <emphasis>pixel selection</emphasis> that is
     being despeckled, not the &image;.  The term
-    <quote>despeckle</quote> is also used to mean removing noise
-    from an image, and &oof2; does include &image; despeckling
-    (<xref linkend="MenuItem-OOF.Image.Modify.Despeckle"/>.)  <xref
-    linkend="MenuItem-OOF.PixelSelection.Despeckle"/> selects pixels, but
-    does not affect &images;.
+    <quote>despeckle</quote> is also used to mean removing noise from
+    an image, and &oof2; does include &image; despeckling with <xref
+    linkend="MenuItem-OOF.Image.Modify.Despeckle"/>.  <xref
+    linkend="MenuItem-OOF.PixelSelection.Despeckle"/> selects pixels,
+    but does not affect &images;.
   </para>
 </note>
 
@@ -62,23 +61,22 @@
   <title>Despeckling the Pixel Selection</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/despeckle.png"></imagedata>
+	  <imagedata fileref="FIGURES/despeckle.png"
+                 format="PNG" contentwidth="592px"/>
     </imageobject>
     <caption>
 	  <para>
         The upper left image shows a set of selected pixels, in red.
         The other images show the result of running
         <command>Despeckle</command> with various values of
-        <varname>neighbors</varname>.  With
-        <varname>neighbors</varname>=8, only single pixel holes have
-        been filled.  With <varname>neighbors</varname>=7, one and two
-        pixels holes have been filled.  With
-        <varname>neighbors</varname>=6, larger holes have been filled.
-        With <varname>neighbors</varname>=5, holes have been filled
+        <varname>neighbors</varname>.  With <code>neighbors=8</code>,
+        only single pixel holes have been filled.  With
+        <code>neighbors=7</code>, one and two pixels holes have been
+        filled.  With <code>neighbors=6</code>, larger holes have been
+        filled.  With <code>neighbors=5</code>, holes have been filled
         and the the boundary has been smoothed.  With
-        <varname>neighbors</varname>=4, the despeckeled selection is
-        vary dissimilar to the original.
+        <code>neighbors=4</code>, the despeckeled selection is very
+        dissimilar to the original.
 	  </para>
     </caption>
   </mediaobject>

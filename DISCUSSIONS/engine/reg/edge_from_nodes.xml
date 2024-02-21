@@ -80,20 +80,25 @@
   <title>Constructing a Closed Edge Boundary from Nodes</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_nodes0.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_nodes0.png"
+                 format="PNG" contentwidth="987px"/>
     </imageobject>
     <caption>
-	  <para>
-	    The left image shows some selected &nodes; (blue dots) in a
-	    &skel;. Because the nodes can be connected by a loop of
+	  <simpara>
+	    (a) Some selected &nodes; (blue dots) in a
+	    &skel;.
+      </simpara>
+      <simpara>
+        (b) Because the nodes can be connected by a loop of
 	    &sgmts;, the choices for <varname>direction</varname> in the
 	    <guilabel>New Boundary</guilabel> dialog box are
 	    <userinput>'Clockwise'</userinput> and
-	    <userinput>'Counterclockwise'</userinput>.  The right hand image
-        show the clockwise boundary (orange lines and arrows)
+	    <userinput>'Counterclockwise'</userinput>.
+      </simpara>
+      <simpara>
+        (c) The clockwise boundary (orange lines and arrows)
         constructed from the selected &nodes;.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
@@ -101,38 +106,43 @@
   <title>Constructing an Open Edge Boundary from Nodes </title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_nodes1.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_nodes1.png"
+                 format="PNG" contentwidth="995px"/>
     </imageobject>
     <caption>
-	  <para>
-        In the left image, the selected &nodes; do not form a closed
-        loop, but they can be linked into an open path, so choices for
-        <varname>direction</varname> in the dialog box are
-        <userinput>'Left to right'</userinput>,
-        <foreignphrase>etc</foreignphrase>.  The right image shows the
-        boundary that would be constructed using <userinput>'Left to
-        right'</userinput> or <userinput>'Buttom to top'</userinput>.
-	  </para>
+	  <simpara>
+        (a) The selected &nodes; do not form a closed loop,
+	    but they can be linked into an open path &hellip;
+      </simpara>
+      <simpara>
+        (b) &hellip; so the choices for <varname>direction</varname>
+        are <userinput>'Left to right'</userinput>,
+        <foreignphrase>etc</foreignphrase>.
+      </simpara>
+      <simpara>
+        (c) The boundary that would be constructed by choosing
+        <userinput>'Left to right'</userinput> or <userinput>'Buttom
+        to top'</userinput> in (b).
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
 <figure id="Figure-edge_from_nodes2">
+  <title>Failing to Construct an Edge Boundary</title>
   <mediaobject>
-    <title>Failing to Construct an Edge Boundary</title>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_nodes2.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_nodes2.png"
+                 format="PNG" contentwidth="665px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
 	    Adding a single &node; to the selection in <xref
 	    linkend="Figure-edge_from_nodes0"/> makes it impossible to
 	    connect the &nodes; with a non-branching set of &sgmts;.  No
 	    boundary can be constructed.  The dialog box says <quote>No
 	    edge sequence</quote> and the <guibutton>OK</guibutton> button
 	    is disabled.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
@@ -140,15 +150,15 @@
   <title>Constructing an Edge Boundary Again</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_nodes3.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_nodes3.png"
+                 format="PNG" contentwidth="651px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
 	    Adding yet another &node; to the selection in <xref
 	    linkend="Figure-edge_from_nodes2"/> makes it possible to
 	    construct a path through all the &nodes; again.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
@@ -156,16 +166,18 @@
   <title>More Failed Configurations</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_nodes4.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_nodes4.png"
+                 format="PNG" contentwidth="651.px"/>
     </imageobject>
     <caption>
-	  <para>
-        These two sets of selected &nodes; can't be used to form a
-        boundary.  There is more than one possible path through the
-        set on the left.  There is no path that joins the upper &nodes;
-        to the lower &nodes; in the set on the right.
-	  </para>
+	  <simpara>
+        (a) There is more than one possible path through the set of
+        &nodes;, so it cannot be used to form an edge boundary.
+      </simpara>
+      <simpara>
+        (b) There is no path that joins the upper &nodes; to the lower
+        &nodes;, so this set cannot be used to form a boundary either.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -76,41 +76,35 @@
   so not all of the sides have been subdivided.
 </para>
 <figure id="Figure-aspect">
-  <title>Elements with High Aspect Ratios</title>
-  <mediaobject>
-	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect0.png"></imagedata>
-	</imageobject>
-	<caption>
-	  <para>
-	    A &skel; containing two elements with a high aspect ratio.
-	    The aspect ratio of the highlighted quadrilateral is about 6,
-	    and the aspect ratio of the highlighted triangle is about 15.
-	  </para>
-	</caption>
-  </mediaobject>
-</figure>
-<figure id="Figure-aspect-refined">
   <title>Refining Elements with High Aspect Ratios</title>
   <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/check_mark/aspect1.png"></imagedata>
+	  <imagedata fileref="FIGURES/refinement/aspect.png"
+                 format="PNG" contentwidth="642px"/>
 	</imageobject>
 	<caption>
 	  <para>
-	    The &skel; produced by refining with <userinput>modifier=<link
-	    linkend="RegisteredClass-Refine">Refine</link>(targets=CheckAspectRatio(threshold=5.0,
-	    only_quads=False), divider=<link
-	    linkend="RegisteredClass-Bisection">Bisection</link>(),
-	    rules='Quick', alpha=1)</userinput>.  The quad was divided
-	    into two elements with aspect ratios near 3, but the triangle
-	    was turned into a quad with aspect ratio 8 and a new triangle
-	    with aspect ratio 15, no better than the original triangle.
+	    (a) A &skel; containing two elements with a high aspect ratio.
+	    The aspect ratio of the highlighted quadrilateral is about 6,
+	    and the aspect ratio of the highlighted triangle is about 15.
 	  </para>
+      <para>
+        (b) The &skel; produced by refining with
+        
+        <literallayout class="monospaced">modifier=<link
+        linkend="RegisteredClass-Refine">Refine</link>(targets=<emphasis
+        role="bold">CheckAspectRatio(threshold=5.0, only_quads=False)</emphasis>,
+                divider=<link linkend="RegisteredClass-Bisection">Bisection</link>(minlength=2),
+                rules='Quick', alpha=1)</literallayout>
+        
+        The quad was divided into two elements with aspect ratios
+        near 3, but the triangle was turned into a quad with aspect
+        ratio 8 and a new triangle with aspect ratio 15, which is no
+        better than the original triangle.
+      </para>
 	</caption>
   </mediaobject>
 </figure>
-
 
 
 

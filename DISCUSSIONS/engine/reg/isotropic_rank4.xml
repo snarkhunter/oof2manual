@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -93,20 +93,26 @@
   <title>Converting Between Isotropic Tensor Representations</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/rank4/iso_cij_convert.png" format="PNG"/>
+      <imagedata fileref="FIGURES/rank4/iso_cij_convert.png"
+                 contentwidth="603px" format="PNG"/>
     </imageobject>
     <caption>
-      <para>
-        The top image displays the dialog box for setting the elastic
-        modulus of a material with <link
+      <simpara>
+        (a) The dialog box for setting the elastic modulus of a
+        material with <link
         linkend="Property-Mechanical-Elasticity-Isotropic">isotropic
         elasticity</link>.  The menu at the top of the box shows that
         the <classname>Cij</classname> representation is being used.
-        Selecting <classname>Lame</classname> (in the middle image)
-        leads to the bottom image, where the same modulus is now given
-        in Lam&eacute; coefficients.  The values can be edited in
-        either representation, or any of the others.
-      </para>
+      </simpara>
+      <simpara>
+        (b) After selecting <classname>Lame</classname> in the
+        pull-down menu &hellip;
+      </simpara>
+      <simpara>
+        (c) &hellip; the same modulus is now given in Lam&eacute;
+        coefficients.  The values can be edited in either
+        representation, or any of the others.
+      </simpara>
     </caption>
   </mediaobject>
   

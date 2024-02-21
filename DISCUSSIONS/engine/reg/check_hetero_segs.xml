@@ -45,24 +45,24 @@
   <title>Refining Heterogeneous Segments</title>
   <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/check_mark/heterosegments.png"/>
+	  <imagedata fileref="FIGURES/refinement/heterosegments.png"
+                 format="PNG" contentwidth="642px"/>
 	</imageobject>
 	<caption>
 	  <para>
-        In the &skel; on the left,
-	    inhomogeneous &sgmts; are highlighted in
-        green.  The &skel; on the right is the result of refining
-        these &sgmts; with the command
-        <literallayout class="monospaced">
-          OOF.Skeleton.Modify(
+        (a) A &skel; with inhomogeneous &sgmts; highlighted in green.
+      </para>
+      <para>
+        (b) The result of refining the inhomogeneous &sgmts; with the
+        command
+        
+        <literallayout class="monospaced">OOF.Skeleton.Modify(
              skeleton='swoops.png:skeleton',
              modifier=Refine(
                 <emphasis role="bold">targets=CheckHeterogeneousSegments(threshold=0.9,choose_from=FromAllSegments())</emphasis>,
                 divider=Bisection(minlength=2),
                 rules='Quick',
-                alpha=0.3))
-        </literallayout>
+                alpha=0.3))</literallayout>
 	  </para>
 	</caption>
   </mediaobject>

@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 
@@ -24,20 +24,25 @@
   <title>Selecting Segments from Selected Elements</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_selection/segs_from_elements.png"/>
+	  <imagedata fileref="FIGURES/skel_selection/segs_from_elements.png"
+                 format="PNG" contentwidth="985px"/>
     </imageobject>
     <caption>
-	  <para>
-	  A &skel; containing some selected &elems;, in red, and the three
-      ways of selecting &sgmts; from them. (a)
-      <varname>internal</varname>=<userinput>False</userinput> and
-      <varname>boundary</varname>=<userinput>True</userinput>. (b)
-      <varname>internal</varname>=<userinput>True</userinput> and
-      <varname>boundary</varname>=<userinput>False</userinput>. (c)
-      <varname>internal</varname>=<userinput>True</userinput> and
-      <varname>boundary</varname>=<userinput>True</userinput>.
-      </para>
+	  <simpara>
+	    A &skel; containing some selected &elems;, in red, and the
+	    three ways of selecting &sgmts; from them.
+      </simpara>
+      <simpara>
+        (a) <code>internal=False</code> and
+        <code>boundary=True</code>.
+      </simpara>
+      <simpara>
+        (b) <code>internal=True</code> and
+        <code>boundary=False</code>.
+      </simpara>
+      <simpara>
+        (c) <code>internal=True</code> and <code>boundary=True</code>.
+      </simpara>
       </caption>
   </mediaobject>
 </figure>

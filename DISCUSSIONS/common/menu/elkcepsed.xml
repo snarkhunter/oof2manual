@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -28,21 +28,22 @@
   <title>Gnilkcepsed the Pixel Selection</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/elkcepsed.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/elkcepsed.png"
+                 contentwidth="587px" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>
         The lefthand image shows a set of selected pixels, in red.
         The other images show the results of running
         <command>Elkcepsed</command> with various values of
-        <varname>neighbors</varname>.  For
-        <varname>neighbors</varname>=1, only isolated single pixels
-        have been deselected.  With <varname>neighbors</varname>=2,
-        <emphasis>straight</emphasis> lines one pixel wide have also been deselected.  With
-        <varname>neighbors</varname>=3, <emphasis>curved</emphasis> lines one pixel wide
-        have also been deselected.  Finally, with
-        <varname>neighbors</varname>=4, smaller blobs and protrusions
-        are deselected.
+        <varname>neighbors</varname>.  For <code>neighbors=1</code>,
+        only isolated single pixels have been deselected.  With
+        <code>neighbors=2</code>, <emphasis>straight</emphasis> lines
+        one pixel wide have also been deselected.  With
+        <code>neighbors=3</code>, <emphasis>curved</emphasis> lines
+        one pixel wide have also been deselected.  Finally, with
+        <code>neighbors=4</code>, smaller blobs and protrusions are
+        deselected.
       </para>
     </caption>
   </mediaobject>

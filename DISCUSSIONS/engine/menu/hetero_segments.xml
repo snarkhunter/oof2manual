@@ -18,23 +18,26 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/skel_selection/heterosegs.png"
-	             format="PNG"/>
+	             contentwidth="964px" format="PNG"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
 	    (a) A &skel; containing some heterogeneous &sgmts;.  The
 	    pixels have been grouped by <link
 	    linkend="MenuItem-OOF.Image.AutoGroup">color</link>, so
-	    &sgmts; straddling two colors are inhomogeneous. (b) After
-	    selecting with
-	    <varname>threshold</varname>=<userinput>0.9</userinput>,
-	    &sgmts; that are less than 90% homogeneous have been selected
-	    and are marked by heavy green lines. (c) The same, but with
-	    <varname>threshold</varname>=<userinput>0.5</userinput>.  Only
-	    one segment is selected.  (Unless a segment crosses three or
-	    more pixel categories, it is impossible for its homogeneity to
-	    be less than 0.5.)
-	  </para>
+	    &sgmts; straddling two colors are inhomogeneous.
+      </simpara>
+      <simpara>
+        (b) After selecting with <code>threshold=0.9</code>, &sgmts;
+        that are less than 90% homogeneous have been selected and are
+        marked by heavy green lines.
+      </simpara>
+      <simpara>
+        (c) The same, but with <code>threshold=0.5</code>.  Only one
+        segment is selected.  (Unless a segment crosses three or more
+        pixel categories, it is impossible for its homogeneity to be
+        less than 0.5.)
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

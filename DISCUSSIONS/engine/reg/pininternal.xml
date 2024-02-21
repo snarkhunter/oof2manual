@@ -33,7 +33,7 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/pinnodes/pininternal.png"
-	             format="PNG"/>
+	             contentwidth="641px" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>
@@ -66,14 +66,24 @@
   <mediaobject>
     <imageobject>
       <imagedata fileref="FIGURES/pinnodes/interiorbdy.png"
-                 format="PNG"/>
+                 contentwidth="698px" format="PNG"/>
     </imageobject>
     <caption>
-      <para>
-        The pinned internal boundary &nodes; do not necessarily lie on
-        the pixel boundaries in (a) but they do lie on the &skel;
-        boundaries in (b).
-      </para>
+      <simpara>
+        A detail of the smoothed &skel; in <xref
+        linkend="Figure-pininternal"/>(b).
+      </simpara>
+      <simpara>
+        (a) When viewing the &image; and the &skel; edges, it is
+        apparent that the pinned &nodes; are not necessarily on the
+        pixel boundaries &hellip;
+      </simpara>
+      <simpara>
+        (b) &hellip; but when the &elems; are filled by their <link
+        linkend="RegisteredClass-SkeletonMaterialDisplay">material
+        color</link>, the pinned nodes are seen to be on the &skel;
+        boundaries.
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

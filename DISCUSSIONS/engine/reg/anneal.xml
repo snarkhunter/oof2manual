@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 
@@ -178,9 +178,11 @@
   improve the &skel; without creating new &elems;.
 </para>
 <figure id="Figure-anneal_initial">
+  <title>An Un-annealed Skeleton</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/anneal/anneal_ms_initial.png" format="PNG"/>
+      <imagedata fileref="FIGURES/anneal/anneal_ms_initial.png"
+                 contentwidth="322px" format="PNG"/>
     </imageobject>
     <caption>
       <para>
@@ -224,9 +226,11 @@
   final rationalization then removes the last poorly shaped &elem;.
 </para>
 <figure id="Figure-anneal">
+  <title>Annealing the Skeleton</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/anneal/anneal.png" format="PNG"/>
+      <imagedata fileref="FIGURES/anneal/anneal.png"
+                 contentwidth="1008px" format="PNG"/>
     </imageobject>
     <caption>
       The process of annealing and <link
@@ -242,9 +246,12 @@
   </mediaobject>
 </figure>
 <figure id="Figure-anneal_final">
+  <title>Comparison between the Annealed Skeleton and the
+  Microstructure</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/anneal/anneal_ms_final.png" format="PNG"/>
+      <imagedata fileref="FIGURES/anneal/anneal_ms_final.png"
+                 contentwidth="321px" format="PNG"/>
     </imageobject>
     <caption>
       <para>

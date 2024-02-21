@@ -29,7 +29,7 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/pinnodes/pinelements.png"
-	             format="PNG"/>
+	             contentwidth="971px" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>

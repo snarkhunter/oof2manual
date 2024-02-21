@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -58,12 +58,14 @@
   <title>Constructing an Edge Boundary from Elements</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_elements.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_elements.png"
+                 format="PNG" contentwidth="1019px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
 	    (a) A &skel; with some selected &elems; (in green).
+      </simpara>
+      <simpara>
         (b) An edge boundary created with
         <literallayout class="monospaced">
           <xref linkend="MenuItem-OOF.Skeleton.Boundary.Construct"/>(
@@ -72,30 +74,35 @@
              <varname>constructor</varname>=<xref
                linkend="RegisteredClass-EdgeFromElements"/>(
                 <varname>group</varname>=<userinput>selection</userinput>,
-                <varname>direction</varname>=<userinput>'Clockwise'</userinput>))
-        </literallayout>
+                <varname>direction</varname>=<userinput>'Clockwise'</userinput>))</literallayout>
         Note that only the outer boundary of the selected elements
 	    has been used to construct the boundary.
+      </simpara>
+      <simpara>
         (c) The boundary is necessarily closed, so the allowed
         directions are <userinput>Clockwise</userinput> and
         <userinput>Counterclockwise</userinput>.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_elements_impossible.png"/>
+	  <imagedata
+          fileref="FIGURES/skel_boundary/edge_from_elements_impossible.png"
+          format="PNG" contentwidth="1011px"/>
     </imageobject>
     <caption>
-	  <para>
-        (a) and (b) illustrate &elem; selections (in green) that
+	  <simpara>
+        (d) and (e) illustrate &elem; selections (in green) that
         cannot be used to create an edge boundary.  The segments on
         the exterior of the green regions do not form a single
-        sequence.  The dialog box in (c) offers no
-        choices for <varname>direction</varname> and the
-        <guibutton>OK</guibutton> button is disabled.
-	  </para>
+        sequence.
+      </simpara>
+      <simpara>
+        (f) The dialog box now offers no choices for
+        <varname>direction</varname> and the <guibutton>OK</guibutton>
+        button is disabled.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
