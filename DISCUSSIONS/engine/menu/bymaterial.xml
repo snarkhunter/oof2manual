@@ -35,7 +35,7 @@
   <mediaobject>
     <imageobject>
       <imagedata fileref="FIGURES/skel_selection/select_by_matl.png"
-                 format="PNG"/>
+                 contentwidth="302px" format="PNG"/>
     </imageobject>
     <caption>
       <para>

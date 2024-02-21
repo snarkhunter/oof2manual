@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -19,9 +19,9 @@
 <note>
   <para>
     The default value of <command>Hide_Empty_Mesh_Elements</command>
-    is off.  If a &mesh; doesn't appear in the graphics window, ensure
-    that the elements aren't empty, or that empty elements are being
-    shown.
+    is <userinput>True</userinput>.  If a &mesh; doesn't appear in the
+    graphics window, ensure that the elements aren't empty, or that
+    empty elements are being shown.
   </para>
 </note>
 <figure id="hideempty">
@@ -32,15 +32,22 @@
                  contentwidth="1001px" format="PNG"/>
     </imageobject>
     <caption>
-      <para>
-        A &material; is assigned only to the blue region in (a), a
-        &mesh; was created from it, and a <link
-        linkend="RegisteredClass-FilledContourDisplay"> contour
-        plot</link> displayed on the &mesh;.  (b) shows the just the
-        &mesh; and the contour plot with
-        <command>Hide_Empty_Mesh_Elements</command> off, and (c) shows
-        them with <command>Hide_Empty_Mesh_Elements</command> on.
-      </para>
+      <simpara>
+        (a) A &micro; with a &material; assigned only to the blue
+        pixels, and a &skel; created from it.
+      </simpara>
+      <simpara>
+        (b) A &mesh; created from the &skel; in (a), with a <link
+        linkend="RegisteredClass-FilledContourDisplay">contour
+        plot</link> displayed on it.
+        <command>Hide_Empty_Mesh_Elements</command> is
+        <userinput>False</userinput>.
+      </simpara>
+      <simpara>
+        (c) The same &mesh; and contour plot as in (b), but
+        <command>Hide_Empty_Mesh_Elements</command> is
+        <userinput>True</userinput>.
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

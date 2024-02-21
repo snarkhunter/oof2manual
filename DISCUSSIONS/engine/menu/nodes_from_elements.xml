@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -25,21 +25,27 @@
   <title>Selecting Nodes from the Selected Elements</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/skel_selection/nodes_from_elems.png"/>
+	  <imagedata fileref="FIGURES/skel_selection/nodes_from_elems.png"
+                 format="PNG" contentwidth="987px" />
     </imageobject>
     <caption>
-	  <para>
-        The selected &elems; are shown in red. (a) With
-        <varname>boundary</varname>=<userinput>True</userinput> and
-        <varname>internal</varname>=<userinput>False</userinput>, only
-        the &nodes; (blue dots) on the perimeter of the set of
-        selected &elems; are selected. (b) With
-        <varname>boundary</varname>=<userinput>False</userinput> and
-        <varname>internal</varname>=<userinput>True</userinput>, only
-        the &nodes; in the interior of the &elem; set are
-        selected. (c) With both parameters <userinput>True</userinput>
-        all nodes that are part of a selected &elem; are selected.
-	  </para>
+	  <simpara>
+        The selected &elems; are shown in red.
+      </simpara>
+      <simpara>
+        (a) With <code>boundary=True</code> and
+        <code>internal=False</code>, only the &nodes; (blue dots) on
+        the perimeter of the set of selected &elems; are selected.
+      </simpara>
+      <simpara>
+        (b) With <code>boundary=False</code> and
+        <code>internal=True</code>, only the &nodes; in the interior
+        of the &elem; set are selected.
+      </simpara>
+      <simpara>
+        (c) With both parameters <code>True</code>, all nodes that are
+        part of a selected &elem; are selected.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

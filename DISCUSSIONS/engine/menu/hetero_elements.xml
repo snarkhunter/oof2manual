@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -19,17 +19,19 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/skel_selection/select_elhomog.png"
-	             format="PNG"/>
+                 contentwidth="630px" format="PNG"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
 	    (a) A &skel; containing some heterogeneous &elems;.  The
 	    pixels have been grouped by <link
 	    linkend="MenuItem-OOF.Image.AutoGroup">color</link>, so
-	    &elems; straddling two or more colors are inhomogeneous.  (b)
-	    The &elems; (in red) that are less than 80% homogeneous have
-	    been selected.
-	  </para>
+	    &elems; straddling two or more colors are inhomogeneous.
+      </simpara>
+      <simpara>
+        (b) The &elems; (in red) that are less than 80% homogeneous
+        have been selected.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

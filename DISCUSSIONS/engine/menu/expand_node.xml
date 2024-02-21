@@ -35,19 +35,24 @@
 </para>
 
 <figure id="Figure-expandnodeselection">
+  <title>Expanding the Node Selection</title>
   <mediaobject>
     <imageobject>
       <imagedata fileref="FIGURES/skel_selection/expand_nodes.png"
-                 format="PNG"/>
+                 contentwidth="967px" format="PNG"/>
     </imageobject>
     <caption>
-      <para>
-        (a) A &skel; with three selected &nodes;.  (b) After expanding
-        the &node; selection by segments. (c) After expanding the
-        selection by elements.  Three selected &nodes; in (c) are not
-        selected in (b) because they are not connected directly by
-        segments to the selected nodes in (a).
-      </para>
+      <simpara>
+        (a) A &skel; with three selected &nodes;.
+      </simpara>
+      <simpara>
+        (b) After expanding the &node; selection by segments.
+      </simpara>
+      <simpara>
+        (c) After expanding the selection by elements.  Three selected
+        &nodes; in (c) are not selected in (b) because they are not
+        connected directly by segments to the selected nodes in (a).
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

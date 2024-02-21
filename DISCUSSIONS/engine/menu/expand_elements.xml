@@ -18,14 +18,17 @@
   <title>Expanding the Element Selection</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_selection/elexpand.png"/>
+	  <imagedata fileref="FIGURES/skel_selection/elexpand.png"
+                 format="PNG" contentwidth="507px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
         (a) A section of a &skel; with some selected &elems;, shown in
-        green.  (b) The same section, after expanding the selection.
-	</para>
+        green.
+      </simpara>
+      <simpara>
+        (b) The same section, after expanding the selection.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

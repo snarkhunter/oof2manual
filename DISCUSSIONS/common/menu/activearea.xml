@@ -77,16 +77,18 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/active/active1.png"
-                 contentwidth="666" format="PNG"/>
+                 contentwidth="645px" format="PNG"/>
     </imageobject>
     <caption>
 	  <simpara>
-        In (a) a rectangular pixel selection is being made with the
-        <link linkend="Section-Graphics-PixelSelection">Pixel
+        (a) A rectangular pixel selection is being made with the <link
+        linkend="Section-Graphics-PixelSelection">Pixel
         Selection</link> toolbox on a circular active area.  The
-        inactive pixels are dimmed.  In (b), only the pixels within
-        the active area have been selected, although the selection
-        rectangle extends further.
+        inactive pixels are dimmed.
+      </simpara>
+      <simpara>
+        (b) Only the pixels within the active area have been selected,
+        although the selection rectangle extended further in (a).
 	  </simpara>
     </caption>
     </mediaobject>
@@ -97,8 +99,8 @@
       </imageobject>
       <caption>
 	    <simpara>
-	      A &skel; has been created, and its &nodes; (c), &elems; (d),
-	      and &sgmts; (e) were selected using the
+	      A &skel; has been created, and its (c) &nodes;, (d) &elems;,
+	      and (e) &sgmts; were selected using the
 	      <guibutton>Invert</guibutton> button in the <link
 	      linkend="Section-Graphics-SkeletonSelection">Skeleton
 	      Selection</link> toolbox.  Note that the active &elems; and

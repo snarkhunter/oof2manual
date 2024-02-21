@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
   
@@ -19,8 +19,9 @@
   <title>Selecting Elements from Selected Nodes</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_selection/elements_from_nodes.png"/>
+	  <imagedata
+          fileref="FIGURES/skel_selection/elems_shape_energy.png"
+          format="PNG" contentwidth="305px" />
     </imageobject>
     <caption>
 	  <para>

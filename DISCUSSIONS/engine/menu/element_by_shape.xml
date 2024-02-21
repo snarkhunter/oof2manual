@@ -18,8 +18,9 @@
   <title>Element Selection by Shape Energy</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_selection/elems_shape_energy.png"/>
+	  <imagedata
+          fileref="FIGURES/skel_selection/elems_shape_energy.png"
+          format="PNG" contentwidth="305px" />
     </imageobject>
     <caption>
 	  <para>

@@ -206,21 +206,29 @@
                            contentwidth="937px" format="PNG"/>
               </imageobject>
               <caption>
-                <para>
+                <simpara>
                   Three views of the Color Property dialog box,
-                  showing how it can convert parametrizations. (a) The
-                  menu at the top, labelled
+                  showing how it can convert parametrizations.
+                </simpara>
+                <simpara>
+                  (a) The menu at the top, labelled
                   <guilabel>RGBAColor</guilabel>, indicates that the
                   color is being specified in the <xref
                   linkend="RegisteredClass-RGBAColor"/>
                   representation. The black rectangle shows the
                   previous value of the color. The orange rectangle is
-                  the current value. (b) Switching to a different
-                  representation with the menu.  (c) The color hasn't
-                  changed, but the sliders for setting it now use the
+                  the current value.
+                </simpara>
+                <simpara>
+                  (b) Switching to a different representation with the
+                  menu.
+                </simpara>
+                <simpara>
+                  (c) The color hasn't changed, but the sliders for
+                  setting it now use the
                   <xref linkend="RegisteredClass-HSVAColor"/>
                   representation.
-                </para>
+                </simpara>
               </caption>
             </mediaobject>
           </figure>
