@@ -95,7 +95,8 @@
   <title>Swapping Edges</title>
   <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/swap/beforeandafter.png"/>
+	  <imagedata fileref="FIGURES/swap/beforeandafter.png"
+                 format="PNG" contentwidth="640px"/>
 	</imageobject>
 	<caption>
 	  <para>

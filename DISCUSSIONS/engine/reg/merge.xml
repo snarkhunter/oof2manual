@@ -47,14 +47,19 @@
     </imageobject>
     <caption>
 	  <simpara>
-        Running
+        (a) The &elems; with green edges are triangles that can be
+        merged.
+      </simpara>
+      <simpara>
+        (b) The result of running
         <literallayout class="monospaced">
           OOF.Skeleton.Modify(
              skeleton='swoops.png:skeleton',
              modifier=<emphasis role="bold">MergeTriangles(targets=AllElements(),criterion=AverageEnergy(alpha=0.5))</emphasis>) </literallayout>
-        on the &skel; in (a) produces the &skel; in (b).
-        The green edges indicate the affected &elems; for
-        illustrative purposes only.
+
+        on the &skel; in (a).  (The green edges indicate the affected
+        &elems; for illustrative purposes only. Selected &sgmts; were
+        not actually necessary to run this command.)
 	  </simpara>
     </caption>
   </mediaobject>

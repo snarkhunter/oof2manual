@@ -79,15 +79,17 @@ overstepping their optimal positions.
   <title>Skeleton Relaxation</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/relax/relax.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/relax/relax.png"
+                 contentwidth="650px" format="PNG"/>
     </imageobject>
     <caption>
 	  <simpara>
-	    (a) A &skel; in a &micro; with four types of pixels.  (b) The
-	    &skel; after applying <classname>Relax</classname> with
-	    <varname>alpha</varname>=<userinput>0.5</userinput>,
-	    <varname>gamma</varname>=<userinput>0.3</userinput>, and
-	    <varname>iterations</varname>=<userinput>10</userinput>.
+	    (a) A &skel; in a &micro; with four types of pixels.
+      </simpara>
+      <simpara>
+        (b) The &skel; after applying <classname>Relax</classname>
+        with <code>alpha=0.5</code>, <code>gamma=0.3</code>, and
+        <code>iterations=10</code>.
 	  </simpara>
     </caption>
   </mediaobject>

@@ -88,24 +88,30 @@
     <title>Refining a Skeleton</title>
     <mediaobject id="Figure-refine0">
 	  <imageobject>
-	    <imagedata fileref="FIGURES/refinement/refine.png" format="PNG"/>
+	    <imagedata fileref="FIGURES/refinement/refine.png"
+                   contentwidth="988px" format="PNG"/>
 	  </imageobject>
 	  <caption>
-	    <para>
-	      (a) A &skel; ripe for refinement.  (b) The <userinput><link
+	    <simpara>
+	      (a) A &skel; ripe for refinement.
+        </simpara>
+        <simpara>
+          (b) The <userinput><link
 	      linkend="RegisteredClass-CheckHomogeneity">CheckHomogeneity</link>(threshold=0.9)</userinput>
 	      <xref linkend="RegisteredClass-RefinementTarget"/>
 	      operator marks the &sgmts; of the heterogeneous &elems;.
 	      The marked &sgmts; are drawn in green and the inhomogeneous
 	      &elems; are red.<footnote><simpara> In actual &oof2;
 	      operation, the marked &sgmts; and &elems; are not
-	      shown.</simpara></footnote> (c) The result of refining the
-	      marked edges with <varname>divider</varname> set to
-	      <userinput><link
-	      linkend="RegisteredClass-Bisection">Bisection</link></userinput>
-	      and <varname>rules</varname> set to <userinput><link
-	      linkend="Enum-RuleSet">Quick</link></userinput>.
-	      </para>
+	      shown.</simpara></footnote>
+        </simpara>
+        <simpara>
+          (c) The result of refining the marked edges with
+          <varname>divider</varname> set to <userinput><link
+          linkend="RegisteredClass-Bisection">Bisection</link></userinput>
+          and <varname>rules</varname> set to <userinput><link
+          linkend="Enum-RuleSet">Quick</link></userinput>.
+	      </simpara>
 	  </caption>
     </mediaobject>
   </figure>
@@ -141,15 +147,18 @@
 	  <title>Excessive and Appropriate Refinement</title>
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata format="PNG"
-	                 fileref="FIGURES/refinement/refinedpixels.png"></imagedata>
+	      <imagedata fileref="FIGURES/refinement/refinedpixels.png"
+                     format="PNG" contentwidth="681px"/>
 	    </imageobject>
 	    <caption>
-	      <para>
-            Portions of two &skels; that have been over-refined (left)
-            and properly refined (right).  The over-refined &skel; is
-            probably resolving nonphysical details of the image.
-	      </para>
+	      <simpara>
+            (a) A portion of an over-refined &skel;.  It is probably
+            resolving unphysical details of the image.
+          </simpara>
+          <simpara>
+            (b) A properly refined &skel; on the same region.  The
+            &elem; edges smooth over the jagged pixel boundary.
+	      </simpara>
 	    </caption>
 	  </mediaobject>
     </figure>

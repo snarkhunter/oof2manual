@@ -69,13 +69,16 @@
   <title>Rationalizing a Skeleton</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/ration/rationalize.png"/>
+	  <imagedata fileref="FIGURES/ration/rationalize.png"
+                 format="PNG" contentwidth="655px"/>
     </imageobject>
     <caption>
-	  <para>
-        (a) The selected red &elems; have the indicated flaws. (b) The
-        result of rationalizing the selected elements, using
+	  <simpara>
+        (a) The selected red &elems; have the indicated flaws.
+      </simpara>
+      <simpara>
+        (b) The result of rationalizing the selected elements, using
+
         <literallayout class="monospaced">
           OOF.Skeleton.Modify(
              skeleton='swoops.png:skeleton',
@@ -86,13 +89,14 @@
                    rationalizers=[RemoveShortSide(ratio=5),
                                   QuadSplit(angle=150),
                                   RemoveBadTriangle(acute_angle=15,obtuse_angle=150)]),</emphasis>
-             iterations=1))</literallayout>
+                iterations=1))</literallayout>
+
         The <quote>flat</quote> and <quote>sharp</quote> &elems; have
         been eliminated (causing neighboring &elems; to be
         subdivided), the <quote>short</quote> quadrilateral has been
         converted into a triangle, and the <quote>wide</quote>
         quadrilateral has been subdivided.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

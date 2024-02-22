@@ -58,7 +58,7 @@
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="FIGURES/sel_placeholder.png"
-		       format="PNG"/>
+		           contentwidth="308px" format="PNG"/>
 	  </imageobject>
 	  <caption>
 	    <para>

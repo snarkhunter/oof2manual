@@ -48,7 +48,8 @@
   <title>Selecting Rationalization Tools</title>
   <mediaobject>
     <imageobject>
-      <imagedata format="PNG" fileref="FIGURES/specificrationalizers.png"/>
+      <imagedata fileref="FIGURES/ration/specificrationalizers.png"
+                 format="PNG" contentwidth="768px"/>
     </imageobject>
     <caption>
       <para>

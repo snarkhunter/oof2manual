@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -45,12 +45,15 @@
                  format="PNG" contentwidth="660px"/>
     </imageobject>
     <caption>
-	  <para>
-	    The left image shows an existing boundary (in orange) and some
-	    selected &sgmts; (in green).  The right image shows the result
-        of removing the &sgmts; from the boundary. The &sgmt; on the
-        left edge wasn't in the boundary and was ignored.
-	  </para>
+	  <simpara>
+        (a) A &skel; with an existing boundary (in orange) and some
+        selected &sgmts; (in green).
+      </simpara>
+      <simpara>
+        (b) The result of removing the &sgmts; from the boundary. The
+        selected &sgmt; on the left edge wasn't in the boundary and
+        was ignored.
+	  </simpara>
     </caption>
   </mediaobject>
   <mediaobject>
@@ -59,11 +62,11 @@
                  format="PNG" contentwidth="320px"/>
     </imageobject>
     <caption>
-	  <para>
-	    The selected &sgmt; in green cannot be removed from the
+	  <simpara>
+	    (c) The selected &sgmt; in green cannot be removed from the
 	    boundary in orange, because the resulting boundary would not
 	    be connected.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

@@ -44,20 +44,28 @@
   </itemizedlist>
 </para>
 <figure id="Figure-rationalshort">
-  <title>Applying <classname>RemoveShortSide</classname></title>
+  <title>Applying RemoveShortSide</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/ration/short.png" format="PNG"/>
+      <imagedata fileref="FIGURES/ration/short.png"
+                 contentwidth="405px" format="PNG"/>
     </imageobject>
     <caption>
-      In (a), the highlighted quadrilateral &elem; has one short side
-      neighboring a triangle. The short side is removed,
-      turning the &elem; into a triangle and deleting the neighbor.
-      In (b), the neighbor is a quadrilateral and is turned into a
-      triangle.  In (c) the highlighted &elem; is a quadrilateral with
-      two opposing short sides.  The &elem; is removed, along with the
-      neighboring triangle on the right.  The quadrilateral on the
-      left becomes a triangle.
+      <simpara>
+        (a) The highlighted quadrilateral &elem; has one short side
+        neighboring a triangle. The short side is removed, turning the
+        &elem; into a triangle and deleting the neighbor.
+      </simpara>
+      <simpara>
+        (b) The neighbor is a quadrilateral and is turned into a
+        triangle.
+      </simpara>
+      <simpara>
+        (c) The highlighted &elem; is a quadrilateral with two
+        opposing short sides.  The &elem; is removed, along with the
+        neighboring triangle on the right.  The quadrilateral on the
+        left becomes a triangle.
+      </simpara>
     </caption>
   </mediaobject>  
 </figure>

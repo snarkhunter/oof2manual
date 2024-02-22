@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -21,16 +21,17 @@
 </para>
 
 <figure id="Figure-splitwide">
-  <title>Applying <classname>QuadSplit</classname></title>
+  <title>Applying QuadSplit</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/ration/splitwide.png" format="PNG"/>
+      <imagedata fileref="FIGURES/ration/splitwide.png"
+                 contentwidth="414px" format="PNG"/>
     </imageobject>
     <caption>
-      <para>
-        The highlighted &elem; on the left is split into the two
-        triangles on the right.
-      </para>
+      <simpara>
+        The highlighted quadrilateral &elem; in (a) is split into two
+        triangles in (b).
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

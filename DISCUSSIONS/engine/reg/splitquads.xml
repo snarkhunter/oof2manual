@@ -52,13 +52,17 @@
   <title>Using SplitQuads</title>
   <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/splitquads/split.png"/>
+	  <imagedata fileref="FIGURES/splitquads/split.png"
+                 format="PNG" contentwidth="467px"/>
 	</imageobject>
 	<caption>
 	  <para>
-	    On the left, the material boundary is crossing two heterogenous
-	    elements along their diagonals. On the right, the
-        quadrilaterals have been replaced with homogeneous triangles.
+        (a) The material boundary is crossing two heterogenous
+        elements along their diagonals.
+      </para>
+      <para>
+        (b) The heterogeneous quadrilaterals have been replaced with
+        homogeneous triangles.
 	  </para>
 	</caption>
   </mediaobject>

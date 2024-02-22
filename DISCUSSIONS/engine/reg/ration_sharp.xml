@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -31,7 +31,8 @@
   <title>Removing Bad Acute Angles</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/ration/badsharptri.png" format="PNG"/>
+      <imagedata fileref="FIGURES/ration/badsharptri.png"
+                 contentwidth="408px" format="PNG"/>
     </imageobject>
     <caption>
       <para>
@@ -51,7 +52,8 @@
   <title>Removing Bad Obtuse Angles</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/ration/badwidetri.png" format="PNG"/>
+      <imagedata fileref="FIGURES/ration/badwidetri.png"
+                 contentwidth="408px" format="PNG"/>
     </imageobject>
     <caption>
       <para>

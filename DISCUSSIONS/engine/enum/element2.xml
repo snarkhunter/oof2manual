@@ -19,7 +19,7 @@
   <mediaobject>
     <imageobject>
       <imagedata fileref="FIGURES/masterelements/elements2.png"
-                 format="PNG"/>
+                 contentwidth="378px" format="PNG"/>
     </imageobject>
     <caption>
       <para>

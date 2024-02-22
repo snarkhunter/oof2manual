@@ -37,19 +37,21 @@
 </para>
 
 <figure id="Figure-point_from_elements">
-  <title>Point Boundary Construction from the Selected
-  Elements</title>
+  <title>Constructing a Point Boundary from Elements</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/skel_boundary/point_from_elements.png"></imagedata>
+	  <imagedata fileref="FIGURES/skel_boundary/point_from_elements.png"
+                 format="PNG" contentwidth="652px"/>
       </imageobject>
       <caption>
-	    <para>
-	      On the left, a &skel; with some selected &elems; (in dark
-	      red), and on the right, the point boundary constructed from
-	      them (orange dots).  Only the &nodes; on the exterior of the
-	      &elem; set are included.
-	    </para>
+	    <simpara>
+          (a) A &skel; with some selected &elems; (in dark red).
+        </simpara>
+        <simpara>
+          (b) The point boundary (orange dots) constructed from the
+          selected &elems;.  Only the &nodes; on the exterior of the
+          &elem; set are included.
+	    </simpara>
       </caption>
   </mediaobject>
 </figure>

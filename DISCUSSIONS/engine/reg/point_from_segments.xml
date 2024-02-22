@@ -34,17 +34,19 @@
   <title>Constructing a Point Boundary from Segments</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/point_from_edges.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/point_from_edges.png"
+                 format="PNG" contentwidth="652px"/>
     </imageobject>
     <caption>
-	  <para>
-	    Selected &sgmts;, in green, on the left, and a point boundary
-	    constructed from them, in orange, on the right.  Boundary
-	    conditions will be applied at all the highlighted &nodes;,
-	    even those that aren't at the <emphasis>geometrical</emphasis>
-	    boundaries of the region.
-	  </para>
+	  <simpara>
+	    (a) A &skel; with some selected &sgmts;, in green.
+      </simpara>
+      <simpara>
+        (b) The point boundary (orange dots) constructed from the
+        selected &sgmts;.  Boundary conditions will be applied at all
+        the highlighted &nodes;, even those that aren't at the
+        <emphasis>geometrical</emphasis> boundaries of the region.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

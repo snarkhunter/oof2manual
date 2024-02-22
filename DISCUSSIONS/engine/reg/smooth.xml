@@ -87,21 +87,21 @@
     <title>Schematics of Smooth</title>
     <mediaobject>
 	  <imageobject>
-	    <imagedata format="PNG" fileref="FIGURES/smooth/schematic.png"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata format="EPS" fileref="FIGURES/smooth/schematic.eps"/>
+	    <imagedata fileref="FIGURES/smooth/schematic.png"
+                   format="PNG" contentwidth="879px"/>
 	  </imageobject>
 	  <caption>
-	    <para>
+	    <simpara>
 	      (a) A node (red dot) moves to the average position (black
 	      dot) of its four neighboring nodes (green dots). The move is
-	      affecting the four neighboring elements (yellow).  (b) The
-	      node has moved to the average position. If the move doesn't
-	      satisfy the given <varname>criterion</varname> (computed on
-	      the four affected elements), it will move back to its
-	      original position.
-	    </para>
+	      affecting the four neighboring elements (yellow).
+        </simpara>
+        <simpara>
+          (b) The node has moved to the average position. If the move
+          doesn't satisfy the given <varname>criterion</varname>
+          (computed on the four affected elements), it will move back
+          to its original position.
+	    </simpara>
 	  </caption>
     </mediaobject>
   </figure>
@@ -133,17 +133,21 @@
   <title>Smoothing a Skeleton</title>
   <mediaobject>
 	<imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/smooth/smoothed.png"/>
+	  <imagedata fileref="FIGURES/smooth/smoothed.png"
+                 format="PNG" contentwidth="669px"/>
 	</imageobject>
 	<caption>
-	  <para>
+	  <simpara>
 	   (a) A &micro; and &skel;.  The &skel; has been refined twice by
-	   bisection. (b) The result of smoothing the &skel; with
-	   <code>Smooth(targets=AllNodes(),criterion=AverageEnergy(alpha=0.3),T=0,iteration=FixedIteration(iterations=5))</code>.
-	   Because <varname>alpha</varname> is small,
-	   <classname>Smooth</classname> produced well shaped but
-	   inhomogeneous &elems;.
-	  </para>
+	   bisection.
+      </simpara>
+      <simpara>
+        (b) The result of smoothing the &skel; with
+        <code>Smooth(targets=AllNodes(),criterion=AverageEnergy(alpha=0.3),T=0,iteration=FixedIteration(iterations=5))</code>.
+        Because <varname>alpha</varname> is small,
+        <classname>Smooth</classname> produced well shaped but
+        inhomogeneous &elems;.
+	  </simpara>
 	</caption>
   </mediaobject>
 </figure>
@@ -153,10 +157,11 @@
   <title>Smoothing without Losing Homogeneity</title>
   <mediaobject>
     <imageobject>
-      <imagedata format="PNG" fileref="FIGURES/smooth/snaprefinedsmoothed.png"/>
+      <imagedata fileref="FIGURES/smooth/snaprefinedsmoothed.png"
+                 format="PNG" contentwidth="669px"/>
     </imageobject>
     <caption>
-      <para>
+      <simpara>
         (a) A &skel; created by <link
         linkend="RegisteredClass-Refine">refining</link> the &skel; in
         <xref linkend="Figure-smooth"/>(a) at <xref
@@ -168,8 +173,8 @@
         is misrepresented by the &skel;.  The <link
         linkend="Section-Concepts-Skeleton-Shape_Energy">shape
         energy</link> of the &elem; highlighted in red is 0.40.
-      </para>
-      <para>
+      </simpara>
+      <simpara>
         (b) For comparison, this shows the &skel; in (a) after
         smoothing with <code>alpha=0.3</code> for 5 iterations, the
         same operation used in <xref linkend="Figure-smooth"/>.  Many
@@ -177,8 +182,8 @@
         &emdash; 1.08% of the &micro; is misrepresented, twice what it
         was in (a) &emdash; but shapes have improved.  The shape
         energy of the red element has decreased to 0.13.
-      </para>
-      <para>
+      </simpara>
+      <simpara>
         (c) The &skel; in (a) after smoothing with
         <code>alpha=1.0</code> for 5 iterations.  Smoothing has
         improved element shapes away from the boundaries, but not very
@@ -187,8 +192,8 @@
         homogeneity.  &nodes; that were on pixel boundaries are still
         on pixel boundaries, and only 0.45% of the &micro; is
         misrepresented.
-      </para>
-      <para>
+      </simpara>
+      <simpara>
         (d) The &skel; in (a) after <link
         linkend="Section-Tasks-PinNodes">pinning</link> the &nodes;
         that lie on its <link
@@ -200,7 +205,7 @@
         regions have improved over (a).  The misrepresented fraction
         is 0.54%, the same as it was in (a), which is not surprising
         because none of the &nodes; on the boundaries have moved.
-      </para>
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

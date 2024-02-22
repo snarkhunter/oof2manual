@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -27,19 +27,23 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/colormaps/spectral.png"
-	             format="PNG"/>
+	             contentwidth="337px" format="PNG"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
         Three versions of the spectral color map with different
-        parameters.  High values are on top.  (a) The default values,
-        <varname>saturation</varname>=<userinput>1</userinput> and
-        <varname>value</varname>=<userinput>1.0</userinput>. (b)
-        <varname>saturation</varname>=<userinput>0.5</userinput> and
-        <varname>value</varname>=<userinput>1.0</userinput>. (c)
-        <varname>saturation</varname>=<userinput>1.0</userinput> and
-        <varname>value</varname>=<userinput>0.5</userinput>.
-	  </para>
+        parameters.  High values are on top.
+      </simpara>
+      <simpara>
+        (a) The default values, <code>saturation=1</code> and
+        <code>value=1.0</code>.
+      </simpara>
+      <simpara>
+        (b) <code>saturation=0.5</code> and <code>value=1.0</code>.
+      </simpara>
+      <simpara>
+        (c) <code>saturation=1.0</code> and <code>value=0.5</code>.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>
