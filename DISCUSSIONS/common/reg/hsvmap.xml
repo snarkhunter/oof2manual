@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -36,21 +36,18 @@
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/colormaps/hsv.png"
-	             format="PNG"/>
+	             contentwidth="220px" format="PNG"/>
     </imageobject>
     <caption>
-	  <para>
-        The left image shows the HSV color map with the default
-        parameters,
-        <varname>saturation</varname>=<userinput>1</userinput>,
-        <varname>value</varname>=<userinput>1.0</userinput>, and
-        <varname>phase_shift</varname>=<userinput>0</userinput>.  In
-        the right image,
-        <varname>saturation</varname>=<userinput>1</userinput>,
-        <varname>value</varname>=<userinput>0.5</userinput>, and
-        <varname>phase_shift</varname>=<userinput>60</userinput>.
-        High values are on top.
-	  </para>
+	  <simpara>
+        (a) The HSV color map with the default parameters,
+        <code>saturation=1</code>, <code>value=1.0</code>, and
+        <code>phase_shift=0</code>.  High values are on top.
+      </simpara>
+      <simpara>
+        (b) The HSV color map with <code>saturation=1</code>,
+        <code>value=0.5</code>, and <code>phase_shift=60</code>.
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

@@ -5,7 +5,7 @@
   responsibilities associated with its operation, modification and
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
-  the authors at oof_manager@ctcms.nist.gov.
+  the authors at oof_manager@nist.gov.
 -->
 
 <para>
@@ -48,69 +48,78 @@
   <title>Constructing an Edge Boundary from Segments</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_segments_cw.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_segments_cw.png"
+                 format="PNG" contentwidth="1011px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
         (a) A closed loop of &sgmts; on the border of the
         blue region has been selected.<footnote><para>They were
         selected by creating an &elem; group for the blue &elems; and
         using <xref
         linkend="MenuItem-OOF.SegmentSelection.Select_from_Selected_Elements"/>.</para></footnote>
+      </simpara>
+      <simpara>
         (b) the selected &sgmts; have been turned into a
         closed clockwise edge boundary by
         <literallayout class="monospaced">
           <xref linkend="MenuItem-OOF.Skeleton.Boundary.Construct"/>(
              <varname>skeleton</varname>=<userinput>'swoops.png:skeleton'</userinput>,
              <varname>name</varname>=<userinput>'boundary'</userinput>,
-             <varname>constructor</varname>=<xref linkend="RegisteredClass-EdgeFromSegments"/>(<varname>group</varname>=<userinput>selection</userinput>, <varname>direction</varname>=<userinput>'Clockwise'</userinput>))
-        </literallayout>
+             <varname>constructor</varname>=<xref linkend="RegisteredClass-EdgeFromSegments"/>(<varname>group</varname>=<userinput>selection</userinput>, <varname>direction</varname>=<userinput>'Clockwise'</userinput>))</literallayout>
+      </simpara>
+      <simpara>
         (c) The dialog box offers clockwise and counterclockwise
         directions because the &sgmts; form a loop.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG"
-	             fileref="FIGURES/skel_boundary/edge_from_segments_lr.png"/>
+	  <imagedata fileref="FIGURES/skel_boundary/edge_from_segments_lr.png"
+                 format="PNG" contentwidth="1003px"/>
     </imageobject>
     <caption>
-	  <para>
-        (a) &sgmts; on the border between the red and white
+	  <simpara>
+        (d) &sgmts; on the border between the red and white
         &elems; have been selected.<footnote><para>A circular &active;
         was created enclosing the red pixels, and
         <xref
             linkend="MenuItem-OOF.SegmentSelection.Select_Internal_Boundary_Segments"/>
         was used to select the &sgmts;.</para></footnote>
         They don't form a closed loop.
-        (b) The selected &sgmts; have been turned into
+      </simpara>
+      <simpara>
+        (e) The selected &sgmts; have been turned into
         an open linear edge boundary by
         <literallayout class="monospaced">
           <xref linkend="MenuItem-OOF.Skeleton.Boundary.Construct"/>(
              <varname>skeleton</varname>=<userinput>'swoops.png:skeleton'</userinput>,
              <varname>name</varname>=<userinput>'boundary&lt;2&gt;</userinput>',
-             <varname>constructor</varname>=<xref linkend="RegisteredClass-EdgeFromSegments"/>(<varname>group</varname>=<userinput>selection</userinput>, <varname>direction</varname>=<userinput>'Left to right'</userinput>))
-        </literallayout>
-        (c) The possible directions are left to right, right to left,
+             <varname>constructor</varname>=<xref linkend="RegisteredClass-EdgeFromSegments"/>(<varname>group</varname>=<userinput>selection</userinput>, <varname>direction</varname>=<userinput>'Left to right'</userinput>)) </literallayout>
+      </simpara>
+      <simpara>
+        (f) The possible directions are left to right, right to left,
         <foreignphrase>etc</foreignphrase>, because the &sgmts; form
         an open sequence.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
   <mediaobject>
     <imageobject>
-      <imagedata format="PNG"
-                 fileref="FIGURES/skel_boundary/edge_from_segments_impossible.png"/>
+      <imagedata 
+          fileref="FIGURES/skel_boundary/edge_from_segments_impossible.png"
+          format="PNG" contentwidth="1003px"/>
     </imageobject>
     <caption>
-      <para>
-        (a &amp; b) The selected &sgmts; in these two examples cannot
-        be assembled into a simple sequence, so the dialog (c) does not
-        offer any direction and the <guibutton>OK</guibutton> button
-        is disabled.
-      </para>
+      <simpara>
+        (g &amp; h) The selected &sgmts; in these two examples cannot
+        be assembled into a simple sequence.
+      </simpara>
+      <simpara>
+        (c) The dialog does not offer any direction and the
+        <guibutton>OK</guibutton> button is disabled.
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

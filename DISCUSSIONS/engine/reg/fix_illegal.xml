@@ -55,7 +55,8 @@
   <title>Fixing Illegal Elements</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/fixillegal.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/fixillegal.png"
+                 contentwidth="1091px" format="PNG"/>
     </imageobject>
     <caption>
       <para>
@@ -72,8 +73,8 @@
       </para>
       <para>
         (c) After applying <classname>FixIllegal</classname>, the
-        &elems; are legal again, but are not exactly where they
-        started in (a).
+        &elems; are legal again, but the &nodes; are not exactly where
+        they started in (a).
       </para>
     </caption>
   </mediaobject>

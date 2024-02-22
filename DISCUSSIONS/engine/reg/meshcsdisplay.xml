@@ -56,9 +56,10 @@
   pixel size.
 </para>
 <figure id="Figure-newcs">
+  <title>Selecting Cross Sections to Display</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="FIGURES/crosssection.png"
+      <imagedata fileref="FIGURES/display/crosssection.png"
                  format="PNG" contentwidth="851px"/>
     </imageobject>
     <caption>

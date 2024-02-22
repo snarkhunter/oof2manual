@@ -16,22 +16,24 @@
   &elems; into triangles.
 </para>
 <para>
-  An interior quadrilateral has four neighboring &elems;.  If it has two
-  neighbors of one type (defined by their dominant <link
+  An interior quadrilateral has four neighboring &elems;.  If it has
+  two neighbors of one type (defined by their dominant <link
   linkend="Section-Concepts-PixelCategory">pixel category</link>) and
   two of another, arranged as in <xref
   linkend="Figure-split_pattern"/>(a), and if the &elem; itself is
   inhomogeneous, then there's a chance that dividing it along the
-  diagonal shown in (b) will improve the homogeneity of the &skel;.
+  diagonal shown in <xref linkend="Figure-split_pattern"/>(b) will
+  improve the homogeneity of the &skel;.
 </para>
 <figure id="Figure-split_pattern">
   <title>Splitting Quads Geographically</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/splitquads/splitpattern.png"/>
+	  <imagedata fileref="FIGURES/splitquads/splitpattern.png"
+                 format="PNG" contentwidth="635px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
 	    (a) A central &elem; (marked by the '?') and its neighbors
 	    e<subscript>0</subscript>, e<subscript>1</subscript>,
 	    e<subscript>2</subscript>, and e<subscript>3</subscript>.  The
@@ -42,28 +44,33 @@
 	    e<subscript>3</subscript> have the same category.  The
 	    category of the central element is not a factor in the
 	    decision to attempt to apply <xref
-	    linkend="RegisteredClass-SplitQuads"/>.  (b) New elements
-	    created by <xref linkend="RegisteredClass-SplitQuads"/> and
-	    <classname>GeographicQ2T</classname>. 
-	  </para>
+	    linkend="RegisteredClass-SplitQuads"/>.
+      </simpara>
+      <simpara>
+        (b) New elements created by <xref
+        linkend="RegisteredClass-SplitQuads"/> and
+        <classname>GeographicQ2T</classname>.
+	  </simpara>
     </caption>
   </mediaobject>
   <mediaobject>
     <imageobject>
-      <imagedata format="PNG"
-                 fileref="FIGURES/splitquads/badsplitpattern.png"/>
+      <imagedata fileref="FIGURES/splitquads/badsplitpattern.png"
+                 format="PNG" contentwidth="640px"/>
     </imageobject>
     <caption>
-      <para>
+      <simpara>
         (c) In this example <classname>GeographicQ2T</classname> fails
         to split the central element correctly, even though the
         e<subscript>0</subscript> and e<subscript>1</subscript> have
         the same pixel category (pink) and e<subscript>2</subscript>
         and e<subscript>3</subscript> have the same category (white).
+      </simpara>
+      <simpara>
         (d) Dividing along the geographical boundary has created two
         inhomogeneous &elems;.  This modification will be rejected
         unless it was done with a very small <varname>alpha</varname>.
-      </para>
+      </simpara>
     </caption>
   </mediaobject>
 </figure>

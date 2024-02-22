@@ -42,19 +42,20 @@
   <title>Merging Triangles</title>
   <mediaobject>
     <imageobject>
-	  <imagedata format="PNG" fileref="FIGURES/merge.png"/>
+	  <imagedata fileref="FIGURES/merge.png"
+                 format="PNG" contentwidth="650px"/>
     </imageobject>
     <caption>
-	  <para>
+	  <simpara>
         Running
         <literallayout class="monospaced">
           OOF.Skeleton.Modify(
              skeleton='swoops.png:skeleton',
              modifier=<emphasis role="bold">MergeTriangles(targets=AllElements(),criterion=AverageEnergy(alpha=0.5))</emphasis>) </literallayout>
-        on the &skel; on the left produces the &skel; on the right.
+        on the &skel; in (a) produces the &skel; in (b).
         The green edges indicate the affected &elems; for
         illustrative purposes only.
-	  </para>
+	  </simpara>
     </caption>
   </mediaobject>
 </figure>

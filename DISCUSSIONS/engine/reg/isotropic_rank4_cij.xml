@@ -28,20 +28,27 @@
 </para>
 
 <figure id="Figure-isocij">
+  <title>Setting Values for Cij as an Isotropic Rank4 Tensor</title>
   <mediaobject>
     <imageobject>
-      <imagedata fileref='FIGURES/rank4/iso_cij.png' format='PNG'/>
+      <imagedata fileref='FIGURES/rank4/iso_cij.png'
+                 contentwidth="594px" format='PNG'/>
     </imageobject>
     <caption>
-      <para>
+      <simpara>
         (a) The dialog box for setting
-        <varname>C<subscript>ij</subscript></varname>.  (b)  Entering
-        a new value for <varname>C<subscript>12</subscript></varname>
-        leaves the widgets in an inconsistent state, but (c) clicking
-        on any other GUI element, or hitting return, updates the value
-        of C<subscript>44</subscript> to agree with
-        the new C<subscript>12</subscript>.
-      </para>
+        <varname>C<subscript>ij</subscript></varname>.
+      </simpara>
+      <simpara>
+        (b) Entering a new value for
+        <varname>C<subscript>12</subscript></varname> leaves the
+        widgets in an inconsistent state, but &hellip;
+      </simpara>
+      <simpara>
+        (c) &hellip; clicking on any other GUI element, or hitting
+        return, updates the value of C<subscript>44</subscript> to
+        agree with the new C<subscript>12</subscript>.
+      </simpara>
     </caption>
   </mediaobject>
 </figure>
