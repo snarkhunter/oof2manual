@@ -688,10 +688,6 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
 	  <imagedata fileref="FIGURES/widgets/outputwidgets.png"
 	    format="PNG"/>
 	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/widgets/outputwidgets.eps"
-	    format="EPS"/>
-	</imageobject>
 	<caption>
 	  <para>
 	    Two output widgets, from the NOT THE LAYEREDITOR window.  The
