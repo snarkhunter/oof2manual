@@ -375,7 +375,7 @@
     </para>
     <para><anchor id="auxlayers"/>
       The auxiliary layers are (from top to bottom in their standard order):
-      <itemizedlist spacing="compact" id="auxlayers">
+      <itemizedlist spacing="compact">
         <listitem>
           <para>
             <xref
