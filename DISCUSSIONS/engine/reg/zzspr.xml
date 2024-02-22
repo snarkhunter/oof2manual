@@ -147,18 +147,12 @@
 	        <imageobject>
 		      <imagedata format="PNG" fileref="FIGURES/spr/t3.png"/>
 	        </imageobject>
-	        <imageobject>
-		      <imagedata format="EPS" fileref="FIGURES/spr/t3.eps"/>
-	        </imageobject>
 	      </mediaobject>
 	    </entry>
 	    <entry align='center'>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata format="PNG" fileref="FIGURES/spr/t6.png"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata format="EPS" fileref="FIGURES/spr/t6.eps"/>
 	        </imageobject>
 	      </mediaobject>
 	    </entry>
@@ -170,18 +164,12 @@
 	        <imageobject>
 		      <imagedata format="PNG" fileref="FIGURES/spr/q4.png"/>
 	        </imageobject>
-	        <imageobject>
-		      <imagedata format="EPS" fileref="FIGURES/spr/q4.eps"/>
-	        </imageobject>
 	      </mediaobject>
 	    </entry>
 	    <entry align='center'>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata format="PNG" fileref="FIGURES/spr/q8.png"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata format="EPS" fileref="FIGURES/spr/q8.eps"/>
 	        </imageobject>
 	      </mediaobject>
 	    </entry>
@@ -202,9 +190,6 @@
 	  <imageobject>
 	    <imagedata format="PNG" fileref="FIGURES/spr/recovery.png"/>
 	  </imageobject>
-	  <imageobject>
-	    <imagedata format="EPS" fileref="FIGURES/spr/recovery.eps"/>
-	  </imageobject>
 	  <caption>
 	    <para>
 	      A Typical patch for the Superconvergent Patch Recovery
@@ -219,9 +204,6 @@
     <mediaobject>
 	  <imageobject>
 	    <imagedata format="PNG" fileref="FIGURES/spr/boundary.png"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata format="EPS" fileref="FIGURES/spr/boundary.eps"/>
 	  </imageobject>
 	  <caption>
 	    <para>

@@ -24,30 +24,27 @@
     </simpara>
   </refsynopsisdiv>
   <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>D2Rank3Tensor</classname> is a third rank tensor with
-    D2 point group symmetry. The arguments <varname>d14</varname>,
-    <varname>d25</varname>, and <varname>d36</varname> are
-    real numbers.  The first integer in each argument name is a space
-    index (1, 2, or 3) and the second is a Voigt index (1 through 6).
-  </para>
-  <figure id='Figure-D2Rank3Tensor'>
-   <title>Structure of a D2 Third Rank Tensor</title>
-   <mediaobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/d2.png' format='PNG'/>
-    </imageobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/d2.eps' format='EPS'/>
-    </imageobject>
-    <caption><simpara>
-     Structure of a D2 rank 3 tensor.  For an explanation of
-     the symbols, see <xref linkend='Figure-TensorKey'/>.
-    </simpara></caption>
-   </mediaobject>
-  </figure>
- </refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>D2Rank3Tensor</classname> is a third rank tensor with
+      D2 point group symmetry. The arguments <varname>d14</varname>,
+      <varname>d25</varname>, and <varname>d36</varname> are
+      real numbers.  The first integer in each argument name is a space
+      index (1, 2, or 3) and the second is a Voigt index (1 through 6).
+    </para>
+    <figure id='Figure-D2Rank3Tensor'>
+      <title>Structure of a D2 Third Rank Tensor</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='FIGURES/rank3/d2.png' format='PNG'/>
+        </imageobject>
+        <caption><simpara>
+          Structure of a D2 rank 3 tensor.  For an explanation of
+          the symbols, see <xref linkend='Figure-TensorKey'/>.
+        </simpara></caption>
+      </mediaobject>
+    </figure>
+  </refsect1>
 </refentry>
 
 

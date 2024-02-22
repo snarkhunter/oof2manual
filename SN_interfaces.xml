@@ -47,10 +47,6 @@ IT'S CURRENTLY COMMENTED OUT in CH_tasks.xml and xmlfilelist />
 	  <imagedata fileref="FIGURES/gui/skelbdy_page.png"
 	    format="PNG"/>
 	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/gui/skelbdy_page.eps"
-	    format="EPS"/>
-	</imageobject>
       </mediaobject>
     </figure>
     <section id="Section-Interfaces-InterfaceList">

@@ -23,29 +23,26 @@
     </simpara>
   </refsynopsisdiv>
   <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>D6Rank3Tensor</classname> is a third rank tensor with
-    D6 point group symmetry. The argument <varname>d14</varname>is a
-    real number.  The first integer in the argument name is a space
-    index (1, 2, or 3) and the second is a Voigt index (1 through 6).
-  </para>
-  <figure id='Figure-D6Rank3Tensor'>
-   <title>Structure of a D6 Third Rank Tensor</title>
-   <mediaobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/d6.png' format='PNG'/>
-    </imageobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/d6.eps' format='EPS'/>
-    </imageobject>
-    <caption><simpara>
-     Structure of a D6 rank 3 tensor.  For an explanation of
-     the symbols, see <xref linkend='Figure-TensorKey'/>.
-    </simpara></caption>
-   </mediaobject>
-  </figure>
- </refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>D6Rank3Tensor</classname> is a third rank tensor with
+      D6 point group symmetry. The argument <varname>d14</varname>is a
+      real number.  The first integer in the argument name is a space
+      index (1, 2, or 3) and the second is a Voigt index (1 through 6).
+    </para>
+    <figure id='Figure-D6Rank3Tensor'>
+      <title>Structure of a D6 Third Rank Tensor</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='FIGURES/rank3/d6.png' format='PNG'/>
+        </imageobject>
+        <caption><simpara>
+          Structure of a D6 rank 3 tensor.  For an explanation of
+          the symbols, see <xref linkend='Figure-TensorKey'/>.
+        </simpara></caption>
+      </mediaobject>
+    </figure>
+  </refsect1>
 </refentry>
 
 

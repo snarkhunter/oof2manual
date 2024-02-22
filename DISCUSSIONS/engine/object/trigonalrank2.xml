@@ -9,7 +9,7 @@
 -->
 
 <refentry xreflabel='TrigonalRank2Tensor'
-  id='Object-TrigonalRank2Tensor'>
+          id='Object-TrigonalRank2Tensor'>
   <refnamediv>
     <refname>
       TrigonalRank2Tensor
@@ -21,53 +21,49 @@
   <refsynopsisdiv>
     <simpara>
       <classname>TrigonalRank2Tensor</classname>(<varname>xx</varname>,
-      <varname>zz</varname>) </simpara></refsynopsisdiv>
- <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>TrigonalRank2Tensor</classname> is a symmetric
-    second rank tensor with trigonal rotational symmetry. The
-    arguments <varname>xx</varname> and <varname>zz</varname> are real
-    numbers.  The structure is shown in <xref
-    linkend="Figure-TrigonalRank2Tensor"/>.
-  </para>
+  <varname>zz</varname>) </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>TrigonalRank2Tensor</classname> is a symmetric
+      second rank tensor with trigonal rotational symmetry. The
+      arguments <varname>xx</varname> and <varname>zz</varname> are real
+      numbers.  The structure is shown in <xref
+      linkend="Figure-TrigonalRank2Tensor"/>.
+    </para>
     <note>
       <para>
-	The forms of the <link
-	linkend="Object-TetragonalRank2Tensor"><classname>TetragonalRank2Tensor</classname></link>,
-	<link
-	linkend="Object-HexagonalRank2Tensor"><classname>HexagonalRank2Tensor</classname></link>,
-	and <link
-	linkend="Object-TrigonalRank2Tensor"><classname>TrigonalRank2Tensor</classname></link>
-	are equivalent.  &oof2; provides distinct classes for them so
-	that the user interface can present the same symmetries for
-	fourth rank properties (like elasticity) as for second rank
-	properties (like thermal conductivity).
+	    The forms of the <link
+	    linkend="Object-TetragonalRank2Tensor"><classname>TetragonalRank2Tensor</classname></link>,
+	    <link
+	        linkend="Object-HexagonalRank2Tensor"><classname>HexagonalRank2Tensor</classname></link>,
+	    and <link
+	    linkend="Object-TrigonalRank2Tensor"><classname>TrigonalRank2Tensor</classname></link>
+	    are equivalent.  &oof2; provides distinct classes for them so
+	    that the user interface can present the same symmetries for
+	    fourth rank properties (like elasticity) as for second rank
+	    properties (like thermal conductivity).
       </para>
     </note>
     <figure id="Figure-TrigonalRank2Tensor">
       <title>Structure of a Trigonal Second Rank Tensor</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/isotropicplanerank2.png"
-	  format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/isotropicplanerank2.eps"
-	  format="EPS"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Structure of a trigonal 2nd rank tensor.</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    Structure of a trigonal rank 2 tensor.  For an explanation of
-	    the symbols, see <xref linkend='Figure-TensorKey'/>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/rank2/isotropicplanerank2.png"
+	                 format="PNG"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Structure of a trigonal 2nd rank tensor.</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        Structure of a trigonal rank 2 tensor.  For an explanation of
+	        the symbols, see <xref linkend='Figure-TensorKey'/>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
- </refsect1>
+  </refsect1>
 </refentry>
 
 

@@ -23,30 +23,27 @@
     </simpara>
   </refsynopsisdiv>
   <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>D3hRank3Tensor</classname> is a third rank tensor
-    with D3h point group symmetry. The argument <varname>d22</varname>
-    is a real number.  The first integer in the argument name is a
-    space index (1, 2, or 3) and the second is a Voigt index (1
-    through 6).
-  </para>
-  <figure id='Figure-D3hRank3Tensor'>
-   <title>Structure of a D3h Third Rank Tensor</title>
-   <mediaobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/d3h.png' format='PNG'/>
-    </imageobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/d3h.eps' format='EPS'/>
-    </imageobject>
-    <caption><simpara>
-     Structure of a D3h rank 3 tensor.  For an explanation of
-     the symbols, see <xref linkend='Figure-TensorKey'/>.
-    </simpara></caption>
-   </mediaobject>
-  </figure>
- </refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>D3hRank3Tensor</classname> is a third rank tensor
+      with D3h point group symmetry. The argument <varname>d22</varname>
+      is a real number.  The first integer in the argument name is a
+      space index (1, 2, or 3) and the second is a Voigt index (1
+      through 6).
+    </para>
+    <figure id='Figure-D3hRank3Tensor'>
+      <title>Structure of a D3h Third Rank Tensor</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='FIGURES/rank3/d3h.png' format='PNG'/>
+        </imageobject>
+        <caption><simpara>
+          Structure of a D3h rank 3 tensor.  For an explanation of
+          the symbols, see <xref linkend='Figure-TensorKey'/>.
+        </simpara></caption>
+      </mediaobject>
+    </figure>
+  </refsect1>
 </refentry>
 
 

@@ -9,7 +9,7 @@
 -->
 
 <refentry xreflabel='CubicRank2Tensor'
-  id='Object-CubicRank2Tensor'>
+          id='Object-CubicRank2Tensor'>
   <refnamediv>
     <refname>
       CubicRank2Tensor
@@ -21,48 +21,45 @@
   <refsynopsisdiv>
     <simpara>
       <classname>CubicRank2Tensor</classname>(<varname>xx</varname>)
-    </simpara></refsynopsisdiv>
- <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>CubicRank2Tensor</classname> is a symmetric second
-    rank tensor with cubic rotational symmetry. The argument
-    <varname>xx</varname> is a real number.  The structure is shown in
-    <xref linkend="Figure-CubicRank2Tensor"/>.
-  </para>
+  </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>CubicRank2Tensor</classname> is a symmetric second
+      rank tensor with cubic rotational symmetry. The argument
+      <varname>xx</varname> is a real number.  The structure is shown in
+      <xref linkend="Figure-CubicRank2Tensor"/>.
+    </para>
     <note>
       <para>
-	The <classname>CubicRank2Tensor</classname> is identical to
-	the <classname>IsotropicRank2Tensor</classname>.  Since people
-	are accustomed to specifying isotropic properties in terms of
-	scalars, instead of tensors, &oof2; doesn't actually provide
-	an <classname>IsotropicRank2Tensor</classname> class.  The
-	<classname>CubicRank2Tensor</classname> is provided simply so
-	that the user interface can present the same symmetries for
-	rank 2 properties as for rank 4 properties.
+	    The <classname>CubicRank2Tensor</classname> is identical to
+	    the <classname>IsotropicRank2Tensor</classname>.  Since people
+	    are accustomed to specifying isotropic properties in terms of
+	    scalars, instead of tensors, &oof2; doesn't actually provide
+	    an <classname>IsotropicRank2Tensor</classname> class.  The
+	    <classname>CubicRank2Tensor</classname> is provided simply so
+	    that the user interface can present the same symmetries for
+	    rank 2 properties as for rank 4 properties.
       </para>
     </note>
     <figure id="Figure-CubicRank2Tensor">
       <title>Structure of a Cubic Second Rank Tensor</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/isotropicrank2.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/isotropicrank2.eps" format="EPS"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Structure of a cubic 2nd rank tensor.</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    Structure of a cubic rank 2 tensor.  For an explanation of
-	    the symbols, see <xref linkend='Figure-TensorKey'/>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/rank2/isotropicrank2.png" format="PNG"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Structure of a cubic 2nd rank tensor.</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        Structure of a cubic rank 2 tensor.  For an explanation of
+	        the symbols, see <xref linkend='Figure-TensorKey'/>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
- </refsect1>
+  </refsect1>
 </refentry>
 
 

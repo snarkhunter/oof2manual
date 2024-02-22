@@ -9,43 +9,42 @@
 -->
 
 <refentry xreflabel='TrigonalARank4TensorCij'
-id='Object-TrigonalARank4TensorCij'>
- <refnamediv>
-  <refname>TrigonalARank4TensorCij</refname>
-  <refpurpose>A rank 4 tensor with trigonal-A symmetry</refpurpose>
- </refnamediv>
- <refsynopsisdiv><simpara>
- <classname>TrigonalARank4TensorCij</classname>(<varname>c11</varname>,
- <varname>c12</varname>, <varname>c13</varname>,
- <varname>c33</varname>, <varname>c44</varname>,
- <varname>c14</varname>, <varname>c15</varname>)
- </simpara></refsynopsisdiv>
- <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>TrigonalARank4TensorCij</classname> is a fourth rank
-    tensor with trigonal-A rotational symmetry, expressed in Voigt
-    notation. The arguments <varname>c11</varname>,
-    <varname>c12</varname>, <foreignphrase>etc</foreignphrase>, are
-    real numbers.
-  </para>
-  <figure id='Figure-TrigonalARank4Tensor'>
-   <title>Structure of a Trigonal-A Fourth Rank Tensor</title>
-   <mediaobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank4/trigonalACij.gif' format='GIF'/>
-    </imageobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank4/trigonalACij.eps' format='EPS'/>
-    </imageobject>
-    <textobject><phrase>Trigonal-A rank 4 tensor diagram</phrase></textobject>
-    <caption><simpara>
-     Structure of a trigonal-A rank 4 tensor.  For an explanation of
-     the symbols, see <xref linkend='Figure-TensorKey'/>.
-    </simpara></caption>
-   </mediaobject>
-  </figure>
- </refsect1>
+          id='Object-TrigonalARank4TensorCij'>
+  <refnamediv>
+    <refname>TrigonalARank4TensorCij</refname>
+    <refpurpose>A rank 4 tensor with trigonal-A symmetry</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv><simpara>
+    <classname>TrigonalARank4TensorCij</classname>(<varname>c11</varname>,
+    <varname>c12</varname>, <varname>c13</varname>,
+    <varname>c33</varname>, <varname>c44</varname>,
+    <varname>c14</varname>, <varname>c15</varname>)
+  </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>TrigonalARank4TensorCij</classname> is a fourth rank
+      tensor with trigonal-A rotational symmetry, expressed in Voigt
+      notation. The arguments <varname>c11</varname>,
+      <varname>c12</varname>, <foreignphrase>etc</foreignphrase>, are
+      real numbers.
+    </para>
+    <figure id='Figure-TrigonalARank4Tensor'>
+      <title>Structure of a Trigonal-A Fourth Rank Tensor</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='FIGURES/rank4/trigonalACij.gif' format='GIF'/>
+        </imageobject>
+        <textobject>
+          <phrase>Trigonal-A rank 4 tensor diagram</phrase>
+        </textobject>
+        <caption><simpara>
+          Structure of a trigonal-A rank 4 tensor.  For an explanation of
+          the symbols, see <xref linkend='Figure-TensorKey'/>.
+        </simpara></caption>
+      </mediaobject>
+    </figure>
+  </refsect1>
 </refentry>
 
 

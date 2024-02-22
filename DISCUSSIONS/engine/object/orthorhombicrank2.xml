@@ -9,7 +9,7 @@
 -->
 
 <refentry xreflabel='OrthorhombicRank2Tensor'
-  id='Object-OrthorhombicRank2Tensor'>
+          id='Object-OrthorhombicRank2Tensor'>
   <refnamediv>
     <refname>
       OrthorhombicRank2Tensor
@@ -22,39 +22,35 @@
     <simpara>
       <classname>OrthorhombicRank2Tensor</classname>(<varname>xx</varname>,
       <varname>yy</varname>, <varname>zz</varname>)
-    </simpara></refsynopsisdiv>
- <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>OrthorhombicRank2Tensor</classname> is a symmetric
-    second rank tensor with orthorhombic rotational symmetry. The
-    arguments <varname>xx</varname>, <varname>yy</varname>, and
-    <varname>zz</varname> are real numbers.  The
+  </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>OrthorhombicRank2Tensor</classname> is a symmetric
+      second rank tensor with orthorhombic rotational symmetry. The
+      arguments <varname>xx</varname>, <varname>yy</varname>, and
+      <varname>zz</varname> are real numbers.  The
       structure is shown in <xref linkend="Figure-OrthorhombicRank2Tensor"/>.
-  </para>
+    </para>
     <figure id="Figure-OrthorhombicRank2Tensor">
       <title>Structure of a Orthorhombic Second Rank Tensor</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/orthorhombicrank2.png"
-	  format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/orthorhombicrank2.eps"
-	  format="EPS"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Structure of a orthorhombic 2nd rank tensor.</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    Structure of a orthorhombic rank 2 tensor.  For an explanation of
-	    the symbols, see <xref linkend='Figure-TensorKey'/>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/rank2/orthorhombicrank2.png"
+	                 format="PNG"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Structure of a orthorhombic 2nd rank tensor.</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        Structure of a orthorhombic rank 2 tensor.  For an explanation of
+	        the symbols, see <xref linkend='Figure-TensorKey'/>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
- </refsect1>
+  </refsect1>
 </refentry>
 
 

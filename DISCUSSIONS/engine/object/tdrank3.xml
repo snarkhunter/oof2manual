@@ -23,30 +23,27 @@
     </simpara>
   </refsynopsisdiv>
   <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>TdRank3Tensor</classname> is a third rank tensor
-    with Td point group symmetry. The argument <varname>d14</varname>
-    is a real number.  The first integer in the argument name is a
-    space index (1, 2, or 3) and the second is a Voigt index (1
-    through 6).
-  </para>
-  <figure id='Figure-TdRank3Tensor'>
-   <title>Structure of a Td Third Rank Tensor</title>
-   <mediaobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/td.png' format='PNG'/>
-    </imageobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/td.eps' format='EPS'/>
-    </imageobject>
-    <caption><simpara>
-     Structure of a Td rank 3 tensor.  For an explanation of
-     the symbols, see <xref linkend='Figure-TensorKey'/>.
-    </simpara></caption>
-   </mediaobject>
-  </figure>
- </refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>TdRank3Tensor</classname> is a third rank tensor
+      with Td point group symmetry. The argument <varname>d14</varname>
+      is a real number.  The first integer in the argument name is a
+      space index (1, 2, or 3) and the second is a Voigt index (1
+      through 6).
+    </para>
+    <figure id='Figure-TdRank3Tensor'>
+      <title>Structure of a Td Third Rank Tensor</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='FIGURES/rank3/td.png' format='PNG'/>
+        </imageobject>
+        <caption><simpara>
+          Structure of a Td rank 3 tensor.  For an explanation of
+          the symbols, see <xref linkend='Figure-TensorKey'/>.
+        </simpara></caption>
+      </mediaobject>
+    </figure>
+  </refsect1>
 </refentry>
 
 

@@ -9,7 +9,7 @@
 -->
 
 <refentry xreflabel='MonoclinicRank2Tensor'
-  id='Object-MonoclinicRank2Tensor'>
+          id='Object-MonoclinicRank2Tensor'>
   <refnamediv>
     <refname>
       MonoclinicRank2Tensor
@@ -22,37 +22,34 @@
     <simpara>
       <classname>MonoclinicRank2Tensor</classname>(<varname>xx</varname>,
       <varname>yy</varname>, <varname>zz</varname>,
-      <varname>xz</varname>) </simpara></refsynopsisdiv>
- <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>MonoclinicRank2Tensor</classname> is a symmetric
-    second rank tensor with monoclinic rotational symmetry. The
-    arguments <varname>xx</varname>, <varname>yy</varname>,
-    <foreignphrase>etc</foreignphrase>, are real numbers.  The
+  <varname>xz</varname>) </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>MonoclinicRank2Tensor</classname> is a symmetric
+      second rank tensor with monoclinic rotational symmetry. The
+      arguments <varname>xx</varname>, <varname>yy</varname>,
+      <foreignphrase>etc</foreignphrase>, are real numbers.  The
       structure is shown in <xref linkend="Figure-MonoclinicRank2Tensor"/>.
-  </para>
+    </para>
     <figure id="Figure-MonoclinicRank2Tensor">
       <title>Structure of a Monoclinic Second Rank Tensor</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/monoclinicrank2.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/monoclinicrank2.eps" format="EPS"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Structure of a monoclinic 2nd rank tensor.</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    Structure of a monoclinic rank 2 tensor.  For an explanation of
-	    the symbols, see <xref linkend='Figure-TensorKey'/>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/rank2/monoclinicrank2.png" format="PNG"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Structure of a monoclinic 2nd rank tensor.</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        Structure of a monoclinic rank 2 tensor.  For an explanation of
+	        the symbols, see <xref linkend='Figure-TensorKey'/>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
- </refsect1>
+  </refsect1>
 </refentry>
 
 

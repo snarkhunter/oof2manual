@@ -9,7 +9,7 @@
 -->
 
 <refentry xreflabel='TriclinicRank2Tensor'
-  id='Object-TriclinicRank2Tensor'>
+          id='Object-TriclinicRank2Tensor'>
   <refnamediv>
     <refname>
       TriclinicRank2Tensor
@@ -23,37 +23,34 @@
       <classname>TriclinicRank2Tensor</classname>(<varname>xx</varname>,
       <varname>yy</varname>, <varname>zz</varname>,
       <varname>yz</varname>, <varname>xz</varname>,
-      <varname>xy</varname>) </simpara></refsynopsisdiv>
- <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>TriclinicRank2Tensor</classname> is a symmetric
-    second rank tensor with triclinic rotational symmetry. The
-    arguments <varname>xx</varname>, <varname>yy</varname>,
-    <foreignphrase>etc</foreignphrase>, are real numbers.  The
+  <varname>xy</varname>) </simpara></refsynopsisdiv>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>TriclinicRank2Tensor</classname> is a symmetric
+      second rank tensor with triclinic rotational symmetry. The
+      arguments <varname>xx</varname>, <varname>yy</varname>,
+      <foreignphrase>etc</foreignphrase>, are real numbers.  The
       structure is shown in <xref linkend="Figure-TriclinicRank2Tensor"/>.
-  </para>
+    </para>
     <figure id="Figure-TriclinicRank2Tensor">
       <title>Structure of a Triclinic Second Rank Tensor</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/triclinicrank2.png" format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/rank2/triclinicrank2.eps" format="EPS"/>
-	</imageobject>
-	<textobject>
-	  <phrase>Structure of a triclinic 2nd rank tensor.</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    Structure of a triclinic rank 2 tensor.  For an explanation of
-	    the symbols, see <xref linkend='Figure-TensorKey'/>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/rank2/triclinicrank2.png" format="PNG"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Structure of a triclinic 2nd rank tensor.</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        Structure of a triclinic rank 2 tensor.  For an explanation of
+	        the symbols, see <xref linkend='Figure-TensorKey'/>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
- </refsect1>
+  </refsect1>
 </refentry>
 
 

@@ -965,9 +965,6 @@
 	          <imageobject>
 		        <imagedata format="PNG" fileref="FIGURES/node_mobility.png"></imagedata>
 	          </imageobject>
-	          <imageobject>
-		        <imagedata format="EPS" fileref="FIGURES/node_mobility.eps"></imagedata>
-	          </imageobject>
 	        </mediaobject>
 	      </figure>
 	    </para>

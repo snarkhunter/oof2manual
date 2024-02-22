@@ -28,30 +28,27 @@
     </simpara>
   </refsynopsisdiv>
   <refsect1>
-  <title>Description</title>
-  <para>
-    A <classname>CsRank3Tensor</classname> is a third rank tensor with
-    Cs point group symmetry. The arguments <varname>d11</varname>,
-    <varname>d12</varname>, <foreignphrase>etc</foreignphrase>, are
-    real numbers.  The first integer in each argument name is a space
-    index (1, 2, or 3) and the second is a Voigt index (1 through 6).
-  </para>
-  <figure id='Figure-CsRank3Tensor'>
-   <title>Structure of a Cs Third Rank Tensor</title>
-   <mediaobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/cs.png' format='PNG'/>
-    </imageobject>
-    <imageobject>
-     <imagedata fileref='FIGURES/rank3/cs.eps' format='EPS'/>
-    </imageobject>
-    <caption><simpara>
-     Structure of a Cs rank 3 tensor.  For an explanation of
-     the symbols, see <xref linkend='Figure-TensorKey'/>.
-    </simpara></caption>
-   </mediaobject>
-  </figure>
- </refsect1>
+    <title>Description</title>
+    <para>
+      A <classname>CsRank3Tensor</classname> is a third rank tensor with
+      Cs point group symmetry. The arguments <varname>d11</varname>,
+      <varname>d12</varname>, <foreignphrase>etc</foreignphrase>, are
+      real numbers.  The first integer in each argument name is a space
+      index (1, 2, or 3) and the second is a Voigt index (1 through 6).
+    </para>
+    <figure id='Figure-CsRank3Tensor'>
+      <title>Structure of a Cs Third Rank Tensor</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref='FIGURES/rank3/cs.png' format='PNG'/>
+        </imageobject>
+        <caption><simpara>
+          Structure of a Cs rank 3 tensor.  For an explanation of
+          the symbols, see <xref linkend='Figure-TensorKey'/>.
+        </simpara></caption>
+      </mediaobject>
+    </figure>
+  </refsect1>
 </refentry>
 
 

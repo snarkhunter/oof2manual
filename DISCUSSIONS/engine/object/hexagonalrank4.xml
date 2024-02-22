@@ -34,22 +34,19 @@
     <figure id='Figure-HexagonalRank4Tensor'>
       <title>Structure of a Hexagonal Fourth Rank Tensor</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref='FIGURES/rank4/hexagonalCij.gif' format='GIF'/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref='FIGURES/rank4/hexagonalCij.eps' format='EPS'/>
-	</imageobject>
-	<textobject>
-	  <phrase>Hexagonal rank 4 tensor diagram</phrase>
-	</textobject>
-	<caption>
-	  <simpara>
-	    Structure of a hexagonal rank 4 tensor.  For an
-	    explanation of the symbols, see <xref
-	    linkend='Figure-TensorKey'/>.
-	  </simpara>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref='FIGURES/rank4/hexagonalCij.gif' format='GIF'/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>Hexagonal rank 4 tensor diagram</phrase>
+	    </textobject>
+	    <caption>
+	      <simpara>
+	        Structure of a hexagonal rank 4 tensor.  For an
+	        explanation of the symbols, see <xref
+	        linkend='Figure-TensorKey'/>.
+	      </simpara>
+	    </caption>
       </mediaobject>
     </figure>
   </refsect1>
