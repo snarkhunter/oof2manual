@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: CH_extending.xml,v $
-  $Revision: 1.4 $
-  $Author: langer $
-  $Date: 2012-01-30 21:43:27 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -12,7 +7,6 @@
   distributing modified versions of this software, you first contact
   the authors at oof_manager@nist.gov.
 -->
-
 
 <chapter id="Chapter-Extending">
   <title>Extending &oof2;</title>
@@ -45,7 +39,8 @@
       to write the source files.  The contents of the source files are
       discussed in other sections.
     </para>
-    <para><anchor id="para-internal_extension"/>
+    <para>
+      <anchor id="para-internal_extension"/>
       There are two ways of building &oof2; extensions.  Users
       building &oof2; from the source distribution can include code
       for an extension in the <filename>SRC/EXTENSIONS</filename>
@@ -54,15 +49,19 @@
       automatically when &oof2; starts.  These extensions are called
       <emphasis>internal</emphasis> extensions.
     </para>
-    <para><anchor id="para-external_extension"/>
+    <para>
+      <anchor id="para-external_extension"/>
       &oof2; can also load extensions built independently of the
-      installation process, possibly after the fact.  Such extensions are
-      called <emphasis>external</emphasis> extensions.  Adding
-      external extensions is the only option for users who do not have
-      permission to edit files in the main &oof2; directory tree.
-      External extensions must always be explicitly loaded into
-      &oof2;, but there is no other difference in the behavior of
-      internal and external extensions.
+      installation process.  Such extensions are called
+      <emphasis>external</emphasis> extensions.  Adding external
+      extensions is the only option for users who do not have
+      permission to edit files in the main &oof2; directory tree,
+      however it requires either that &oof2; was built with the
+      <userinput>OOF_DEV_INSTALL</userinput> option in cmake or that
+      the &oof2; source directory is accessible.  External extensions
+      must always be explicitly loaded into &oof2; at run time, but
+      there is no other difference in the behavior of internal and
+      external extensions.
     </para>
     <para>
       &oof2; extension code can consist of three types of files:
@@ -84,78 +83,74 @@
     <figure id="Figure-orgchart">
       <title>Components of an &oof2; Extension</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/extending/orgchart.png"
-	    format="PNG"/>
-	</imageobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/extending/orgchart.eps"
-	    format="EPS"/>
-	</imageobject>
-	<caption>
-	  <para>
-	    The anatomy of an &oof2; extension.  The red boxes
-	    indicate the components of an extension, and the labels on
-	    the right indicate their sources.  The dotted line
-	    delimits one of the <link
-	    linkend="Extending-confusion">Python extension
-	    modules</link> within the &oof2; extension.  Arrows
-	    indicate linkages: the Python modules at the top import
-	    Python wrapper modules, which import wrapper libraries,
-	    which link to shared libraries built from the extension's
-	    C++ code.  The core &oof2; modules and libraries can be
-	    invoked from any part of the extension code.
-	  </para>
-	</caption>
+	    <imageobject>
+	      <imagedata fileref="FIGURES/extending/orgchart.png"
+	                 contentwidth="707px" format="PNG"/>
+	    </imageobject>
+	    <caption>
+	      <para>
+	        The anatomy of an &oof2; extension.  The red boxes
+	        indicate the components of an extension, and the labels on
+	        the right indicate their sources.  The dotted line
+	        delimits one of the <link
+	        linkend="Extending-confusion">Python extension
+	        modules</link> within the &oof2; extension.  Arrows
+	        indicate linkages: the Python modules at the top import
+	        Python wrapper modules, which import wrapper libraries,
+	        which link to shared libraries built from the extension's
+	        C++ code.  The core &oof2; modules and libraries can be
+	        invoked from any part of the extension code, but, as
+            indicated by the  double headed arrow, only the
+	        core &oof2; Python module can import an extension.
+	      </para>
+	    </caption>
       </mediaobject>
     </figure>
     <note id="Extending-confusion">
       <para>
-	It's necessary to make a distinction between an &oof2;
-	extension and a Python extension module.  An &oof2; extension
-	is vaguely defined as a bunch of code that adds some
-	functionality to &oof2;.  Everything in the yellow, blue, and
-	pink boxes in <xref linkend="Figure-orgchart"/> is one &oof2;
-	extension.  A Python extension module, on the other hand, is
-	specifically defined as a C++ library and some Python code
-	that allows Python to call functions from the library.  One
-	&oof2; extension can contain many Python extension modules.
+	    It's necessary to make a distinction between an &oof2;
+	    extension and a Python extension module.  An &oof2; extension
+	    is vaguely defined as a bunch of code that adds some
+	    functionality to &oof2;.  Everything in the yellow, blue, and
+	    pink boxes in <xref linkend="Figure-orgchart"/> is one &oof2;
+	    extension.  A Python extension module, on the other hand, is
+	    specifically defined as a C++ library and some Python code
+	    that allows Python to call functions from the library.  One
+	    &oof2; extension can contain many Python extension modules.
       </para>
     </note>
     <para>
       In all cases, the procedure for creating an &oof2; extension is
       the same:
       <orderedlist numeration="arabic">
-	<listitem id="Extending-stepone">
-	  <para>
-	    Write the C++, python, and swig source code.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    Write the control file (<filename>DIR.py</filename> for
-	    internal extensions, <filename>setup.py</filename> for
-	    external extensions).
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    Build and install the extension using <code>python
-	    setup.py ...</code>.  For external extensions, this is
-	    similar to building &oof2;. For internal extensions, it's
-	    identical.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    Run &oof2; and find out what's wrong.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    Go to <xref linkend="Extending-stepone"/>.
-	  </para>
-	</listitem>
+	    <listitem id="Extending-stepone">
+	      <para>
+	        Write the C++, python, and swig source code.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        Write the CMake input file(s),
+	        <filename>CMakeLists.txt</filename>.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        Build and install the extension using cmake.  For external
+	        extensions, this is similar to building &oof2;. For internal
+	        extensions, it's identical.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        Run &oof2;, load the extension, and find out what's wrong.
+	      </para>
+	    </listitem>
+	    <listitem>
+	      <para>
+	        Go to <xref linkend="Extending-stepone"/>, as necessary.
+	      </para>
+	    </listitem>
       </orderedlist>
     </para>
   </section> <!-- mechanics of extending oof2 -->
@@ -163,52 +158,494 @@
   <section id="Section-Extending-External">
     <title>External Extensions</title>
     <para>
+      This section describes how to create <link
+      linkend="para-external_extension">external</link> &oof2;
+      extensions.  It describes three of the many ways of doing it.
+    </para>
+    <para>
+	  There's no fundamental reason that external &oof2; extensions
+	  must be built using the procedures and naming conventions
+	  described here.  Other techniques certainly exist, and users who
+	  are proficient with <ulink url="https://www.swig.org"
+	  role="external">swig</ulink> and <ulink url="https://cmake.org"
+	  role="external">cmake</ulink>, or can do without them, should
+	  feel free to do it their own way.  The methods described here
+	  should be easy for most users and should suffice in almost all
+	  cases, though.
+    </para>
+      
+    <section id="Section-Single-Extension">
+      <title>Building a Single Extension</title>
+
+      <para>
+        <xref linkend="Figure-extensiondirs1"/> shows the directory
+        layout for a simple extension, with the source files on the
+        left and the installed executable files on the right.  The
+        extension developer must provide all of the source files.
+        This section describes how to construct
+        <filename>CMakeLists.txt</filename>.  The other files are
+        described in <xref linkend="Chapter-Coding"/>.
+      </para>
+      <para>
+        The top level source directory,
+        <filename>extension_source</filename> can be located anywhere.
+        The installation directory, however, must be in the Python
+        path.  Its name can be anything convenient and does
+        <emphasis>not</emphasis> have to be the name of the extension.
+        The installation directory can contain other code &emdash; it
+        does not have to be devoted only to &oof2;
+        
+      </para>
+      <figure id="Figure-extensiondirs1">
+        <title>Simple Extension Directory Layout</title>
+        <mediaobject>
+          <imageobject>
+          <imagedata fileref="FIGURES/extending/directorylayouts.png"
+                     format="PNG" contentwidth="684px"/>
+        </imageobject>
+        <caption>
+          <para>
+            The directory structure for a simple &oof2; extension,
+            with the source directory on the left and the installation
+            directory on the right.  Directory names are in bold type.
+            Files with names in red are created by the developer.
+            <emphasis
+            role="bold"><filename>PYTHON</filename></emphasis> is a
+            directory in the Python path.
+          </para>
+        </caption>
+        </mediaobject>
+      </figure>
+      
+      <para>
+        The <filename>CMakeLists.txt</filename> file contains
+        instructions for cmake.  Copy the text from <xref
+        linkend="cmake0"/> into a file, and edit it as needed. Please
+        note the numbered comments at the end of the listing.  At the
+        very least
+        <orderedlist>
+          <listitem>
+            <para>
+              Change all instances of <emphasis
+              role="bold"><code>PREFIX</code></emphasis> to the &oof2;
+              installation location,
+              <foreignphrase>i.e</foreignphrase>, the value of
+              <varname>CMAKE_INSTALL_PREFIX</varname> used to build
+              &oof2;.  For example, if the top &oof2; executable
+              script is <filename>/usr/local/bin/oof2</filename>, then
+              <emphasis role="bold"><code>PREFIX</code></emphasis> is
+              <filename>/usr/local</filename>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Change all instances of <emphasis
+              role="bold"><code>oofextension</code></emphasis> to the
+              name of your extension files. If your files are
+              <filename>abcde.h</filename>,
+              <filename>abcde.C</filename>,
+              <filename>abcde.swg</filename>, etc, then replace
+              <emphasis role="bold"><code>oofextension</code></emphasis>
+              with <code>abcde</code>.
+            </para>
+          </listitem>
+        </orderedlist>
+        
+        <example id="cmake0">
+          <title>CMakeLists.txt for a simple extension</title>
+          <programlisting>
+cmake_minimum_required(VERSION 3.18) # <co id="cmake0-minversion"/>
+
+project(projectname VERSION 0.0.0) # <co id="cmake0-project"/>
+
+set(OOF2_PYTHON3_VERSION 3.11 CACHE STRING "Use this version of Python") # <co id="cmake0-oofversions"/>
+set(OOF2_SWIG_VERSION 4.1 CACHE STRING "Use this version of swig")
+
+include("<emphasis role="bold">PREFIX</emphasis>/share/oof2/templates/oofbuildtools.cmake") # <co id="cmake0-prefix"/>
+
+find_library(OOF2COMMON oof2common <emphasis role="bold">PREFIX</emphasis>/lib) # <co id="cmake0-libraries"/>
+find_library(OOF2ENGINE oof2engine <emphasis role="bold">PREFIX</emphasis>/lib)
+mark_as_advanced(OOF2COMMON OOF2ENGINE) # <co id="cmake0-advanced"/>
+
+install( # <co id="cmake0-install"/>
+  FILES
+  ${PROJECT_SOURCE_DIR}/__init__.py
+  DESTINATION ${CMAKE_INSTALL_PREFIX}
+  )
+
+swig_sources( # <co id="cmake0-swig_sources"/>
+  SWIGFILES
+  <emphasis role="bold">oofextension</emphasis>
+  LIBRARIES
+  ${OOF2COMMON} ${OOF2ENGINE} 
+  INCLUDE_DIRECTORIES
+  <emphasis role="bold">PREFIX</emphasis>/include/oof2 ${Python3_INCLUDE_DIRS}
+  SOURCES
+  <emphasis role="bold">oofextension</emphasis>.C
+  SWIGDEST
+  ${CMAKE_INSTALL_PREFIX}
+) </programlisting>
+          
+<calloutlist>
+  <callout arearefs="cmake0-minversion">
+    <para>
+      &oof2; uses some features from cmake 3.18.  Older
+      versions might be usable for extensions.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-project">
+    <para>
+      <varname>projectname</varname> just needs to be a
+      unique name.  It's not used anywhere in this simple
+      example.  Likewise, the version number is for your
+      information.  &oof2; will not use it.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-oofversions">
+    <para>
+      These version numbers should match the versions that
+      were used when &oof2; was built.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-prefix">
+    <para>
+      This line loads settings and functions used when
+      building &oof2;.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-libraries">
+    <para>
+      If you need to link to other &oof2; libraries, or
+      any other libraries at all, add new lines for them
+      here, and include the libraries in the
+      <varname>LIBRARIES</varname> list when you call
+      <varname>swig_sources</varname>.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-advanced">
+    <para>
+      This line is optional. It prevents
+      <varname>OOF2COMMON</varname> and
+      <varname>OOF2ENGINE</varname> from appearing in the
+      ccmake GUI, since you probably don't want to set
+      them there.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-install">
+    <para>
+      This just copies <filename>__init__.py</filename>
+      from the source directory to the installation
+      directory.  See below for the contents of
+      <filename>__init__.py</filename>.
+    </para>
+  </callout>
+  <callout arearefs="cmake0-swig_sources">
+    <para>
+      <code>swig_sources</code> is a function defined in
+      <filename>oofbuildtools.cmake</filename>.  It runs
+      swig to generate the C++ and Python wrapper code,
+      compiles the C++ code, and links and installs the
+      results.  See <xref
+      linkend="extending-swig_sources"/> for the details.
+    </para>
+  </callout>
+</calloutlist>
+        </example>
+      </para>
+    </section> <!--Building a Single Extension-->
+    <section>
+      <title>Compiling and Installing the Extension</title>
+      <para>
+        After creating <filename>CMakeLists.txt</filename> and the
+        source files, create a <filename>build</filename> directory
+        within the extension's source directory.
+        In a terminal window, cd to the build directory and type<footnote>
+        <para>
+          The build directory does not actually have to be within the
+          extension's source directory, and does not have to be called
+          <filename>build</filename>.  If it is elsewhere, just change
+          the argument of ccmake so that it points to the source
+          directory.  For example, if the build directory is in the
+          parent directory of the source, you'd type <code>ccmake
+          ../nameofthesourcedirectory</code>.  </para></footnote>
+          
+          <literallayout class="monospaced">
+    ccmake .. </literallayout>
+          
+        Inside ccmake, type 'c' to configure, change<footnote>
+        <para>
+          The &oof2; <ulink
+          url="https://www.ctcms.nist.gov/oof/oof2/README.html">README</ulink>
+          file has some basic instructions on how to use ccmake.  For
+          more detail, see the <ulink
+          url="https://cmake.org/cmake/help/latest/guide/user-interaction/index.html%23guide:User%20Interaction%20Guide"
+          role="external">CMake User Interaction Guide</ulink>.
+          </para> </footnote>
+
+        <varname>CMAKE_INSTALL_PREFIX</varname> to the location where
+        the extension is to be installed.  In this example, it would
+        be the full path name to the directory named <emphasis
+        role="bold"><filename>PYTHON</filename></emphasis> in <xref
+        linkend="Figure-extensiondirs1"/>.  Type 'c' again, and then
+        'g' to generate the <filename>Makefile</filename> and related
+        files.
+      </para>
+      <para>
+        Run
+        <literallayout class="monospaced">
+    make </literallayout>
+
+        to compile and build the extension, and
+            
+            <literallayout class="monospaced">
+    make install </literallayout>
+          
+        to install it.  If the installation directory is a system
+        directory, type
+          
+        <literallayout class="monospaced">
+    sudo make install </literallayout>
+          
+        instead.
+      </para>
+    </section>         <!--Compiling and Installing the Extension-->
+
+    <section>
+      <title>Running OOF2 with External Extensions</title>
+      <para>
+        It is first necessary to tell Python how to find the
+        extension, and then to tell &oof2; to load it.
+      </para>
+      <section id="Section-pythonpath-extensions">
+        <title>Setting PYTHONPATH for Extensions</title>
+        <para>
+          For an extension to be used by &oof2; it must be located in
+          a directory that is in Python's path &emdash; the list of
+          directories that Python searches when it imports a module.
+          You can check the path by running
+        
+          <literallayout class="monospaced">
+    python -c "import sys; print(sys.path)" </literallayout>
+        
+          in a terminal window.
+        </para>
+        <para>
+          If the directory containing the extension is not listed,
+          there are a number of ways to add it.  In all of these
+          examples, replace the word <quote>directory</quote> with the
+          file system path to the directory containing the extension
+          module.
+        </para>
+        <orderedlist>
+          <listitem>
+            <para>
+              Set the <varname>PYTHONPATH</varname> environment
+              variable. The way that is done depends on which version
+              of the Unix shell you're using. In bash, for example,
+              you would type
+            
+              <literallayout class="monospaced">
+    export PYTHONPATH=$PYTHONPATH:directory </literallayout>
+            
+              to append the directory to an existing path.  This will
+              apply to all future &oof2; sessions and any other Python
+              programs started in the current terminal window.  To
+              make this change apply to all future terminal windows,
+              put the export line in your shell's start-up file
+              (<filename>~/.profile</filename> in bash).
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Start &oof2; with the <link
+              linkend="CommandLineArg-pathdir"><userinput>--pathdir=directory</userinput></link>
+              option, which will add "directory" to the path just for
+              that session of &oof2; and won't affect any other Python
+              programs.  Equivalently, in bash and maybe other shells,
+              you can start &oof2; like this:
+            
+              <literallayout class="monospaced">
+    PYTHONPATH=directory oof2 </literallayout>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              To make the change for all future &oof2; sessions, but
+              not affect any other Python programs, insert the line
+
+              <literallayout class="monospaced">
+    sys.path.append("directory") </literallayout>
+
+              in the <link
+              linkend="Section-oof2rc"><filename>.oof2rc</filename></link>
+              file in your home directory.
+            </para>
+          </listitem>
+        </orderedlist>
+      </section>
+      <section id="Section-loading-extensions">
+        <title>Loading Extensions</title>
+        <para>
+          There are a few different ways of loading extension modules.
+          They all rely on having the extension's installation
+          directory in the Python path, as explained in <xref
+          linkend="Section-pythonpath-extensions"/>.  The main
+          differences between the methods are
+          <itemizedlist>
+            <listitem>
+              <para>
+                Whether they load the module when &oof2; starts or later
+                on in the session.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                Whether the loading is done by an &oof2; <link
+                linkend="MenuItem-OOF">menu command</link> or directly
+                by Python.  If it's loaded by a command, the command
+                will be <link
+                linkend="MenuItem-OOF.File.Save.Python_Log">saved</link>
+                in the session log, and the module will be reloaded if
+                the log is <link
+                linkend="MenuItem-OOF.File.Load.Script">reloaded</link>.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                Whether they apply to all future &oof2; sessions or
+                just the current one.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+        <para>
+          The list below contains all the options.  In each example,
+          replace <quote>oofextension</quote> with the name of your
+          extension:
+        </para>
+        <orderedlist>
+          <listitem>
+            <para>
+              Run the command <xref
+              linkend="MenuItem-OOF.File.Load.Module"/> from the
+              <command>File</command> menu in the main &oof2; window,
+              and type the module name in the dialog box.  This will
+              load the module using a scriptable command in the
+              current &oof2; session.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Put the line 
+
+              <literallayout class="monospaced">
+    OOF.File.Load.Module(module="oofextension") </literallayout>
+
+              in the <link
+              linkend="Section-oof2rc"><filename>.oof2rc</filename></link>
+              in your home directory.  This will load the module using
+              a scriptable menu command in all future &oof2; sessions.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Start &oof2; with the <link
+              linkend="CommandLineArg-import"><userinput>--import</userinput></link>
+              option, like this:
+             <literallayout class="monospaced">
+    oof2 --import=oofextension </literallayout>
+
+              This loads the module at start-up time without using a
+              menu command, and works only on the current session.
+              Modules loaded with <userinput>--import</userinput> are
+              loaded <emphasis>before</emphasis> the
+              <filename>.oof2rc</filename> file is read, so this
+              method won't work if the path to the module is set in
+              <filename>.oof2rc</filename>.  If you need to adjust the
+              path at run time, you can use
+              <userinput>--pathdir</userinput> in conjunction with
+              <userinput>--import</userinput>:
+
+              <literallayout class="monospaced">
+    oof2 --pathdir=directory --import=oofextension </literallayout>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Type the line
+
+          <literallayout class="monospaced">
+    import oofextension </literallayout>
+
+              in the <link linkend="Section-Windows-Console">Console
+              Window</link> during an &oof2; session. This loads the
+              module for the current session without using a menu
+              command.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Put the line
+
+              <literallayout class="monospaced">
+    import oofextension </literallayout>
+
+              in the <link
+              linkend="Section-oof2rc"><filename>.oof2rc</filename></link>
+              in your home directory.  This will load the module
+              without using a menu command in all future &oof2;
+              sessions.
+            </para>
+          </listitem>
+        </orderedlist>
+        <para>
+          It is permissable to import a module more than once and by
+          more than one method.  Only the first import will have an
+          effect, though.
+        </para>
+        
+    </section>
+  </section>            <!-- Running OOF2 with External Extensions -->
+
+</section>           <!--External Extensions-->
+
+
+  <!-- OLD BELOW HERE -->
+
+  <section id="Section-Extending-External-OLD">
+    <title>OLD External Extensions</title>
+    <para>
       This section describes how to create an <link
       linkend="para-external_extension">external</link> &oof2;
       extension.
     </para>
-    <note>
-      <para>
-	There's no fundamental reason that external &oof2;
-	extensions must be built using the procedure described here.
-	Other techniques certainly exist, and users who are
-	proficient with swig and distutils, or can do without them,
-	should feel free to do it their own way.  The methods
-	described here should be easy for most users and should
-	suffice in almost all cases, though.
-      </para>
-    </note>
     <section id="Section-Extending-External-Dirs">
       <title>Directory Structure</title>
       <figure id="Figure-ExternalLayout">
-	<title>File Arrangement for External Extensions</title>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/extending/external_layout.png"
-	      format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="FIGURES/extending/external_layout.eps"
-	      format="EPS"/>
-	  </imageobject>
-	  <caption>
-	    <para>
-	      The file layout for <quote><link
-	      linkend="para-external_extension">external</link></quote>
-	      extensions.  Names in red are directories, and lines
-	      between them indicate nested subdirectories.  Blue
-	      arrows indicate the information flow during the build
-	      process.  Green arrows show run-time dependencies, and
-	      are equivalent to the black arrows in <xref
-	      linkend="Figure-orgchart"/>.
-	    </para>
-	    <para>
-	      Only the files listed in bold need to be created by
-	      hand.  distutils and the <filename>setup.py</filename>
-	      script creates the rest.
-	    </para>
-	  </caption>
-	</mediaobject>
+	    <title>File Arrangement for External Extensions</title>
+	    <mediaobject>
+	      <imageobject>
+	        <imagedata fileref="FIGURES/extending/external_layout.png"
+	                   format="PNG"/>
+	      </imageobject>
+	      <caption>
+	        <para>
+	          The file layout for <quote><link
+	          linkend="para-external_extension">external</link></quote>
+	          extensions.  Names in red are directories, and lines
+	          between them indicate nested subdirectories.  Blue
+	          arrows indicate the information flow during the build
+	          process.  Green arrows show run-time dependencies, and
+	          are equivalent to the black arrows in <xref
+	          linkend="Figure-orgchart"/>.
+	        </para>
+	        <para>
+	          Only the files listed in bold need to be created by
+	          hand.  distutils and the <filename>setup.py</filename>
+	          script creates the rest.
+	        </para>
+	      </caption>
+	    </mediaobject>
       </figure>     
       <para>
 	The top level directory, labelled
