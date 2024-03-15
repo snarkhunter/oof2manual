@@ -66,9 +66,9 @@
   linkend="RegisteredClass-Rationalize"/> &skel; modifier.
 </para>
 <para>
-  <xref linkend="Figure-aspect"/> shows a &skel; containing one skinny
-  quadrilateral and one skinny triangle. <xref
-  linkend="Figure-aspect-refined"/> shows the result of refining the
+  <xref linkend="Figure-aspect"/>(a) shows a &skel; containing one
+  skinny quadrilateral and one skinny triangle. <xref
+  linkend="Figure-aspect"/>(b) shows the result of refining the
   elements.  Unlike <xref
   linkend="RegisteredClass-CheckHomogeneity"/>, which marks all the
   &sgmts; of its target &elems;,

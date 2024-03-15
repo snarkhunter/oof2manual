@@ -820,60 +820,90 @@
 	      </para>
 	      <para>
 	        The explicit expression for triangular elements is
+            
 	        <equation>
 	          <alt role="tex">
 		        \[ E_\mathrm{shape} = 1 - 4\sqrt{3}\frac{A}{L^2} \]
 	          </alt>
 	        </equation>
-	        where <inlineequation><alt
-	        role="tex">\(A\)</alt></inlineequation> is the area of the
-	        element and <inlineequation><alt
-	        role="tex">\(L^2\)</alt></inlineequation> is the sum of
-	        the squares of the lengths of its sides.
+            
+	        where
+
+            <inlineequation><alt role="tex">\(A\)</alt></inlineequation>
+
+            is the area of the element and
+
+            <inlineequation><alt role="tex">\(L^2\)</alt></inlineequation>
+
+            is the sum of the squares of the lengths of its sides.
 	      </para>
 	      <para>
 	        For quadrilateral elements the shape energy is found by
 	        first computing a <quote>quality factor</quote>,
-	        <inlineequation><alt
-	                            role="tex">\(q_i\)</alt></inlineequation>, for each corner
-	        <inlineequation><alt
-	                            role="tex">\(i\)</alt></inlineequation>.
-	        <inlineequation><alt
-	                            role="tex">\(q_i\)</alt></inlineequation> is the area of
-	        the parallelogram defined by the two sides of the element
-	        that converge at node <inlineequation><alt
-	        role="tex">\(i\)</alt></inlineequation>, divided by the
-	        sum of the squares of the sides, and normalized so that
-	        its value is 1 for a square.  It's value is always less
-	        than 1 at a corner where the two converging edges have
-	        different lengths or meet at an acute or obtuse angle, and
-	        is zero in the degenerate cases when the edges are
-	        colinear or when the length of one edge is 0.  The shape
-	        energy is defined to be
+            
+	        <inlineequation><alt role="tex">\(q_i\)</alt></inlineequation>,
+
+            for each corner
+            
+	        <inlineequation><alt role="tex">\(i\)</alt></inlineequation>.
+            
+	        <inlineequation><alt role="tex">\(q_i\)</alt></inlineequation>
+
+            is the area of the parallelogram defined by the two sides
+            of the element that converge at node
+
+            <inlineequation><alt role="tex">\(i\)</alt></inlineequation>,
+
+            divided by the sum of the squares of the sides, and
+            normalized so that its value is 1 for a square.  It's
+            value is always less than 1 at a corner where the two
+            converging edges have different lengths or meet at an
+            acute or obtuse angle, and is zero in the degenerate cases
+            when the edges are colinear or when the length of one edge
+            is 0.  The shape energy is defined to be
+            
 	        <equation>
 	          <alt role="tex">
 		        \[ E_\mathrm{shape} = 1 - [(1-\epsilon)q_\mathrm{min}
 		        + \epsilon q_\mathrm{opp}] \]
 	          </alt>
 	        </equation>
-	        where <inlineequation><alt
-	        role="tex">\(q_\mathrm{min}\)</alt></inlineequation> is
-	        the minimum (worst) <inlineequation><alt
-	        role="tex">\(q_i\)</alt></inlineequation> in the element,
-	        <inlineequation><alt
-	                            role="tex">\(q_\mathrm{opp}\)</alt></inlineequation> is
-	        the <inlineequation><alt
-	        role="tex">\(q\)</alt></inlineequation> at the opposite
-	        corner, and <inlineequation><alt
-	        role="tex">\(\epsilon\)</alt></inlineequation> is a small
-	        number.  (The <inlineequation><alt
-	        role="tex">\(\epsilon\)</alt></inlineequation> term is
-	        required to prevent pathologies that occur when the shape
-	        energy has no dependence on the position of one of the
-	        nodes. <inlineequation><alt
-	        role="tex">\(\epsilon\)</alt></inlineequation> is set to
-	        1.e-5 in the program, but its exact value is
-	        inconsequential.)
+            
+	        where
+
+            <inlineequation><alt
+            role="tex">\(q_\mathrm{min}\)</alt></inlineequation>
+
+            is the minimum (worst)
+
+            <inlineequation><alt role="tex">\(q_i\)</alt></inlineequation>
+
+            in the element,
+
+            <inlineequation><alt
+            role="tex">\(q_\mathrm{opp}\)</alt></inlineequation>
+
+            is the
+
+            <inlineequation><alt
+            role="tex">\(q\)</alt></inlineequation>
+
+            at the opposite corner, and
+
+            <inlineequation><alt role="tex">\(\epsilon\)</alt></inlineequation>
+
+            is a small number.  (The
+
+            <inlineequation><alt role="tex">\(\epsilon\)</alt></inlineequation>
+
+            term is required to prevent pathologies that occur when
+            the shape energy has no dependence on the position of one
+            of the nodes.
+
+            <inlineequation><alt role="tex">\(\epsilon\)</alt></inlineequation>
+
+            is set to 10<superscript>-5</superscript> in the program,
+            but its exact value is inconsequential.)
 	      </para>
 	    </section>
       </section>

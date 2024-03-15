@@ -51,6 +51,10 @@ local: $(TEMPDIR) saxonize.web texify figs
 	python webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 	touch local
 
+# TODO: Install into /u/WWW/langer/oof/oof2man, so that
+# http://www.ctcms.nist.gov/oof/oof2man links (without reference to
+# ~langer).  Check links everywhere.
+
 publish: local
 	rsync -vrt --delete-excluded -e ssh --rsync-path=/usr/bin/rsync $(OOFWEBDIR)/oof2man/* genie.nist.gov:/u/WWW/langer/oof2man
 	ssh genie.nist.gov /usr/site/bin/updatewww
