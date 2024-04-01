@@ -583,6 +583,20 @@
 	          </para>
 	        </entry>
 	      </row>
+          <row>
+            <entry>
+              <simpara>
+                <userinput>--separate-dialogs</userinput>
+              </simpara>
+            </entry>
+            <entry> </entry>
+            <entry>
+              <para>
+                Separate dialog boxes from their parent windows.
+                Useful when taking screen shots of dialogs.
+              </para>
+            </entry>
+          </row>
 	    </tbody>
       </tgroup>
     </table>
