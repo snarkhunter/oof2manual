@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: CH_coding.xml,v $
-  $Revision: 1.8 $
-  $Author: langer $
-  $Date: 2012-01-30 21:43:27 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,22 +8,142 @@
   the authors at oof_manager@nist.gov.
 -->
 
-
 <chapter id="Chapter-Coding">
   <title>Writing &oof2; Extensions</title>
-  <warning>
-    <para>
-      This chapter has not yet been updated for &oof2; version 2.1.  A
-      partial discussion of the differences between the 2.0 and 2.1
-      extension APIs may be found at <ulink
-      url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
-    </para>
-  </warning>
   <para>
     This chapter describes the contents of the source files for &oof2;
-    extensions.  <xref linkend="Chapter-Extending"/> describes how to
+    extensions.  It begins with an overview of some import
+    classes. <xref linkend="Chapter-Extending"/> describes how to
     assemble the source files into a loadable extension module.
   </para>
+  <section id="Section-Coding-Directory-Structure">
+    <title>Source Directory Layout</title>
+    <para>
+      The &oof2; source code is divided into four main directories:
+      <itemizedlist>
+        <listitem>
+          <simpara>
+            <filename>SRC/common</filename>: &micros; and general
+            infrastructure.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine</filename>: &skels;, &meshes;,
+            &properties;, &materials;, and anything else related to the
+            finite element machinery.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/image</filename>: &images;.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/orientationmap</filename>: <link
+            linkend="Section-Concepts-Microstructure-OrientationMap">orientation
+            maps</link>. 
+          </simpara>
+        </listitem>
+      </itemizedlist>
+      Most of these directories have a subdirectory called
+      <filename>IO</filename> for files related to user interactions
+      (menus and such).  Inside <filename>IO</filename> a directory
+      called <filename>GUI</filename> holds the gtk-specific code for
+      the graphical user interface.  It's not always obvious what
+      belongs in <filename>IO</filename> and what doesn't, so we
+      regretted making that distinction, and the most recent
+      subdirectory, <filename>SRC/orientationmap</filename>, skips
+      <filename>IO</filename> and just contains
+      <filename>GUI</filename> directly.
+    </para>
+    <para>
+      As a general rule, files in <filename>SRC/common</filename>
+      don't include or import any files in any other
+      subdirectories. Files in <filename>SRC/engine</filename>,
+      <filename>SRC/image</filename>, and
+      <filename>SRC/orientationmap</filename> include or import
+      code from <filename>SRC/common</filename> but from nowhere else.
+      Similarly, all of the code in any <filename>GUI</filename>
+      directory refers to code in the directories above it, but
+      nothing in the directories above refers to anything in
+      <filename>GUI</filename>.  This ensures that the program will
+      work correctly when not using the GUI.<footnote><simpara>The
+      only exception to these rules is that the code for starting the
+      GUI and loading the various modules, in
+      <filename>SRC/common/oof.py</filename>, needs to be able to
+      initialize the other modules.</simpara></footnote>
+    </para>
+    <para>
+      Additional directories within <filename>SRC</filename> don't
+      have <filename>IO</filename> or <filename>GUI</filename>
+      subdirectories.  They are
+      <itemizedlist>
+        <listitem>
+          <simpara>
+            <filename>EXTENSIONS</filename>:  Source code for
+            internal extensions.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>Eigen</filename> and
+            <filename>unsupported</filename>: a copy of the <ulink
+            url="https://eigen.tuxfamily.org/"
+            role="external">Eigen</ulink> library and its unsupported
+            extensions.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>tutorials</filename>: the &oof2; <link
+            linkend="MenuItem-OOF.Help.Tutorials">tutorials</link>.
+          </simpara>
+        </listitem>
+      </itemizedlist>
+      Of these, only <filename>EXTENSIONS</filename> is important to
+      extension authors, probably.
+    </para>
+  </section>
+  <section id="Section-Coding-Package">
+    <title>Python Package Layout</title>
+    <para>
+      The Python package structure mimics the directory layout
+      described in <xref
+      linkend="Section-Coding-Directory-Structure"/>.  The top-level
+      package is <code>ooflib</code>, and within it are packages
+      called <code>common</code>, <code>engine</code>,
+      <code>image</code>, and <code>orientationmap</code>. When &oof2;
+      is started, it modifies the Python path so that the
+      <code>ooflib</code> package can be found.
+    </para>
+    <para>
+      Python modules created by <ulink url="http://www.swig.org"
+      role="external">swig</ulink>, however, are installed into the
+      package <code>ooflib.SWIG</code>.  Within
+      <code>ooflib.SWIG</code> are packages named <code>common</code>,
+      <code>engine</code>, <code>image</code>, and
+      <code>orientationmap</code>.
+    </para>
+    <para>
+      For example, the Python code defining the <xref
+      linkend="Class-Microstructure"/> in
+      <filename>SRC/common/microstructure.py</filename> can be imported
+      into another Python file with
+      <programlisting>
+from ooflib.common import microstructure </programlisting>
+      and the C++ underpinnings of the class, defined in
+      <filename>SRC/common/cmicrostructure.C</filename> and wrapped by
+      <filename>SRC/common/cmicrostructure.swg</filename>, can be
+      imported with
+      <programlisting>
+from ooflib.SWIG.common import cmicrostructure </programlisting>
+    </para>
+  </section>
+
+  <!-- =========================================================== -->
+  
   <section id="Section-Coding-AddFields">
     <title>Adding New Fields, Fluxes, and Equations</title>
     <para>
@@ -43,23 +158,15 @@
       about it, such as its name and dimension.
     </para>
     <para>
-      To create a &field;, &flux;, or &equation;, simply create an
-      object by calling its (Python) constructor,<footnote>
-	<para>
-	  &fields;, &fluxes;, and &equations; are C++ classes, but
-	  they should be instantiated by calling their swigged Python
-	  constructors.
-	</para>
-      </footnote>
-      and pass the object to the function <link
-      linkend="Function.advertise"><function>problem.advertise</function></link>.
-      <code>problem</code> is a module in <code>oof2.engine</code>.
+      To create a &field;, &flux;, or &equation;, simply call the
+      class's (Python) constructor.<footnote><para> &fields;,
+      &fluxes;, and &equations; are C++ classes, but they should be
+      instantiated by calling their swigged Python
+      constructors. </para> </footnote>
       For example:
-
-     <programlisting>
-from oof2.engine import problem
-from oof2.SWIG.engine import field
-problem.advertise(field.ScalarField("Temperature")) </programlisting>
+      <programlisting>
+from ooflib.SWIG.engine import field
+Temperature = field.ScalarField("Temperature") </programlisting>
 
       &oof2; predefines some &fields;, &fluxes;, and &equations; in
       <filename>SRC/engine/problem.py</filename>.  Refer to that file
@@ -67,50 +174,54 @@ problem.advertise(field.ScalarField("Temperature")) </programlisting>
     </para>
     <para>
       The &field; subclasses defined in
-      <code>oof2.SWIG.engine.field</code> are:
+      <code>ooflib.SWIG.engine.field</code> are:
       <itemizedlist spacing="compact">
-	<listitem>
-	  <simpara>
-	    <xref linkend="Class-ScalarField"/>:
-	    <foreignphrase>e.g,</foreignphrase>, Temperature, Density
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    <xref linkend="Class-TwoVectorField"/>:
-	    <foreignphrase>e.g,</foreignphrase> Displacement,
-	    Polarization
-	  </simpara>
-	</listitem>
+	    <listitem>
+	      <simpara>
+	        <xref linkend="Class-ScalarField"/>:
+	        <foreignphrase>e.g,</foreignphrase>, Temperature, Density
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <xref linkend="Class-TwoVectorField"/>:
+	        <foreignphrase>e.g,</foreignphrase> Displacement,
+	        Polarization
+	      </simpara>
+	    </listitem>
       </itemizedlist>
-      These classes actually define
-      <classname>CompoundField</classname>s, which represent the <link
+      These classes actually define <xref
+      linkend="Class-CompoundField"/>s, which represent the <link
       linkend="Section-Concepts-Mesh-3D">in-plane</link> part of a
-      &field;.  All of the <classname>Field</classname> class methods,
-      when applied directly to a <classname>CompoundField</classname>,
-      act on the in-plane part (which is why the vector field is
-      called
-      <emphasis>Two</emphasis><classname>VectorField</classname>.  The
-      out-of-plane part, which is also a <classname>Field</classname>
-      object, is accessible through the
-      <classname>CompoundField</classname>'s
-      <methodname>out_of_plane</methodname> method.
+      &field; along with its out of plane components, and the time
+      derivatives of its in-plane and out-of-plane components.
     </para>
     <para>
-      The Python function <function>getCompoundField(name)</function>
-      in the <code>oof2.SWIG.engine.field</code> module returns the
-      <classname>CompoundField</classname> with the given name.  After
-
-      <programlisting>
-tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
-
-      the function call
-      <code>field.getCompoundField('Temperature')</code> returns an
-      object identical to <varname>tfield</varname>.
+      New &fields; should only be created by calling <xref
+      linkend="Class-CompoundField"/> constructors in Python. This
+      will create four new Python variables whose names are the name
+      of the &field;, the name of the field suffixed with
+      <quote>_z</quote> for the out-of-plane field, and suffixed with
+      <quote>_t</quote> and <quote>_tz</quote> for the time derivative
+      and its out-of-plane part.  These variables live in the main
+      &oof2; namespace, which is the one in which <link
+      linkend="Section-ScriptGUI">text mode</link>, <link
+      linkend="MenuItem-OOF.File.Load.Script">scripts</link> and <link
+      linkend="Section-Windows-Console">Console Window</link> commands
+      are executed.
     </para>
+    <para>
+      Note that it is acceptable, and maybe even convenient, to give
+      the local variable the same name as the global
+      <classname>Field</classname> name, because they both refer to
+      the same object:
+      <programlisting>
+>>> <emphasis role="bold">gee</emphasis> = field.TwoVectorField("<emphasis role="bold">gee</emphasis>")</programlisting>
+    </para>
+    
     <para>
       The &flux; subclasses defined in
-      <code>oof2.SWIG.engine.flux</code> are:
+      <code>ooflib.SWIG.engine.flux</code> are:
       <itemizedlist spacing="compact">
 	<listitem>
 	  <simpara>
@@ -129,7 +240,7 @@ tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
     </para>
     <para>
       The &equation; subclasses defined in
-      <code>oof2.SWIG.engine.equation</code> are:
+      <code>ooflib.SWIG.engine.equation</code> are:
       <itemizedlist spacing="compact">
 	<listitem>
 	  <simpara>
@@ -146,10 +257,7 @@ tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
 	</listitem>
       </itemizedlist>
       The &equation; constructors each take a name, a &flux;, and a
-      dimension.  The name allows &equations; to
-      be retrieved via the Python function
-      <function>getEquation(name)</function> from
-      <code>oof2.SWIG.engine.equation</code>.  The &flux; is the
+      dimension.   The &flux; is the
       &flux; that the &equation; operates on, and the dimension is an
       integer specifying how many components the equation has.  (The
       divergence of a vector &flux; has one component, and the divergence
@@ -158,12 +266,14 @@ tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
       as there are out-of-plane components of the associated &flux;.)
     </para>
     <para>
-      The Python form of the
-      <classname>DivergenceEquation</classname> constructor also can take
-      optional arguments specifying whether or not the &equation; contains
-      first-order (kinetic) or second-order (dynamic) time
-      derivatives.  This facility is still under development, and so
-      the documentation is incomplete.<!-- TODO: Finish this -->
+      Like the <xref linkend="Class-Field"/> classes,
+      <xref linkend="Class-Flux"/>es and
+      <xref linkend="Class-Equation"/>s can be retrieved by name in the
+      main &oof2; namespace.  They can also be retrieved by the
+      <xref linkend="Function-getFlux"/> and
+      <xref linkend="Function-getEquation"/> functions in either C++ or
+      Python.  Unlike <xref linkend="Class-Field"/>s, they have no
+      auxiliary out-of-plane or time derivative parts.
     </para>
     <para>
       As an example, the following code fully defines the quantities
@@ -172,30 +282,27 @@ tfield = problem.advertise(field.ScalarField("Temperature")) </programlisting>
       discussed <link linkend="Section-Coding-Material">later</link>).
 
       <programlisting>
-from oof2.engine.problem import advertise
-from oof2.SWIG.engine.field import ScalarField
-from oof2.SWIG.engine.flux import VectorFlux
-from oof2.SWIG.engine.equation import DivergenceEquation, PlaneFluxEquation
+from ooflib.SWIG.engine.field import ScalarField
+from ooflib.SWIG.engine.flux import VectorFlux
+from ooflib.SWIG.engine.equation import DivergenceEquation, PlaneFluxEquation
 
-Temperature = advertise(ScalarField('Temperature'))
-Heat_Flux = advertise(VectorFlux('Heat_Flux'))
-HeatBalanceEqn = advertise(DivergenceEquation('Heat_Eqn', Heat_Flux, 1))
-HeatOutOfPlane = advertise(PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1))
-      </programlisting>
+Temperature = ScalarField('Temperature')
+Heat_Flux = VectorFlux('Heat_Flux')
+HeatBalanceEqn = DivergenceEquation('Heat_Eqn', Heat_Flux, 1)
+HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlisting>
 
+      Note that all of these quantities are already defined in &oof2;
+      (in <filename>SRC/engine/problem.py</filename> to be exact) so
+      don't redefine them.  This is just an example of how you might
+      define new &fields; and &equations;.
     </para>
   </section><!-- Adding New Fields, Fluxes, and Equations -->
 
+
+  <!-- ========================================================== -->
+
   <section id="Section-Coding-Indices">
     <title>Indices and Iterators</title>
-    <warning>
-      <para>
-	This section has not yet been updated for &oof2; version 2.1.
-	A partial discussion of the differences between the 2.0 and
-	2.1 extension APIs may be found at <ulink
-	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
-      </para>
-    </warning>
     <para>
       Before proceeding, it's necessary to take a diversion on the
       topic of indices and iterators.
@@ -207,65 +314,68 @@ HeatOutOfPlane = advertise(PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1))
       mechanism for doing this, so that it's possible to loop over all
       of the components of an object without even having to know how
       many indices are required to specify a component.  For example,
-      it takes one index to specify a vector component, two for a
-      tensor, and zero for a scalar, but all three cases can be
+      it takes two indices to specify a tensor component, one for a
+      vector, and zero for a scalar, but all three cases can be
       handled identically.
     </para>
     <para>
-      Every &field;, &flux;, and &equation; class has a function
-      <methodname>iterator()</methodname> which returns an <link
-      linkend="Class-IteratorP"><classname>IteratorP</classname></link>
-      object.  The <classname>IteratorP</classname> can be used to
-      refer to components of the compound object, and can also be
-      incremented to refer to the next component. Some types of
-      <methodname>iterator</methodname>s take a <link
-      linkend="Class-Planarity"><classname>Planarity</classname></link>
-      argument which determines which components will be included when
-      incrementing.
+      The base class for indices is <xref
+      linkend="Class-FieldIndex"/>.  There are subclasses of <xref
+      linkend="Class-FieldIndex"/> for different kinds of &fields;,
+      and &fluxes; and &equations;.  (From now on we'll talk about
+      &fields;, but everything also applies to &fluxes; and
+      &equations;, unless explicitly stated otherwise.)  To handle the
+      polymorphism, generic C++ code doesn't use the <xref
+      linkend="Class-FieldIndex"/> classes directly.  Instead it uses
+      a wrapper class, <xref linkend="Class-IndexP"/>, which is a
+      light-weight object that contains a pointer (hence the
+      <quote>P</quote> in the name) to a <xref
+      linkend="Class-FieldIndex"/>.  An <classname>IndexP</classname>
+      provide access to its <classname>FieldIndex</classname> and
+      deallocates it when it goes out of scope.
     </para>
     <para>
-      <classname>IteratorP</classname> is actually derived from a base
-      class, <link
-      linkend="Class-IndexP"><classname>IndexP</classname></link>,
-      which can refer to a component but cannot be incremented or looped
-      over components.  It is used in situations in which the
-      <classname>Planarity</classname> is unknown.
+      For looping over the indices of a &field;, there is a <xref
+      linkend="Class-Components"/> base class.  Each type of &field;
+      has a <xref linkend="Method-components"/> method that returns a
+      pointer to an instance of the correct subclass.  The subclasses
+      act as containers which can be iterated over in C++ to obtain 
+      <xref linkend="Class-IndexP"/> objects for each component of the
+      &field;.  Iterating over them in Python returns actual <xref
+      linkend="Class-FieldIndex"/> objects.
     </para>
     <para>
-      As an example, this &oof2; session prints all of the indices of a
-      vector and a symmetric tensor:
+      In some cases it's necessary to restrict iteration to either the
+      <link linkend="Section-Concepts-Mesh-3D">in-plane or
+      out-of-plane components</link> of a &field;.  In those cases,
+      the <methodname>components</methodname> method takes an argument
+      of the <xref linkend="Class-Planarity"/> class.
+    </para>
+    <para>
+      As an example,
 
       <literallayout class="monospaced">
 % oof2 --text
->>> from oof2.SWIG.engine.planarity import ALL_INDICES
->>> it = Displacement.iterator(ALL_INDICES)
->>> while not it.end():
-...    print it.components()
-...    it.next()
+>>> from ooflib.SWIG.engine import planarity
+>>> for i in Temperature.components():
+...    print(i)
 ... 
-[0]
-[1]
->>> it = Stress.iterator(ALL_INDICES)
->>> while not it.end():
-...    print it.components()
-...    it.next()
+ScalarFieldIndex()
+>>> for i in Displacement.components():
+...    print(i)
 ... 
-[0, 0]
-[1, 1]
-[2, 2]
-[1, 2]
-[0, 2]
-[0, 1]
+VectorFieldIndex(0)
+VectorFieldIndex(1)
+>>> from ooflib.SWIG.engine.field import ThreeVectorField
+
       </literallayout>
 
-      The same task could be accomplished in C++ like this:<footnote>
-	<para>
-	  This is an irresponsible example because <link
+      The same task could be accomplished in C++ like this:
+
+	  (This is an irresponsible example because <link
 	  linkend="Class-IndexP-components"><methodname>IteratorP::components()</methodname></link>
 	  returns a <code>std::vector&lt;int&gt;*</code> that ought to
-	  be to be deleted.
-	</para>
-      </footnote>
+	  be to be deleted.)
 
       <programlisting>
 for(IteratorP it = displacement->iterator(); !it.end(); ++it)
@@ -357,7 +467,7 @@ for(IteratorP it = stress.iterator(); !it.end(); ++it)
     <para>
       The function <link
       linkend="Function-conjugatePair"><function>conjugatePair</function></link>
-      in the <code>oof2.SWIG.engine.conjugate</code> module
+      in the <code>ooflib.SWIG.engine.conjugate</code> module
       establishes the correspondence between &field; and &equation;
       components that is necessary to build a symmetric matrix.  After
       <link linkend="Section-Coding-AddFields">creating</link>
@@ -365,7 +475,7 @@ for(IteratorP it = stress.iterator(); !it.end(); ++it)
       <function>conjugatePair</function> like this:
 
       <programlisting>
-from oof2.SWIG.engine.conjugate import conjugatePair
+from ooflib.SWIG.engine.conjugate import conjugatePair
 conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
 
       where <varname>proptype</varname> is the <link
@@ -446,7 +556,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
       either a <link linkend="Class-Property">C++ subclass of
       <classname>Property</classname></link> or a <link
       linkend="Class-PyPropertyWrapper">Python subclass of
-      <classname>oof2.SWIG.engine.pypropertywrapper</classname></link>,
+      <classname>ooflib.SWIG.engine.pypropertywrapper</classname></link>,
       and a <link
       linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
       object, which contains metadata about the &property;.
@@ -1262,7 +1372,7 @@ param = SomeOtherOutput.resolveAlias('otherinput:field') </programlisting>
 	</para>
 
 	<programlisting>
-from oof2.SWIG.common import coord
+from ooflib.SWIG.common import coord
 from oof2.common import primitives
 from oof2.common.IO import output
 from oof2.common.IO import parameter
@@ -1504,7 +1614,7 @@ class EnergyType(enum.EnumClass("Total", "Elastic", ...)):
 	because energy is a scalar quantity:
 
 	<programlisting>
-from oof2.SWIG.engine.IO import propertyoutput
+from ooflib.SWIG.engine.IO import propertyoutput
 
 propertyoutput.ScalarPropertyOutputRegistration(
    "Energy",
@@ -1608,9 +1718,7 @@ propertyregistration.PropertyRegistration(
     </section>
   </section><!-- Adding New Outputs -->
 
-<!-- ****************************************** -->
-
-<!-- TODO: Why doesn't the Reference section appear in the output? -->
+  <!-- ======================================================== -->
 
   <section id="Section-Coding-Reference"> 
     <title>&oof2; Class and Function Reference</title>
@@ -1628,6 +1736,7 @@ propertyregistration.PropertyRegistration(
       &refField;
       &refFlux;
       &refEquation;
+      &refgetField;
     </section>
 
     <section id="Section-Coding-Iterators" role="reference">

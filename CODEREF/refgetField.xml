@@ -1,0 +1,113 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<refentry id="Function-getField">
+  <refnamediv>
+    <refname>getField</refname>
+    <refpurpose>Retrieve a <classname>Field</classname> object by
+    name</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++</title>
+      <literallayout class="monospaced">
+#include "engine.field.h"
+Field *Field::getField(const std::string &amp;name);</literallayout>
+    </refsect2>
+    
+    <refsect2>
+      <title>Python</title>
+      <literallayout class="monospaced">
+from ooflib.SWIG.engine import field
+f = field.getField(name) </literallayout>
+    </refsect2>
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara><filename>SRC/engine/field.C</filename></simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/field.h</filename></simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/field.swg</filename></simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/field.spy</filename></simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term><varname>name</varname></term>
+        <listitem>
+          <para>
+            The name of an existing <xref linkend="Class-Field"/>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Discussion</title>
+    <para>
+      <function>getField</function> returns a previously created <xref
+      linkend="Class-Field"/> object.  In C++ it returns a pointer to
+      the base class, which may be cast to the derived class:
+      <programlisting>
+ScalarField *T = dynamic_cast&lt;ScalarField*&gt;(getField("Temperature")); </programlisting>
+      In Python, it returns a reference to an object
+      of the appropriate derived class:
+      <programlisting>
+>>> T = getField(Temperature)
+>>> type(T)
+&lt;class 'ooflib.SWIG.engine.field.ScalarField'&gt; </programlisting>
+    </para>
+  </refsection>
+</refentry>
+
+<refentry id="Function-getFlux">
+  <refnamediv>
+    <refname>getFlux</refname>
+  </refnamediv>
+  <para>
+    TODO: write this.
+  </para>
+</refentry>
+
+<refentry id="Function-getEquation">
+  <refnamediv>
+    <refname>getEquation</refname>
+  </refnamediv>
+  <para>
+    TODO: write this.
+  </para>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

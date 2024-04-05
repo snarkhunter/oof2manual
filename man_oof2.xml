@@ -43,6 +43,7 @@
 <!ENTITY refField SYSTEM "CODEREF/refField.xml">
 <!ENTITY refFlux SYSTEM "CODEREF/refFlux.xml">
 <!ENTITY refEquation SYSTEM "CODEREF/refEquation.xml">
+<!ENTITY refgetField SYSTEM "CODEREF/refgetField.xml">
 <!ENTITY refMisc SYSTEM "CODEREF/refMisc.xml">
 <!ENTITY refParameter SYSTEM "CODEREF/refParameter.xml">
 <!ENTITY refIterators SYSTEM "CODEREF/refIterators.xml">
