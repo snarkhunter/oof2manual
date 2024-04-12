@@ -147,33 +147,24 @@ from ooflib.SWIG.common import cmicrostructure </programlisting>
   <section id="Section-Coding-AddFields">
     <title>Adding New Fields, Fluxes, and Equations</title>
     <para>
-      New &fields;, &fluxes;, and &equations; can be added with just a
-      few lines of Python code.  The &oof2; &field;, &flux;, and
-      &equation; classes represent <emphasis>global</emphasis> objects
-      &mdash; there is only one instance of the
-      <varname>Temperature</varname> field, for example, although the
-      field may be defined on more than one &mesh;, or on none at all.
-      Creating a &field;, &flux;, or &equation; object makes it
-      available for use in a &mesh;, and records some information
-      about it, such as its name and dimension.
+      New &Fields;, &Fluxes;, and &Equations; can be
+      added with just a few lines of Python code.  The &oof2;
+      &Field;, &Flux;, and &Equation; classes represent
+      <emphasis>global</emphasis> objects &mdash; there is only one
+      instance of the <varname>Temperature</varname> field, for
+      example, although the field may be defined on more than one
+      &mesh;, or on none at all.  Creating a &Field;,
+      &Flux;, or &Equation; object makes it available for
+      use in a &mesh;, and records some information about it, such as
+      its name and dimension.
     </para>
     <para>
-      To create a &field;, &flux;, or &equation;, simply call the
-      class's (Python) constructor.<footnote><para> &fields;,
-      &fluxes;, and &equations; are C++ classes, but they should be
-      instantiated by calling their swigged Python
-      constructors. </para> </footnote>
-      For example:
-      <programlisting>
-from ooflib.SWIG.engine import field
-Temperature = field.ScalarField("Temperature") </programlisting>
-
-      &oof2; predefines some &fields;, &fluxes;, and &equations; in
-      <filename>SRC/engine/problem.py</filename>.  Refer to that file
-      for examples.
+      &oof2; predefines some &Fields;, &Fluxes;, and
+      &Equations; in <filename>SRC/engine/problem.py</filename>.
+      Refer to that file for examples.
     </para>
     <para>
-      The &field; subclasses defined in
+      The &Field; subclasses defined in
       <code>ooflib.SWIG.engine.field</code> are:
       <itemizedlist spacing="compact">
 	    <listitem>
@@ -193,14 +184,25 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       These classes actually define <xref
       linkend="Class-CompoundField"/>s, which represent the <link
       linkend="Section-Concepts-Mesh-3D">in-plane</link> part of a
-      &field; along with its out of plane components, and the time
+      &Field; along with its out of plane components, and the time
       derivatives of its in-plane and out-of-plane components.
     </para>
     <para>
-      New &fields; should only be created by calling <xref
+      To create a &Field;, &Flux;, or &Equation;,
+      simply call the derived class's Python
+      constructor.<footnote><para> &Fields;, &Fluxes;, and
+      &Equations; are C++ classes, but they should only be
+      instantiated by calling their swigged Python
+      constructors. </para></footnote> For example:
+      <programlisting>
+from ooflib.SWIG.engine import field
+Temperature = field.ScalarField("Temperature") </programlisting>
+    </para>
+    <para>
+      New &Fields; should only be created by calling <xref
       linkend="Class-CompoundField"/> constructors in Python. This
       will create four new Python variables whose names are the name
-      of the &field;, the name of the field suffixed with
+      of the &Field;, the name of the field suffixed with
       <quote>_z</quote> for the out-of-plane field, and suffixed with
       <quote>_t</quote> and <quote>_tz</quote> for the time derivative
       and its out-of-plane part.  These variables live in the main
@@ -211,16 +213,19 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       are executed.
     </para>
     <para>
-      Note that it is acceptable, and maybe even convenient, to give
-      the local variable the same name as the global
-      <classname>Field</classname> name, because they both refer to
-      the same object:
+      Code outside of the main &oof2; namespace can gain access to the
+      new &Fields; with the <xref linkend="Function-getField"/>
+      function.  Within the script that created the &Field;, the
+      &Field; can of course be referred to via the local variable
+      referring to the new object:
       <programlisting>
->>> <emphasis role="bold">gee</emphasis> = field.TwoVectorField("<emphasis role="bold">gee</emphasis>")</programlisting>
+<emphasis role="bold">gee</emphasis> = field.TwoVectorField("<emphasis role="bold">gee</emphasis>")</programlisting>
+      It is acceptable for the local variable name to be the same as
+      the global variable name.
     </para>
     
     <para>
-      The &flux; subclasses defined in
+      The &Flux; subclasses defined in
       <code>ooflib.SWIG.engine.flux</code> are:
       <itemizedlist spacing="compact">
 	<listitem>
@@ -239,31 +244,31 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       </itemizedlist>
     </para>
     <para>
-      The &equation; subclasses defined in
+      The &Equation; subclasses defined in
       <code>ooflib.SWIG.engine.equation</code> are:
       <itemizedlist spacing="compact">
 	<listitem>
 	  <simpara>
 	    <xref linkend="Class-DivergenceEquation"/>: any
-	    equation of the form <quote>divergence of a &flux; =
+	    equation of the form <quote>divergence of a &Flux; =
 	    external force</quote>.
 	  </simpara>
 	</listitem>
 	<listitem>
 	  <simpara>
 	    <xref linkend="Class-PlaneFluxEquation"/>: any equation
-	    that constrains the out-of-plane components of a &flux;.
+	    that constrains the out-of-plane components of a &Flux;.
 	  </simpara>
 	</listitem>
       </itemizedlist>
-      The &equation; constructors each take a name, a &flux;, and a
-      dimension.   The &flux; is the
-      &flux; that the &equation; operates on, and the dimension is an
+      The &Equation; constructors each take a name, a &Flux;, and a
+      dimension.   The &Flux; is the
+      &Flux; that the &Equation; operates on, and the dimension is an
       integer specifying how many components the equation has.  (The
-      divergence of a vector &flux; has one component, and the divergence
+      divergence of a vector &Flux; has one component, and the divergence
       of a tensor flux has three components.  A
       <classname>PlaneFluxEquation</classname> has as many components
-      as there are out-of-plane components of the associated &flux;.)
+      as there are out-of-plane components of the associated &Flux;.)
     </para>
     <para>
       Like the <xref linkend="Class-Field"/> classes,
@@ -294,7 +299,7 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       Note that all of these quantities are already defined in &oof2;
       (in <filename>SRC/engine/problem.py</filename> to be exact) so
       don't redefine them.  This is just an example of how you might
-      define new &fields; and &equations;.
+      define new &Fields; and &Equations;.
     </para>
   </section><!-- Adding New Fields, Fluxes, and Equations -->
 
@@ -308,8 +313,8 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       topic of indices and iterators.
     </para>
     <para>
-      It is often necessary to refer to the components of &fields;,
-      &fluxes;, and &equations;.  &oof2;'s
+      It is often necessary to refer to the components of &Fields;,
+      &Fluxes;, and &Equations;.  &oof2;'s
       <filename>fieldindex</filename> module provides a generic
       mechanism for doing this, so that it's possible to loop over all
       of the components of an object without even having to know how
@@ -321,10 +326,10 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
     <para>
       The base class for indices is <xref
       linkend="Class-FieldIndex"/>.  There are subclasses of <xref
-      linkend="Class-FieldIndex"/> for different kinds of &fields;,
-      and &fluxes; and &equations;.  (From now on we'll talk about
-      &fields;, but everything also applies to &fluxes; and
-      &equations;, unless explicitly stated otherwise.)  To handle the
+      linkend="Class-FieldIndex"/> for different kinds of &Fields;,
+      and &Fluxes; and &Equations;.  (From now on we'll talk about
+      &Fields;, but everything also applies to &Fluxes; and
+      &Equations;, unless explicitly stated otherwise.)  To handle the
       polymorphism, generic C++ code doesn't use the <xref
       linkend="Class-FieldIndex"/> classes directly.  Instead it uses
       a wrapper class, <xref linkend="Class-IndexP"/>, which is a
@@ -335,19 +340,19 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       deallocates it when it goes out of scope.
     </para>
     <para>
-      For looping over the indices of a &field;, there is a <xref
-      linkend="Class-Components"/> base class.  Each type of &field;
+      For looping over the indices of a &Field;, there is a <xref
+      linkend="Class-Components"/> base class.  Each type of &Field;
       has a <xref linkend="Method-components"/> method that returns a
       pointer to an instance of the correct subclass.  The subclasses
       act as containers which can be iterated over in C++ to obtain 
       <xref linkend="Class-IndexP"/> objects for each component of the
-      &field;.  Iterating over them in Python returns actual <xref
+      &Field;.  Iterating over them in Python returns actual <xref
       linkend="Class-FieldIndex"/> objects.
     </para>
     <para>
       In some cases it's necessary to restrict iteration to either the
       <link linkend="Section-Concepts-Mesh-3D">in-plane or
-      out-of-plane components</link> of a &field;.  In those cases,
+      out-of-plane components</link> of a &Field;.  In those cases,
       the <methodname>components</methodname> method takes an argument
       of the <xref linkend="Class-Planarity"/> class.
     </para>
@@ -468,10 +473,10 @@ for(IteratorP it = stress.iterator(); !it.end(); ++it)
       The function <link
       linkend="Function-conjugatePair"><function>conjugatePair</function></link>
       in the <code>ooflib.SWIG.engine.conjugate</code> module
-      establishes the correspondence between &field; and &equation;
+      establishes the correspondence between &Field; and &Equation;
       components that is necessary to build a symmetric matrix.  After
       <link linkend="Section-Coding-AddFields">creating</link>
-      &fields; and &equations;, call
+      &Fields; and &Equations;, call
       <function>conjugatePair</function> like this:
 
       <programlisting>
@@ -481,8 +486,8 @@ conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
       where <varname>proptype</varname> is the <link
       linkend="para-propertyType"><classname>PropertyType</classname></link>
       of the &property; that will be symmetrized by this conjugacy
-      pair; <varname>equation</varname> is an &equation; object;
-      <varname>field</varname> is a &field; object, and
+      pair; <varname>equation</varname> is an &Equation; object;
+      <varname>field</varname> is a &Field; object, and
       <varname>eqncomp</varname> and <varname>fieldcomp</varname> are
       either <link
       linkend="Section-Coding-Indices"><classname>FieldIndex</classname></link>
@@ -775,7 +780,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
 	<listitem>
 	  <para>
 	    <emphasis>Aggregate</emphasis> outputs are quantities like
-	    &fields; and &fluxes; that can't be plotted directly
+	    &Fields; and &Fluxes; that can't be plotted directly
 	    (because they generally have too many components) but can
 	    still be analyzed.
 	  </para>
@@ -839,7 +844,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
       can be used by themselves or combined with new
       <classname>Outputs</classname>.  The predefined
       <classname>Outputs</classname> can evaluate the components and
-      invariants of &fields; and &fluxes; and compute energies and
+      invariants of &Fields; and &Fluxes; and compute energies and
       strains.  For the details, consult the source code in
       <filename>SRC/engine/IO/outputClones.py</filename> and
       <filename>SRC/engine/IO/outputDefs.py</filename>.
@@ -1729,6 +1734,14 @@ propertyregistration.PropertyRegistration(
       appropriate.  In general, only functions that are relevant to
       building &oof2; extensions are listed, and base class functions
       are not listed again in the derived classes.
+    </para>
+    <para>
+      Both C++ and Python interfaces are listed at the top of each
+      reference page.  If the following discussion mentions only the
+      C++ syntax, assume that the Python syntax is derived in a
+      straightforward way from the C++ syntax.  In cases where there
+      is a big difference between the C++ and Python interfaces for a
+      class or function, it will be discussed explicitly.
     </para>
 
     <section id="Section-Coding-FieldFluxEquation" role="reference">

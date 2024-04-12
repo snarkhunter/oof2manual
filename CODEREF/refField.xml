@@ -23,189 +23,278 @@
 	  <title>C++ Synopsis</title>
 
 	  <literallayout class="monospaced">
-        #include "engine/field.h"
-	    <classsynopsis language="cpp">
-	      <ooclass>
-	        <classname>Field</classname>
-	      </ooclass>
-	      <methodsynopsis>
-	        <type>const std::string&amp;</type>
-	        <methodname><link linkend="Class-Field-name">name</link></methodname>
-	        <void/>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>int</type>
-	        <methodname><link
-		                    linkend="Class-Field-ndof">ndof</link></methodname>
-	        <void/>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>IteratorP</type>
-	        <methodname><link
-		                    linkend="Class-Field-iterator">iterator</link></methodname>
-	        <methodparam>
-		      <type>Planarity</type>
-		      <parameter>planarity</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>bool</type>
-	        <methodname><link
-		                    linkend="Class-Field-is_defined">is_defined</link></methodname>
-	        <methodparam>
-		      <type>const CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>bool</type>
-	        <methodname><link
-		                    linkend="Class-Field-is_active">is_active</link></methodname>
-	        <methodparam>
-		      <type>const CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>DegreeOfFreedom*</type>
-	        <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
-	        <methodparam>
-		      <type>const FuncNode*</type>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>int</type>
-		      <parameter>component</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>DegreeOfFreedom*</type>
-	        <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
-	        <methodparam>
-		      <type>const FuncNode&amp;</type>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>int</type>
-		      <parameter>component</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>DegreeOfFreedom*</type>
-	        <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
-	        <methodparam>
-		      <type>const ElementFuncNodeIterator&amp;</type>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>int</type>
-		      <parameter>component</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>double</type>
-	        <methodname><link linkend="Class-Field-value">value</link></methodname>
-	        <methodparam>
-		      <type>const FuncNode*</type>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>int</type>
-		      <parameter>component</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <type>double</type>
-	        <methodname><link linkend="Class-Field-value">value</link></methodname>
-	        <methodparam>
-		      <type>const ElementFuncNodeIterator&amp;</type>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>int</type>
-		      <parameter>component</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>OutputValue</type>
-	        <methodname><link
-		                    linkend="Class-Field-output">output</link></methodname>
-	        <methodparam>
-		      <type>const ElementFuncNodeIterator&amp;</type>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>OutputValue</type>
-	        <methodname><link
-		                    linkend="Class-Field-output">output</link></methodname>
+#include "engine/field.h"	  </literallayout>
 
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	    </classsynopsis>
-	  </literallayout>
-    </refsect2><!-- C++ Synopsis -->
+      <classsynopsis language="cpp">
+	    <ooclass>
+	      <classname>Field</classname>
+	    </ooclass>
+	    <methodsynopsis>
+          <modifier>const</modifier>
+	      <type>std::string&amp;</type>
+	      <methodname><link linkend="Class-Field-name">name</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>int</type>
+	      <methodname><link
+		                  linkend="Class-Field-ndof">ndof</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link
+		                  linkend="Class-Field-is_defined">is_defined</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
+		    <parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link
+		                  linkend="Class-Field-is_active">is_active</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
+		    <parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>FuncNode*</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <type>int</type>
+		    <parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+          <modifier>virtual</modifier>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>ElementFuncNodeIterator&amp;</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <type>int</type>
+		    <parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>FuncNode&amp;</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <type>int</type>
+		    <parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <type>DegreeOfFreedom*</type>
+	      <methodname><link linkend="Class-Field-dofoperator">operator()</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>ElementFuncNodeIterator&amp;</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>IndexP&amp;</type>
+		    <parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <type>double</type>
+	      <methodname><link
+                          linkend="Class-Field-value">value</link></methodname>
+          <methodparam>
+            <type>const FEMesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>FuncNode*</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <type>int</type>
+		    <parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <type>double</type>
+	      <methodname><link
+                          linkend="Class-Field-value">value</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEmesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+	      <methodparam>
+		    <type>const ElementFuncNodeIterator&amp;</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <type>int</type>
+		    <parameter>component</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>ArithmeticOutputValue</type>
+	      <methodname><link
+		                  linkend="Class-Field-output">output</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEMesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>ElementFuncNodeIterator&amp;</type>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+        
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>ArithmeticOutputValue</type>
+	      <methodname><link
+		                  linkend="Class-Field-output">output</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEMesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FuncNode&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>ComponentsP</type>
+          <methodname><link
+                          linkend="Class-Field-components">components</link></methodname>
+          <methodparam>
+            <type>Planarity</type>
+            <parameter>planarity</parameter>
+            <initializer>ALL_INDICES</initializer>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>ComponentsP</type>
+          <methodname><link
+                          linkend="Class-Field-outOfPlaneComponents">outOfPlaneComponents</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        
+	  </classsynopsis>
+    </refsect2><!-- Field C++ Synopsis -->
+    
     <refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
-        from oof2.SWIG.engine.field import Field
-	    <classsynopsis language="python">
-	      <ooclass>
-	        <classname>Field</classname>
-	      </ooclass>
-	      <methodsynopsis>
-	        <methodname><link
-		                    linkend="Class-Field-ndof">ndof</link></methodname>
-	        <void/>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <methodname><link
-		                    linkend="Class-Field-is_defined">is_defined</link></methodname>
-	        <methodparam>
-		      <parameter>mesh</parameter>
-	        </methodparam>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <methodname><link
-		                    linkend="Class-Field-is_active">is_active</link></methodname>
-	        <methodparam>
-		      <parameter>mesh</parameter>
-	        </methodparam>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <methodname><link
-		                    linkend="Class-Field-iterator">iterator</link></methodname>
-	        <methodparam>
-		      <parameter>planarity</parameter>
-	        </methodparam>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <methodname><link linkend="Class-Field-value">value</link></methodname>
-	        <methodparam>
-		      <parameter>node</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <parameter>component</parameter>
-	        </methodparam>
-	      </methodsynopsis>
-	    </classsynopsis>
-	  </literallayout>
-    </refsect2><!-- Python Synopsis -->
+from oof2.SWIG.engine.field import Field </literallayout>
+      <classsynopsis language="python">
+	    <ooclass>
+	      <classname>Field</classname>
+	    </ooclass>
+
+	    <methodsynopsis>
+	      <methodname><link
+		                  linkend="Class-Field-ndof">ndof</link></methodname>
+	      <void/>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+		                  linkend="Class-Field-is_defined">is_defined</link></methodname>
+	      <methodparam>
+		    <parameter>mesh</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+		                  linkend="Class-Field-is_active">is_active</link></methodname>
+	      <methodparam>
+		    <parameter>mesh</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+	    <methodsynopsis>
+	      <methodname><link
+                          linkend="Class-Field-value">value</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+	      <methodparam>
+		    <parameter>node</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>component</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Field-components">components</link></methodname>
+          <methodparam>
+            <parameter>planarity</parameter>
+            <initializer>ALL_INDICES</initializer>
+          </methodparam>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Field-outOfPlaneComponents">outOfPlaneComponents</link></methodname>
+          <void/>
+        </methodsynopsis>
+        
+	  </classsynopsis>
+    </refsect2><!-- Field Python Synopsis -->
+    
     <refsect2>
 	  <title>Subclasses</title>
 	  <itemizedlist spacing="compact">
@@ -219,7 +308,8 @@
 	      <simpara><link linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link></simpara>
 	    </listitem>
 	  </itemizedlist>
-    </refsect2><!-- subclasses -->
+    </refsect2><!-- Field subclasses -->
+    
     <refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -241,35 +331,37 @@
 	      </simpara>
 	    </listitem>
 	  </itemizedlist>
-    </refsect2><!-- Source files -->
+    </refsect2><!-- Field Source files -->
+    
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-	  <classname>Field</classname> is a base class for all types of
-	  fields in &oof2;.  The role of fields is described in <xref
-	  linkend="Section-Concepts-Mesh-Field"/>.  Like <link
+	  <classname>Field</classname> is an abstract base class for all
+	  types of fields in &oof2;.  The role of fields is described in
+	  <xref linkend="Section-Concepts-Mesh-Field"/>.  Like <link
 	  linkend="Class-Flux"><classname>Fluxes</classname></link> and
 	  <link
 	  linkend="Class-Equation"><classname>Equations</classname></link>,
-	  &field; instances are global objects &mdash; there is one
-	  instance for each physical field.  &fields; store information
-	  about the physical field (such as its name and dimension), but
-	  do not store the actual values of the &field;. That's done by a
-	  &mesh;, by using bookkeeping data from a &field;.
+	  &Field; instances are global objects &mdash; there is one
+	  instance for each physical field and it is shared by all
+	  &meshes; that use it.  &Fields; store information about
+	  the physical field (such as its name and dimension), but do not
+	  store the actual values of the &Field;. That's done by a
+	  &mesh;, by using bookkeeping data from a &Field;.
     </para>
     <para>
-	  Most of the programming interface for &fields; is defined in the
-	  base class, which is an abstract C++ class.  Most of the API is
-	  available from both C++ and Python.
+	  Most of the programming interface for &Fields; is defined
+	  in the base class, which is an abstract C++ class.  Most of the
+	  API is available from both C++ and Python.
     </para>
     <para>
-	  Most of the &field; objects encountered by &oof2; users and
+	  Most of the &Field; objects encountered by &oof2; users and
 	  extenders are actually instances of the <link
 	  linkend="Class-CompoundField"><classname>CompoundField</classname></link>
 	  class, which groups the in-plane and out-of-plane parts of a
-	  &field;, along with their time derivatives, all of which are
-	  &fields; themselves.
+	  &Field;, along with their time derivatives, all of which
+	  are &Fields; themselves.
     </para>
     <para>
       <classname>Field</classname> objects should only be created by
@@ -283,46 +375,30 @@
       linkend="MenuItem-OOF.File.Load.Script">scripts</link>, a
       variable with the <classname>Field</classname>'s name referring
       to the <classname>Field</classname> is defined in the main
-      &oof2; namespace.  That namespace is used in <link
-      linkend="Section-ScriptGUI">text mode</link>, so you can do
-      this:
-      <programlisting>
->>> from ooflib.SWIG.engine import field
->>> g = field.TwoVectorField("gee")  # <co id="fielddef0"/>
->>> g is gee                         # <co id="fielddef1"/>
-True </programlisting>
-      <calloutlist>
-        <callout arearefs="fielddef0">
-          <simpara>
-            This defines a <classname>Field</classname> with the name
-            <userinput>gee</userinput>.
-          </simpara>
-        </callout>
-        <callout arearefs="fielddef1">
-          <simpara>
-            The variable <varname>gee</varname> was created
-            automatically and refers to the same object as
-            <varname>g</varname>.  If the <classname>Field</classname>
-            were constructed elsewhere, <varname>gee</varname> would
-            still be available in this namespace.
-          </simpara>
-        </callout>
-      </calloutlist>
+      &oof2; namespace, which is aslo used in <link
+      linkend="Section-ScriptGUI">text mode</link> and the <link
+      linkend="Section-Windows-Console">Console Window</link>.
     </para>
   </refsection>
+  
   <refsection>
     <title>Methods</title>
+
     <refsection id="Class-Field-name">
-	  <title><code>std::string &amp; name() const</code></title>
+      <title>name</title>
+      <programlisting>
+std::string&amp; name() const </programlisting>
 	  <para>
 	    <methodname>name</methodname> returns the name assigned to
-	    the <classname>Field</classname> when it was created.  See
-	    <xref linkend="Section-Coding-AddFields"/>.
+	    the <classname>Field</classname> when it was created.
 	  </para>
     </refsection><!-- name -->
+    
     <refsection id="Class-Field-ndof">
-	  <title><code>int ndof() const</code></title>
-	  <para>
+	  <title>ndof</title>
+      <programlisting>
+int ndof() const </programlisting>
+      <para>
 	    <methodname>ndof</methodname> returns the number of degrees
 	    of freedom in the <classname>Field</classname>.  This is the
 	    number of data values that must be allocated to store the
@@ -333,64 +409,52 @@ True </programlisting>
 	    <emphasis>in-plane</emphasis> part.
 	  </para>
     </refsection><!-- ndof -->
-    <refsection id="Class-Field-iterator">
-	  <title><code>IteratorP iterator(Planarity p)</code></title>
-	  <para>
-	    <methodname>iterator</methodname> returns an <link
-	    linkend="Class-IteratorP"><classname>IteratorP</classname></link>
-	    object which can be used to loop over all of the degrees of
-	    freedom of a <classname>Field</classname>.  For example, the
-	    following code snippet zeros the values of a
-	    <classname>Field</classname> on a node:
-	    <programlisting>
-          Field field;                   // Assume that this has been set.
-          ElementFuncNodeIterator node;  // This too.
-          FEMesh *mesh;                  // And this.
-          for(IteratorP i=field.iterator(ALL_INDICES); !i.end(); ++i) {
-          DegreeOfFreedom *dof = field(mesh, node, i);
-          dof->value() = 0.0;
-        } </programlisting>
-	  </para>
-    </refsection><!-- iterator -->
+    
     <refsection id="Class-Field-is_defined">
-	  <title><code>bool is_defined(const FEMesh *mesh) const</code></title>
+	  <title>is_defined</title>
+      <programlisting>
+bool is_defined(const CSubProblem* subp) const </programlisting>
 	  <para>
 	    <methodname>is_defined</methodname> indicates whether the
 	    <classname>Field</classname> has been <link
-	    linkend="MenuItem-OOF.Mesh.Field.Define">defined</link> on
-	    the given <link
-	    linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	    linkend="MenuItem-OOF.Mesh.Field.Define">defined</link> on the
+	    given <link
+	    linkend="Class-CSubProblem"><classname>CSubProblem</classname></link>.
 	    Defined <classname>Fields</classname> have been assigned
 	    values on &nodes;.
 	  </para>
     </refsection><!-- is_defined -->
+    
     <refsection id="Class-Field-is_active">
-	  <title><code>bool is_active(const FEMesh *mesh) const</code></title>
+	  <title>is_active</title>
+      <programlisting>
+bool is_active(const CSubProblem *subp) const </programlisting>
 	  <para>
 	    <methodname>is_active</methodname> indicates whether the
 	    <classname>Field</classname> has been <link
 	    linkend="MenuItem-OOF.Mesh.Field.Activate">activated</link> on
 	    the given <link
-	    linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
+	    linkend="Class-CSubProblem"><classname>CSubProblem</classname></link>.
 	    Active <classname>Fields</classname> are being solved for.
 	  </para>
     </refsection><!-- is_active -->
+    
     <refsection id="Class-Field-dofoperator">
-	  <title><code>DegreeOfFreedom *operator()(...)
-	  const</code></title>
+	  <title>operator()</title>
 	  <programlisting>
-        DegreeOfFreedom *operator()(const FuncNode*, int component) const;
-        DegreeOfFreedom *operator()(const FuncNode&amp;, int component) const;
-        DegreeOfFreedom *operator()(const ElementFuncNodeIterator&amp;, int component) const;
-      DegreeOfFreedom *operator()(const ElementFuncNodeIterator&amp;, const IteratorP&amp;) const; </programlisting>
+DegreeOfFreedom* operator()(const &FuncNode;*, int component) const;
+DegreeOfFreedom* operator()(const &FuncNode;&amp;, int component) const;
+DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, int component) const;
+DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, const IndexP&amp;) const; </programlisting>
 	  <para>
-	    This family of methods are all ways of obtaining the value
-	    of a <classname>Field</classname> at the given <link
-	    linkend="Class-Node"><classname>Node</classname></link>.
-	    The different methods are provided for convenience, to allow
-	    different representations of <classname>Nodes</classname> or
-	    <classname>Field</classname> components.  All of these
-	    methods return a pointer to a <link
+	    This family of methods are all ways of obtaining the value of
+	    a <classname>Field</classname> at a given &FuncNode;.
+	    (&FuncNode; is the subclass of &Node; for Nodes that
+	    store <classname>Field</classname> data.)  The different
+	    methods are provided for convenience, to allow different
+	    representations of <classname>Nodes</classname> or
+	    <classname>Field</classname> components.  All of these methods
+	    return a pointer to a <link
 	    linkend="Class-DegreeOfFreedom"><classname>DegreeOfFreedom</classname></link>
 	    object, which wraps the actual <classname>Field</classname>
 	    component value and is stored at the
@@ -406,22 +470,26 @@ True </programlisting>
 	  </para>
 	  <para>
 	    These functions only return <classname>Field</classname>
-	    values at <classname>Nodes</classname>. To get values
-	    interpolated at an arbitrary point within an <link
+	    values at <classname>Nodes</classname>. To get
+	    <classname>Field</classname> values interpolated at an
+	    arbitrary point within an <link
 	    linkend="Class-Element"><classname>Element</classname></link>,
 	    see <link
 	    linkend="Class-Element-outputField"><methodname>Element::outputField</methodname></link>.
 	  </para>
     </refsection><!-- operator() -->
+    
     <refsection id="Class-Field-value">
-	  <title><code>double value(node, component)</code></title>
+	  <title>value</title>
+      <programlisting>
+double value(const &FEMesh;*, const &FuncNode;*, int component) const;
+double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int component) const; </programlisting>
 	  <para>
-	    The <methodname>value</methodname> function is a shortcut
-	    for evaluating a component of a <classname>Field</classname>
-	    at a <classname>Node</classname>.  In C++, the given
-	    <varname>node</varname> must be a <link
-	    linkend="Class-Node"><classname>FuncNode</classname></link>
-	    pointer or a <link
+	    The <methodname>value</methodname> function is a shortcut for
+	    evaluating a component of a <classname>Field</classname> at a
+        <classname>Node</classname>.  In C++, the given
+	    <varname>node</varname> must be a &FuncNode; pointer or a
+	    <link
 	    linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
 	    reference.  In Python, it must be a <link
 	    linkend="Class-Node"><classname>FuncNode</classname></link>
@@ -429,18 +497,15 @@ True </programlisting>
 	  </para>
     </refsection>
     <refsection id="Class-Field-output">
-	  <title><code>OutputValue output(...) const</code></title>
+	  <title>output</title>
 	  <programlisting>
-        OutputValue output(const ElementFuncNodeIterator&amp;) const;
-      OutputValue output(const FuncNode&amp;) const = 0; </programlisting>
+&ArithmeticOutputValue; output(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;) const;
+&ArithmeticOutputValue; output(const &FEMesh;*, const &FuncNode;&amp;) const; </programlisting>
 	  <para>
-	    These functions return an <link
-	    linkend="Class-OutputValue"><classname>OutputValue</classname></link>
-	    object which wraps an <link
-	    linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	    These functions return an &OutputValue;
+	    object which wraps an &OutputVal;
 	    object which contains the value of the
-	    <classname>Field</classname> at the given <link
-	    linkend="Class-Node"><classname>Node</classname></link>.
+	    <classname>Field</classname> at the given &Node;.
 	    These calls are mostly used as a mechanism for generically
 	    transferring <classname>Field</classname> values to Python
 	    when plotting data, but they can also be useful when writing
@@ -450,13 +515,58 @@ True </programlisting>
 	  <para>
 	    The <methodname>output</methodname> functions differ from
 	    <link
-	        linkend="Class-Field-dofoperator"><methodname>Field::operator()</methodname></link>
+	    linkend="Class-Field-dofoperator"><methodname>Field::operator()</methodname></link>
+	    and <link
+	    linkend="Class-Field-value"><methodname>Field::value()</methodname></link>
 	    by returning all of the components of a multi-dimensional
 	    <classname>Field</classname> in one call.
 	  </para>
     </refsection><!-- output -->
 
-  </refsection><!-- Methods -->
+    <refsection id="Class-Field-components">
+      <title>components</title>
+      <programlisting>
+&ComponentsP; components(&Planarity; planarity) const;        
+      </programlisting>
+      <para>
+        <methodname>components</methodname> is used to iterate over
+        the indices of a <classname>Field</classname>.  The optional
+        <varname>planarity</varname> argument determines which
+        components are included.  If it is omitted, <code><link
+        linkend="Class-Planarity">ALL_INDICES</link></code> is assumed.
+      </para>
+      <para>
+        For example,
+        in C++ you can write
+        <programlisting>
+Field *displacement = Field::getField("Displacement");
+for(&IndexP; i : displacement->components(ALL_INDICES)) {
+    // do something with &IndexP; i
+} </programlisting>
+        or
+        <programlisting>
+ComponentsP comps = Field::getField("Displacement")->components(ALL_INDICES);
+for(&IndexP; i=comps.begin(); i!=comps.end(); i++) {
+   // do something with &IndexP; i
+} </programlisting>
+        to loop over all components of the displacement field.  The
+        equivalent in Python is
+        <programlisting>
+for i in displacement.components():
+    # do something with &FieldIndex; i </programlisting>          
+
+        Note that the index object returned in C++ is an &IndexP;,
+        which is a wrapper around a &FieldIndex; pointer.  In Python
+        the wrapping is unnecessary and the index object is just a
+        &FieldIndex;.
+      </para>
+      <para>
+        See <xref linkend="Section-Coding-Indices"/> for an overview,
+        and <xref linkend="Class-ComponentsP"/> for the details.
+      </para>
+    </refsection>
+
+  </refsection><!-- Field Methods -->
 </refentry><!-- Class:Field -->
 
 <!-- ============================================================== -->
@@ -769,12 +879,12 @@ from oof2.SWIG.engine.field import CompoundField
   <refsection>
     <title>Description</title>
     <para>
-	  <classname>ScalarField</classname> is a &field; whose value is
+	  <classname>ScalarField</classname> is a &Field; whose value is
 	  a number at every point in a &mesh;.
 	  <classname>ScalarField</classname>s should always be
 	  constructed in Python (see <xref
 	  linkend="Section-Coding-AddFields"/>).  The constructor has a
-	  single argument, which is the name of the &field;.
+	  single argument, which is the name of the &Field;.
     </para>
     <para>
 	  When a <classname>ScalarField</classname> is constructed,
@@ -795,12 +905,12 @@ from oof2.SWIG.engine.field import CompoundField
 	  linkend="MenuItem-OOF.Mesh.Field.Define">define</link> or
 	  <link
 	      linkend="MenuItem-OOF.Mesh.Field.Activate">activate</link>
-	  the &field;.
+	  the &Field;.
     </para>
     <para>
 	  It is not necessary to keep an explicit reference to a newly
 	  constructed <classname>ScalarField</classname>.  All
-	  &fields; are automatically stored in the list-like object
+	  &Fields; are automatically stored in the list-like object
 	  <code>oof2.SWIG.engine.field.allFields</code>.
     </para>
   </refsection><!-- Description -->
@@ -940,38 +1050,36 @@ from oof2.SWIG.engine.field import CompoundField
   <refsection>
     <title>Description</title>
     <para>
-	  <classname>TwoVectorField</classname> is a &field; whose value
+	  <classname>TwoVectorField</classname> is a &Field; whose value
 	  is a two dimensional (in-plane) vector at every point in a
-	  &mesh;. <classname>TwoVectorField</classname>s should always
-	  be constructed in Python (see <xref
+	  &mesh;. <classname>TwoVectorField</classname>s should always be
+	  constructed in Python (see <xref
 	  linkend="Section-Coding-AddFields"/>). The constructor has a
-	  single argument, which is the name of the &field;.
+	  single argument, which is the name of the &Field;.
     </para>
     <para>
-	  When a <classname>TwoVectorField</classname> is constructed,
-	  its <link linkend="Section-Concepts-Mesh-3D">out-of-plane
-	  part</link> will be constructed automatically.  The
-	  out-of-plane part of a 2-vector field is a 3-vector: the
-	  three dimensional gradient of its <emphasis>z</emphasis>
-	  component.  The name of the out-of-plane part is constructed
-	  by appending <userinput>_z</userinput> to the name of the
-	  in-plane part.
+	  When a <classname>TwoVectorField</classname> is constructed, its
+	  <link linkend="Section-Concepts-Mesh-3D">out-of-plane
+	  part</link> will be constructed automatically.  The out-of-plane
+	  part of a 2-vector field is a 3-vector: the three dimensional
+	  gradient of its <emphasis>z</emphasis> component.  The name of
+	  the out-of-plane part is constructed by appending
+	  <userinput>_z</userinput> to the name of the in-plane part.
     </para>
     <para>
-	  Constructing a <classname>TwoVectorField</classname> and
-	  passing it to <link
+	  Constructing a <classname>TwoVectorField</classname> and passing
+	  it to <link
 	  linkend="Function.advertise"><function>problem.advertise()</function></link>
 	  makes it available for future use.  It does
 	  <emphasis>not</emphasis> automatically <link
-	  linkend="MenuItem-OOF.Mesh.Field.Define">define</link> or
-	  <link
-	      linkend="MenuItem-OOF.Mesh.Field.Activate">activate</link>
-	  the &field;.
+	  linkend="MenuItem-OOF.Mesh.Field.Define">define</link> or <link
+	  linkend="MenuItem-OOF.Mesh.Field.Activate">activate</link> the
+	  &Field;.
     </para>
     <para>
 	  It is not necessary to keep an explicit reference to a newly
 	  constructed <classname>TwoVectorField</classname>.  All
-	  &fields; are automatically stored in the list-like object
+	  &Fields; are automatically stored in the list-like object
 	  <code>oof2.SWIG.engine.field.allFields</code>.
     </para>
   </refsection><!-- Description -->

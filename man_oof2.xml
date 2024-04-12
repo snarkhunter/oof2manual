@@ -133,50 +133,56 @@ linkend='Section-Concepts-Property'><classname>Property</classname></link>">
 <!ENTITY properties "<link
 linkend='Section-Concepts-Property'><classname>Properties</classname></link>">
 
-<!ENTITY field "<link
-linkend='Section-Concepts-Mesh-Field'><classname>Field</classname></link>">
-<!ENTITY fields "<link
-linkend='Section-Concepts-Mesh-Field'><classname>Fields</classname></link>">
+<!ENTITY field "<link linkend='Section-Concepts-Mesh-Field'><classname>Field</classname></link>">
+<!ENTITY fields "<link linkend='Section-Concepts-Mesh-Field'><classname>Fields</classname></link>">
 
-<!ENTITY flux "<link
-linkend='Section-Concepts-Mesh-Flux'><classname>Flux</classname></link>">
-<!ENTITY fluxes "<link
-linkend='Section-Concepts-Mesh-Flux'><classname>Fluxes</classname></link>">
+<!ENTITY flux "<link linkend='Section-Concepts-Mesh-Flux'><classname>Flux</classname></link>">
+<!ENTITY fluxes "<link linkend='Section-Concepts-Mesh-Flux'><classname>Fluxes</classname></link>">
 
-<!ENTITY equation "<link
-linkend='Section-Concepts-Mesh-Equation'><classname>Equation</classname></link>">
-<!ENTITY equations "<link
-linkend='Section-Concepts-Mesh-Equation'><classname>Equations</classname></link>">
+<!ENTITY equation "<link linkend='Section-Concepts-Mesh-Equation'><classname>Equation</classname></link>">
+<!ENTITY equations "<link linkend='Section-Concepts-Mesh-Equation'><classname>Equations</classname></link>">
 
-<!ENTITY layer "<link
-linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
-<!ENTITY layers "<link
-linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
+<!--
+Entities defining links to classes in CH_coding.xml use the class name,
+with capital letters, which distinguishes them from entities defining
+links to the general discussions in CH_concepts.xml.
+-->
 
-<!ENTITY xhat "
- <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
-<!ENTITY yhat "
- <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf y}}\)</alt></inlineequation>">
-<!ENTITY zhat "
- <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf z}}\)</alt></inlineequation>">
-<!ENTITY ahat "
- <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf a}}\)</alt></inlineequation>">
-<!ENTITY bhat "
- <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf b}}\)</alt></inlineequation>">
-<!ENTITY chat "
- <inlineequation><alt role='tex'>\(\hat{\mathrm{\bf c}}\)</alt></inlineequation>">
-<!ENTITY alpha "
-  <inlineequation><alt role='tex'>\(\alpha\)</alt></inlineequation>">
-<!ENTITY beta "
-  <inlineequation><alt role='tex'>\(\beta\)</alt></inlineequation>">
-<!ENTITY gamma "
-  <inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
-<!ENTITY phi "
-  <inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
-<!ENTITY psi "
-  <inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
-<!ENTITY theta "
-  <inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
+<!ENTITY ArithmeticOutputValue "<link linkend='Class-ArithmeticOutputValue'><code>ArithmeticOutputValue</code></link>">
+<!ENTITY ComponentsP "<link linkend='Class-ComponentsP'><code>ComponentsP</code></link>">
+<!ENTITY DegreeOfFreedom "<link linkend='Class-dof><code>DegreeOfFreedom</code></link>">
+<!ENTITY ElementFuncNodeIterator "<link linkend='Class-ElementFuncNodeIterator'><code>ElementFuncNodeIterator</code></link>">
+<!ENTITY Equation "<link linkend='Class-Equation'><code>Equation</code></link>">
+<!ENTITY Equations "<link linkend='Class-Equation'><code>Equations</code></link>">
+<!ENTITY FEMesh "<link linkend='Class-FEMesh'><code>FEMesh</code></link>">
+<!ENTITY Field "<link linkend='Class-Field'><code>Field</code></link>">
+<!ENTITY FieldIndex "<link linkend='Class-FieldIndex'><code>FieldIndex</code></link>">
+<!ENTITY Fields "<link linkend='Class-Field'><code>Fields</code></link>">
+<!ENTITY Flux "<link linkend='Class-Flux'><code>Flux</code></link>">
+<!ENTITY Fluxes "<link linkend='Class-Flux'><code>Fluxes</code></link>">
+<!ENTITY FuncNode "<link linkend='Class-FuncNode'><code>FuncNode</code></link>">
+<!ENTITY IndexP "<link linkend='Class-IndexP'><code>IndexP</code></link>">
+<!ENTITY Node "<link linkend='Class-Node'><code>Node</code></link>">
+<!ENTITY OutputVal "<link linkend='Class-OutputVal'><code>OutputVal</code></link>">
+<!ENTITY OutputValue "<link linkend='Class-OutputValue'><code>OutputValue</code></link>">
+<!ENTITY Planarity "<link linkend='Class-Planarity'><code>Planarity</code></link>">
+
+
+<!ENTITY layer "<link linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
+<!ENTITY layers "<link linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
+
+<!ENTITY xhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
+<!ENTITY yhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf y}}\)</alt></inlineequation>">
+<!ENTITY zhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf z}}\)</alt></inlineequation>">
+<!ENTITY ahat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf a}}\)</alt></inlineequation>">
+<!ENTITY bhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf b}}\)</alt></inlineequation>">
+<!ENTITY chat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf c}}\)</alt></inlineequation>">
+<!ENTITY alpha "<inlineequation><alt role='tex'>\(\alpha\)</alt></inlineequation>">
+<!ENTITY beta "<inlineequation><alt role='tex'>\(\beta\)</alt></inlineequation>">
+<!ENTITY gamma "<inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
+<!ENTITY phi "<inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
+<!ENTITY psi "<inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
+<!ENTITY theta "<inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
 <!ENTITY Mmatrix "<inlineequation><alt role='tex'>\(\bf M\)</alt></inlineequation>">
 <!ENTITY Cmatrix "<inlineequation><alt role='tex'>\(\bf C\)</alt></inlineequation>">
 
