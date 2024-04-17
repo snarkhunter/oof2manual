@@ -148,24 +148,26 @@ with capital letters, which distinguishes them from entities defining
 links to the general discussions in CH_concepts.xml.
 -->
 
-<!ENTITY ArithmeticOutputValue "<link linkend='Class-ArithmeticOutputValue'><code>ArithmeticOutputValue</code></link>">
-<!ENTITY ComponentsP "<link linkend='Class-ComponentsP'><code>ComponentsP</code></link>">
-<!ENTITY DegreeOfFreedom "<link linkend='Class-dof><code>DegreeOfFreedom</code></link>">
-<!ENTITY ElementFuncNodeIterator "<link linkend='Class-ElementFuncNodeIterator'><code>ElementFuncNodeIterator</code></link>">
-<!ENTITY Equation "<link linkend='Class-Equation'><code>Equation</code></link>">
-<!ENTITY Equations "<link linkend='Class-Equation'><code>Equations</code></link>">
-<!ENTITY FEMesh "<link linkend='Class-FEMesh'><code>FEMesh</code></link>">
-<!ENTITY Field "<link linkend='Class-Field'><code>Field</code></link>">
-<!ENTITY FieldIndex "<link linkend='Class-FieldIndex'><code>FieldIndex</code></link>">
-<!ENTITY Fields "<link linkend='Class-Field'><code>Fields</code></link>">
-<!ENTITY Flux "<link linkend='Class-Flux'><code>Flux</code></link>">
-<!ENTITY Fluxes "<link linkend='Class-Flux'><code>Fluxes</code></link>">
-<!ENTITY FuncNode "<link linkend='Class-FuncNode'><code>FuncNode</code></link>">
-<!ENTITY IndexP "<link linkend='Class-IndexP'><code>IndexP</code></link>">
-<!ENTITY Node "<link linkend='Class-Node'><code>Node</code></link>">
-<!ENTITY OutputVal "<link linkend='Class-OutputVal'><code>OutputVal</code></link>">
-<!ENTITY OutputValue "<link linkend='Class-OutputValue'><code>OutputValue</code></link>">
-<!ENTITY Planarity "<link linkend='Class-Planarity'><code>Planarity</code></link>">
+<!ENTITY ArithmeticOutputValue "<link linkend='Class-ArithmeticOutputValue'><classname>ArithmeticOutputValue</classname></link>">
+<!ENTITY ComponentsP "<link linkend='Class-ComponentsP'><classname>ComponentsP</classname></link>">
+<!ENTITY DegreeOfFreedom "<link linkend='Class-dof><classname>DegreeOfFreedom</classname></link>">
+<!ENTITY ElementFuncNodeIterator "<link linkend='Class-ElementFuncNodeIterator'><classname>ElementFuncNodeIterator</classname></link>">
+<!ENTITY Equation "<link linkend='Class-Equation'><classname>Equation</classname></link>">
+<!ENTITY Equations "<link linkend='Class-Equation'><classname>Equations</classname></link>">
+<!ENTITY FEMesh "<link linkend='Class-FEMesh'><classname>FEMesh</classname></link>">
+<!ENTITY Field "<link linkend='Class-Field'><classname>Field</classname></link>">
+<!ENTITY FieldIndex "<link linkend='Class-FieldIndex'><classname>FieldIndex</classname></link>">
+<!ENTITY Fields "<link linkend='Class-Field'><classname>Fields</classname></link>">
+<!ENTITY Flux "<link linkend='Class-Flux'><classname>Flux</classname></link>">
+<!ENTITY Fluxes "<link linkend='Class-Flux'><classname>Fluxes</classname></link>">
+<!ENTITY FuncNode "<link linkend='Class-FuncNode'><classname>FuncNode</classname></link>">
+<!ENTITY IndexP "<link linkend='Class-IndexP'><classname>IndexP</classname></link>">
+<!ENTITY Node "<link linkend='Class-Node'><classname>Node</classname></link>">
+<!ENTITY OutputVal "<link linkend='Class-OutputVal'><classname>OutputVal</classname></link>">
+<!ENTITY OutputValue "<link linkend='Class-OutputValue'><classname>OutputValue</classname></link>">
+<!ENTITY Planarity "<link linkend='Class-Planarity'><classname>Planarity</classname></link>">
+<!ENTITY Property "<link linkend='Class-Property'><classname>Property</classname></link>">
+<!ENTITY Properties "<link linkend='Class-Property'><classname>Property</classname>s</link>">
 
 
 <!ENTITY layer "<link linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">

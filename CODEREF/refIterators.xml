@@ -8,6 +8,23 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<refentry id="Class-ComponentsP">
+  <refnamediv>
+    <refname>ComponentsP</refname>
+    <refpurpose>Container class for iterating over
+    indices</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopsis</title>
+    <para>TODO</para>
+  </refsynopsisdiv>
+  <refsection>
+    <para>
+      TODO
+    </para>
+  </refsection>
+</refentry>
+
 <refentry id="Class-IndexP">
   <refnamediv>
 	<refname>IndexP</refname>

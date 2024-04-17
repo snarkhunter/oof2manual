@@ -159,6 +159,13 @@ from ooflib.SWIG.common import cmicrostructure </programlisting>
       its name and dimension.
     </para>
     <para>
+      When a new material &Property; is created, it indicates which
+      &Fields;, &Fluxes; and &Equations; it uses.  The &Field;,
+      &Flux;, and &Equation; classes themselves are not explicitly
+      tied to any particular &Properties;. See <xref
+      linkend="Section-Coding-Material"/> for the details.
+    </para>
+    <para>
       &oof2; predefines some &Fields;, &Fluxes;, and
       &Equations; in <filename>SRC/engine/problem.py</filename>.
       Refer to that file for examples.
@@ -203,10 +210,10 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       linkend="Class-CompoundField"/> constructors in Python. This
       will create four new Python variables whose names are the name
       of the &Field;, the name of the field suffixed with
-      <quote>_z</quote> for the out-of-plane field, and suffixed with
-      <quote>_t</quote> and <quote>_tz</quote> for the time derivative
-      and its out-of-plane part.  These variables live in the main
-      &oof2; namespace, which is the one in which <link
+      <quote>_z</quote> for the out-of-plane field, and the name
+      suffixed with <quote>_t</quote> and <quote>_tz</quote> for the
+      time derivative and its out-of-plane part.  These variables live
+      in the main &oof2; namespace, which is the one in which <link
       linkend="Section-ScriptGUI">text mode</link>, <link
       linkend="MenuItem-OOF.File.Load.Script">scripts</link> and <link
       linkend="Section-Windows-Console">Console Window</link> commands
@@ -216,7 +223,7 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       Code outside of the main &oof2; namespace can gain access to the
       new &Fields; with the <xref linkend="Function-getField"/>
       function.  Within the script that created the &Field;, the
-      &Field; can of course be referred to via the local variable
+      &Field; can of course be referred to via a local variable
       referring to the new object:
       <programlisting>
 <emphasis role="bold">gee</emphasis> = field.TwoVectorField("<emphasis role="bold">gee</emphasis>")</programlisting>

@@ -8,22 +8,21 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <refentry id="Class-Equation">
-    <refnamediv>
-      <refname>Equation</refname>
-      <refpurpose>Base class for Equations</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <para>
-	(Only those methods useful when extending &oof2; are
-	listed here.)
-      </para>
-      <refsect2>
-	<title>C++ Synopsis</title>
+<refentry id="Class-Equation">
+  <refnamediv>
+    <refname>Equation</refname>
+    <refpurpose>Base class for Equations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <para>
+	  Only those methods useful when extending &oof2; are listed here.
+    </para>
+    <refsect2>
+	  <title>C++ Synopsis</title>
 
-	<literallayout class="monospaced">
-#include "engine/equation.h"
+	  <literallayout class="monospaced">
+        #include "engine/equation.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Equation</classname>
@@ -37,41 +36,43 @@
 	    <methodsynopsis>
 	      <type>int</type>
 	      <methodname><link
-		  linkend="Class-Equation-dim">dim</link></methodname>
+		                  linkend="Class-Equation-dim">dim</link></methodname>
 	      <void/>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <type>int</type>
 	      <methodname><link
-		  linkend="Class-Equation-dim">ndof</link></methodname>
+		                  linkend="Class-Equation-dim">ndof</link></methodname>
 	      <void/>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
+
 	    <methodsynopsis>
-	      <type>IteratorP</type>
+	      <type>CompnentsP</type>
 	      <methodname><link
-		  linkend="Class-Equation-iterator">iterator</link></methodname>
+	                      linkend="Class-Equation-components">components</link></methodname>
 	      <void/>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <type>bool</type>
 	      <methodname><link
-		  linkend="Class-Equation-is_active">is_active</link></methodname>
+		                  linkend="Class-Equation-is_active">is_active</link></methodname>
 	      <methodparam>
-		<type>const FEMesh*</type>
-		<parameter>mesh</parameter>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
+		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
 	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- C++ Synopsis -->
-      <refsect2>
-	<title>Python Synopsis</title>
-	<literallayout class="monospaced">
-from oof2.SWIG.engine.equation import Equation
+    </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2>
+	  <title>Python Synopsis</title>
+	  <literallayout class="monospaced">
+from ooflib.SWIG.engine.equation import Equation</literallayout>
+
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>Equation</classname>
@@ -87,159 +88,194 @@ from oof2.SWIG.engine.equation import Equation
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Equation-iterator">iterator</link></methodname>
+		                  linkend="Class-Equation-components">components</link></methodname>
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Equation-is_active">is_active</link></methodname>
+		                  linkend="Class-Equation-is_active">is_active</link></methodname>
 	      <methodparam>
-		<parameter>mesh</parameter>
+		    <parameter>subproblem</parameter>
 	      </methodparam>
 	    </methodsynopsis>
 	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- Python Synopsis -->
-      <refsect2>
-	<title>Subclasses</title>
-	<itemizedlist spacing="compact">
-	  <listitem>
-	    <simpara><xref linkend="Class-DivergenceEquation"/></simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara><xref linkend="Class-PlaneFluxEquation"/></simpara>
-	  </listitem>
-	</itemizedlist>
-      </refsect2><!-- subclasses -->
-      <refsect2>
-	<title>Source Files</title>
-	<itemizedlist spacing="compact">
-	  <listitem>
-	    <simpara><filename>SRC/engine/equation.h</filename>: C++ header</simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara><filename>SRC/engine/equation.C</filename>: C++ code</simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      <filename>SRC/engine/equation.swg</filename>: SWIG source code
-	    </simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      <filename>SRC/engine/equation.spy</filename>: python code
-	      included in <filename>equation.swg</filename>.
-	    </simpara>
-	  </listitem>
-	</itemizedlist>
-      </refsect2><!-- Source files -->
-    </refsynopsisdiv>
-    <refsection>
-      <title>Description</title>
+    </refsect2>                 <!-- Python Synopsis -->
+    
+    <refsect2>
+	  <title>Subclasses</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><xref linkend="Class-DivergenceEquation"/></simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><xref linkend="Class-PlaneFluxEquation"/></simpara>
+	    </listitem>
+	  </itemizedlist>
+    </refsect2>                 <!-- subclasses -->
+    <refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/equation.h</filename>: C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/equation.C</filename>: C++ code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <filename>SRC/engine/equation.swg</filename>: SWIG source code
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <filename>SRC/engine/equation.spy</filename>: python code
+	        included in <filename>equation.swg</filename>.
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+    </refsect2>                 <!-- Source files -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+	  <classname>Equation</classname> is the abstract base class for
+	  all &equation; objects. Like <link
+	  linkend="Class-Field"><classname>Fields</classname></link> and
+	  <link
+	      linkend="Class-Flux"><classname>Fluxes</classname></link>,
+	  <classname>Equation</classname> instances are global objects
+	  &mdash; there is one instance of each particular
+	  <classname>Equation</classname> that is shared among all
+	  meshes.  For example, there is only one
+	  <literal>Force_Balance</literal>
+	  <classname>Equation</classname>, although many different
+	  meshes may be solving it.
+    </para>
+    <para>
+      Like &Fields; and &Fluxes;, when an
+      <classname>Equation</classname> is created, a reference to it is
+      kept in the main &oof2; namespace with the name of the
+      &Equation;:
+      <programlisting>
+>>> from ooflib.SWIG.engine.equation import PlaneFluxEquation
+>>> eq = PlaneFluxEquation("StressEq", Stress, 3)   # creates variable StressEq
+>>> StressEq is eq
+True </programlisting>
+    </para>
+    <para>
+	  Creating an <classname>Equation</classname> object does
+	  <emphasis>not</emphasis> mean that it will be solved on a
+	  mesh.  Equations are only solved if they have been explicitly
+	  <link
+	      linkend="MenuItem-OOF.Mesh.Equation.Activate">activated</link>
+	  and their <link
+	  linkend="Class-Flux"><classname>Fluxes</classname></link>
+	  depend upon active <link
+	  linkend="Class-Field"><classname>Fields</classname></link> on
+	  the mesh.  Whether or not a <link
+	  linkend="Class-Flux"><classname>Flux</classname></link>
+	  depends on a <link
+	  linkend="Class-Field"><classname>Field</classname></link> is a
+	  function of the mesh's material <link
+	  linkend="Class-Property"><classname>Properties</classname></link>.
+    </para>
+    <para>
+	  The entire API for <classname>Equations</classname> is defined
+	  in the base class.  The derived classes redefine base class
+	  methods but do not add any new ones of their own, except for
+	  their constructors.
+    </para>
+    <para>
+	  Most &oof2; extensions will probably never need to use an
+	  <classname>Equation</classname> object explicitly, aside from
+	  possibly creating a new <classname>Equation</classname> or
+	  checking to see if an <classname>Equation</classname> is active.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-Equation-name">
+	  <title><code>const std::string&amp; name() const</code></title>
+	  <para>
+	    <methodname>name</methodname> returns the name assigned to
+	    the <classname>Equation</classname> when it was created.
+	    See <xref linkend="Section-Coding-AddFields"/>.
+	  </para>
+    </refsection>               <!-- name -->
+    <refsection id="Class-Equation-dim">
+	  <title>
+	    <code>int dim() const</code> and  <code>int ndof() const</code>
+	  </title>
+	  <para>
+	    <methodname>dim</methodname> and
+	    <methodname>ndof</methodname> are equivalent.  They return
+	    the number of components of in the
+	    <classname>Equation</classname>. For example, the heat
+	    equation has one component, while the in-plane force balance
+	    equation has two.
+	  </para>
+    </refsection>               <!-- dim, ndof -->
+    <refsection id="Class-Equation-components">
+	  <title><code>ComponentsP components() const</code></title>
+	  <para>
+	    <methodname>components</methodname> returns an <link
+	    linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
+	    object which can be used to loop over the components of the
+	    <classname>Equation</classname>.  Unlike <link
+	    linkend="Class-Field-components"><methodname>Field::components</methodname></link>,
+	    <methodname>Equation::components</methodname> does not take a
+	    <link
+	    linkend="Class-Planarity"><classname>Planarity</classname></link>
+	    argument.
+	  </para>
       <para>
-	<classname>Equation</classname> is the abstract base class for
-	all &equation; objects. Like <link
-	linkend="Class-Field"><classname>Fields</classname></link> and
-	<link
-	linkend="Class-Flux"><classname>Fluxes</classname></link>,
-	<classname>Equation</classname> instances are global objects
-	&mdash; there is one instance of each particular
-	<classname>Equation</classname> that is shared among all
-	meshes.  For example, there is only one
-	<literal>Force_Balance</literal>
-	<classname>Equation</classname>, although many different
-	meshes may be solving it.
-      </para>
-      <para>
-	Creating an <classname>Equation</classname> object does
-	<emphasis>not</emphasis> mean that it will be solved on a
-	mesh.  Equations are only solved if they have been explicitly
-	<link
-	linkend="MenuItem-OOF.Mesh.Equation.Activate">activated</link>
-	and their <link
-	linkend="Class-Flux"><classname>Fluxes</classname></link>
-	depend upon active <link
-	linkend="Class-Field"><classname>Fields</classname></link> on
-	the mesh.  Whether or not a <link
-	linkend="Class-Flux"><classname>Flux</classname></link>
-	depends on a <link
-	linkend="Class-Field"><classname>Field</classname></link> is a
-	function of the meshes material <link
-	linkend="Class-Property"><classname>Properties</classname></link>.
-      </para>
-      <para>
-	The entire API for <classname>Equations</classname> is defined
-	in the base class.  The derived classes redefine base class
-	methods but do not add any new ones of their own, except for
-	their constructors.
-      </para>
-      <para>
-	Most &oof2; extensions will probably never need to use an
-	<classname>Equation</classname> object explicitly, aside from
-	possibly creating a new <classname>Equation</classname> or
-	checking to see if an <classname>Equation</classname> is active.
-      </para>
-    </refsection>
-    <refsection>
-      <title>Methods</title>
-      <refsection id="Class-Equation-name">
-	<title><code>const std::string&amp; name() const</code></title>
-	<para>
-	  <methodname>name</methodname> returns the name assigned to
-	  the <classname>Equation</classname> when it was created.
-	  See <xref linkend="Section-Coding-AddFields"/>.
-	</para>
-      </refsection><!-- name -->
-      <refsection id="Class-Equation-dim">
-	<title>
-	  <code>int dim() const</code>, <code>int ndof() const</code>
-	</title>
-	<para>
-	  <methodname>dim</methodname> and
-	  <methodname>ndof</methodname> are equivalent.  They return
-	  the number of components of in the
-	  <classname>Equation</classname>. For example, the heat
-	  equation has one component, while the in-plane force balance
-	  equation has two.
-	</para>
-      </refsection><!-- dim, ndof -->
-      <refsection id="Class-Equation-iterator">
-	<title><code>IteratorP iterator() const</code></title>
-	<para>
-	  <methodname>iterator</methodname> returns an <link
-	  linkend="Class-IteratorP"><classname>IteratorP</classname></link>
-	  object which can be used to loop over the components of the
-	  <classname>Equation</classname>.
-	</para>
-      </refsection><!-- iterator -->
-      <refsection id="Class-Equation-is_active">
-	<title><code>bool is_active(const FEMesh *mesh) const</code></title>
-	<para>
-	  <methodname>is_active</methodname> indicates whether or not
-	  the <classname>Equation</classname> is <link
-	  linkend="MenuItem-OOF.Mesh.Equation.Activate">being
-	  solved</link> on the given <link
-	  linkend="Class-FEMesh"><classname>FEMesh</classname></link>.
-	</para>
-      </refsection>
-    </refsection><!-- Methods -->
-  </refentry><!-- Class:Equation -->
+        For example, in C++ you can write
+        <programlisting>
+Equation *eqn = Equation::getEquation("Force_Balance");
+for(&IndexP; index : eqn->components()) {
+   // do something with &IndexP;
+} </programlisting>
+        or in Python:
+        <programlisting>
+from ooflib.SWIG.engine.equation import getEquation
+for index in getEquation("Force_Balance").components():
+   # do something with &FieldIndex; index </programlisting>
 
-  <refentry id="Class-DivergenceEquation">
-    <refnamediv>
-      <refname>DivergenceEquation</refname>
-      <refpurpose>An Equation subclass for divergence equations</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <para>
-	Consult the <link
-	linkend="Class-Equation"><classname>Equation</classname></link>
-	base class for base class method documentation.
+        Note that the index object returned in C++ is an &IndexP;,
+        which is a wrapper around a &FieldIndex; pointer.  In Python
+        the wrapping is unnecessary and the index object is just a
+        &FieldIndex;.
       </para>
-      <refsect2>
-	<title>C++ Synopsis</title>
-	<literallayout class="monospaced">
-#include "engine/equation.h"
+
+    </refsection>               <!-- iterator -->
+    <refsection id="Class-Equation-is_active">
+	  <title><code>bool is_active(const CSubProblem *subproblem) const</code></title>
+	  <para>
+	    <methodname>is_active</methodname> indicates whether or not
+	    the <classname>Equation</classname> is <link
+	    linkend="MenuItem-OOF.Subproblem.Equation.Activate">being
+	    solved</link> on the given <link
+	    linkend="Class-CSubProblem"><classname>subproblem</classname></link>.
+	  </para>
+    </refsection>
+  </refsection>                 <!-- Methods -->
+</refentry>                     <!-- Class:Equation -->
+
+<refentry id="Class-DivergenceEquation">
+  <refnamediv>
+    <refname>DivergenceEquation</refname>
+    <refpurpose>An Equation subclass for divergence equations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <para>
+	  Consult the <link
+	  linkend="Class-Equation"><classname>Equation</classname></link>
+	  base class for base class method documentation.
+    </para>
+    <refsect2>
+	  <title>C++ Synopsis</title>
+	  <literallayout class="monospaced">
+#include "engine/equation.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>DivergenceEquation</classname>
@@ -248,13 +284,12 @@ from oof2.SWIG.engine.equation import Equation
 	      <classname><link linkend="Class-Equation">Equation</link></classname>
 	    </ooclass>
 	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- C++ synopsis -->
-      <refsect2>
-	<title>Python Synopsis</title>
-	<literallayout class="monospaced">
-from oof2.SWIG.engine.equation import DivergenceEquation
-	  <classsynopsis language="python">
+    </refsect2><!-- C++ synopsis -->
+    <refsect2>
+	  <title>Python Synopsis</title>
+	  <literallayout class="monospaced">
+from ooflib.SWIG.engine.equation import DivergenceEquation </literallayout>
+      <classsynopsis language="python">
 	    <ooclass>
 	      <classname>DivergenceEquation</classname>
 	    </ooclass>
@@ -263,124 +298,131 @@ from oof2.SWIG.engine.equation import DivergenceEquation
 	    </ooclass>
 	    <constructorsynopsis>
 	      <methodname><link
-		  linkend="Class-DivergenceEquation-__init__">__init__</link></methodname>
+		                  linkend="Class-DivergenceEquation-__init__">__init__</link></methodname>
 	      <methodparam>
-		<parameter>name</parameter>
+		    <parameter>name</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>flux</parameter>
+		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>dim</parameter>
+		    <parameter>dim</parameter>
 	      </methodparam>
 	    </constructorsynopsis>
 	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- python synopsis -->
-      <refsect2>
-	<title>Source Files</title>
-	<itemizedlist spacing="compact">
-	  <listitem>
-	    <simpara><filename>SRC/engine/equation.h</filename>: C++ header</simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara><filename>SRC/engine/equation.C</filename>: C++ code</simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      <filename>SRC/engine/equation.swg</filename>: SWIG source code
-	    </simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      <filename>SRC/engine/equation.spy</filename>: python code
-	      included in <filename>equation.swg</filename>.
-	    </simpara>
-	  </listitem>
-	</itemizedlist>
-      </refsect2><!-- source files -->
-    </refsynopsisdiv>
-    <refsection>
-      <title>Description</title>
-      <para>
-	The <classname>DivergenceEquation</classname> class represents
-	<link
-	linkend="Section-Concepts-Mesh-Equation-Divergence">equations</link>
-	of the form
-	  <equation id="Eqn-DivergenceReprise">
+    </refsect2><!-- python synopsis -->
+    <refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/equation.h</filename>: C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/equation.C</filename>: C++ code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <filename>SRC/engine/equation.swg</filename>: SWIG source code
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <filename>SRC/engine/equation.spy</filename>: python code
+	        included in <filename>equation.swg</filename>.
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+    </refsect2><!-- source files -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+	  The <classname>DivergenceEquation</classname> class represents
+	  <link
+	  linkend="Section-Concepts-Mesh-Equation-Divergence">equations</link>
+	  of the form <xref linkend="Eqn-Divergence"/> or, more generally, <xref
+	  linkend="Eqn-TimeDivergence"/>:
+      <equation id="Eqn-DivergenceReprise">
 	    <alt role="tex">
 	      \[
-	      \nabla\cdot\mathrm{(flux)} = \mathrm{(generalized\ applied\ force)}
+	      {\bf M}\frac{\partial^2}{\partial t^2}\mathrm{field}
+	      + {\bf C}\frac{\partial}{\partial t}\mathrm{field}
+	      + \nabla\cdot\mathrm{flux} + \mathrm{force} = 0.
 	      \]
 	    </alt>
 	  </equation>
-	<classname>DivergenceEquation</classname> objects should only
-	be constructed in Python.  See <xref
-	linkend="Section-Coding-AddFields"/> for more information.
-      </para>
+
+	  <classname>DivergenceEquation</classname> objects should only be
+	  constructed in Python.  Other than the constructor, its methods
+	  that are useful for extension authors are all defined in the
+	  &Equation; base class.  See <xref
+	  linkend="Section-Coding-AddFields"/> for more information.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-DivergenceEquation-__init__">
+	  <title><code>DivergenceEquation(name, flux, dim)</code></title>
+	  <para>
+	    The <classname>DivergenceEquation</classname> python
+	    constructor takes three arguments:
+	    <variablelist>
+	      <varlistentry>
+	        <term>name</term>
+	        <listitem>
+		      <simpara>
+		        The name of the equation, as it will be seen in the
+		        GUI.
+		      </simpara>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term>flux</term>
+	        <listitem>
+		      <simpara>
+		        A <link
+		        linkend="Class-Flux"><classname>Flux</classname></link>
+		        object.  This is the flux that appears on the left
+		        hand side of Eq. <xref
+		        linkend="Eqn-DivergenceReprise"/>.
+		      </simpara>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term>dim</term>
+	        <listitem>
+		      <simpara>
+		        The integer dimension of the equation.  This should be
+		        equal to the number of in-plane components of the
+		        divergence of the flux.  The dimension of the heat
+                equation is 1 and the dimension of the force balance
+                equation is 2.
+		      </simpara>
+	        </listitem>
+	      </varlistentry>
+	    </variablelist>
+	  </para>
     </refsection>
-    <refsection>
-      <title>Methods</title>
-      <refsection id="Class-DivergenceEquation-__init__">
-	<title><code>DivergenceEquation(name, flux, dim)</code></title>
-	<para>
-	  The <classname>DivergenceEquation</classname> python
-	  constructor takes three arguments:
-	  <variablelist>
-	    <varlistentry>
-	      <term>name</term>
-	      <listitem>
-		<simpara>
-		  The name of the equation, as it will be seen in the
-		  GUI.
-		</simpara>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term>flux</term>
-	      <listitem>
-		<simpara>
-		  A <link
-		  linkend="Class-Flux"><classname>Flux</classname></link>
-		  object.  This is the flux that appears on the left
-		  hand side of Eq. <xref
-		  linkend="Eqn-DivergenceReprise"/>.
-		</simpara>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term>dim</term>
-	      <listitem>
-		<simpara>
-		  The integer dimension of the equation.  This should
-		  be equal to the number of in-plane components
-		  of the flux.
-		</simpara>
-	      </listitem>
-	    </varlistentry>
-	  </variablelist>
-	</para>
-      </refsection>
-    </refsection>
-  </refentry><!-- Class:Equation:DivergenceEquation -->
-  
-  <refentry id="Class-PlaneFluxEquation">
-    <refnamediv>
-      <refname>PlaneFluxEquation</refname>
-      <refpurpose>An Equation subclass for enforcing plane-flux constraints</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <para>
-	Consult the <link
-	linkend="Class-Equation"><classname>Equation</classname></link>
-	base class for base class method documentation.
-      </para>
-      <refsect2>
-	<title>C++ Synopsis</title>
-	<literallayout class="monospaced">
-#include "engine/equation.h"
-	  <classsynopsis language="cpp">
+  </refsection>
+</refentry>                 <!-- Class:Equation:DivergenceEquation -->
+
+<refentry id="Class-PlaneFluxEquation">
+  <refnamediv>
+    <refname>PlaneFluxEquation</refname>
+    <refpurpose>An Equation subclass for enforcing plane-flux constraints</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <para>
+	  Consult the <link
+	  linkend="Class-Equation"><classname>Equation</classname></link>
+	  base class for base class method documentation.
+    </para>
+    <refsect2>
+	  <title>C++ Synopsis</title>
+	  <literallayout class="monospaced">
+#include "engine/equation.h" </literallayout>
+      <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>PlaneFluxEquation</classname>
 	    </ooclass>
@@ -388,12 +430,11 @@ from oof2.SWIG.engine.equation import DivergenceEquation
 	      <classname><link linkend="Class-Equation">Equation</link></classname>
 	    </ooclass>
 	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- C++ synopsis -->
-      <refsect2>
-	<title>Python Synopsis</title>
-	<literallayout class="monospaced">
-from oof2.SWIG.engine.equation import PlaneFluxEquation
+    </refsect2><!-- C++ synopsis -->
+    <refsect2>
+	  <title>Python Synopsis</title>
+	  <literallayout class="monospaced">
+from ooflib.SWIG.engine.equation import PlaneFluxEquation </literallayout>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>PlaneFluxEquation</classname>
@@ -403,105 +444,105 @@ from oof2.SWIG.engine.equation import PlaneFluxEquation
 	    </ooclass>
 	    <constructorsynopsis>
 	      <methodname><link
-		  linkend="Class-PlaneFluxEquation-__init__">__init__</link></methodname>
+		                  linkend="Class-PlaneFluxEquation-__init__">__init__</link></methodname>
 	      <methodparam>
-		<parameter>name</parameter>
+		    <parameter>name</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>flux</parameter>
+		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>dim</parameter>
+		    <parameter>dim</parameter>
 	      </methodparam>
 	    </constructorsynopsis>
 	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- python synopsis -->
-      <refsect2>
-	<title>Source Files</title>
-	<itemizedlist spacing="compact">
-	  <listitem>
-	    <simpara><filename>SRC/engine/equation.h</filename>: C++ header</simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara><filename>SRC/engine/equation.C</filename>: C++ code</simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      <filename>SRC/engine/equation.swg</filename>: SWIG source code
-	    </simpara>
-	  </listitem>
-	  <listitem>
-	    <simpara>
-	      <filename>SRC/engine/equation.spy</filename>: python code
-	      included in <filename>equation.swg</filename>.
-	    </simpara>
-	  </listitem>
-	</itemizedlist>
-      </refsect2><!-- source files -->
-    </refsynopsisdiv>
-    <refsection>
-      <title>Description</title>
-      <para>
-	<classname>PlaneFluxEquations</classname> set the <link
-	linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
-	components of a <link
-	linkend="Class-Flux"><classname>Flux</classname></link> to
-	zero.  They are solved simultaneously with <link
-	linkend="Class-DivergenceEquation"><classname>DivergenceEquations</classname></link>
-	to enforce &oof2;'s generalized plane-stress conditions.
-      </para>
-      <para>
-	<classname>PlaneFluxEquations</classname> should only be
-	created by calling their Python constructor.  See <xref
-	linkend="Section-Coding-AddFields"/> for more information.
-      </para>
+    </refsect2><!-- python synopsis -->
+    <refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/equation.h</filename>: C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/equation.C</filename>: C++ code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <filename>SRC/engine/equation.swg</filename>: SWIG source code
+	      </simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara>
+	        <filename>SRC/engine/equation.spy</filename>: python code
+	        included in <filename>equation.swg</filename>.
+	      </simpara>
+	    </listitem>
+	  </itemizedlist>
+    </refsect2><!-- source files -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+	  <classname>PlaneFluxEquations</classname> set the <link
+	  linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
+	  components of a <link
+	  linkend="Class-Flux"><classname>Flux</classname></link> to
+	  zero.  They are solved simultaneously with <link
+	  linkend="Class-DivergenceEquation"><classname>DivergenceEquations</classname></link>
+	  to enforce &oof2;'s generalized plane-stress conditions.
+    </para>
+    <para>
+	  <classname>PlaneFluxEquation</classname> objects should only be
+	  created by calling their Python constructor.  Other than the
+	  constructor, its methods that are useful for extension authors
+	  are all defined in the &Equation; base class.  See <xref
+	  linkend="Section-Coding-AddFields"/> for more information.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-PlaneFluxEquation-__init__">
+	  <title><code>PlaneFluxEquation(name, flux, dim)</code></title>
+	  <para>
+	    The <classname>PlaneFluxEquation</classname> python
+	    constructor takes three arguments:
+	    <variablelist>
+	      <varlistentry>
+	        <term>name</term>
+	        <listitem>
+		      <simpara>
+		        The name of the equation, as it will be seen in the
+		        GUI.
+		      </simpara>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term>flux</term>
+	        <listitem>
+		      <simpara>
+		        The <link
+		        linkend="Class-Flux"><classname>Flux</classname></link>
+		        object whose out-of-plane components are to be
+		        constrained.
+		      </simpara>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term>dim</term>
+	        <listitem>
+		      <simpara>
+		        The integer dimension of the equation.  This should
+		        be equal to the number of out-of-plane components of
+		        the <link
+		        linkend="Class-Flux"><classname>Flux</classname></link>.
+		      </simpara>
+	        </listitem>
+	      </varlistentry>
+	    </variablelist>
+	  </para>
     </refsection>
-    <refsection>
-      <title>Methods</title>
-      <refsection id="Class-PlaneFluxEquation-__init__">
-	<title><code>PlaneFluxEquation(name, flux, dim)</code></title>
-	<para>
-	  The <classname>PlaneFluxEquation</classname> python
-	  constructor takes three arguments:
-	  <variablelist>
-	    <varlistentry>
-	      <term>name</term>
-	      <listitem>
-		<simpara>
-		  The name of the equation, as it will be seen in the
-		  GUI.
-		</simpara>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term>flux</term>
-	      <listitem>
-		<simpara>
-		  The <link
-		  linkend="Class-Flux"><classname>Flux</classname></link>
-		  object whose out-of-plane components are to be
-		  constrained.
-		</simpara>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term>dim</term>
-	      <listitem>
-		<simpara>
-		  The integer dimension of the equation.  This should
-		  be equal to the number of out-of-plane components of
-		  the <link
-		  linkend="Class-Flux"><classname>Flux</classname></link>.
-		</simpara>
-	      </listitem>
-	    </varlistentry>
-	  </variablelist>
-	</para>
-      </refsection>
-    </refsection>
-  </refentry><!-- Class:Equation:PlaneFluxEquation -->
-
+  </refsection>
+</refentry><!-- Class:Equation:PlaneFluxEquation -->
 
 <!-- Keep this comment at the end of the file
   Local variables:

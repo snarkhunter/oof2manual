@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refFlux.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:13 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,21 +8,20 @@
   the authors at oof_manager@nist.gov.
 -->
 
-   <refentry id="Class-Flux">
-    <refnamediv>
-      <refname>Flux</refname>
-      <refpurpose>Base class for &fluxes;</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <para>
-	(Only those methods useful when extending &oof2; are
-	listed here.)
-      </para>
-      <refsect2>
-	<title>C++ Synopsis</title>
-	<literallayout class="monospaced">
-#include "engine/flux.h"
+<refentry id="Class-Flux">
+  <refnamediv>
+    <refname>Flux</refname>
+    <refpurpose>Base class for &fluxes;</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <para>
+	  Only those methods useful when extending &oof2; are listed here.
+    </para>
+    <refsect2>
+	  <title>C++ Synopsis</title>
+	  <literallayout class="monospaced">
+#include "engine/flux.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Flux</classname>
@@ -47,80 +41,93 @@
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <type>int</type>
-	      <methodname><link
-		  linkend="Class-Flux-divergence_dim">divergence_dim</link></methodname>
-	      <void/>
-	      <modifier>const</modifier>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <type>IteratorP</type>
-	      <methodname><link
-		  linkend="Class-Flux-iterator">iterator</link></methodname>
-	      <methodparam>
-		<type>Planarity</type>
-		<parameter>planarity</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <type>IteratorP</type>
-	      <methodname><link
-		  linkend="Class-Flux-divergence_iterator">divergence_iterator</link></methodname>
-	      <void/>
-	      <modifier>const</modifier>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <type>OutputValue</type>
-	      <methodname><link
-		  linkend="Class-Flux-output">output</link></methodname>
-	      <methodparam>
-		<type>const FEMesh*</type>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const MasterPosition&amp;</type>
-		<parameter>pos</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis>
-	  </classsynopsis>
-	</literallayout>
-      </refsect2><!-- C++ Synopsis -->
-      <refsect2>
-	<title>Python Synopsis</title>
-	<literallayout class="monospaced">
-from oof2.SWIG.engine import Flux
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname>Flux</classname>
-	    </ooclass>
-	    <methodsynopsis>
-	      <methodname><link linkend="Class-Flux-name">name</link></methodname>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <methodname><link linkend="Class-Flux-ndof">ndof</link></methodname>
-	      <void/>
-	    </methodsynopsis>
-	    <methodsynopsis>
 	      <methodname><link linkend="Class-Flux-divergence_dim">divergence_dim</link></methodname>
 	      <void/>
+	      <modifier>const</modifier>
 	    </methodsynopsis>
 	    <methodsynopsis>
-	      <methodname><link
-		  linkend="Class-Flux-iterator">iterator</link></methodname>
+	      <type>ComponentsP</type>
+	      <methodname><link linkend="Class-Flux-components">components</link></methodname>
+	        <methodparam>
+		      <type>Planarity</type>
+		      <parameter>planarity</parameter>
+	        </methodparam>
+	        <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>ComponentsP</type>
+	      <methodname><link linkend="Class-Flux-divergencecomponents">divergenceComponents</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>ComponentsP</type>
+	      <methodname><link linkend="Class-Flux-oopcomponents">outOfPlaneComponents</link></methodname>
+	      <void/>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <type>ArithmeticOutputValue</type>
+	      <methodname><link linkend="Class-Flux-output">output</link></methodname>
 	      <methodparam>
-		<parameter>planarity</parameter>
+            <modifier>const</modifier>
+		    <type>FEMesh*</type>
+		    <parameter>mesh</parameter>
 	      </methodparam>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>Element*</type>
+		    <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>MasterPosition&amp;</type>
+		    <parameter>pos</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
 	    </methodsynopsis>
 	  </classsynopsis>
-	</literallayout>
-
-      </refsect2><!-- Python Synopsis -->
-      <refsect2>
+    </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2>
+	<title>Python Synopsis</title>
+	<literallayout class="monospaced">
+from oof2.SWIG.engine import Flux </literallayout>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Flux</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Flux-name">name</link></methodname>
+        <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Flux-ndof">ndof</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Flux-divergence_dim">divergence_dim</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		                linkend="Class-Flux-components">components</link></methodname>
+	    <methodparam>
+		  <parameter>planarity</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		                linkend="Class-Flux-divergencecomponents">divergenceComponents</link></methodname>
+        <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		                linkend="Class-Flux-oopcomponents">outOfPlaneComponents</link></methodname>
+        <void/>
+	  </methodsynopsis>
+	</classsynopsis>
+  </refsect2>                   <!-- Python Synopsis -->
+  <refsect2>
 	<title>Subclasses</title>
 	<itemizedlist spacing="compact">
 	  <listitem>
@@ -163,136 +170,159 @@ from oof2.SWIG.engine import Flux
     <refsection>
       <title>Description</title>
       <para>
-	<classname>Flux</classname> is the base class for all &flux;
-	objects.  Like <link
-	linkend="Class-Field"><classname>Fields</classname></link> and
-	<link
-	linkend="Class-Equation"><classname>Equations</classname></link>,
-	<classname>Fluxes</classname> are global objects.  There is
-	only one stress flux object, even though stress may be
-	computed on many different meshes.
-	<classname>Flux</classname> objects store information about
-	the physical flux, but do not store its values.
+	    <classname>Flux</classname> is the base class for all &flux;
+	    objects.  Like <link
+	    linkend="Class-Field"><classname>Fields</classname></link> and
+	    <link
+	    linkend="Class-Equation"><classname>Equations</classname></link>,
+	    <classname>Fluxes</classname> are global objects.  There is
+	    only one stress flux object, even though stress may be
+	    computed on many different meshes.
+	    <classname>Flux</classname> objects store information about
+	    the physical flux, but do not store its values.
       </para>
       <para>
-	<classname>Fluxes</classname> should only be created in
-	Python.  See <xref linkend="Section-Coding-AddFields"/>.
+	    <classname>Fluxes</classname> should only be created by
+	    calling the Python constructors of the derived classes.  As
+	    with &Fields; and &Equations; references to
+	    <classname>Flux</classname> objects are kept in the main
+	    &oof2; namespace in a variable whose name is the name passed
+	    to the derived class constructor.  See <xref
+	    linkend="Section-Coding-AddFields"/>. It is also possible to
+	    retrieve a <classname>Flux</classname> by name using the <xref
+	    linkend="Function-getFlux"/> function.
       </para>
     </refsection>
     <refsection>
       <title>Methods</title>
       <refsection id="Class-Flux-name">
-	<title><code>std::string &amp;name() const</code></title>
-	<para>
-	  This returns the name that was assigned to this
-	  <classname>Flux</classname> when it was created.
-	  See <xref linkend="Section-Coding-AddFields"/>.
-	</para>
-      </refsection><!-- name -->
+	    <title><code>std::string &amp;name() const</code></title>
+	    <para>
+	      This returns the name that was assigned to this
+	      <classname>Flux</classname> when it was created.  See <xref
+	      linkend="Section-Coding-AddFields"/>.
+	    </para>
+      </refsection>             <!-- name -->
       <refsection id="Class-Flux-ndof">
-	<title><code>int ndof() const</code></title>
-	<para>
-	  <methodname>ndof</methodname> returns the number of floating
-	  point numbers required to represent a value of the
-	  <classname>Flux</classname>.
-	</para>
-      </refsection><!-- ndof -->
+	    <title><code>int ndof() const</code></title>
+	    <para>
+	      <methodname>ndof</methodname> returns the number of floating
+	      point numbers required to represent a value of the
+	      <classname>Flux</classname>.
+	    </para>
+      </refsection>             <!-- ndof -->
       <refsection id="Class-Flux-divergence_dim">
-	<title><code>int divergence_dim() const</code></title>
-	<para>
-	  <methodname>divergence_dim</methodname> returns the number
-	  of <emphasis>in-plane</emphasis> components in the
-	  <classname>Flux</classname>'s divergence.  This is equal to
-	  the number of <link
-	  linkend="Class-Equation"><classname>Equations</classname></link>
-	  required to solve the <classname>Flux</classname>'s
-	  divergence equation.
-	</para>
-      </refsection><!-- divergence_dim -->
-      <refsection id="Class-Flux-iterator">
-	<title>
-	  <code>const IteratorP iterator(Planarity planarity) const</code>
-	</title>
-	<para>
-	  <methodname>iterator</methodname> returns an <link
-	  linkend="Class-IteratorP">IteratorP</link> object that can
-	  be used to loop over and refer to the components of the
-	  <classname>Flux</classname>.  The given <link
-	  linkend="Class-Planarity"><classname>Planarity</classname></link>
-	  determines whether the iteration should include the
-	  in-plane, out-of-plane, or both components.
-	</para>
-      </refsection><!-- iterator -->
-      <refsection id="Class-Flux-divergence_iterator">
-	<title><code>IteratorP divergence_iterator() const</code></title>
-	<para>
-	  <methodname>divergence_iterator</methodname> returns an
-	  <link
-	  linkend="Class-IteratorP"><classname>IteratorP</classname></link>
-	  that can be used to loop over the in-plane components of the
-	  divergence of the <classname>Flux</classname>.
-	</para>
-      </refsection><!-- divergence_iterator -->
+	    <title><code>int divergence_dim() const</code></title>
+	    <para>
+	      <methodname>divergence_dim</methodname> returns the number
+	      of <emphasis>in-plane</emphasis> components in the
+	      <classname>Flux</classname>'s divergence.  This is equal to
+	      the number of <link
+	      linkend="Class-Equation"><classname>Equations</classname></link>
+	      required to solve the <classname>Flux</classname>'s
+	      divergence equation.
+	    </para>
+      </refsection>             <!-- divergence_dim -->
+      <refsection id="Class-Flux-components">
+	    <title>
+	      <code>const ComponentsP components(Planarity planarity) const</code>
+	    </title>
+	    <para>
+	      <methodname>components</methodname> returns an <link
+	      linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
+	      object that can be used to loop over and refer to the
+	      components of the <classname>Flux</classname>.  The given
+	      <link
+	      linkend="Class-Planarity"><classname>Planarity</classname></link>
+	      determines whether the iteration should include the in-plane
+	      components, out-of-plane components, or both.
+	    </para>
+      </refsection>             <!-- components -->
+      <refsection id="Class-Flux-divergencecomponents">
+	    <title><code>ComponentsP divergenceComponents() const</code></title>
+	    <para>
+	      <methodname>divergenceComponents</methodname> returns an
+	      <link
+	      linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
+	      object that can be used to loop over the in-plane components
+	      of the divergence of the <classname>Flux</classname>.
+	    </para>
+      </refsection>                 <!-- divergenceComponents -->
+      <refsection id="Class-Flux-oopcomponents">
+	    <title><code>ComponentsP outOfPlaneComponents() const</code></title>
+	    <para>
+	      <methodname>outOfPlaneComponents</methodname> returns an
+	      <link
+	      linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
+	      object that can be used to loop over the out-of-plane
+	      components of the <classname>Flux</classname>.
+	    </para>
+        <para>
+          TODO: Explain the difference between
+          Flux.components(OUT_OF_PLANE) and Flux.outOfPlaneComponents().
+        </para>
+        
+      </refsection>                 <!-- outOfPlaneComponents -->
       <refsection id="Class-Flux-output">
-	<title>
-	  <code>
-	    OutputValue output(...) const
-	  </code>
-	</title>
-	<para>
-	  <methodname>output</methodname> is analogous to <link
-	  linkend="Class-Field-output"><methodname>Field::output</methodname></link>
-	  &mdash; it returns the value of the
-	  <classname>Flux</classname> at a given point.  The return
-	  value is an <link
-	  linkend="Class-OutputValue"><classname>OutputValue</classname></link>,
-	  which wraps the appropriate <link
-	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
-	  derived class.
-	</para>
-	<para>The arguments are:
-	  <variablelist>
-	    <varlistentry>
-	      <term><code>const <link
-		    linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
-	      <listitem>
-		<para>
-		  The finite element mesh on which the
-		  <classname>Flux</classname> is to be computed.
-		</para>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term><code>const <link
-	      linkend="Class-Element">Element</link>*
-	      element</code></term>
-	      <listitem>
-		<para>
-		  The element containing the point at which the
-		  <classname>Flux</classname> is to be computed.
-		</para>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term>
-		<code>
-		  const <link
-		    linkend="Class-MasterCoord">MasterPosition</link>&amp;
-		  pos
-		</code>
-	      </term>
-	      <listitem>
-		<para>
-		  The position of the output point, specified as a
-		  point in the element's master coordinate space.
-		  Master space coordinates can be converted to
-		  physical coordinates by <link
-		  linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.
-		</para>
-	      </listitem>
-	    </varlistentry>
-	  </variablelist>
-	</para>
+	    <title>
+	      <code>
+	        OutputValue output(...) const
+	      </code>
+	    </title>
+	    <para>
+	      <methodname>output</methodname> is analogous to <link
+	      linkend="Class-Field-output"><methodname>Field::output</methodname></link>
+	      &mdash; it returns the value of the
+	      <classname>Flux</classname> at a given point.  The return
+	      value is an <link
+	      linkend="Class-OutputValue"><classname>OutputValue</classname></link>,
+	      which wraps the appropriate <link
+	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	      derived class.
+	    </para>
+	    <para>The arguments are:
+	    <variablelist>
+	      <varlistentry>
+	        <term><code>const <link
+	        linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+	        <listitem>
+		      <para>
+		        The finite element mesh on which the
+		        <classname>Flux</classname> is to be computed.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term><code>const <link
+	        linkend="Class-Element">Element</link>*
+	        element</code></term>
+	        <listitem>
+		      <para>
+		        The element containing the point at which the
+		        <classname>Flux</classname> is to be computed.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term>
+		      <code>
+		        const <link
+		        linkend="Class-MasterCoord">MasterPosition</link>&amp;
+		        pos
+		      </code>
+	        </term>
+	        <listitem>
+		      <para>
+		        The position of the output point, specified as a point
+		        in the element's master coordinate space.  Master
+		        space coordinates can be converted to physical
+		        coordinates by <link
+		        linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	    </variablelist>
+	    </para>
       </refsection>
     </refsection><!-- Methods -->
   </refentry><!-- Flux -->
