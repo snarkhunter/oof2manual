@@ -257,11 +257,37 @@ from oof2.SWIG.engine import Flux </literallayout>
 	      object that can be used to loop over the out-of-plane
 	      components of the <classname>Flux</classname>.
 	    </para>
-        <para>
-          TODO: Explain the difference between
-          Flux.components(OUT_OF_PLANE) and Flux.outOfPlaneComponents().
-        </para>
-        
+        <caution>
+          <title>Possible Confusion</title>
+          <para>
+            The difference between
+            <code>Flux::components(OUT_OF_PLANE)</code> and
+            <code>Flux::outOfPlaneComponents()</code> needs some
+            explanation.  They both refer to the same components of
+            the <classname>Flux</classname>, in the same order.  But
+            the first is used to locate the out-of-plane components in
+            a list that contains all of the components, and the second
+            locates them in a list that contains only the out-of-plane
+            components.  The difference is illustrated by using the
+            <link
+            linkend="FieldIndex-integer"><function>FieldIndex::integer()</function></link>
+            method to examine the list indices of the components:
+          
+            <programlisting>
+>>> list(Stress.components())
+[SymTensorIndex(0,0), SymTensorIndex(1,1), SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2), SymTensorIndex(0,1)]
+>>> list(ij.integer() for ij in Stress.components())
+[0, 1, 2, 3, 4, 5]
+>>> list(Stress.components(OUT_OF_PLANE))
+[SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2)]
+>>> list(ij.integer() for ij in Stress.components(OUT_OF_PLANE))
+[2, 3, 4]
+>>> list(Stress.outOfPlaneComponents())
+[OutOfPlaneSymTensorIndex(2, 2), OutOfPlaneSymTensorIndex(1, 2), OutOfPlaneSymTensorIndex(0, 2)]
+>>> list(ij.integer() for ij in Stress.outOfPlaneComponents())
+[0, 1, 2] </programlisting>
+          </para>
+        </caution>
       </refsection>                 <!-- outOfPlaneComponents -->
       <refsection id="Class-Flux-output">
 	    <title>

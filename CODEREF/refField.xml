@@ -567,22 +567,8 @@ for index in displacement.components():
         See <xref linkend="Section-Coding-Indices"/> for an overview,
         and <xref linkend="Class-ComponentsP"/> for the details.
       </para>
-    </refsection>               <!--Class-Field-components-->
-
-    <refsection id="Class-Field-oop-components">
-      <title>outOfPlaneComponents</title>
-      <programlisting>
-        ComponentsP outOfPlaneComponents() const;</programlisting>
-      
-      <para>
-        Like <link
-        linkend="Class-Field-components"><methodname>components</methodname></link>,
-        <methodname>outOfPlaneComponents</methodname> returns a
-        container that can be iterated over. However, iterating only
-        returns the out-of-plane components of the
-        <classname>Field</classname>.
-      </para>
-      <note>
+      <caution>
+        <title>Possible Confusion</title>
         <para>
           Iterating over the out-of-plane components of a
           <classname>Field</classname> is different than iterating
@@ -610,7 +596,78 @@ for index in displacement.components():
 >>> list(Displacement.out_of_plane().components(OUT_OF_PLANE))
 [VectorFieldIndex(2)] </programlisting>
         </para>
-      </note>
+      </caution>
+    </refsection>               <!--Class-Field-components-->
+
+    <refsection id="Class-Field-oop-components">
+      <title>outOfPlaneComponents</title>
+      <programlisting>
+        ComponentsP outOfPlaneComponents() const;</programlisting>
+      
+      <para>
+        Like <link
+        linkend="Class-Field-components"><methodname>components</methodname></link>,
+        <methodname>outOfPlaneComponents</methodname> returns a
+        container that can be iterated over. However, iterating only
+        returns the out-of-plane components of the
+        <classname>Field</classname>.
+      </para>
+      <caution>
+        <title>More Possible Confusion</title>
+        <para>
+          <code>Field::components(OUT_OF_PLANE)</code> and
+          <code>Field::outOfPlaneComponents()</code> are similar but
+          not identical.  They both refer to the same components of a
+          <classname>Field</classname> and iterate over them in the
+          same order.  But the first is used to locate the
+          out-of-plane components in a list that contains all of the
+          components, while the second is used to iterate over a list
+          that contains only the out-of-plane components.  The
+          difference is illustrated by using the <link
+          linkend="FieldIndex-integer"><function>FieldIndex::integer</function></link>
+          method to examine the list indices of the components:
+          <programlisting>
+>>> list(Displacement.out_of_plane().components())
+[VectorFieldIndex(0), VectorFieldIndex(1), VectorFieldIndex(2)] <co id="foop-comp0"/>
+>>> list(i.integer() for i in Displacement.out_of_plane().components())
+[0, 1, 2]  <co id="foop-comp1"/>
+>>> list(Displacement.out_of_plane().outOfPlaneComponents())
+[OutOfPlaneVectorFieldIndex(2)] <co id="foop-comp2"/>
+>>> list(i.integer() for i in Displacement.out_of_plane().outOfPlaneComponents())
+[0] <co id="foop-comp3"/> </programlisting>
+          <calloutlist>
+            <callout arearefs="foop-comp0">
+              <para>
+                The out-of-plane part of the
+                <varname>Displacement</varname> field is a 3-vector.
+                The index class is <xref linkend="Class-VectorFieldIndex"/>.
+              </para>
+            </callout>
+            <callout arearefs="foop-comp1">
+              <para>
+                When the <xref linkend="Class-VectorFieldIndex"/>
+                objects are used to access an array or list, they
+                select these items.
+              </para>
+            </callout>
+            <callout arearefs="foop-comp2">
+              <para>
+                There is only one out-of-plane component of the
+                3-vector.  It's conventional index is 2 or z, but ...
+              </para>
+            </callout>
+            <callout arearefs="foop-comp3">
+              <para>
+                ... the actual index used when computing positions is
+                0, because
+                <function>Field::outOfPlaneComponents</function> is
+                used to get a position in a container that contains
+                only the out-of-plane components.
+              </para>
+            </callout>
+          </calloutlist>
+        </para>
+      </caution>
     </refsection>               <!--Class-Field-oop-components-->
 
   </refsection>                 <!-- Field Methods -->
