@@ -91,7 +91,7 @@
     <refsect2>
 	<title>Python Synopsis</title>
 	<literallayout class="monospaced">
-from oof2.SWIG.engine import Flux </literallayout>
+from ooflib.SWIG.engine import Flux </literallayout>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>Flux</classname>
@@ -257,7 +257,7 @@ from oof2.SWIG.engine import Flux </literallayout>
 	      object that can be used to loop over the out-of-plane
 	      components of the <classname>Flux</classname>.
 	    </para>
-        <caution>
+        <caution id="Flux-confusion">
           <title>Possible Confusion</title>
           <para>
             The difference between
@@ -266,40 +266,75 @@ from oof2.SWIG.engine import Flux </literallayout>
             explanation.  They both refer to the same components of
             the <classname>Flux</classname>, in the same order.  But
             the first is used to locate the out-of-plane components in
-            a list that contains all of the components, and the second
+            a list that contains all of the components and the second
             locates them in a list that contains only the out-of-plane
             components.  The difference is illustrated by using the
             <link
             linkend="FieldIndex-integer"><function>FieldIndex::integer()</function></link>
-            method to examine the list indices of the components:
-          
+            method to examine the list indices of the components.
+          </para>
+          <para>
+            For example, here are all the components of the Stress.
+            (<link
+                linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+            is the &FieldIndex; subclass for symmetric tensor indices):
             <programlisting>
 >>> list(Stress.components())
-[SymTensorIndex(0,0), SymTensorIndex(1,1), SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2), SymTensorIndex(0,1)]
+[SymTensorIndex(0,0), SymTensorIndex(1,1), SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2), SymTensorIndex(0,1)]</programlisting>
+
+            <link
+            linkend="Class-FieldIndex-integer"><function>FieldIndex::integer</function></link>
+            converts a &FieldIndex; into the equivalent integer
+            position in an array or list:
+            <programlisting>
 >>> list(ij.integer() for ij in Stress.components())
-[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5] </programlisting>
+
+             <function>components(OUT_OF_PLANE)</function> simply
+             returns the out-of-plane parts of this set of indices,
+             with the same integer positions:
+             <programlisting>
 >>> list(Stress.components(OUT_OF_PLANE))
 [SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2)]
 >>> list(ij.integer() for ij in Stress.components(OUT_OF_PLANE))
-[2, 3, 4]
+[2, 3, 4] </programlisting>
+
+            <function>outOfPlaneComponents</function> return the
+            same indices, using a different &FieldIndex; subclass, and
+            the integer indices are appropriate for a list or array
+            containing only the out-of-plane components:
+            <programlisting>
 >>> list(Stress.outOfPlaneComponents())
 [OutOfPlaneSymTensorIndex(2, 2), OutOfPlaneSymTensorIndex(1, 2), OutOfPlaneSymTensorIndex(0, 2)]
 >>> list(ij.integer() for ij in Stress.outOfPlaneComponents())
 [0, 1, 2] </programlisting>
+          </para>
+          <para>
+            A similar issue arises with <link
+            linkend="Field-confusion"><classname>Fields</classname></link>.
           </para>
         </caution>
       </refsection>                 <!-- outOfPlaneComponents -->
       <refsection id="Class-Flux-output">
 	    <title>
 	      <code>
-	        OutputValue output(...) const
+	        ArithmeticOutputValue output(const FEMesh*, const Element*, const MasterPosition&amp;) const
 	      </code>
 	    </title>
 	    <para>
-	      <methodname>output</methodname> is analogous to <link
+	      <methodname>output</methodname> is similar to <link
 	      linkend="Class-Field-output"><methodname>Field::output</methodname></link>
 	      &mdash; it returns the value of the
-	      <classname>Flux</classname> at a given point.  The return
+	      <classname>Flux</classname> at a given point.  It differs in
+	      that it is computed at an arbitrary point within an &elem;,
+	      specified by a <xref linkend="Class-MasterPosition"/>,
+	      instead of at a &node;.<footnote><para>This is because
+	      &fluxes; depend on &field; gradients, which are computed
+	      within &elems;, whereas &Field; values are stored at
+	      &nodes;. </para></footnote>
+        </para>
+        <para>
+          The return
 	      value is an <link
 	      linkend="Class-OutputValue"><classname>OutputValue</classname></link>,
 	      which wraps the appropriate <link
@@ -353,7 +388,6 @@ from oof2.SWIG.engine import Flux </literallayout>
     </refsection><!-- Methods -->
   </refentry><!-- Flux -->
 
-
   <refentry id="Class-VectorFlux">
     <refnamediv>
       <refname>VectorFlux</refname>
@@ -378,7 +412,7 @@ from oof2.SWIG.engine import Flux </literallayout>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine.flux import VectorFlux </programlisting>
+from ooflib.SWIG.engine.flux import VectorFlux </programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>VectorFlux</classname>
@@ -577,7 +611,7 @@ from oof2.SWIG.engine.flux import VectorFlux </programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import flux</programlisting>
+from ooflib.SWIG.engine import flux</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>FluxData</classname>
