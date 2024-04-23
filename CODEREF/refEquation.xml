@@ -49,12 +49,26 @@
 	    </methodsynopsis>
 
 	    <methodsynopsis>
-	      <type>CompnentsP</type>
+	      <type>ComponentsP</type>
 	      <methodname><link
 	                      linkend="Class-Equation-components">components</link></methodname>
 	      <void/>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>FieldIndex*</type>
+          <methodname><link
+                          linkend="Class-Equation-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <parameter>name</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        
 	    <methodsynopsis>
 	      <type>bool</type>
 	      <methodname><link
@@ -78,18 +92,33 @@ from ooflib.SWIG.engine.equation import Equation</literallayout>
 	      <classname>Equation</classname>
 	    </ooclass>
 	    <methodsynopsis>
-	      <methodname><link linkend="Class-Equation-name">name</link></methodname>
+	      <methodname><link
+                          linkend="Class-Equation-name">name</link></methodname>
+          <void/>
 	    </methodsynopsis>
 	    <methodsynopsis>
-	      <methodname><link linkend="Class-Equation-dim">dim</link></methodname>
+	      <methodname><link
+                          linkend="Class-Equation-dim">dim</link></methodname>
+          <void/>
 	    </methodsynopsis>
 	    <methodsynopsis>
-	      <methodname><link linkend="Class-Equation-dim">ndof</link></methodname>
+	      <methodname><link
+                          linkend="Class-Equation-dim">ndof</link></methodname>
+          <void/>
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <methodname><link
 		                  linkend="Class-Equation-components">components</link></methodname>
+          <void/>
 	    </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Equation-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
 	    <methodsynopsis>
 	      <methodname><link
 		                  linkend="Class-Equation-is_active">is_active</link></methodname>
@@ -232,7 +261,7 @@ True </programlisting>
         <programlisting>
 Equation *eqn = Equation::getEquation("Force_Balance");
 for(&IndexP; index : eqn->components()) {
-   // do something with &IndexP;
+   // do something with &IndexP; index
 } </programlisting>
         or in Python:
         <programlisting>
@@ -245,8 +274,37 @@ for index in getEquation("Force_Balance").components():
         the wrapping is unnecessary and the index object is just a
         &FieldIndex;.
       </para>
+    </refsection>               <!-- components -->
 
-    </refsection>               <!-- iterator -->
+    <refsection id="Class-Equation-getIndex">
+      <title><code>getIndex</code></title>
+      <programlisting>
+FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
+
+      <para>
+        <function>getIndex()</function> returns a &FieldIndex; object,
+        given the <varname>name</varname> of the desired index.
+        Different <classname>Equation</classname> subclasses expect
+        different strings, and return different subclasses of
+        &FieldIndex;.  For example, a <link
+        linkend="Class-DivergenceEquation"><classname>DivergenceEquation</classname></link>
+        of a <link
+        linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>
+        expects the <varname>name</varname> to be
+        <userinput>"x"</userinput> or <userinput>y</userinput>, and
+        returns a <link
+        linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>.
+      </para>
+      <para>
+        In C++ the returned value is a pointer to a newly allocated
+        object.  The caller is responsible for deleting it.  An easy
+        way to do that is to wrap it in an &IndexP;:
+        <programlisting>
+Equation *eqn = ...;
+IndexP index = IndexP(eqn->getIndex("x")); </programlisting>
+      </para>
+    </refsection>               <!-- getIndex -->
+    
     <refsection id="Class-Equation-is_active">
 	  <title><code>bool is_active(const CSubProblem *subproblem) const</code></title>
 	  <para>

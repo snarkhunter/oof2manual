@@ -227,6 +227,19 @@
           <void/>
           <modifier>const</modifier>
         </methodsynopsis>
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>FieldIndex*</type>
+          <methodname><link
+                          linkend="Class-Field-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <parameter>name</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
         
 	  </classsynopsis>
     </refsect2><!-- Field C++ Synopsis -->
@@ -289,6 +302,14 @@ from ooflib.SWIG.engine.field import Field </literallayout>
           <methodname><link
                           linkend="Class-Field-oop-components">outOfPlaneComponents</link></methodname>
           <void/>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Field-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
         </methodsynopsis>
         
 	  </classsynopsis>
@@ -618,7 +639,7 @@ ComponentsP outOfPlaneComponents() const;</programlisting>
           <programlisting>
 >>> list(Displacement.out_of_plane().<emphasis role="bold">outOfPlaneComponents()</emphasis>)
 [OutOfPlaneVectorFieldIndex(2)]
->>> list(i.integer() for i in Displacement.<emphasis role="bold">out_of_plane().outOfPlaneComponents()</emphasis>)
+>>> list(i.integer() for i in Displacement.out_of_plane().<emphasis role="bold">outOfPlaneComponents()</emphasis>)
 [0]       </programlisting>
         </para>
         <para>
@@ -628,8 +649,35 @@ ComponentsP outOfPlaneComponents() const;</programlisting>
       </caution>
     </refsection>               <!--Class-Field-oop-components-->
 
+    <refsection id="Class-Field-getIndex">
+      <title><code>getIndex</code></title>
+      <programlisting>
+FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
+
+      <para>
+        <function>getIndex()</function> returns a &FieldIndex; object,
+        given the <varname>name</varname> of the desired index.
+        Different <classname>Field</classname> subclasses expect
+        different strings, and return different subclasses of
+        &FieldIndex;.  For example, a <link
+        linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>
+        expects the <varname>name</varname> to be
+        <userinput>"x"</userinput> or <userinput>"y"</userinput>, and
+        returns a <link
+        linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>.
+      </para>
+      <para>
+        In C++ the returned value is a pointer to a newly allocated
+        object.  The caller is responsible for deleting it.  An easy
+        way to do that is to wrap it in an &IndexP;:
+        <programlisting>
+Field *field = ...;
+IndexP index = IndexP(field->getIndex("x")); </programlisting>
+      </para>
+    </refsection>
+
   </refsection>                 <!-- Field Methods -->
-</refentry>                     <!-- Class:Field -->
+</refentry>                     <!-- Field -->
 
 <!-- ============================================================== -->
 
@@ -958,6 +1006,17 @@ from ooflib.SWIG.engine.field import CompoundField
 	      </methodparam>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>FieldIndex*</type>
+          <methodname><link linkend="Class-ScalarField-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <parameter>name</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- getIndex -->
 	  </classsynopsis>
     </refsect2><!-- C++ Synopsis -->
     <refsect2>
@@ -976,8 +1035,14 @@ from ooflib.SWIG.engine.field import ScalarField </literallayout>
 		    <parameter>name</parameter>
 	      </methodparam>
 	    </constructorsynopsis>
+        <methodsynopsis>
+          <methodname><link linkend="Class-ScalarField-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
+        </methodsynopsis>
 	  </classsynopsis>
-    </refsect2><!-- Python Synopsis -->
+    </refsect2>                 <!-- Python Synopsis -->
     <refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -1030,7 +1095,8 @@ from ooflib.SWIG.engine.field import ScalarField </literallayout>
   <refsection>
     <title>Methods</title>
     <para>
-	  Methods defined in the base classes are not mentioned here.
+	  Methods defined in the base classes are not mentioned here,
+      unless the derived class functions behave differently in some way.
     </para>
     <refsection id="Class-ScalarField-dofoperator">
 	  <title><code>DegreeOfFreedom* operator()(...)</code></title>
@@ -1052,7 +1118,18 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
 	    field is a bit silly.  However, there is no Python equivalent
         of these functions.
 	  </para>
-    </refsection>
+    </refsection>               <!-- operator() -->
+    <refsection id="Class-ScalarField-getIndex">
+      <title>
+        <code>FieldIndex *getIndex(const std::string &amp;name) const</code>
+      </title>
+      <para>
+        <code>ScalarField::getIndex()</code> returns a pointer to a
+        <link
+        linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>.
+        The <varname>name</varname> argument is ignored.
+      </para>
+    </refsection>               <!-- getIndex -->
   </refsection>                 <!-- Methods -->
 </refentry>                     <!-- Class:ScalarField -->
 
@@ -1088,6 +1165,17 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
 	      <classname><link
 	                     linkend="Class-CompoundField">CompoundField</link></classname>
 	    </ooclass>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>FieldIndex*</type>
+          <methodname><link linkend="Class-TwoVectorField-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <parameter>name</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- getIndex -->
 	  </classsynopsis>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
@@ -1106,6 +1194,12 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
 		    <parameter>name</parameter>
 	      </methodparam>
 	    </constructorsynopsis>
+        <methodsynopsis>
+          <methodname><link linkend="Class-TwoVectorField-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- getIndex -->
 	  </classsynopsis>
     </refsect2>                 <!-- Python Synopsis -->
     <refsect2>
@@ -1160,10 +1254,19 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
   </refsection>                 <!-- Description -->
   <refsection>
     <title>Methods</title>
-    <para>
-      <classname>TwoVectorField</classname> does not define any
-      methods that aren't in its base classes.
-    </para>
+    <refsection id="Class-TwoVectorField-getIndex">
+      <title>
+        <code>FieldIndex *getIndex(const std::string &amp;name) const</code>
+      </title>
+      <para>
+        <code>TwoVectorField::getIndex()</code> returns a pointer to a
+        <link
+        linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>.
+        The <varname>name</varname> argument can be
+        <userinput>"x"</userinput> or <userinput>"y"</userinput>.
+      </para>
+    </refsection>               <!-- getIndex -->
+
   </refsection>                 <!-- Methods -->
 </refentry>                     <!-- Class:Field:TwoVectorField -->
 
@@ -1192,6 +1295,17 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
 	      <classname><link
 	                     linkend="Class-Field">Field</link></classname>
 	    </ooclass>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>FieldIndex*</type>
+          <methodname><link linkend="Class-ThreeVectorField-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <parameter>name</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- getIndex -->
 	  </classsynopsis>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
@@ -1205,6 +1319,12 @@ from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
 	    <ooclass>
 	      <classname><link linkend="Class-Field">Field</link></classname>
 	    </ooclass>
+        <methodsynopsis>
+          <methodname><link linkend="Class-ThreeVectorField-getIndex">getIndex</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- getIndex -->
 	  </classsynopsis>
     </refsect2>                 <!-- Python Synopsis -->
     <refsect2>
@@ -1242,6 +1362,22 @@ from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
       linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>.
     </para>
   </refsection>
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-ThreeVectorField-getIndex">
+      <title>
+        <code>FieldIndex *getIndex(const std::string &amp;name) const</code>
+      </title>
+      <para>
+        <code>ThreeVectorField::getIndex()</code> returns a pointer to
+        a <link
+        linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>.
+        The <varname>name</varname> argument can be
+        <userinput>"x"</userinput>, <userinput>"y"</userinput>, or
+        <userinput>"z"</userinput>.
+      </para>
+    </refsection>               <!-- getIndex -->
+  </refsection>                 <!-- Methods -->
 </refentry>
 
 

@@ -325,121 +325,123 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       <filename>fieldindex</filename> module provides a generic
       mechanism for doing this, so that it's possible to loop over all
       of the components of an object without even having to know how
-      many indices are required to specify a component.  For example,
-      it takes two indices to specify a tensor component, one for a
-      vector, and zero for a scalar, but all three cases can be
-      handled identically.
+      many indices are required to specify a component.  It takes two
+      indices to specify a tensor component, one for a vector, and
+      zero for a scalar, but all three cases can be handled
+      identically.
     </para>
     <para>
-      The base class for indices is <xref
-      linkend="Class-FieldIndex"/>.  There are subclasses of <xref
-      linkend="Class-FieldIndex"/> for different kinds of &Fields;,
-      and &Fluxes; and &Equations;.  (From now on we'll talk about
-      &Fields;, but everything also applies to &Fluxes; and
-      &Equations;, unless explicitly stated otherwise.)  To handle the
-      polymorphism, generic C++ code doesn't use the <xref
-      linkend="Class-FieldIndex"/> classes directly.  Instead it uses
-      a wrapper class, <xref linkend="Class-IndexP"/>, which is a
-      light-weight object that contains a pointer (hence the
-      <quote>P</quote> in the name) to a <xref
-      linkend="Class-FieldIndex"/>.  An <classname>IndexP</classname>
-      provide access to its <classname>FieldIndex</classname> and
+      The base class for indices is &FieldIndex; There are subclasses
+      of &FieldIndex; for different kinds of &Fields;, &Fluxes;, and
+      &Equations;.  (From now on we'll talk about &Fields;, but
+      everything also applies to &Fluxes; and &Equations;, unless
+      explicitly stated otherwise.)  To handle the polymorphism,
+      generic C++ code doesn't use the &FieldIndex; classes directly.
+      Instead it uses a wrapper class, &IndexP;,
+      which is a light-weight object that contains a pointer (hence
+      the <quote>P</quote> in the name) to a &FieldIndex;.  The
+      wrapper frees the user from having to know the actual class
+      being used.  It provides access to its &FieldIndex; and
       deallocates it when it goes out of scope.
     </para>
     <para>
-      For looping over the indices of a &Field;, there is a <xref
-      linkend="Class-Components"/> base class.  Each type of &Field;
-      has a <xref linkend="Method-components"/> method that returns a
-      pointer to an instance of the correct subclass.  The subclasses
-      act as containers which can be iterated over in C++ to obtain 
-      <xref linkend="Class-IndexP"/> objects for each component of the
-      &Field;.  Iterating over them in Python returns actual <xref
-      linkend="Class-FieldIndex"/> objects.
+      Note that &IndexP; does not do reference
+      counting. When an &IndexP; is destructed,
+      its &FieldIndex; is destructed as well.
+      When an &IndexP; is copied, the original
+      &FieldIndex; is copied as well.
+    </para>
+    <para>
+      For looping over the indices of a &Field;, there is a <link
+      linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+      class hierarchy.  Each type of &Field; has a <link
+      linkend="Class-Field-components"><function>components</function></link>
+      method that returns a <link
+      linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
+      object.  <classname>ComponentsP</classname> is a wrapper for a
+      <link linkend="Class-Components"><classname>Components</classname></link> pointer, just as
+      &IndexP; is a wrapper for a
+      &FieldIndex; pointer.
+      The <classname>Components</classname> classes are conceptually
+      containers for &FieldIndex;es.
+      The instances of the
+      <classname>Components</classname> subclasses are static
+      immutable objects, so unlike &IndexP;,
+      <classname>ComponentsP</classname> does not need to do anything
+      special when an object is copied or destroyed.  It's only role
+      is to provide a uniform interface to the subclasses.
+    </para>
+    <para>
+      In C++, <classname>Components</classname> objects have
+      <function>begin()</function> and <function>end()</function>
+      methods that return <classname>ComponentIterator</classname>
+      objects, allowing them to work like STL iterators for looping
+      over indexes.   In Python, the <function>components()</function>
+      methods return generator functions that serve the same purpose.
+      For example, in Python you can print the indices of the
+      components of the temperature and displacement &Fields; like
+      this:
+      <programlisting>
+for i in Temperature.components():
+   print(i)
+for i in Displacement.components():
+   print(i) </programlisting>
+
+      which prints
+      <literallayout class="monospaced">
+ScalarFieldIndex()     <lineannotation>The single component of Temperature</lineannotation>
+VectorFieldIndex(0)    <lineannotation>The first component of Displacement</lineannotation>
+VectorFieldIndex(1)    <lineannotation>The second component of Displacement</lineannotation></literallayout>
+
+      The same task can be accomplished in C++ like this:
+
+      <programlisting>
+Field *temperature = Field::getField("Temperature");
+ComponentsP comps = temperature->components();
+for(ComponentIteratorP ip = comps.begin(); ip!=comps.end(); ++ip)
+  std::cerr &lt;&lt; *ip &lt;&lt; std::endl;
+
+Field *displacement = Field::getField("Displacement");
+ComponentsP comps = displacement->components();
+for(ComponentIteratorP ip = comps.begin(); ip!=comps.end(); ++ip)
+  std::cerr &lt;&lt; *ip &lt;&lt; std::endl; </programlisting>
+  
+      or more compactly using range based for loops like this:
+
+      <programlisting>
+for(IndexP i : Field::getField("Temperature")->components())
+   std::cerr &lt;&lt; i &lt;&lt; std::endl;
+
+for(IndexP i : Field::getField("Displacement")->components())
+   std::cerr &lt;&lt; i &lt;&lt; std::endl; </programlisting>
+
+   both of which print
+   <literallayout class="monospaced">
+IndexP(ScalarFieldIndex())    <lineannotation>The single component of Temperature</lineannotation>
+IndexP(VectorFieldIndex(0))   <lineannotation>The first component of Displacement</lineannotation>
+IndexP(VectorFieldIndex(1))   <lineannotation>The second component of Displacement</lineannotation></literallayout>
     </para>
     <para>
       In some cases it's necessary to restrict iteration to either the
       <link linkend="Section-Concepts-Mesh-3D">in-plane or
-      out-of-plane components</link> of a &Field;.  In those cases,
-      the <methodname>components</methodname> method takes an argument
-      of the <xref linkend="Class-Planarity"/> class.
-    </para>
-    <para>
-      As an example,
-
-      <literallayout class="monospaced">
-% oof2 --text
->>> from ooflib.SWIG.engine import planarity
->>> for i in Temperature.components():
-...    print(i)
-... 
-ScalarFieldIndex()
->>> for i in Displacement.components():
-...    print(i)
-... 
-VectorFieldIndex(0)
-VectorFieldIndex(1)
->>> from ooflib.SWIG.engine.field import ThreeVectorField
-
-      </literallayout>
-
-      The same task could be accomplished in C++ like this:
-
-	  (This is an irresponsible example because <link
-	  linkend="Class-IndexP-components"><methodname>IteratorP::components()</methodname></link>
-	  returns a <code>std::vector&lt;int&gt;*</code> that ought to
-	  be to be deleted.)
-
-      <programlisting>
-for(IteratorP it = displacement->iterator(); !it.end(); ++it)
-  std::cerr &lt;&lt; it.components() &lt;&lt; std::endl;
-
-for(IteratorP it = stress.iterator(); !it.end(); ++it)
-  std::cerr &lt;&lt; it.components() &lt;&lt; std::endl; </programlisting>
-      
-    </para>
-    <para>
-      <classname>IteratorP</classname> and
-      <classname>IndexP</classname> actually are just wrappers for
-      subclasses of <link
-      linkend="Class-FieldIterator"><classname>FieldIterator</classname></link>
+      out-of-plane components</link> of a &Field; or &Flux; (but not
+      an &Equation;).  In those cases, the
+      <methodname>components()</methodname> method takes an argument
+      of the <xref linkend="Class-Planarity"/> class.  If no argument
+      is provided, as in the examples above, the default planarity is
+      <varname>ALL_INDICES</varname>.  See <link
+      linkend="Class-Field-components"><function>Field::components</function></link>,
+      <link
+      linkend="Class-Field-oop-components"><function>Field::outOfPlaneComponents</function></link>,
+      <link
+      linkend="Class-Flux-components"><function>Flux::components</function></link>,
       and <link
-      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>.
-      The wrappers free the user from having to know the actual class
-      being used, and handle memory allocation tasks. In some
-      situations it's necessary and/or convenient to use the
-      underlying class directly.  The
-      <classname>FieldIterator</classname> subclasses are:
-      <itemizedlist spacing="compact">
-	<listitem>
-	  <simpara>
-	    <link
-	    linkend="Class-ScalarFieldIterator"><classname>ScalarFieldIterator</classname></link>
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    <link
-	    linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>,
-	    <link
-	    linkend="Class-OutOfPlaneVectorFieldIterator"><classname>OutOfPlaneVectorFieldIterator</classname></link>
-	  </simpara>
-	</listitem>
-	<listitem>
-	  <simpara>
-	    <link
-	    linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>,
-	    <link
-	    linkend="Class-SymTensorInPlaneIterator"><classname>SymTensorInPlaneIterator</classname></link>,
-	    <link
-	    linkend="Class-SymTensorOutOfPlaneIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>,
-	    <link
-	      linkend="Class-OutOfPlaneSymTensorIterator"><classname>OutOfPlaneSymTensorIterator</classname></link>
-	  </simpara>
-	</listitem>
-      </itemizedlist>
-
+      linkend="Class-Flux-oop-components"><function>Flux::outOfPlaneComponents</function></link>
+      for examples and some important details.
     </para>
-  </section><!-- Indices and Iterators -->
+
+  </section>                    <!-- Indices and Iterators -->
+  
   <section id="Section-Coding-Conjugates">
     <title>Conjugate Pairs</title>
     <warning>
@@ -496,10 +498,8 @@ conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
       pair; <varname>equation</varname> is an &Equation; object;
       <varname>field</varname> is a &Field; object, and
       <varname>eqncomp</varname> and <varname>fieldcomp</varname> are
-      either <link
-      linkend="Section-Coding-Indices"><classname>FieldIndex</classname></link>
-      objects or lists of them.  For example, the following code
-      establishes the correspondence between the
+      either &FieldIndex; objects or lists of them.  For example, the
+      following code establishes the correspondence between the
       <emphasis>x</emphasis> and <emphasis>y</emphasis> components of
       the displacement field and the force balance equation
       (<code>import</code> statements have been omitted for
@@ -1155,18 +1155,15 @@ ComponentOutput = output.Output(
 	  <callout arearefs="example2-convert">
 	    <para>
 	      The <varname>component</varname> is passed in in a
-	      user-friendly string form (such as
-	      <literal>'x'</literal> or <literal>'yz'</literal>).
-	      This line asks the <link
+	      user-friendly string form (such as <literal>'x'</literal> or
+	      <literal>'yz'</literal>).  This line asks the <link
 	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
 	      class to convert the string into a computer-friendly
-	      <link
-	      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
-	      object.  (<code>field[0]</code> is used just because
-	      it's an <classname>OutputVal</classname> of the correct
-	      type. Its actual value isn't important here.)  Different
-	      kinds of <classname>OutputVal</classname> interpret the
-	      strings differently.
+	      &FieldIndex; object.  (<code>field[0]</code> is used just
+	      because it's an <classname>OutputVal</classname> of the
+	      correct type. Its actual value isn't important here.)
+	      Different kinds of <classname>OutputVal</classname>
+	      interpret the strings differently.
 	    </para>
 	  </callout>
 	  <callout arearefs="example2-extract">
@@ -1760,7 +1757,7 @@ propertyregistration.PropertyRegistration(
     </section>
 
     <section id="Section-Coding-Iterators" role="reference">
-      <title>Field Iterators and Related Objects</title>
+      <title>Field Indices, Iterators, and Related Objects</title>
       &refIterators;
     </section>
 
