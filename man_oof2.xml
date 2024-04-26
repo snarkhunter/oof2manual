@@ -149,7 +149,9 @@ links to the general discussions in CH_concepts.xml.
 -->
 
 <!ENTITY ArithmeticOutputValue "<link linkend='Class-ArithmeticOutputValue'><classname>ArithmeticOutputValue</classname></link>">
-<!ENTITY ComponentsP "<link linkend='Class-ComponentsP'><classname>ComponentsP</classname></link>">
+<!ENTITY Components "<link linkend='Class-Components'><classname>Components</classname></link>">
+<!ENTITY ComponentIterator "<link linkend='Class-ComponentIterator'><classname>ComponentIterator</classname></link>">
+<!ENTITY ComponentIteratorP "<link linkend='Class-ComponentIteratorP'><classname>ComponentIteratorP</classname></link>">
 <!ENTITY DegreeOfFreedom "<link linkend='Class-dof><classname>DegreeOfFreedom</classname></link>">
 <!ENTITY ElementFuncNodeIterator "<link linkend='Class-ElementFuncNodeIterator'><classname>ElementFuncNodeIterator</classname></link>">
 <!ENTITY Equation "<link linkend='Class-Equation'><classname>Equation</classname></link>">

@@ -208,7 +208,7 @@
 
         <methodsynopsis>
           <modifier>virtual</modifier>
-          <type>ComponentsP</type>
+          <type>Components*</type>
           <methodname><link
                           linkend="Class-Field-components">components</link></methodname>
           <methodparam>
@@ -221,7 +221,7 @@
 
         <methodsynopsis>
           <modifier>virtual</modifier>
-          <type>ComponentsP</type>
+          <type>Components*</type>
           <methodname><link
                           linkend="Class-Field-oop-components">outOfPlaneComponents</link></methodname>
           <void/>
@@ -548,7 +548,7 @@ double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int componen
     <refsection id="Class-Field-components">
       <title>components</title>
       <programlisting>
-&ComponentsP; components(&Planarity; planarity) const; </programlisting>
+&Components;* components(&Planarity; planarity) const; </programlisting>
       <para>
         <methodname>components</methodname> returns a container-like
         object that can be iterated over to obtain the indices of a
@@ -564,20 +564,21 @@ double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int componen
         in C++ you can write
         <programlisting>
 Field *displacement = Field::getField("Displacement");
-for(&IndexP; i : displacement->components()) {   # ALL_INDICES is implicit
-    // do something with &IndexP; i
+for(IndexP index : *displacement->components()) { <lineannotation>// ALL_INDICES is implicit</lineannotation>
+    ...                                           <lineannotation>//  Do something with IndexP index</lineannotation>
 } </programlisting>
-        or
+        or, equivalently,
         <programlisting>
-ComponentsP comps = Field::getField("Displacement")->components(ALL_INDICES);
-for(&IndexP; i=comps.begin(); i!=comps.end(); i++) {
-   // do something with &IndexP; i
+Components* comps = Field::getField("Displacement")->components(ALL_INDICES);
+for(ComponentIteratorP i=comps->begin(); i!=comps->end(); i++) {
+   IndexP index = *i;                        <lineannotation>// Dereference ComponentIterator to get IndexP</lineannotation>
+   ...                                       <lineannotation>// Do something with IndexP index</lineannotation>
 } </programlisting>
         to loop over all components of the displacement field.  The
         equivalent in Python is
         <programlisting>
 for index in displacement.components():
-    # do something with &FieldIndex; index </programlisting>          
+    ...                                       <lineannotation># Do something with FieldIndex index</lineannotation> </programlisting>          
 
         Note that the index object returned in C++ is an &IndexP;,
         which is a wrapper around a &FieldIndex; pointer.  In Python
@@ -586,14 +587,14 @@ for index in displacement.components():
       </para>
       <para>
         See <xref linkend="Section-Coding-Indices"/> for an overview,
-        and <xref linkend="Class-ComponentsP"/> for the details.
+        and <xref linkend="Class-Components"/> for the details.
       </para>
     </refsection>               <!--Class-Field-components-->
 
     <refsection id="Class-Field-oop-components">
       <title>outOfPlaneComponents</title>
       <programlisting>
-ComponentsP outOfPlaneComponents() const;</programlisting>
+Components* outOfPlaneComponents() const;</programlisting>
       
       <para>
         Like <link
@@ -669,7 +670,8 @@ FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
       <para>
         In C++ the returned value is a pointer to a newly allocated
         object.  The caller is responsible for deleting it.  An easy
-        way to do that is to wrap it in an &IndexP;:
+        way to do that is to wrap it in an &IndexP;, which will delete
+        the pointer in the &IndexP;'s destructor:
         <programlisting>
 Field *field = ...;
 IndexP index = IndexP(field->getIndex("x")); </programlisting>
@@ -970,7 +972,7 @@ from ooflib.SWIG.engine.field import CompoundField
     <refsect2>
 	  <title>C++ Synopsis</title>
 	  <literallayout class="monospaced">
-        #include "engine/field.h" </literallayout>
+#include "engine/field.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>ScalarField</classname>

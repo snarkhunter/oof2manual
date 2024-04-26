@@ -331,18 +331,18 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       identically.
     </para>
     <para>
-      The base class for indices is &FieldIndex; There are subclasses
+      The base class for indices is &FieldIndex;. There are subclasses
       of &FieldIndex; for different kinds of &Fields;, &Fluxes;, and
       &Equations;.  (From now on we'll talk about &Fields;, but
       everything also applies to &Fluxes; and &Equations;, unless
       explicitly stated otherwise.)  To handle the polymorphism,
       generic C++ code doesn't use the &FieldIndex; classes directly.
-      Instead it uses a wrapper class, &IndexP;,
-      which is a light-weight object that contains a pointer (hence
-      the <quote>P</quote> in the name) to a &FieldIndex;.  The
-      wrapper frees the user from having to know the actual class
-      being used.  It provides access to its &FieldIndex; and
-      deallocates it when it goes out of scope.
+      Instead it uses a wrapper class, &IndexP;, which is a
+      light-weight object that contains a pointer (hence the
+      <quote>P</quote> in the name) to a &FieldIndex;.  The wrapper
+      frees the user from having to know the actual class being used.
+      It provides access to its &FieldIndex; and its virtual
+      functions, and deallocates it when it goes out of scope.
     </para>
     <para>
       Note that &IndexP; does not do reference
@@ -352,74 +352,66 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       &FieldIndex; is copied as well.
     </para>
     <para>
-      For looping over the indices of a &Field;, there is a <link
-      linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
-      class hierarchy.  Each type of &Field; has a <link
-      linkend="Class-Field-components"><function>components</function></link>
-      method that returns a <link
-      linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
-      object.  <classname>ComponentsP</classname> is a wrapper for a
-      <link linkend="Class-Components"><classname>Components</classname></link> pointer, just as
-      &IndexP; is a wrapper for a
-      &FieldIndex; pointer.
-      The <classname>Components</classname> classes are conceptually
-      containers for &FieldIndex;es.
-      The instances of the
-      <classname>Components</classname> subclasses are static
-      immutable objects, so unlike &IndexP;,
-      <classname>ComponentsP</classname> does not need to do anything
-      special when an object is copied or destroyed.  It's only role
-      is to provide a uniform interface to the subclasses.
+      For looping over the indices of a &Field;, there are
+      &Components; and &ComponentIterator; class hierarchies.  Each
+      type of &Field; has a <link
+      linkend="Class-Field-components"><function>components()</function></link>
+      method that returns a &Components; pointer.  The &Components; classes
+      are conceptually containers for &FieldIndex;es.  The instances
+      of the &Components; subclasses are static immutable objects.
     </para>
     <para>
-      In C++, <classname>Components</classname> objects have
+      In C++, &Components; objects have
       <function>begin()</function> and <function>end()</function>
-      methods that return <classname>ComponentIterator</classname>
+      methods that return &ComponentIterator;
       objects, allowing them to work like STL iterators for looping
-      over indexes.   In Python, the <function>components()</function>
-      methods return generator functions that serve the same purpose.
-      For example, in Python you can print the indices of the
-      components of the temperature and displacement &Fields; like
-      this:
+      over indexes.  For example, you can print the indices of the
+      components of the Temperature and Displacement &Fields; like this:
+
       <programlisting>
+Field *temperature = Field::getField("Temperature");
+Components* comps = temperature->components();
+for(ComponentIteratorP ip = comps->begin(); ip!=comps->end(); ++ip)
+  std::cerr &lt;&lt; *ip &lt;&lt; std::endl;
+
+Field *displacement = Field::getField("Displacement");
+Components* comps = displacement->components();
+for(ComponentIteratorP ip = comps->begin(); ip!=comps->end(); ++ip)
+  std::cerr &lt;&lt; *ip &lt;&lt; std::endl; </programlisting>
+
+      or, more compactly, using range based for loops like this:
+
+      <programlisting>
+for(IndexP i : *Field::getField("Temperature")->components())
+   std::cerr &lt;&lt; i &lt;&lt; std::endl;
+
+for(IndexP i : *Field::getField("Displacement")->components())
+   std::cerr &lt;&lt; i &lt;&lt; std::endl; </programlisting>
+
+      both of which print
+   <literallayout class="monospaced">
+IndexP(ScalarFieldIndex())    <lineannotation>The single component of Temperature</lineannotation>
+IndexP(VectorFieldIndex(0))   <lineannotation>The first component of Displacement</lineannotation>
+IndexP(VectorFieldIndex(1))   <lineannotation>The second component of Displacement</lineannotation></literallayout>
+   </para>
+   <para>
+     In Python, the <function>components()</function>
+     methods return generator functions that serve the same purpose.
+     For example, in Python you can print the indices of the
+     components of the temperature and displacement &Fields; like
+     this:
+     <programlisting>
 for i in Temperature.components():
    print(i)
 for i in Displacement.components():
    print(i) </programlisting>
 
-      which prints
-      <literallayout class="monospaced">
+     which prints
+     <literallayout class="monospaced">
 ScalarFieldIndex()     <lineannotation>The single component of Temperature</lineannotation>
 VectorFieldIndex(0)    <lineannotation>The first component of Displacement</lineannotation>
 VectorFieldIndex(1)    <lineannotation>The second component of Displacement</lineannotation></literallayout>
 
-      The same task can be accomplished in C++ like this:
-
-      <programlisting>
-Field *temperature = Field::getField("Temperature");
-ComponentsP comps = temperature->components();
-for(ComponentIteratorP ip = comps.begin(); ip!=comps.end(); ++ip)
-  std::cerr &lt;&lt; *ip &lt;&lt; std::endl;
-
-Field *displacement = Field::getField("Displacement");
-ComponentsP comps = displacement->components();
-for(ComponentIteratorP ip = comps.begin(); ip!=comps.end(); ++ip)
-  std::cerr &lt;&lt; *ip &lt;&lt; std::endl; </programlisting>
-  
-      or more compactly using range based for loops like this:
-
-      <programlisting>
-for(IndexP i : Field::getField("Temperature")->components())
-   std::cerr &lt;&lt; i &lt;&lt; std::endl;
-
-for(IndexP i : Field::getField("Displacement")->components())
-   std::cerr &lt;&lt; i &lt;&lt; std::endl; </programlisting>
-
-   both of which print
-   <literallayout class="monospaced">
-IndexP(ScalarFieldIndex())    <lineannotation>The single component of Temperature</lineannotation>
-IndexP(VectorFieldIndex(0))   <lineannotation>The first component of Displacement</lineannotation>
-IndexP(VectorFieldIndex(1))   <lineannotation>The second component of Displacement</lineannotation></literallayout>
     </para>
     <para>
       In some cases it's necessary to restrict iteration to either the

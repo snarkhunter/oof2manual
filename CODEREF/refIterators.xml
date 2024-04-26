@@ -25,14 +25,6 @@
 	      </ooclass>
 	      <methodsynopsis>
 		    <modifier>virtual</modifier>
-		    <type>FieldIndex*</type>
-		    <methodname><link
-		                    linkend="Class-FieldIndex-clone">clone</link></methodname>
-		    <void/>
-		    <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-		    <modifier>virtual</modifier>
 		    <type>int</type>
 		    <methodname><link
 		                    linkend="Class-FieldIndex-integer">integer</link></methodname>
@@ -49,7 +41,7 @@
 	      </methodsynopsis>
 	    </classsynopsis>
 	  </literallayout>
-	</refsect2><!-- C++ Synopsis -->
+	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
@@ -69,9 +61,9 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 		  <void/>
 	    </methodsynopsis>
 	  </classsynopsis>
-	</refsect2><!-- Python Synopsis -->
+	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
-	  <title>Derived Classes</title>
+	  <title>Subclasses</title>
 	  <itemizedlist spacing="compact">
 	    <listitem>
 	      <simpara>
@@ -92,7 +84,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	      </simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2>
+	</refsect2>                 <!-- Subclasses -->
 	<refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -113,7 +105,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	      python code included in the swig output</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>
@@ -150,24 +142,14 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
       function to Python, it is converted into an object of the
       appropriate derived class.  Thus, in Python every
       <classname>FieldIndex</classname> object is explicitly a <link
-      linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>
-      object, <link
-      linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>
-      object, or other subclass of <classname>FieldIndex</classname>.
+      linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>,
+      <link
+      linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>,
+      or other subclass of <classname>FieldIndex</classname>.
     </para>
-  </refsection><!-- Description -->
+  </refsection>                 <!-- Description -->
   <refsection>
 	<title>Methods</title>
-	<refsection id="Class-FieldIndex-clone">
-	  <title><code>virtual FieldIndex *clone() const</code></title>
-	  <para>
-	    <methodname>clone</methodname> returns a pointer to a new copy
-	    of the <classname>FieldIndex</classname> object of the same
-	    type.  The pointer must be explicitly deallocated.  Using an
-	    &IndexP; instead of a <classname>FieldIndex</classname>
-	    obviates the need for explicit deallocation.
-	  </para>
-	</refsection><!-- clone -->
 	<refsection id="Class-FieldIndex-integer">
 	  <title><code>virtual int integer() const</code></title>
 	  <para>
@@ -251,13 +233,6 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
           </methodparam>
         </constructorsynopsis>
 	    <methodsynopsis>
-		  <type>IndexP</type>
-		  <methodname><link
-		                  linkend="Class-IndexP-cloneIndex">cloneIndex</link></methodname>
-		  <void/>
-		  <modifier>const</modifier>
-	    </methodsynopsis>
-	    <methodsynopsis>
 		  <type>int</type>
 		  <methodname><link
 		                  linkend="Class-IndexP-integer">integer</link></methodname>
@@ -285,7 +260,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 
         </methodsynopsis>
 	  </classsynopsis>
-	</refsect2><!-- C++ Synopsis -->
+	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -306,8 +281,9 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	      python code included in the swig output</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
+
   <refsection>
 	<title>Description</title>
 	<para>
@@ -327,31 +303,35 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	  object.
     </para>
     <para>
-      All of the public &FieldIndex;
-	  methods are available in <classname>IndexP</classname>, so an
+      All of the public &FieldIndex; methods are available in
+      <classname>IndexP</classname>, so an
       <classname>IndexP</classname> can be treated just like a
-      <classname>FieldIndex</classname>.  In C++ an
+      <classname>FieldIndex</classname>.  An
       <classname>IndexP</classname> can be implicitly converted to a
       <classname>const FieldIndex*</classname> or <classname>const
-      FieldIndex&amp;</classname>, so any function expecting a
-      &FieldIndex; argument can also operate on
-      an <classname>IndexP</classname>.
+      FieldIndex&amp;</classname>, so any C++ function expecting a
+      &FieldIndex; argument can also operate on an
+      <classname>IndexP</classname>.
 	</para>
 	<para>
 	  Note that <classname>IndexP</classname> does
 	  <emphasis>not</emphasis> do reference counting. It's not a smart
 	  pointer class.  It's main purpose is to deallocate the
-	  &FieldIndex; pointer that it holds.
+	  &FieldIndex; pointer that it holds and to access the
+	  &FieldIndex; virtual functions.
 	</para>
-    <para>
-      In Python there is no need for the <classname>IndexP</classname>
-      class. Whenever a &FieldIndex; object is returned from a C++
-      function to Python, it is converted into an object of the
-      appropriate derived class, and Python's garbage collection
-      ensures that the &FieldIndex; is destroyed when necessary.
-    </para>
+    <note>
+      <para>
+        In Python there is no need for the
+        <classname>IndexP</classname> class.  Whenever a &FieldIndex;
+        object is returned from a C++ function to Python, it is
+        converted into an object of the appropriate derived class, and
+        Python's garbage collection ensures that the &FieldIndex; is
+        destroyed when necessary.
+      </para>
+    </note>
+  </refsection>                 <!-- description -->
 
-  </refsection><!-- description -->
   <refsection>
 	<title>Methods</title>
 	<refsection id="Class-IndexP-constructor">
@@ -363,67 +343,50 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	    <classname>IndexP</classname> takes over ownership of the
 	    &FieldIndex; and will delete it when necessary.
 	  </para>
-	  <note>
-	    <para>
-	      The <classname>IndexP</classname> constructor is not
-	      available in Python.  It should never be necessary to
-	      construct a new <classname>IndexP</classname> in Python.
-	      Most <classname>IndexP</classname> objects are
-	      constructed by calling a C++ method of a
-	      <classname>Field</classname> (or similar) object.
-	    </para>
-	  </note>
-	</refsection><!-- constructor -->
+	</refsection>               <!-- constructor -->
 	<refsection id="Class-IndexP-copyconstructor">
 	  <title><code>IndexP(const IndexP&amp; other)</code></title>
 	  <para>
-	    The <classname>IndexP</classname> copy constructor creates
-	    a copy of the underlying &FieldIndex;
-	    object as well.
+	    The copy constructor creates a new
+	    <classname>IndexP</classname> wrapping a pointer to a
+	    <emphasis>copy</emphasis> of the underlying &FieldIndex;
+	    object.
 	  </para>
-	</refsection><!-- copy constructor -->
+	</refsection>               <!-- copy constructor -->
     <refsection id="Class-IndexP-moveconstructor">
       <title><code>IndexP(const IndexP&amp;&amp; other)</code></title>
       <para>
-        The <classname>IndexP</classname> move constructor takes over
-        ownership of the &FieldIndex; pointer.  The new
-        <classname>IndexP</classname> object will delete the
-        &FieldIndex; when the <classname>IndexP</classname> is
-        destroyed.
+        The move constructor creates a new
+        <classname>IndexP</classname> that takes ownership of the old
+        <classname>IndexP</classname>'s &FieldIndex; pointer.  The
+        &FieldIndex; will be deleted when the new
+        <classname>IndexP</classname> is destroyed.  The old
+        <classname>IndexP</classname> is invalidated.
       </para>
     </refsection>               <!-- move constructor -->
-	<refsection id="Class-IndexP-cloneIndex">
-	  <title><code>IndexP cloneIndex() const</code></title>
-	  <para>
-	    <methodname>cloneIndex</methodname> is just a wrapper for
-	    the copy constructor.  It's useful to have an explicit
-	    name for this operation when it's invoked from <link
-	    linkend="Class-IteratorP"><classname>IteratorP</classname></link>,
-	    which is derived from <classname>IndexP</classname>.
-	  </para>
-	</refsection><!-- cloneIndex -->
 	<refsection id="Class-IndexP-integer">
 	  <title><code>int integer() const()</code></title>
 	  <para>
-        See <link linkend="Class-FieldIndex-integer"><methodname>FieldIndex::integer</methodname></link>.
+        See <link linkend="Class-FieldIndex-integer"><methodname>FieldIndex::integer()</methodname></link>.
 	  </para>
-	</refsection><!-- integer -->
+	</refsection>               <!-- integer -->
 	<refsection id="Class-IndexP-in_plane">
 	  <title><code>bool in_plane() const</code></title>
 	  <para>
+        See <link linkend="Class-FieldIndex-in_plane"><methodname>FieldIndex::in_plane()</methodname></link>.
 	  </para>
-	</refsection><!-- in_plane -->
+	</refsection>               <!-- in_plane -->
 	<refsection id="Class-IndexP-FieldIndex">
 	  <title>
         <code>operator const FieldIndex&amp;() const</code> and
         <code>operator const FieldIndex*() const</code>
       </title>
 	  <para>
-	    These operators convert an <classname>IndexP</classname> to
-	    a reference or pointer to a <code>const</code>
-	    &FieldIndex;.  This operation is not necessary in Python.
+	    These operators convert an <classname>IndexP</classname> to a
+	    <code>const</code> &FieldIndex; reference or pointer, allowing
+        it to be passed to functions expecting a &FieldIndex; argument.
 	  </para>
-	</refsection><!-- operator const FieldIndex -->
+	</refsection>               <!-- operator const FieldIndex -->
   </refsection>                 <!-- Methods -->
 </refentry>                     <!-- IndexP -->
 
@@ -445,7 +408,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 		  <classname>ScalarFieldIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  <modifier>virtual public</modifier>
+		  <modifier>public</modifier>
 		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
@@ -479,7 +442,7 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 	      SWIG source code</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>
@@ -493,10 +456,7 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 	  linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
 	  It is a trivial class &mdash; it stores no data and most of its
 	  methods are no-ops &mdash; since scalar fields have only one
-	  component.
-	</para>
-    <para>
-      Specifically,
+	  component.  Specifically,
       <itemizedlist>
         <listitem>
           <para>
@@ -532,11 +492,11 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 		  <classname>VectorFieldIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  <modifier>virtual public</modifier>
+		  <modifier>public</modifier>
 		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
-	</refsect2><!-- C++ Synopsis -->
+	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
@@ -549,22 +509,16 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 		  &FieldIndex;
 	    </ooclass>
 	  </classsynopsis>
-	</refsect2><!-- Python Synopsis -->
+	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
-	  <title>Derived Classes</title>
+	  <title>Subclasses</title>
 	  <itemizedlist spacing="compact">
 	    <listitem>
 	      <simpara><link
 		               linkend="Class-OutOfPlaneVectorFieldIndex"><classname>OutOfPlaneVectorFieldIndex</classname></link></simpara>
 	    </listitem>
-	    <listitem>
-	      <simpara>
-		    <link
-		        linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>
-	      </simpara>
-	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Derived Classes -->
+	</refsect2>                 <!-- Subclasses -->
 	<refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -581,7 +535,7 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 	      SWIG source code</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>
@@ -592,7 +546,7 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 	  linkend="Class-Flux"><classname>Flux</classname></link>, or
 	  <link
 	  linkend="Class-Equation"><classname>Equation</classname></link>.
-	  It is often used within an &IndexP; wrapper.  See the &IndexP;
+	  It is often used within an &IndexP; wrapper.  See the &FieldIndex;
 	  documentation for details on the available methods.
 	</para>
   </refsection>
@@ -620,7 +574,7 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 		  <classname><link linkend="Class-VectorFieldIndex">VectorFieldIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
-	</refsect2><!-- C++ Synopsis -->
+	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
@@ -633,18 +587,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 		  <classname>VectorFieldIndex</classname>
 	    </ooclass>
 	  </classsynopsis>
-	</refsect2><!-- Python Synopsis -->
-	<refsect2>
-	  <title>Derived Classes</title>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara>
-		    <link
-		        linkend="Class-OutOfPlaneVectorFieldIterator"><classname>OutOfPlaneVectorFieldIterator</classname></link>
-	      </simpara>
-	    </listitem>
-	  </itemizedlist>
-	</refsect2><!-- Derived Classes -->
+	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -661,7 +604,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 	      SWIG source code</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>
@@ -680,7 +623,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 	  There is some potential for confusion here.  The <link
 	  linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>
 	  used in &oof2; has only in-plane components, so an
-	  <classname>OutOfPlaneVectorFieldIndex</classname> willl
+	  <classname>OutOfPlaneVectorFieldIndex</classname> will
 	  never be used to refer to its components.  But
 	  <classname>TwoVectorField</classname> is also a <link
 	  linkend="Class-CompoundField"><classname>CompoundField</classname></link>,
@@ -690,14 +633,15 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 	  <emphasis>This</emphasis> vector has a z component,
 	  <inlineequation>
 	    <alt role="tex">\(\partial u_z/\partial z\)</alt>
-	    </inlineequation>, which can be referred to by an
-	    <classname>OutOfPlaneVectorFieldIndex</classname>.
-	    Following these subtleties isn't really important, though,
-	    because most of the time &FieldIndex;
-	    objects are created by the <classname>Fields</classname>
-	    themselves (<foreignphrase>e.g,</foreignphrase> with <link
-	    linkend="Class-Field-iterator"><methodname>Field::iterator</methodname></link>,
-	    which automatically does the right thing.
+	  </inlineequation>,
+      which can be referred to by an
+      <classname>OutOfPlaneVectorFieldIndex</classname>.  Following
+      these subtleties isn't really important, though, because most of
+      the time &FieldIndex; objects are created by the
+      <classname>Fields</classname> themselves
+      (<foreignphrase>e.g,</foreignphrase> with <link
+      linkend="Class-Field-components"><methodname>Field::components()</methodname></link>),
+      which automatically do the right thing.
 	</para>
   </refsection>
 </refentry>                     <!-- OutOfPlaneVectorFieldIndex -->
@@ -768,7 +712,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 		  </methodparam>
 	    </methodsynopsis>
 	  </classsynopsis>
-	</refsect2><!-- C++ Synopsis -->
+	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
@@ -795,9 +739,9 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 		  <modifier>const</modifier>
 	    </methodsynopsis>
 	  </classsynopsis>
-	</refsect2><!-- Python Synopsis -->
+	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
-	  <title>Derived Classes</title>
+	  <title>Subclasses</title>
 	  <itemizedlist spacing="compact">
 	    <listitem>
 	      <simpara>
@@ -805,14 +749,8 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 		        linkend="Class-OutOfPlaneSymTensorIndex"><classname>OutOfPlaneSymTensorIndex</classname></link>
 	      </simpara>
 	    </listitem>
-	    <listitem>
-	      <simpara>
-		    <link
-		        linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>
-	      </simpara>
-	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Derived Classes -->
+	</refsect2>                 <!-- Subclasses -->
 	<refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -829,7 +767,7 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 	      SWIG source code</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>
@@ -839,15 +777,15 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 	  linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
 	  (symmetric 3&times;3 matrix or tensor) object.  Most of the
 	  functionality comes from the base class, and is documented in
-	  the &IndexP; wrapper class.
+	  the &FieldIndex; wrapper class.
 	</para>
 	<para>
 	  The <methodname>integer</methodname> method returns the
 	  Voigt representation of the
 	  <classname>SymTensorIndex</classname>, as shown in <xref
-	  linkend="table:voigt"/>.
+	  linkend="table-voigt"/>.
 	</para>
-	<table id="table:voigt">
+	<table id="table-voigt" pgwide="0">
 	  <title>Voigt Indices</title>
 	  <tgroup cols="4">
 	    <thead>
@@ -898,7 +836,7 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 	    </tbody>
 	  </tgroup>
 	</table>
-  </refsection><!-- Description -->
+  </refsection>                 <!-- Description -->
   <refsection>
 	<title>Methods</title>
 	<para>
@@ -930,16 +868,16 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 	    This is a utility function that returns the integer Voigt
 	    representation of a symmetric tensor index, given as a
 	    string. Because &oof2; is written in C++, Voigt indices
-	    start from 0.  See <xref linkend="table:voigt"/>.
+	    start from 0.  See <xref linkend="table-voigt"/>.
 	  </para>
-	</refsection><!-- str2voigt -->
+	</refsection>               <!-- str2voigt -->
 	<refsection id="Class-SymTensorIndex-ij2voigt">
 	  <title><code>static int ij2voigt(int i, int j)</code></title>
 	  <para>
 	    This is a utility function that returns the integer Voigt
 	    representation of a symmetric tensor index, given as a
 	    pair of integers. Because &oof2; is written in C++, Voigt indices
-	    start from 0.   See <xref linkend="table:voigt"/>.
+	    start from 0.   See <xref linkend="table-voigt"/>.
 	  </para>
 	</refsection>
   </refsection>                 <!-- Methods -->
@@ -968,7 +906,7 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 		  <classname><link linkend="Class-SymTensorIndex">SymTensorIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
-	</refsect2><!-- C++ Synopsis -->
+	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
@@ -981,9 +919,9 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 		  <classname>SymTensorIndex</classname>
 	    </ooclass>
 	  </classsynopsis>
-	</refsect2><!-- Python Synopsis -->
+	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
-	  <title>Derived Classes</title>
+	  <title>Subclasses</title>
 	  <itemizedlist spacing="compact">
 	    <listitem>
 	      <simpara>
@@ -992,7 +930,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 	      </simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Derived Classes -->
+	</refsect2>                 <!-- Subclasses -->
 	<refsect2>
 	  <title>Source Files</title>
 	  <itemizedlist spacing="compact">
@@ -1009,7 +947,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 	      SWIG source code</simpara>
 	    </listitem>
 	  </itemizedlist>
-	</refsect2><!-- Source Files -->
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>
@@ -1020,9 +958,9 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 	  the values "zz", "yz", and "xz".
 	</para>
 	<para>
-	  <classname>OutOfPlaneSymTensorIndex</classname> are usually
-	  wrapped inside an &IndexP; object.  See the &IndexP;
-	  documentation for information about the available methods.
+	  See the &FieldIndex; and <link
+	  linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+	  pages for information about the available methods.
 	</para>
 	<para>
 	  <methodname>OutOfPlaneSymTensorIndex::integer</methodname>
@@ -1035,7 +973,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 		      <entry><varname>str</varname></entry>
 		      <entry><varname>i</varname></entry>
 		      <entry><varname>j</varname></entry>
-		      <entry>Voigt</entry>
+		      <entry>Voigt-2</entry>
 		    </row>
 	      </thead>
 	      <tbody>
@@ -1066,45 +1004,6 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 
 <!-- ============================================================ -->
 
-
-<refentry id="Class-ComponentsP">
-  <refnamediv>
-    <refname>ComponentsP</refname>
-    <refpurpose>
-      Generic wrapper for <link
-      linkend="Class-Components"><classname>Components</classname></link>
-      classes
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Synopsis</title>
-    <para>TODO</para>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      TODO
-    </para>
-  </refsection>
-</refentry>
-
-<refentry id="Class-ComponentIterator">
-  <refnamediv>
-    <refname>ComponentIterator</refname>
-    <refpurpose>
-      An iterator that loops over a set of &FieldIndex;es
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Synopsis</title>
-    <para>TODO</para>
-  </refsynopsisdiv>
-  <refsection>
-    <title>TODO</title>
-    <para>TODO</para>
-  </refsection>
-</refentry>
-
 <refentry id="Class-Components">
   <refnamediv>
     <refname>Components</refname>
@@ -1113,17 +1012,1095 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Synopsis</title>
-    <para>TODO</para>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>Components</classname>
+        </ooclass>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>ComponentIteratorP</type>
+          <methodname><link linkend="Class-Components-begin">begin</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>ComponentIteratorP</type>
+          <methodname><link linkend="Class-Components-end">end</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2>
+      <title>Python Synopsis</title>
+      <literallayout class="monospaced">
+from ooflib.SWIG.engine.fieldindex import Components </literallayout>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>Components</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname><link linkend="Class-Components-begin">begin</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link linkend="Class-Components-end">end</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link linkend="Class-Components-iter">__iter__</link></methodname>
+          <void/>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>                 <!-- Python Synopsis -->
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.swg</filename>:
+	      SWIG source code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.spy</filename>:
+	      python code included in the swig output</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
-    <title>TODO</title>
-    <para>TODO</para>
+    <title>Description</title>
+    <para>
+      Subclasses of <classname>Components</classname> are
+      container-like objects that can be iterated over to produce the
+      &FieldIndex;es for the different components of a &Field;,
+      &Flux;, or &Equation;.  They aren't real containers, but they
+      simulate them for the purposes of iteration.  In C++ they have
+      <function>begin()</function> and <function>end()</function>
+      methods that can be used as STL iterators:
+      <programlisting>
+for(ComponentIteratorP i = field.components()-><emphasis role="bold">begin()</emphasis>; i != field.components()-><emphasis role="bold">end()</emphasis>; i++) {
+    IndexP index = *i;
+    ...
+} </programlisting>
+
+      or
+      <programlisting>
+for(IndexP index : *field.components()) {
+    ...
+} </programlisting>
+
+      The <classname>Components</classname> base class exists in Python,
+      but is usually hidden.  In Python, <link
+      linkend="Class-Field-components"><function>Field::components()</function></link>
+      returns a generator function that loops over the components,
+      using the <classname>Components</classname> class and its
+      <function>begin()</function> and <function>end()</function>
+      methods under the hood.  When used like this
+      <programlisting>
+for index in field.components():
+    ...    <lineannotation>index is a FieldIndex object</lineannotation> </programlisting>
+      the <classname>Components</classname> object and its iterators
+      never need to be referred to explicitly.  The subclasses are not
+      defined in Python, since their methods are available via the
+      base class.
+    </para>
+    <para>
+      The various subclasses of &Field;, &Flux;, and &Equation; have
+      <function>components()</function> methods that return pointers
+      to instances of the appropriate subclass of
+      <classname>Components</classname>.  These pointers point to
+      static objects and do not have to (must not) be deleted.
+    </para>
+  </refsection>                 <!-- Description -->
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-Components-begin">
+      <title><code>virtual ComponentIteratorP begin() const</code></title>
+      <para>
+        <function>begin()</function> returns a &ComponentIteratorP;
+        pointing to the first component.
+      </para>
+    </refsection>
+    <refsection id="Class-Components-end">
+      <title><code>virtual ComponentIteratorP end() const</code></title>
+      <para>
+        <function>end()</function> returns a &ComponentIteratorP;
+        pointing past the last component.
+      </para>
+    </refsection>
+    <refsection id="Class-Components-iter">
+      <title><code>__iter__(self)</code></title>
+      <para>
+        <code>__iter__</code> is a generator function that yields
+        &ComponentIterator;s for all of the components in
+        turn.  (Python only.)
+      </para>
+    </refsection>
+  </refsection>                 <!-- Methods -->
+  <refsection>
+    <title>Subclasses</title>
+    <para>
+      Instances of these subclasses are only created by the &Fields;,
+      &Fluxes;, and other iterable objects that use the same
+      <classname>Components</classname> methods.  The details of the
+      constructors are therefore not discussed here.  The subclasses
+      have no methods other than those discussed above.
+    </para>
+    <para>
+      The <function>begin()</function> and <function>end()</function>
+      methods of each subclass return &ComponentIterator;s of the
+      appropriate type wrapped in a <link
+      linkend="Class-ComponentIteratorP"><classname>ComponentIteratorP</classname></link>.
+      The list below includes the &FieldIndex; and &ComponentIterator;
+      type for each <classname>Components</classname> subclass.
+    </para>
+    <itemizedlist spacing="compact">
+	  <listitem >
+	    <formalpara id="Class-EmptyFieldComponents">
+          <title><classname>EmptyFieldComponents</classname></title>
+          <para>
+            The components of an object that has no components.  There
+            is no &FieldIndex; class.  The iterator class is <link
+            linkend="Class-EmptyFieldIterator"><classname>EmptyFieldIterator</classname></link>.
+          </para>
+        </formalpara>
+	  </listitem>
+	  <listitem>
+	    <formalpara id="Class-ScalarFieldComponents">
+		  <title><classname>ScalarFieldComponents</classname></title>
+          <para>
+            The single component of a scalar quantity, such as a
+            scalar &Field; or the divergence of a vector &Flux;.  The
+            index and iterator classes are <link
+            linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>
+            <link
+            linkend="Class-ScalarFieldIterator"><classname>ScalarFieldIterator</classname></link>.
+          </para>
+        </formalpara>
+	  </listitem>
+	  <listitem>
+        <formalpara id="Class-VectorFieldComponents">
+          <title><classname>VectorFieldComponents</classname></title>
+	      <para>
+            The components of a vector quantity, such as a vector
+            &Field; or the divergence of a tensor &Flux;.  Whether or
+            not all of the components are included, or only the in- or
+            out-of-plane ones, is determined by the <link
+            linkend="Class-Planarity"><classname>Planarity</classname></link>
+            argument of the <link
+            linkend="Class-Field-components"><function>components()</function></link>
+            function call that created the
+            <classname>VectorFieldComponents</classname>.  The index
+            and iterator classes are <link
+            linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>
+            and <link
+            linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>.
+	      </para>
+        </formalpara>
+	  </listitem>
+	  <listitem>
+        <formalpara id="Class-OutOfPlaneVectorFieldComponents">
+          <title><classname>OutOfPlaneVectorFieldComponents</classname></title>
+	      <para>
+            The out-of-plane components of a vector quantity. The
+            difference between
+            <classname>OutOfPlaneVectorFieldComponents</classname> and
+            <link
+            linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>
+            with out-of-plane <link
+            linkend="Class-Planarity"><classname>Planarity</classname></link>
+            is that
+            <classname>OutOfPlaneVectorFieldComponents</classname> is
+            appropriate for iterating over a list or array of
+            components that only includes the out-of-plane components,
+            while <link
+            linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>
+            iterates over the out-of-plane components in a list that
+            includes all of the components.  The index and iterator
+            classes are <link
+            linkend="Class-OutOfPlaneVectorFieldIndex"><classname>OutOfPlaneVectorFieldIndex</classname></link>
+            and <link
+            linkend="Class-OutOfPlaneVectorFieldIterator"><classname>OutOfPlaneVectorFieldIterator</classname></link>.
+	      </para>
+        </formalpara>
+	  </listitem>
+      <listitem>
+        <formalpara id="Class-SymTensorComponents">
+          <title><classname>SymTensorComponents</classname>
+          </title>
+          <para>
+            All of the components of a 3&times;3 symmetric tensor.
+            The index and iterator classes are <link
+            linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+            and <link
+            linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link><footnote
+            id="footnote-symtensor">
+              <para>
+                <classname>SymTensorComponents</classname> and related
+                classes need to be cleaned up.  They should use
+                <classname>Planarity</classname> arguments, like
+                <classname>VectorFieldComponents</classname>, and reduce
+                the number of subclasses.
+              </para>
+              </footnote>.
+          </para>
+        </formalpara>
+      </listitem>
+      <listitem>
+        <formalpara id="Class-SymTensorInPlaneComponents">
+          <title><classname>SymTensorInPlaneComponents</classname>
+          </title>
+          <para>
+            The in-plane components of a 3&times;3 symmetric tensor
+            object, such as a <link
+            linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>
+            or <link
+            linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>.
+            The index and iterator classes are <link
+            linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+            and <link
+            linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link><footnoteref
+            linkend="footnote-symtensor"/>.
+          </para>
+        </formalpara>
+      </listitem>
+      <listitem>
+        <formalpara id="Class-SymTensorOutOfPlaneComponents">
+          <title><classname>SymTensorOutOfPlaneComponents</classname></title>
+          <para>
+            The out-of-plane components of a 3&times;3 symmetric
+            tensor object, such as a <link
+            linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>
+            or <link
+            linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>.
+            This iterates over the components assuming that they are
+            part of a larger list or array that contains all of the
+            components.  Iterating generates <link
+            linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+            objects with <link linkend="table-voigt">Voigt</link>
+            indices 2, 3, and 4, and
+            <code>FieldIndex::integer()</code> values 2, 3, and 4.
+            The index and iterator classes are <link
+            linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+            and <link
+            linkend="Class-SymTensorIterator"><classname>SymTensorOutOfPlaneIterator</classname></link><footnoteref
+            linkend="footnote-symtensor"/>.
+          </para>
+        </formalpara>
+      </listitem>
+      <listitem>
+        <formalpara id="Class-OutOfPlaneSymTensorComponents">
+          <title><classname>OutOfPlaneSymTensorComponents</classname></title>
+          <para>
+            The out-of-plane components of a 3&times;3 symmetric
+            tensor object, such as a <link
+            linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>
+            or <link
+            linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>.
+            The difference between this and <link
+            linkend="Class-SymTensorOutOfPlaneComponents"><classname>SymTensorOutOfPlaneComponents</classname></link>
+            is that this version is appropriate for looping over a
+            list or array containing only the out-of-plane components.
+            Iterating produces <link
+            linkend="OutOfPlaneSymTensorIndex"><classname>OutOfPlaneSymTensorIndex</classname></link>
+            objects with <link linkend="table-voigt">Voigt</link>
+            indices 2, 3, and 4, and <link
+            linkend="Class-FieldIndex-integer"><function>FieldIndex::integer()</function></link>
+            values 0, 1, and 2.  The index and iterator classes are
+            <link
+            linkend="Class-OutOfPlaneSymTensorIndex"><classname>OutOfPlaneSymTensorIndex</classname></link>
+            and <link
+            linkend="Class-OutOfPlaneSymTensorIterator"><classname>OutOfPlaneSymTensorIterator</classname></link><footnoteref
+            linkend="footnote-symtensor"/>.
+          </para>
+        </formalpara>
+      </listitem>
+    </itemizedlist>
+  </refsection>                 <!-- Subclasses -->
+</refentry>                     <!-- Components -->
+
+<!-- ============================================================ -->
+
+<!-- TODO: Add source files sections -->
+
+<refentry id="Class-ComponentIterator">
+  <refnamediv>
+    <refname>ComponentIterator</refname>
+    <refpurpose>
+      Base class for iterators that loop over &Components; objects
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>ComponentIterator</classname>
+        </ooclass>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>bool</type>
+          <methodname><link linkend="Class-ComponentIterator-ne">operator!=</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ComponentIterator&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>ComponentIterator&amp;</type>
+          <methodname><link linkend="Class-ComponentIterator-pp">operator++</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>FieldIndex*</type>
+          <methodname><link linkend="Class-ComponentIterator-fieldindex">fieldindex</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>IndexP</type>
+          <methodname><link linkend="Class-ComponentIterator-star">operator*</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>
+    <refsect2>
+      <title>Subclasses</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <link
+                linkend="Class-EmptyFieldIterator"><classname>EmptyFieldIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-ScalarFieldIterator"><classname>ScalarFieldIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-OutOfPlaneVectorFieldIterator"><classname>OutOfPlaneVectorFieldIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-SymTensorInPlaneIterator"><classname>SymTensorInPlaneIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-SymTensorOutOfPlaneIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-OIterator"><classname>OIterator</classname></link>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <link linkend="Class-ListOutputValIterator"><classname>ListOutputValIterator</classname></link>
+          </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>                 <!-- Subclasses -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>ComponentIterator</classname> is the base class for
+      objects that iterate over &Components; objects.  They are
+      created and returned by the <link
+      linkend="Class-Components-begin"><function>begin()</function></link>
+      and <link
+      linkend="Class-Components-end"><function>end()</function></link>
+      methods in the &Components; class, and should never be created
+      explicitly.  Different subclasses of
+      <classname>ComponentIterator</classname> iterate over different
+      subclasses of &Components;.
+    </para>
+    <para>
+      The <classname>ComponentIterator</classname> class and its
+      subclasses are not directly available in Python.  Iteration in
+      Python is handled by the &ComponentIteratorP; class.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-ComponentIterator-ne">
+      <title>
+        <code>virtual bool operator!=(const ComponentIterator&amp; other) const</code>
+      </title>
+      <para>
+        Do this <classname>ComponentIterator</classname> and the
+        <varname>other</varname> one point to the same &FieldIndex;?
+        It is assumed that they are iterating over the same subclass
+        of &Components;.  Comparing different types of
+        <classname>ComponentIterator</classname> is an error.
+        Fortunately this should be difficult to do.
+      </para>
+    </refsection>
+    <refsection id="Class-ComponentIterator-pp">
+      <title>
+        <code>virtual ComponentIterator&amp; operator++()</code>
+      </title>
+      <para>
+        Increment the iterator to point to the next &FieldIndex;. 
+      </para>
+    </refsection>
+    <refsection id="Class-ComponentIterator-fieldindex">
+      <title>
+        <code>virtual FieldIndex* fieldindex() const</code>
+      </title>
+      <para>
+        Return a pointer to a newly allocated &FieldIndex;.  The value
+        of the index is determined by the state of the iterator.
+      </para>
+    </refsection>
+    <refsection id="Class-ComponentIterator-star">
+      <title>
+        <code>IndexP operator*() const</code>
+      </title>
+      <para>
+        Dereference the iterator, returning an &IndexP;.  The &IndexP;
+        wraps the pointer returned by <link
+        linkend="Class-ComponentIterator-fieldindex"><function>fieldindex()</function></link>.
+      </para>
+    </refsection>
+  </refsection>                 <!-- Methods -->
+</refentry>                     <!-- ComponentIterator -->
+
+<!-- ============================================================ -->
+
+<refentry id="Class-ComponentIteratorP">
+  <refnamediv>
+    <refname>ComponentIteratorP</refname>
+    <refpurpose>
+      Wrapper for <link
+      linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link> pointers
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>ComponentIteratorP</classname>
+        </ooclass>
+        <constructorsynopsis>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-ctor">ComponentIteratorP</link></methodname>
+          <methodparam>
+            <type>ComponentIterator*</type>
+            <parameter>iterator</parameter>
+          </methodparam>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-move">ComponentIteratorP</link></methodname>
+          <methodparam>
+            <type>ComponentIteratorP&amp;&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+        </constructorsynopsis>
+        <methodsynopsis>
+          <type>bool</type>
+          <methodname><link linkend="Class-ComponentIteratorP-ne">operator!=</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ComponentIteratorP&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>ComponentIteratorP&amp;</type>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-pp">operator++</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>IndexP</type>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-star">operator*</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>FieldIndex*</type>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-current">current</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2>
+      <title>Python Synopsis</title>
+      <literallayout class="monospaced">
+from ooflib.SWIG.engine.fieldindex import ComponentIteratorP </literallayout>
+
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>ComponentIteratorP</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-ne">__ne__</link></methodname>
+          <methodparam>
+            <parameter>other</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-pp">increment</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-ComponentIteratorP-current">current</link></methodname>
+          <void/>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>                 <!-- Python synoposis -->
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.swg</filename>:
+	      SWIG source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>ComponentIteratorP</classname> is a wrapper for
+      &ComponentIterator; pointers, just as &IndexP; is a wrapper for
+      &FieldIndex; pointers.  The class provides access to the
+      &ComponentIterator; virtual functions, and deletes the pointer
+      when it is destroyed.
+    </para>
+    <para>
+      In C++, the <function>begin()</function> and
+      <function>end()</function> methods of the various &Components;
+      subclasses return <classname>ComponentIteratorP</classname>s
+      that wrap the appropriate iterator for the &Components;
+      subclass.  This allows code like this:
+      <programlisting>
+for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end(); cp++)  {
+   IndexP idx = *cp;
+   ...
+} </programlisting>
+
+      where the allocated &ComponentIterator; (inside
+      <varname>cp</varname>) and &FieldIndex; (inside
+      <varname>idx</varname>) are deallocated when the loop finishes.
+    </para>
+    <para>
+      Unlike &IndexP;, <classname>ComponentIteratorP</classname> is
+      exported to Python, but it is rarely necessary to access it
+      there.  It is used within the generator function that is
+      returned by <link
+      linkend="Class-Field-components"><function>Field::components()</function></link>
+      and the equivalent methods in &Flux; and other classes.
+    </para>
+  </refsection>                 <!-- Description -->
+  <refsection>
+    <title>Methods</title>
+    <para>
+      Most of the <classname>ComponentIteratorP</classname> methods
+      call the same method in the &ComponentIterator; class and return
+      the result.
+    </para>
+    <refsection id="Class-ComponentIteratorP-ctor">
+      <title><code>ComponentIteratorP(<link
+      linkend="Class-ComponentIterator">ComponentIterator</link>*
+      iterator)</code></title>
+      <para>
+        The constructor argument is a pointer to a newly allocated
+        &ComponentIterator;.  The &ComponentIterator; will be deleted
+        by the <classname>ComponentIteratorP</classname> destructor.
+      </para>
+    </refsection>               <!-- constructor -->
+    <refsection id="Class-ComponentIteratorP-move">
+      <title><code>ComponentIteratorP(ComponentIteratorP&amp;&amp;
+      other)</code></title>
+      <para>
+        The move constructor creates a new
+        <classname>ComponentIteratorP</classname> that takes ownership
+        of the old <classname>ComponentIteratorP</classname>'s
+        &ComponentIterator; pointer.  The &ComponentIterator; will be
+        deleted when the new <classname>ComponentIteratorP</classname>
+        is destroyed.  The old
+        <classname>ComponentIteratorP</classname> is invalidated.
+      </para>
+    </refsection>               <!-- move constructor -->
+    <refsection id="Class-ComponentIteratorP-ne">
+      <title><code>bool operator!=(const ComponentIteratorP&amp;
+      other) const</code> and <code>__ne__(self, other)</code></title>
+      <para>
+        The inequality operator indicates whether the wrapped
+        &ComponentIterator;s point to the same &FieldIndex;.  It is
+        assumed that they are iterating over the same type of
+        &Components;.
+      </para>
+    </refsection>               <!-- operator!= -->
+    <refsection id="Class-ComponentIteratorP-pp">
+      <title><code>ComponentIteratorP&amp; operator++()</code> and
+      <code>increment()</code></title>
+      <para>
+        <code>operator++()</code> (C++) and <code>increment()</code>
+        (Python) advance the &ComponentIterator; to the next
+        component. 
+      </para>
+    </refsection>               <!-- operator++ -->
+    <refsection id="Class-ComponentIteratorP-star">
+      <title><code>IndexP operator*() const</code></title>
+      <para>
+        Dereferencing the <classname>ComponentIteratorP</classname> in
+        C++ returns an &IndexP; for the current component.
+      </para>
+    </refsection>               <!-- operator* -->
+    <refsection id="Class-ComponentIteratorP-current">
+      <title><code>FieldIndex* current() const</code></title>
+      <para>
+        <function>current()</function> returns a newly allocated
+        &FieldIndex; pointing to the current component.
+      </para>
+    </refsection>
+  </refsection>                 <!-- Methods -->
+</refentry>                     <!-- ComponentIteratorP -->
+
+<!-- ============================================================ -->
+
+<refentry id="Class-EmptyFieldIterator">
+  <refnamediv>
+    <refname>EmptyFieldIterator</refname>
+    <refpurpose>
+      Iterate over a &Field; with no components
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C++ Synopsis</title>
+    <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>EmptyFieldIterator</classname>
+      </ooclass>
+      <ooclass>
+        <modifier>public</modifier>
+        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+      </ooclass>
+      <constructorsynopsis>
+        <methodname>EmptyFieldIterator</methodname>
+        <void/>
+      </constructorsynopsis>
+    </classsynopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>EmptyFieldIterator</classname> is the
+      &ComponentIterator; for <link
+      linkend="Class-EmptyFieldComponents"><classname>EmptyFieldComponents</classname></link>.
+      It is used when iterating over the nonexistent components of
+      nonexistent &Fields;, such as the out-of-plane part of an
+      in-plane &Field;.  A loop using an
+      <classname>EmptyFieldIterator</classname> does nothing.
+      Dereferencing the iterator produces a null pointer.
+    </para>
+    <para>
+      This isn't as silly as it seems.  It's used in generic code
+      where the type of &Field; isn't known.
+    </para>
+    <para>
+      <classname>EmptyFieldIterator</classname>s are created by the
+      <function>begin()</function> and <function>end()</function>
+      methods of <link
+      linkend="Class-EmptyFieldComponents"><classname>EmptyFieldComponents</classname></link>,
+      and are not directly accessible in Python.
+    </para>
+  </refsection>
+</refentry>                     <!-- EmptyFieldIterator -->
+
+<!-- ============================================================ -->
+
+<refentry id="Class-ScalarFieldIterator">
+  <refnamediv>
+    <refname>ScalarFieldIterator</refname>
+    <refpurpose>
+      Iterate over a the components of <link linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C++ Synopsis</title>
+    <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>ScalarFieldIterator</classname>
+      </ooclass>
+      <ooclass>
+        <modifier>public</modifier>
+        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+      </ooclass>
+      <constructorsynopsis>
+        <methodname>ScalarFieldIterator</methodname>
+        <methodparam>
+          <type>bool</type>
+          <parameter>done</parameter>
+          <initializer>0</initializer>
+        </methodparam>
+      </constructorsynopsis>
+    </classsynopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>ScalarFieldIterator</classname> is the
+      &ComponentIterator; for <link
+      linkend="Class-ScalarFieldComponents"><classname>ScalarFieldComponents</classname></link>.
+      Dereferencing the iterator produces an &IndexP; wrapping a <link
+      linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>.
+    </para>
+    <para>
+      A <classname>ScalarFieldIterator</classname> is used when
+      looping over the components of a <link
+      linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+      A loop using a <classname>ScalarFieldIterator</classname>
+      executes its body code just once.
+    </para>
+    <para>
+      This isn't as silly as it seems.  It's used in generic code
+      where the type of &Field; isn't known.
+    </para>
+    <para>
+      <classname>ScalarFieldIterator</classname>s are created by the
+      <function>begin()</function> and <function>end()</function>
+      methods of <link
+      linkend="Class-ScalarFieldComponents"><classname>ScalarFieldComponents</classname></link>,
+      and are not directly accessible in Python.  The constructor
+      argument <varname>done</varname> indicates whether the iterator
+      has already been iterated.  <code><link
+      linkend="Class-ScalarFieldComponents">ScalarFieldComponents</link>::begin()</code>
+      sets <code>done=0</code> and  <code><link
+      linkend="Class-ScalarFieldComponents">ScalarFieldComponents</link>::end()</code>
+      sets <code>done=1</code>.
+    </para>
   </refsection>
 </refentry>
 
 <!-- ============================================================ -->
 
+<refentry id="Class-VectorFieldIterator">
+  <refnamediv>
+    <refname>VectorFieldIterator</refname>
+    <refpurpose>
+      Iterate over the components of a <link
+      linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>
+      or <link
+      linkend="Class-ThreeVectorField"><classname>ThreeVectorField</classname></link>
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C++ Synopsis</title>
+    <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>VectorFieldIterator</classname>
+      </ooclass>
+      <ooclass>
+        <modifier>public</modifier>
+        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+      </ooclass>
+      <constructorsynopsis>
+        <methodname>VectorFieldIterator</methodname>
+        <methodparam>
+          <type>int</type>
+          <parameter>min</parameter>
+        </methodparam>
+        <methodparam>
+          <type>int</type>
+          <parameter>max</parameter>
+        </methodparam>
+      </constructorsynopsis>
+    </classsynopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>VectorFieldIterator</classname> is the
+      &ComponentIterator; for <link
+      linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>.
+      It is used when looping over the components of a <link
+      linkend="Class-VectorField"><classname>VectorField</classname></link>.
+      Dereferencing the iterator produces an &IndexP; wrapping a <link
+      linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>.
+    </para>
+    <para>
+      The <varname>min</varname> and <varname>max</varname>
+      constructor arguments set the range of the iteration.
+      <varname>min</varname> is the index of the first component and
+      <varname>max</varname> is one more than the index of the last
+      component.
+    </para>
+    <para>
+      <classname>VectorFieldIterator</classname>s are created by the
+      <function>begin()</function> and <function>end()</function>
+      methods of <link
+      linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>,
+      and are not directly accessible in Python.  The
+      <varname>min</varname> and <varname>max</varname> parameters are
+      set by the <classname>VectorFieldComponents</classname> object
+      according to the size of the vector.
+    </para>
+  </refsection>
+</refentry>
+
+<!-- ============================================================ -->
+
+<refentry id="Class-OutOfPlaneVectorFieldIterator">
+  <refnamediv>
+    <refname>OutOfPlaneVectorFieldIterator</refname>
+    <refpurpose>
+      Iterate over the out-of-plane components of a vector &Field;
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C++ Synopsis</title>
+    <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>OutOfPlaneVectorFieldIterator</classname>
+      </ooclass>
+      <ooclass>
+        <modifier>public</modifier>
+        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+      </ooclass>
+      <constructorsynopsis>
+        <methodname>OutOfPlaneVectorFieldIterator</methodname>
+        <methodparam>
+          <type>int</type>
+          <parameter>min</parameter>
+        </methodparam>
+        <methodparam>
+          <type>int</type>
+          <parameter>max</parameter>
+        </methodparam>
+      </constructorsynopsis>
+    </classsynopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>OutOfPlaneVectorFieldIterator</classname> is the
+      &ComponentIterator; for <link
+      linkend="Class-OutOfPlaneVectorFieldComponents"><classname>OutOfPlaneVectorFieldComponents</classname></link>.
+      It is used when looping over the out-of-plane components of a
+      <link
+      linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>
+      or <link
+      linkend="Class-ThreeVectorField"><classname>ThreeVectorField</classname></link>
+      Dereferencing the iterator produces an &IndexP; wrapping a <link
+      linkend="Class-OutOfPlaneVectorFieldIndex"><classname>OutOfPlaneVectorFieldIndex</classname></link>.
+    </para>
+    <para>
+      The <varname>min</varname> and <varname>max</varname>
+      constructor arguments set the range of the iteration.
+      <varname>min</varname> is the index of the first component and
+      <varname>max</varname> is one more than the index of the last
+      component.
+    </para>
+    <para>
+      <classname>OutOfPlaneVectorFieldIterator</classname>s are
+      created by the <function>begin()</function> and
+      <function>end()</function> methods of <link
+      linkend="Class-OutOfPlaneVectorFieldComponents"><classname>OutOfPlaneVectorFieldComponents</classname></link>,
+      and are not directly accessible in Python.  The
+      <varname>min</varname> and <varname>max</varname> parameters are
+      set by the
+      <classname>OutOfPlaneVectorFieldComponents</classname> object
+      according to the size of the vector.
+    </para>
+  </refsection>
+</refentry>
+
+<!-- ============================================================ -->
+
+<refentry id="Class-SymTensorIterator">
+  <refnamediv>
+    <refname>SymTensorIterator</refname>
+    <refname>SymTensorInPlaneIterator</refname>
+    <refname>SymTensorOutOfPlaneIterator</refname>
+    <refpurpose>
+      Iterate over the components of a symmetric 3&times;3 tensor
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C++ Synopsis</title>
+    <literallayout class="monospaced">
+#include "engine/fieldindex.h" </literallayout>
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>SymTensorIterator</classname>
+      </ooclass>
+      <ooclass>
+        <classname><link linkend="Class-ComponentIterator">ComponentIterator</link></classname>
+      </ooclass>
+      <constructorsynopsis>
+        <methodname>SymTensorIterator</methodname>
+        <void/>
+      </constructorsynopsis>
+      <constructorsynopsis>
+        <methodname>SymTensorIterator</methodname>
+        <methodparam>
+          <type>int</type>
+          <parameter>voigt</parameter>
+        </methodparam>
+      </constructorsynopsis>
+      <constructorsynopsis>
+        <methodname>SymTensorIterator</methodname>
+        <methodparam>
+          <type>SpaceIndex</type>
+          <parameter>i</parameter>
+        </methodparam>
+        <methodparam>
+          <type>SpaceIndex</type>
+          <parameter>j</parameter>
+        </methodparam>
+      </constructorsynopsis>
+    </classsynopsis>
+    
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>SymTensorInPlaneIterator</classname>
+      </ooclass>
+      <ooclass>
+        <classname>SymTensorIterator</classname>
+      </ooclass>
+    </classsynopsis>
+    <classsynopsis language="cpp">
+      <ooclass>
+        <classname>SymTensorOutOfPlaneIterator</classname>
+      </ooclass>
+      <ooclass>
+        <classname>SymTensorIterator</classname>
+      </ooclass>
+    </classsynopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>SymTensorIterator</classname>,
+      <classname>SymTensorInPlaneIterator</classname> and
+      <classname>SymTensorOutOfPlaneIterator</classname> are the
+      &ComponentIterator; subclasses used to iterate over the
+      components of a 3&times;3 symmetric tensor, such as a <link
+      linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>
+      or a <link
+      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>.
+      The iteration is done in <link
+      linkend="table-voigt">Voigt</link> order.
+    </para>
+    <para>
+      The three classes differ in which components of the tensor are
+      included.  <classname>SymTensorIterator</classname> includes all
+      components.  <classname>SymTensorInPlaneIterator</classname>
+      includes only the in-plane components (<emphasis>xx</emphasis>,
+      <emphasis>yy</emphasis>, and <emphasis>xy</emphasis>, or Voigt
+      indices 0, 1, and 5).
+      <classname>SymTensorOutOfPlaneIterator</classname> includes only
+      the out-of-plane components (<emphasis>zz</emphasis>,
+      <emphasis>yz</emphasis>, and <emphasis>xz</emphasis>, or Voigt
+      indices 2, 3, and 4).
+    </para>
+    <para>
+      Like all of the &ComponentIterator; subclasses, new objects are
+      created by the <function>begin()</function> and
+      <function>end()</function> methods of the corresponding
+      &Components; classes:
+      <link
+      linkend="Class-SymTensorComponents"><classname>SymTensorComponents</classname></link>,
+      <link
+      linkend="Class-SymTensorInPlaneComponents"><classname>SymTensorInPlaneComponents</classname></link>,
+      and <link
+      linkend="Class-SymTensorOutOfPlaneComponents"><classname>SymTensorOutOfPlaneComponents</classname></link>.
+      The different constructors differ in how the initial index is
+      set.
+    </para>
+  </refsection>
+</refentry>
+
+<!-- ============================================================ -->
+
+<refentry id="Class-OutOfPlaneSymTensorIterator">
+  <refnamediv>
+    <refname>OutOfPlaneSymTensorIterator</refname>
+    <refpurpose>
+      Iterate over the out-of-plane components of a symmetric
+      3&times;3 tensor
+    </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>OutOfPlaneVectorFieldComponents</classname> is the
+      &ComponentIterator; for <link
+      linkend="Class-OutOfPlaneSymTensorComponents"><classname>OutOfPlaneSymTensorComponents</classname></link>.
+    </para>
+  </refsection>
+</refentry>
+
+<!-- ============================================================ -->
 <!-- ============================================================ -->
 
 <refentry id="Class-Planarity">

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refOutputVal.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:13 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -12,6 +7,8 @@
   distributing modified versions of this software, you first contact
   the authors at oof_manager@nist.gov.
 -->
+
+<!-- TODO: Use a separate page for each subclass of OutputVal -->
 
   <refentry id="Class-OutputVal">
     <refnamediv>
@@ -640,7 +637,7 @@ from oof2.SWIG.engine import symmmatrix </programlisting>
 	  <classname>SymmMatrix3</classname> objects,
 	  <methodname>value_list</methodname> returns the six
 	  independent components in <link
-	  linkend="table:voigt">Voigt</link> order.
+	  linkend="table-voigt">Voigt</link> order.
 	</para>
 	<para>
 	  When used in C++, <methodname>value_list</methodname>
@@ -756,7 +753,7 @@ from oof2.SWIG.engine import symmmatrix </programlisting>
 	  no arguments creates a <classname>SymmMatrix3</classname>
 	  with all components set to zero.  In the second version, all
 	  of the components are specified by the arguments, in <link
-	    linkend="table:voigt">Voigt</link> order.
+	    linkend="table-voigt">Voigt</link> order.
 	</para>
 	<para>
 	  In Python, all of the arguments to the
@@ -768,7 +765,7 @@ from oof2.SWIG.engine import symmmatrix </programlisting>
 tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
 
 	  If keywords aren't used, then the arguments must be in <link
-	  linkend="table:voigt">Voigt</link> order.
+	  linkend="table-voigt">Voigt</link> order.
 	</para>
       </refsection>
       <refsection id="Class-SymmMatrix3-getitem">

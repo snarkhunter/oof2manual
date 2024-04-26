@@ -46,7 +46,7 @@
 	      <modifier>const</modifier>
 	    </methodsynopsis>
 	    <methodsynopsis>
-	      <type>ComponentsP</type>
+	      <type>Components*</type>
 	      <methodname><link linkend="Class-Flux-components">components</link></methodname>
 	        <methodparam>
 		      <type>Planarity</type>
@@ -55,13 +55,13 @@
 	        <modifier>const</modifier>
 	    </methodsynopsis>
 	    <methodsynopsis>
-	      <type>ComponentsP</type>
+	      <type>Components*</type>
 	      <methodname><link linkend="Class-Flux-divergencecomponents">divergenceComponents</link></methodname>
 	      <void/>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
 	    <methodsynopsis>
-	      <type>ComponentsP</type>
+	      <type>Components*</type>
 	      <methodname><link linkend="Class-Flux-oop-components">outOfPlaneComponents</link></methodname>
 	      <void/>
 	      <modifier>const</modifier>
@@ -244,12 +244,11 @@ from ooflib.SWIG.engine import Flux </literallayout>
     </refsection>               <!-- divergence_dim -->
     <refsection id="Class-Flux-components">
 	  <title>
-	    <code>const ComponentsP components(Planarity planarity) const</code>
+	    <code>const Components* components(Planarity planarity) const</code>
 	  </title>
 	  <para>
-	    <methodname>components</methodname> returns an <link
-	    linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
-	    object that can be used to loop over and refer to the
+	    <methodname>components</methodname> returns a &Components;
+	    pointer that can be used to loop over and refer to the
 	    components of the <classname>Flux</classname>.  The given
 	    <link
 	    linkend="Class-Planarity"><classname>Planarity</classname></link>
@@ -258,21 +257,20 @@ from ooflib.SWIG.engine import Flux </literallayout>
 	  </para>
     </refsection>               <!-- components -->
     <refsection id="Class-Flux-divergencecomponents">
-	  <title><code>ComponentsP divergenceComponents() const</code></title>
+	  <title><code>Components* divergenceComponents() const</code></title>
 	  <para>
-	    <methodname>divergenceComponents</methodname> returns an <link
-	    linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
-	    object that can be used to loop over the in-plane components
-	    of the divergence of the <classname>Flux</classname>.
+	    <methodname>divergenceComponents</methodname> returns a
+	    &Components; pointer that can be used to loop over the
+	    in-plane components of the divergence of the
+	    <classname>Flux</classname>.
 	  </para>
     </refsection>               <!-- divergenceComponents -->
     <refsection id="Class-Flux-oop-components">
-	  <title><code>ComponentsP outOfPlaneComponents() const</code></title>
+	  <title><code>Components* outOfPlaneComponents() const</code></title>
 	  <para>
-	    <methodname>outOfPlaneComponents</methodname> returns an <link
-	    linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
-	    object that can be used to loop over the out-of-plane
-	    components of the <classname>Flux</classname>.
+	    <methodname>outOfPlaneComponents</methodname> returns a
+	    &Components; pointer that can be used to loop over the
+	    out-of-plane components of the <classname>Flux</classname>.
 	  </para>
       <caution id="Flux-confusion">
         <title>Possible Confusion</title>

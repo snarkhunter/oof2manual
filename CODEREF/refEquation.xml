@@ -49,7 +49,7 @@
 	    </methodsynopsis>
 
 	    <methodsynopsis>
-	      <type>ComponentsP</type>
+	      <type>Components*</type>
 	      <methodname><link
 	                      linkend="Class-Equation-components">components</link></methodname>
 	      <void/>
@@ -244,12 +244,12 @@ True </programlisting>
 	  </para>
     </refsection>               <!-- dim, ndof -->
     <refsection id="Class-Equation-components">
-	  <title><code>ComponentsP components() const</code></title>
+	  <title><code>Components* components() const</code></title>
 	  <para>
-	    <methodname>components</methodname> returns an <link
-	    linkend="Class-ComponentsP"><classname>ComponentsP</classname></link>
-	    object which can be used to loop over the components of the
-	    <classname>Equation</classname>.  Unlike <link
+	    <methodname>components</methodname> returns a pointer to a
+	    &Components; object which can be used to loop over the
+	    components of the <classname>Equation</classname>.  Unlike
+	    <link
 	    linkend="Class-Field-components"><methodname>Field::components</methodname></link>,
 	    <methodname>Equation::components</methodname> does not take a
 	    <link
@@ -260,14 +260,14 @@ True </programlisting>
         For example, in C++ you can write
         <programlisting>
 Equation *eqn = Equation::getEquation("Force_Balance");
-for(&IndexP; index : eqn->components()) {
-   // do something with &IndexP; index
+for(IndexP index : *eqn->components()) {
+   ... <lineannotation>Do something with IndexP index</lineannotation>
 } </programlisting>
         or in Python:
         <programlisting>
 from ooflib.SWIG.engine.equation import getEquation
 for index in getEquation("Force_Balance").components():
-   # do something with &FieldIndex; index </programlisting>
+   ... <lineannotation>Do something with FieldIndex index</lineannotation> </programlisting>
 
         Note that the index object returned in C++ is an &IndexP;,
         which is a wrapper around a &FieldIndex; pointer.  In Python
