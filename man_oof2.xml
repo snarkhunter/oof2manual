@@ -159,6 +159,7 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY FEMesh "<link linkend='Class-FEMesh'><classname>FEMesh</classname></link>">
 <!ENTITY Field "<link linkend='Class-Field'><classname>Field</classname></link>">
 <!ENTITY FieldIndex "<link linkend='Class-FieldIndex'><classname>FieldIndex</classname></link>">
+<!ENTITY FieldIndexes "<link linkend='Class-FieldIndex'><classname>FieldIndexes</classname></link>">
 <!ENTITY Fields "<link linkend='Class-Field'><classname>Fields</classname></link>">
 <!ENTITY Flux "<link linkend='Class-Flux'><classname>Flux</classname></link>">
 <!ENTITY Fluxes "<link linkend='Class-Flux'><classname>Fluxes</classname></link>">
@@ -166,6 +167,7 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY IndexP "<link linkend='Class-IndexP'><classname>IndexP</classname></link>">
 <!ENTITY Node "<link linkend='Class-Node'><classname>Node</classname></link>">
 <!ENTITY OutputVal "<link linkend='Class-OutputVal'><classname>OutputVal</classname></link>">
+<!ENTITY OutputVals "<link linkend='Class-OutputVal'><classname>OutputVals</classname></link>">
 <!ENTITY OutputValue "<link linkend='Class-OutputValue'><classname>OutputValue</classname></link>">
 <!ENTITY Planarity "<link linkend='Class-Planarity'><classname>Planarity</classname></link>">
 <!ENTITY Property "<link linkend='Class-Property'><classname>Property</classname></link>">

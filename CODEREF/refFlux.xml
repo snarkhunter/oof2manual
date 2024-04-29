@@ -438,8 +438,8 @@ IndexP index = IndexP(flux->getIndex("xx")); </programlisting>
     <title>Synopses</title>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <programlisting>
-#include "engine/flux.h" </programlisting>
+	  <literallayout class="monospaced">
+#include "engine/flux.h" </literallayout>>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>VectorFlux</classname>
@@ -463,8 +463,8 @@ IndexP index = IndexP(flux->getIndex("xx")); </programlisting>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <programlisting>
-from ooflib.SWIG.engine.flux import VectorFlux </programlisting>
+	  <literallayout class="monospaced">
+from ooflib.SWIG.engine.flux import VectorFlux </literallayout>>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>VectorFlux</classname>
@@ -553,8 +553,8 @@ from ooflib.SWIG.engine.flux import VectorFlux </programlisting>
     <title>Synopses</title>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <programlisting>
-#include "engine/flux.h" </programlisting>
+	  <literallayout class="monospaced">
+#include "engine/flux.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>SymmetricTensorFlux</classname>
@@ -579,8 +579,8 @@ from ooflib.SWIG.engine.flux import VectorFlux </programlisting>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <programlisting>
-from ooflib.SWIG.engine.flux import SymmetricTensorFlux </programlisting>
+	  <literallayout class="monospaced">
+from ooflib.SWIG.engine.flux import SymmetricTensorFlux </literallayout>>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>SymmetricTensorFlux</classname>
@@ -653,9 +653,10 @@ from ooflib.SWIG.engine.flux import SymmetricTensorFlux </programlisting>
         <code>SymmetricTensorFlux::getIndex</code> returns a pointer
         to a <link
         linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>.
-        The <varname>name</varname> argument is two letters, each of
-        which is <userinput>"x"</userinput>,
-        <userinput>"y"</userinput>, or <userinput>"z"</userinput>.  
+        The <varname>name</varname> argument is a two letter string:
+        <userinput>"xx"</userinput>, <userinput>"xy"</userinput>,
+        <userinput>"yz"</userinput>,
+        <foreignphrase>etc</foreignphrase>.
       </para>
     </refsection>
   </refsection>                <!-- Methods -->

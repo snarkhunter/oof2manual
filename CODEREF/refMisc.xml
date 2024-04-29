@@ -339,7 +339,7 @@ from oof2.SWIG.common.ooferror import ErrSetupError </programlisting>
 	</refsect2>
       </refsynopsisdiv>
       <refsection>
-	<title>Discussion</title>
+	<title>Description</title>
 	<para>
 	  &oof2; predefines a number of useful exception classes for
 	  handling errors, and includes a mechanism for adding new
@@ -670,7 +670,7 @@ from oof2.common.IO.xmlmenudump import loadFile
 loadFile(filename, func=None) </programlisting> 
     </refsynopsisdiv>
     <refsection>
-      <title>Discussion</title>
+      <title>Description</title>
       <para>
 	Many &oof2; objects contain their own documentation.  The
 	<link linkend="Chapter-Reference">reference section</link> of

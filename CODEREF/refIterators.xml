@@ -18,29 +18,28 @@
 	<refsect2>
 	  <title>C++ Synopsis</title>
 	  <literallayout class="monospaced">
-#include "engine/fieldindex.h"
-	    <classsynopsis language="cpp">
-	      <ooclass>
-		    <classname>FieldIndex</classname>
-	      </ooclass>
-	      <methodsynopsis>
-		    <modifier>virtual</modifier>
-		    <type>int</type>
-		    <methodname><link
-		                    linkend="Class-FieldIndex-integer">integer</link></methodname>
-            <void/>
-		    <modifier>const</modifier>
-	      </methodsynopsis>
-	      <methodsynopsis>
-		    <modifier>virtual</modifier>
-		    <type>bool</type>
-		    <methodname><link
-		                    linkend="Class-FieldIndex-in_plane">in_plane</link></methodname>
-		    <void/>
-		    <modifier>const</modifier>
-	      </methodsynopsis>
-	    </classsynopsis>
-	  </literallayout>
+#include "engine/fieldindex.h" </literallayout>
+	  <classsynopsis language="cpp">
+	    <ooclass>
+		  <classname>FieldIndex</classname>
+	    </ooclass>
+	    <methodsynopsis>
+		  <modifier>virtual</modifier>
+		  <type>int</type>
+		  <methodname><link
+		                  linkend="Class-FieldIndex-integer">integer</link></methodname>
+          <void/>
+		  <modifier>const</modifier>
+	    </methodsynopsis>
+	    <methodsynopsis>
+		  <modifier>virtual</modifier>
+		  <type>bool</type>
+		  <methodname><link
+		                  linkend="Class-FieldIndex-in_plane">in_plane</link></methodname>
+		  <void/>
+		  <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
@@ -102,7 +101,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-	      python code included in the swig output</simpara>
+	      Python code included in the swig output</simpara>
 	    </listitem>
 	  </itemizedlist>
 	</refsect2>                 <!-- Source Files -->
@@ -110,19 +109,11 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
   <refsection>
 	<title>Description</title>
 	<para>
-	  <classname>FieldIndex</classname> is the abstract base class
-	  for classes which refer to the components of
-	  multi-dimensional <link
-	  linkend="Class-Field"><classname>Fields</classname></link>,
-	  <link
-	      linkend="Class-Flux"><classname>Fluxes</classname></link>,
-	  and <link
-	  linkend="Class-Equation"><classname>Equations</classname></link>.
-	  The different subclasses refer to components of
-	  scalars,<footnote>
-	  <simpara>Trivially.</simpara>
-	</footnote>
-	vectors, and tensors.
+	  <classname>FieldIndex</classname> is the abstract base class for
+	  classes which refer to the components of multi-dimensional
+	  &Fields;, &Fluxes;, &Equations;, and &OutputVals;.  The
+	  different subclasses refer to components of scalars, vectors,
+	  and tensors.
 	</para>
     <para>
       In C++, a <classname>FieldIndex</classname> is usually obtained
@@ -278,7 +269,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-	      python code included in the swig output</simpara>
+	      Python code included in the swig output</simpara>
 	    </listitem>
 	  </itemizedlist>
 	</refsect2>                 <!-- Source Files -->
@@ -289,18 +280,11 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	<para>
 	  <classname>IndexP</classname> is a wrapper for the various
 	  &FieldIndex;
-	  classes, which are used to refer to components of various
-	  kinds of <link
-	  linkend="Class-Field"><classname>Fields</classname></link>,
-	  <link
-	      linkend="Class-Flux"><classname>Fluxes</classname></link>
-	  and <link
-	  linkend="Class-Equation"><classname>Equations</classname></link>.
-	  The wrapper is a light-weight object that allows a
-	  &FieldIndex; to be used in a generic
-	  fashion, while at the same time handling allocation and
-	  deallocation of the &FieldIndex;
-	  object.
+	  classes, which are used to refer to components of various kinds
+	  of &Fields;, &Fluxes;, &Equations;, and &OutputVals;.  The
+	  wrapper is a light-weight object that allows a &FieldIndex; to
+	  be used in a generic fashion, while at the same time handling
+	  allocation and deallocation of the &FieldIndex; object.
     </para>
     <para>
       All of the public &FieldIndex; methods are available in
@@ -506,7 +490,7 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 		  <classname>VectorFieldIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  &FieldIndex;
+		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
 	</refsect2>                 <!-- Python Synopsis -->
@@ -584,7 +568,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 		  <classname>OutOfPlaneVectorFieldIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  <classname>VectorFieldIndex</classname>
+		  <classname><link linkend="Class-VectorFieldIndex">VectorFieldIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
 	</refsect2>                 <!-- Python Synopsis -->
@@ -631,18 +615,23 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 	  linkend="Section-Concepts-Mesh-3D"> out-of-plane
 	  part</link>, which is a 3-vector of derivatives.
 	  <emphasis>This</emphasis> vector has a z component,
-	  <inlineequation>
+
+      <inlineequation>
 	    <alt role="tex">\(\partial u_z/\partial z\)</alt>
-	  </inlineequation>,
+	    </inlineequation>,
+
       which can be referred to by an
-      <classname>OutOfPlaneVectorFieldIndex</classname>.  Following
-      these subtleties isn't really important, though, because most of
-      the time &FieldIndex; objects are created by the
+      <classname>OutOfPlaneVectorFieldIndex</classname>.  Most of the
+      time &FieldIndex; objects are created by the
       <classname>Fields</classname> themselves
-      (<foreignphrase>e.g,</foreignphrase> with <link
-      linkend="Class-Field-components"><methodname>Field::components()</methodname></link>),
-      which automatically do the right thing.
+      <foreignphrase>e.g,</foreignphrase> via their <link
+      linkend="Class-Field-components"><methodname>Field::components()</methodname></link>
+      methods, which automatically return the correct type of
+      &FieldIndex;.
 	</para>
+    <para>
+      See &FieldIndex; for more.
+    </para>
   </refsection>
 </refentry>                     <!-- OutOfPlaneVectorFieldIndex -->
 
@@ -722,7 +711,7 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 		  <classname>SymTensorIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  &FieldIndex;
+		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
 	    <methodsynopsis>
 		  <methodname><link linkend="Class-SymTensorIndex-row">row</link></methodname>
@@ -916,7 +905,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
 		  <classname>OutOfPlaneSymTensorIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  <classname>SymTensorIndex</classname>
+		  <classname><link linkend="Class-SymTensorIndex">SymTensorIndex</link></classname>
 	    </ooclass>
 	  </classsynopsis>
 	</refsect2>                 <!-- Python Synopsis -->
@@ -1008,7 +997,7 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
   <refnamediv>
     <refname>Components</refname>
     <refpurpose>
-      Iterable object containing a set of &FieldIndex;es
+      Iterable object containing a set of &FieldIndexes;
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -1076,7 +1065,7 @@ from ooflib.SWIG.engine.fieldindex import Components </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-	      python code included in the swig output</simpara>
+	      Python code included in the SWIG output</simpara>
 	    </listitem>
 	  </itemizedlist>
 	</refsect2>                 <!-- Source Files -->
@@ -1086,7 +1075,7 @@ from ooflib.SWIG.engine.fieldindex import Components </literallayout>
     <para>
       Subclasses of <classname>Components</classname> are
       container-like objects that can be iterated over to produce the
-      &FieldIndex;es for the different components of a &Field;,
+      &FieldIndexes; for the different components of a &Field;,
       &Flux;, or &Equation;.  They aren't real containers, but they
       simulate them for the purposes of iteration.  In C++ they have
       <function>begin()</function> and <function>end()</function>
@@ -1437,6 +1426,23 @@ for index in field.components():
         </listitem>
       </itemizedlist>
     </refsect2>                 <!-- Subclasses -->
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.swg</filename>:
+	      SWIG source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -1655,8 +1661,8 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
     <title>Methods</title>
     <para>
       Most of the <classname>ComponentIteratorP</classname> methods
-      call the same method in the &ComponentIterator; class and return
-      the result.
+      simply the similarly named method in the wrapped
+      &ComponentIterator; object and return the result.
     </para>
     <refsection id="Class-ComponentIteratorP-ctor">
       <title><code>ComponentIteratorP(<link
@@ -1744,6 +1750,19 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       </constructorsynopsis>
     </classsynopsis>
   </refsynopsisdiv>
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   <refsection>
     <title>Description</title>
     <para>
@@ -1789,7 +1808,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       </ooclass>
       <ooclass>
         <modifier>public</modifier>
-        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+        <classname><link linkend="Class-ComponentIterator">ComponentIterator</link></classname>
       </ooclass>
       <constructorsynopsis>
         <methodname>ScalarFieldIterator</methodname>
@@ -1800,6 +1819,19 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
         </methodparam>
       </constructorsynopsis>
     </classsynopsis>
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -1859,7 +1891,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       </ooclass>
       <ooclass>
         <modifier>public</modifier>
-        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+        <classname><link linkend="Class-ComponentIterator">ComponentIterator</link></classname>
       </ooclass>
       <constructorsynopsis>
         <methodname>VectorFieldIterator</methodname>
@@ -1873,6 +1905,19 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
         </methodparam>
       </constructorsynopsis>
     </classsynopsis>
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -1924,7 +1969,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       </ooclass>
       <ooclass>
         <modifier>public</modifier>
-        <link linkend="Class-ComponentIterator"><classname>ComponentIterator</classname></link>
+        <classname><link linkend="Class-ComponentIterator">ComponentIterator</link></classname>
       </ooclass>
       <constructorsynopsis>
         <methodname>OutOfPlaneVectorFieldIterator</methodname>
@@ -1938,6 +1983,19 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
         </methodparam>
       </constructorsynopsis>
     </classsynopsis>
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -1994,6 +2052,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
         <classname>SymTensorIterator</classname>
       </ooclass>
       <ooclass>
+        <modifier>public</modifier>
         <classname><link linkend="Class-ComponentIterator">ComponentIterator</link></classname>
       </ooclass>
       <constructorsynopsis>
@@ -2025,6 +2084,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
         <classname>SymTensorInPlaneIterator</classname>
       </ooclass>
       <ooclass>
+        <modifier>public</modifier>
         <classname>SymTensorIterator</classname>
       </ooclass>
     </classsynopsis>
@@ -2033,9 +2093,23 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
         <classname>SymTensorOutOfPlaneIterator</classname>
       </ooclass>
       <ooclass>
+        <modifier>public</modifier>
         <classname>SymTensorIterator</classname>
       </ooclass>
     </classsynopsis>
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/fieldindex.C</filename>:
+		  C++ source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -2096,7 +2170,12 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       <classname>OutOfPlaneVectorFieldComponents</classname> is the
       &ComponentIterator; for <link
       linkend="Class-OutOfPlaneSymTensorComponents"><classname>OutOfPlaneSymTensorComponents</classname></link>.
+      Like all &ComponentIterator; subclasses, new instances are
+      created by the <function>begin()</function> and
+      <function>end()</function> methods of the corresponding
+      &Components; subclass.  See &ComponentIterator; for the details.
     </para>
+
   </refsection>
 </refentry>
 
@@ -2136,6 +2215,19 @@ planarity.ALL_INDICES </literallayout>
 	    </listitem>
 	  </itemizedlist>
 	</refsect2>
+	<refsect2>
+	  <title>Source Files</title>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+	      <simpara><filename>SRC/engine/planarity.h</filename>:
+		  C++ header</simpara>
+	    </listitem>
+	    <listitem>
+	      <simpara><filename>SRC/engine/planarity.swg</filename>:
+		  SWIG source code</simpara>
+	    </listitem>
+	  </itemizedlist>
+	</refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
 	<title>Description</title>

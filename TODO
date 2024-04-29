@@ -22,3 +22,8 @@ Update to DocBook 5.  Will also require some work.
 Add images for all DisplayMethod subclasses.
 
 Add a reference page for SpaceIndex and ShapeFunctionIndex.
+
+Be consistent about capitalizing swig and python.
+
+Change all <title>Discussion</title> to <title>Description</title>
+At the moment there are 1258 Descriptions and 87 Discussions.

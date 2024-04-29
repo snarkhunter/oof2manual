@@ -204,7 +204,7 @@ from oof2.SWIG.common.coord import *
       </refsect2>
     </refsynopsisdiv>
     <refsection>
-      <title>Discussion</title>
+      <title>Description</title>
       <para>
 	&oof2; menu items, and <link
 	linkend="Class-Output"><classname>Outputs</classname></link>
@@ -275,7 +275,7 @@ params=[StringParameter(name='filename', tip='Write to this file'),
 	it's no longer necessary after the Output classes have been
 	rewritten.
       </para>
-    </refsection><!-- Discussion -->
+    </refsection>               <!-- Description -->
     <refsection>
       <title>Parameter Subclasses</title>
       <para>

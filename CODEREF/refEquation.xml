@@ -22,7 +22,7 @@
 	  <title>C++ Synopsis</title>
 
 	  <literallayout class="monospaced">
-        #include "engine/equation.h" </literallayout>
+#include "engine/equation.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Equation</classname>
@@ -156,7 +156,7 @@ from ooflib.SWIG.engine.equation import Equation</literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara>
-	        <filename>SRC/engine/equation.spy</filename>: python code
+	        <filename>SRC/engine/equation.spy</filename>: Python code
 	        included in <filename>equation.swg</filename>.
 	      </simpara>
 	    </listitem>
@@ -215,9 +215,7 @@ True </programlisting>
     </para>
     <para>
 	  Most &oof2; extensions will probably never need to use an
-	  <classname>Equation</classname> object explicitly, aside from
-	  possibly creating a new <classname>Equation</classname> or
-	  checking to see if an <classname>Equation</classname> is active.
+	  <classname>Equation</classname> object explicitly.
     </para>
   </refsection>
   <refsection>
@@ -385,7 +383,7 @@ from ooflib.SWIG.engine.equation import DivergenceEquation </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara>
-	        <filename>SRC/engine/equation.spy</filename>: python code
+	        <filename>SRC/engine/equation.spy</filename>: Python code
 	        included in <filename>equation.swg</filename>.
 	      </simpara>
 	    </listitem>
@@ -531,7 +529,7 @@ from ooflib.SWIG.engine.equation import PlaneFluxEquation </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara>
-	        <filename>SRC/engine/equation.spy</filename>: python code
+	        <filename>SRC/engine/equation.spy</filename>: Python code
 	        included in <filename>equation.swg</filename>.
 	      </simpara>
 	    </listitem>

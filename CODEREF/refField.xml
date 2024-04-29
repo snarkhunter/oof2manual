@@ -407,9 +407,7 @@ from ooflib.SWIG.engine.field import Field </literallayout>
     <title>Methods</title>
 
     <refsection id="Class-Field-name">
-      <title>name</title>
-      <programlisting>
-std::string&amp; name() const </programlisting>
+      <title><code>std::string&amp; name() const</code></title>
 	  <para>
 	    <methodname>name</methodname> returns the name assigned to
 	    the <classname>Field</classname> when it was created.
@@ -417,9 +415,7 @@ std::string&amp; name() const </programlisting>
     </refsection><!-- name -->
     
     <refsection id="Class-Field-ndof">
-	  <title>ndof</title>
-      <programlisting>
-int ndof() const </programlisting>
+	  <title><code>int ndof() const</code></title>
       <para>
 	    <methodname>ndof</methodname> returns the number of degrees
 	    of freedom in the <classname>Field</classname>.  This is the
@@ -433,9 +429,7 @@ int ndof() const </programlisting>
     </refsection><!-- ndof -->
     
     <refsection id="Class-Field-is_defined">
-	  <title>is_defined</title>
-      <programlisting>
-bool is_defined(const CSubProblem* subp) const </programlisting>
+      <title><code>bool is_defined(const CSubProblem* subp) const</code></title>
 	  <para>
 	    <methodname>is_defined</methodname> indicates whether the
 	    <classname>Field</classname> has been <link
@@ -448,9 +442,7 @@ bool is_defined(const CSubProblem* subp) const </programlisting>
     </refsection><!-- is_defined -->
     
     <refsection id="Class-Field-is_active">
-	  <title>is_active</title>
-      <programlisting>
-bool is_active(const CSubProblem *subp) const </programlisting>
+	  <title><code> bool is_active(const CSubProblem *subp) const</code></title>
 	  <para>
 	    <methodname>is_active</methodname> indicates whether the
 	    <classname>Field</classname> has been <link
@@ -462,7 +454,7 @@ bool is_active(const CSubProblem *subp) const </programlisting>
     </refsection><!-- is_active -->
     
     <refsection id="Class-Field-dofoperator">
-	  <title>operator()</title>
+	  <title><code>DegreeOfFreedom* operator(...) const</code></title>
 	  <programlisting>
 DegreeOfFreedom* operator()(const &FuncNode;*, int component) const;
 DegreeOfFreedom* operator()(const &FuncNode;&amp;, int component) const;
@@ -502,7 +494,7 @@ DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, const IndexP&a
     </refsection><!-- operator() -->
     
     <refsection id="Class-Field-value">
-	  <title>value</title>
+	  <title><code>double value(...) const</code></title>
       <programlisting>
 double value(const &FEMesh;*, const &FuncNode;*, int component) const;
 double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int component) const; </programlisting>
@@ -519,7 +511,7 @@ double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int componen
 	  </para>
     </refsection>
     <refsection id="Class-Field-output">
-	  <title>output</title>
+	  <title><code>ArithmeticOutputvalue output(...)</code></title>
 	  <programlisting>
 &ArithmeticOutputValue; output(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;) const;
 &ArithmeticOutputValue; output(const &FEMesh;*, const &FuncNode;&amp;) const; </programlisting>
@@ -546,14 +538,12 @@ double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int componen
     </refsection><!-- output -->
 
     <refsection id="Class-Field-components">
-      <title>components</title>
-      <programlisting>
-&Components;* components(&Planarity; planarity) const; </programlisting>
+      <title><code>Components* components(Planarity planarity) const;</code></title>
       <para>
         <methodname>components</methodname> returns a container-like
         object that can be iterated over to obtain the indices of a
         <classname>Field</classname>.  The optional
-        <varname>planarity</varname> argument determines which
+        &Planarity; argument determines which
         <classname>Field</classname> components are included.  If it
         is omitted, <code><link
         linkend="Class-Planarity">ALL_INDICES</link></code> is
@@ -592,10 +582,7 @@ for index in displacement.components():
     </refsection>               <!--Class-Field-components-->
 
     <refsection id="Class-Field-oop-components">
-      <title>outOfPlaneComponents</title>
-      <programlisting>
-Components* outOfPlaneComponents() const;</programlisting>
-      
+      <title><code>Components* outOfPlaneComponents() const;</code></title>
       <para>
         Like <link
         linkend="Class-Field-components"><methodname>components</methodname></link>,
@@ -651,10 +638,7 @@ Components* outOfPlaneComponents() const;</programlisting>
     </refsection>               <!--Class-Field-oop-components-->
 
     <refsection id="Class-Field-getIndex">
-      <title><code>getIndex</code></title>
-      <programlisting>
-FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
-
+      <title><code>FieldIndex* getIndex(std::string&amp; name) const;</code></title>
       <para>
         <function>getIndex()</function> returns a &FieldIndex; object,
         given the <varname>name</varname> of the desired index.
@@ -756,41 +740,40 @@ IndexP index = IndexP(field->getIndex("x")); </programlisting>
     <refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.field import CompoundField
-	    <classsynopsis language="python">
-	      <ooclass>
-	        <classname>CompoundField</classname>
-	      </ooclass>
-	      <ooclass>
-	        <classname><link linkend="Class-Field">Field</link></classname>
-	      </ooclass>
-          <methodsynopsis>
-            <methodname><link
-                            linkend="Class-CompoundField-td">time_derivative</link></methodname>
-            <void/>
-          </methodsynopsis>
-	      <methodsynopsis>
-	        <methodname><link
-		                    linkend="Class-CompoundField-oop">out_of_plane</link></methodname>
-	        <void/>
-	      </methodsynopsis>
-	      <methodsynopsis>
-	        <methodname><link
-		                    linkend="Class-CompoundField-ooptd">out_of_plane_time_derivative</link></methodname>
-	        <void/>
-	      </methodsynopsis>
+from ooflib.SWIG.engine.field import CompoundField </literallayout>
+      <classsynopsis language="python">
+	    <ooclass>
+	      <classname>CompoundField</classname>
+	    </ooclass>
+	    <ooclass>
+	      <classname><link linkend="Class-Field">Field</link></classname>
+	    </ooclass>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-CompoundField-td">time_derivative</link></methodname>
+          <void/>
+        </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link
+		                  linkend="Class-CompoundField-oop">out_of_plane</link></methodname>
+	      <void/>
+	    </methodsynopsis>
+	    <methodsynopsis>
+	      <methodname><link
+		                  linkend="Class-CompoundField-ooptd">out_of_plane_time_derivative</link></methodname>
+	      <void/>
+	    </methodsynopsis>
 
-	      <methodsynopsis>
-	        <type>bool</type>
-	        <methodname><link linkend="Class-CompoundField-in_plane">in_plane</link></methodname>
-	        <methodparam>
-		      <type>const FEMesh*</type>
-		      <parameter>mesh</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>
-	    </classsynopsis>
-	  </literallayout>
+	    <methodsynopsis>
+	      <type>bool</type>
+	      <methodname><link linkend="Class-CompoundField-in_plane">in_plane</link></methodname>
+	      <methodparam>
+		    <type>const FEMesh*</type>
+		    <parameter>mesh</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>
+	  </classsynopsis>
     </refsect2>                 <!-- Python Synopsis -->
     <refsect2>
       <title>Subclasses</title>
@@ -1278,7 +1261,7 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
   <refnamediv>
     <refname>ThreeVectorField</refname>
     <refpurpose>
-      A three dimensional vector-valued <classname>FIeld</classname>
+      A three dimensional vector-valued <classname>Field</classname>
       object.
     </refpurpose>
   </refnamediv>

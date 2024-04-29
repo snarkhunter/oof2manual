@@ -43,7 +43,7 @@
     </variablelist>
   </refsection>
   <refsection>
-    <title>Discussion</title>
+    <title>Description</title>
     <para>
       <classname>ProfileFunctionX</classname> and
       <classname>ProfileFunctionXT</classname> objects are used in the

@@ -71,7 +71,7 @@ f = field.getField(name) </literallayout>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Discussion</title>
+    <title>Description</title>
     <para>
       <function>getField</function> returns a previously created
       &Field; object.  In C++ it returns a pointer to the base class,

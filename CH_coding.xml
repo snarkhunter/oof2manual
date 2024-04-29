@@ -321,7 +321,7 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
     </para>
     <para>
       It is often necessary to refer to the components of &Fields;,
-      &Fluxes;, and &Equations;.  &oof2;'s
+      &Fluxes;, &Equations;, and &OutputVal;s.  &oof2;'s
       <filename>fieldindex</filename> module provides a generic
       mechanism for doing this, so that it's possible to loop over all
       of the components of an object without even having to know how
@@ -331,18 +331,58 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       identically.
     </para>
     <para>
+      The basic machinery contains:
+      <itemizedlist>
+        <listitem>
+          <para>
+            The &FieldIndex; base class, which designates a component
+            of a &Field; or other object.  There are different
+            subclasses for different kinds of objects (scalars,
+            vectors, tensors, <foreignphrase>etc</foreignphrase>).
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            A &Components; base class, which is a container that can
+            be iterated over to obtain the &FieldIndexes;.  There are
+            different subclasses for different kinds of objects, and
+            for different ways of iterating over them (in-plane,
+            out-of-plane, <foreignphrase>etc</foreignphrase>).  Each
+            indexable class (&Field;, &Flux;,
+            <foreignphrase>etc</foreignphrase>) has a virtual function
+            that returns the appropriate type of &Components;.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            A &ComponentIterator; base class that is used for
+            iterating over the &Components;.  Different subclasses of
+            &ComponentIterator;s iterate over different types of
+            &Components;.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Generic wrapper classes, &IndexP; and
+            &ComponentIteratorP;, that wrap pointers to &FieldIndex;
+            and &ComponentIterator;.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+    <para>
       The base class for indices is &FieldIndex;. There are subclasses
-      of &FieldIndex; for different kinds of &Fields;, &Fluxes;, and
-      &Equations;.  (From now on we'll talk about &Fields;, but
-      everything also applies to &Fluxes; and &Equations;, unless
-      explicitly stated otherwise.)  To handle the polymorphism,
-      generic C++ code doesn't use the &FieldIndex; classes directly.
-      Instead it uses a wrapper class, &IndexP;, which is a
-      light-weight object that contains a pointer (hence the
-      <quote>P</quote> in the name) to a &FieldIndex;.  The wrapper
-      frees the user from having to know the actual class being used.
-      It provides access to its &FieldIndex; and its virtual
-      functions, and deallocates it when it goes out of scope.
+      of &FieldIndex; for different kinds of &Fields;, &Fluxes;,
+      &Equations;, and &OutputVal;s.  (From now on we'll talk about
+      &Fields;, but everything also applies to &Fluxes;, &Equations;
+      and &OutputVal;s, unless explicitly stated otherwise.)  To
+      handle the polymorphism, generic C++ code doesn't use the
+      &FieldIndex; classes directly.  Instead it uses a wrapper class,
+      &IndexP;, which is a light-weight object that contains a pointer
+      (hence the <quote>P</quote> in the name) to a &FieldIndex;.  The
+      wrapper frees the user from having to know the actual class
+      being used.  It provides access to its &FieldIndex; and its
+      virtual functions, and deallocates it when it goes out of scope.
     </para>
     <para>
       Note that &IndexP; does not do reference
@@ -357,7 +397,7 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       type of &Field; has a <link
       linkend="Class-Field-components"><function>components()</function></link>
       method that returns a &Components; pointer.  The &Components; classes
-      are conceptually containers for &FieldIndex;es.  The instances
+      are conceptually containers for &FieldIndexes;.  The instances
       of the &Components; subclasses are static immutable objects.
     </para>
     <para>
@@ -390,9 +430,9 @@ for(IndexP i : *Field::getField("Displacement")->components())
 
       both of which print
    <literallayout class="monospaced">
-IndexP(ScalarFieldIndex())    <lineannotation>The single component of Temperature</lineannotation>
-IndexP(VectorFieldIndex(0))   <lineannotation>The first component of Displacement</lineannotation>
-IndexP(VectorFieldIndex(1))   <lineannotation>The second component of Displacement</lineannotation></literallayout>
+IndexP(ScalarFieldIndex())    <lineannotation>[The single component of Temperature]</lineannotation>
+IndexP(VectorFieldIndex(0))   <lineannotation>[The first component of Displacement]</lineannotation>
+IndexP(VectorFieldIndex(1))   <lineannotation>[The second component of Displacement]</lineannotation></literallayout>
    </para>
    <para>
      In Python, the <function>components()</function>
@@ -408,9 +448,9 @@ for i in Displacement.components():
 
      which prints
      <literallayout class="monospaced">
-ScalarFieldIndex()     <lineannotation>The single component of Temperature</lineannotation>
-VectorFieldIndex(0)    <lineannotation>The first component of Displacement</lineannotation>
-VectorFieldIndex(1)    <lineannotation>The second component of Displacement</lineannotation></literallayout>
+ScalarFieldIndex()     <lineannotation>[The single component of Temperature]</lineannotation>
+VectorFieldIndex(0)    <lineannotation>[The first component of Displacement]</lineannotation>
+VectorFieldIndex(1)    <lineannotation>[The second component of Displacement]</lineannotation></literallayout>
 
     </para>
     <para>
