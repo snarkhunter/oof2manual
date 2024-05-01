@@ -476,14 +476,6 @@ VectorFieldIndex(1)    <lineannotation>[The second component of Displacement]</l
   
   <section id="Section-Coding-Conjugates">
     <title>Conjugate Pairs</title>
-    <warning>
-      <para>
-	This section has not yet been updated for &oof2; version 2.1.
-	A partial discussion of the differences between the 2.0 and
-	2.1 extension APIs may be found at <ulink
-	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
-      </para>
-    </warning>
     <para>
       Finite element problems which lead to a symmetric stiffness
       matrix can be solved efficiently by the <link
@@ -512,7 +504,7 @@ VectorFieldIndex(1)    <lineannotation>[The second component of Displacement]</l
     </para>
     <para>
       The function <link
-      linkend="Function-conjugatePair"><function>conjugatePair</function></link>
+      linkend="Function-conjugatePair"><function>conjugatePair()</function></link>
       in the <code>ooflib.SWIG.engine.conjugate</code> module
       establishes the correspondence between &Field; and &Equation;
       components that is necessary to build a symmetric matrix.  After
@@ -530,21 +522,24 @@ conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
       pair; <varname>equation</varname> is an &Equation; object;
       <varname>field</varname> is a &Field; object, and
       <varname>eqncomp</varname> and <varname>fieldcomp</varname> are
-      either &FieldIndex; objects or lists of them.  For example, the
-      following code establishes the correspondence between the
-      <emphasis>x</emphasis> and <emphasis>y</emphasis> components of
-      the displacement field and the force balance equation
-      (<code>import</code> statements have been omitted for
+      either &FieldIndex; objects or iterable containers of them.  For
+      example, the following code establishes the correspondence
+      between the <emphasis>x</emphasis> and <emphasis>y</emphasis>
+      components of the displacement field and the force balance
+      equation (<code>import</code> statements have been omitted for
       conciseness):
 
       <programlisting>
-ForceBalanceEquation = getEquation('Force_Balance')
-Displacement = getCompoundField('Displacement')
-x = VectorFieldIndex(0)
-y = VectorFieldIndex(1)
-conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
-                            Displacement, [x, y]) </programlisting>
+equation = getEquation('Force_Balance')
+field = getField('Displacement')
+conjugatePair("Elasticity",
+              equation, equation.components(),
+              field, field.components()) </programlisting>
 
+      See <link
+      linkend="Function-conjugatePair"><function>conjugatePair()</function></link>
+      for some important details about making sure that the &Equation;
+      and &Field; components are in the same order.
     </para>
     <para>
       Calling <function>conjugatePair</function> is necessary but not
@@ -553,7 +548,6 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
       also support symmetry.  This is discussed in <xref
       linkend="Section-Coding-Material"/>.
     </para>
-    <!-- STEVE: Added these two paras. -->
     <para>
       It is not required that <function>conjugatePair</function> be
       called on all defined fields and equations, but failing to do so
@@ -566,7 +560,7 @@ conjugatePair("Elasticity", ForceBalanceEquation, [x,y],
       It is also not necessary to call the
       <function>conjugatePair</function> for the predefined fields in
       &oof2;, since conjugacy is predefined for these fields and
-      equations in the <filename>problem.py</filename> file.
+      equations in <filename>SRC/engine/problem.py</filename>.
     </para>
   </section><!-- Conjugate Pairs -->
 

@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refMisc.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:08 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,12 +8,16 @@
   the authors at oof_manager@nist.gov.
 -->
 
-    <refentry id="Function-acquirePyLock">
-      <refnamediv>
+<!-- TODO: Delete Function-acquirePylock and replace with a page for
+     Python_Thread_Allow, Python_Thread_Block, and their macros.
+-->
+
+<refentry id="Function-acquirePyLock">
+  <refnamediv>
 	<refname>acquirePyLock</refname>
 	<refpurpose>ensure thread-safe Python API calls</refpurpose>
-      </refnamediv>
-      <refsynopsisdiv>
+  </refnamediv>
+  <refsynopsisdiv>
 	<programlisting>
 #include "common/threadstate.h" </programlisting>
 	<funcsynopsis>
@@ -50,8 +49,8 @@
 	    <void/>
 	  </funcprototype>
 	</funcsynopsis>
-      </refsynopsisdiv>
-      <refsection>
+  </refsynopsisdiv>
+  <refsection>
 	<title>Description</title>
 	<para>
 	  The three functions described here are used whenever &oof2;
@@ -60,7 +59,7 @@
 	  interpreter will be invoked, so it's a good idea to treat
 	  <emphasis>all</emphasis> Python API calls in this way.  See
 	  <ulink url="http://docs.python.org/ext/thinIce.html"
-	  role="external"/> for a relevant discussion (although in a
+	         role="external"/> for a relevant discussion (although in a
 	  different context).
 	</para>
 	<para>
@@ -91,17 +90,17 @@
 	  calls should always occur within a <code>try
 	  ... catch</code> block, like this:
 	  <programlisting>
-#include "common/threadstate.h"
+        #include "common/threadstate.h"
 
-   acquirePyLock();
-   try {
-      // Call Python API
-   }
-   catch (...) {
-      releasePyLock();
-      throw;
-   }
-   releasePyLock(); </programlisting>
+        acquirePyLock();
+        try {
+        // Call Python API
+        }
+        catch (...) {
+        releasePyLock();
+        throw;
+        }
+      releasePyLock(); </programlisting>
 	</para>
 	<para>
 	  It's possible that calls to the Python API will raise a
@@ -113,22 +112,22 @@
 	  the C++ function exits.  It should be used like this:
 
 	  <programlisting>
-#include "common/ooferror.h"
-#include "common/threadstate.h"
+        #include "common/ooferror.h"
+        #include "common/threadstate.h"
 
-   acquirePyLock();
-   try {
-      PyObject *func, *args; // assume these have been set
-      PyObject *result = PyEval_Call_Object(func, args); // for example 
-      if(result == NULL) 
-         pythonErrorRelay();
-      // do something with result
-   }
-   catch (...) {
-      releasePyLock();
-      throw;
-   }
-   releasePyLock(); </programlisting>	  
+        acquirePyLock();
+        try {
+        PyObject *func, *args; // assume these have been set
+        PyObject *result = PyEval_Call_Object(func, args); // for example 
+        if(result == NULL) 
+        pythonErrorRelay();
+        // do something with result
+        }
+        catch (...) {
+        releasePyLock();
+        throw;
+        }
+      releasePyLock(); </programlisting>	  
 
 	  <function>pythonErrorRelay</function> raises a C++ exception
 	  that will be converted back into a Python exception when
@@ -139,255 +138,257 @@
 	  linkend="Class-ErrError"><classname>ErrError</classname></link>
 	  class.
 	</para>
-      </refsection>
-    </refentry><!-- acquirePyLock -->
+  </refsection>
+</refentry><!-- acquirePyLock -->
 
-    <refentry id="Class-ErrError">
-      <refnamediv>
+<!-- ============================================================== -->
+
+<refentry id="Class-ErrError">
+  <refnamediv>
 	<refname>ErrError</refname>
 	<refpurpose>Classes and functions for handling exceptions</refpurpose>
-      </refnamediv>
+  </refnamediv>
       <refsynopsisdiv>
-	<title>Synopses</title>
-	<refsect2>
-	  <title>C++ Synopsis</title>
-	  <programlisting>
+	    <title>Synopses</title>
+	    <refsect2>
+	      <title>C++ Synopsis</title>
+	      <programlisting>
 #include "common/ooferror.h" </programlisting>
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <classname>ErrError</classname>
-	    </ooclass>
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <type>std::string</type>
-	      <methodname>pythonequiv</methodname>
-	      <void/>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <type>std::string</type>
-	      <methodname>message</methodname>
-	      <void/>
-	    </methodsynopsis>
-	  </classsynopsis><!-- ErrError -->
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <modifier>template &lt;class E&gt;</modifier>
-	      <classname>ErrErrorBase</classname>
-	    </ooclass>
-	    <ooclass>
-	      <modifier>public</modifier>
-	      <classname>ErrError</classname>
-	    </ooclass>
-	  </classsynopsis><!-- ErrErrorBase -->
-	  <para>
-	    The following subclasses are all derived from the
-	    <classname>ErrErrorBase</classname> template, but the base
-	    class has been omitted here for clarity.
-	  </para>
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodname>ErrProgrammingError</methodname>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>filename</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>int</type>
-		<parameter>line</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	    <constructorsynopsis>
-	      <methodname>ErrProgrammingError</methodname>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>message</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>filename</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>int</type>
-		<parameter>line</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrProgrammingError -->
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrIndexError">ErrIndexError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodname>ErrIndexError</methodname>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrIndexError -->
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrUserError">ErrUserError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodname>ErrUserError</methodname>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrUserError -->
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrSetupError">ErrSetupError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodname>ErrSetupError</methodname>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrSetupError -->
-	</refsect2><!-- C++ Synopsis -->
-	<refsect2>
-	  <title>Python Synopsis</title>
-	  <programlisting>
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname>ErrError</classname>
+	        </ooclass>
+	        <methodsynopsis>
+	          <modifier>virtual</modifier>
+	          <type>std::string</type>
+	          <methodname>pythonequiv</methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <modifier>virtual</modifier>
+	          <type>std::string</type>
+	          <methodname>message</methodname>
+	          <void/>
+	        </methodsynopsis>
+	      </classsynopsis>      <!-- ErrError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <modifier>template &lt;class E&gt;</modifier>
+	          <classname>ErrErrorBase</classname>
+	        </ooclass>
+	        <ooclass>
+	          <modifier>public</modifier>
+	          <classname>ErrError</classname>
+	        </ooclass>
+	      </classsynopsis><!-- ErrErrorBase -->
+	      <para>
+	        The following subclasses are all derived from the
+	        <classname>ErrErrorBase</classname> template, but the base
+	        class has been omitted here for clarity.
+	      </para>
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrProgrammingError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>filename</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <type>int</type>
+		        <parameter>line</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	        <constructorsynopsis>
+	          <methodname>ErrProgrammingError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>filename</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <type>int</type>
+		        <parameter>line</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis>      <!-- ErrProgrammingError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrIndexError">ErrIndexError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrIndexError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis>      <!-- ErrIndexError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrUserError">ErrUserError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrUserError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrUserError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrSetupError">ErrSetupError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrSetupError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrSetupError -->
+	    </refsect2><!-- C++ Synopsis -->
+	    <refsect2>
+	      <title>Python Synopsis</title>
+	      <programlisting>
 from oof2.SWIG.common.ooferror import ErrProgrammingError
 from oof2.SWIG.common.ooferror import ErrIndexError
 from oof2.SWIG.common.ooferror import ErrUserError
 from oof2.SWIG.common.ooferror import ErrSetupError </programlisting>
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodparam>
-		<parameter>message</parameter>
-	      </methodparam>
-	      <methodparam>
-		<parameter>filename</parameter>
-	      </methodparam>
-	      <methodparam>
-		<parameter>line</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrProgrammingError -->
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrPyProgrammingError">ErrPyProgrammingError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodparam>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrPyProgrammingError -->
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrIndexError">ErrIndexError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodparam>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrIndexError -->
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrUserError">ErrUserError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodparam>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrUserError -->
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname><link linkend="Class-ErrSetupError">ErrSetupError</link></classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodparam>
-		<parameter>message</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
-	  </classsynopsis><!-- ErrSetupError -->
-	  <programlisting>
+     	  <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <parameter>filename</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <parameter>line</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis>      <!-- ErrProgrammingError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrPyProgrammingError">ErrPyProgrammingError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrPyProgrammingError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrIndexError">ErrIndexError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrIndexError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrUserError">ErrUserError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrUserError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrSetupError">ErrSetupError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrSetupError -->
+	      <programlisting>
 <link linkend="Function-registerErrorClass">registerErrorClass</link>(exc_class)
 </programlisting>
-	</refsect2><!-- Python Synopsis -->
-	<refsect2>
-	  <title>Source Files</title>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara><filename>SRC/common/ooferror.h</filename></simpara>
-	    </listitem>
-	    <listitem>
-	      <simpara><filename>SRC/common/ooferror.C</filename></simpara>
-	    </listitem>
-	    <listitem>
-	      <simpara><filename>SRC/common/ooferror.swg</filename></simpara>
-	    </listitem>
-	    <listitem>
-	      <simpara><filename>SRC/common/ooferror.spy</filename></simpara>
-	    </listitem>
-	  </itemizedlist>
-	</refsect2>
+        </refsect2><!-- Python Synopsis -->
+	    <refsect2>
+	      <title>Source Files</title>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.h</filename></simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.C</filename></simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.swg</filename></simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.spy</filename></simpara>
+	        </listitem>
+	      </itemizedlist>
+	    </refsect2>
       </refsynopsisdiv>
       <refsection>
-	<title>Description</title>
-	<para>
-	  &oof2; predefines a number of useful exception classes for
-	  handling errors, and includes a mechanism for adding new
-	  classes.  The mechanism is non-trivial because exceptions
-	  have to be able to pass back and forth between C++ and
-	  Python.
-	</para>
-	<refsection>
-	  <title>Predefined Exception Classes</title>
-	  <para>
-	    The following classes are all declared in
-	    <filename>common/ooferror.h</filename>.  The Python
-	    versions can be imported from
-	    <code>oof2.SWIG.common.ooferror</code>.
-	  </para>
-	  <refsection id="Class-ErrProgrammingError">
-	    <title><code>class ErrProgrammingError</code></title>
+	    <title>Description</title>
 	    <para>
-	      This exception indicates that an internal consistency
-	      check failed.  Its constructor arguments are a message,
-	      the name of the source file and the line number of the
-	      code that raised the exception.  In C++, it's easily
-	      called like this:
-	      <programlisting>
+	      &oof2; predefines a number of useful exception classes for
+	      handling errors, and includes a mechanism for adding new
+	      classes.  The mechanism is non-trivial because exceptions
+	      have to be able to pass back and forth between C++ and
+	      Python.
+	    </para>
+	    <refsection>
+	      <title>Predefined Exception Classes</title>
+	      <para>
+	        The following classes are all declared in
+	        <filename>common/ooferror.h</filename>.  The Python
+	        versions can be imported from
+	        <code>oof2.SWIG.common.ooferror</code>.
+	      </para>
+	      <refsection id="Class-ErrProgrammingError">
+	        <title><code>class ErrProgrammingError</code></title>
+	        <para>
+	          This exception indicates that an internal consistency
+	          check failed.  Its constructor arguments are a message,
+	          the name of the source file and the line number of the
+	          code that raised the exception.  In C++, it's easily
+	          called like this:
+	          <programlisting>
 throw ErrProgrammingError("Your message here", __FILE__, __LINE__);</programlisting>
 
-	      In Python, it's easier to use <link
-	      linkend="Class-ErrPyProgrammingError"><classname>ErrPyProgrammingError</classname></link>
-	      instead.
-	    </para>
-	    <para>
-	      Programming errors are usually fatal to the program.
-	    </para>
-	  </refsection><!-- ErrProgrammingError -->
-	  <refsection id="Class-ErrPyProgrammingError">
-	    <title><code>class ErrPyProgrammingError</code></title>
-	    <para>
-	      <classname>ErrPyProgrammingError</classname> is a Python
-	      class derived from <link
-	      linkend="Class-ErrProgrammingError"><classname>ErrProgrammingError</classname></link>.
-	      It automatically sets the filename and line number
-	      parameters by examining the Python traceback stack.  It
-	      should be raised whenever an internal inconsistency is
-	      detected in Python code.
-	    </para>
-	    <para>
-	      Python programming errors are usually fatal to the
-	      program.
+	          In Python, it's easier to use <link
+	          linkend="Class-ErrPyProgrammingError"><classname>ErrPyProgrammingError</classname></link>
+	          instead.
+	        </para>
+	        <para>
+	          Programming errors are usually fatal to the program.
+	        </para>
+	      </refsection><!-- ErrProgrammingError -->
+	      <refsection id="Class-ErrPyProgrammingError">
+	        <title><code>class ErrPyProgrammingError</code></title>
+	        <para>
+	          <classname>ErrPyProgrammingError</classname> is a Python
+	          class derived from <link
+	          linkend="Class-ErrProgrammingError"><classname>ErrProgrammingError</classname></link>.
+	          It automatically sets the filename and line number
+	          parameters by examining the Python traceback stack.  It
+	          should be raised whenever an internal inconsistency is
+	          detected in Python code.
+	        </para>
+	        <para>
+	          Python programming errors are usually fatal to the
+	          program.
 	    </para>
 	  </refsection><!-- ErrPyProgrammingError -->
 	  <refsection id="Class-ErrIndexError">
@@ -400,11 +401,11 @@ throw ErrProgrammingError("Your message here", __FILE__, __LINE__);</programlist
 	  <refsection id="Class-ErrUserError">
 	    <title><code>class ErrUserError</code></title>
 	    <para>
-	      <classname>ErrUserError</classname> indicates that the
-	      user did something wrong.  The GUI should (and does)
-	      prevent most user errors, but they can still occur if
-	      the user loads a malformed script.  User errors should
-	      not be fatal (either to the user or to the program).
+	      <classname>ErrUserError</classname> indicates that the user
+	      did something wrong.  The GUI should (and does) prevent most
+	      user errors, but they can still occur if the user loads a
+	      malformed script.  User errors should not be fatal (either
+	      to the user or to the program).
 	    </para>
 	  </refsection><!-- ErrUserError -->
 	  <refsection id="Class-ErrSetupError">
@@ -412,8 +413,8 @@ throw ErrProgrammingError("Your message here", __FILE__, __LINE__);</programlist
 	    <para>
 	      An <classname>ErrSetupError</classname> is a particular
 	      variety of <link linkend="Class-ErrUserError">user
-	      error</link> indicating that the finite element system
-	      being solved hasn't been defined properly.
+	      error</link> indicating that the finite element system being
+	      solved hasn't been defined properly.
 	    </para>
 	  </refsection>
 	</refsection><!-- Predefined Exception Classes -->
@@ -421,9 +422,8 @@ throw ErrProgrammingError("Your message here", __FILE__, __LINE__);</programlist
 	  <title>Adding New Exception Classes</title>
 	  <para>
 	    In order for exceptions to propagate properly from C++ to
-	    Python and back, all &oof2; exception classes must be
-	    derived from <classname>ErrErrorBase</classname> in the
-	    following way:
+	    Python and back, all &oof2; exception classes must be derived
+	    from <classname>ErrErrorBase</classname> in the following way:
 	    <programlisting>
 class MyError : public ErrErrorBase&lt;MyError&gt; {
 public:
@@ -439,27 +439,27 @@ public:
 	    The function <methodname>pythonequiv()</methodname> must
 	    return a string that, when evaluated by the Python
 	    interpreter, will create the equivalent exception in
-	    Python. The <classname>MyError</classname> example above
-	    would define it like this:
+	    Python. The <classname>MyError</classname> example above would
+	    define it like this:
 	    <programlisting>
 std::string MyError::pythonequiv() const {
   return "NewError()";
 } </programlisting>
 	  </para>
 	  <para>
-	    The function <methodname>message</methodname> should
-	    return a string indicating what caused the exception.
+	    The function <methodname>message</methodname> should return a
+	    string indicating what caused the exception.
 	  </para>
-	  <para><anchor id="Function-registerErrorClass"/>
-	    All new exception subclasses must be swigged, and the
-	    Python function <function>registerErrorClass</function>
-	    must be called with the swigged class as its argument.
-	    (Exception classes declared in
-	    <filename>SRC/common/ooferror.h</filename> and swigged in
-	    <filename>SRC/common/ooferror.swg</filename> are exempt
-	    from this requirement.)  For example, the
-	    <classname>MyError</classname> class above would have a
-	    swig file <filename>myerror.swg</filename> like this:
+	  <para>
+        <anchor id="Function-registerErrorClass"/>
+	    All new exception subclasses must be swigged, and the Python
+	    function <function>registerErrorClass</function> must be
+	    called with the swigged class as its argument.  (Exception
+	    classes declared in <filename>SRC/common/ooferror.h</filename>
+	    and swigged in <filename>SRC/common/ooferror.swg</filename>
+	    are exempt from this requirement.)  For example, the
+	    <classname>MyError</classname> class above would have a swig
+	    file <filename>myerror.swg</filename> like this:
 	    <programlisting>
 %module myerror
 %include "common/typemaps.swg"
@@ -491,111 +491,48 @@ ooferror.registerErrorClass(MyError) </programlisting>
 	  </para>
 	  <para>
 	    For more examples of &oof2; exception classes, see
-	    <filename>SRC/engine/ooferror*</filename>.  (The
-	    exceptions defined there have very specific internal uses
-	    and shouldn't be used in &oof2; extensions, so they aren't
-	    discussed here.)  Note that it's not possible to derive
-	    new exceptions directly from <link
+	    <filename>SRC/engine/ooferror*</filename>.  (The exceptions
+	    defined there have very specific internal uses and shouldn't
+	    be used in &oof2; extensions, so they aren't discussed here.)
+	    Note that it's not possible to derive new exceptions directly
+	    from <link
 	    linkend="Class-ErrUserError"><classname>ErrUserError</classname></link>
 	    or <link
 	    linkend="Class-ErrProgrammingError"><classname>ErrProgrammingError</classname></link>
-	    because the template parameter would be wrong.  New
-	    exceptions must be derived from the intermediate classes
+	    because the template parameter would be wrong.  New exceptions
+	    must be derived from the intermediate classes
 	    <classname>ErrUserErrorBase</classname> or
-	    <classname>ErrProgrammingErrorBase</classname>, or
-	    directly from <classname>ErrErrorBase</classname>.
+	    <classname>ErrProgrammingErrorBase</classname>, or directly
+	    from <classname>ErrErrorBase</classname>.
 	  </para>
 	</refsection><!-- Adding New Exception Classes -->
-      </refsection>
-    </refentry>
+  </refsection>  <!-- Description -->
+</refentry>      <!-- ErrError -->
 
-    <refentry id="Function.advertise">
-      <refnamediv>
-	<refname>advertise</refname>
-	<refpurpose>
-	  announce the creation of &fields;, &fluxes;, and &equations;
-	</refpurpose>
-      </refnamediv>
-      <refsynopsisdiv>
-	<title>Synopsis</title>
-	<refsect2>
-	  <title>Python</title>
+<!-- ============================================================== -->
 
-	<programlisting>
-from oof2.SWIG.engine.problem import advertise
-advertise(obj) </programlisting>
-
-	</refsect2>
-	<refsect2>
-	  <title>Source Files</title>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara><filename>SRC/engine/problem.py</filename></simpara>
-	    </listitem>
-	  </itemizedlist>
-	</refsect2>
-      </refsynopsisdiv>
-      <refsection>
-	<title>Description</title>
-	<para>
-	  <function>advertise</function> takes an already constructed
-	  &field;, &flux;, or &equation; object and makes it available
-	  for use in the graphical and text interfaces.
-	</para>
-      </refsection>
-      <refsection>
-	<title>Parameters</title>
-	<variablelist>
-	  <varlistentry>
-	    <term><varname>obj</varname></term>
-	    <listitem>
-	      <para>
-		A &field;, &flux;, or &equation; object.
-	      </para>
-	    </listitem>
-	  </varlistentry>
-	</variablelist>
-      </refsection>
-    </refentry><!-- Function.advertise -->
-
-    <refentry id="Function-conjugatePair">
-      <refnamediv>
+<refentry id="Function-conjugatePair">
+  <refnamediv>
 	<refname>conjugatePair</refname>
 	<refpurpose>Establish conjugacy relations</refpurpose>
-      </refnamediv>
-      <refsynopsisdiv>
+  </refnamediv>
+  <refsynopsisdiv>
 	<title>Synopsis</title>
 	<programlisting>
 from oof2.SWIG.engine.conjugate import conjugatePair
-
+      
 conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
-      </refsynopsisdiv>
-      <refsection>
-	<title>Description</title>
-	<para>
-	  <function>conjugatePair</function> establishes conjugacy
-	  relationships between &fields; and &equations;, allowing
-	  symmetric finite element stiffness matrices to be
-	  constructed.  See <xref
-	  linkend="Section-Coding-Conjugates"/> for the detailed
-	  discussion.
-	</para>
-	<para>
-	  <function>conjugatePair</function> is only available in
-	  Python.
-	</para>
-      </refsection>
-      <refsection>
+  </refsynopsisdiv>
+  <refsection>
 	<title>Parameters</title>
 	<variablelist>
 	  <varlistentry>
 	    <term><varname>name</varname></term>
 	    <listitem>
 	      <para>
-		<varname>name</varname> is the <link
-		linkend="para-propertyType"><classname>PropertyType</classname></link>
-		of the &property; that this conjugacy relation applies
-		to.
+		    <varname>name</varname> is the <link
+		    linkend="para-propertyType"><classname>PropertyType</classname></link>
+		    of the &property; that this conjugacy relation applies to.
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -603,9 +540,8 @@ conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
 	    <term><varname>equation</varname></term>
 	    <listitem>
 	      <para>
-		<varname>equation</varname> is the <link
-		linkend="Class-Equation"><classname>Equation</classname></link>
-		object to which the conjugacy relationship applies.
+		    <varname>equation</varname> is the &Equation; object to
+		    which the conjugacy relationship applies.
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -613,12 +549,13 @@ conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
 	    <term><varname>eqncomp</varname></term>
 	    <listitem>
 	      <para>
-		<varname>eqncomp</varname> is either a single <link
-		linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
-		object or a list of <link
-		linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
-		objects, indicating which components of
-		<varname>equation</varname> the relation applies to.
+		    <varname>eqncomp</varname> indicates which components of
+		    the <varname>equation</varname> the relation applies to.
+		    It is either a single &FieldIndex; object or an iterable
+		    container of &FieldIndex; objects.  For example, it could
+		    be a list of &FieldIndexes;, or the &Components; object
+		    returned by <link
+		    linkend="Class-Equation-components"><code>Equation.components()</code></link>.		    
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -626,9 +563,8 @@ conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
 	    <term><varname>field</varname></term>
 	    <listitem>
 	      <para>
-		<varname>field</varname> is the <link
-		linkend="Class-Field"><classname>Field</classname></link>
-		object to which the conjugacy relationship applies.
+		    <varname>field</varname> is the &Field; object to which
+		    the conjugacy relationship applies.
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -636,26 +572,125 @@ conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
 	    <term><varname>fieldcomp</varname></term>
 	    <listitem>
 	      <para>
-		<varname>fieldcomp</varname> is either a single <link
-		linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
-		object or a list of <link
-		linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
-		objects, indicating which components of
-		<varname>field</varname> the relation applies to.
-		<varname>fieldcomp</varname> must have the same
-		structure as <varname>eqncomp</varname> &mdash; if
-		<varname>eqncomp</varname> is a list,
-		<varname>fieldcomp</varname> must be a list of the
-		same length.  Each <classname>Field</classname>
-		component in <varname>fieldcomp</varname> is conjugate
-		to the <classname>Equation</classname> component in
-		the same location in <varname>eqncomp</varname>.
+		    <varname>fieldcomp</varname> indicates which components of
+		    <varname>field</varname> the relation applies to.  It is
+		    either a single &FieldIndex; object or an iterable
+		    container of &FieldIndex; objects.
+		    <varname>fieldcomp</varname> must represent the same
+		    number of components as <varname>eqncomp</varname>.  Each
+		    <classname>Field</classname> component in
+		    <varname>fieldcomp</varname> is conjugate to the
+		    <classname>Equation</classname> component in the same
+		    location in <varname>eqncomp</varname>.
 	      </para>
 	    </listitem>
 	  </varlistentry>
 	</variablelist>
-      </refsection>
-    </refentry><!-- conjugatePair -->
+  </refsection>                 <!-- Parameters -->
+  <refsection>
+	<title>Description</title>
+	<para>
+	  <function>conjugatePair</function> establishes conjugacy
+	  relationships between &Fields; and &Equations;, allowing
+	  symmetric finite element stiffness matrices to be
+	  constructed.  See <xref
+	  linkend="Section-Coding-Conjugates"/> for an overview.
+	</para>
+	<para>
+	  <function>conjugatePair</function> is only available in
+	  Python.
+	</para>
+    <para>
+      It is permissable, and even encouraged, to use <link
+      linkend="Class-Equation-components"><code>Equation.components()</code></link>
+      and <link
+      linkend="Class-Field-components"><code>Field.components()</code></link>
+      for the <varname>eqncomp</varname> and
+      <varname>fieldcomp</varname> arguments.  In most cases this can
+      be done simply.  For example, in
+      <filename>SRC/engine/problem.py</filename> the <xref
+      linkend="Equation-Force_Balance"/> equation and <xref
+      linkend="Field-Displacement"/> field are made conjugate like
+      this:
+      <programlisting>
+ForceBalanceEquation = equation.DivergenceEquation('Force_Balance', Stress, 2)
+Displacement = field.TwoVectorField('Displacement')
+conjugatePair("Elasticity",
+              ForceBalanceEquation,
+              ForceBalanceEquation.components(),
+              Displacement,
+              Displacement.components())</programlisting>
+    </para>
+    <para>
+      Caution is required, however, because the order in which indices
+      are returned by <code>Field.components()</code> might not match
+      the order in which they're returned by
+      <code>Equation.components()</code>.  Consider the <xref
+      linkend="Equation-Plane_Stress"/> equation:
+      <programlisting>
+ForcesOutOfPlane = equation.PlaneFluxEquation('Plane_Stress', Stress, 3) </programlisting>
+
+      The components of a <link
+      linkend="Class-PlaneFluxEquation"><classname>PlaneFluxEquation</classname></link>
+      are the out-of-plane components of its &Flux;, which in this case
+      is a <link
+      linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>.
+      The &ComponentIterator; for the tensor flux returns components
+      in <link linkend="table-voigt">Voigt</link> order:
+      <literallayout class="monospaced">
+>>> list(Stress.components(OUT_OF_PLANE))
+[SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2)]</literallayout>
+
+      which are Voigt indices 2, 3, and 4.  The &Field; that is
+      conjugate to the out-of-plane parts of the <xref
+      linkend="Flux-Stress"/> is the <link
+      linkend="Section-Concepts-Mesh-3D">out-of-plane part</link> of
+      the Displacement, <code>Displacement.out_of_plane()</code>,
+      composed of the <emphasis>x</emphasis>, <emphasis>y</emphasis>,
+      and <emphasis>z</emphasis> derivatives of the
+      <emphasis>z</emphasis> component of the <xref
+      linkend="Field-Displacement"/>.  This is a <link
+      linkend="Class-ThreeVectorField"><classname>ThreeVectorField</classname></link>,
+      and its components are simple vector field indices 0, 1, and 2:
+      <literallayout class="monospaced">
+>>> list(Displacement.out_of_plane().components())
+[VectorFieldIndex(0), VectorFieldIndex(1), VectorFieldIndex(2)] </literallayout>
+
+    </para>
+    <para>
+      The equation for the <emphasis>zz</emphasis> (ie, 22) component
+      of the <xref linkend="Flux-Stress"/> should be conjugate to the
+      <emphasis>z</emphasis> (ie, 2) component of the <xref
+      linkend="Field-Displacement"/> derivatives.  But invoking
+      <function>conjugatePair</function> naively, like this:
+      <programlisting>
+conjugatePair("Elasticity",
+              ForcesOutOfPlane,
+              ForcesOutOfPlane.components(),
+              Displacement.out_of_plane(),
+              Displacement.out_of_plane().components()) </programlisting>
+      
+      will associate &Equation; component
+      <code>SymTensoorIndex(2,2)</code> (ie, <emphasis>zz</emphasis>)
+      with &Field; component <code>VectorFieldIndex(0)</code> (ie,
+      <emphasis>x</emphasis>), because those are the first components
+      returned by the iterators.  It will similarly pair
+      <code>SymTensorIndex(0,2)</code> with
+      <code>VectorFieldIndex(2)</code>.  To get the correct conjugacy
+      relations, it's necessary to reverse the order of one of the
+      sets of components:
+      <programlisting>
+conjugatePair("Elasticity",
+              ForcesOutOfPlane,
+              ForcesOutOfPlane.components(),
+              Displacement.out_of_plane(),
+              reversed(list(Displacement.out_of_plane().components()))) </programlisting>
+
+    </para>
+  </refsection>                 <!-- Description -->
+</refentry>                     <!-- conjugatePair -->
+
+<!-- ============================================================== -->
 
   <refentry id="Function-xmlmenudump.loadFile">
     <refnamediv>

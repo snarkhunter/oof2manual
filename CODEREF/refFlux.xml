@@ -8,6 +8,8 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<!-- TODO: Each Flux class should link to its Components class -->
+
 <refentry id="Class-Flux">
   <refnamediv>
     <refname>Flux</refname>
@@ -580,7 +582,7 @@ from ooflib.SWIG.engine.flux import VectorFlux </literallayout>>
     <refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.flux import SymmetricTensorFlux </literallayout>>
+from ooflib.SWIG.engine.flux import SymmetricTensorFlux </literallayout>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>SymmetricTensorFlux</classname>
