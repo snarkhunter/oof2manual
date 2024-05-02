@@ -8,6 +8,8 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<reference>
+  <title>Field Classes and Functions</title>
 <refentry id="Class-Field">
   <refnamediv>
     <refname>Field</refname>
@@ -1049,7 +1051,7 @@ from ooflib.SWIG.engine.field import ScalarField </literallayout>
 	      </simpara>
 	    </listitem>
 	  </itemizedlist>
-    </refsect2>
+    </refsect2>                 <!-- Source files -->
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -1075,6 +1077,11 @@ from ooflib.SWIG.engine.field import ScalarField </literallayout>
 	  newly constructed <classname>ScalarField</classname>.  Existing
 	  <classname>Field</classname>s may be retrieved with <link
 	  linkend="Function-getField"><function>getField</function></link>.
+    </para>
+    <para>
+      The &FieldIndex; class for <classname>ScalarField</classname> is
+      <link
+      linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>.
     </para>
   </refsection><!-- Description -->
   <refsection>
@@ -1236,6 +1243,15 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
 	  fields may be retrieved with <link
 	  linkend="Function-getField"><function>getField</function></link>.
     </para>
+    <para>
+      The &FieldIndex; class for <classname>TwoVectorField</classname>
+      is <link
+      linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>. The
+      &Components; class is <link
+      linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>,
+      and the &ComponentIterator; is <link
+      linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>.
+    </para>
   </refsection>                 <!-- Description -->
   <refsection>
     <title>Methods</title>
@@ -1346,6 +1362,15 @@ from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
       &Fields; for <link
       linkend="Class-TwoVectorField"><classname>TwoVectorField</classname></link>.
     </para>
+    <para>
+      The &FieldIndex; type for a
+      <classname>ThreeVectorField</classname> is <link
+      linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>.
+      The &Components; type is <link
+      linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>,
+      and the &ComponentIterator; is <link
+      linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>.
+    </para>
   </refsection>
   <refsection>
     <title>Methods</title>
@@ -1365,7 +1390,94 @@ from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
   </refsection>                 <!-- Methods -->
 </refentry>
 
+<refentry id="Function-getField">
+  <refnamediv>
+    <refname>getField</refname>
+    <refpurpose>Retrieve a <classname>Field</classname> object by
+    name</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++</title>
+      <literallayout class="monospaced">
+#include "engine/field.h"
+static Field *Field::getField(const std::string &amp;name);</literallayout>
+    </refsect2>
+    
+    <refsect2>
+      <title>Python</title>
+      <literallayout class="monospaced">
+from ooflib.SWIG.engine import field
+f = field.getField(name) </literallayout>
+    </refsect2>
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/field.h</filename>: C++ headers
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/field.C</filename>: C++ code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/field.swg</filename>: SWIG source code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/field.spy</filename>: Python code
+            included in <filename>field.swg</filename>.
+          </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term><varname>name</varname></term>
+        <listitem>
+          <para>
+            The name of an existing &Field;.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <function>getField</function> returns a previously created
+      &Field; object.  In C++ it returns a pointer to the base class,
+      which may be cast to the derived class:
+      <programlisting>
+ScalarField *T = dynamic_cast&lt;ScalarField*&gt;(getField("Temperature")); </programlisting>
+      In Python, it returns a reference to an object
+      of the appropriate derived class:
+      <programlisting>
+>>> T = getField("Temperature")
+>>> type(T)
+&lt;class 'ooflib.SWIG.engine.field.ScalarField'&gt; </programlisting>
+
+      <function>getFlux</function> is defined in the main &oof2;
+      namespace so that it can be used freely in <link
+      linkend="MenuItem-OOF.File.Load.Script">scripts</link>, <link
+      linkend="Section-ScriptGUI">text mode</link> and the <link
+      linkend="Section-Windows-Console">Console Window</link>.
+
+    </para>
+  </refsection>
+</refentry>                     <!-- getField -->
+
+</reference>
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t
@@ -1375,7 +1487,7 @@ from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
   sgml-always-quote-attributes:t
   sgml-indent-step:2
   sgml-indent-data:t
-  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-parent-document:("../man_oof2.xml" "reference")
   sgml-exposed-tags:nil
   sgml-local-ecat-files:nil
   End:

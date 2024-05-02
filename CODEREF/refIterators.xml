@@ -8,6 +8,8 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<reference>
+  <title>Indices and Iterators</title>
 <refentry id="Class-FieldIndex">
   <refnamediv>
 	<refname>FieldIndex</refname>
@@ -412,6 +414,9 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 		  <modifier>public</modifier>
 		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
+        <constructorsynopsis>
+          <void/>
+        </constructorsynopsis>
 	  </classsynopsis>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
@@ -423,8 +428,12 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 		  <classname>ScalarFieldIndex</classname>
 	    </ooclass>
 	    <ooclass>
-		  &FieldIndex;
+          <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>		  
 	    </ooclass>
+        <constructorsynopsis>
+          <methodname>ScalarFieldIndex</methodname>
+          <void/>
+        </constructorsynopsis>
 	  </classsynopsis>
 	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
@@ -496,6 +505,17 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 		  <modifier>public</modifier>
 		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-VectorFieldIndex-ctor">VectoFieldIndex</link></methodname>
+          <void/>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-VectorFieldIndex-ctor">VectoFieldIndex</link></methodname>
+          <methodparam>
+            <type>int</type>
+            <parameter>i</parameter>
+          </methodparam>
+        </constructorsynopsis>
 	  </classsynopsis>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
@@ -509,6 +529,11 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 	    <ooclass>
 		  <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
 	    </ooclass>
+        <constructorsynopsis>
+          <methodparam>
+            <parameter>i</parameter>
+          </methodparam>
+        </constructorsynopsis>
 	  </classsynopsis>
 	</refsect2>                 <!-- Python Synopsis -->
 	<refsect2>
@@ -551,6 +576,24 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 	  documentation for details on the available methods.
 	</para>
   </refsection>
+  <refsection id="Class-VectorFieldIndex-ctor">
+    <title>Constructors</title>
+    <refsection>
+      <title><code>VectorFieldIndex()</code></title>
+      <para>
+        The new <classname>VectorFieldIndex</classname> points to the
+        first entry in the vector.  (C++ only.)
+      </para>
+    </refsection>
+    <refsection>
+      <title><code>VectorFieldIndex(int i)</code></title>
+      <para>
+        The new <classname>VectorFieldIndex</classname> points to the
+        <userinput>i</userinput><superscript>th</superscript> entry in
+        the vector.
+      </para>
+    </refsection>
+  </refsection>
 </refentry>                     <!-- VectorFieldIndex -->
 
 <!-- ============================================================ -->
@@ -574,6 +617,15 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 		  <modifier>public</modifier>
 		  <classname><link linkend="Class-VectorFieldIndex">VectorFieldIndex</link></classname>
 	    </ooclass>
+        <constructorsynopsis>
+          <void/>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodparam>
+            <type>int</type>
+            <parameter>i</parameter>
+          </methodparam>
+        </constructorsynopsis>
 	  </classsynopsis>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
@@ -1423,12 +1475,12 @@ for index in field.components():
         </listitem>
         <listitem>
           <simpara>
-            <link linkend="Class-SymTensorInPlaneIterator"><classname>SymTensorInPlaneIterator</classname></link>
+            <link linkend="Class-SymTensorIterator"><classname>SymTensorInPlaneIterator</classname></link>
           </simpara>
         </listitem>
         <listitem>
           <simpara>
-            <link linkend="Class-SymTensorOutOfPlaneIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>
+            <link linkend="Class-SymTensorIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>
           </simpara>
         </listitem>
         <listitem>
@@ -2197,6 +2249,13 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
 </refentry>
 
 <!-- ============================================================ -->
+
+<refentry>
+  
+
+</refentry>
+
+<!-- ============================================================ -->
 <!-- ============================================================ -->
 
 <refentry id="Class-Planarity">
@@ -2263,8 +2322,8 @@ planarity.ALL_INDICES </literallayout>
 	</para>
   </refsection>
 </refentry> <!-- Planarity -->
+</reference>
 
-  
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t
@@ -2274,7 +2333,7 @@ planarity.ALL_INDICES </literallayout>
   sgml-always-quote-attributes:t
   sgml-indent-step:2
   sgml-indent-data:t
-  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-parent-document:("../man_oof2.xml" "reference")
   sgml-exposed-tags:nil
   sgml-local-ecat-files:nil
   End:

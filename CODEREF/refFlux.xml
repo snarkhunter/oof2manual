@@ -10,6 +10,9 @@
 
 <!-- TODO: Each Flux class should link to its Components class -->
 
+<reference>
+  <title>Flux Classes and Functions</title>
+
 <refentry id="Class-Flux">
   <refnamediv>
     <refname>Flux</refname>
@@ -441,7 +444,7 @@ IndexP index = IndexP(flux->getIndex("xx")); </programlisting>
     <refsect2>
 	  <title>C++ Synopsis</title>
 	  <literallayout class="monospaced">
-#include "engine/flux.h" </literallayout>>
+#include "engine/flux.h" </literallayout>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>VectorFlux</classname>
@@ -466,7 +469,7 @@ IndexP index = IndexP(flux->getIndex("xx")); </programlisting>
     <refsect2>
 	  <title>Python Synopsis</title>
 	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.flux import VectorFlux </literallayout>>
+from ooflib.SWIG.engine.flux import VectorFlux </literallayout>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>VectorFlux</classname>
@@ -522,6 +525,15 @@ from ooflib.SWIG.engine.flux import VectorFlux </literallayout>>
 	  three-vector, such as a heat current.  Like all
 	  <classname>Fluxes</classname>, it should only be constructed in
 	  Python. See <xref linkend="Section-Coding-AddFields"/>.
+    </para>
+    <para>
+      The &FieldIndex; class for <classname>VectorFlux</classname>
+      is <link
+      linkend="Class-VectorFieldIndex"><classname>VectorFieldIndex</classname></link>. The
+      &Components; class is <link
+      linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>,
+      and the &ComponentIterator; is <link
+      linkend="Class-VectorFieldIterator"><classname>VectorFieldIterator</classname></link>.
     </para>
   </refsection>
   <refsection>
@@ -639,6 +651,35 @@ from ooflib.SWIG.engine.flux import SymmetricTensorFlux </literallayout>
 	  <classname>Fluxes</classname>, it should only be constructed
 	  in Python. See <xref linkend="Section-Coding-AddFields"/>.
 	</para>
+    <para>
+      The &FieldIndex; class for <classname>SymmetricTensorFlux</classname>
+      is <link
+      linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>. The
+      &Components; class is <link
+      linkend="Class-SymTensorComponents"><classname>SymTensorComponents</classname></link>,
+      and the &ComponentIterator; is <link
+      linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>.
+    </para>
+    <para>
+      For out-of-plane components, as returned by <link
+      linkend="Class-Flux-components"><function>Flux::components(OUT_OF_PLANE)</function></link>,
+      the &FieldIndex; class is <link
+      linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>,
+      the &Components; class is <link
+      linkend="Class-SymTensorOutOfPlaneComponents"><classname>SymTensorOutOfPlaneComponents</classname></link>,
+      and the &ComponentIterator; is <link
+      linkend="Class-SymTensorIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>.
+    </para>
+    <para>
+      For out-of-plane components, as returned by <link
+      linkend="Class-Flux-oop-components"><function>Flux::outOfPlaneComponents()</function></link>,
+      the &FieldIndex; class is <link
+      linkend="Class-OutOfPlaneSymTensorIndex"><classname>OutOfPlaneSymTensorIndex</classname></link>,
+      the &Components; class is <link
+      linkend="Class-OutOfPlaneSymTensorComponents"><classname>OutOfPlaneSymTensorComponents</classname></link>,
+      and the iterator is <link
+      linkend="Class-OutOfPlaneSymTensorIterator"><classname>OutOfPlaneSymTensorIterator</classname></link>.
+    </para>
   </refsection>
   <refsection>
     <title>Methods</title>
@@ -664,6 +705,89 @@ from ooflib.SWIG.engine.flux import SymmetricTensorFlux </literallayout>
   </refsection>                <!-- Methods -->
 </refentry>                  <!-- Class:Flux:SymmetricTensorFlux -->
 
+
+
+<!-- ============================================================= -->
+
+<refentry id="Function-getFlux">
+  <refnamediv>
+    <refname>getFlux</refname>
+    <refpurpose>Retrieve a <classname>Flux</classname> object by
+    name</refpurpose> 
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/flux.h"
+static Flux *Flux::getFlux(const std::string&amp; name); </literallayout>
+    </refsect2>
+    <refsect2>
+      <title>Python Synopsis</title>
+      <literallayout class="monospaced">
+from ooflib.SWIG.engine import flux
+f = flux.getFlux(name) </literallayout>
+    </refsect2>
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/flux.h</filename>: C++ headers
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/flux.C</filename>: C++ code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/flux.spy</filename>: Python code
+            included in <filename>flux.swg</filename>
+          </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term><varname>name</varname></term>
+        <listitem>
+          <para>
+            The name of an existing &Flux;.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <function>getFlux</function> returns a previously created
+      &Flux; object.  In C++ it returns a pointer to the base class,
+      which may be cast to the derived class:
+      <programlisting>
+VectorFlux *hf = dynamic_cast&lt;VectorFlux*&gt;(getField("Heat_Flux")); </programlisting>
+      In Python, it returns a reference to an object
+      of the appropriate derived class:
+      <programlisting>
+>>> hf = getFlux("Heat_Flux")
+>>> type(hf)
+&lt;class 'ooflib.SWIG.engine.flux.VectorFlux'&gt; </programlisting>
+
+      <function>getFlux</function> is defined in the main &oof2;
+      namespace so that it can be used freely in <link
+      linkend="MenuItem-OOF.File.Load.Script">scripts</link>, <link
+      linkend="Section-ScriptGUI">text mode</link> and the <link
+      linkend="Section-Windows-Console">Console Window</link>.
+    </para>
+  </refsection>
+</refentry>                     <!-- getFlux -->
+</reference>
   <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

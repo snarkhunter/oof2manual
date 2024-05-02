@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refProperty.xml,v $
-  $Revision: 1.6 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:08 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -13,150 +8,152 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<reference>
+  <title>Property and Material Classes</title>
 
-  <refentry id="Class-Property">
-    <refnamediv>
-      <refname>Property</refname>
-      <refpurpose>Base class for material properties</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <refsect2>
-	<title>C++ Synopsis</title>
-
+<refentry id="Class-Property">
+  <refnamediv>
+    <refname>Property</refname>
+    <refpurpose>Base class for material properties</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+	  <title>C++ Synopsis</title>
+      
 	<literallayout class="monospaced">
-#include "engine/property.h"
-	  <classsynopsis language="cpp">
-	    <ooclass>
-	      <classname>Property</classname>
-	    </ooclass>
-	    <constructorsynopsis>
-	      <methodname><link linkend="Class-Property-Cconstructor">Property</link></methodname>
-	      <methodparam>
-		<type>const std::string&amp;</type>
-		<parameter>name</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>PyObject*</type>
-		<parameter>registration</parameter>
-	      </methodparam>
-	    </constructorsynopsis>
+#include "engine/property.h" </literallayout>
+    <classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>Property</classname>
+	  </ooclass>
+	  <constructorsynopsis>
+	    <methodname><link linkend="Class-Property-Cconstructor">Property</link></methodname>
+	    <methodparam>
+		  <type>const std::string&amp;</type>
+		  <parameter>name</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>PyObject*</type>
+		  <parameter>registration</parameter>
+	    </methodparam>
+	  </constructorsynopsis>
+      
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
+	    <methodparam>
+		  <type>Material*</type>
+		  <parameter>material</parameter>
+	    </methodparam>
+	  </methodsynopsis>
 
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
-	      <methodparam>
-		<type>Material*</type>
-		<parameter>material</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link
-		linkend="Class-Property-precompute">precompute</link></methodname>
-	      <void/>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link
-		linkend="Class-Property-begin_element">begin_element</link></methodname>
-	      <methodparam>
-		<type>const CSubProblem*</type>
-		<parameter>subproblem</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <modifier>virtual</modifier> <void/> <methodname><link
-	      linkend="Class-Property-begin_point">begin_point</link></methodname>
-	      <methodparam>
-		<type>const FEMesh*</type>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Flux*</type>
-		<parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const MasterPosition&amp;</type>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link
+		                linkend="Class-Property-precompute">precompute</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link
+		                linkend="Class-Property-begin_element">begin_element</link></methodname>
+	    <methodparam>
+		  <type>const CSubProblem*</type>
+		  <parameter>subproblem</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier> <void/> <methodname><link
+	    linkend="Class-Property-begin_point">begin_point</link></methodname>
+	    <methodparam>
+		  <type>const FEMesh*</type>
+		  <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Flux*</type>
+		  <parameter>flux</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const MasterPosition&amp;</type>
 		<parameter>masterpos</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link linkend="Class-Property-end_point">end_point</link></methodname>
-	      <methodparam>
-		<type>const FEMesh*</type>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Flux*</type>
-		<parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const MasterPosition&amp;</type>
-		<parameter>masterpos</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link
-	      linkend="Class-Property-end_element">end_element</link></methodname>
-	      <methodparam>
-		<type>const CSubProblem*</type>
-		<parameter>subproblem</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link
-		  linkend="Class-Property-post_process">post_process</link></methodname>
-	      <methodparam>
-		<type>CSubProblem*</type>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link linkend="Class-Property-end_point">end_point</link></methodname>
+	    <methodparam>
+		  <type>const FEMesh*</type>
+		  <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Flux*</type>
+		  <parameter>flux</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const MasterPosition&amp;</type>
+		  <parameter>masterpos</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+      
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link
+	                    linkend="Class-Property-end_element">end_element</link></methodname>
+	    <methodparam>
+		  <type>const CSubProblem*</type>
+		  <parameter>subproblem</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link
+		                linkend="Class-Property-post_process">post_process</link></methodname>
+	    <methodparam>
+		  <type>CSubProblem*</type>
+		  <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
 	  <methodsynopsis>
 	    <modifier>virtual</modifier>
 	    <type>int</type>
 	    <methodname><link
-		linkend="Class-Property-integration_order">integration_order</link></methodname>
+		                linkend="Class-Property-integration_order">integration_order</link></methodname>
 	    <methodparam>
 	      <type>const CSubProblem*</type>
 	      <parameter>mesh</parameter>
 	    </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
 	    <modifier>const</modifier>
 	  </methodsynopsis>
 	  <methodsynopsis>
@@ -171,97 +168,96 @@
 	      <type>const Element*</type>
 	      <parameter>element</parameter>
 	    </methodparam>
-	      <methodparam>
-		<type>const ElementFuncNodeIterator&amp;</type>
-		<parameter>node</parameter>
-	      </methodparam>             
-	      <methodparam>
-		<type>const Flux*</type>
-		<parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const FluxData*</type>
-		<parameter>fluxdata</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const MasterPosition&amp;</type>
-		<parameter>position</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis><!-- fluxmatrix -->
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link
-		  linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
-	      <methodparam>
-		<type>const FEMesh*</type>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Flux*</type>
-		<parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>FluxData*</type>
-		<parameter>fluxdata</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>MasterPosition&amp;</type>
-		<parameter>position</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis><!-- fluxrhs -->
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <void/>
-	      <methodname><link linkend="Class-Property-output">output</link></methodname>
-	      <methodparam>
-		<type>const FEMesh*</type>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const Element*</type>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>const PropertyOutput*</type>
-		<parameter>p_output</parameter>
-	      </methodparam> 
-	      <methodparam>
-		<type>const MasterPosition&amp;</type>
-		<parameter>position</parameter>
-	      </methodparam>
-	      <methodparam>
-		<type>OutputVal*</type>
-		<parameter>value</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis><!-- output -->
+	    <methodparam>
+		  <type>const ElementFuncNodeIterator&amp;</type>
+		  <parameter>node</parameter>
+	    </methodparam>             
+	    <methodparam>
+		  <type>const Flux*</type>
+		  <parameter>flux</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const FluxData*</type>
+		  <parameter>fluxdata</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const MasterPosition&amp;</type>
+		  <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis><!-- fluxmatrix -->
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link
+		                linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
+	    <methodparam>
+		  <type>const FEMesh*</type>
+		  <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Flux*</type>
+		  <parameter>flux</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>FluxData*</type>
+		  <parameter>fluxdata</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>MasterPosition&amp;</type>
+		  <parameter>position</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis><!-- fluxrhs -->
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <void/>
+	    <methodname><link linkend="Class-Property-output">output</link></methodname>
+	    <methodparam>
+		  <type>const FEMesh*</type>
+		  <parameter>mesh</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const Element*</type>
+		  <parameter>element</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>const PropertyOutput*</type>
+		  <parameter>p_output</parameter>
+	    </methodparam> 
+	    <methodparam>
+		  <type>const MasterPosition&amp;</type>
+		  <parameter>position</parameter>
+	    </methodparam>
+	    <methodparam>
+		  <type>OutputVal*</type>
+		  <parameter>value</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis><!-- output -->
+      
+	  <methodsynopsis>
+	    <modifier>virtual</modifier>
+	    <type>bool</type>
+	    <methodname><link linkend="Class-Property-is_symmetric">is_symmetric</link></methodname>
+	    <methodparam>
+		  <type>const CSubProblem*</type>
+		  <parameter>subproblem</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis><!-- is_symmetric -->
+	</classsynopsis>
+    </refsect2><!-- C++ Synopsis -->
 
-	    <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <type>bool</type>
-	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric</link></methodname>
-	      <methodparam>
-		<type>const CSubProblem*</type>
-		<parameter>subproblem</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis><!-- is_symmetric -->
-	  </classsynopsis>
-	</literallayout>
+    <refsect2 id="Class-PyPropertyWrapper">
+	  <title>Python Synopsis</title>
 
-      </refsect2><!-- C++ Synopsis -->
-      <refsect2 id="Class-PyPropertyWrapper">
-	<title>Python Synopsis</title>
-
-	<literallayout class="monospaced">
-from oof2.SWIG.engine.pypropertywrapper import PyPropertyWrapper
+	  <literallayout class="monospaced">
+from oof2.SWIG.engine.pypropertywrapper import PyPropertyWrapper </literallayout>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>PyPropertyWrapper</classname>
@@ -272,315 +268,308 @@ from oof2.SWIG.engine.pypropertywrapper import PyPropertyWrapper
 	    <constructorsynopsis>
 	      <methodname><link linkend="Class-Property-pyconstructor">__init__</link></methodname>
 	      <methodparam>
-		<parameter>referent</parameter>
+		    <parameter>referent</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>registration</parameter>
+		    <parameter>registration</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>name</parameter>
+		    <parameter>name</parameter>
 	      </methodparam>
 	    </constructorsynopsis>  
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Property-integration_order">integration_order</link></methodname>
+		                  linkend="Class-Property-integration_order">integration_order</link></methodname>
 	      <methodparam>
-		<parameter>subproblem</parameter>
+		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
 	      </methodparam>
 	    </methodsynopsis>
 	    <methodsynopsis>
 	      <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
 	      <methodparam>
-		<parameter>material</parameter>
+		    <parameter>material</parameter>
 	      </methodparam>
 	    </methodsynopsis>
-
-	    <methodsynopsis>
-	      <methodname><link linkend="Class-Property-precompute">precompute</link></methodname>
-	    </methodsynopsis>
-
+        
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Property-begin_element">begin_element</link></methodname>
-	      <methodparam>
-		<parameter>subproblem</parameter>
-	      </methodparam>
-	      <methodparam>
-		<parameter>element</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-	      
-	    <methodsynopsis>
-	      <methodname><link
-	      linkend="Class-Property-begin_point">begin_point</link></methodname>
-	      <methodparam>
-		<parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		<parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		<parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		<parameter>master_position</parameter>
-	      </methodparam>
+                          linkend="Class-Property-precompute">precompute</link></methodname>
+          <void/>
 	    </methodsynopsis>
 
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Property-end_point">end_point</link></methodname>
+		                  linkend="Class-Property-begin_element">begin_element</link></methodname>
 	      <methodparam>
-		<parameter>mesh</parameter>
+		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis>
+	    
+	    <methodsynopsis>
+	      <methodname><link
+	                      linkend="Class-Property-begin_point">begin_point</link></methodname>
+	      <methodparam>
+		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>flux</parameter>
+		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>master_position</parameter>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>master_position</parameter>
 	      </methodparam>
 	    </methodsynopsis>
 
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Property-end_element">end_element</link></methodname>
+		                  linkend="Class-Property-end_point">end_point</link></methodname>
 	      <methodparam>
-		<parameter>subproblem</parameter>
+		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>master_position</parameter>
 	      </methodparam>
 	    </methodsynopsis>
 
 	    <methodsynopsis>
 	      <methodname><link
-		  linkend="Class-Property-post_process">post_process</link></methodname>
+		                  linkend="Class-Property-end_element">end_element</link></methodname>
 	      <methodparam>
-		<parameter>subproblem</parameter>
+		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
 	      </methodparam>
 	    </methodsynopsis>
 
-	    <methodsynopsis><!-- post_process -->
+	    <methodsynopsis>
+	      <methodname><link
+		                  linkend="Class-Property-post_process">post_process</link></methodname>
+	      <methodparam>
+		    <parameter>subproblem</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>element</parameter>
+	      </methodparam>
+	    </methodsynopsis><!-- post_process -->
+
+	    <methodsynopsis>
 	      <methodname><link linkend="Class-Property-fluxmatrix">fluxmatrix</link></methodname>
 	      <methodparam>
-		<parameter>mesh</parameter>
+		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>node</parameter>
+		    <parameter>node</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>flux</parameter>
+		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>fluxdata</parameter></methodparam>
+		  <parameter>fluxdata</parameter></methodparam>
 	      <methodparam>
-		<parameter>master_position</parameter>
+		    <parameter>master_position</parameter>
 	      </methodparam>
 	    </methodsynopsis><!-- fluxmatrix -->
 	    <methodsynopsis>
 	      <methodname><link linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
 	      <methodparam>
-		<parameter>mesh</parameter>
+		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>flux</parameter>
+		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>fluxdata</parameter>
+		    <parameter>fluxdata</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>master_position</parameter>
+		    <parameter>master_position</parameter>
 	      </methodparam>
 	    </methodsynopsis><!-- fluxrhs -->
 	    <methodsynopsis>
 	      <void/>
 	      <methodname><link linkend="Class-Property-output">output</link></methodname>
 	      <methodparam>
-		<parameter>mesh</parameter>
+		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>element</parameter>
+		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
-		<parameter>p_output</parameter>
+		    <parameter>p_output</parameter>
 	      </methodparam> 
 	      <methodparam>
-		<parameter>position</parameter>
+		    <parameter>position</parameter>
 	      </methodparam>
 	    </methodsynopsis><!-- output -->
 	    <methodsynopsis>
 	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric</link></methodname>
 	      <methodparam>
-		<parameter>subproblem</parameter>
+		    <parameter>subproblem</parameter>
 	      </methodparam>
 	    </methodsynopsis><!-- is_symmetric -->
-	</classsynopsis>
-	</literallayout>
-      </refsect2><!-- Python synopsis -->
-    </refsynopsisdiv>
+	  </classsynopsis>
+    </refsect2><!-- Python synopsis -->
+  </refsynopsisdiv>
 
-    <refsection>
-      <title>Overview</title>
-      <para>
-	&property; classes can be constructed either in C++ or Python.
-	Python classes are somewhat simpler to program and build, but
-	C++ classes are significantly more efficient, computationally.
-      </para>
-      <para>
-	In C++, new &properties; are constructed by creating
-	subclasses of the <classname>Property</classname> class.  In
-	Python, they're constructed by creating subclasses of the
-	<classname>PyPropertyWrapper</classname> class.
-	(<classname>PyPropertyWrapper</classname> is a swig wrapper
-	class around a C++ class of the same name, which is itself
-	derived from <classname>Property</classname>.)  In both cases,
-	the base classes contain trivial implementations of all
-	methods except <function>integration_order</function>, so it
-	is safe to omit from the derived classes functions which are
-	irrelevant to a particular physical property.  The
-	<function>integration_order</function> is always relevant to
-	the physical property to which it belongs.
-      </para>
-      <para>
-	In order for both C++ and Python &properties; to work properly
-	and to be included in the GUI, every subclass must have an
-	associated <link
-	linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
-	object.  <classname>PropertyRegistration</classname>s must
-	always be created in Python, even for C++
-	<classname>Property</classname> subclasses.
-      </para>
-    </refsection>
+  <refsection>
+    <title>Overview</title>
+    <para>
+	  &property; classes can be constructed either in C++ or Python.
+	  Python classes are somewhat simpler to program and build, but
+	  C++ classes are significantly more efficient, computationally.
+    </para>
+    <para>
+	  In C++, new &properties; are constructed by creating subclasses
+	  of the <classname>Property</classname> class.  In Python,
+	  they're constructed by creating subclasses of the
+	  <classname>PyPropertyWrapper</classname> class.
+	  (<classname>PyPropertyWrapper</classname> is a swig wrapper
+	  class around a C++ class of the same name, which is itself
+	  derived from <classname>Property</classname>.)  In both cases,
+	  the base classes contain trivial implementations of all methods
+	  except <function>integration_order</function>, so it is safe to
+	  omit from the derived classes functions which are irrelevant to
+	  a particular physical property.  The
+	  <function>integration_order</function> is always relevant to the
+	  physical property to which it belongs.
+    </para>
+    <para>
+	  In order for both C++ and Python &properties; to work properly
+	  and to be included in the GUI, every subclass must have an
+	  associated <link
+	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	  object.  <classname>PropertyRegistration</classname>s must
+	  always be created in Python, even for C++
+	  <classname>Property</classname> subclasses.
+    </para>
+  </refsection>
 
-    <refsection id="Class-Property-Constructors">
-      <title>Constructors</title>
+  <refsection id="Class-Property-Constructors">
+    <title>Constructors</title>
       
-      <refsection id="Class-Property-Cconstructor">
-	<title>C++</title>
-	<para>
-	  C++ <classname>Property</classname> subclasses must have a
-	  constructor of the form
+    <refsection id="Class-Property-Cconstructor">
+	  <title>C++</title>
+	  <para>
+	    C++ <classname>Property</classname> subclasses must have a
+	    constructor of the form
 
 	  <literallayout class="monospaced">
-SubProperty::SubProperty(PyObject *registration, const std::string&amp; name, ...)
-	  </literallayout>
+SubProperty::SubProperty(PyObject *registration, const std::string&amp; name, ...) </literallayout>
 
-	  and they must invoke the base class constructor like
-	  this:<footnote>
-	    <simpara>
-	      Sorry about the inconsistent order of the arguments.
-	    </simpara>
-	  </footnote>
+	    and they must invoke the base class constructor like
+	    this:<footnote> <simpara> Sorry about the inconsistent order
+	    of the arguments. </simpara> </footnote>
 
-	  <literallayout class="monospaced">
-Property(const std::string&amp; name, PyObject *registration)
-	  </literallayout>
+	    <literallayout class="monospaced">
+Property(const std::string&amp; name, PyObject *registration) </literallayout>
 
-	  The derived class should treat <varname>name</varname> and
-	  <varname>registration</varname> as opaque variables, used
-	  only by the base class.  They just need to be passed on
-	  through.  The <varname>...</varname> in the subclass
-	  constructor refers to the <classname>Property</classname>'s
-	  parameters, which <emphasis>must</emphasis> appear in the
-	  constructor argument list in the same order that they appear
-	  in the corresponding <link
-	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
-	</para>
-	<para>
-	  C++ <classname>Property</classname> classes should
-	  <emphasis>not</emphasis> have a copy constructor.  The base
-	  class copy constructor is private, to prohibit unauthorized
-	  duplication, by any means, electronic or otherwise.
-	</para>
-      </refsection><!-- C++ constructor -->
-      <refsection id="Class-Property-pyconstructor">
-	<title>Python</title>
-	<para>
-	  The Python constructor for a
-	  <classname>PyPropertyWrapper</classname> subclass must look
-	  like this:
+	    The derived class should treat <varname>name</varname> and
+	    <varname>registration</varname> as opaque variables, used only
+	    by the base class.  They just need to be passed on through.
+	    The <varname>...</varname> in the subclass constructor refers
+	    to the <classname>Property</classname>'s parameters, which
+	    <emphasis>must</emphasis> appear in the constructor argument
+	    list in the same order that they appear in the corresponding
+	    <link
+	    linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
+	  </para>
+	  <para>
+	    C++ <classname>Property</classname> classes should
+	    <emphasis>not</emphasis> have a copy constructor.  The base
+	    class copy constructor is private, to prohibit unauthorized
+	    duplication, by any means, electronic or otherwise.
+	  </para>
+    </refsection><!-- C++ constructor -->
+    <refsection id="Class-Property-pyconstructor">
+	  <title>Python</title>
+	  <para>
+	    The Python constructor for a
+	    <classname>PyPropertyWrapper</classname> subclass must look
+	    like this:
 
-	  <literallayout class="monospaced">
+  	    <literallayout class="monospaced">
 def __init__(self, registration, name, ...):
-    PyPropertyWrapper.__init__(self, registration, name)
-	  </literallayout>
+    PyPropertyWrapper.__init__(self, registration, name) </literallayout>
 
-	  As in the <link linkend="Class-Property-Cconstructor">C++
-	  constructor</link>, the <varname>name</varname> and
-	  <varname>registration</varname> parameters should be passed
-	  through to the base class unchanged.  
-	</para>
-	<para>
-	  The <varname>...</varname> in the constructor arguments
-	  refers to any parameters that the
-	  <classname>Property</classname> might have.  These must have
-	  the same names and be in the same order as the parameters in
-	  the associated <link
-	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
-	</para>
-      </refsection><!-- Python constructor -->
-    </refsection><!-- constructors -->
-    <refsection>
-      <title>Methods</title>
-      <para>
-	The following methods can be defined in C++
-	<classname>Property</classname> and Python
-	<classname>PyPropertyWrapper</classname> subclasses.  Most are
-	optional, and can be omitted if the default behavior is
-	satisfactory.  Unless otherwise noted, the default behavior is
-	to do nothing.  The exception is
-	<function>integration_order</function>, which must be provided
-	explicitly for all properties.  A base-class version does
-	exist, but its default behavior is to indicate an error.
-      </para>
-      <para>
-	All of the functions can be accessed from either C++ or
-	Python.  If there are non-obvious differences between the C++
-	and Python invocations, they are noted below.  Minor and
-	standard punctuation differences are <emphasis>not</emphasis>
-	noted.  Function prototypes are specified in the C++ format,
-	because it is more informative.
-      </para>
-      <refsection id="Class-Property-cross_reference">
-	<title><code>void cross_reference(Material *)</code></title>
-	<para>
-	  <methodname>cross_reference</methodname> is called whenever
-	  a new &property; is added to a &material;.  It gives each
-	  &property; a chance to locate other &properties; in the same
-	  &material; from which it may need information.  For example,
-	  many &properties; of an anisotropic material will need to
-	  know the &material;'s <link
-	  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
-	  &property;.  The argument to
-	  <methodname>cross_reference</methodname> is the <link
-	  linkend="Class-Material"><classname>Material</classname></link>
-	  object to which the <classname>Property</classname> belongs.
-	</para>
-	<para>
-	   <link
-	   linkend="Class-Material-fetchProperty"><code>Material::fetchProperty</code></link>
-	   should be used to look for other
-	   <classname>Properties</classname>.  It will raise an
-	   exception if the sought-for <classname>Property</classname>
-	   does not exist.  This exception should
-	  <emphasis>not</emphasis> be caught by the
-	  <classname>Property</classname> &mdash; it's handled in the
-	  <classname>Material</classname>.
+	    As in the <link linkend="Class-Property-Cconstructor">C++
+	    constructor</link>, the <varname>name</varname> and
+	    <varname>registration</varname> parameters should be passed
+	    through to the base class unchanged.
+	  </para>
+	  <para>
+	    The <varname>...</varname> in the constructor arguments refers
+	    to any parameters that the <classname>Property</classname>
+	    might have.  These must have the same names and be in the same
+	    order as the parameters in the associated <link
+	    linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
+	  </para>
+    </refsection><!-- Python constructor -->
+  </refsection><!-- constructors -->
+  <refsection>
+    <title>Methods</title>
+    <para>
+	  The following methods can be defined in C++
+	  <classname>Property</classname> and Python
+	  <classname>PyPropertyWrapper</classname> subclasses.  Most are
+	  optional, and can be omitted if the default behavior is
+	  satisfactory.  Unless otherwise noted, the default behavior is
+	  to do nothing.  The exception is
+	  <function>integration_order</function>, which must be provided
+	  explicitly for all properties.  A base-class version does exist,
+	  but its default behavior is to indicate an error.
+    </para>
+    <para>
+	  All of the functions can be accessed from either C++ or Python.
+	  If there are non-obvious differences between the C++ and Python
+	  invocations, they are noted below.  Minor and standard
+	  punctuation differences are <emphasis>not</emphasis> noted.
+	  Function prototypes are specified in the C++ format, because it
+	  is more informative.
+    </para>
+    <refsection id="Class-Property-cross_reference">
+	  <title><code>void cross_reference(Material *)</code></title>
+	  <para>
+	    <methodname>cross_reference</methodname> is called whenever a
+	    new &property; is added to a &material;.  It gives each
+	    &property; a chance to locate other &properties; in the same
+	    &material; from which it may need information.  For example,
+	    many &properties; of an anisotropic material will need to know
+	    the &material;'s <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>
+	    &property;.  The argument to
+	    <methodname>cross_reference</methodname> is the <link
+	    linkend="Class-Material"><classname>Material</classname></link>
+	    object to which the <classname>Property</classname> belongs.
+	  </para>
+	  <para>
+	    <link
+	    linkend="Class-Material-fetchProperty"><code>Material::fetchProperty</code></link>
+	    should be used to look for other
+	    <classname>Properties</classname>.  It will raise an exception
+	    if the sought-for <classname>Property</classname> does not
+	    exist.  This exception should <emphasis>not</emphasis> be
+	    caught by the <classname>Property</classname> &mdash; it's
+	    handled in the <classname>Material</classname>.
 	</para>
 	<para>
 	  For example, here is the
@@ -2615,6 +2604,7 @@ from oof2.SWIG.engine import material</programlisting>
     </refsection><!-- Methods -->
   </refentry><!-- Material -->
 
+</reference>
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

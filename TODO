@@ -27,3 +27,6 @@ Be consistent about capitalizing swig and python.
 
 Change all <title>Discussion</title> to <title>Description</title>
 At the moment there are 1258 Descriptions and 87 Discussions.
+
+On Field pages, the class name should be a link.  Displacement says
+it's a TwoVectorField, but it doesn't link to TwoVectorField.

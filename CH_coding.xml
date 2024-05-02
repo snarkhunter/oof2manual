@@ -16,6 +16,7 @@
     classes. <xref linkend="Chapter-Extending"/> describes how to
     assemble the source files into a loadable extension module.
   </para>
+  
   <section id="Section-Coding-Directory-Structure">
     <title>Source Directory Layout</title>
     <para>
@@ -1751,76 +1752,8 @@ propertyregistration.PropertyRegistration(
 	TODO: Write this section.
       </para>
     </section>
-  </section><!-- Adding New Outputs -->
+  </section>                    <!-- Adding New Outputs -->
 
-  <!-- ======================================================== -->
-
-  <section id="Section-Coding-Reference"> 
-    <title>&oof2; Class and Function Reference</title>
-    <para>
-      This section contains the reference pages for the classes and
-      functions that can be used when programming &oof2; extensions.
-      Both the C++ and Python interfaces are documented, when
-      appropriate.  In general, only functions that are relevant to
-      building &oof2; extensions are listed, and base class functions
-      are not listed again in the derived classes.
-    </para>
-    <para>
-      Both C++ and Python interfaces are listed at the top of each
-      reference page.  If the following discussion mentions only the
-      C++ syntax, assume that the Python syntax is derived in a
-      straightforward way from the C++ syntax.  In cases where there
-      is a big difference between the C++ and Python interfaces for a
-      class or function, it will be discussed explicitly.
-    </para>
-
-    <section id="Section-Coding-FieldFluxEquation" role="reference">
-      <title>Field, Flux, and Equation Classes</title>
-      &refField;
-      &refFlux;
-      &refEquation;
-      &refgetField;
-    </section>
-
-    <section id="Section-Coding-Iterators" role="reference">
-      <title>Field Indices, Iterators, and Related Objects</title>
-      &refIterators;
-    </section>
-
-    <section id="Section-Coding-PropertyRef" role="reference">
-      <title>Property- and Material-related Classes</title>
-      &refProperty;
-    </section>
-
-    <section id="Section-Coding-ParameterRef" role="reference">
-      <title>Parameter Classes</title>
-      &refParameter;
-    </section>
-
-    <section id="Section-Coding-OutputRef" role="reference">
-      <title>Output-related Classes</title>
-      &refOutput;
-      &refOutputVal;
-    </section>
-
-    <section id="Section-Coding-FEMesh" role="reference">
-      <title>Mesh, Subproblem, and Element Classes</title>
-      &refFEMesh;
-    </section>
-
-    <section id="Section-Coding-Coords" role="reference">
-      <title>Coordinate Classes</title>
-      &refCoords;
-    </section>
-
-    <section id="Section-Coding-Misc" role="reference">
-      <title>Miscellaneous Classes and Functions</title>
-      &refMisc;
-    </section>
-
-
-
-  </section><!-- Class and Function Reference -->
 </chapter>
 
 <!-- Keep this comment at the end of the file

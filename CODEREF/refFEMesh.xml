@@ -13,6 +13,9 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<reference>
+  <title>Mesh Classes and Functions</title>
+  
   <refentry id="Class-FEMesh">
     <refnamediv>
       <refname>FEMesh</refname>
@@ -1501,6 +1504,8 @@ from oof2.SWIG.engine import freedom</programlisting>
     </refsection>
   </refentry><!-- DegreeOfFreedom -->
 
+</reference>
+
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t
@@ -1510,7 +1515,7 @@ from oof2.SWIG.engine import freedom</programlisting>
   sgml-always-quote-attributes:t
   sgml-indent-step:2
   sgml-indent-data:t
-  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-parent-document:("../man_oof2.xml" "book" "reference")
   sgml-exposed-tags:nil
   sgml-local-ecat-files:nil
   End:
