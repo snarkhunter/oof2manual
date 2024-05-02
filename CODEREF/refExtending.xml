@@ -1,0 +1,486 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<reference id="ref-extending">
+  <title>Tools for Building Extensions</title>
+  
+  <partintro>
+    <para>
+      This section provides details on the tools that can be used when
+      writing the <filename>CMakeLists.txt</filename> files for &oof2;
+      extensions.  To use the tools, &oof2; should be configured with
+      <varname>OOF2_DEV_INSTALL</varname> set to <code>ON</code>.
+    </para>
+  </partintro>
+  
+  <refentry id="swig_sources">
+    <refnamediv>
+      <refname>swig_sources</refname>
+      <refpurpose>
+        CMake function for running swig and building Python
+        extension modules.
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopsis</title>
+      <simpara>
+        <code>swig_sources(SWIGFILES &lt;files&gt;
+        SWIGDEST &lt;dest&gt; [other arguments])</code>
+      </simpara>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Required Arguments</title>
+      <variablelist>
+        <varlistentry>
+          <term><varname>SWIGFILES</varname></term>
+          <listitem>
+            <simpara>
+              A list of swig files to process from the current
+              directory.  The files must have the suffix
+              <quote>.swg</quote>, which should
+              <emphasis>not</emphasis> be included.  For each name
+              <filename>swigfile</filename> in the list,
+              <filename>swigfile.swg</filename> will be swigged,
+              generating a python file called
+              <filename>swigfile.py</filename> and a C++ file, which
+              will be compiled and linked into a shared library called
+              <filename>_swigfile.so</filename>.<footnote><simpara>The
+              library name might vary depending on your operating
+              system.</simpara></footnote>
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><varname>SWIGDEST</varname></term>
+          <listitem>
+            <simpara>
+              The name of the destination directory where the files
+              will be installed.  It should be a location in Python's
+              path, so that the extension module can be imported.
+            </simpara>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </refsection>
+    <refsection>
+      <title>Optional Arguments</title>
+      <variablelist>
+        <varlistentry>
+          <term><varname>SOURCES</varname></term>
+          <listitem>
+            <simpara>
+              A list of C++ files that will be compiled and linked
+              into the shared library.
+            </simpara>
+            <simpara>
+              Only use this option if just one file is given in
+              <varname>SWIGFILES</varname>, because the code will be
+              duplicated in each shared library.  If there are
+              multiple swig files and some of them need to use
+              <varname>SOURCES</varname>, call
+              <code>swig_sources</code> separately for each. If
+              multiple swig files need to link to the same source
+              files, put the source files in one call to
+              <code>swig_sources</code>, and in the other calls use
+              <varname>LIBRARIES</varname> to link to the compiled the
+              sources.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><varname>SCRIPTS</varname></term>
+          <listitem>
+            <simpara>
+              A list of Python files to copy directly to the
+              installation directory.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><varname>CFLAGS</varname></term>
+          <listitem>
+            <simpara>
+              C++ flags to use when compiling the swig-generated
+              wrapper code and any files listed in
+              <varname>SOURCES</varname>.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><varname>INCLUDE_DIRECTORIES</varname></term>
+          <listitem>
+            <simpara>
+              Directories to search for C++ header files.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><varname>LIBRARIES</varname></term>
+          <listitem>
+            <simpara>
+              A list of libraries to link to. They can be library
+              names to be searched for, full path names, or cmake
+              targets.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><varname>TARGET_SFX</varname></term>
+          <listitem>
+            <simpara>
+              CMake requires that all targets in a project have unique
+              names, even though the name is used only internally. If
+              CMake complains that a target name is already in
+              use,<footnote><simpara>This can happen if the project
+              has mulitple subdirectories and there are swig files
+              with the same name in different
+              directories.</simpara></footnote> set
+              <varname>TARGET_SFX</varname> to a short string, which
+              will be appended to the target name to make it unique.
+            </simpara>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </refsection>               <!-- optional arguments -->
+
+    <refsection>
+      <title>Description</title>
+      <para>
+        <code>swig_sources</code> is a CMake function that is called
+        from the <filename>CMakeLists.txt</filename> file in a source
+        directory or subdirectory.  It groups together a number of
+        CMake operations required to build and install Python
+        extension modules from the swig and C++ source code in the
+        directory.
+      </para>
+      <para>
+        See <xref linkend="Chapter-Extending"/> for information on how
+        to build CMake files that use <code>swig_sources</code>.
+      </para>
+      <para>
+        <code>swig_sources</code> is defined in the file
+        <filename>oofbuildtools.cmake</filename> in the &oof2; source
+        directory.  To make it easier to build &oof2; extensions, when
+        &oof2; is installed with <varname>OOF2_DEV_INSTALL</varname>
+        set to <code>ON</code>,
+        <filename>oofbuildtools.cmake</filename> is copied to
+        <filename>PREFIX/share/oof2/tools</filename>, where
+        <filename>PREFIX</filename> is the value of
+        <varname>CMAKE_INSTALL_PREFIX</varname> that was used to build
+        &oof2;.  The <filename>CMakeLists.txt</filename> file in an
+        extension's source directory should include
+        <filename>oofbuildtools.cmake</filename> like this:
+
+        <literallayout class="monospaced">
+include("PREFIX/share/oof2/tools/oofbuildtools.cmake") </literallayout>
+
+        If the extension source occupies multiple directories, the
+        file needs to be included only in the
+        <filename>CMakeLists.txt</filename> file in the topmost parent
+        directory.
+      </para>
+      <para>
+        Arguments to CMake functions are of the form
+
+        <literallayout class="monospaced">
+KEYWORD value1 value2 ... </literallayout>
+
+        with zero or more values for each keyword.  The line breaks
+        are optional, so
+
+        <literallayout class="monospaced">
+KEYWORD value1 value2 </literallayout>
+
+        is the same as
+
+        <literallayout class="monospaced">
+KEYWORD value1 value2 </literallayout>
+
+        <code>${VARIABLE}</code> is the value of a variable called
+        <code>VARIABLE</code>.
+      </para>
+      <para>
+        For more information on using CMake and writing CMake files, see
+        <ulink url="https://cmake.org/cmake/help/latest/"
+               role="external"/>.
+      </para>
+
+      <refsection>
+        <title>Example</title>
+        <programlisting>
+swig_sources(
+  SWIGFILES
+  extension1 <co id="example1-swigfiles"/>
+  LIBRARIES
+  ${OOF2COMMON} ${OOF2ENGINE} <co id="example1-libs"/>
+  INCLUDE_DIRECTORIES
+  /Users/oofuser/include/oof2 <co id="example1-incl"/>
+  SOURCES
+  extension1.C function.C <co id="example1-sources"/>
+  SWIGDEST
+  ${CMAKE_INSTALL_PREFIX}/modules <co id="example1-dest"/>
+  ) </programlisting>
+
+        <calloutlist>
+          <callout arearefs="example1-swigfiles">
+            <simpara>
+              Process the file <filename>extension1.swg</filename>
+              and create <filename>extension1.py</filename> and
+              <filename>_extension1.so</filename> from it.
+            </simpara>
+          </callout>
+          <callout arearefs="example1-libs">
+            <simpara>
+              When creating <filename>_extension1.so</filename> link
+              it to the libraries named by the CMake variables
+              <varname>OOF2COMMON</varname> and
+              <varname>OOF2ENGINE</varname>.
+            </simpara>
+          </callout>
+          <callout arearefs="example1-incl">
+            <simpara>
+              Search these directories for C++ header files.  The
+              current source directory, the build directory, and the
+              Python include directory are included automatically.
+            </simpara>
+          </callout>
+          <callout arearefs="example1-sources">
+            <simpara>
+              These C++ files from the current source directory will
+              be compiled, along with the C++ file generated by swig.
+              All of them will be combined to create
+              <filename>_extension1.so</filename>.
+            </simpara>
+          </callout>
+          <callout arearefs="example1-dest">
+            <simpara>
+              The outputs, <filename>extension1.py</filename> and
+              <filename>_extension1.so</filename> will be installed in
+              the <filename>modules</filename> subdirectory inside the
+              project's installation directory.
+            </simpara>
+          </callout>
+        </calloutlist>
+      </refsection>             <!-- Example -->
+    </refsection>               <!-- Description -->
+  </refentry>                   <!-- swig_sources -->
+
+  <refentry id="oof2-extension-setup">
+    <refnamediv>
+      <refname><application>oof2-extension-setup</application></refname>
+      <refpurpose>
+        Generate the infrastructure of the code for an &oof2; extension.
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopsis</title>
+      <para>
+        <code>oof2-extension-setup [args]</code>
+      </para>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Required Arguments</title>
+      <variablelist>
+        <varlistentry>
+          <term><option>-t templatename</option></term>
+          <term><option>--template=templatename</option></term>
+          <listitem>
+            <simpara>
+              The name of the template to use.  It must be one of
+              names listed by the <option>-l</option> or
+              <option>--list</option> options.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-m name</option></term>
+          <term><option>--module=name</option></term>
+          <listitem>
+            <simpara>
+              The name of the Python module.  This is the name by
+              which the extension can be imported into &oof2;.
+              </simpara>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><option>-c name</option></term>
+            <term><option>--classname=name</option></term>
+            <listitem>
+              <simpara>
+                The name of the C++ class defined by the &property;.
+              </simpara>
+            </listitem>
+          </varlistentry>
+      </variablelist>
+    </refsection>
+    <refsection>
+      <title>Optional Arguments</title>
+      <variablelist>
+        <varlistentry>
+          <term><option>-l</option></term>
+          <term><option>--list</option></term>
+          <listitem>
+            <simpara>
+              Print the names of all available templates, and exit.
+              No output files will be generated.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-s number</option></term>
+          <term><option>--sequence=number</option></term>
+          <listitem>
+            <simpara>
+              One of the pieces of a &property;'s definition is its
+              path, which define where it sits in the &property;
+              hierarchy and where it appears in the <link
+              linkend="Section-Tasks-Materials">Materials Page</link>.
+              If there is more than one &property; at the same level
+              of the hierarchy, they are listed in order of their
+              sequence numbers.  Larger numbers are listed later.
+            </simpara>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-f</option></term>
+          <term><option>--force</option></term>
+          <listitem>
+            <simpara>
+              Normally oof2-extension-setup will not overwrite
+              existing files.  This option forces it to overwrite
+              them.
+            </simpara>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </refsection>
+    <refsection>
+      <title>Description</title>
+      <para>
+        <application>oof2-extension-setup</application> is a program
+        that helps writing certain kinds of &oof2; extensions.  It is
+        installed in the same location as &oof2; when &oof2; is built
+        with <varname>OOF2_DEV_INSTALL</varname> set to
+        <code>ON</code>.
+      </para>
+      <para>
+        To use <application>oof2-extension-setup</application>, in a
+        terminal window cd to the directory where you want the
+        extension source code to reside, and type
+        <literallayout role="monospaced">
+oof2-extension-setup </literallayout>
+
+        followed by the arguments described above.  A new directory
+        will be created with the given module name.  The contents of
+        the directory will be:
+        <itemizedlist>
+          <listitem>
+            <para>
+              A copy of the <filename>README</filename> file from the
+              <filename>EXTENSION_TEMPLATES</filename> directory in
+              the &oof2; source.  It's worth a read, even though some
+              of the information is redundant with what's on this
+              page.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The <filename>CMakeLists.txt</filename> file that CMake
+              uses to build the extension.  You may want to change the
+              version number in this file. If you have rebuilt &oof2;
+              with new versions of Python or swig
+              <emphasis>after</emphasis> running
+              <application>oof2-extension-setup</application>, you
+              should change the version numbers in the file as well.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              An <filename>__init__.py</filename> file that imports
+              the actual extension script when the module is imported
+              by &oof2;. You can combine multiple extensions in one
+              module by adding lines to this file.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              An empty <filename>build</filename> directory.  You can
+              cd to here to run ccmake to build and install the
+              extension.  You can also ignore or delete this directory
+              and build the extension elsewhere if you like.  See
+              <xref linkend="Section-Installing-External"/>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              A <filename>source</filename> directory.  Edit the files
+              in this directory to implement the details of your
+              &property;.  They are:
+            </para>
+            <itemizedlist>
+              <listitem>
+                <para>
+                  <filename>CMakeLists.txt</filename>: This file
+                  contains a call to <xref linkend="swig_sources"/>.
+                  If you add new C++ files or need to link to
+                  additional libraries (other than the &oof2;
+                  libraries) they will need to be added to this file.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  A C++ header file, a C++ source file, and a swig
+                  file with names determined by the
+                  <option>--module</option> argument.  The file
+                  suffixes are <quote>.h</quote> for the header,
+                  <quote>.C</quote> for the C++ source, and
+                  <quote>.swg</quote> for swig.  These files contain
+                  comments indicating how they should be edited. See
+                  <xref linkend="Chapter-Coding"/> for more
+                  information.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  A Python file named by the <option>--module</option>
+                  argument, with a <quote>.spy</quote>
+                  suffix.<footnote><para>The odd suffix makes it clear
+                  that this file is not directly loaded by Python.  It
+                  contains code that belongs in the module's Python
+                  file but is not generated by swig.</para></footnote>
+                  Swig reads this file and embeds it directly into the
+                  output Python script.  It also will need to be
+                  edited.
+                </para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </refsection>
+  </refentry>                 <!-- oof2-extension-setup -->
+  
+</reference> 
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

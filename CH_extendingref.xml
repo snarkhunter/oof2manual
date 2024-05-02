@@ -30,6 +30,7 @@
       class or function, it will be discussed explicitly.
     </para>
   </partintro>
+  &refExtending;
   &refCoords;
   &refField;
   &refFlux;

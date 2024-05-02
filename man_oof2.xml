@@ -39,6 +39,7 @@
 <!ENTITY oof2_api SYSTEM "oof2_api.xml">
 <!ENTITY extending SYSTEM "CH_extending.xml">
 <!ENTITY coding SYSTEM "CH_coding.xml">
+<!ENTITY extendingref SYSTEM "CH_extendingref.xml">
 <!ENTITY refProperty SYSTEM "CODEREF/refProperty.xml">
 <!ENTITY refField SYSTEM "CODEREF/refField.xml">
 <!ENTITY refFlux SYSTEM "CODEREF/refFlux.xml">
@@ -51,6 +52,7 @@
 <!ENTITY refOutputVal SYSTEM "CODEREF/refOutputVal.xml">
 <!ENTITY refFEMesh SYSTEM "CODEREF/refFEMesh.xml">
 <!ENTITY refCoords SYSTEM "CODEREF/refCoords.xml">
+<!ENTITY refExtending SYSTEM "CODEREF/refExtending.xml">
 <!ENTITY appendices SYSTEM "appendices.xml">
 
 
@@ -219,16 +221,38 @@ links to the general discussions in CH_concepts.xml.
     </author>
   </bookinfo>
 
-  &overview;
-  &starting;
-  &concepts;
-  &tasks;
-  &graphics;
-  &windows;
-  &oof2_api; 
-  &extending;
-  &coding;
+  <part id="Part-using">
+    <title>Using OOF2</title>
+    &overview;
+    &starting;
+    &concepts;
+    &tasks;
+    &graphics;
+    &windows;
+  </part>
+
+  <part>
+    <title>OOF2 Command Reference</title>
+    <partintro>
+      <para>
+        This section contains the reference pages for the &oof2;
+        commands that are invoked by the GUI or scripts.  The details
+        of the operations described in <xref linkend="Part-using"/>
+        are described here.
+      </para>
+    </partintro>
+    &oof2_api;
+  </part>
+
+  <part id="part-extending">
+    <title>Extending OOF2</title>
+    &extending;
+    &coding;
+  </part>
+
+  &extendingref;                <!-- Reference pages for extending -->
   &appendices;
+
   
 </book>
 
