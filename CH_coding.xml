@@ -567,14 +567,6 @@ conjugatePair("Elasticity",
 
   <section id="Section-Coding-Material">
     <title>Adding New Material Properties</title>
-    <warning>
-      <para>
-	This section has not yet been updated for &oof2; version 2.1.
-	A partial discussion of the differences between the 2.0 and
-	2.1 extension APIs may be found at <ulink
-	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
-      </para>
-    </warning>
     <para>
       Adding new &material; &properties; is the most complicated part
       of creating an &oof2; extension.  Just to make it simpler, there
@@ -592,10 +584,9 @@ conjugatePair("Elasticity",
     </para>
     <para>
       A &property; definition contains a class definition, which is
-      either a <link linkend="Class-Property">C++ subclass of
-      <classname>Property</classname></link> or a <link
-      linkend="Class-PyPropertyWrapper">Python subclass of
-      <classname>ooflib.SWIG.engine.pypropertywrapper</classname></link>,
+      either a C++ subclass of &Property; or a Python subclass of
+      <link
+      linkend="Class-PyPropertyWrapper"><classname>ooflib.SWIG.engine.pypropertywrapper</classname></link>,
       and a <link
       linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
       object, which contains metadata about the &property;.
@@ -636,25 +627,6 @@ conjugatePair("Elasticity",
 	      constructor</link></simpara>
 	    </listitem>
 	  </itemizedlist>
-	  <para>
-	    There are also a few functions that &properties; may
-	    define that influence the way they're used or the way a
-	    computation is done:
-	    <itemizedlist spacing="compact">
-	      <listitem>
-		<simpara>
-		  <link
-		    linkend="Class-Property-is_symmetric"><code>Property::is_symmetric</code></link>
-		</simpara>
-	      </listitem>
-	      <listitem>
-		<simpara>
-		  <link
-		    linkend="Class-Property-integration_order"><code>Property::integration_order</code></link>
-		</simpara>
-	      </listitem>
-	    </itemizedlist>
-	  </para>
 	</listitem>
 	<listitem>
 	  <para>
@@ -730,6 +702,25 @@ conjugatePair("Elasticity",
 	      </simpara>
 	    </listitem>
 	  </itemizedlist>
+      <para>
+	    There are also a few functions that &properties; may define
+	    that influence the way they're used or the way a computation
+	    is done:
+      </para>
+	  <itemizedlist spacing="compact">
+	    <listitem>
+		  <simpara>
+		    <link
+		        linkend="Class-Property-is_symmetric"><code>Property::is_symmetric</code></link>
+		  </simpara>
+	    </listitem>
+	    <listitem>
+		  <simpara>
+		    <link
+		        linkend="Class-Property-integration_order"><code>Property::integration_order</code></link>
+		  </simpara>
+	    </listitem>
+	  </itemizedlist>
 	</listitem>
 	<listitem>
 	  <para>
@@ -785,14 +776,6 @@ conjugatePair("Elasticity",
 
   <section id="Section-Coding-Output">
     <title>Adding New Outputs</title>
-    <warning>
-      <para>
-	This section has not yet been updated for &oof2; version 2.1.
-	A partial discussion of the differences between the 2.0 and
-	2.1 extension APIs may be found at <ulink
-	url="http://www.ctcms.nist.gov/oof/oof2/property_api_21.html"/>.
-      </para>
-    </warning>
     <para>
       <classname>Outputs</classname> in &oof2; are operations
       performed on &mesh; data.  The results can be sent to the <link
@@ -1745,7 +1728,8 @@ propertyregistration.PropertyRegistration(
 	<classname>Outputs</classname>.  However, there's no machinery
 	to make this easy to do, yet.
       </para>
-    </section><!-- PropertyOutputs -->
+    </section>                  <!-- PropertyOutputs -->
+    
     <section id="Section-Coding-OrientationMapFormats">
       <title>Orientation Map Formats</title>
       <para>

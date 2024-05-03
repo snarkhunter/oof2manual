@@ -11,6 +11,857 @@
 <reference>
   <title>Property and Material Classes</title>
 
+  <refentry id="Class-PropertyRegistration">
+    <refnamediv>
+      <refname>PropertyRegistration</refname>
+      <refpurpose>Register new Properties</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <literallayout class="monospaced">
+from ooflib.engine.propertyregistration import PropertyRegistration
+      </literallayout>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>PropertyRegistration</classname>
+        </ooclass>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-PropertyRegistration-ctor">__init__</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>subclass</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>ordering</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>params</parameter>
+            <initializer>[]</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>propertyType</parameter>
+            <initializer>None</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>outputs</parameter>
+            <initializer>[]</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>secret</parameter>
+            <initializer>False</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>tip</parameter>
+            <initializer>None</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>discussion</parameter>
+            <initializer>None</initializer>
+          </methodparam>
+        </constructorsynopsis>
+
+        <methodsynopsis>
+          <methodname><link linkend="Class-PropertyRegistration-fluxInfo">fluxInfo</link></methodname>
+          <methodparam>
+            <parameter>fluxes</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>fields</parameter>
+            <initializer>[None]</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>time_derivs</parameter>
+            <initializer>[]</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>nonlinear</parameter>
+            <initializer>False</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>time_dependent</parameter>
+            <initializer>False</initializer>
+          </methodparam>
+        </methodsynopsis>       <!--fluxInfo-->
+
+        <methodsynopsis>
+          <methodname><link linkend="Class-PropertyRegistration-eqnInfo">eqnInfo</link></methodname>
+          <methodparam>
+            <parameter>equations</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>fields</parameter>
+            <initializer>[None]</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>time_derivs</parameter>
+            <initializer>[]</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>nonlinear</parameter>
+            <initializer>False</initializer>
+          </methodparam>
+          <methodparam>
+            <parameter>time_dependent</parameter>
+            <initializer>False</initializer>
+          </methodparam>
+        </methodsynopsis>       <!-- eqnInfo -->
+
+        <methodsynopsis>
+          <methodname><link linkend="Class-PropertyRegistration-getParameter">getParameter</link></methodname>
+          <methodparam>
+            <parameter>name</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- getParameter -->
+	  </classsynopsis>
+
+      <refsect2>
+        <title>Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/propertyregistration.py</filename>
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect2>               <!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	    Every new &Property; class must have a single
+	    <classname>PropertyRegistration</classname> object.  The
+	    <classname>PropertyRegistration</classname> contains metadata
+	    about the <classname>Property</classname> and inserts it in
+	    the global list of all <classname>Property</classname>
+	    classes, which allows it to appear in the user interface.
+      </para>
+      <para>
+	    <classname>PropertyRegistrations</classname> are defined only
+	    in Python, even for <classname>Properties</classname> that are
+	    defined in C++.  This means that all C++
+	    <classname>Property</classname> subclasses must be swigged, in
+	    order to be accessible to their
+	    <classname>PropertyRegistration</classname> objects.  It's
+	    sufficient to swig the &Property; subclass and the constructor.
+	    Other &Property; methods do not have to be made available in
+	    Python.
+      </para>
+      <para>
+        Once a <classname>PropertyRegistration</classname> has been
+        created, it is unnecessary to store a reference to it
+        explicitly.  All <classname>PropertyRegistration</classname>s
+        are stored a static list in the &Property; class.
+      </para>
+      <para>
+        There are three subclasses of &Property; from which all other
+        &Properties; are derived.  All of them use the same
+        <classname>PropertyRegistration</classname> class, but
+        differ<footnote><simpara>Yes, this is ugly from an OO
+        perspective.</simpara></footnote> in how additional metadata
+        must be added to the registration:
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              Registrations for <link
+              linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>s
+              must call <link
+              linkend="Class-PropertyRegistration-fluxInfo"><function>PropertyRegistration.fluxInfo()</function></link>.
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              Registrations for <link
+              linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>s
+              must call <link
+              linkend="Class-PropertyRegistration-eqnInfo"><function>PropertyRegistration.eqnInfo()</function></link>.
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              Registrations for <link
+              linkend="Class-AuxiliaryProperty"><classname>AuxiliaryProperty</classname></link>s
+              should not call either function.
+            </simpara>
+          </listitem>
+        </itemizedlist>
+        These functions should be called immediately after the
+        <classname>PropertyRegistrations</classname> are created.
+      </para>
+    </refsection>               <!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      
+      <refsection>
+        <title>
+          <code><emphasis
+          role="bold">PropertyRegistration.__init__(name, subclass,
+          ordering, ...)</emphasis></code>
+        </title>
+        <para>
+	      The only required constructor parameters are
+	      <varname>name</varname>, <varname>subclass</varname>, and
+	      <varname>ordering</varname>.  The others can all be omitted
+	      if they're not needed for a particular
+	      <classname>Property</classname>.
+        </para>
+        <para>
+	      When creating a <classname>PropertyRegistration</classname>,
+	      it's advisable to use Python keyword arguments so that it's
+	      clear which parameters have been omitted.
+        </para>
+        <itemizedlist>
+          <listitem>
+            <variablelist>
+              <title>Parameters</title>
+	          <varlistentry>
+	            <term><varname>name</varname></term>
+	            <listitem>
+	              <para>
+	                <varname>name</varname> is a string containing the
+	                name of the <classname>Property</classname>, as it
+	                will appear in scripts and in the GUI.  In the
+	                GUI, <classname>Properties</classname> are
+	                arranged <link
+	                linkend="Section-Materials-Property">hierarchically</link>
+	                in a tree.  The <varname>name</varname> is a colon
+	                separated string, in which each segment is a
+	                branch of the <classname>Property</classname>
+	                tree.  For example, the cubic elasticity
+	                property's <varname>name</varname> is
+	                <literal>Mechanical:Elasticity:Anisotropic:Cubic</literal>,
+	                and it appears in the GUI like this:
+	                <informalfigure>
+		              <mediaobject>
+		                <imageobject>
+		                  <imagedata fileref="FIGURES/gui/propertyhier.png"
+                                     contentwidth="229px" format="PNG"/>
+		                </imageobject>
+		              </mediaobject>
+	                </informalfigure>
+	              </para>
+	            </listitem>
+	          </varlistentry>       <!-- name -->
+	          <varlistentry>
+	            <term><varname>subclass</varname></term>
+	            <listitem>
+	              <para>
+	                This is the &Property; subclass that is being
+	                registered.  It must either be a swigged C++
+	                &Property; subclass, a Python class derived from a
+	                swigged C++ &Property; subclass, or a Python class
+	                derived from <link
+	                linkend="Class-PyPropertyWrapper"><classname>PyPropertyWrapper</classname></link>.
+	                Note that the argument is the actual
+	                <emphasis>class</emphasis>, not an instance of the
+	                class.
+	              </para>
+	            </listitem>
+	          </varlistentry>       <!-- subclass -->
+	          <varlistentry>
+	            <term><varname>ordering</varname></term>
+	            <listitem>
+	              <para>
+	                <varname>ordering</varname> determines this
+	                <classname>Property</classname>'s position when
+	                listed in the GUI.  It has no other significance.
+	                It can be either an integer or a floating point
+	                number.  Nodes of the
+	                <classname>Property</classname> tree in the GUI
+	                are listed in order of increasing
+	                <varname>ordering</varname>.  The
+	                <varname>ordering</varname> of an intermediate
+	                node in the tree is taken to be the smallest
+	                <varname>ordering</varname> of any of its
+	                children.
+	              </para>
+	            </listitem>
+	          </varlistentry>       <!-- ordering -->
+	          <varlistentry>
+	            <term><varname>params</varname></term>
+	            <listitem>
+	              <para>
+	                The arguments for every &Property;'s constructor
+	                are a name, a registration, and a variable number
+	                of additional values that quantify the
+	                &Property;'s behavior.  These additional arguments
+	                are determined by the
+	                <classname>PropertyRegistration</classname>'s
+	                <varname>params</varname> argument.
+	                <varname>params</varname> is a Python list of
+	                <link
+	                linkend="Class-Parameter"><classname>Parameter</classname></link>
+	                subclass instances.  Each entry in the list
+	                specifies a type (which is implied by the <link
+	                linkend="Class-Parameter"><classname>Parameter</classname></link>
+	                subclass), a constructor argument name, a default
+	                value, and a help string.  The parameters
+	                <emphasis>must</emphasis> appear in the same order
+	                in the <varname>params</varname> list as they do
+	                in the &Property; constructor's argument list.
+	              </para>
+	              <para>
+	                For example, a <link
+	                linkend="Property-Mechanical-MassDensity-ConstantMassDensity">mass
+	                density <classname>Property</classname></link>
+	                could have a <link
+	                linkend="Class-FloatParameter"><classname>FloatParameter</classname></link>
+	                called <varname>density</varname>,
+
+	                <programlisting>
+params = [<emphasis role="bold">FloatParameter</emphasis>('density', value=1.0, tip='mass density')] </programlisting>
+
+                    while a <link
+                    linkend="Property-Couplings-ThermalExpansion-Anisotropic-Triclinic">triclinic
+                    thermal expansion
+                    <classname>Property</classname></link> would have
+                    a <link
+                    linkend="Class-TriclinicRank2TensorParameter"><classname>TriclinicRank2TensorParameter</classname></link>
+                    (for the modulus) and a <link
+                    linkend="Class-FloatParameter"><classname>FloatParameter</classname></link>
+                    for the zero-stress temperature:
+
+	                <programlisting>
+params = [<emphasis role="bold">TriclinicRank2TensorParameter</emphasis>(
+                     name='alpha',
+                     value=TriclinicRank2Tensor(xx=1, yy=1, zz=1),
+                     tip='Thermal expansion tensor'),
+          <emphasis role="bold">FloatParameter</emphasis>('T0', 0.0, tip='Stress free temperature')
+         ] </programlisting>
+
+ 	              </para>
+	              <para>
+	                See <xref linkend="Class-Parameter"/> for a list
+	                of all of &oof2;'s built-in
+	                <classname>Parameter</classname> types and their
+	                constructor arguments.
+	              </para>
+	            </listitem>
+	          </varlistentry>       <!-- params -->
+	          <varlistentry>
+	            <term><varname>propertyType</varname></term>
+	            <listitem>
+	              <para>
+	                The <varname>propertyType</varname> is a string
+	                that categorizes the
+	                <classname>Property</classname>.  No two
+	                <classname>Properties</classname> in a &material;
+	                can have the same <varname>propertyType</varname>.
+	                The function <link
+	                linkend="Class-Material-fetchProperty"><methodname>Material::fetchProperty</methodname></link>
+	                locates <classname>Properties</classname> by their
+	                <varname>propertyType</varname>.
+	              </para>
+	              <para>
+	                When registering a new
+	                <classname>Property</classname>, it's important to
+	                use the same <varname>propertyType</varname> that
+	                was used for other
+	                <classname>Properties</classname> of that type.
+	                The existing &oof2;
+	                <varname>propertyTypes</varname> are given in
+	                <xref linkend="Table:PropertyTypes"/>.  If a new
+	                &Property; doesn't belong in any of the existing
+	                types and doesn't conflict with them, it is
+	                possible to create a new type.  It is just a
+	                character string.
+                  </para>
+                </listitem>
+	          </varlistentry> <!-- propertyType -->
+	          <varlistentry>
+	            <term><varname>outputs</varname></term>
+                <listitem>
+	              <para>
+                    <varname>outputs</varname> is a list of strings,
+                    each one the <emphasis>name</emphasis> of an <link
+                    linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+                    to which the <classname>Property</classname>'s
+                    <link
+                    linkend="Class-Property-output"><methodname>output</methodname></link>
+                    function contributes.
+                  </para>
+                </listitem>
+	          </varlistentry> <!-- output -->
+              <varlistentry>
+	            <term><varname>secret</varname></term>
+                <listitem>
+	              <para>
+                    <varname>secret</varname> should be set to True if
+                    the &Property; should <emphasis>not</emphasis>
+                    appear in the GUI.  It will still be available in
+                    scripts, for those who are in the know.
+                  </para>
+	            </listitem>
+              </varlistentry> <!-- secret -->
+	          <varlistentry>
+                <term><varname>tip</varname></term>
+	            <listitem>
+                  <para>
+                    <varname>tip</varname> is a short string
+                    describing the <classname>Property</classname>.
+                    It should be something suitable for displaying as
+                    a pop-up tooltip in the GUI.
+                  </para>
+                </listitem>
+	          </varlistentry> <!-- tip -->
+
+	          <varlistentry>
+	            <term><varname>discussion</varname></term>
+	            <listitem>
+                  <para>
+                    <varname>discussion</varname> is a longer string
+                    describing the <classname>Property</classname>,
+                    meant to be included in the &oof2; Manual.  The
+                    string should be written in <ulink
+                    url="http://docbook.org/" role="external">DocBook
+                    XML</ulink> version 4.5.  The manual will embed it
+                    inside a <literal>&lt;refsect1&gt;</literal>
+                    element.<footnote><para> The simplest legal
+                    <varname>discussion</varname> string has the form
+		                <literallayout class="monospaced">
+&lt;para&gt;blah blah blah&lt;/para&gt; </literallayout></para></footnote>
+ 	              </para>
+	              <para>
+	                Since it's often inconvenient to include large
+	                blocks of text inside a
+	                <classname>PropertyRegistration</classname>, the
+	                text can be put into a separate file, and
+	                <varname>discussion</varname> can be set to
+	                <code><link
+	                linkend="Function-xmlmenudump.loadFile">xmlmenudump.loadFile</link>(filename)</code>.
+	                <function>loadFile()</function> doesn't actually
+	                read the file unless the &oof2; Manual is being
+	                generated, so there's no cpu or memory cost to
+	                doing it this way.  In any case, the
+	                <varname>discussion</varname> argument is
+	                optional.  Omitting it has no consequences except
+	                when generating the manual.
+	              </para>
+	            </listitem>
+	          </varlistentry>             
+            </variablelist>
+          </listitem>
+        </itemizedlist>
+      </refsection>                   <!-- constructor -->
+
+      <refsection id="Class-PropertyRegistration-fluxInfo">
+        <title>
+          <code><emphasis role="bold">fluxInfo(self, fluxes, fields=[None],
+          time_derivs=[0], nonlinear=False, time_dependent=False)</emphasis></code>
+        </title>
+        <para>
+          <function>fluxInfo()</function> adds additional metadata to
+          &Properties; that are derived from <link
+          linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>.
+          It must be called after the
+          <classname>PropertyRegistration</classname> for the <link
+          linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>
+          is created.
+        </para>
+        <para>
+          For example, this is how <link
+          linkend="Property-Mechanical-Elasticity-Isotropic">isotropic
+          elasticity</link> is registered in
+          <filename>SRC/engine/properties/elasticity/iso/iso.spy</filename>:
+          <programlisting>
+from ooflib.engine import problem
+from ooflib.engine import propertyregistration
+            
+reg = propertyregistration.PropertyRegistration(
+    name="Mechanical:Elasticity:Isotropic",
+    subclass=IsoElasticityProp,
+    ...     <lineannotation>other PropertyRegistration parameters go here</lineannotation>
+)
+
+reg.fluxInfo(fluxes=[problem.Stress],
+             fields=[problem.Displacement],
+             time_derivs=[0]) </programlisting>
+
+           This indicates that the registered &Property; contributes
+           to the <xref linkend="Flux-Stress"/> flux, uses the <xref
+           linkend="Field-Displacement"/> field, and no time
+           derivatives of the &Field;.
+        </para>
+        <itemizedlist>
+          <listitem>
+            <variablelist>
+              <title>Parameters</title>
+              <varlistentry>
+                <term><varname>fluxes</varname></term>
+                <listitem>
+                  <para>
+                    A list of all of the &Fluxes; that the &Property;
+                    contributes to.  The &Fluxes; can be obtained by
+                    importing the module defining them
+                    (<filename>problem.py</filename> in the example
+                    above) or by calling <xref
+                    linkend="Function-getFlux"/>().
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>fields</varname></term>
+                <listitem>
+                  <para>
+                    A list of all of the &Fields; that contribute to
+                    the &Flux; via this &Property;.  When <link
+                    linkend="MenuItem-OOF.Mesh.Solve">solving
+                    equations</link>, the &Property; will not be used
+                    unless all of the listed &Fields; are <link
+                    linkend="MenuItem-OOF.Subproblem.Field">defined</link>.
+                  </para>
+                  <para>
+                    The default value of <varname>fields</varname> is
+                    <code>[None]</code>, meaning the the &Property;
+                    can be used even if no &Fields; are defined.
+                    Setting <varname>fields</varname> to
+                    <code>[]</code> (an empty list) will disable the
+                    &Property;.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>time_derivs</varname></term>
+                <listitem>
+                  <para>
+                    A list of integers, indicating which time
+                    derivatives of <varname>fields</varname> are used
+                    in this &Property;.  0 is the &Field; itself, 1 is
+                    its first time derivative, and 2 is its second
+                    time derivative.  In the example above,
+                    <code>time_derivs=[0]</code> because only the
+                    0<superscript>th</superscript> order time
+                    derivative is required to compute the <xref
+                    linkend="Flux-Stress"/>.  If <link
+                    linkend="Property-Mechanical-Viscosity-Isotropic">isotropic
+                    viscosity</link> had been used,
+                    <code>time_derivs=[1]</code> would have been used.
+                  </para>
+                  <para>
+                    If the <varname>fields</varname> list contains
+                    more than one &Field;,
+                    <varname>time_derivs</varname> should include the
+                    derivative orders for all of the &Fields;.  That
+                    is, if any one &Field;'s
+                    <emphasis>n</emphasis><superscript>th</superscript>
+                    derivative is used, <emphasis>n</emphasis> should
+                    be in the list.
+                  </para>
+                  <para>
+                    The default value of <varname>time_derivs</varname>
+                    is <code>[0]</code>.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>nonlinear</varname></term>
+                <listitem>
+                  <para>
+                    Set <varname>nonlinear</varname> to <code>True</code>
+                    if the &Property; is a nonlinear function of the
+                    &Fields; or their time derivatives.  The default
+                    value is <code>False</code>.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>time_dependent</varname></term>
+                <listitem>
+                  <para>
+                    Set <varname>time_dependent</varname> to
+                    <code>True</code> if any part of the &Property;
+                    itself (not the &Fields;) changes in a time
+                    dependent way.  For example, if the elastic
+                    modulus were an explicit function of time, you'd
+                    set <code>time_dependence=True</code> in its
+                    registration.  The default value is <code>False</code>.
+                  </para>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+          </listitem>
+        </itemizedlist>
+      </refsection>             <!-- fluxInfo -->
+
+      <refsection id="Class-PropertyRegistration-eqnInfo">
+        <title>
+          <code><emphasis role="bold">eqnInfo(self, equations, fields=[None],
+          time_derivs=[], nonlinear=False, time_dependent=False)</emphasis></code>
+        </title>
+        <para>
+          <function>eqnInfo()</function> adds additional metadata to
+          &Properties; that are derived from <link
+          linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>.
+          It must be called after the
+          <classname>PropertyRegistration</classname> for the <link
+          linkend="EqnProperty"><classname>EqnProperty</classname></link>
+          is created.
+        </para>
+        <para>
+          For example, this is how <link linkend="Property-Thermal-HeatCapacity-ConstantHeatCapacity-ConstantHeatCapacity">heat
+          capacity</link> is registered in <filename>SRC/engine/properties/heatcapacity/heatcapacity.spy</filename>:
+          <programlisting>
+from ooflib.SWIG.engine import equation
+from ooflib.SWIG.engine import field
+from ooflib.engine import propertyregistration
+
+reg = propertyregistration.PropertyRegistration(
+    name='Thermal:HeatCapacity:ConstantHeatCapacity',
+    subclass=HeatCapacityProp,
+    ...     <lineannotation>other PropertyRegistration parameters go here</lineannotation>
+    )
+reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
+            fields=[field.getField("Temperature")],
+            time_derivs=[1]) </programlisting>
+
+          This indicates that the registered &Property; makes direct
+          contributions to the <xref linkend="Equation-Heat_Eqn"/>
+          equation,<footnote><para>Note that in this example the
+          &Equation; and &Field; are retrieved from the
+          <filename>ooflib.SWIG.engine.field</filename> and
+          <filename>ooflib.SWIG.engine.equation</filename> modules by
+          <link
+          linkend="Function-getField"><function>getField()</function></link>
+          and <link
+          linkend="Function-getEquation"><function>getEquation()</function></link>
+          instead of via variables declared in the
+          <filename>ooflib.engine.problem</filename> module, as in the
+          earlier example.  Both methods work.</para></footnote> using
+          the first time derivative of the <xref
+          linkend="Field-Temperature"/>.
+        </para>
+        <itemizedlist>
+          <listitem>
+            <variablelist>
+              <title>Parameters</title>
+              <varlistentry>
+                <term><varname>equations</varname></term>
+                <listitem>
+                  <para>
+                    A list of all the &Equations; that the &Property;
+                    contributes to directly.  If the &Property;
+                    contributes to a &Flux; that appears in the
+                    &Equation;, use <link
+                    linkend="Class-PropertyRegistration-fluxInfo"><function>fluxInfo()</function></link>
+                    instead.  The &Equations; may be obtained by
+                    calling <link
+                    linkend="Function-getEquation"><function>getEquation()</function></link>
+                    as in the example above, or by importing the
+                    module defining them
+                    (<module>ooflib.engine.property</module>, for the
+                    built-in &Equations;).
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>fields</varname></term>
+                <listitem>
+                  <para>
+                    A list of all of the &Fields; that contribute to
+                    the &Equation; via this &Property;.  When <link
+                    linkend="MenuItem-OOF.Mesh.Solve">solving
+                    equations</link>, the &Property; will not be used
+                    unless all of the listed &Fields; are <link
+                    linkend="MenuItem-OOF.Subproblem.Field">defined</link>.
+                  </para>
+                  <para>
+                    The default value of <varname>fields</varname> is
+                    <code>[None]</code>, meaning the the &Property;
+                    can be used even if no &Fields; are defined.
+                    Setting <varname>fields</varname> to
+                    <code>[]</code> (an empty list) will disable the
+                    &Property;.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>time_derivs</varname></term>
+                <listitem>
+                  <para>
+                    A list of integers, indicating which time
+                    derivatives of <varname>fields</varname> are used
+                    in this &Property;.  0 is the &Field; itself, 1 is
+                    its first time derivative, and 2 is its second
+                    time derivative.  In the example above,
+                    <code>time_derivs=[1]</code> because the heat
+                    capacity multiplies the first time derivative of
+                    <xref linkend="Field-Temperature"/> in the heat
+                    equation.
+                  </para>
+                  <para>
+                    If the <varname>fields</varname> list contains
+                    more than one &Field;,
+                    <varname>time_derivs</varname> should include the
+                    derivative orders for all of the &Fields;.  That
+                    is, if any one &Field;'s
+                    <emphasis>n</emphasis><superscript>th</superscript>
+                    derivative is used, <emphasis>n</emphasis> should
+                    be in the list.
+                  </para>
+                  <para>
+                    The default value of <varname>time_derivs</varname>
+                    is <code>[0]</code>.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>nonlinear</varname></term>
+                <listitem>
+                  <para>
+                    Set <varname>nonlinear</varname> to <code>True</code>
+                    if the &Property; is a nonlinear function of the
+                    &Fields; or their time derivatives.  The default
+                    value is <code>False</code>.
+                  </para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term><varname>time_dependent</varname></term>
+                <listitem>
+                  <para>
+                    Set <varname>time_dependent</varname> to
+                    <code>True</code> if any part of the &Property;
+                    itself (not the &Fields;) changes in a time
+                    dependent way.  For example, if the heat capacity
+                    were an explicit function of time, you'd set
+                    <code>time_dependence=True</code> in its
+                    registration.  The default value is
+                    <code>False</code>.
+                  </para>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+          </listitem>
+        </itemizedlist>
+      </refsection>             <!-- eqnInfo -->
+        
+
+    </refsection>               <!-- Methods -->
+    
+    <refsection id="Class-PropertyRegistration-PropertyType">
+      <title>Property Types</title>
+      <para>
+	The following table lists the <varname>propertyTypes</varname>
+	used in &oof2; <classname>PropertyRegistrations</classname>.
+	Not all of the types listed here are fully available yet
+	&mdash; some are still in development or reserved for future
+	use.
+      </para>
+      <table id="Table:PropertyTypes">
+	<title>Property Types</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry><simpara><varname>propertyType</varname></simpara></entry>
+	      <entry><simpara>Description</simpara></entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>
+		<simpara><literal>'ChargeDensity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Spatial charge distribution</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'DielectricPermittivity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Dielectric permittivity</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Elasticity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Elastic modulus</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'ForceDensity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Externally applied body force density</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Heat Source'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Heat sources and sinks</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'HeatCapacity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Heat capacity</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'MassDensity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Mass density, for dynamic equations</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Orientation'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Crystalline orientation</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'PiezoElectricity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Piezoelectric modulus</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'Plasticity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Plastic deformation rules</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'ThermalConductivity'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Thermal conductivity</simpara>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		<simpara><literal>'ThermalExpansion'</literal></simpara>
+	      </entry>
+	      <entry>
+		<simpara>Thermal expansion tensor and stress-free
+		  temperature</simpara>
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </refsection>               <!-- Property Types -->
+  </refentry>                   <!-- PropertyRegistration -->
+
+  <!-- ========================================================= -->
+  
 <refentry id="Class-Property">
   <refnamediv>
     <refname>Property</refname>
@@ -257,7 +1108,7 @@
 	  <title>Python Synopsis</title>
 
 	  <literallayout class="monospaced">
-from oof2.SWIG.engine.pypropertywrapper import PyPropertyWrapper </literallayout>
+from ooflib.SWIG.engine.pypropertywrapper import PyPropertyWrapper </literallayout>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>PyPropertyWrapper</classname>
@@ -2035,468 +2886,7 @@ bool ThermalExpansion::is_symmetric(const CSubProblem* subproblem) const {
     </refsection><!-- Methods -->
   </refentry><!-- Property -->
 
-  <refentry id="Class-PropertyRegistration">
-    <refnamediv>
-      <refname>PropertyRegistration</refname>
-      <refpurpose>Register new Properties</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <literallayout class="monospaced">
-from oof2.engine.propertyregistration import PropertyRegistration
-
-class PropertyRegistration:
-   def __init__(self, name, subclass, modulename, ordering,
-                params=[], fields=[], fluxes=[],
-                propertyType=None, outputs=[],
-                nonlinear=0, secret=0,
-                tip=parameter.emptyTipString, discussion=parameter.emptyTipString)
-	    </literallayout>
-    </refsynopsisdiv>
-    <refsection>
-      <title>Description</title>
-      <para>
-	Every new <link
-	linkend="Class-Property"><classname>Property</classname></link>
-	class must have a single
-	<classname>PropertyRegistration</classname> object.  The
-	<classname>PropertyRegistration</classname> contains meta-data
-	about the <classname>Property</classname> and inserts it in
-	the global list of all <classname>Property</classname>
-	classes, which allows it to appear in the user interface.
-      </para>
-      <para>
-	<classname>PropertyRegistrations</classname> are defined only
-	in Python, even for <classname>Properties</classname> that are
-	defined in C++.  This means that all C++
-	<classname>Property</classname> subclasses must be swigged.  It's
-	sufficient to swig the class and the constructor.  Other
-	methods do not have to be made available in Python.
-      </para>
-    </refsection><!-- Description -->
-    <refsection>
-      <title><classname>PropertyRegistration</classname> constructor parameters</title>
-      <para>
-	The only required parameters are <varname>name</varname>,
-	<varname>subclass</varname>, <varname>modulename</varname>,
-	and <varname>ordering</varname>.  The others can all be
-	omitted if they're not needed for a particular
-	<classname>Property</classname>.  The default values for the
-	optional parameters are given in the synopsis, above.
-      </para>
-      <para>
-	When creating a <classname>PropertyRegistration</classname>,
-	it's advisable to use Python keyword arguments so that it's
-	clear which parameters have been omitted.
-      </para>
-      <variablelist>
-	<varlistentry>
-	  <term><varname>name</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>name</varname> is a string containing the name
-	      of the <classname>Property</classname>, as it will
-	      appear in scripts and in the GUI.  In the GUI,
-	      <classname>Properties</classname> are arranged <link
-	      linkend="Section-Materials-Property">hierarchically</link>
-	      in a tree.  The <varname>name</varname> is a colon
-	      separated string, in which each segment is a branch of
-	      the <classname>Property</classname> tree.  For example,
-	      the cubic elasticity property's <varname>name</varname>
-	      is
-	      <literal>Mechanical:Elasticity:Anisotropic:Cubic</literal>,
-	      and it appears in the GUI like this:
-	      <informalfigure>
-		<mediaobject>
-		  <imageobject>
-		    <imagedata fileref="FIGURES/gui/propertyhier.png"
-		      format="PNG"/>
-		  </imageobject>
-		  <imageobject>
-		    <imagedata fileref="FIGURES/gui/propertyhier.eps"
-		      format="EPS"/>
-		  </imageobject>
-		</mediaobject>
-	      </informalfigure>
-	    </para>
-	  </listitem>
-	</varlistentry><!-- name -->
-	<varlistentry>
-	  <term><varname>subclass</varname></term>
-	  <listitem>
-	    <para>
-	      This is the <link
-	      linkend="Class-Property"><classname>Property</classname></link>
-	      class that is being registered.  It must either be a
-	      swigged C++ <classname>Property</classname> subclass, a
-	      Python class derived from a swigged C++
-	      <classname>Property</classname> subclass, or a Python
-	      class derived from <link
-	      linkend="Class-PyPropertyWrapper"><classname>PyPropertyWrapper</classname></link>.
-	      Note that the argument is the actual
-	      <emphasis>class</emphasis>, not an instance of the
-	      class.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- subclass -->
-	<varlistentry>
-	  <term><varname>modulename</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>modulename</varname> is a string containing the
-	      name of the Python module in which the Python interface
-	      to the class is defined.  For example, if the
-	      <application>swig</application> output file is
-	      <filename>shoofly.py</filename> in directory
-	      <filename>XYZ</filename> which is in the Python path,
-	      then <varname>modulename</varname> would be
-	      <literal>'XYZ.shoofly'</literal>.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- modulename -->
-	<varlistentry>
-	  <term><varname>ordering</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>ordering</varname> determines this
-	      <classname>Property</classname>'s position when listed
-	      in the GUI.  It has no other significance.  It can be
-	      either an integer or a floating point number.  (Nodes of
-	      the <classname>Property</classname> tree in the GUI are
-	      listed in order of increasing
-	      <varname>ordering</varname>.  The
-	      <varname>ordering</varname> of an intermediate node in
-	      the tree is taken to be the smallest
-	      <varname>ordering</varname> of any of its children.)
-	    </para>
-	  </listitem>
-	</varlistentry><!-- ordering -->
-	<varlistentry>
-	  <term><varname>params</varname></term>
-	  <listitem>
-	    <para>
-	      The arguments for every
-	      <classname>Property</classname>'s constructor are a
-	      name, a registration, and a variable number of
-	      additional values that quantify the
-	      <classname>Property</classname>'s behavior.  These
-	      additional arguments are determined by the
-	      <classname>PropertyRegistration</classname>'s
-	      <varname>params</varname> argument.
-	      <varname>params</varname> is a Python list of <link
-	      linkend="Class-Parameter"><classname>Parameter</classname></link>
-	      subclass instances.  Each entry in the list specifies a
-	      type (which is implied by the
-	      <classname>Parameter</classname> subclass), a
-	      constructor argument name, a default value, and a help
-	      string.  The parameters <emphasis>must</emphasis>
-	      appear in the same order in the
-	      <varname>params</varname>list as they do in the
-	      <classname>Property</classname>'s constructor's argument
-	      list.
-	    </para>
-	    <para>
-	      For example, a mass density
-	      <classname>Property</classname> could have a
-	      <classname>FloatParameter</classname> called
-	      <literal>density</literal>,
-
-	      <programlisting>
-params=[FloatParameter('density', value=1.0, tip='mass density')] </programlisting>
-
-	       while a triclinic thermal expansion
-	      <classname>Property</classname> would have a
-	      <classname>TriclinicRank2TensorParameter</classname>
-	      (for the modulus) and a
-	      <classname>FloatParameter</classname> for the
-	      zero-stress temperature:
-
-	      <programlisting>
-params = [TriclinicRank2TensorParameter(
-                     name='alpha',
-                     value=TriclinicRank2Tensor(xx=1, yy=1, zz=1),
-                     tip='Thermal expansion tensor'),
-          FloatParameter('T0', 0.0, tip='Stress free temperature')
-         ] </programlisting>
-
-	    </para>
-	    <para>
-	      See <xref linkend="Class-Parameter"/> for a list of all
-	      of &oof2;'s built-in
-	      <classname>Parameter</classname> types and their
-	      constructor arguments.
-	    </para>
-	    <para>
-	    </para>
-	  </listitem>
-	</varlistentry><!-- params -->
-	<varlistentry>
-	  <term><varname>fields</varname></term>
-	  <listitem>
-	    <para>
-	      This is a list of <link
-	      linkend="Class-Field"><classname>Field</classname></link>
-	      objects, indicating which <classname>Fields</classname>
-	      the <classname>Property</classname> depends upon.  The
-	      <classname>Property</classname> will not be used unless
-	      all of the <classname>Fields</classname> in the list are
-	      <link
-	      linkend="MenuItem-OOF.Mesh.Field.Define">defined</link>
-	      on the mesh being solved.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- fields -->
-	<varlistentry>
-	  <term><varname>fluxes</varname></term>
-	  <listitem>
-	    <para>
-	      This is a list of <link
-	      linkend="Class-Flux"><classname>Flux</classname></link>
-	      objects, indicating which <classname>Fluxes</classname>
-	      the <classname>Property</classname> contributes to.  The
-	      <classname>Property</classname> will not be used unless
-	      some of the <classname>Fluxes</classname> in the list
-	      are used in the <link
-	      linkend="MenuItem-OOF.Mesh.Equation.Activate">active</link>
-	      <link
-	      linkend="Class-Equation"><classname>Equations</classname></link>.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- fluxes -->
-	<varlistentry>
-	  <term><varname>propertyType</varname></term>
-	  <listitem>
-	    <para>
-	      The <varname>propertyType</varname> is a string that
-	      categorizes the <classname>Property</classname>.  No two
-	      <classname>Properties</classname> in a &material; can
-	      have the same <varname>propertyType</varname>.  The
-	      function <link
-	      linkend="Class-Material-fetchProperty"><methodname>Material::fetchProperty</methodname></link>
-	      locates <classname>Properties</classname> by their
-	      <varname>propertyType</varname>.
-	    </para>
-	    <para>
-	      When registering a new <classname>Property</classname>,
-	      it's important to use the same
-	      <varname>propertyType</varname> that was used for other
-	      <classname>Properties</classname> of that type.  The
-	      existing &oof2; <varname>propertyTypes</varname> are
-	      given in <xref linkend="Table:PropertyTypes"/>.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- propertyType -->
-	<varlistentry>
-	  <term><varname>outputs</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>outputs</varname> is a list of strings, each
-	      one the <emphasis>name</emphasis> of an <link
-	      linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
-	      to which the <classname>Property</classname>'s <link
-	      linkend="Class-Property-output"><methodname>output</methodname></link>
-	      function contributes.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- output -->
-	<varlistentry>
-	  <term><varname>nonlinear</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>nonlinear</varname> should be set to 1 if
-	      nonlinear solvers will be needed to solve a mesh
-	      containing this <classname>Property</classname>.
-	      Generally, this means that the
-	      <classname>Property</classname> contains quantities that
-	      are <classname>Field</classname> dependent.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- nonlinear -->
-	<varlistentry>
-	  <term><varname>secret</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>secret</varname> should be set to 1 if the
-	      <classname>Property</classname> shouldn't appear in the
-	      GUI.  This should not be used except by those who know
-	      what they're doing.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- secret -->
-	<varlistentry>
-	  <term><varname>tip</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>tip</varname> is a short string describing the
-	      <classname>Property</classname>.  It should be something
-	      suitable for displaying as a pop-up tooltip in the GUI.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- tip -->
-	<varlistentry>
-	  <term><varname>discussion</varname></term>
-	  <listitem>
-	    <para>
-	      <varname>discussion</varname> is a longer string
-	      describing the <classname>Property</classname>, meant to
-	      be included in the &oof2; manual.  The string should be
-	      written in <ulink url="http://docbook.org/"
-	      role="external">DocBook XML</ulink>.  The manual will
-	      embed it inside a <literal>&lt;refsect1&gt;</literal>
-	      element.<footnote>
-		<para>
-		  The simplest legal <varname>discussion</varname> string
-		  has the form
-		  <blockquote>
-		    <literallayout class="monospaced">
-&lt;para&gt;blah blah blah&lt;/para&gt;
-		    </literallayout>
-		  </blockquote>
-		</para>
-	      </footnote>
-	    </para>
-	    <para>
-	      Since it's often inconvenient to include large blocks of
-	      text inside a
-	      <classname>PropertyRegistration</classname>, the text
-	      can be put into a separate file.  The file name can be
-	      passed to the function <function>loadFile</function>
-	      from the <code>oof2.common.IO.xmlmenudump</code> module.
-	      Then <varname>discussion</varname> should be set to the
-	      return value from
-	      <function>loadFile</function>. (<function>loadFile</function>
-	      doesn't actually read the file unless the users manual
-	      is being generated, so there's no cpu or memory used
-	      when doing it this way, and the file often doesn't even
-	      have to be distributed with the code.)  In any case, the
-	      <varname>discussion</varname> argument is optional.  A
-	      generic message will be generated if it's absent.
-	    </para>
-	  </listitem>
-	</varlistentry><!-- discussion -->
-      </variablelist>
-    </refsection><!-- Parameters -->
-    <refsection id="Class-PropertyRegistration-PropertyType">
-      <title>Property Types</title>
-      <para>
-	The following table lists the <varname>propertyTypes</varname>
-	used in &oof2; <classname>PropertyRegistrations</classname>.
-	Not all of the types listed here are fully available yet
-	&mdash; some are still in development or reserved for future
-	use.
-      </para>
-      <table id="Table:PropertyTypes">
-	<title>Property Types</title>
-	<tgroup cols="2">
-	  <thead>
-	    <row>
-	      <entry><simpara><varname>propertyType</varname></simpara></entry>
-	      <entry><simpara>Description</simpara></entry>
-	    </row>
-	  </thead>
-	  <tbody>
-	    <row>
-	      <entry>
-		<simpara><literal>'ChargeDensity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Spatial charge distribution</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'DielectricPermittivity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Dielectric permittivity</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Elasticity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Elastic modulus</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'ForceDensity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Externally applied body force density</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Heat Source'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Heat sources and sinks</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'HeatCapacity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Heat capacity</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'MassDensity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Mass density, for dynamic equations</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Orientation'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Crystalline orientation</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'PiezoElectricity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Piezoelectric modulus</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Plasticity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Plastic deformation rules</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'ThermalConductivity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Thermal conductivity</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'ThermalExpansion'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Thermal expansion tensor and stress-free
-		  temperature</simpara>
-	      </entry>
-	    </row>
-	  </tbody>
-	</tgroup>
-      </table>
-    </refsection><!-- Property Types -->
-  </refentry><!-- PropertyRegistration -->
-
+  
   <refentry id="Class-Material">
     <refnamediv>
       <refname>Material</refname>
@@ -2527,7 +2917,7 @@ params = [TriclinicRank2TensorParameter(
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import material</programlisting>
+from ooflib.SWIG.engine import material</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>Material</classname>

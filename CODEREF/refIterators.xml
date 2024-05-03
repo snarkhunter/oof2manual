@@ -431,7 +431,7 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
           <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>		  
 	    </ooclass>
         <constructorsynopsis>
-          <methodname>ScalarFieldIndex</methodname>
+          <methodname>__init__</methodname>
           <void/>
         </constructorsynopsis>
 	  </classsynopsis>

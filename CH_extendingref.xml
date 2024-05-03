@@ -9,7 +9,7 @@
 -->
 
 <part>
-  <title>OOF2 API Reference Pages</title>
+  <title>OOF2 Extending Reference</title>
   <partintro>
     <para>
       This section contains the reference pages for the classes and
@@ -23,7 +23,7 @@
     </para>
     <para>
       Both C++ and Python interfaces are listed at the top of each
-      reference page.  If the following discussion mentions only the
+      reference page.  If the Description section mentions only the
       C++ syntax, assume that the Python syntax is derived in a
       straightforward way from the C++ syntax.  In cases where there
       is a big difference between the C++ and Python interfaces for a

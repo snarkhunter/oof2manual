@@ -1761,10 +1761,10 @@ conjugatePair("Elasticity",
 
 <!-- ============================================================== -->
 
-  <refentry id="Function-xmlmenudump.loadFile">
+<refentry id="Function-xmlmenudump.loadFile">
     <refnamediv>
       <refname>loadFile</refname>
-      <refpurpose>Specify an external file of documentation</refpurpose>
+      <refpurpose>Load documentation from a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
       <title>Python Synopsis</title>
@@ -1826,7 +1826,7 @@ loadFile(filename, func=None) </programlisting>
 	Please contact the &oof2; authors if you need a copy.
       </para>
     </refsection>
-  </refentry>
+</refentry>
 
 </reference>
 
