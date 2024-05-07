@@ -173,7 +173,7 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY OutputValue "<link linkend='Class-OutputValue'><classname>OutputValue</classname></link>">
 <!ENTITY Planarity "<link linkend='Class-Planarity'><classname>Planarity</classname></link>">
 <!ENTITY Property "<link linkend='Class-Property'><classname>Property</classname></link>">
-<!ENTITY Properties "<link linkend='Class-Property'><classname>Property</classname>s</link>">
+<!ENTITY Properties "<link linkend='Class-Property'><classname>Properties</classname></link>">
 
 
 <!ENTITY layer "<link linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">

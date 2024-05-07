@@ -36,12 +36,11 @@ from ooflib.engine.propertyregistration import PropertyRegistration
             <parameter>ordering</parameter>
           </methodparam>
           <methodparam>
-            <parameter>params</parameter>
-            <initializer>[]</initializer>
+            <parameter>propertyType</parameter>
           </methodparam>
           <methodparam>
-            <parameter>propertyType</parameter>
-            <initializer>None</initializer>
+            <parameter>params</parameter>
+            <initializer>[]</initializer>
           </methodparam>
           <methodparam>
             <parameter>outputs</parameter>
@@ -164,7 +163,7 @@ from ooflib.engine.propertyregistration import PropertyRegistration
           <listitem>
             <simpara>
               Registrations for <link
-              linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>s
+              linkend="Class-FluxProperty"><classname>FluxProperties</classname></link>
               must call <link
               linkend="Class-PropertyRegistration-fluxInfo"><function>PropertyRegistration.fluxInfo()</function></link>.
             </simpara>
@@ -172,7 +171,7 @@ from ooflib.engine.propertyregistration import PropertyRegistration
           <listitem>
             <simpara>
               Registrations for <link
-              linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>s
+              linkend="Class-EqnProperty"><classname>EqnProperties</classname></link>
               must call <link
               linkend="Class-PropertyRegistration-eqnInfo"><function>PropertyRegistration.eqnInfo()</function></link>.
             </simpara>
@@ -180,7 +179,7 @@ from ooflib.engine.propertyregistration import PropertyRegistration
           <listitem>
             <simpara>
               Registrations for <link
-              linkend="Class-AuxiliaryProperty"><classname>AuxiliaryProperty</classname></link>s
+              linkend="Class-AuxiliaryProperty"><classname>AuxiliaryProperties</classname></link>
               should not call either function.
             </simpara>
           </listitem>
@@ -196,13 +195,14 @@ from ooflib.engine.propertyregistration import PropertyRegistration
         <title>
           <code><emphasis
           role="bold">PropertyRegistration.__init__(name, subclass,
-          ordering, ...)</emphasis></code>
+          ordering, params, propertyType, ...)</emphasis></code>
         </title>
         <para>
 	      The only required constructor parameters are
-	      <varname>name</varname>, <varname>subclass</varname>, and
-	      <varname>ordering</varname>.  The others can all be omitted
-	      if they're not needed for a particular
+	      <varname>name</varname>, <varname>subclass</varname>,
+	      <varname>ordering</varname>, and
+	      <varname>propertyType</varname>.  The others can all be
+	      omitted if they're not needed for a particular
 	      <classname>Property</classname>.
         </para>
         <para>
@@ -278,6 +278,36 @@ from ooflib.engine.propertyregistration import PropertyRegistration
 	            </listitem>
 	          </varlistentry>       <!-- ordering -->
 	          <varlistentry>
+	            <term><varname>propertyType</varname></term>
+	            <listitem>
+	              <para>
+	                The <varname>propertyType</varname> is a string
+	                that categorizes the
+	                <classname>Property</classname>.  No two
+	                <classname>Properties</classname> in a &material;
+	                can have the same <varname>propertyType</varname>.
+	                The function <link
+	                linkend="Class-Material-fetchProperty"><methodname>Material::fetchProperty</methodname></link>
+	                locates <classname>Properties</classname> by their
+	                <varname>propertyType</varname>.
+	              </para>
+	              <para>
+	                When registering a new
+	                <classname>Property</classname>, it's important to
+	                use the same <varname>propertyType</varname> that
+	                was used for other
+	                <classname>Properties</classname> of that type.
+	                The existing &oof2;
+	                <varname>propertyTypes</varname> are given in
+	                <xref linkend="Table:PropertyTypes"/>.  If a new
+	                &Property; doesn't belong in any of the existing
+	                types and doesn't conflict with them, it is
+	                possible to create a new type.  It is just a
+	                character string.
+                  </para>
+                </listitem>
+	          </varlistentry> <!-- propertyType -->
+	          <varlistentry>
 	            <term><varname>params</varname></term>
 	            <listitem>
 	              <para>
@@ -338,36 +368,6 @@ params = [<emphasis role="bold">TriclinicRank2TensorParameter</emphasis>(
 	              </para>
 	            </listitem>
 	          </varlistentry>       <!-- params -->
-	          <varlistentry>
-	            <term><varname>propertyType</varname></term>
-	            <listitem>
-	              <para>
-	                The <varname>propertyType</varname> is a string
-	                that categorizes the
-	                <classname>Property</classname>.  No two
-	                <classname>Properties</classname> in a &material;
-	                can have the same <varname>propertyType</varname>.
-	                The function <link
-	                linkend="Class-Material-fetchProperty"><methodname>Material::fetchProperty</methodname></link>
-	                locates <classname>Properties</classname> by their
-	                <varname>propertyType</varname>.
-	              </para>
-	              <para>
-	                When registering a new
-	                <classname>Property</classname>, it's important to
-	                use the same <varname>propertyType</varname> that
-	                was used for other
-	                <classname>Properties</classname> of that type.
-	                The existing &oof2;
-	                <varname>propertyTypes</varname> are given in
-	                <xref linkend="Table:PropertyTypes"/>.  If a new
-	                &Property; doesn't belong in any of the existing
-	                types and doesn't conflict with them, it is
-	                possible to create a new type.  It is just a
-	                character string.
-                  </para>
-                </listitem>
-	          </varlistentry> <!-- propertyType -->
 	          <varlistentry>
 	            <term><varname>outputs</varname></term>
                 <listitem>
@@ -648,7 +648,7 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
                     linkend="Function-getEquation"><function>getEquation()</function></link>
                     as in the example above, or by importing the
                     module defining them
-                    (<module>ooflib.engine.property</module>, for the
+                    (<filename>ooflib.engine.property</filename>, for the
                     built-in &Equations;).
                   </para>
                 </listitem>
@@ -741,121 +741,398 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
     <refsection id="Class-PropertyRegistration-PropertyType">
       <title>Property Types</title>
       <para>
-	The following table lists the <varname>propertyTypes</varname>
-	used in &oof2; <classname>PropertyRegistrations</classname>.
-	Not all of the types listed here are fully available yet
-	&mdash; some are still in development or reserved for future
-	use.
+	    The following table lists the <varname>propertyTypes</varname>
+	    used in &oof2; <classname>PropertyRegistrations</classname>.
+	    Not all of the types listed here are fully available yet
+	    &mdash; some are still in development or reserved for future
+	    use.  Some are defined in the <link
+	    linkend="Section-Extending-Internal">internal
+	    extensions</link> that are distributed with &oof2;.
       </para>
       <table id="Table:PropertyTypes">
-	<title>Property Types</title>
-	<tgroup cols="2">
-	  <thead>
-	    <row>
-	      <entry><simpara><varname>propertyType</varname></simpara></entry>
-	      <entry><simpara>Description</simpara></entry>
-	    </row>
-	  </thead>
-	  <tbody>
-	    <row>
-	      <entry>
-		<simpara><literal>'ChargeDensity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Spatial charge distribution</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'DielectricPermittivity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Dielectric permittivity</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Elasticity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Elastic modulus</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'ForceDensity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Externally applied body force density</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Heat Source'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Heat sources and sinks</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'HeatCapacity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Heat capacity</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'MassDensity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Mass density, for dynamic equations</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Orientation'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Crystalline orientation</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'PiezoElectricity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Piezoelectric modulus</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'Plasticity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Plastic deformation rules</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'ThermalConductivity'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Thermal conductivity</simpara>
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>
-		<simpara><literal>'ThermalExpansion'</literal></simpara>
-	      </entry>
-	      <entry>
-		<simpara>Thermal expansion tensor and stress-free
-		  temperature</simpara>
-	      </entry>
-	    </row>
-	  </tbody>
-	</tgroup>
+	    <title>Property Types</title>
+	    <tgroup cols="4">
+	      <thead>
+	        <row>
+	          <entry><simpara><varname>propertyType</varname></simpara></entry>
+              <entry><simpara>Base Class</simpara></entry>
+              <entry><simpara>Equation or Flux</simpara></entry>
+	          <entry><simpara>Role</simpara></entry>
+	        </row>
+	      </thead>
+	      <tbody>
+	        <row>
+	          <entry>
+		        <simpara><literal>'ChargeDensity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Coulomb_Eqn"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>Source term</simpara>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><literal>'Color'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><classname>AuxiliaryProperty</classname></simpara>
+              </entry>
+              <entry>
+              </entry>
+              <entry>
+                <simpara>Display color</simpara>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <simpara><literal>'Current'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Charge_Flux"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Migration coefficient (coefficient of <xref
+                  linkend="Field-Voltage"/> gradient)<footnote
+                  id="ext"><simpara>Defined in <link
+                  linkend="Section-Extending-Internal"><filename>EXTENSIONS</filename></link>.</simpara></footnote>
+                </simpara>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <simpara><literal>'Damping'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Force_Balance"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Coefficient of first time derivative of <xref
+                  linkend="Field-Displacement"/>
+                </simpara>
+              </entry>
+            </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'DielectricPermittivity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Total_Polarization"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Dielectric permittivity (coefficient of the <xref
+                  linkend="Field-Voltage"/> gradient
+                </simpara>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><literal>'Diffusivity'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Atom_Flux"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Chemical diffusivity (coefficient of the gradient of
+                  <xref linkend="Field-Concentration"/>)<footnoteref
+                  linkend="ext"/>
+                </simpara>
+              </entry>
+            </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'Elasticity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  <xref linkend="Flux-Stress"/>
+                </simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Elastic modulus (coefficient of the gradient
+                  of <xref linkend="Field-Displacement"/>)
+                </simpara>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'ForceDensity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Force_Balance"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>Source term</simpara>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'HeatCapacity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Heat_Eqn"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Heat capacity (coefficient of the first time
+                  derivative of <xref linkend="Field-Temperature"/>)
+                </simpara>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'HeatSource'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Heat_Eqn"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>Source term</simpara>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><literal>'IonDiffusion'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  <xref linkend="Flux-Charge_Flux"/>,
+                  <xref linkend="Flux-Atom_Flux"/>
+                </simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Coupling between <xref linkend="Field-Voltage"/>
+                  and <xref linkend="Field-Concentration"/>.<footnoteref
+                linkend="ext"/>
+                </simpara>
+              </entry>
+            </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'MassDensity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Force_Balance"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Mass density (coefficient of the second time
+                  derivative of <xref linkend="Field-Displacement"/>)
+                </simpara>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><literal>'Mobility'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-EqnProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Equation-Atom_Eqn"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Mobility (coefficient of the first time derivative
+                  of <xref
+                  linkend="Field-Concentration"/>)<footnoteref
+                  linkend="ext"/>
+                </simpara>
+              </entry>
+            </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'Orientation'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><classname>AuxiliaryProperty</classname></simpara>
+              </entry>
+              <entry>
+              </entry>
+	          <entry>
+		        <simpara>Crystalline orientation</simpara>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'PiezoElectricity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  <xref linkend="Flux-Total_Polarization"/>,
+                  <xref linkend="Flux-Stress"/>
+                </simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Piezoelectric modulus (coupling between <xref
+                  linkend="Field-Displacement"/> and <xref
+                  linkend="Field-Voltage"/>)
+                </simpara>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'Plasticity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Stress"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Reserved for future use.
+                </simpara>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><literal>'PyroElasticity'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Total_Polarization"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  <xref linkend="Field-Temperature"/>-dependent polarization
+                </simpara>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <simpara><literal>'StressFreeStrain'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Stress"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Constant <xref
+                  linkend="Field-Displacement"/>-independent <xref
+                  linkend="Flux-Stress"/> offset.
+                </simpara>
+              </entry>
+            </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'ThermalConductivity'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Heat_Flux"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Thermal conductivity (coefficient the gradient of
+                  <xref linkend="Field-Temperature"/>)
+                </simpara>
+	          </entry>
+	        </row>
+	        <row>
+	          <entry>
+		        <simpara><literal>'ThermalExpansion'</literal></simpara>
+	          </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Stress"/></simpara>
+              </entry>
+	          <entry>
+		        <simpara>
+                  Thermal expansion (<xref linkend="Field-Temperature"/>
+                  dependent <xref linkend="Flux-Stress"/>)
+                </simpara>
+	          </entry>
+	        </row>
+            <row>
+              <entry>
+                <simpara><literal>'ViscoElasticity'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Stress"/></simpara>
+              </entry>
+              <entry>
+                <simpara>
+                  Viscoelasticity (coefficient of the gradient of the
+                  time derivative of <xref
+                  linkend="Field-Displacement"/>)
+                </simpara>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <simpara><literal>'ZStrain'</literal></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Class-FluxProperty"/></simpara>
+              </entry>
+              <entry>
+                <simpara><xref linkend="Flux-Stress"/></simpara>
+              </entry>
+              <entry>
+                Contribution to <xref linkend="Flux-Stress"/> that
+                gives a fixed non-zero strain.
+              </entry>
+            </row>
+	      </tbody>
+	    </tgroup>
       </table>
     </refsection>               <!-- Property Types -->
   </refentry>                   <!-- PropertyRegistration -->
@@ -2886,7 +3163,25 @@ bool ThermalExpansion::is_symmetric(const CSubProblem* subproblem) const {
     </refsection><!-- Methods -->
   </refentry><!-- Property -->
 
+
+<refentry id="Class-FluxProperty">
+  <refnamediv>
+    <refname>FluxProperty</refname>
+    <refpurpose>Property that contributes to a &Flux;</refpurpose>
+  </refnamediv>
+</refentry>
+
+<refentry id="Class-EqnProperty">
+  <refnamediv>
+    <refname>EqnProperty</refname>
+    <refpurpose>Property that contributes to an &Equation;</refpurpose>
+  </refnamediv>
+</refentry>
+
+<!-- ============================================================ -->
+<!-- ============================================================ -->  
   
+
   <refentry id="Class-Material">
     <refnamediv>
       <refname>Material</refname>

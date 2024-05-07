@@ -30,3 +30,10 @@ At the moment there are 1258 Descriptions and 87 Discussions.
 
 On Field pages, the class name should be a link.  Displacement says
 it's a TwoVectorField, but it doesn't link to TwoVectorField.
+
+Pages for Equations and Fluxes should list the PropertyTypes that
+contribute to them.
+
+Document the Equations and Fluxes in the EXTENSIONS directory.
+Section-Builtin shojld mark them as extensions.
+Mark them as such in the Material Properties list too.
