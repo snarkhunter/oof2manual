@@ -88,7 +88,7 @@ oof2: always
 	(cd build; make -j 10 DESTDIR=~/stow/oof2-py311 install; cd ~/stow; ./switchto oof2-py311)
 
 oof2_api.xml: oof2 xmlfilelist
-	bin/oof2 --script xmldump.py --quiet --debug
+	bin/oof2 --autoload --script xmldump.py --quiet --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
 	sed s/Messages_1/Messages_n/g tmp > oof2_api.xml
 	-rm -f tmp
