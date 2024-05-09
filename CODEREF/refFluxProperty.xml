@@ -1,0 +1,337 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  <refentry id="Class-FluxProperty">
+    <refnamediv>
+      <refname>FluxProperty</refname>
+      <refpurpose>Property that contributes to a &Flux;</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	    <title>C++ Synopsis</title>
+        <literallayout class="monospaced">
+#include "engine/property.h" </literallayout>
+
+        <classsynopsis language="cpp">
+          <ooclass>
+            <classname>FluxProperty</classname>
+          </ooclass>
+          <ooclass>
+            <modifier>public</modifier>
+            <classname><xref linkend="Class-Property"/></classname>
+          </ooclass>
+  	      <methodsynopsis>
+	        <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+	                        linkend="Class-FluxProperty-begin_point">begin_point</link></methodname>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>FEMesh*</type>
+		      <parameter>mesh</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type><classname><xref linkend="Class-Element"/></classname>*</type>
+		      <parameter>element</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>Flux*</type>
+		      <parameter>flux</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>const MasterPosition&amp;</type>
+		      <parameter>masterpos</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <modifier>virtual</modifier>
+	        <void/>
+	        <methodname><link linkend="Class-FluxProperty-end_point">end_point</link></methodname>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>FEMesh*</type>
+		      <parameter>mesh</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type><classname><xref linkend="Class-Element"/></classname>*</type>
+		      <parameter>element</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>Flux*</type>
+		      <parameter>flux</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>const MasterPosition&amp;</type>
+		      <parameter>masterpos</parameter>
+	        </methodparam>
+          </methodsynopsis>
+
+          <methodsynopsis>
+	        <modifier>virtual</modifier>
+	        <type>int</type>
+	        <methodname><link
+		                    linkend="Class-FluxProperty-integration_order">integration_order</link></methodname>
+	        <methodparam>
+              <modifier>const</modifier>
+	          <type>CSubProblem*</type>
+	          <parameter>mesh</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type><classname><xref linkend="Class-Element"/></classname>*</type>
+		      <parameter>element</parameter>
+	        </methodparam>
+	        <modifier>const</modifier>
+	      </methodsynopsis>     <!-- integration_order -->
+
+	      <methodsynopsis>
+	        <modifier>virtual</modifier>
+	        <void/>
+	        <methodname><link linkend="Class-FluxProperty-flux_matrix">flux_matrix</link></methodname>
+	        <methodparam>
+              <modifier>const</modifier>
+	          <type>const FEMesh*</type>
+	          <parameter>mesh</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+	          <type><classname><xref linkend="Class-Element"/></classname>*</type>
+	          <parameter>element</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>ElementFuncNodeIterator&amp;</type>
+		      <parameter>node</parameter>
+	        </methodparam>             
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>Flux*</type>
+		      <parameter>flux</parameter>
+	        </methodparam>
+	        <methodparam>
+              <modifier>const</modifier>
+		      <type>MasterPosition&amp;</type>
+		      <parameter>position</parameter>
+	        </methodparam>
+            <methodparam>
+              <type>double</type>
+              <parameter>time</parameter>
+            </methodparam>
+            <methodparam>
+              <type><xref linkend="Class-SmallSystem"/>*</type>
+              <parameter>linsys</parameter>
+            </methodparam>
+	        <modifier>const</modifier>
+	      </methodsynopsis>         <!-- flux_matrix -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link linkend="Class-FluxProperty-flux_value">flux_value</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-FEMesh"/>*</type>
+              <parameter>mesh</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-Element"/>*</type>
+              <parameter>element</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+			  <type><xref linkend="Class-Flux"/>*</type>
+              <parameter>flux</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+              <parameter>pt</parameter>
+            </methodparam>
+            <methodparam>
+              <type>double</type>
+              <parameter>time</parameter>
+            </methodparam>
+            <methodparam>
+              <type><xref linkend="Class-SmallSystem"/>*</type>
+              <parameter>linsys</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>     <!-- flux_value -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link linkend="Class-FluxProperty-static_flux_value">static_flux_value</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-FEMesh"/>*</type>
+              <parameter>mesh</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-Element"/>*</type>
+              <parameter>element</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+			  <type><xref linkend="Class-Flux"/>*</type>
+              <parameter>flux</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+              <parameter>pt</parameter>
+            </methodparam>
+            <methodparam>
+              <type>double</type>
+              <parameter>time</parameter>
+            </methodparam>
+            <methodparam>
+              <type><xref linkend="Class-SmallSystem"/>*</type>
+              <parameter>linsys</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>     <!-- static_flux_value -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+                            linkend="Class-FluxProperty-flux_offset">flux_offset</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-FEMesh"/>*</type>
+              <parameter>mesh</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-Element"/>*</type>
+              <parameter>element</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+			  <type><xref linkend="Class-Flux"/>*</type>
+              <parameter>flux</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+              <parameter>pt</parameter>
+            </methodparam>
+            <methodparam>
+              <type>double</type>
+              <parameter>time</parameter>
+            </methodparam>
+            <methodparam>
+              <type><xref linkend="Class-SmallSystem"/>*</type>
+              <parameter>linsys</parameter>
+            </methodparam>            
+          </methodsynopsis>     <!-- flux_offset -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+                            linkend="Class-FluxProperty-begin_point">begin_point</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-FEMesh"/>*</type>
+              <parameter>mesh</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-Element"/>*</type>
+              <parameter>element</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+			  <type><xref linkend="Class-Flux"/>*</type>
+              <parameter>flux</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+              <parameter>pt</parameter>
+            </methodparam>
+          </methodsynopsis>     <!-- begin_point -->
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+                            linkend="Class-FluxProperty-end_point">end_point</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-FEMesh"/>*</type>
+              <parameter>mesh</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-Element"/>*</type>
+              <parameter>element</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+			  <type><xref linkend="Class-Flux"/>*</type>
+              <parameter>flux</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+              <parameter>pt</parameter>
+            </methodparam>
+          </methodsynopsis>     <!-- end_point -->
+
+        </classsynopsis>
+      </refsect2>               <!-- C++ FluxProperty Synopsis-->
+      <refsect2>
+        <title>Python Synopsis</title>
+      </refsect2>
+    </refsynopsisdiv>
+
+    <refsection>
+      <title>Overview</title>
+      <para>
+        TODO 
+      </para>
+    </refsection>               <!-- FluxProperty Overview -->
+    <refsection>
+      <title>Constructor</title>
+      <para>TODO refer to base class constructor</para>
+    </refsection>
+    <refsection>
+      <title>Methods</title>
+    </refsection>               <!-- FluxProperty Methods-->
+    
+  </refentry>                    <!-- FluxProperty -->
+
+
+
+  <!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "book" "part" "reference")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

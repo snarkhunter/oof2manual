@@ -40,7 +40,6 @@
 <!ENTITY extending SYSTEM "CH_extending.xml">
 <!ENTITY coding SYSTEM "CH_coding.xml">
 <!ENTITY extendingref SYSTEM "CH_extendingref.xml">
-<!ENTITY refProperty SYSTEM "CODEREF/refProperty.xml">
 <!ENTITY refField SYSTEM "CODEREF/refField.xml">
 <!ENTITY refFlux SYSTEM "CODEREF/refFlux.xml">
 <!ENTITY refEquation SYSTEM "CODEREF/refEquation.xml">
@@ -53,6 +52,12 @@
 <!ENTITY refFEMesh SYSTEM "CODEREF/refFEMesh.xml">
 <!ENTITY refCoords SYSTEM "CODEREF/refCoords.xml">
 <!ENTITY refExtending SYSTEM "CODEREF/refExtending.xml">
+<!ENTITY refProperty SYSTEM "CODEREF/refProperty.xml">
+<!ENTITY refPropertyReg SYSTEM "CODEREF/refPropertyReg.xml">
+<!ENTITY refFluxProperty SYSTEM "CODEREF/refFluxProperty.xml">
+<!ENTITY refEqnProperty SYSTEM "CODEREF/refEqnProperty.xml">
+<!ENTITY refAuxProperty SYSTEM "CODEREF/refAuxProperty.xml">
+<!ENTITY refMaterial SYSTEM "CODEREF/refMaterial.xml">
 <!ENTITY appendices SYSTEM "appendices.xml">
 
 

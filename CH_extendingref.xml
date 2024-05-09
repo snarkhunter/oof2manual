@@ -36,7 +36,15 @@
   &refFlux;
   &refEquation;
   &refIterators;
-  &refProperty;
+  <reference>
+    <title>Property and Material Classes</title>
+    &refPropertyReg;
+    &refProperty;
+    &refFluxProperty;
+    &refEqnProperty;
+    &refAuxProperty;
+    &refMaterial;
+  </reference>
   &refFEMesh;
   &refOutput;
   &refMisc;

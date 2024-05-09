@@ -1,0 +1,133 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+  
+  <refentry id="Class-Material">
+    <refnamediv>
+      <refname>Material</refname>
+      <refpurpose>Collection of Properties</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/material.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>Material</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>Property*</type>
+	    <methodname><link
+		linkend="Class-Material-fetchProperty">fetchProperty</link></methodname>
+	    <methodparam>
+	      <type>const std::string&amp;</type>
+	      <parameter>name</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from ooflib.SWIG.engine import material</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>Material</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link linkend="Class-Material-fetchProperty">fetchProperty</link></methodname>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>Material</classname> class contains a list of
+	all of the <link
+	linkend="Class-Property"><classname>Properties</classname></link>
+	that define a physical material.  It coordinates the
+	construction of the finite element stiffness matrix and
+	handles various other bookkeeping tasks.  Most of the details
+	of the class are irrelevant to the authors of &oof2; extensions.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <para>
+	This section only discusses the
+	<classname>Material</classname> methods that are important
+	when writing &oof2; extensions.  In particular, it does
+	<emphasis>not</emphasis> discuss constructors or destructors,
+	or how to add <link
+	linkend="Class-Property"><classname>Properties</classname></link>
+	to <classname>Materials</classname>.  Those tasks are
+	performed by the GUI and the &oof2; menu system.
+      </para>
+      <refsection id="Class-Material-fetchProperty">
+	<title><code>Property* fetchProperty(const std::string&amp; name) const</code></title>
+	<para>
+	  &oof2; <link
+	  linkend="Class-Property"><classname>Properties</classname></link>
+	  are sorted into categories called <link
+	  linkend="Class-PropertyRegistration-PropertyType">propertyTypes</link>.
+	  Each <classname>Material</classname> can have at most one
+	  <classname>Property</classname> of each type.
+	  <methodname>fetchProperty</methodname> looks through the
+	  <classname>Material</classname>'s
+	  <classname>Properties</classname> and returns the one whose
+	  type is specified by the given <varname>name</varname>.  If
+	  there is no such <classname>Property</classname>, an
+	  exception is thrown.
+	</para>
+	<para>
+	  <methodname>fetchProperty</methodname> is meant to be called
+	  by a <classname>Property</classname>'s <link
+	  linkend="Class-Property-cross_reference"><methodname>cross_reference</methodname></link>
+	  function, in order to resolve dependencies on other
+	  <classname>Properties</classname> within the
+	  <classname>Material</classname>.  For example, an Elasticity
+	  <classname>Property</classname> needs to use the Orientation
+	  <classname>Property</classname> in order to compute the
+	  laboratory frame elasticity tensor. 
+	</para>
+	<para>
+	  In C++, <methodname>fetchProperty</methodname> returns a
+	  pointer to a base class <link
+	  linkend="Class-Property"><classname>Property</classname></link>
+	  object.  This pointer must be dynamically cast to the
+	  appropriate <classname>Property</classname> subclass.  The
+	  correct subclass is always known from the context.  In
+	  Python, <methodname>fetchProperty</methodname> automatically
+	  returns a reference to a <classname>Property</classname> of
+	  the appropriate derived type.
+	</para>
+      </refsection><!-- fetchProperty -->
+    </refsection><!-- Methods -->
+  </refentry><!-- Material -->
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "reference")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

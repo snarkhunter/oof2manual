@@ -1759,7 +1759,40 @@ conjugatePair("Elasticity",
   </refsection>                 <!-- Description -->
 </refentry>                     <!-- conjugatePair -->
 
-<!-- ============================================================== -->
+<!-- ============================================================ -->
+
+<refentry id="Class-SmallSystem">
+  <refnamediv>
+    <refname>SmallSystem</refname>
+    <refpurpose>
+      A small part of the linear system constructed by &Properties;
+      </refpurpose>
+  </refnamediv>
+  <refsection>
+    <para>TODO</para>
+  </refsection>
+</refentry>
+  
+<refentry id="Class-CSubProblem">
+  <refnamediv>
+    <refname>CSubProblem</refname>
+    <refpurpose>C++ representation of subproblem</refpurpose>
+  </refnamediv>
+</refentry>
+
+<refentry id="Class-MasterPosition">
+  <refnamediv>
+    <refname>MasterPosition</refname>
+    <refpurpose>A point in an <link
+    linkend="Class-Element"><classname>Element</classname></link>'s master
+    coordinate space</refpurpose>
+  </refnamediv>
+</refentry>
+
+
+
+<!-- ============================================================ -->
+
 
 <refentry id="Function-xmlmenudump.loadFile">
     <refnamediv>
