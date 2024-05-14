@@ -12,12 +12,108 @@
   <refnamediv>
     <refname>AuxiliaryProperty</refname>
     <refpurpose>
-      Property that doesn't contribute directly to a &Flux;
+      A Property that doesn't contribute directly to a &Flux;
       or &Equation;
     </refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/property.h"</literallayout>
+      <classsynopsis language="cpp">
+       <ooclass>
+         <classname>AuxiliaryProperty</classname>
+       </ooclass>
+       <ooclass>
+         <classname><xref linkend="Class-Property"/></classname>
+       </ooclass>
+       <constructorsynopsis>
+         <methodname>AuxiliaryProperty</methodname>
+         <methodparam>
+           <modifier>const</modifier>
+           <type>std::string&amp;</type>
+           <parameter>name</parameter>
+         </methodparam>
+         <methodparam>
+           <type>PyObject*</type>
+           <parameter>registration</parameter>
+         </methodparam>
+       </constructorsynopsis>
+      </classsynopsis>
+    </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.C</filename>: C++ source
+            code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.h</filename>: C++ headers
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.swg</filename>: SWIG source
+            code
+          </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      An <classname>AuxiliaryProperty</classname> is one that does not
+      make direct contributions to a &Flux; or &Equation;.  All of its
+      methods are defined in the <link
+      linkend="Class-Property"><classname>Property</classname></link>
+      base class.
+    </para>
+    <para>
+      Other <classname>Properties</classname> can use the <link
+      linkend="Class-Property-cross_reference">cross reference</link>
+      mechanism to locate a <xref linkend="Class-Material"/>'s
+      <classname>AuxiliaryProperties</classname> and extract data from
+      them.  For example, anisotropic
+      <classname>Properties</classname> fetch their orientation data
+      from their <xref linkend="Class-Material"/>'s <xref
+      linkend="Property-Orientation"/>.  <xref
+      linkend="Property-Orientation"/> is an
+      <classname>AuxilliaryProperty</classname> because other
+      &Properties; use it to compute their &Flux; and &Equation;
+      contributions, but <xref linkend="Property-Orientation"/> does
+      no computation on its own.
+    </para>
+    <para>
+      Currently <classname>AuxilliaryProperties</classname> cannot be
+      defined in Python, but an existing C++
+      <classname>AuxilliaryProperty</classname> can be retrieved and
+      queried in Python.  For example, if a &material; named
+      <quote><literal>material</literal></quote> contains an <xref
+      linkend="Property-Orientation"/> named
+      <quote><literal>orient</literal></quote>, it can be retrieved
+      like this:
+      <programlisting>
+>>> mat = getMaterial("material")
+>>> prop = mat.fetchProperty("Orientation")
+>>> prop.name()        <lineannotation># name() is a base class method</lineannotation>
+'Orientation:orient'
+>>> prop.orientation() <lineannotation># orientation() is defined in OrientationProp</lineannotation> 
+COrientABG(alpha=45, beta=0, gamma=10)
+      </programlisting>
+    </para>
+    <para>
+      <classname>AuxilliaryProperty</classname> defines no methods
+      that are not in the &Property; base class.
+    </para>
+  </refsection>
 </refentry>
-
 
 
 <!-- Keep this comment at the end of the file

@@ -54,6 +54,7 @@
 <!ENTITY refExtending SYSTEM "CODEREF/refExtending.xml">
 <!ENTITY refProperty SYSTEM "CODEREF/refProperty.xml">
 <!ENTITY refPropertyReg SYSTEM "CODEREF/refPropertyReg.xml">
+<!ENTITY refPyProperty SYSTEM "CODEREF/refPyProperty.xml">
 <!ENTITY refFluxProperty SYSTEM "CODEREF/refFluxProperty.xml">
 <!ENTITY refEqnProperty SYSTEM "CODEREF/refEqnProperty.xml">
 <!ENTITY refAuxProperty SYSTEM "CODEREF/refAuxProperty.xml">

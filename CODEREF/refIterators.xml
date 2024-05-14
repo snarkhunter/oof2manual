@@ -110,7 +110,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-	      Python code included in the swig output</simpara>
+	      Python code included in the SWIG output</simpara>
 	    </listitem>
 	  </itemizedlist>
 	</refsect2>                 <!-- Source Files -->
@@ -288,7 +288,7 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	    </listitem>
 	    <listitem>
 	      <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-	      Python code included in the swig output</simpara>
+	      Python code included in the SWIG output</simpara>
 	    </listitem>
 	  </itemizedlist>
 	</refsect2>                 <!-- Source Files -->
@@ -2249,13 +2249,6 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
 </refentry>
 
 <!-- ============================================================ -->
-
-<refentry>
-  
-
-</refentry>
-
-<!-- ============================================================ -->
 <!-- ============================================================ -->
 
 <refentry id="Class-Planarity">
@@ -2266,30 +2259,19 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   <refsynopsisdiv>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
+	  <programlisting>>
 #include "engine/planarity.h"
 
-enum Planarity {IN_PLANE, OUT_OF_PLANE, ALL_INDICES}; </literallayout>
+enum Planarity {IN_PLANE, OUT_OF_PLANE, ALL_INDICES}; </programlisting>
 	</refsect2>
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
+	  <programlisting>
 from ooflib.SWIG.engine import planarity
 
 planarity.IN_PLANE
 planarity.OUT_OF_PLANE
-planarity.ALL_INDICES </literallayout>
-	</refsect2>
-	<refsect2>
-	  <title>Source Files</title>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara><filename>SRC/engine/planarity.h</filename></simpara>
-	    </listitem>
-	    <listitem>
-	      <simpara><filename>SRC/engine/planarity.swg</filename></simpara>
-	    </listitem>
-	  </itemizedlist>
+planarity.ALL_INDICES </programlisting>
 	</refsect2>
 	<refsect2>
 	  <title>Source Files</title>

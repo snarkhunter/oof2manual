@@ -8,445 +8,488 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <refentry id="Class-Property">
-    <refnamediv>
-      <refname>Property</refname>
-      <refpurpose>Base class for material properties</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <refsect2>
-	    <title>C++ Synopsis</title>
-	    <literallayout class="monospaced">
-#include "engine/property.h" </literallayout>
-        <classsynopsis language="cpp">
-	      <ooclass>
-	        <classname>Property</classname>
-	      </ooclass>
-	      <constructorsynopsis>
-	        <methodname><link linkend="Class-Property-Cconstructor">Property</link></methodname>
-	        <methodparam>
-		      <type>const std::string&amp;</type>
-		      <parameter>name</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>PyObject*</type>
-		      <parameter>registration</parameter>
-	        </methodparam>
-	      </constructorsynopsis>
-      
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <void/>
-	        <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
-	        <methodparam>
-		      <type>Material*</type>
-		      <parameter>material</parameter>
-	        </methodparam>
-	      </methodsynopsis>
-
-          <methodsynopsis>
-            <modifier>virtual</modifier>
-            <type>bool</type>
-            <methodname><link
-                            linkend="Class-Property-constant_in_space">constant_in_space</link></methodname>
-            <void/>
-            <modifier>const</modifier>
-          </methodsynopsis>     <!-- constant_in_space -->
-
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <void/>
-	        <methodname><link
-		                    linkend="Class-Property-precompute">precompute</link></methodname>
-	        <void/>
-	      </methodsynopsis>     <!-- precompute -->
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <void/>
-	        <methodname><link
-		                    linkend="Class-Property-begin_element">begin_element</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type><classname><xref linkend="Class-Element"/></classname>*</type>
-		      <parameter>element</parameter>
-	        </methodparam>
-	      </methodsynopsis>     <!-- begin_element -->
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <void/>
-	        <methodname><link
-	                    linkend="Class-Property-end_element">end_element</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>const CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type>const Element*</type>
-		      <parameter>element</parameter>
-	        </methodparam>
-	      </methodsynopsis>     <!-- end_element -->
-
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <void/>
-	        <methodname><link
-		                    linkend="Class-Property-post_process">post_process</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type><classname><xref linkend="Class-Element"/></classname>*</type>
-		      <parameter>element</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>     <!-- post_process -->
-
-          <methodsynopsis>
-            <void/>
-            <methodname><link
-                            linkend="Class-Property-set_mesh_data">set_mesh_data</link></methodname>
-            <methodparam>
-              <modifier>const</modifier>
-              <type><xref linkend="Class-CSubProblem"/>*</type>
-              <parameter>subproblem</parameter>
-            </methodparam>
-            <methodparam>
-              <type>void*</type>
-              <parameter>data</parameter>
-            </methodparam>
-            <modifier>const</modifier>
-          </methodsynopsis>     <!-- set_mesh_data -->
-          <methodsynopsis>
-            <type>void*</type>
-            <methodname><link
-                            linkend="Class-Property-get_mesh_data">get_mesh_data</link></methodname>
-            <methodparam>
-              <modifier>const</modifier>
-              <type>CSubProblem*</type>
-              <parameter>subproblem</parameter>
-            </methodparam>
-            <modifier></modifier>const
-          </methodsynopsis>     <!-- get_mesh_data -->
-
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <void/>
-	        <methodname><link linkend="Class-Property-output">output</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>FEMesh*</type>
-		      <parameter>mesh</parameter>
-	        </methodparam>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type><classname><xref linkend="Class-Element"/></classname>*</type>
-		      <parameter>element</parameter>
-	        </methodparam>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type><xref linkend="Class-PropertyOutput"/>*</type>
-		      <parameter>p_output</parameter>
-	        </methodparam> 
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-		      <parameter>position</parameter>
-	        </methodparam>
-	        <methodparam>
-		      <type><xref linkend="Class-OutputVal"/>*</type>
-		      <parameter>value</parameter>
-	        </methodparam>
-	      </methodsynopsis><!-- output -->
-      
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>bool</type>
-	        <methodname><link linkend="Class-Property-is_symmetric">is_symmetric_K</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>         <!-- is_symmetric_K -->
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>bool</type>
-	        <methodname><link linkend="Class-Property-is_symmetric">is_symmetric_C</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>         <!-- is_symmetric_C -->
-	      <methodsynopsis>
-	        <modifier>virtual</modifier>
-	        <type>bool</type>
-	        <methodname><link linkend="Class-Property-is_symmetric">is_symmetric_M</link></methodname>
-	        <methodparam>
-              <modifier>const</modifier>
-		      <type>CSubProblem*</type>
-		      <parameter>subproblem</parameter>
-	        </methodparam>
-	        <modifier>const</modifier>
-	      </methodsynopsis>         <!-- is_symmetric_M -->
-          
-	    </classsynopsis>
-      </refsect2>                   <!-- C++ Property Synopsis -->
-
-    <refsect2 id="Class-PyPropertyWrapper">
-	  <title>Python Synopsis</title>
-
+<refentry id="Class-Property">
+  <refnamediv>
+    <refname>Property</refname>
+    <refpurpose>Base class for material properties</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+	  <title>C++ Synopsis</title>
+      <para>
+        This synopsis lists the base methods that may be redefined
+        when deriving a new <classname>Property</classname> class.  It
+        is not a complete list of <classname>Property</classname>
+        methods.  Do not derive new C++
+        <classname>Properties</classname> directly from this class.
+        They should be derived from one of the subclasses <link
+        linkend="Class-Property-subclasses">listed below</link>.
+      </para>
 	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.pypropertywrapper import PyPropertyWrapper </literallayout>
-	  <classsynopsis language="python">
-	    <ooclass>
-	      <classname>PyPropertyWrapper</classname>
-	    </ooclass>
+#include "engine/property.h" </literallayout>
+      <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Property</classname>
 	    </ooclass>
-	    <constructorsynopsis>
-	      <methodname><link linkend="Class-Property-pyconstructor">__init__</link></methodname>
-	      <methodparam>
-		    <parameter>referent</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>registration</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>name</parameter>
-	      </methodparam>
-	    </constructorsynopsis>  
 	    <methodsynopsis>
-	      <methodname><link
-		                  linkend="Class-Property-integration_order">integration_order</link></methodname>
-	      <methodparam>
-		    <parameter>subproblem</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>element</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
 	      <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
 	      <methodparam>
+		    <type>Material*</type>
 		    <parameter>material</parameter>
 	      </methodparam>
 	    </methodsynopsis>
-        
-	    <methodsynopsis>
-	      <methodname><link
-                          linkend="Class-Property-precompute">precompute</link></methodname>
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-Property-constant_in_space">constant_in_space</link></methodname>
           <void/>
-	    </methodsynopsis>
+          <modifier>const</modifier>
+        </methodsynopsis>     <!-- constant_in_space -->
 
 	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
+	      <methodname><link
+		                  linkend="Class-Property-precompute">precompute</link></methodname>
+          <methodparam>
+            <type>FEMesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+	    </methodsynopsis>     <!-- precompute -->
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
 	      <methodname><link
 		                  linkend="Class-Property-begin_element">begin_element</link></methodname>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
 		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type><classname><xref linkend="Class-Element"/></classname>*</type>
 		    <parameter>element</parameter>
 	      </methodparam>
-	    </methodsynopsis>
-	    
+	    </methodsynopsis>     <!-- begin_element -->
 	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
 	      <methodname><link
-	                      linkend="Class-Property-begin_point">begin_point</link></methodname>
+	                      linkend="Class-Property-end_element">end_element</link></methodname>
 	      <methodparam>
-		    <parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>master_position</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-
-	    <methodsynopsis>
-	      <methodname><link
-		                  linkend="Class-Property-end_point">end_point</link></methodname>
-	      <methodparam>
-		    <parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>master_position</parameter>
-	      </methodparam>
-	    </methodsynopsis>
-
-	    <methodsynopsis>
-	      <methodname><link
-		                  linkend="Class-Property-end_element">end_element</link></methodname>
-	      <methodparam>
+            <modifier>const</modifier>
+		    <type>const CSubProblem*</type>
 		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <methodparam>
+		    <type>const Element*</type>
 		    <parameter>element</parameter>
 	      </methodparam>
-	    </methodsynopsis>
+	    </methodsynopsis>     <!-- end_element -->
 
 	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <void/>
 	      <methodname><link
 		                  linkend="Class-Property-post_process">post_process</link></methodname>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
 		    <parameter>subproblem</parameter>
 	      </methodparam>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type><classname><xref linkend="Class-Element"/></classname>*</type>
 		    <parameter>element</parameter>
 	      </methodparam>
-	    </methodsynopsis><!-- post_process -->
+	      <modifier>const</modifier>
+	    </methodsynopsis>     <!-- post_process -->
+
+        <methodsynopsis>
+          <void/>
+          <methodname><link
+                          linkend="Class-Property-set_mesh_data">set_mesh_data</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-CSubProblem"/>*</type>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <methodparam>
+            <type>void*</type>
+            <parameter>data</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>     <!-- set_mesh_data -->
+        <methodsynopsis>
+          <type>void*</type>
+          <methodname><link
+                          linkend="Class-Property-get_mesh_data">get_mesh_data</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>CSubProblem*</type>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <modifier></modifier>const
+        </methodsynopsis>     <!-- get_mesh_data -->
 
 	    <methodsynopsis>
-	      <methodname><link linkend="Class-Property-fluxmatrix">fluxmatrix</link></methodname>
-	      <methodparam>
-		    <parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>node</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		  <parameter>fluxdata</parameter></methodparam>
-	      <methodparam>
-		    <parameter>master_position</parameter>
-	      </methodparam>
-	    </methodsynopsis><!-- fluxmatrix -->
-	    <methodsynopsis>
-	      <methodname><link linkend="Class-Property-fluxrhs">fluxrhs</link></methodname>
-	      <methodparam>
-		    <parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>fluxdata</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>master_position</parameter>
-	      </methodparam>
-	    </methodsynopsis><!-- fluxrhs -->
-	    <methodsynopsis>
+	      <modifier>virtual</modifier>
 	      <void/>
 	      <methodname><link linkend="Class-Property-output">output</link></methodname>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type>FEMesh*</type>
 		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type><classname><xref linkend="Class-Element"/></classname>*</type>
 		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type><xref linkend="Class-PropertyOutput"/>*</type>
 		    <parameter>p_output</parameter>
 	      </methodparam> 
 	      <methodparam>
+            <modifier>const</modifier>
+		    <type><xref linkend="Class-MasterPosition"/>&amp;</type>
 		    <parameter>position</parameter>
 	      </methodparam>
-	    </methodsynopsis><!-- output -->
-	    <methodsynopsis>
-	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric</link></methodname>
 	      <methodparam>
+		    <type><xref linkend="Class-OutputVal"/>*</type>
+		    <parameter>value</parameter>
+	      </methodparam>
+	    </methodsynopsis><!-- output -->
+        
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>bool</type>
+	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric_K</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
 		    <parameter>subproblem</parameter>
 	      </methodparam>
-	    </methodsynopsis><!-- is_symmetric -->
-	  </classsynopsis>
-    </refsect2><!-- Python Property synopsis -->
+	      <modifier>const</modifier>
+	    </methodsynopsis>         <!-- is_symmetric_K -->
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>bool</type>
+	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric_C</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
+		    <parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>         <!-- is_symmetric_C -->
+	    <methodsynopsis>
+	      <modifier>virtual</modifier>
+	      <type>bool</type>
+	      <methodname><link linkend="Class-Property-is_symmetric">is_symmetric_M</link></methodname>
+	      <methodparam>
+            <modifier>const</modifier>
+		    <type>CSubProblem*</type>
+		    <parameter>subproblem</parameter>
+	      </methodparam>
+	      <modifier>const</modifier>
+	    </methodsynopsis>         <!-- is_symmetric_M -->
+	  </classsynopsis>            <!-- C++ Synopsis-->
+
+      <refsect3 id="Class-Property-subclasses">
+        <title>C++ Derived Classes</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-FluxProperty"/></classname>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-EqnProperty"/></classname>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-AuxProperty"/></classname>
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>                 <!-- Derived classes -->
+
+      <refsect3>
+        <title>C++ Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.C</filename>: C++ code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.h</filename>: C++ header
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.swg</filename>: SWIG source
+              code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.spy</filename>: Python code
+              included in the SWIG output
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>                 <!-- C++ Source files -->
+    </refsect2>                   <!-- C++ Property Synopsis -->
 
     <refsect2>
-      <title>Derived Classes</title>
-      <itemizedlist spacing="compact">
-        <listitem>
-          <simpara>
-            <classname><xref linkend="Class-FluxProperty"/></classname>
-          </simpara>
-        </listitem>
-        <listitem>
-          <simpara>
-            <classname><xref linkend="Class-EqnProperty"/></classname>
-          </simpara>
-        </listitem>
-        <listitem>
-          <simpara>
-            <classname><xref linkend="Class-AuxProperty"/></classname>
-          </simpara>
-        </listitem>
-      </itemizedlist>
-    </refsect2>                 <!-- Derived classes -->
+      <title>Python Synopsis</title>
+      <para>
+        New <classname>Property</classname> subclasses written in
+        Python should be derived from <xref
+        linkend="Class-FluxProperty"/> or <xref
+        linkend="Class-EqnProperty"/>.  <xref
+        linkend="Class-FluxProperty"/> and <xref
+        linkend="Class-EqnProperty"/> share a base class,
+        <classname>PyPropertyMethods</classname>, that contains the
+        Python C API calls for the methods in
+        <classname>Property</classname>.  This synopsis lists the
+        methods that may be redefined in a Python derived class when
+        creating a new &property;.
+      </para>
+      <literallayout class="monospaced">
+from ooflib.SWIG.engine import pypropertywrapper </literallayout>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>PyPropertyMethods</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname><link linkend="Class-Property-cross_reference">cross_reference</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Property-constant_in_space">constant_in_space</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Property-precompute">precompute</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Property-begin_element">begin_element</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Property-end_element">end_element</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Property-postprocess">post_process</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>OutputVal</type>
+          <methodname><link
+                          linkend="Class-Property-output">output</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>p_output</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-Property-is_symmetric_K">is_symmetric_K</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-Property-is_symmetric_C">is_symmetric_C</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-Property-is_symmetric_M">is_symmetric_M</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+        </methodsynopsis>
+      </classsynopsis>
+
+      <refsect3>
+        <title>Python Derived Classes</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-PyFluxProperty"/></classname>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-PyEqnProperty"/></classname>
+            </simpara>
+          </listitem>
+        </itemizedlist>
+        <!-- TODO: Add PyAuxProperty -->
+      </refsect3>                 <!-- Derived classes -->
+      <refsect3>
+        <title>Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/pypropertywrapper.C</filename>: C++
+              code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/pypropertywrapper.h</filename>: C++
+              header
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/pypropertywrapper.swg</filename>:
+              SWIG wrapper code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/pypropertywrapper.spy</filename>:
+              Python code included in the SWIG output
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>               <!-- Python source files -->
+    </refsect2>                 <!-- Python Synopsis-->
   </refsynopsisdiv>             <!-- Property Synopsis -->
 
   <refsection>
     <title>Overview</title>
     <para>
-	  &property; classes can be constructed either in C++ or Python.
+	  &Property; classes can be constructed either in C++ or Python.
 	  Python classes are somewhat simpler to program and build, but
 	  C++ classes are significantly more efficient, computationally.
     </para>
     <para>
       In C++, new <classname>Property</classname> classes should be
-      derived from one of three C++ subclasses: <classname><xref
-      linkend="Class-FluxProperty"/></classname> for classes that
-      contribute directly to a &Flux; computation, such as an elastic
-      modulus, <classname><xref
-      linkend="Class-EqnProperty"/></classname> for classes that make
-      a direct contribution to an &Equation;, such as an applied
-      force, and <classname><xref
-      linkend="Class-AuxProperty"/></classname> for classes that do
-      neither.  In Python, new <classname>Property</classname> classes
-      should be derived from <classname>PyFluxProperty</classname> and
-      <classname>PyEqnProperty</classname>, which are swigged versions
-      of <classname><xref linkend="Class-FluxProperty"/></classname>
-      and <classname><xref linkend="Class-EqnProperty"/></classname>.
-      In both languages, the base classes contain trivial
-      implementations of almost all methods, so in the derived classes
-      it is safe to omit any functions which are irrelevant to a
-      particular physical property.  The exception is
+      derived from one of three C++ subclasses:
+      <itemizedlist>
+        <listitem>
+          <simpara>
+            <classname><xref
+            linkend="Class-FluxProperty"/></classname> for classes that
+            contribute directly to a &Flux; computation, such as an elastic
+            modulus.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <classname><xref linkend="Class-EqnProperty"/></classname>
+            for classes that make a direct contribution to an
+            &Equation;, such as an applied force.
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <classname><xref linkend="Class-AuxProperty"/></classname>
+            for classes that do neither.
+          </simpara>
+        </listitem>
+      </itemizedlist>
+      These base classes contain trivial implementations of almost all
+      methods, so that in the derived classes it is safe to omit any
+      functions which are irrelevant to a particular physical
+      property.  The exception is
       <function>integration_order()</function> which must be provided
       in all <classname><xref
       linkend="Class-FluxProperty"/></classname> and <classname><xref
       linkend="Class-EqnProperty"/></classname> subclasses.
     </para>
     <para>
-	  In order for both C++ and Python
-	  <classname>Properties</classname> to work properly and to be
-	  included in the GUI, every subclass must have an associated
-	  <link
+      In Python, new <classname>Property</classname> classes should be
+      derived from either <classname><xref
+      linkend="Class-PyFluxProperty"/></classname> or <classname><xref
+      linkend="Class-PyEqnProperty"/></classname>. Those swigged C++
+      classes are derived from <classname><xref
+      linkend="Class-FluxProperty"/></classname> and <classname><xref
+      linkend="Class-EqnProperty"/></classname>.  The classes store a
+      pointer to a Python <classname>Property</classname> object, and
+      use the Python C API to call that object's Python methods (the
+      ones defined in the extension class).  If the Python method
+      doesn't exist, they fall back to the default C++ method. A new
+      Python subclass does not need to define all of the virtual
+      functions.
+    </para>
+    <para>
+      This page only discusses those base class functions that are
+      used when deriving new subclasses.  Additional methods discussed
+      on the pages for <classname><xref
+      linkend="Class-FluxProperty"/></classname> and <classname><xref
+      linkend="Class-EqnProperty"/></classname> can also be redefined.
+    </para>
+    <para>
+      In almost all <classname>Property</classname> methods, the
+      arguments for the C++ and Python are identical, so they are
+      discussed together here.  Examples are provided in both
+      languages.
+    </para>
+    <para>
+	  In order for C++ and Python <classname>Properties</classname> to
+	  work properly and to be included in the GUI, every subclass must
+	  have an associated <link
 	  linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
 	  object.  <link
 	  linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>
 	  must always be created in Python, even for
 	  <classname>Property</classname> subclasses created in C++.
     </para>
-  </refsection>
+  </refsection>                 <!-- Overview -->
 
   <refsection id="Class-Property-Constructors">
     <title>Constructors</title>
@@ -471,7 +514,7 @@ Property(const std::string&amp; name, PyObject *registration) </literallayout>
 	    <varname>registration</varname> as opaque variables, used only
 	    by the base class.  They just need to be passed on through.
 	    The <varname>...</varname> in the subclass constructor refers
-	    to the <classname>Property</classname>'s parameters, which
+	    to the <classname>Property</classname>'s <link linkend="Class-Parameter">parameters</link>, which
 	    <emphasis>must</emphasis> appear in the constructor argument
 	    list in the same order that they appear in the corresponding
 	    <link
@@ -487,13 +530,14 @@ Property(const std::string&amp; name, PyObject *registration) </literallayout>
     <refsection id="Class-Property-pyconstructor">
 	  <title>Python</title>
 	  <para>
-	    The Python constructor for a
-	    <classname>PyPropertyWrapper</classname> subclass must look
-	    like this:
+	    The Python constructor for a <classname><xref
+	    linkend="Class-PyFluxProperty"/></classname> or
+	    <classname><xref linkend="Class-PyEqnProperty"/></classname>
+	    subclass must look like this:
 
   	    <literallayout class="monospaced">
 def __init__(self, registration, name, ...):
-    PyPropertyWrapper.__init__(self, registration, name) </literallayout>
+    PyFluxProperty.__init__(self, registration, name)     <lineannotation># or PyEqnProperty</lineannotation> </literallayout>
 
 	    As in the <link linkend="Class-Property-Cconstructor">C++
 	    constructor</link>, the <varname>name</varname> and
@@ -512,15 +556,14 @@ def __init__(self, registration, name, ...):
   <refsection>
     <title>Methods</title>
     <para>
-	  The following methods can be defined in C++
-	  <classname>Property</classname> and Python
-	  <classname>PyPropertyWrapper</classname> subclasses.  Most are
-	  optional, and can be omitted if the default behavior is
-	  satisfactory.  Unless otherwise noted, the default behavior is
-	  to do nothing.  The exception is
+	  The following methods can be defined in C++ and Python
+	  subclasses.  Most are optional, and can be omitted if the
+	  default behavior is satisfactory.  Unless otherwise noted, the
+	  default behavior is to do nothing.  The exception is
 	  <function>integration_order</function>, which must be provided
-	  explicitly for all properties.  A base-class version does exist,
-	  but its default behavior is to indicate an error.
+	  explicitly for all properties (except those derived from <xref
+	  linkend="Class-AuxProperty"/>).  A base-class version does
+	  exist, but its default behavior is to indicate an error.
     </para>
     <para>
 	  All of the functions can be accessed from either C++ or Python.
@@ -531,7 +574,7 @@ def __init__(self, registration, name, ...):
 	  is more informative.
     </para>
     <refsection id="Class-Property-cross_reference">
-	  <title><code>void cross_reference(Material *)</code></title>
+	  <title><code>void cross_reference(Material* material)</code></title>
 	  <para>
 	    <methodname>cross_reference</methodname> is called whenever a
 	    new &property; is added to a &material;.  It gives each
@@ -554,26 +597,19 @@ def __init__(self, registration, name, ...):
 	    exist.  This exception should <emphasis>not</emphasis> be
 	    caught by the <classname>Property</classname> &mdash; it's
 	    handled in the <classname>Material</classname>.
-	</para>
-	<para>
-	  For example, here is the
-	  <methodname>cross_reference</methodname> routine from the
-	  <classname>AnisotropicThermalExpansion</classname> class,
-	  which needs to access the Elasticity (for the elastic
-	  modulus) and the Orientation:
-	</para>
-	<programlisting>
-void AnisotropicThermalExpansion::cross_reference(Material *mat) {
-  elasticity = dynamic_cast&lt;Elasticity*>(mat->fetchProperty("Elasticity"));
-  orientation = dynamic_cast&lt;OrientationProp*>(mat->fetchProperty("Orientation"));
-} </programlisting>
-	<para>
-	  The <classname>ThermalExpansion</classname> and
-	  <classname>AnisotropicThermalExpansion</classname> classes
-	  store the <varname>elasticity</varname> and
-	  <varname>orientation</varname> variables:
-	</para>
-	<programlisting>
+	  </para>
+	  <para>
+	    For example, an
+        <link
+            linkend="Property-Couplings-ThermalExpansion-Anisotropic-Cubic">
+        anisotropic thermal expansion</link>
+        <classname>Property</classname> needs to access its
+        <classname><link
+        linkend="Class-Material">Material</link></classname>'s
+        <literal>Elasticity</literal> and
+        <literal>Orientation</literal>.  It stores pointers to them in
+        the class:
+	    <programlisting>
 class ThermalExpansion : public Property {
 protected:
   Elasticity *elasticity;
@@ -584,36 +620,78 @@ class AnisotropicThermalExpansion : public ThermalExpansion {
 private:
   OrientationProp *orientation;
   ...
-}; </programlisting>
-	<para>
-	  The default base class
-	  <methodname>cross_reference</methodname> function does
-	  nothing.
-	</para>
-      </refsection><!-- cross_reference -->
-      <refsection id="Class-Property-precompute">
-	<title><code>void precompute()</code></title>
-	<para>
-	  <function>precompute()</function> is called when a &mesh; is
-	  being solved.  It's called before any other
-	  <classname>Property</classname> methods, other than
-	  <function>cross_reference</function>.  It should compute any
-	  quantities that the <classname>Property</classname> needs
-	  that depend only upon <classname>Property</classname>
-	  data. It can use <classname>Property</classname> data from
-	  other <classname>Properties</classname>, having located
-	  those other <classname>Properties</classname> during the
-	  <function>cross_reference</function> step.
-	</para>
-	<para>
-	  For example, if a <classname>Property</classname> has an
-	  anisotropic modulus, the <classname>Property</classname>'s
-	  <methodname>precompute</methodname> method should rotate the
-	  modulus to lab coordinates using the &material;'s <link
-	  linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>.
-	</para>
-      </refsection>
-      <refsection id="Class-Property-begin_element">
+};    </programlisting>
+
+        and obtains their values by defining
+        <methodname>cross_reference</methodname> like this:
+      
+	  <programlisting>
+void AnisotropicThermalExpansion::cross_reference(Material *mat) {
+  elasticity = dynamic_cast&lt;Elasticity*>(mat->fetchProperty("Elasticity"));
+  orientation = dynamic_cast&lt;OrientationProp*>(mat->fetchProperty("Orientation"));
+} </programlisting>
+      </para>
+      <para>
+        In Python, it would look like this:
+        <programlisting>
+from ooflib.SWIG.engine import pypropertywrapper
+
+class ThermalExpansion(pypropertywrapper.PyFluxProperty):
+    def cross_reference(self, material):
+        self.elasticity = material.fetchProperty("Elasticity")
+
+class AnisotropicThermalExpansion(ThermalExpansion):
+    def cross_reference(self, material):
+        self.orientation = material.fetchProperty("Orientation") </programlisting>
+      </para>
+      <para>
+	    The default base class
+	    <methodname>cross_reference</methodname> function does
+	    nothing.
+	  </para>
+    </refsection>               <!-- cross_reference -->
+    <refsection id="Class-Property-precompute">
+	  <title><code>void precompute(FEMesh* mesh)</code></title>
+	  <para>
+	    <function>precompute()</function> is called when a &mesh; is
+	    being solved.  It's called before any other
+	    <classname>Property</classname> methods, other than
+	    <function>cross_reference</function>.  It should compute any
+	    quantities that the <classname>Property</classname> needs that
+	    depend only upon <classname>Property</classname> data. It can
+	    use <classname>Property</classname> data from other
+	    <classname>Properties</classname>, having located those other
+	    <classname>Properties</classname> during the
+	    <function>cross_reference</function> step, but it should not
+	    assume that <function>precompute()</function> has been called
+	    for those <classname>Properties</classname> yet.
+	  </para>
+	  <para>
+	    For example, if a <classname>Property</classname> has an
+	    anisotropic modulus, the <classname>Property</classname>'s
+	    <methodname>precompute</methodname> method should rotate the
+	    modulus to lab coordinates using the &material;'s <link
+	    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>.
+	  </para>
+    </refsection>                 <!-- precompute -->
+    <refsection id="Class-Property-constant_in_space">
+      <title><code>bool constant_in_space() const</code></title>
+      <para>
+        <function>constant_in_space()</function> should return
+        <literal>false</literal> if the <classname>Property</classname>
+        explicitly depends on position.  The default implementation
+        returns <literal>true</literal>.
+      </para>
+      <para>
+        <function>constant_in_space()</function> can be used by other
+        <classname>Properties</classname> to decide whether or not
+        it's possible for them to precompute something.  For example,
+        an anisotropic elasticity <classname>Property</classname> can
+        precompute its rotated stiffness modulus only if its
+        orientation has no spatial variation.
+      </para>
+    </refsection>               <!-- constant_in_space -->
+    <refsection id="Class-Property-begin_element">
 	<title><code>void begin_element(const CSubProblem*, const const Element*)</code></title>
 	<para>
 	  When building the finite element stiffness matrix and right
@@ -700,6 +778,7 @@ private:
 	</para>
       </refsection><!-- post_process -->
       <refsection id="Class-Property-integration_order">
+        <!-- TODO: Move to PhysicalProperty -->
 	<title><code>int integration_order(const CSubProblem *subproblem, const Element
 	    *element) const</code></title>
 	<para>
@@ -1471,28 +1550,28 @@ void ForceDensity::fluxrhs(const FEMesh *mesh, const Element *element,
 			      const Flux *flux, FluxData *fluxdata,
 			      const MasterPosition &amp;x) const 
 {
-  if(*flux != *stress_flux) { <co id="fluxrhs:test"/>
-    throw ErrProgrammingError("Unexpected flux", __FILE__, __LINE__); <co id="fluxrhs:error"/>
+  if(*flux != *stress_flux) { <co id="fluxrhs-test"/>
+    throw ErrProgrammingError("Unexpected flux", __FILE__, __LINE__); <co id="fluxrhs-error"/>
   }
   
-  fluxdata->rhs_element(0) -= gx; <co id="fluxrhs:rhs_element"/>
+  fluxdata->rhs_element(0) -= gx; <co id="fluxrhs-rhs_element"/>
   fluxdata->rhs_element(1) -= gy;
 } </programlisting>
 	<calloutlist>
-	  <callout arearefs="fluxrhs:test">
+	  <callout arearefs="fluxrhs-test">
 	    <para>
 	      As in <link
 	      linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>,
 	      above, this is a sanity check.
 	    </para>
 	  </callout>
-	  <callout arearefs="fluxrhs:error">
+	  <callout arearefs="fluxrhs-error">
 	    <para>
 	      <classname>ErrProgrammingError</classname> is declared
 	      in <filename>SRC/common/ooferror.h</filename>.
 	    </para>
 	  </callout>
-	  <callout arearefs="fluxrhs:rhs_element">
+	  <callout arearefs="fluxrhs-rhs_element">
 	    <para>
 	      <code>FluxData::rhs_element(i)</code> returns a
 	      reference to the
@@ -1554,12 +1633,12 @@ void ThermalExpansion::fluxrhs(const FEMesh *mesh, const Element *element,
   if(*flux!=*stress_flux) {
     throw ErrProgrammingError("Unexpected flux." __FILE__, __LINE__);
   }
-  const Cijkl modulus = elasticity->cijkl(mesh, element, x); <co id="fluxrhs:mod"/>
+  const Cijkl modulus = elasticity->cijkl(mesh, element, x); <co id="fluxrhs-mod"/>
 
-  for(SymTensorIterator ij; !ij.end(); ++ij) { <co id="fluxrhs:ij"/>
-    double &amp;offset_el = fluxdata->offset_element(mesh, ij); <co id="fluxrhs:offset"/>
-    for(SymTensorIterator kl; !kl.end(); ++kl) { <co id="fluxrhs:kl"/>
-      if(kl.diagonal()) { <co id="fluxrhs:sum"/>
+  for(SymTensorIterator ij; !ij.end(); ++ij) { <co id="fluxrhs-ij"/>
+    double &amp;offset_el = fluxdata->offset_element(mesh, ij); <co id="fluxrhs-offset"/>
+    for(SymTensorIterator kl; !kl.end(); ++kl) { <co id="fluxrhs-kl"/>
+      if(kl.diagonal()) { <co id="fluxrhs-sum"/>
 	offset_el += modulus(ij,kl)*expansiontensor[kl]*tzero_;
       }
       else {
@@ -1569,7 +1648,7 @@ void ThermalExpansion::fluxrhs(const FEMesh *mesh, const Element *element,
   }
 } </programlisting>
 	<calloutlist>
-	  <callout arearefs="fluxrhs:mod">
+	  <callout arearefs="fluxrhs-mod">
 	    <para>
 	      This retrieves the elastic modulus
 	      <inlineequation>
@@ -1587,14 +1666,14 @@ void ThermalExpansion::cross_reference(Material *mat) {
 } </programlisting>
 	    </para>
 	  </callout>
-	  <callout arearefs="fluxrhs:ij">
+	  <callout arearefs="fluxrhs-ij">
 	    <para>
 	      This is the loop over components of the flux, just like
 	      item <xref linkend="fluxmatrix:stressloop"/> in the
 	      <methodname>fluxmatrix</methodname> example.
 	    </para>
 	  </callout>
-	  <callout arearefs="fluxrhs:offset">
+	  <callout arearefs="fluxrhs-offset">
 	    <para>
 	      <code>FluxData::offset_element(i)</code> returns a
 	      reference to a component of the flux offset.  The
@@ -1606,7 +1685,7 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	      object.
 	    </para>
 	  </callout>
-	  <callout arearefs="fluxrhs:kl">
+	  <callout arearefs="fluxrhs-kl">
 	    <para>
 	      This is the loop over the indices
 	      <inlineequation>
@@ -1615,7 +1694,7 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	      in Eq. <xref linkend="Eqn-thermalexpfluxrhs"/>. 
 	    </para>
 	  </callout>
-	  <callout arearefs="fluxrhs:sum">
+	  <callout arearefs="fluxrhs-sum">
 	    <para>
 	      The next few lines compute terms in the sum,
 	      accumulating them in the <classname>FluxData</classname>
@@ -1628,7 +1707,7 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	      <inlineequation>
 		<alt role="tex">\(\alpha_{kl}\)</alt>
 	      </inlineequation>.
-	      The loop <xref linkend="fluxrhs:kl"/> addresses
+	      The loop <xref linkend="fluxrhs-kl"/> addresses
 	      only the independent symmetric tensor entries
 	      <inlineequation>
 		<alt role="tex">\(kl\)</alt>
@@ -1762,18 +1841,18 @@ void ThermalExpansion::output(const FEMesh *mesh,
 				  OutputVal *data)
   const 
 {
-  const std::string &amp;outputname = output->name(); <co id="output:name"/>
+  const std::string &amp;outputname = output->name(); <co id="output-name"/>
   if(outputname == "Strain") {
     // The parameter is a Python StrainType instance.  Extract its name.
-    std::string stype = output->getRegisteredParamName("type"); <co id="output:paramname"/>
-    SymmMatrix3 *sdata = dynamic_cast&lt;SymmMatrix3*>(data); <co id="output:cast"/>
+    std::string stype = output->getRegisteredParamName("type"); <co id="output-paramname"/>
+    SymmMatrix3 *sdata = dynamic_cast&lt;SymmMatrix3*>(data); <co id="output-cast"/>
     // Compute alpha*T with T interpolated to position pos
-    const OutputValue tfield = element->outputField(mesh, *temperature, pos); <co id="output:T"/>
+    const OutputValue tfield = element->outputField(mesh, *temperature, pos); <co id="output-T"/>
     const ScalarOutputVal *tval = 
-      dynamic_cast&lt;const ScalarOutputVal*>(tfield.valuePtr()); <co id="output:Tcast"/>
-    double t = tval->value(); <co id="output:Tfinally"/>
+      dynamic_cast&lt;const ScalarOutputVal*>(tfield.valuePtr()); <co id="output-Tcast"/>
+    double t = tval->value(); <co id="output-Tfinally"/>
     
-    if(stype == "Thermal") <co id="output:stype"/>
+    if(stype == "Thermal") <co id="output-stype"/>
       *sdata += expansiontensor*(t-tzero_);
     else if(stype == "Elastic")
       *sdata -= expansiontensor*(t-tzero_);
@@ -1781,22 +1860,22 @@ void ThermalExpansion::output(const FEMesh *mesh,
 
   if(outputname == "Energy") {
     // The parameter is a Python Enum instance.  Extract its name.
-    std::string etype = output->getEnumParam("etype"); <co id="output:paramenum"/>
-    if(etype == "Total" || etype == "Elastic") { <co id="output:etype"/>
+    std::string etype = output->getEnumParam("etype"); <co id="output-paramenum"/>
+    if(etype == "Total" || etype == "Elastic") { <co id="output-etype"/>
       ScalarOutputVal *edata = 
-	dynamic_cast&lt;ScalarOutputVal*>(data); <co id="output:edata"/>
+	dynamic_cast&lt;ScalarOutputVal*>(data); <co id="output-edata"/>
       SymmMatrix3 thermalstrain;
-      const Cijkl modulus = elasticity->cijkl(mesh, element, pos); <co id="output:modulus"/>
-      const OutputValue tfield = element->outputField(mesh, *temperature, pos); <co id="output:T2"/>
+      const Cijkl modulus = elasticity->cijkl(mesh, element, pos); <co id="output-modulus"/>
+      const OutputValue tfield = element->outputField(mesh, *temperature, pos); <co id="output-T2"/>
       const ScalarOutputVal *tval = 
 	dynamic_cast&lt;const ScalarOutputVal*>(tfield.valuePtr());
       double t = tval->value();
       thermalstrain = expansiontensor*(t-tzero_);
       SymmMatrix3 thermalstress(modulus*thermalstrain);
       SymmMatrix3 strain;
-      findGeometricStrain(mesh, element, pos, strain); <co id="output:geomstrain"/>
+      findGeometricStrain(mesh, element, pos, strain); <co id="output-geomstrain"/>
       double e = 0;
-      for(int i=0; i&lt;3; i++) { <co id="output:esum"/>
+      for(int i=0; i&lt;3; i++) { <co id="output-esum"/>
 	e += thermalstress(i,i)*strain(i,i);
 	int j = (i+1)%3;
 	e += 2*thermalstress(i,j)*strain(i,j);
@@ -1806,16 +1885,16 @@ void ThermalExpansion::output(const FEMesh *mesh,
   } //energy output ends here
 } </programlisting>
 	<calloutlist>
-	  <callout arearefs="output:name">
+	  <callout arearefs="output-name">
 	    <para>
 	      The name of the output indicates what type of quantity
 	      is to be computed.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:paramname">
+	  <callout arearefs="output-paramname">
 	    <para>
 	      This call to
-	      <methodname>PropertyOutput::getRegisteredParamName</methodname>
+	      <methodname>PropertyOutput-:getRegisteredParamName</methodname>
 	      retrieves the <classname>PropertyOutput</classname>'s
 	      <literal>type</literal> parameter.  Parameters for <link
 	      linkend="Class-PropertyOutput"><classname>PropertyOutputs</classname></link>
@@ -1833,7 +1912,7 @@ void ThermalExpansion::output(const FEMesh *mesh,
 	      retrieve its name.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:cast">
+	  <callout arearefs="output-cast">
 	    <para>
 	      Because we know that this is a <literal>Strain</literal>
 	      output, we can cast the <varname>data</varname> pointer
@@ -1843,7 +1922,7 @@ void ThermalExpansion::output(const FEMesh *mesh,
 	      which holds a 3&times;3 symmetric matrix output value.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:T">
+	  <callout arearefs="output-T">
 	    <para>
 	      <classname>ThermalExpansion</classname>'s contribution
 	      to the strain depends on the value of the Temperature
@@ -1870,18 +1949,18 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      scalar field.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:Tcast">
+	  <callout arearefs="output-Tcast">
 	    <para>
 	      This line peels off the wrapper around the <link
 	      linkend="Class-ScalarOutputVal"><classname>ScalarOutputVal</classname></link>
 	      contained within the <classname>OutputValue</classname>
-	      retrieved in <xref linkend="output:T"/>.  For different
+	      retrieved in <xref linkend="output-T"/>.  For different
 	      types of &field;, make sure to use the correct <link
 	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>
 	      subclass.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:Tfinally">
+	  <callout arearefs="output-Tfinally">
 	    <para>
 	      This line extracts the actual temperature from the
 	      <classname>ScalarOutputVal</classname>. Whew!<footnote>
@@ -1895,7 +1974,7 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      </footnote>
 	    </para>
 	  </callout>
-	  <callout arearefs="output:stype">
+	  <callout arearefs="output-stype">
 	    <para>
 	      These lines add the thermal expansion contribution to
 	      the strain, with the appropriate sign (depending on the
@@ -1908,7 +1987,7 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      <varname>data</varname>.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:paramenum">
+	  <callout arearefs="output-paramenum">
 	    <para>
 	      The <varname>etype</varname> parameter for the
 	      <literal>Energy</literal> <link
@@ -1920,12 +1999,12 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      &oof2; <link
 	      linkend="Section-Enums"><classname>Enum</classname></link>.
 	      The function <link
-	      linkend="Class-PropertyOutput-getEnumParam"><methodname>PropertyOutput::getEnumParam</methodname></link>
+	      linkend="Class-PropertyOutput-getEnumParam"><methodname>PropertyOutput-:getEnumParam</methodname></link>
 	      retrieves the value of the parameter, and returns its
 	      name.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:etype">
+	  <callout arearefs="output-etype">
 	    <para>
 	      There are many different types of
 	      <literal>Energy</literal> output, but this
@@ -1933,7 +2012,7 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      these two.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:edata">
+	  <callout arearefs="output-edata">
 	    <para>
 	      Energy is a scalar, so the
 	      <classname>OutputVal</classname> that was passed in is
@@ -1943,21 +2022,21 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      used.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:modulus">
+	  <callout arearefs="output-modulus">
 	    <para>
-	      See <xref linkend="fluxrhs:mod"/> in the <link
+	      See <xref linkend="fluxrhs-mod"/> in the <link
 	      linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>
 	      discussion.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:T2">
+	  <callout arearefs="output-T2">
 	    <para>
-	      See <xref linkend="output:T"/>, <xref
-	      linkend="output:Tcast"/>, and <xref
-	      linkend="output:Tfinally"/>.
+	      See <xref linkend="output-T"/>, <xref
+	      linkend="output-Tcast"/>, and <xref
+	      linkend="output-Tfinally"/>.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:geomstrain">
+	  <callout arearefs="output-geomstrain">
 	    <para>
 	      <function>findGeometricStrain</function>
 	      is defined in <filename>SRC/engine/cstrain.C</filename>
@@ -1975,7 +2054,7 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      is the displacement field.
 	    </para>
 	  </callout>
-	  <callout arearefs="output:esum">
+	  <callout arearefs="output-esum">
 	    <para>
 	      This loop computes the contribution of thermal
 	      expansion to the elastic energy.
@@ -2015,7 +2094,7 @@ bool ThermalExpansion::is_symmetric(const CSubProblem* subproblem) const {
 	   temperature->is_defined(subproblem) &amp;&amp;
 	   temperature->is_active(subproblem));
 } </programlisting>
-      </refsection><!-- is_symmetric -->
+</refsection>                   <!-- is_symmetric -->
     </refsection><!-- Methods -->
   </refentry>    <!-- Property -->
 

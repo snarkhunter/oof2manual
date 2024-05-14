@@ -43,6 +43,7 @@
     &refFluxProperty;
     &refEqnProperty;
     &refAuxProperty;
+    &refPyProperty;
     &refMaterial;
   </reference>
   &refFEMesh;

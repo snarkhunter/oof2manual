@@ -533,7 +533,7 @@ from oof2.SWIG.engine import element</programlisting>
 	<title>
 	  <code>OutputValue outputFieldDeriv(const Field&amp; field,
 	  SpaceIndex* derivative, const MasterPosition&amp;
-	  position)</code>\
+	  position)</code>
 	</title>
 	<para>
 	  <methodname>outputFieldDeriv</methodname> is just like <link
@@ -1503,6 +1503,224 @@ from oof2.SWIG.engine import freedom</programlisting>
       </refsection>
     </refsection>
   </refentry><!-- DegreeOfFreedom -->
+
+  <refentry id="Function-conjugatePair">
+    <refnamediv>
+	  <refname>conjugatePair</refname>
+	  <refpurpose>Establish conjugacy relations</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+	  <title>Synopsis</title>
+	  <programlisting>
+from oof2.SWIG.engine.conjugate import conjugatePair
+      
+conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
+    </refsynopsisdiv>
+    <refsection>
+	  <title>Parameters</title>
+	  <variablelist>
+	    <varlistentry>
+	      <term><varname>name</varname></term>
+	      <listitem>
+	        <para>
+		      <varname>name</varname> is the <link
+		      linkend="para-propertyType"><classname>PropertyType</classname></link>
+		      of the &property; that this conjugacy relation applies
+		      to.
+	        </para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>equation</varname></term>
+	      <listitem>
+	        <para>
+		      <varname>equation</varname> is the &Equation; object to
+		      which the conjugacy relationship applies.
+	        </para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>eqncomp</varname></term>
+	      <listitem>
+	        <para>
+		      <varname>eqncomp</varname> indicates which components of
+		      the <varname>equation</varname> the relation applies to.
+		      It is either a single &FieldIndex; object or an iterable
+		      container of &FieldIndex; objects.  For example, it
+		      could be a list of &FieldIndexes;, or the &Components;
+		      object returned by <link
+		      linkend="Class-Equation-components"><code>Equation.components()</code></link>.
+	        </para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>field</varname></term>
+	      <listitem>
+	        <para>
+		      <varname>field</varname> is the &Field; object to which
+		      the conjugacy relationship applies.
+	        </para>
+	      </listitem>
+	    </varlistentry>
+	    <varlistentry>
+	      <term><varname>fieldcomp</varname></term>
+	      <listitem>
+	        <para>
+		      <varname>fieldcomp</varname> indicates which components
+		      of <varname>field</varname> the relation applies to.  It
+		      is either a single &FieldIndex; object or an iterable
+		      container of &FieldIndex; objects.
+		      <varname>fieldcomp</varname> must represent the same
+		      number of components as <varname>eqncomp</varname>.
+		      Each <classname>Field</classname> component in
+		      <varname>fieldcomp</varname> is conjugate to the
+		      <classname>Equation</classname> component in the same
+		      location in <varname>eqncomp</varname>.
+	        </para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+    </refsection>                 <!-- Parameters -->
+    <refsection>
+	  <title>Description</title>
+	  <para>
+	    <function>conjugatePair</function> establishes conjugacy
+	    relationships between &Fields; and &Equations;, allowing
+	    symmetric finite element stiffness matrices to be constructed.
+	    See <xref linkend="Section-Coding-Conjugates"/> for an
+	    overview.
+	  </para>
+	  <para>
+	    <function>conjugatePair</function> is only available in
+	    Python.
+	  </para>
+      <para>
+        It is permissable, and even encouraged, to use <link
+        linkend="Class-Equation-components"><code>Equation.components()</code></link>
+        and <link
+        linkend="Class-Field-components"><code>Field.components()</code></link>
+        for the <varname>eqncomp</varname> and
+        <varname>fieldcomp</varname> arguments.  In most cases this
+        can be done simply.  For example, in
+        <filename>SRC/engine/problem.py</filename> the <xref
+        linkend="Equation-Force_Balance"/> equation and <xref
+        linkend="Field-Displacement"/> field are made conjugate like
+        this:
+        <programlisting>
+ForceBalanceEquation = equation.DivergenceEquation('Force_Balance', Stress, 2)
+Displacement = field.TwoVectorField('Displacement')
+conjugatePair("Elasticity",
+              ForceBalanceEquation,
+              ForceBalanceEquation.components(),
+              Displacement,
+              Displacement.components())</programlisting>
+      </para>
+      <para>
+        Caution is required, however, because the order in which
+        indices are returned by <code>Field.components()</code> might
+        not match the order in which they're returned by
+        <code>Equation.components()</code>.  Consider the <xref
+        linkend="Equation-Plane_Stress"/> equation:
+        <programlisting>
+ForcesOutOfPlane = equation.PlaneFluxEquation('Plane_Stress', Stress, 3) </programlisting>
+
+        The components of a <link
+        linkend="Class-PlaneFluxEquation"><classname>PlaneFluxEquation</classname></link>
+        are the out-of-plane components of its &Flux;, which in this
+        case is a <link
+        linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>.
+        The &ComponentIterator; for the tensor flux returns components
+        in <link linkend="table-voigt">Voigt</link> order:
+        <literallayout class="monospaced">
+>>> list(Stress.components(OUT_OF_PLANE))
+[SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2)]</literallayout>
+
+        which are Voigt indices 2, 3, and 4.  The &Field; that is
+        conjugate to the out-of-plane parts of the <xref
+        linkend="Flux-Stress"/> is the <link
+        linkend="Section-Concepts-Mesh-3D">out-of-plane part</link> of
+        the Displacement, <code>Displacement.out_of_plane()</code>,
+        composed of the <emphasis>x</emphasis>,
+        <emphasis>y</emphasis>, and <emphasis>z</emphasis> derivatives
+        of the <emphasis>z</emphasis> component of the <xref
+        linkend="Field-Displacement"/>.  This is a <link
+        linkend="Class-ThreeVectorField"><classname>ThreeVectorField</classname></link>,
+        and its components are simple vector field indices 0, 1, and
+        2:
+        <literallayout class="monospaced">
+>>> list(Displacement.out_of_plane().components())
+[VectorFieldIndex(0), VectorFieldIndex(1), VectorFieldIndex(2)] </literallayout>
+
+      </para>
+      <para>
+        The equation for the <emphasis>zz</emphasis> (ie, 22)
+        component of the <xref linkend="Flux-Stress"/> should be
+        conjugate to the <emphasis>z</emphasis> (ie, 2) component of
+        the <xref linkend="Field-Displacement"/> derivatives.  But
+        invoking <function>conjugatePair</function> naively, like
+        this:
+        <programlisting>
+conjugatePair("Elasticity",
+              ForcesOutOfPlane,
+              ForcesOutOfPlane.components(),
+              Displacement.out_of_plane(),
+              Displacement.out_of_plane().components()) </programlisting>
+      
+        will associate &Equation; component
+        <code>SymTensoorIndex(2,2)</code> (ie,
+        <emphasis>zz</emphasis>) with &Field; component
+        <code>VectorFieldIndex(0)</code> (ie, <emphasis>x</emphasis>),
+        because those are the first components returned by the
+        iterators.  It will similarly pair
+        <code>SymTensorIndex(0,2)</code> with
+        <code>VectorFieldIndex(2)</code>.  To get the correct
+        conjugacy relations, it's necessary to reverse the order of
+        one of the sets of components:
+        <programlisting>
+conjugatePair("Elasticity",
+              ForcesOutOfPlane,
+              ForcesOutOfPlane.components(),
+              Displacement.out_of_plane(),
+              reversed(list(Displacement.out_of_plane().components()))) </programlisting>
+
+      </para>
+    </refsection>                 <!-- Description -->
+  </refentry>                     <!-- conjugatePair -->
+
+  <!-- ============================================================== -->
+
+  <refentry id="Class-SmallSystem">
+    <refnamediv>
+      <refname>SmallSystem</refname>
+      <refpurpose>
+        A small part of the linear system constructed by &Properties;
+      </refpurpose>
+    </refnamediv>
+    <refsection>
+      <para>TODO</para>
+    </refsection>
+  </refentry>
+  
+  <!-- ============================================================== -->
+
+  <refentry id="Class-CSubProblem">
+    <refnamediv>
+      <refname>CSubProblem</refname>
+      <refpurpose>C++ representation of subproblem</refpurpose>
+    </refnamediv>
+  </refentry>
+
+  <!-- ============================================================== -->
+
+  <refentry id="Class-MasterPosition">
+    <refnamediv>
+      <refname>MasterPosition</refname>
+      <refpurpose>A point in an <link
+      linkend="Class-Element"><classname>Element</classname></link>'s master
+      coordinate space</refpurpose>
+    </refnamediv>
+  </refentry>
+
 
 </reference>
 

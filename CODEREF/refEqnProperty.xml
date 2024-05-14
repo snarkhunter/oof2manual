@@ -11,7 +11,7 @@
 <refentry id="Class-EqnProperty">
   <refnamediv>
     <refname>EqnProperty</refname>
-    <refpurpose>Property that contributes to an &Equation;</refpurpose>
+    <refpurpose>A &Property; that contributes to an &Equation;</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <refsect2>
@@ -189,7 +189,7 @@
 
       </classsynopsis>
     </refsect2>
-    <refsect2>
+    <refsect2 id="Class-PyEqnProperty" xreflabel="PyEqnProperty">
       <title>Python Synopsis</title>
     </refsect2>
   </refsynopsisdiv>
