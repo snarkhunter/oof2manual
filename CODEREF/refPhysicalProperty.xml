@@ -1,0 +1,146 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<refentry id="Class-PhysicalProperty">
+  <refnamediv>
+    <refname>PhysicalProperty</refname>
+    <refpurpose>
+      Intermediate base class for methods shared by
+      <xref linkend="Class-FluxProperty"/> and <xref linkend="Class-EqnProperty"/>
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <literallayout class="monospaced">
+#include "engine/property.h" </literallayout>
+
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>PhysicalProperty</classname>
+        </ooclass>
+        <ooclass>
+          <modifier>public</modifier>
+          <classname><xref linkend="Class-Property"/></classname>
+        </ooclass>
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>int</type>
+          <methodname><link linkend="Class-PhysicalProperty-integration_order">integration_order</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>                 <!-- C++ Synopsis-->
+    <refsect2>
+      <title>Python Synopsis</title>
+      <para>TODO</para>
+    </refsect2>
+  </refsynopsisdiv>
+  
+  <refsection>
+    <title>Overview</title>
+    <para>TODO</para>
+  </refsection>                 <!-- Overview -->
+  <refsection>
+    <title>Methods</title>
+    <para>TODO</para>
+
+    <refsection id="Class-Property-integration_order">
+	  <title>
+        <code>int integration_order(const CSubProblem *subproblem, const Element
+	    *element) const</code>
+      </title>
+	  <para>
+	    <methodname>integration_order</methodname> returns the polynomial
+	  order (or degree) of the part of the flux matrix (computed
+	  by <link
+	  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>
+	  or <link
+	  linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>)
+	  that this <classname>Property</classname> is responsible
+	  for.  All <classname>Properties</classname> that define
+	  <link
+	  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>
+	  or <link
+	  linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>
+	  should define <methodname>integration_order</methodname>.
+	</para>
+	<para>
+	  Because <methodname>fluxmatrix</methodname> and
+	  <methodname>fluxrhs</methodname> use the finite element
+	  shape functions and their derivatives,
+	  <methodname>integration_order</methodname> must find out the
+	  polynomial degree of the shapefunctions.  The current mesh
+	  <classname>Element</classname> is passed in as an argument.
+	  The shapefunction's degree can be found by calling <link
+	  linkend="Class-Element-shapefun_degree"><methodname>Element::shapefun_degree</methodname></link>,
+	  and it's derivative's degree can be found by calling <link
+	  linkend="Class-Element-dshapefun_degree"><methodname>Element::dshapefun_degree</methodname></link>.
+	</para>
+	<warning>
+	  <para>
+	    Do <emphasis>not</emphasis> compute the shapefunction's
+	    derivative's degree by subtracting 1 from the
+	    shapefunction's degree.  For purposes of Gaussian
+	    integration, the degree of the shapefunction is sometimes
+	    less than its actual polynomial degree.  For example, the
+	    linear quadrilateral shapefunction <inlineequation>
+	      <alt role="tex">\((1-x)(1-y)/4\)</alt>
+	    </inlineequation>
+	     can be integrated
+	    exactly with a single Gauss point at (0,0), although its
+	    polynomial degree is 2.  For this function, both
+	    <methodname>shapefun_degree</methodname> and
+	    <methodname>dshapefun_degree</methodname> return 1.
+	  </para>
+	</warning>
+	<para>
+	  As an example, here is the
+	  <methodname>integration_order</methodname> method for the
+	  <classname>Elasticity</classname> class in &oof2;.  The
+	  <methodname>fluxmatrix</methodname> routine always adds a
+	  (constant) modulus times a shape function derivative to the
+	  flux matrix, but when the displacement field has
+	  out-of-plane components, there are terms proportional to the
+	  shape functions as well.
+	  <methodname>integration_order</methodname> must return the
+	  largest relevant degree, so it has to check for out-of-plane
+	  fields:
+
+	  <programlisting>
+int Elasticity::integration_order(const CSubProblem *subproblem, const Element *el) const {
+  if(displacement->in_plane(subproblem))
+    return el->dshapefun_degree();
+  return el->shapefun_degree();
+} </programlisting>
+	  
+	</para>
+  </refsection>                 <!-- integration_order -->
+  
+    
+  </refsection>                 <!-- Methods -->
+</refentry>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("man_oof2.xml" "reference")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

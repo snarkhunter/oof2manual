@@ -376,6 +376,8 @@ params = [<emphasis role="bold">TriclinicRank2TensorParameter</emphasis>(
                   <link
                       linkend="Class-Property-output"><methodname>output</methodname></link>
                   function contributes.
+                  <!-- TODO: more detail here. Strings are the path
+                       names? -->
                 </para>
               </listitem>
 	        </varlistentry> <!-- output -->
@@ -388,7 +390,7 @@ params = [<emphasis role="bold">TriclinicRank2TensorParameter</emphasis>(
                   appear in the GUI.  It will still be available in
                   scripts, for those who are in the know.
                 </para>
-	            </listitem>
+              </listitem>
               </varlistentry> <!-- secret -->
 	          <varlistentry>
                 <term><varname>tip</varname></term>
@@ -1133,3 +1135,18 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
       </table>
     </refsection>               <!-- Property Types -->
   </refentry>                   <!-- PropertyRegistration -->
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

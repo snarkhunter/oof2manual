@@ -57,6 +57,7 @@
 <!ENTITY refPyProperty SYSTEM "CODEREF/refPyProperty.xml">
 <!ENTITY refFluxProperty SYSTEM "CODEREF/refFluxProperty.xml">
 <!ENTITY refEqnProperty SYSTEM "CODEREF/refEqnProperty.xml">
+<!ENTITY refPhysicalProperty SYSTEM "CODEREF/refPhysicalProperty.xml">
 <!ENTITY refAuxProperty SYSTEM "CODEREF/refAuxProperty.xml">
 <!ENTITY refMaterial SYSTEM "CODEREF/refMaterial.xml">
 <!ENTITY appendices SYSTEM "appendices.xml">

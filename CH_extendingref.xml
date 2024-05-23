@@ -40,6 +40,7 @@
     <title>Property and Material Classes</title>
     &refPropertyReg;
     &refProperty;
+    &refPhysicalProperty;
     &refFluxProperty;
     &refEqnProperty;
     &refAuxProperty;

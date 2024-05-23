@@ -25,7 +25,7 @@
         </ooclass>
         <ooclass>
           <modifier>public</modifier>
-          <classname><xref linkend="Class-Property"/></classname>
+          <classname><xref linkend="Class-PhysicalProperty"/></classname>
         </ooclass>
 
         <methodsynopsis>

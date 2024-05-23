@@ -27,6 +27,7 @@
          <classname>AuxiliaryProperty</classname>
        </ooclass>
        <ooclass>
+         <modifier>public</modifier>
          <classname><xref linkend="Class-Property"/></classname>
        </ooclass>
        <constructorsynopsis>
