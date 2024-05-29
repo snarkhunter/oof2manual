@@ -1979,7 +1979,7 @@ from oof2.SWIG.engine import symmmatrix </programlisting>
 	</para>
       </refsection><!-- getIterator -->
     </refsection><!-- Methods -->
-    <refsection id="Class-ScalarOutputVal">
+    <refsection id="Class-ScalarOutputVal" xreflabel="ScalarOutputVal">
       <title>ScalarOutputVal Methods</title>
       <para>
 	Methods that <classname>ScalarOutputVal</classname> has in common

@@ -1257,8 +1257,7 @@ for index in field.components():
             The components of a vector quantity, such as a vector
             &Field; or the divergence of a tensor &Flux;.  Whether or
             not all of the components are included, or only the in- or
-            out-of-plane ones, is determined by the <link
-            linkend="Class-Planarity"><classname>Planarity</classname></link>
+            out-of-plane ones, is determined by the &Planarity;
             argument of the <link
             linkend="Class-Field-components"><function>components()</function></link>
             function call that created the
@@ -1279,9 +1278,7 @@ for index in field.components():
             <classname>OutOfPlaneVectorFieldComponents</classname> and
             <link
             linkend="Class-VectorFieldComponents"><classname>VectorFieldComponents</classname></link>
-            with out-of-plane <link
-            linkend="Class-Planarity"><classname>Planarity</classname></link>
-            is that
+            with out-of-plane &Planarity; is that
             <classname>OutOfPlaneVectorFieldComponents</classname> is
             appropriate for iterating over a list or array of
             components that only includes the out-of-plane components,
@@ -2259,7 +2256,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   <refsynopsisdiv>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <programlisting>>
+	  <programlisting>
 #include "engine/planarity.h"
 
 enum Planarity {IN_PLANE, OUT_OF_PLANE, ALL_INDICES}; </programlisting>

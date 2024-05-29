@@ -255,10 +255,8 @@ from ooflib.SWIG.engine import Flux </literallayout>
 	    <methodname>components</methodname> returns a &Components;
 	    pointer that can be used to loop over and refer to the
 	    components of the <classname>Flux</classname>.  The given
-	    <link
-	    linkend="Class-Planarity"><classname>Planarity</classname></link>
-	    determines whether the iteration should include the in-plane
-	    components, out-of-plane components, or both.
+	    &Planarity; determines whether the iteration should include
+	    the in-plane components, out-of-plane components, or both.
 	  </para>
     </refsection>               <!-- components -->
     <refsection id="Class-Flux-divergencecomponents">

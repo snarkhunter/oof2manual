@@ -14,8 +14,8 @@
     <refpurpose>Register new Properties</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <literallayout class="monospaced">
-from ooflib.engine.propertyregistration import PropertyRegistration</literallayout>
+    <programlisting>
+from ooflib.engine.propertyregistration import PropertyRegistration</programlisting>
     <classsynopsis language="python">
       <ooclass>
         <classname>PropertyRegistration</classname>

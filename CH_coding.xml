@@ -460,8 +460,8 @@ VectorFieldIndex(1)    <lineannotation>[The second component of Displacement]</l
       out-of-plane components</link> of a &Field; or &Flux; (but not
       an &Equation;).  In those cases, the
       <methodname>components()</methodname> method takes an argument
-      of the <xref linkend="Class-Planarity"/> class.  If no argument
-      is provided, as in the examples above, the default planarity is
+      of the &Planarity; class.  If no argument is provided, as in the
+      examples above, the default planarity is
       <varname>ALL_INDICES</varname>.  See <link
       linkend="Class-Field-components"><function>Field::components</function></link>,
       <link

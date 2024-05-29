@@ -253,9 +253,7 @@ True </programlisting>
 	    <link
 	    linkend="Class-Field-components"><methodname>Field::components</methodname></link>,
 	    <methodname>Equation::components</methodname> does not take a
-	    <link
-	    linkend="Class-Planarity"><classname>Planarity</classname></link>
-	    argument.
+	    &Planarity; argument.
 	  </para>
       <para>
         For example, in C++ you can write
