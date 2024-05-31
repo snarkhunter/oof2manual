@@ -24,8 +24,8 @@
     <refsect2>
 	  <title>C++ Synopsis</title>
 
-	  <literallayout class="monospaced">
-#include "engine/equation.h" </literallayout>
+	  <programlisting>
+#include "engine/equation.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Equation</classname>
@@ -87,8 +87,8 @@
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.equation import Equation</literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.equation import Equation</programlisting>
 
 	  <classsynopsis language="python">
 	    <ooclass>
@@ -187,11 +187,11 @@ from ooflib.SWIG.engine.equation import Equation</literallayout>
       <classname>Equation</classname> is created, a reference to it is
       kept in the main &oof2; namespace with the name of the
       &Equation;:
-      <programlisting>
+      <literallayout class="monospaced">
 >>> from ooflib.SWIG.engine.equation import PlaneFluxEquation
 >>> eq = PlaneFluxEquation("StressEq", Stress, 3)   # creates variable StressEq
 >>> StressEq is eq
-True </programlisting>
+True </literallayout>
     </para>
     <para>
 	  Creating an <classname>Equation</classname> object does
@@ -331,8 +331,8 @@ IndexP index = IndexP(eqn->getIndex("x")); </programlisting>
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/equation.h" </literallayout>
+      <programlisting>
+#include "engine/equation.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>DivergenceEquation</classname>
@@ -344,8 +344,8 @@ IndexP index = IndexP(eqn->getIndex("x")); </programlisting>
     </refsect2><!-- C++ synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.equation import DivergenceEquation </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.equation import DivergenceEquation </programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 	      <classname>DivergenceEquation</classname>
@@ -477,8 +477,8 @@ from ooflib.SWIG.engine.equation import DivergenceEquation </literallayout>
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/equation.h" </literallayout>
+      <programlisting>
+#include "engine/equation.h"</programlisting>
       <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>PlaneFluxEquation</classname>
@@ -490,8 +490,8 @@ from ooflib.SWIG.engine.equation import DivergenceEquation </literallayout>
     </refsect2><!-- C++ synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.equation import PlaneFluxEquation </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.equation import PlaneFluxEquation</programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>PlaneFluxEquation</classname>
@@ -615,15 +615,15 @@ from ooflib.SWIG.engine.equation import PlaneFluxEquation </literallayout>
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
+      <programlisting>
 #include "engine/equation.h"
-static Equation* Equation::getEquation(const std::string&amp; name); </literallayout>
+static Equation* Equation::getEquation(const std::string&amp; name);</programlisting>
     </refsect2>
     <refsect2>
       <title>Python Synopsis</title>
-      <literallayout class="monospaced">
+      <programlisting>
 from ooflib.SWIG.engine import equation
-eq = equation.getEquation(name) </literallayout>
+eq = equation.getEquation(name)</programlisting>
     </refsect2>
     <refsect2>
       <title>Source Files</title>
@@ -670,10 +670,10 @@ eq = equation.getEquation(name) </literallayout>
 DivergenceEquation *eq = dynamic_cast&lt;DivergenceEquation*&gt;(getEquation("Force_Balance")); </programlisting>
       In Python, it returns a reference to an object
       of the appropriate derived class:
-      <programlisting>
+      <literallayout class="monospaced">
 >>> eq = getEquation("Force_Balace")
 >>> type(eq)
-&lt;class 'ooflib.SWIG.engine.equation.DivergenceEquation&gt; </programlisting>
+&lt;class 'ooflib.SWIG.engine.equation.DivergenceEquation&gt;</literallayout>
 
       <function>getEquation</function> is defined in the main &oof2;
       namespace so that it can be used freely in <link

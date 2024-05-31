@@ -25,8 +25,8 @@
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/flux.h" </literallayout>
+	  <programlisting>
+#include "engine/flux.h"</programlisting>
       <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Flux</classname>
@@ -108,8 +108,8 @@
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine import Flux </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine import Flux</programlisting>
   	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>Flux</classname>
@@ -296,36 +296,36 @@ from ooflib.SWIG.engine import Flux </literallayout>
           (<link
           linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
           is the &FieldIndex; subclass for symmetric tensor indices):
-            <programlisting>
+          <literallayout class="monospaced">
 >>> list(Stress.components())
-[SymTensorIndex(0,0), SymTensorIndex(1,1), SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2), SymTensorIndex(0,1)]</programlisting>
+[SymTensorIndex(0,0), SymTensorIndex(1,1), SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2), SymTensorIndex(0,1)] </literallayout>
 
           <link
           linkend="Class-FieldIndex-integer"><function>FieldIndex::integer</function></link>
           converts a &FieldIndex; into the equivalent integer position
           in an array or list:
-          <programlisting>
+          <literallayout class="monospaced">
 >>> list(ij.integer() for ij in Stress.components())
-[0, 1, 2, 3, 4, 5] </programlisting>
+[0, 1, 2, 3, 4, 5] </literallayout>
 
           <function>components(OUT_OF_PLANE)</function> simply returns
           the out-of-plane parts of this set of indices, with the same
           integer positions:
-          <programlisting>
+          <literallayout class="monospaced">
 >>> list(Stress.components(OUT_OF_PLANE))
 [SymTensorIndex(2,2), SymTensorIndex(1,2), SymTensorIndex(0,2)]
 >>> list(ij.integer() for ij in Stress.components(OUT_OF_PLANE))
-[2, 3, 4] </programlisting>
+[2, 3, 4] </literallayout>
 
           <function>outOfPlaneComponents</function> return the same
           indices, using a different &FieldIndex; subclass, and the
           integer indices are appropriate for a list or array
           containing only the out-of-plane components:
-          <programlisting>
+          <literallayout class="monospaced">
 >>> list(Stress.outOfPlaneComponents())
 [OutOfPlaneSymTensorIndex(2, 2), OutOfPlaneSymTensorIndex(1, 2), OutOfPlaneSymTensorIndex(0, 2)]
 >>> list(ij.integer() for ij in Stress.outOfPlaneComponents())
-[0, 1, 2] </programlisting>
+[0, 1, 2] </literallayout>
           </para>
           <para>
             A similar issue arises with <link
@@ -717,16 +717,16 @@ from ooflib.SWIG.engine.flux import SymmetricTensorFlux </literallayout>
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
+      <programlisting>
 #include "engine/flux.h"
-static Flux *Flux::getFlux(const std::string&amp; name); </literallayout>
-    </refsect2>
+static Flux *Flux::getFlux(const std::string&amp; name); </programlisting>
+    </refsect2>                     <!-- C++ Synopsis-->
     <refsect2>
       <title>Python Synopsis</title>
-      <literallayout class="monospaced">
+      <programlisting>
 from ooflib.SWIG.engine import flux
-f = flux.getFlux(name) </literallayout>
-    </refsect2>
+f = flux.getFlux(name) </programlisting>
+    </refsect2>                     <!-- Python Synopsis -->
     <refsect2>
       <title>Source Files</title>
       <itemizedlist spacing="compact">
@@ -747,7 +747,7 @@ f = flux.getFlux(name) </literallayout>
           </simpara>
         </listitem>
       </itemizedlist>
-    </refsect2>
+    </refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -765,17 +765,18 @@ f = flux.getFlux(name) </literallayout>
   <refsection>
     <title>Description</title>
     <para>
-      <function>getFlux</function> returns a previously created
-      &Flux; object.  In C++ it returns a pointer to the base class,
-      which may be cast to the derived class:
+      <function>getFlux</function> returns a previously created &Flux;
+      object.  In C++ it returns a pointer to the base class, which
+      may be cast to the derived class,
+      <foreignphrase>e.g</foreignphrase>:
       <programlisting>
 VectorFlux *hf = dynamic_cast&lt;VectorFlux*&gt;(getField("Heat_Flux")); </programlisting>
       In Python, it returns a reference to an object
       of the appropriate derived class:
-      <programlisting>
+      <literallayout class="monospaced">
 >>> hf = getFlux("Heat_Flux")
 >>> type(hf)
-&lt;class 'ooflib.SWIG.engine.flux.VectorFlux'&gt; </programlisting>
+&lt;class 'ooflib.SWIG.engine.flux.VectorFlux'&gt; </literallayout>
 
       <function>getFlux</function> is defined in the main &oof2;
       namespace so that it can be used freely in <link

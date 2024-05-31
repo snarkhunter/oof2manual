@@ -17,8 +17,8 @@
     <title>Synopses</title>
     <refsect2>
 	  <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
-#include "engine/property.h" </literallayout>
+      <programlisting>
+#include "engine/property.h" </programlisting>
 
       <classsynopsis language="cpp">
         <ooclass>
@@ -50,10 +50,11 @@
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>const MasterPosition&amp;</type>
+		    <type>MasterPosition&amp;</type>
 		    <parameter>masterpos</parameter>
 	      </methodparam>
-	    </methodsynopsis>
+	    </methodsynopsis>       <!-- begin_point -->
+        
 	    <methodsynopsis>
 	      <modifier>virtual</modifier>
 	      <void/>
@@ -75,28 +76,10 @@
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>const MasterPosition&amp;</type>
+		    <type>MasterPosition&amp;</type>
 		    <parameter>masterpos</parameter>
 	      </methodparam>
-        </methodsynopsis>
-
-        <methodsynopsis>
-	      <modifier>virtual</modifier>
-	      <type>int</type>
-	      <methodname><link
-		                  linkend="Class-FluxProperty-integration_order">integration_order</link></methodname>
-	      <methodparam>
-            <modifier>const</modifier>
-	        <type>CSubProblem*</type>
-	        <parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-            <modifier>const</modifier>
-		    <type><classname><xref linkend="Class-Element"/></classname>*</type>
-		    <parameter>element</parameter>
-	      </methodparam>
-	      <modifier>const</modifier>
-	    </methodsynopsis>     <!-- integration_order -->
+        </methodsynopsis>       <!-- end_point -->
 
 	    <methodsynopsis>
 	      <modifier>virtual</modifier>
@@ -104,7 +87,7 @@
 	      <methodname><link linkend="Class-FluxProperty-flux_matrix">flux_matrix</link></methodname>
 	      <methodparam>
             <modifier>const</modifier>
-	        <type>const FEMesh*</type>
+	        <type>FEMesh*</type>
 	        <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
@@ -242,100 +225,187 @@
             <parameter>linsys</parameter>
           </methodparam>            
         </methodsynopsis>     <!-- flux_offset -->
-
-        <methodsynopsis>
-          <modifier>virtual</modifier>
-          <void/>
-          <methodname><link
-                          linkend="Class-FluxProperty-begin_point">begin_point</link></methodname>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-FEMesh"/>*</type>
-            <parameter>mesh</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-Element"/>*</type>
-            <parameter>element</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-			<type><xref linkend="Class-Flux"/>*</type>
-            <parameter>flux</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-            <parameter>pt</parameter>
-          </methodparam>
-        </methodsynopsis>     <!-- begin_point -->
-        <methodsynopsis>
-          <modifier>virtual</modifier>
-          <void/>
-          <methodname><link
-                          linkend="Class-FluxProperty-end_point">end_point</link></methodname>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-FEMesh"/>*</type>
-            <parameter>mesh</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-Element"/>*</type>
-            <parameter>element</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-			<type><xref linkend="Class-Flux"/>*</type>
-            <parameter>flux</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-            <parameter>pt</parameter>
-          </methodparam>
-        </methodsynopsis>     <!-- end_point -->
-
+        
       </classsynopsis>
-    </refsect2>               <!-- C++ FluxProperty Synopsis-->
+      <refsect3>
+        <title>Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.C</filename>: C++ code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.h</filename>: C++ header
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.swg</filename>: SWIG source
+              code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.swg</filename>: Python code
+              included in the SWIG output
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>               <!-- Source files -->
+    </refsect2>                 <!-- C++ FluxProperty Synopsis-->
     
     <refsect2 id="Class-PyFluxProperty" xreflabel="PyFluxProperty">
       <title>Python Synopsis</title>
-    </refsect2>
-    <refsect2>
-      <title>Source Files</title>
-      <itemizedlist spacing="compact">
-        <listitem>
-          <simpara>
-            <filename>SRC/engine/property.C</filename>: C++ code
-          </simpara>
-        </listitem>
-        <listitem>
-          <simpara>
-            <filename>SRC/engine/property.h</filename>: C++ header
-          </simpara>
-        </listitem>
-        <listitem>
-          <simpara>
-            <filename>SRC/engine/property.swg</filename>: SWIG source
-            code
-          </simpara>
-        </listitem>
-        <listitem>
-          <simpara>
-            <filename>SRC/engine/property.swg</filename>: Python code
-            included in the SWIG output
-          </simpara>
-        </listitem>
-      </itemizedlist>
-    </refsect2>                 <!-- Source files -->
+      <programlisting>
+from ooflib.SWIG.engine import pypropertywrapper </programlisting>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>PyFluxProperty</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname><link linkend="Class-FluxProperty-begin_point">begin_point</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>flux</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- begin_point -->
+        <methodsynopsis>
+          <methodname><link linkend="Class-FluxProperty-end_point">end_point</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>flux</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- end_point -->
+
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-FluxProperty-flux_matrix">flux_matrix</link></methodname>
+	      <methodparam>
+	        <parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+	        <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>node</parameter>
+	      </methodparam>             
+	      <methodparam>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>position</parameter>
+	      </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+	    </methodsynopsis>       <!-- flux_matrix -->        
+
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-FluxProperty-flux_value">flux_value</link></methodname>
+	      <methodparam>
+	        <parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+	        <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>node</parameter>
+	      </methodparam>             
+	      <methodparam>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>position</parameter>
+	      </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+	    </methodsynopsis>       <!-- flux_value -->        
+
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-FluxProperty-static_flux_value">static_flux_value</link></methodname>
+	      <methodparam>
+	        <parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+	        <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>node</parameter>
+	      </methodparam>             
+	      <methodparam>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>position</parameter>
+	      </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+	    </methodsynopsis>       <!-- static_flux_value -->        
+
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-FluxProperty-flux_offset">flux_offset</link></methodname>
+	      <methodparam>
+	        <parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+	        <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>node</parameter>
+	      </methodparam>             
+	      <methodparam>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>position</parameter>
+	      </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+	    </methodsynopsis>       <!-- flux_offset -->        
+
+      </classsynopsis>
+    </refsect2>                 <!-- Python Synopsis-->
     
   </refsynopsisdiv>
 
   <refsection>
     <title>Overview</title>
     <para>
-      TODO 
+      <!-- TODO See comments in property.h about different ways of
+           specifying a FluxProperty -->
+      
     </para>
   </refsection>               <!-- FluxProperty Overview -->
   <refsection>
@@ -345,39 +415,45 @@
   <refsection>
     <title>Methods</title>
 
-
-
-    <!-- begin_point and end_point moved here from refProperty.xml -->
     <refsection id="Class-FluxProperty-begin_point">
-	  <title><code>void begin_point(const FEMesh*, const const Element*, const Flux*, const MasterPosition&amp;)</code></title>
-	<para>
-	  Within each element, &oof2; loops over gausspoints.
-	  <classname>Property</classname> objects can use this
-	  begin_point hook to perform expensive computations that are
-	  required at an evaluation point, and cache the results.
-	  There is a matching <methodname><link
-	  linkend="Class-Property-end_point">end_point</link></methodname>
-	  function which can be used to clear the cached data.
-	</para>
-      </refsection><!-- begin_point -->
-      <refsection id="Class-Property-end_point">
-	<title><code>void end_point(const FEMesh*, const Element*, const Flux*, const MasterPosition&amp;)</code></title>
-	<para>
-	  <methodname>end_point</methodname> is just like
-	  <methodname><link
-	  linkend="Class-Property-begin_point">begin_point</link></methodname>,
-	  except that it's called <emphasis>after</emphasis> &oof2; is
-	  done computing the contribution at a point.  The
-	  <methodname>end_point</methodname> method can be used to
-	  clean up any temporary objects allocated by
-	  <methodname><link
-	  linkend="Class-Property-begin_point">begin_point</link></methodname>.
-	</para>
-      </refsection><!-- end_point -->
+	  <title><code>void begin_point(const FEMesh*, const Element*, const Flux*, const MasterPosition&amp;)</code></title>
+	  <para>
+        When building the finite element matrices and vectors, &oof2;
+        loops over the Gauss points within each &elem;.  At each Gauss
+        point it calls all of the <classname>FluxProperty</classname>
+        methods that have been redefined in the derived classes,
+        starting with <function>begin_point()</function>.  If the
+        other methods share some expensive compuatations, the
+        computations can be performed in
+        <function>begin_point()</function> and their results cached.
+	  </para>
+      <para>
+        The default implementation of
+        <function>begin_point()</function> does nothing.
+      </para>
+    </refsection>               <!-- begin_point -->
+  
+    <refsection id="Class-FluxProperty-end_point">
+	  <title><code>void end_point(const FEMesh*, const Element*, const Flux*, const MasterPosition&amp;)</code></title>
+	  <para>
+	    <function>end_point</function> is just like <link
+	    linkend="Class-Property-begin_point"><function>begin_point</function></link>,
+	    except that it's called <emphasis>after</emphasis> &oof2; is
+	    done computing the contribution at a point.  The
+	    <function>end_point()</function> method can be used to clean
+	    up any temporary objects allocated by <methodname><link
+	    linkend="Class-Property-begin_point">begin_point</link></methodname>.
+	  </para>
+      <para>
+        The default implementation of <function>end_point()</function>
+        does nothing.
+      </para>
+    </refsection><!-- end_point -->
 
 
-      <!-- fluxmatrix moved from refProperty.xml
-           TODO Needs to be updated. -->
+      <!-- fluxmatrix moved from refProperty.xml TODO Needs to be
+           updated. -->
+      
       <refsection id="Class-Property-fluxmatrix">
 	<title><code>void fluxmatrix(...)</code></title>
 	<para>

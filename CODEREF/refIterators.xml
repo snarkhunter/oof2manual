@@ -19,8 +19,8 @@
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 		  <classname>FieldIndex</classname>
@@ -52,8 +52,8 @@
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
+	  <programlisting>
+from ooflib.SWIG.engine.fieldindex import FieldIndex</programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 		  <classname>FieldIndex</classname>
@@ -213,8 +213,8 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
           <classname>IndexP</classname>
@@ -404,8 +404,8 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 		  <classname>ScalarFieldIndex</classname>
@@ -421,8 +421,8 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex </literallayout>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
+	  <programlisting>
+from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex</programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 		  <classname>ScalarFieldIndex</classname>
@@ -495,8 +495,8 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 		  <classname>VectorFieldIndex</classname>
@@ -520,8 +520,8 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex </literallayout>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
+	  <programlisting>
+from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
 		  <classname>VectorFieldIndex</classname>
@@ -607,8 +607,8 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 		  <classname>OutOfPlaneVectorFieldIndex</classname>
@@ -630,8 +630,8 @@ from ooflib.SWIG.engine.fieldindex import VectorFieldIndex</literallayout>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literallayout>
+	  <programlisting>
+from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex</programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
 		  <classname>OutOfPlaneVectorFieldIndex</classname>
@@ -715,8 +715,8 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 		  <classname>SymTensorIndex</classname>
@@ -773,8 +773,8 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneVectorFieldIndex </literalla
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.fieldindex import SymTensorIndex</programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
 		  <classname>SymTensorIndex</classname>
@@ -953,8 +953,8 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 	<title>Synopses</title>
 	<refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+	  <programlisting>
+#include "engine/fieldindex.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 		  <classname>OutOfPlaneSymTensorIndex</classname>
@@ -967,8 +967,8 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex </literallayout>
 	</refsect2>                 <!-- C++ Synopsis -->
 	<refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex</programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
 		  <classname>OutOfPlaneSymTensorIndex</classname>
@@ -1073,8 +1073,8 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+      <programlisting>
+#include "engine/fieldindex.h"</programlisting>
       <classsynopsis language="cpp">
         <ooclass>
           <classname>Components</classname>
@@ -1097,8 +1097,8 @@ from ooflib.SWIG.engine.fieldindex import OutOfPlaneSymTensorIndex </literallayo
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
       <title>Python Synopsis</title>
-      <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import Components </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.fieldindex import Components</programlisting>
       <classsynopsis language="python">
         <ooclass>
           <classname>Components</classname>
@@ -1403,8 +1403,8 @@ for index in field.components():
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+      <programlisting>
+#include "engine/fieldindex.h" </programlisting>
       <classsynopsis language="cpp">
         <ooclass>
           <classname>ComponentIterator</classname>
@@ -1589,8 +1589,8 @@ for index in field.components():
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+      <programlisting>
+#include "engine/fieldindex.h"</programlisting>
       <classsynopsis language="cpp">
         <ooclass>
           <classname>ComponentIteratorP</classname>
@@ -1645,8 +1645,8 @@ for index in field.components():
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
       <title>Python Synopsis</title>
-      <literallayout class="monospaced">
-from ooflib.SWIG.engine.fieldindex import ComponentIteratorP </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.fieldindex import ComponentIteratorP</programlisting>
 
       <classsynopsis language="python">
         <ooclass>
@@ -1800,8 +1800,8 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   </refnamediv>
   <refsynopsisdiv>
     <title>C++ Synopsis</title>
-    <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+    <programlisting>
+#include "engine/fieldindex.h"</programlisting>
     <classsynopsis language="cpp">
       <ooclass>
         <classname>EmptyFieldIterator</classname>
@@ -1866,8 +1866,8 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   </refnamediv>
   <refsynopsisdiv>
     <title>C++ Synopsis</title>
-    <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+    <programlisting>
+#include "engine/fieldindex.h"</programlisting>
     <classsynopsis language="cpp">
       <ooclass>
         <classname>ScalarFieldIterator</classname>
@@ -1949,8 +1949,8 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   </refnamediv>
   <refsynopsisdiv>
     <title>C++ Synopsis</title>
-    <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+    <programlisting>
+#include "engine/fieldindex.h"</programlisting>
     <classsynopsis language="cpp">
       <ooclass>
         <classname>VectorFieldIterator</classname>
@@ -2027,8 +2027,8 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   </refnamediv>
   <refsynopsisdiv>
     <title>C++ Synopsis</title>
-    <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+    <programlisting>
+#include "engine/fieldindex.h"</programlisting>
     <classsynopsis language="cpp">
       <ooclass>
         <classname>OutOfPlaneVectorFieldIterator</classname>
@@ -2111,8 +2111,8 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   </refnamediv>
   <refsynopsisdiv>
     <title>C++ Synopsis</title>
-    <literallayout class="monospaced">
-#include "engine/fieldindex.h" </literallayout>
+    <programlisting>
+#include "engine/fieldindex.h"</programlisting>
     <classsynopsis language="cpp">
       <ooclass>
         <classname>SymTensorIterator</classname>

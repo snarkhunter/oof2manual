@@ -29,8 +29,8 @@
         class.  They should be derived from one of the subclasses
         <link linkend="Class-Property-subclasses">listed below</link>.
       </para>
-	  <literallayout class="monospaced">
-#include "engine/property.h" </literallayout>
+	  <programlisting >
+#include "engine/property.h" </programlisting>
       <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>Property</classname>
@@ -261,23 +261,30 @@
       </refsect3>                 <!-- C++ Source files -->
     </refsect2>                   <!-- C++ Property Synopsis -->
 
-    <refsect2>
+    <refsect2 id="Class-PyPropertyMethods">
       <title>Python Synopsis</title>
       <para>
         New <classname>Property</classname> subclasses written in
         Python should be derived from <xref
-        linkend="Class-FluxProperty"/> or <xref
-        linkend="Class-EqnProperty"/>.  <xref
-        linkend="Class-FluxProperty"/> and <xref
-        linkend="Class-EqnProperty"/> share a base class,
+        linkend="Class-PyFluxProperty"/>, <xref
+        linkend="Class-PyEqnProperty"/>, or <xref
+        linkend="Class-PyAuxProperty"/>.  <xref
+        linkend="Class-PyFluxProperty"/> and <xref
+        linkend="Class-PyEqnProperty"/> share a C++ base class,
         <classname>PyPropertyMethods</classname>, that contains the
         Python C API calls for the methods in
         <classname>Property</classname>.  This synopsis lists the
         methods that may be redefined in a Python derived class when
-        creating a new &property;.
+        creating a new &property;.<footnote><simpara>The methods are
+        listed here as if they belong to a Python class called
+        <classname>PyPropertyMethods</classname>.  Don't be deceived.
+        There is no Python version of this class.  This listing just
+        shows the Python form of the C++ methods that can be
+        overridden by defining methods in a Python
+        subclass.</simpara></footnote>
       </para>
-      <literallayout class="monospaced">
-from ooflib.SWIG.engine import pypropertywrapper </literallayout>
+      <programlisting class="monospaced">
+from ooflib.SWIG.engine import pypropertywrapper </programlisting>
       <classsynopsis language="python">
         <ooclass>
           <classname>PyPropertyMethods</classname>
@@ -441,7 +448,7 @@ def <link linkend="Class-Property-get_mesh_data">get_mesh_data</link>(mesh) </pr
     <para>
 	  &Property; classes can be constructed either in C++ or Python.
 	  Python classes are somewhat simpler to program and build, but
-	  C++ classes are significantly more efficient, computationally.
+	  C++ classes are significantly more computationally efficient.
     </para>
     <para>
       In C++, new <classname>Property</classname> classes should be
@@ -473,25 +480,55 @@ def <link linkend="Class-Property-get_mesh_data">get_mesh_data</link>(mesh) </pr
       methods, so that in the derived classes it is safe to omit any
       functions which are irrelevant to a particular physical
       property.  The exception is
-      <function>integration_order()</function> which must be provided
+      <function>integration_order()</function>, which must be provided
       in all <classname><xref
       linkend="Class-FluxProperty"/></classname> and <classname><xref
       linkend="Class-EqnProperty"/></classname> subclasses.
     </para>
     <para>
       In Python, new <classname>Property</classname> classes should be
-      derived from either <classname><xref
-      linkend="Class-PyFluxProperty"/></classname> or <classname><xref
-      linkend="Class-PyEqnProperty"/></classname>. Those swigged C++
-      classes are derived from <classname><xref
-      linkend="Class-FluxProperty"/></classname> and <classname><xref
-      linkend="Class-EqnProperty"/></classname>.  The classes store a
-      pointer to a Python <classname>Property</classname> object, and
-      use the Python C API to call that object's Python methods (the
-      ones defined in the extension class).  If the Python method
-      doesn't exist, they fall back to the default C++ method. A new
-      Python subclass does not need to define all of the virtual
-      functions.
+      derived from one of
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <classname><xref linkend="Class-PyFluxProperty"/></classname>
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <classname><xref
+            linkend="Class-PyEqnProperty"/></classname>, or
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <classname><xref
+            linkend="Class-PyAuxProperty"/></classname>.
+          </simpara>
+        </listitem>
+      </itemizedlist>
+      These Python classes are derived via swig from C++ classes with
+      the same names.  The C++ classes store a pointer to a Python
+      <classname>Property</classname> object, and use the Python C API
+      to call that object's Python methods (the ones defined in the
+      extension class).  A Python subclass does not need to define all
+      of the virtual functions.  If a Python method doesn't exist, the
+      default C++ method will be called.<footnote>
+      <para>
+        The Python classes <classname><xref
+        linkend="Class-PyFluxProperty"/></classname>, <classname><xref
+        linkend="Class-PyEqnProperty"/></classname> and
+        <classname><xref linkend="Class-PyAuxProperty"/></classname>
+        are also derived from the C++ classes <classname><xref
+        linkend="Class-FluxProperty"/></classname>, <classname><xref
+        linkend="Class-EqnProperty"/></classname> and <classname><xref
+        linkend="Class-AuxProperty"/></classname> via swig, but they
+        do not actually give access to any of the C++ class's methods
+        other than the constructors and destructors.  All calls to
+        Python <classname>Property</classname> methods are done via
+        Python API calls in
+        <filename>SRC/engine/pypropertywrapper.C</filename>.
+        </para></footnote>
     </para>
     <para>
       It is possible to mix C++ and Python
@@ -574,13 +611,14 @@ Property(const std::string&amp; name, PyObject *registration) </literallayout>
 	  <title>Python</title>
 	  <para>
 	    The Python constructor for a <classname><xref
-	    linkend="Class-PyFluxProperty"/></classname> or
-	    <classname><xref linkend="Class-PyEqnProperty"/></classname>
+	    linkend="Class-PyFluxProperty"/></classname>,
+	    <classname><xref linkend="Class-PyEqnProperty"/></classname>,
+        or <classname><xref linkend="Class-PyAuxProperty"/></classname>
 	    subclass must look like this:
 
-  	    <literallayout class="monospaced">
+  	    <programlisting>
 def __init__(self, registration, name, ...):
-    PyFluxProperty.__init__(self, registration, name)     <lineannotation># or PyEqnProperty</lineannotation> </literallayout>
+    PyFluxProperty.__init__(self, registration, name) <lineannotation># or PyEqnProperty or PyAuxProperty</lineannotation> </programlisting>
 
 	    As in the <link linkend="Class-Property-Cconstructor">C++
 	    constructor</link>, the <varname>name</varname> and
@@ -593,6 +631,8 @@ def __init__(self, registration, name, ...):
 	    might have.  These must have the same names and be in the same
 	    order as the parameters in the associated <link
 	    linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>.
+        If the <classname>Property</classname> has no parameters, the
+        derived class constructor does not need to be defined.
 	  </para>
     </refsection><!-- Python constructor -->
   </refsection><!-- constructors -->
@@ -666,7 +706,7 @@ private:
 };    </programlisting>
 
         and obtains their values by defining
-        <methodname>cross_reference</methodname> like this:
+        <methodname>cross_reference()</methodname> like this:
       
 	  <programlisting>
 void AnisotropicThermalExpansion::cross_reference(Material *mat) {
@@ -689,7 +729,7 @@ class AnisotropicThermalExpansion(ThermalExpansion):
       </para>
       <para>
 	    The default base class
-	    <methodname>cross_reference</methodname> function does
+	    <methodname>cross_reference()</methodname> function does
 	    nothing.
 	  </para>
     </refsection>               <!-- cross_reference -->
@@ -718,7 +758,7 @@ class AnisotropicThermalExpansion(ThermalExpansion):
 	    <function>precompute()</function> is called when a &mesh; is
 	    being solved.  It's called before any other
 	    <classname>Property</classname> methods, other than
-	    <function>cross_reference</function>.  It should compute any
+	    <function>cross_reference()</function>.  It should compute any
 	    quantities that the <classname>Property</classname> needs that
 	    depend only upon <classname>Property</classname> data. It can
 	    use <classname>Property</classname> data from other
@@ -877,9 +917,9 @@ void MyProperty::clear_mesh_data(FEMesh* mesh, void* data) const {
 	    adjusting material parameters, or generating output files.
 	  </para>
 	  <para>
-	    Do not confuse <methodname>post_process</methodname> with
+	    Do not confuse <methodname>post_process()</methodname> with
 	    <link
-	    linkend="Class-Property-end_element"><methodname>end_element</methodname></link>.
+	    linkend="Class-Property-end_element"><methodname>end_element()</methodname></link>.
 	    <methodname>end_element</methodname> is called during finite
 	    element matrix construction, before the equations are solved.
 	  </para>
@@ -899,19 +939,19 @@ void MyProperty::clear_mesh_data(FEMesh* mesh, void* data) const {
         <itemizedlist spacing="compact">
           <listitem>
             <simpara>
-              <methodname>is_symmetric_K</methodname> for the
+              <methodname>is_symmetric_K()</methodname> for the
               stiffness matrix (coefficient of the &flux; gradient),
             </simpara>
           </listitem>
           <listitem>
             <simpara>
-              <methodname>is_symmetric_C</methodname> for the damping
+              <methodname>is_symmetric_C()</methodname> for the damping
               matrix (coefficient of the first time derivative), and
             </simpara>
           </listitem>
           <listitem>
             <simpara>
-              <methodname>is_symmetric_M</methodname> for the mass
+              <methodname>is_symmetric_M()</methodname> for the mass
               matrix (coefficient of the second time derivative).
             </simpara>
           </listitem>
@@ -1052,7 +1092,8 @@ bool ThermalExpansion::is_symmetric_K(const CSubProblem* subproblem) const {
 	  <filename>SRC/engine/properties/thermalexpansion/thermalexpansion.C</filename>
 	  in the &oof2; source code.  It computes one of two types of
 	  output, <literal>Strain</literal> and
-	  <literal>Energy</literal>, each of which has two variants.
+	  <literal>Energy</literal>, each of which has two variants.  It
+      can also return the material parameters.
 	</para>
 	<programlisting>
 void ThermalExpansion::output(FEMesh *mesh,
@@ -1064,83 +1105,88 @@ void ThermalExpansion::output(FEMesh *mesh,
 {
   const std::string &amp;outputname = output->name(); <co id="output-name"/>
   if(outputname == "Strain") {
-    // The parameter is a Python StrainType instance.  Extract its name.
+    <lineannotation>// The parameter is a Python StrainType instance.  Extract its name.</lineannotation>
     std::string stype = output->getRegisteredParamName("type"); <co id="output-paramname"/>
     SymmMatrix3 *sdata = dynamic_cast&lt;SymmMatrix3*>(data); <co id="output-cast"/>
-    // Compute alpha*T with T interpolated to position pos.
+    <lineannotation>// Compute Temperature at position pos.</lineannotation>
     double t = temperature->value(mesh, element, pos);  <co id="output-T"/>
 
+    <lineannotation>// Compute alpha*T and add it to the output.</lineannotation>
     if(stype == "Thermal") <co id="output-stype"/>
-      *sdata += expansiontensor*(t-tzero_);
+      *sdata += expansiontensor(mesh, element, pos)*(t-T0);  <co id="output-tzero"/>
     else if(stype == "Elastic")
-      *sdata -= expansiontensor*(t-tzero_);
-  } // strain output ends here
+      *sdata -= expansiontensor(mesh, element, pos)*(t-T0);
+  } <lineannotation>// end outputname == "Strain"</lineannotation>
 
-  if(outputname == "Energy") {
-    // The parameter is a Python Enum instance.  Extract its name.
+  if(outputname == "Energy") { <co id="output-energy-name"/>
+    <lineannotation>// The parameter is a Python Enum instance.  Extract its name.</lineannotation>
     std::string etype = output->getEnumParam("etype"); <co id="output-paramenum"/>
     if(etype == "Total" || etype == "Elastic") { <co id="output-etype"/>
       ScalarOutputVal *edata = dynamic_cast&lt;ScalarOutputVal*>(data); <co id="output-edata"/>
       SymmMatrix3 thermalstrain;
       const Cijkl modulus = elasticity->cijkl(mesh, element, pos); <co id="output-modulus"/>
       double t = temperature->value(mesh, element, pos);
-      thermalstrain = expansiontensor*(t-tzero_);
+      thermalstrain = expansiontensor(mesh, element, pos)*(t-T0);
       SymmMatrix3 thermalstress(modulus*thermalstrain);
       SymmMatrix3 strain;
       findGeometricStrain(mesh, element, pos, strain); <co id="output-geomstrain"/>
       double e = 0;
-      for(int i=0; i&lt;3; i++) { <co id="output-esum"/>
+      for(SpaceIndex i=0; i&lt;3; i++) { <co id="output-esum"/>
         e += thermalstress(i,i)*(-strain(i,i) + 0.5*thermalstrain(i,i));
-        int j = (i+1)%3;
+        SpaceIndex j = (i+1)%3;
         e += 2*thermalstress(i,j)*(-strain(i,j) + 0.5*thermalstrain(i,j));
       }
       *edata += e;
     }
-  } //energy output ends here
+  } <lineannotation>// end outputname == "Energy"</lineannotation>
 
   if(outputname == "Material Constants:Couplings:Thermal Expansion T0") {  <co id="output-t0"/>
     ScalarOutputVal *sdata = dynamic_cast&lt;ScalarOutputVal*&gt;(data); <co id="output-t0-cast"/>
-    *sdata = tzero_;
+    *sdata = T0;
   }
 } </programlisting>
 
     <calloutlist>
-	  <callout arearefs="output-name">
+	  <callout arearefs="output-name output-energy-name">
 	    <para>
-	      The name of the output indicates what type of quantity
-	      is to be computed.
+	      The name of the output indicates what type of quantity is to
+	      be computed.  A <classname>Property</classname> can make
+	      contributions to more than one type of <xref
+	      linkend="Class-PropertyOutput"/>, so it is important to
+	      check the name. All of the names handled by this routine
+	      must be listed in the <varname>name</varname> parameter of
+	      this <classname>Property</classname>'s <xref
+	      linkend="Class-PropertyOutputRegistration"/>.
 	    </para>
 	  </callout>
 	  <callout arearefs="output-paramname">
 	    <para>
-	      This call to
-	      <methodname>PropertyOutput::getRegisteredParamName</methodname>
-	      retrieves the <classname>PropertyOutput</classname>'s
-	      <literal>type</literal> parameter.  Parameters for <link
-	      linkend="Class-PropertyOutput"><classname>PropertyOutputs</classname></link>
-	      are defined in their <link
-	      linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistrations</classname></link>.
-	      The <link
-	      linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
-	      class provides a number of functions for retrieving
-	      parameters of different kinds (integer, float, string,
-	      <foreignphrase>etc.</foreignphrase>).  In this case,
-	      <varname>type</varname> is a <link
-	      linkend="Class-RegisteredParameter"><classname>RegisteredParameter</classname></link>,
-	      so we use
-	      <methodname>getRegisteredParamName</methodname> to
-	      retrieve its name.
+          The <literal>Strain</literal> output has a parameter named
+          <literal>type</literal>, and this call to
+          <methodname>PropertyOutput::getRegisteredParamName()</methodname>
+          retrieves its value.  Parameters for <link
+          linkend="Class-PropertyOutput"><classname>PropertyOutputs</classname></link>
+          are defined in their <link
+          linkend="Class-PropertyOutputRegistration"><classname>PropertyOutputRegistrations</classname></link>.
+          The <link
+          linkend="Class-PropertyOutput"><classname>PropertyOutput</classname></link>
+          class provides a number of functions for retrieving
+          parameters of different kinds (integer, float, string,
+          <foreignphrase>etc.</foreignphrase>).  In this case,
+          <varname>type</varname> is a <link
+          linkend="Class-RegisteredParameter"><classname>RegisteredParameter</classname></link>,
+          so we use <methodname>getRegisteredParamName()</methodname>.
 	    </para>
 	  </callout>
 	  <callout arearefs="output-cast">
 	    <para>
 	      Because we know that this is a <literal>Strain</literal>
-	      output, we can cast the <varname>data</varname> pointer from
-	      its base class, <link
+	      output whose value is a 3&times;3 symmetric matrix, we can
+	      cast the <varname>data</varname> pointer from its base
+	      class, <link
 	      linkend="Class-OutputVal"><classname>OutputVal</classname></link>,
 	      to its derived class, <link
-	      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>,
-	      which holds a 3&times;3 symmetric matrix output value.
+	      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>.
 	    </para>
 	  </callout>
 	  <callout arearefs="output-T">
@@ -1161,17 +1207,53 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	  </callout>
 	  <callout arearefs="output-stype">
 	    <para>
-	      These lines add the thermal expansion contribution to
+	      These lines make the thermal expansion contribution to
 	      the strain, with the appropriate sign (depending on the
 	      type of strain being computed).
-	      <varname>expansiontensor</varname> is a <link
+        </para>
+      </callout>
+      <callout arearefs="output-tzero">
+        <para>
+          <varname>T0</varname> is a floating point
+	      number stored in the
+	      <classname>ThermalExpansion</classname> class.  It is set by
+	      the <classname>ThermalExpansion</classname> constructor.
+          The constructor is called with a <varname>T0</varname>
+          argument because its <xref
+          linkend="Class-PropertyRegistration"/> includes it in its
+          list of parameters:
+          <programlisting>
+PropertyRegistration(
+  name="Couplings:ThermalExpansion:Isotropic",
+  params = [
+       <emphasis role="bold">parameter.FloatParameter("T0", 0.0, tip="Reference temperature")</emphasis>,
+       parameter.FloatParameter("alpha", 1.0, tip="Expansion coefficient")],
+  ...) </programlisting>
+        </para>
+        <para>
+	      <varname>expansiontensor()</varname> is a virtual function
+	      in the <classname>ThermalExpansion</classname> class that
+	      returns a <link
 	      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
-	      object which can be added directly to
-	      <varname>*sdata</varname>, which is the
-	      <classname>SymmMatrix3</classname> cast of
-	      <varname>data</varname>.
+	      object.  The various isotropic and anistropic
+	      <classname>ThermalExpansion</classname> subclasses compute
+	      the matrix from their parameters.  For example, the above
+          <xref linkend="Class-PropertyRegistration"/> for isotropic
+          thermal expansion includes a scalar <varname>alpha</varname>
+          parameter, but the registrations for anisotopic properties
+          have tensor parameters.
+        </para>
+        <para>
+	      <varname>*sdata</varname> is the <xref
+	      linkend="Class-OutputVal"/> object, cast into a
+	      <classname>SymmMatrix3</classname>.  The expansion tensor
+	      times temperature is also a
+	      <classname>SymmMatrix3</classname> and can be added directly
+	      to <varname>*sdata</varname>.
 	    </para>
-	  </callout>
+        <para>
+        </para>
+      </callout>
 	  <callout arearefs="output-paramenum">
 	    <para>
 	      The <varname>etype</varname> parameter for the
@@ -1211,9 +1293,11 @@ temperature = dynamic_cast&lt;ScalarField*>(Field::getField("Temperature")); </p
 	      This retrieves the elastic modulus <varname>Cijkl</varname>
 	      from the <classname>Material</classname>'s
 	      <classname>Elasticity</classname> property.  The
-	      variable <varname>elasticity</varname> was set by
+	      variable <varname>elasticity</varname> is a data member of
+          the <classname>ThermalExpansion</classname> class. It
+          was set by
 	      this <classname>Property</classname>'s
-	      <methodname>cross_reference</methodname> function, like
+	      <methodname>cross_reference()</methodname> function, like
 	      this:
 	      <programlisting>
 void ThermalExpansion::cross_reference(Material *mat) {
@@ -1241,8 +1325,11 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	  </callout>
 	  <callout arearefs="output-esum">
 	    <para>
-	      This loop computes the contribution of thermal
-	      expansion to the elastic energy.
+	      This loop computes the contribution of thermal expansion to
+	      the elastic energy.  <link
+	      linkend="Class-SpaceIndex"><classname>SpaceIndex</classname></link>
+	      is a glorified integer that can represent a dimension of
+	      space.
 	    </para>
 	  </callout>
       <callout arearefs="output-t0">
@@ -1257,10 +1344,34 @@ void ThermalExpansion::cross_reference(Material *mat) {
         <para>
           <varname>T0</varname> is a scalar, so
           <varname>data</varname> needs to be cast to a
-          <classname>ScalarOutputVal</classname> pointer.
+          <classname><xref linkend="ScalarOutputVal"/></classname> pointer.
         </para>
       </callout>
 	</calloutlist>
+    <para>
+      As an example in Python, here is
+      <methodname>output</methodname>
+      from
+      <filename>SRC/engine/properties/elasticity/pyelasticity.py</filename>,
+      which defines an elasticity <classname>Property</classname> in
+      Python (for illustrative purposes only):
+      <programlisting>
+def output(self, mesh, element, output, pos):
+    if output.name() == "Energy":
+        etype = output.getEnumParam("etype")
+        if etype in ("Total", "Elastic"):
+            mod = self.modulus()
+            # strain is a SymmMatrix3.  modulus is a cijkl.Cijkl
+            strain = cstrain.getGeometricStrain(mesh, element, pos, False)
+            stress = mod*strain # another SymmMatrix3.
+            <emphasis role="bold">return outputval.ScalarOutputVal(0.5*stress.contract(strain))</emphasis> </programlisting>
+
+       Note that a new <xref linkend="Class-OutputVal"/> is created
+       and returned, containing the <classname>Property</classname>'s
+       contribution to the output quantity.  Because energy is a
+       scalar, the <classname>OutputVal</classname> is a <xref
+       linkend="Class-ScalarOutputVal"/>.
+    </para>
   </refsection><!-- output -->
   
     </refsection><!-- Methods -->

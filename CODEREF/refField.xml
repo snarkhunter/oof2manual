@@ -23,8 +23,8 @@
     <refsect2>
 	  <title>C++ Synopsis</title>
 
-	  <literallayout class="monospaced">
-#include "engine/field.h"	  </literallayout>
+      <programlisting>
+#include "engine/field.h"</programlisting>
 
       <classsynopsis language="cpp">
 	    <ooclass>
@@ -248,8 +248,8 @@
     
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.field import Field </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.field import Field</programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 	      <classname>Field</classname>
@@ -615,22 +615,22 @@ for index in displacement.components():
           <varname>Displacement</varname> field is a 3-vector, with
           indices 0, 1, and 2 obtained from its
           <function>components()</function> method:
-          <programlisting>
+          <literallayout class="monospaced">
 >>> list(Displacement.out_of_plane().<emphasis role="bold">components()</emphasis>)
 [VectorFieldIndex(0), VectorFieldIndex(1), VectorFieldIndex(2)]
 >>> list(i.integer() for i in Displacement.out_of_plane().<emphasis role="bold">components()</emphasis>)
-[0, 1, 2] </programlisting>
+[0, 1, 2] </literallayout>
 
           On the other hand,
           <function>outOfPlaneComponents()</function> returns only the
           z component, but gives it integer index 0, because it's the
           first and only out-of-plane component:
           
-          <programlisting>
+          <literallayout class="monospaced">
 >>> list(Displacement.out_of_plane().<emphasis role="bold">outOfPlaneComponents()</emphasis>)
 [OutOfPlaneVectorFieldIndex(2)]
 >>> list(i.integer() for i in Displacement.out_of_plane().<emphasis role="bold">outOfPlaneComponents()</emphasis>)
-[0]       </programlisting>
+[0] </literallayout>
         </para>
         <para>
           A similar issue arises with <link
@@ -686,8 +686,8 @@ IndexP index = IndexP(field->getIndex("x")); </programlisting>
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/field.h" </literallayout>
+      <programlisting>
+#include "engine/field.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>CompoundField</classname>
@@ -741,8 +741,8 @@ IndexP index = IndexP(field->getIndex("x")); </programlisting>
     </refsect2><!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.field import CompoundField </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.field import CompoundField </programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 	      <classname>CompoundField</classname>
@@ -854,24 +854,24 @@ from ooflib.SWIG.engine.field import CompoundField </literallayout>
         linkend="Class-TwoVectorField"/> with x and y components
         only.  As such, it has no out-of-plane components &emdash;
         it has a z component that is implicitly zero:
-        <programlisting>
+        <literallayout class="monospaced">
 >>> list(Displacement.components())
 [VectorFieldIndex(0), VectorFieldIndex(1)]
 >>> list(Displacment.components(OUT_OF_PLANE))
-[] </programlisting>
+[] </literallayout>
         As explained in <xref linkend="Section-Concepts-Mesh-3D"/>,
         the out-of-plane part of a
         <classname>CompoundField</classname> is the z derivative of
         all of its components (including its z components).  For
         <varname>Displacement</varname>, that's a 3-vector:
-        <programlisting>
+        <literallayout class="monospaced">
 >>> list(Displacement.out_ouf_plane().components())
-[VectorFieldIndex(0), VectorFieldIndex(1), VectorFieldIndex(2)] </programlisting>
+[VectorFieldIndex(0), VectorFieldIndex(1), VectorFieldIndex(2)] </literallayout>
          There is one out-of-plane component of the out-of-plane
          &Field;:
-         <programlisting>
+         <literallayout class="monospaced">
 >>> list(Displacement.out_of_plane().components(OUT_OF_PLANE))
-[VectorFieldIndex(2)] </programlisting>
+[VectorFieldIndex(2)] </literallayout>
       </para>
     </caution>
 
@@ -956,8 +956,8 @@ from ooflib.SWIG.engine.field import CompoundField </literallayout>
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/field.h" </literallayout>
+      <programlisting>
+#include "engine/field.h" </programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>ScalarField</classname>
@@ -1008,8 +1008,8 @@ from ooflib.SWIG.engine.field import CompoundField </literallayout>
     </refsect2><!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.field import ScalarField </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.field import ScalarField </programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
 	      <classname>ScalarField</classname>
@@ -1146,8 +1146,8 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/field.h"</literallayout>
+      <programlisting>
+#include "engine/field.h" </programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>TwoVectorField</classname>
@@ -1172,8 +1172,8 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.field import TwoVectorField </programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 	      <classname>TwoVectorField</classname>
@@ -1285,8 +1285,8 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
     <title>Synopses</title>
     <refsect2>
 	  <title>C++ Synopsis</title>
-	  <literallayout class="monospaced">
-#include "engine/field.h"</literallayout>
+      <programlisting>
+#include "engine/field.h" </programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
 	      <classname>ThreeVectorField</classname>
@@ -1311,8 +1311,8 @@ from ooflib.SWIG.engine.field import TwoVectorField </literallayout>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-	  <literallayout class="monospaced">
-from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
+      <programlisting>
+from ooflib.SWIG.engine.field import ThreeVectorField </programlisting>
       <classsynopsis language="python">
 	    <ooclass>
 	      <classname>ThreeVectorField</classname>
@@ -1401,16 +1401,16 @@ from ooflib.SWIG.engine.field import ThreeVectorField </literallayout>
     <title>Synopses</title>
     <refsect2>
       <title>C++</title>
-      <literallayout class="monospaced">
+      <programlisting>
 #include "engine/field.h"
-static Field *Field::getField(const std::string &amp;name);</literallayout>
+static Field *Field::getField(const std::string &amp;name); </programlisting>
     </refsect2>
     
     <refsect2>
       <title>Python</title>
-      <literallayout class="monospaced">
+      <programlisting>
 from ooflib.SWIG.engine import field
-f = field.getField(name) </literallayout>
+f = field.getField(name) </programlisting>
     </refsect2>
     <refsect2>
       <title>Source Files</title>
@@ -1462,10 +1462,10 @@ f = field.getField(name) </literallayout>
 ScalarField *T = dynamic_cast&lt;ScalarField*&gt;(getField("Temperature")); </programlisting>
       In Python, it returns a reference to an object
       of the appropriate derived class:
-      <programlisting>
+      <literallayout class="monospaced">
 >>> T = getField("Temperature")
 >>> type(T)
-&lt;class 'ooflib.SWIG.engine.field.ScalarField'&gt; </programlisting>
+&lt;class 'ooflib.SWIG.engine.field.ScalarField'&gt; </literallayout>
 
       <function>getFlux</function> is defined in the main &oof2;
       namespace so that it can be used freely in <link

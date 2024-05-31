@@ -65,6 +65,12 @@
           </simpara>
         </listitem>
       </itemizedlist>
+    </refsect2>                 <!-- C++ Source Files -->
+    <refsect2 id="Class-PyAuxProperty" xreflabel="PyAuxProperty">
+      <title>Python Synopsis</title>
+      <para>
+        TODO
+      </para>
     </refsect2>
   </refsynopsisdiv>
   <refsection>

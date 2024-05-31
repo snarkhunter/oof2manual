@@ -12,16 +12,23 @@
   <refnamediv>
     <refname>PhysicalProperty</refname>
     <refpurpose>
-      Intermediate base class for methods shared by
-      <xref linkend="Class-FluxProperty"/> and <xref linkend="Class-EqnProperty"/>
+      Intermediate base class for <xref linkend="Class-FluxProperty"/>
+      and <xref linkend="Class-EqnProperty"/>
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Synopses</title>
+    <para>
+      Extension &Properties; derived from <classname><xref
+      linkend="Class-FluxProperty"/></classname> or <classname><xref
+      linkend="Class-EqnProperty"/></classname> must redefine <link
+      linkend="Class-PhysicalProperty-integration_order"><function>integration_order()</function></link>,
+      in either C++ or Python.
+    </para>
     <refsect2>
       <title>C++ Synopsis</title>
-      <literallayout class="monospaced">
-#include "engine/property.h" </literallayout>
+      <programlisting>
+#include "engine/property.h"</programlisting>
 
       <classsynopsis language="cpp">
         <ooclass>
@@ -35,95 +42,287 @@
           <modifier>virtual</modifier>
           <type>int</type>
           <methodname><link linkend="Class-PhysicalProperty-integration_order">integration_order</link></methodname>
-          <void/>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>CSubProblem*</type>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Element*</type>
+            <parameter>element</parameter>
+          </methodparam>
           <modifier>const</modifier>
         </methodsynopsis>
       </classsynopsis>
     </refsect2>                 <!-- C++ Synopsis-->
+    
     <refsect2>
       <title>Python Synopsis</title>
-      <para>TODO</para>
-    </refsect2>
+      <para>
+        The Python classes <classname><xref
+        linkend="Class-PyFluxProperty"/></classname> and
+        <classname><xref linkend="Class-PyEqnProperty"/></classname>
+        are derived from a C++ base class,
+        <classname>PyPhysicalPropertyMethods</classname>.
+        <classname>PyPhysicalPropertyMethods</classname> defines only
+        one function, <methodname>integration_order()</methodname>,
+        that can be redefined in a Python
+        subclass.<footnote><simpara>As with <link
+        linkend="Class-PyPropertyMethods"><classname>PyPropertyMethods</classname></link>,
+        there is no actual Python version of this class.  But a class
+        derived from <classname><xref
+        linkend="Class-PyFluxProperty"/></classname> or
+        <classname><xref linkend="Class-PyEqnProperty"/></classname>
+        will act as if it's derived from
+        <classname>PyPhysicalPropertyMethods</classname>.</simpara></footnote>
+      </para>
+      <programlisting>
+from ooflib.SWIG.engine import pypropertywrapper </programlisting>
+      <classsynopsis language="python">      
+        <ooclass>
+          <classname>PyPhysicalPropertyMethods</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname><link linkend="Class-PhysicalProperty-integration_order">integration_order</link></methodname>
+          <methodparam>
+            <parameter>subproblem</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+        </methodsynopsis>
+      </classsynopsis>
+
+      </refsect2>
   </refsynopsisdiv>
   
   <refsection>
     <title>Overview</title>
-    <para>TODO</para>
+    <para>
+      <classname>PhysicalProperty</classname> is a subclass of
+      &Property; and a base class of <link
+      linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>
+      and <link
+      linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>,
+      the classes that define the physics behavior of materials.
+      Users should not derive new classes from
+      <classname>PhysicalProperty</classname> directly.
+    </para>
   </refsection>                 <!-- Overview -->
   <refsection>
     <title>Methods</title>
-    <para>TODO</para>
-
     <refsection id="Class-Property-integration_order">
 	  <title>
         <code>int integration_order(const CSubProblem *subproblem, const Element
 	    *element) const</code>
       </title>
-	  <para>
-	    <methodname>integration_order</methodname> returns the polynomial
-	  order (or degree) of the part of the flux matrix (computed
-	  by <link
-	  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>
-	  or <link
-	  linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>)
-	  that this <classname>Property</classname> is responsible
-	  for.  All <classname>Properties</classname> that define
-	  <link
-	  linkend="Class-Property-fluxmatrix"><methodname>fluxmatrix</methodname></link>
-	  or <link
-	  linkend="Class-Property-fluxrhs"><methodname>fluxrhs</methodname></link>
-	  should define <methodname>integration_order</methodname>.
-	</para>
-	<para>
-	  Because <methodname>fluxmatrix</methodname> and
-	  <methodname>fluxrhs</methodname> use the finite element
-	  shape functions and their derivatives,
-	  <methodname>integration_order</methodname> must find out the
-	  polynomial degree of the shapefunctions.  The current mesh
-	  <classname>Element</classname> is passed in as an argument.
-	  The shapefunction's degree can be found by calling <link
-	  linkend="Class-Element-shapefun_degree"><methodname>Element::shapefun_degree</methodname></link>,
-	  and it's derivative's degree can be found by calling <link
-	  linkend="Class-Element-dshapefun_degree"><methodname>Element::dshapefun_degree</methodname></link>.
-	</para>
-	<warning>
-	  <para>
-	    Do <emphasis>not</emphasis> compute the shapefunction's
-	    derivative's degree by subtracting 1 from the
-	    shapefunction's degree.  For purposes of Gaussian
-	    integration, the degree of the shapefunction is sometimes
-	    less than its actual polynomial degree.  For example, the
-	    linear quadrilateral shapefunction <inlineequation>
-	      <alt role="tex">\((1-x)(1-y)/4\)</alt>
-	    </inlineequation>
-	     can be integrated
-	    exactly with a single Gauss point at (0,0), although its
-	    polynomial degree is 2.  For this function, both
-	    <methodname>shapefun_degree</methodname> and
-	    <methodname>dshapefun_degree</methodname> return 1.
+      <para>
+        When &oof2; converts an equation like <xref
+        linkend="Eqn-Divergence"/> or <xref
+        linkend="Eqn-TimeDivergence"/> to matrix form, it replaces the
+        &fields; by an expansion in the &elem;'s <link
+        linkend="Section-Concepts-Mesh-Geometry">shape
+        functions</link> 
+        N<subscript>i</subscript>(<emphasis role="bold">x</emphasis>),
+        multiplies everything by a test function (which is another
+        shape function, N<subscript>j</subscript>(<emphasis
+        role="bold">x</emphasis>)), and then integrates over the
+        entire mesh (<foreignphrase>i.e,</foreignphrase> over each
+        element).  Divergence terms are integrated by parts, which
+        replaces the test function by its derivative.
+      </para>
+      <para>
+        The integration over the elements is done by <ulink
+        url="https://en.wikipedia.org/wiki/Gaussian_quadrature"
+        role="external">Gaussian quadrature</ulink>.  To choose the
+        appropriate number of Gauss points, it's necessary to know the
+        polynomial degree of the integrand in <emphasis>x</emphasis>
+        and <emphasis>y</emphasis>.
+        Generally, higher order polynomials require more points.
+        Choosing an integration order that is too large will slow down
+        the calculation.  Choosing one that is too small could lead to
+        incorrect results.
+      </para>
+      <para>
+        The method <function>integration_order()</function>, which
+        must be defined in each
+        <classname>PhysicalProperty</classname> class, returns the
+        polynomial degree of the integrand.  The degree depends on the
+        structure of the integrand and on the polynomial degrees of
+        the shape functions and their derivatives.  These can be
+        obtained from <link
+        linkend="Class-Element-shapefun_degree"><function>Element::shapefun_degree()</function></link>
+        and <link
+        linkend="Class-Element-dshapefun_degree"><function>Element::dshapefun_degree()</function></link>.
+      </para>
+      <para>
+        For example, a <classname>Property</classname> that adds a
+        constant to the force term in <xref linkend="Eqn-Divergence"/>
+        or <xref linkend="Eqn-TimeDivergence"/> will have all of its
+        space dependence in the test function, so it should define
+        <function>integration_order()</function> like this:
+        <programlisting>
+int ForceDensity::integration_order(const CSubProblem*, const Element* el) const
+{
+  return el-><emphasis role="bold">shapefun_degree</emphasis>();
+} </programlisting>
+        A constant term added to the flux in either equation will be
+        integrated by parts, moving a derivative operation from the
+        divergence to the test function. Thus the degree of the
+        integrand is the degree of the derivative of the shape
+        function:
+        <programlisting>
+int StressFreeStrain::integration_order(const CSubProblem*, const Element* el)
+  const
+{
+  return el-><emphasis role="bold">dshapefun_degree</emphasis>();
+} </programlisting>
+      </para>
+      <para>
+        A &Property; that contributes to the <emphasis
+        role="bold">M</emphasis> or <emphasis role="bold">C</emphasis>
+        terms in <xref linkend="Eqn-TimeDivergence"/> will have
+        spatial dependence from both the test function and the
+        expansion of the &field;, yielding the product of two shape
+        functions, so the total polynomial degree is twice the shape
+        function degree:
+        <programlisting>
+int MassDensityProp::integration_order(const CSubProblem*, const Element* el) const {
+   // <lineannotation>The degree of a product is the sum of the degrees of the factors.</lineannotation>
+  return <emphasis role="bold">2</emphasis> * el-><emphasis role="bold">shapefun_degree</emphasis>();
+} </programlisting>
+      </para>
+
+      <para>
+        Sometimes the polynomial degree depends on whether or not a
+        &field; has an <link
+        linkend="Section-Concepts-Mesh-3D">out-of-plane</link> part.
+        Consider <link
+        linkend="Property-Mechanical-Elasticity-Isotropic">elasticity</link>
+        or <link
+        linkend="Property-Thermal-Conductivity-Isotropic">thermal
+        conductivity</link>.  The &flux; is proportional to the
+        gradient of a &field;, and the &field; <inlineequation><alt
+        role="tex">\(\phi\)</alt></inlineequation> can be expanded in
+        shape functions.  Schematically<footnote><simpara>The index
+        <emphasis>i</emphasis> stands for a combination of node
+        indices and field component indices.  This is just a schematic
+        representation.</simpara></footnote>
+        <equation>
+          <alt role="tex">
+            \[
+            \sigma({\bf x}) = \mathrm{modulus}\cdot\sum_i
+            {\partial\over\partial\bf x} N_i({\bf x})\phi_i({\bf x}_i)
+            \]
+          </alt>
+        </equation>
+        where <inlineequation><alt role="tex">\({\bf
+        x}_i\)</alt></inlineequation> is the position of &node;
+        <emphasis>i</emphasis>.
+
+        Taking the divergence, multiplying by a test function
+        N<subscript>j</subscript> and integrating (by parts) over the
+        area yields
+        <equation>
+          <alt role="tex">
+            \[
+            \int d{\bf x}\, N_j({\bf x}) \nabla\cdot\sigma({\bf x}) =
+            - \mathrm{modulus}\cdot
+            \sum_i \int d{\bf x}\,
+            {\partial N_j({\bf x})\over\partial{\bf x}}\,
+            {\partial N_i({\bf x})\over\partial{\bf x}} \phi_i
+            + \mathrm{boundary terms}
+            \]
+          </alt>
+        </equation>
+        Since there are two factors of the shape function derivatives,
+        the polynomial degree is twice the the degree of the
+        derivative of the shape functions.
+      </para>
+      <para>
+        However, this isn't quite correct.  If the &field; has an <link
+        linkend="Section-Concepts-Mesh-3D">out-of-plane</link> part,
+        
+        <equation>
+          <alt role="tex">
+            \[
+            \psi({\bf x}) \equiv (\partial\phi_x/\partial z,\,
+                                  \partial\phi_y/\partial z,\,
+                                  \partial\phi_z/\partial z)
+            \]
+          </alt>
+        </equation>
+        it is also expanded in shape functions,
+        <equation>
+          <alt role="tex">
+            \[
+            \psi({\bf x}) = \sum_i N_i({\bf x}) \psi_i({\bf x}_i)
+            \]
+          </alt>
+        </equation>
+        so the &flux; is
+        <equation id="Eqn-oopflux">
+          <alt role="tex">
+            \[
+            \sigma({\bf x}) = \mathrm{modulus}\cdot \sum_i
+            \left(
+            {\partial N_i({\bf x})\over\partial x}\phi_x +
+            {\partial N_i({\bf y})\over\partial y}\phi_y +
+            N_i({\bf x})\psi_z
+            \right)
+            \]
+          </alt>
+        </equation>
+        Taking the divergence and integrating by parts, the last term
+        in <xref linkend="Eqn-oopflux"/> will have one factor of
+
+        <inlineequation>
+          <alt role="tex">
+            \(\partial N({\bf x})/\partial{\bf x}\)
+          </alt>
+        </inlineequation>
+
+        from the divergence and one factor of
+
+        <inlineequation>
+          <alt role="tex">
+            \(N({\bf x})\)
+          </alt>
+        </inlineequation>
+
+        from the flux, which is a higher order polynomial than the
+        first two terms.  Therefore for this &Property;,
+        <function>integration_order()</function> should be
+        
+        <programlisting>
+int Elasticity::integration_order(const CSubProblem *subp, const Element *el)
+  const
+{
+  if(displacement->in_plane(subp))
+    // <lineannotation>in-plane: two derivatives of N(x)</lineannotation>
+    return 2*el->dshapefun_degree();
+  // <lineannotation>out-of-plane: one N(x) and one derivative of N(x)</lineannotation>  
+  return el->shapefun_degree() + el->dshapefun_degree();
+} </programlisting>
+      </para>
+      
+	  <warning>
+	    <para>
+	      Do <emphasis>not</emphasis> compute the shapefunction's
+	      derivative's degree by subtracting 1 from the
+	      shapefunction's degree.  For purposes of Gaussian
+	      integration, the degree of the shapefunction is sometimes
+	      less than its actual polynomial degree.  For example, the
+	      linear quadrilateral shapefunction <inlineequation>
+	      <alt role="tex">\((1-x)(1-y)/4\)</alt></inlineequation>
+	      can be integrated
+	      exactly with a single Gauss point at (0,0), although its
+	      polynomial degree is 2.  For this function, both
+	      <function>shapefun_degree()</function> and
+	      <function>dshapefun_degree()</function> return 1.
 	  </para>
 	</warning>
-	<para>
-	  As an example, here is the
-	  <methodname>integration_order</methodname> method for the
-	  <classname>Elasticity</classname> class in &oof2;.  The
-	  <methodname>fluxmatrix</methodname> routine always adds a
-	  (constant) modulus times a shape function derivative to the
-	  flux matrix, but when the displacement field has
-	  out-of-plane components, there are terms proportional to the
-	  shape functions as well.
-	  <methodname>integration_order</methodname> must return the
-	  largest relevant degree, so it has to check for out-of-plane
-	  fields:
-
-	  <programlisting>
-int Elasticity::integration_order(const CSubProblem *subproblem, const Element *el) const {
-  if(displacement->in_plane(subproblem))
-    return el->dshapefun_degree();
-  return el->shapefun_degree();
-} </programlisting>
-	  
-	</para>
   </refsection>                 <!-- integration_order -->
   
     
