@@ -94,7 +94,7 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
         </methodsynopsis>
       </classsynopsis>
 
-      </refsect2>
+    </refsect2>                 <!-- Python Synopsis -->
   </refsynopsisdiv>
   
   <refsection>
@@ -213,13 +213,16 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
           <alt role="tex">
             \[
             \sigma({\bf x}) = \mathrm{modulus}\cdot\sum_i
-            {\partial\over\partial\bf x} N_i({\bf x})\phi_i({\bf x}_i)
+            {\partial\over\partial\bf x} N_i({\bf x})\phi({\bf x}_i)
             \]
           </alt>
         </equation>
         where <inlineequation><alt role="tex">\({\bf
         x}_i\)</alt></inlineequation> is the position of &node;
-        <emphasis>i</emphasis>.
+        <emphasis>i</emphasis>, and <inlineequation><alt
+        role="tex">\(\phi({\bf x}_i)\)</alt></inlineequation>, the
+        &field; at &node; <emphasis>i</emphasis>, is a constant.
+       
 
         Taking the divergence, multiplying by a test function
         N<subscript>j</subscript> and integrating (by parts) over the
@@ -231,14 +234,14 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             - \mathrm{modulus}\cdot
             \sum_i \int d{\bf x}\,
             {\partial N_j({\bf x})\over\partial{\bf x}}\,
-            {\partial N_i({\bf x})\over\partial{\bf x}} \phi_i
-            + \mathrm{boundary terms}
+            {\partial N_i({\bf x})\over\partial{\bf x}} \phi({\bf x}_i)
+            + \mathrm{boundary\ terms}
             \]
           </alt>
         </equation>
-        Since there are two factors of the shape function derivatives,
-        the polynomial degree is twice the the degree of the
-        derivative of the shape functions.
+        The only position dependence comes from the shape functions,
+        so the polynomial degree is twice the the degree of the shape
+        function derivatives.
       </para>
       <para>
         However, this isn't quite correct.  If the &field; has an <link
@@ -257,7 +260,7 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
         <equation>
           <alt role="tex">
             \[
-            \psi({\bf x}) = \sum_i N_i({\bf x}) \psi_i({\bf x}_i)
+            \psi({\bf x}) = \sum_i N_i({\bf x}) \psi({\bf x}_i)
             \]
           </alt>
         </equation>
@@ -267,9 +270,9 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             \[
             \sigma({\bf x}) = \mathrm{modulus}\cdot \sum_i
             \left(
-            {\partial N_i({\bf x})\over\partial x}\phi_x +
-            {\partial N_i({\bf y})\over\partial y}\phi_y +
-            N_i({\bf x})\psi_z
+            {\partial N_i({\bf x})\over\partial x}\phi_x({\bf x}_i) +
+            {\partial N_i({\bf y})\over\partial y}\phi_y({\bf x}_i) +
+            N_i({\bf x})\psi_z({\bf x}_i)
             \right)
             \]
           </alt>
