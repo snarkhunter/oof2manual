@@ -1311,15 +1311,14 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	      is defined in <filename>SRC/engine/cstrain.C</filename>
 	      and declared in
 	      <filename>SRC/engine/cstrain.h</filename>.  It computes
-	      <inlineequation>
-		<alt role="tex">\(\epsilon_{ij}=0.5(\partial u_i/\partial x_j
-		  + \partial u_j/\partial x_i)\)
-		</alt>
-	      </inlineequation>
+          <emphasis>
+            &epsi;<subscript>ij</subscript> =
+            (&part;u<subscript>i</subscript>/&part;x<subscript>j</subscript>
+            +
+            &part;u<subscript>j</subscript>/&part;x<subscript>i</subscript>)
+          </emphasis>
 	      where
-	      <inlineequation>
-		<alt role="tex">\(u\)</alt>
-	      </inlineequation>
+          <emphasis>u</emphasis>
 	      is the displacement field.
 	    </para>
 	  </callout>
@@ -1344,7 +1343,8 @@ void ThermalExpansion::cross_reference(Material *mat) {
         <para>
           <varname>T0</varname> is a scalar, so
           <varname>data</varname> needs to be cast to a
-          <classname><xref linkend="ScalarOutputVal"/></classname> pointer.
+          <classname><xref
+          linkend="Class-ScalarOutputVal"/></classname> pointer.
         </para>
       </callout>
 	</calloutlist>

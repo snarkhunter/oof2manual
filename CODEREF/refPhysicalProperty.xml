@@ -75,7 +75,8 @@
         linkend="Class-PyFluxProperty"/></classname> or
         <classname><xref linkend="Class-PyEqnProperty"/></classname>
         will act as if it's derived from
-        <classname>PyPhysicalPropertyMethods</classname>.</simpara></footnote>
+        <classname>PyPhysicalPropertyMethods</classname> in some
+        ways.</simpara></footnote>
       </para>
       <programlisting>
 from ooflib.SWIG.engine import pypropertywrapper </programlisting>
@@ -173,8 +174,7 @@ int ForceDensity::integration_order(const CSubProblem*, const Element* el) const
         integrand is the degree of the derivative of the shape
         function:
         <programlisting>
-int StressFreeStrain::integration_order(const CSubProblem*, const Element* el)
-  const
+int StressFreeStrain::integration_order(const CSubProblem*, const Element* el) const
 {
   return el-><emphasis role="bold">dshapefun_degree</emphasis>();
 } </programlisting>
@@ -203,9 +203,9 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
         or <link
         linkend="Property-Thermal-Conductivity-Isotropic">thermal
         conductivity</link>.  The &flux; is proportional to the
-        gradient of a &field;, and the &field; <inlineequation><alt
-        role="tex">\(\phi\)</alt></inlineequation> can be expanded in
-        shape functions.  Schematically<footnote><simpara>The index
+        gradient of a &field;, and the &field; &#x1D711; can be
+        expanded in shape functions.
+        Schematically<footnote><simpara>The index
         <emphasis>i</emphasis> stands for a combination of node
         indices and field component indices.  This is just a schematic
         representation.</simpara></footnote>
@@ -213,15 +213,19 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
           <alt role="tex">
             \[
             \sigma({\bf x}) = \mathrm{modulus}\cdot\sum_i
-            {\partial\over\partial\bf x} N_i({\bf x})\phi({\bf x}_i)
+            {\partial\over\partial\bf x} N_i({\bf x})\varphi({\bf x}_i)
             \]
           </alt>
         </equation>
-        where <inlineequation><alt role="tex">\({\bf
-        x}_i\)</alt></inlineequation> is the position of &node;
-        <emphasis>i</emphasis>, and <inlineequation><alt
-        role="tex">\(\phi({\bf x}_i)\)</alt></inlineequation>, the
-        &field; at &node; <emphasis>i</emphasis>, is a constant.
+        where
+
+        <emphasis role="bold">x</emphasis><subscript><emphasis>i</emphasis></subscript>
+
+        is the position of &node; <emphasis>i</emphasis>, and
+
+        &#x1D711;(<emphasis role="bold">x</emphasis><subscript><emphasis>i</emphasis></subscript>),
+
+        the &field; at &node; <emphasis>i</emphasis>, is a constant.
        
 
         Taking the divergence, multiplying by a test function
@@ -234,14 +238,14 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             - \mathrm{modulus}\cdot
             \sum_i \int d{\bf x}\,
             {\partial N_j({\bf x})\over\partial{\bf x}}\,
-            {\partial N_i({\bf x})\over\partial{\bf x}} \phi({\bf x}_i)
+            {\partial N_i({\bf x})\over\partial{\bf x}} \varphi({\bf x}_i)
             + \mathrm{boundary\ terms}
             \]
           </alt>
         </equation>
         The only position dependence comes from the shape functions,
         so the polynomial degree is twice the the degree of the shape
-        function derivatives.
+        function derivatives, <code>2*el->dshapefun_degree()</code>.
       </para>
       <para>
         However, this isn't quite correct.  If the &field; has an <link
@@ -250,13 +254,16 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
         <equation>
           <alt role="tex">
             \[
-            \psi({\bf x}) \equiv (\partial\phi_x/\partial z,\,
-                                  \partial\phi_y/\partial z,\,
-                                  \partial\phi_z/\partial z)
+            \psi({\bf x}) \equiv (\partial\varphi_x/\partial z,\,
+                                  \partial\varphi_y/\partial z,\,
+                                  \partial\varphi_z/\partial z)
             \]
           </alt>
         </equation>
-        it is also expanded in shape functions,
+        
+        those components also contribute to the flux.  Expanding the
+        out-of-plane &field; in shape functions,
+
         <equation>
           <alt role="tex">
             \[
@@ -264,43 +271,36 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             \]
           </alt>
         </equation>
-        so the &flux; is
+
+        the &flux; becomes
+
         <equation id="Eqn-oopflux">
           <alt role="tex">
             \[
             \sigma({\bf x}) = \mathrm{modulus}\cdot \sum_i
             \left(
-            {\partial N_i({\bf x})\over\partial x}\phi_x({\bf x}_i) +
-            {\partial N_i({\bf y})\over\partial y}\phi_y({\bf x}_i) +
+            {\partial N_i({\bf x})\over\partial x}\varphi_x({\bf x}_i) +
+            {\partial N_i({\bf y})\over\partial y}\varphi_y({\bf x}_i) +
             N_i({\bf x})\psi_z({\bf x}_i)
             \right)
             \]
           </alt>
         </equation>
+
         Taking the divergence and integrating by parts, the last term
         in <xref linkend="Eqn-oopflux"/> will have one factor of
-
-        <inlineequation>
-          <alt role="tex">
-            \(\partial N({\bf x})/\partial{\bf x}\)
-          </alt>
-        </inlineequation>
-
-        from the divergence and one factor of
-
-        <inlineequation>
-          <alt role="tex">
-            \(N({\bf x})\)
-          </alt>
-        </inlineequation>
-
-        from the flux, which is a higher order polynomial than the
-        first two terms.  Therefore for this &Property;,
+        &part;N(<emphasis role="bold">x</emphasis>)/&part;<emphasis
+        role="bold">x</emphasis> from the divergence and one factor of
+        N(<emphasis role="bold">x</emphasis>) from the
+        flux. N(<emphasis role="bold">x</emphasis>) is a higher order
+        polynomial than &part;N(<emphasis
+        role="bold">x</emphasis>)/&part;<emphasis
+        role="bold">x</emphasis>, so the degree is higher when the
+        &field; is out of plane.
         <function>integration_order()</function> should be
         
         <programlisting>
-int Elasticity::integration_order(const CSubProblem *subp, const Element *el)
-  const
+int Elasticity::integration_order(const CSubProblem *subp, const Element *el) const
 {
   if(displacement->in_plane(subp))
     // <lineannotation>in-plane: two derivatives of N(x)</lineannotation>
@@ -317,12 +317,11 @@ int Elasticity::integration_order(const CSubProblem *subp, const Element *el)
 	      shapefunction's degree.  For purposes of Gaussian
 	      integration, the degree of the shapefunction is sometimes
 	      less than its actual polynomial degree.  For example, the
-	      linear quadrilateral shapefunction <inlineequation>
-	      <alt role="tex">\((1-x)(1-y)/4\)</alt></inlineequation>
-	      can be integrated
-	      exactly with a single Gauss point at (0,0), although its
-	      polynomial degree is 2.  For this function, both
-	      <function>shapefun_degree()</function> and
+	      linear quadrilateral shapefunction
+          <code>(1-x)(1-y)/4</code>
+	      can be integrated exactly with a single Gauss point at
+	      (0,0), although its polynomial degree is 2.  For this
+	      function, both <function>shapefun_degree()</function> and
 	      <function>dshapefun_degree()</function> return 1.
 	  </para>
 	</warning>
