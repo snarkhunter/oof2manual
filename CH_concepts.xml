@@ -1512,23 +1512,24 @@
 	    <inlineequation>
 	      <alt role="tex">\((\partial u_z/\partial x, \partial
 	      u_z/\partial y, \partial u_z/\partial z\))</alt>
-	      </inlineequation>,
-	      where
-	      <inlineequation>
+	    </inlineequation>,
+	    where
+	    <inlineequation>
 	        <alt role="tex">\(u\)</alt>
-	      </inlineequation>
-	      is the (three dimensional) displacement field.  Then the
-	      generalization of plane-strain simply sets these out-of-plane
-	      derivatives to zero and excludes them from the solution
-	      process.  This is done for &fields; that are marked as <link
-	      linkend="MenuItem-OOF.Mesh.Field.In_Plane">
-	      <userinput>in-plane</userinput></link> in the <link
-	      linkend="Section-Tasks-FieldsEquations">Fields &amp;
-	      Equations</link> task page.  Note that &fields; that are
-	      in-plane in one &subproblem; must be in-plane in all
-	      &subproblems;.
+	    </inlineequation>
+	    is the (three dimensional) displacement field.  Then the
+	    generalization of plane-strain simply sets these out-of-plane
+	    derivatives to zero and excludes them from the solution
+	    process.  This is done for &fields; that are marked as <link
+	    linkend="MenuItem-OOF.Mesh.Field.In_Plane">
+	    <userinput>in-plane</userinput></link> in the <link
+	    linkend="Section-Tasks-FieldsEquations">Fields &amp;
+	    Equations</link> task page.  Note that &fields; that are
+	    in-plane in one &subproblem; must be in-plane in all
+	    &subproblems;.
       </para>
-      <para><anchor id="plane-flux"/>
+      <para>
+        <anchor id="Section-Concepts-Mesh-plane-flux"/>
 	    Plane-stress is generalized by augmenting the system of finite
 	    element equations by <link
 	    linkend="Section-Concepts-Mesh-Equation-PlaneFlux">plane-flux</link>

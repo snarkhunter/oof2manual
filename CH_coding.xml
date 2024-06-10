@@ -580,7 +580,8 @@ conjugatePair("Elasticity",
     <para>
       Whether a &property; is written in C++ or Python, the same code
       elements must be present.  Not all of them are necessary for
-      every &property;.  It is safe simply to omit the unnecessary ones.
+      every &property;.  It is safe simply to omit the unnecessary
+      ones.
     </para>
     <para>
       A &property; definition contains a class definition, which is
@@ -595,184 +596,191 @@ conjugatePair("Elasticity",
       &property; classes perform the following types of tasks (the
       links below each task lead to detailed documentation):
       <itemizedlist>
-	<listitem>
-	  <para><anchor id="para-propertyType"/>
-	    <emphasis>Identification.</emphasis> &properties; have
-	    names by which they are identified in the user interface.
-	    They also have a <emphasis>propertyType</emphasis>.  A
-	    <varname>propertyType</varname> is a string that
-	    identifies the &property;'s physical role.  Each
-	    &material; instance can have at most one &property; of
-	    each <varname>propertyType</varname>.  For example, all
-	    &properties; that provide an elastic modulus have the type
-	    <literal>'Elasticity'</literal>, and all thermal expansion
-	    &properties; have the type
-	    <literal>'ThermalExpansion'</literal>.  Authors of new
-	    types of &property; should invent new
-	    <varname>propertyType</varname> strings.  Authors of new
-	    versions of a preexisting &property; should examine the
-	    existing <link
-	    linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>
-	    and reuse the same <varname>propertyType</varname>.
-	  </para>
-	  <itemizedlist spacing="compact">
+        <!-- TODO: Fix links.  Some links to go to Property methods
+             that are now in PhysicalProperty or more derived classes
+        -->
 	    <listitem>
-	      <simpara>
-		<link linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
-	      </simpara>
+	      <para>
+            <anchor id="para-propertyType"/>
+	        <emphasis>Identification.</emphasis> &properties; have
+	        names by which they are identified in the user interface.
+	        They also have a <emphasis>propertyType</emphasis>.  A
+	        <varname>propertyType</varname> is a string that
+	        identifies the &property;'s physical role.  Each
+	        &material; instance can have at most one &property; of
+	        each <varname>propertyType</varname>.  For example, all
+	        &properties; that provide an elastic modulus have the type
+	        <literal>'Elasticity'</literal>, and all thermal expansion
+	        &properties; have the type
+	        <literal>'ThermalExpansion'</literal>.  Authors of new
+	        types of &property; should invent new
+	        <varname>propertyType</varname> strings.  Authors of new
+	        versions of a preexisting &property; should examine the
+	        existing <link
+	        linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>
+	        and reuse the same <varname>propertyType</varname>.
+	      </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara>
+		        <link linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
+	          </simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><link
+	          linkend="Class-Property-Constructors"><classname>Property</classname>
+	          constructor</link></simpara>
+	        </listitem>
+	      </itemizedlist>
 	    </listitem>
 	    <listitem>
-	      <simpara><link
-	      linkend="Class-Property-Constructors"><classname>Property</classname>
-	      constructor</link></simpara>
-	    </listitem>
-	  </itemizedlist>
-	</listitem>
-	<listitem>
-	  <para>
-	    <emphasis>Cross Referencing.</emphasis> Sometimes a
-	    &property; needs to use data from other &properties; in
-	    the same &material;.  For example, any anisotropic
-	    &property; will need to find out its &material;'s <link
-	    linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>. Cross
-	    referencing allows a &property; to use
-	    <classname>propertyType</classname> information to locate
-	    other &properties;.  This is done after a &material; is
-	    constructed but before it is used for numerical
-	    computations.
-	  </para>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara><link
-		  linkend="Class-Property-cross_reference"><code>Property::cross_reference</code></link></simpara>
-	    </listitem>
-	  </itemizedlist>
-	</listitem>
-	<listitem>
-	  <para><anchor id="para-precomputation"/>
-	    <emphasis>Precomputation.</emphasis> When constructing the
-	    finite element stiffness matrix, the &oof2; program loops
-	    over all &elems; and asks their &materials; to ask their
-	    &properties; to make their contributions to the matrix.
-	    For efficiency, &properties; may want to precompute some
-	    quantities before this process begins.  There are two
-	    possible precomputation points: &elem;- and
-	    &node;-independent computations that are done before looping
-	    over &elems;, and &elem;-<emphasis>de</emphasis>pendent
-	    ones that are done before looping over &nodes;.
-	  </para>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara>
-		<link
-		linkend="Class-Property-precompute"><code>Property::precompute</code></link>
-	      </simpara>
+	      <para>
+	        <emphasis>Cross Referencing.</emphasis> Sometimes a
+	        &property; needs to use data from other &properties; in
+	        the same &material;.  For example, any anisotropic
+	        &property; will need to find out its &material;'s <link
+	        linkend="MenuItem-OOF.Property.Parametrize.Orientation"><classname>Orientation</classname></link>. Cross
+	        referencing allows a &property; to use
+	        <classname>propertyType</classname> information to locate
+	        other &properties;.  This is done after a &material; is
+	        constructed but before it is used for numerical
+	        computations.
+	      </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara><link
+		                   linkend="Class-Property-cross_reference"><code>Property::cross_reference</code></link></simpara>
+	        </listitem>
+	      </itemizedlist>
 	    </listitem>
 	    <listitem>
-	      <simpara>
-		<link
-		linkend="Class-Property-begin_element"><code>Property::begin_element</code></link>
-	      </simpara>
+	      <para>
+            <anchor id="para-precomputation"/>
+	        <emphasis>Precomputation.</emphasis> When constructing the
+	        finite element stiffness matrix, the &oof2; program loops
+	        over all &elems; and asks their &materials; to ask their
+	        &properties; to make their contributions to the matrix.
+	        For efficiency, &properties; may want to precompute some
+	        quantities before this process begins.  There are two
+	        possible precomputation points: &elem;- and
+	        &node;-independent computations that are done before
+	        looping over &elems;, and
+	        &elem;-<emphasis>de</emphasis>pendent ones that are done
+	        before looping over &nodes;.
+	      </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara>
+		        <link
+		        linkend="Class-Property-precompute"><code>Property::precompute</code></link>
+	          </simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara>
+		        <link
+		        linkend="Class-Property-begin_element"><code>Property::begin_element</code></link>
+	          </simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara>
+		        <link linkend="Class-Property-begin_point"><code>Property::begin_point</code></link>
+	          </simpara>
+	        </listitem>
+	      </itemizedlist>
 	    </listitem>
 	    <listitem>
-	      <simpara>
-		<link linkend="Class-Property-begin_point"><code>Property::begin_point</code></link>
-	      </simpara>
-	    </listitem>
-	  </itemizedlist>
-	</listitem>
-	<listitem>
-	  <para><anchor id="para-computation"/>
-	    <emphasis>Computation.</emphasis> &properties; can make
-	    contributions to the finite element stiffness matrix and
-	    to the right-hand side vector of external
-	    <quote>forces</quote>.
-	  </para>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara>
-		<link
-		linkend="Class-Property-fluxmatrix"><code>Property::fluxmatrix</code></link>
-	      </simpara>
-	    </listitem>
-	    <listitem>
-	      <simpara>
-		<link
-		linkend="Class-Property-fluxrhs"><code>Property::fluxrhs</code></link>
-	      </simpara>
-	    </listitem>
-	  </itemizedlist>
-      <para>
-	    There are also a few functions that &properties; may define
-	    that influence the way they're used or the way a computation
-	    is done:
-      </para>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-		  <simpara>
-		    <link
+	      <para>
+            <anchor id="para-computation"/>
+	        <emphasis>Computation.</emphasis> &properties; can make
+	        contributions to the finite element stiffness matrix and
+	        to the right-hand side vector of external
+	        <quote>forces</quote>.
+	      </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara>
+		        <link
+		        linkend="Class-Property-fluxmatrix"><code>Property::fluxmatrix</code></link>
+	          </simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara>
+		        <link
+		        linkend="Class-Property-fluxrhs"><code>Property::fluxrhs</code></link>
+	          </simpara>
+	        </listitem>
+	      </itemizedlist>
+          <para>
+	        There are also a few functions that &properties; may
+	        define that influence the way they're used or the way a
+	        computation is done:
+          </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+		      <simpara>
+		        <link
 		        linkend="Class-Property-is_symmetric"><code>Property::is_symmetric</code></link>
-		  </simpara>
+		      </simpara>
+	        </listitem>
+	        <listitem>
+		      <simpara>
+		        <link
+		        linkend="Class-PhysicalProperty-integration_order"><code>PhysicalProperty::integration_order</code></link>
+		      </simpara>
+	        </listitem>
+	      </itemizedlist>
 	    </listitem>
 	    <listitem>
-		  <simpara>
-		    <link
-		        linkend="Class-Property-integration_order"><code>Property::integration_order</code></link>
-		  </simpara>
-	    </listitem>
-	  </itemizedlist>
-	</listitem>
-	<listitem>
-	  <para>
-	    <emphasis>Postcomputation.</emphasis> This is just like
-	    <link linkend="para-precomputation">precomputation</link>,
-	    but later.  It can be done either after the <link
-	    linkend="para-computation">computation</link> on each
-	    &elem;, or after a full solution has been obtained.
-	  </para>
-	  <itemizedlist spacing="compact">
-	      <listitem>
-		<simpara>
+	      <para>
+	        <emphasis>Postcomputation.</emphasis> This is just like
+	        <link linkend="para-precomputation">precomputation</link>,
+	        but later.  It can be done either after the <link
+	        linkend="para-computation">computation</link> on each
+	        &elem;, or after a full solution has been obtained.
+	      </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+		      <simpara>
 		  <link linkend="Class-Property-end_point"><code>Property::end_point</code></link>
-		</simpara>
-	      </listitem>
-	    <listitem>
-	      <simpara>
-		<link
-		linkend="Class-Property-end_element"><code>Property::end_element</code></link>
-	      </simpara>
+		      </simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara>
+		        <link
+		        linkend="Class-Property-end_element"><code>Property::end_element</code></link>
+	          </simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara>
+		        <link
+		        linkend="Class-Property-post_process"><code>Property::post_process</code></link>
+	          </simpara>
+	        </listitem>
+	      </itemizedlist>
 	    </listitem>
 	    <listitem>
-	      <simpara>
-		<link
-		linkend="Class-Property-post_process"><code>Property::post_process</code></link>
-	      </simpara>
+	      <para>
+	        <emphasis>Outputs.</emphasis> Many <link
+	        linkend="Section-Concepts-Outputs">output</link>
+	        quantities, such as &field; invariants, are defined
+	        without reference to &properties;, but there are also many
+	        outputs, such as energy densities, that depend upon a
+	        &property; in one way or another, and rely upon the
+	        &property;'s code.  See <xref
+	        linkend="Section-Coding-Output"/> to learn how to add new
+	        outputs.
+	      </para>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara>
+		        <link linkend="Class-Property-output"><code>Property::output</code></link>
+	          </simpara>
+	        </listitem>
+	      </itemizedlist>
 	    </listitem>
-	  </itemizedlist>
-	</listitem>
-	<listitem>
-	  <para>
-	    <emphasis>Outputs.</emphasis> Many <link
-	    linkend="Section-Concepts-Outputs">output</link>
-	    quantities, such as &field; invariants, are defined
-	    without reference to &properties;, but there are also many
-	    outputs, such as energy densities, that depend upon a
-	    &property; in one way or another, and rely upon the
-	    &property;'s code.  See <xref
-	      linkend="Section-Coding-Output"/> to learn how to add
-	    new outputs.
-	  </para>
-	  <itemizedlist spacing="compact">
-	    <listitem>
-	      <simpara>
-		<link linkend="Class-Property-output"><code>Property::output</code></link>
-	      </simpara>
-	    </listitem>
-	  </itemizedlist>
-	</listitem>
       </itemizedlist>
     </para>
-  </section><!-- Adding New Material Properties -->
+  </section>                   <!-- Adding New Material Properties -->
 
   <section id="Section-Coding-Output">
     <title>Adding New Outputs</title>

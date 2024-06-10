@@ -19,7 +19,7 @@
   role="tex">\(T\)</alt></inlineequation>:
   <equation>
     <alt role="tex">
-      \[ {\bf J}_i = \kappa_{ij} \frac{\partial T}{\partial x_j} \]
+      \[ {\bf J}_i = -\kappa_{ij} \frac{\partial T}{\partial x_j} \]
     </alt>
   </equation>
   where the conductivity tensor <inlineequation><alt

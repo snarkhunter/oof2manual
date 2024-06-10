@@ -17,7 +17,7 @@
   <inlineequation><alt role="tex">\(T\)</alt></inlineequation>:
   <equation>
     <alt role="tex">
-      \[ {\bf J}_i = \kappa \frac{\partial T}{\partial x_i} \]
+      \[ {\bf J}_i = -\kappa \frac{\partial T}{\partial x_i} \]
     </alt>
   </equation>
   where the conductivity <inlineequation><alt

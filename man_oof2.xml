@@ -195,11 +195,15 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY alpha "<inlineequation><alt role='tex'>\(\alpha\)</alt></inlineequation>">
 <!ENTITY beta "<inlineequation><alt role='tex'>\(\beta\)</alt></inlineequation>">
 <!ENTITY gamma "<inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
+<!ENTITY sigma "<inlineequation><alt role='tex'>\(\sigma\)</alt></inlineequation>">
 <!ENTITY phi "<inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
+<!ENTITY varphi "<inlineequation><alt role='tex'>\(\varphi\)</alt></inlineequation>">
 <!ENTITY psi "<inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
 <!ENTITY theta "<inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
+<!ENTITY Kmatrix "<inlineequation><alt role='tex'>\(\bf K\)</alt></inlineequation>">
 <!ENTITY Mmatrix "<inlineequation><alt role='tex'>\(\bf M\)</alt></inlineequation>">
 <!ENTITY Cmatrix "<inlineequation><alt role='tex'>\(\bf C\)</alt></inlineequation>">
+<!ENTITY boldx "<emphasis role='bold'>x</emphasis>">
 
 <!ENTITY oof2rc "<link linkend='Section-oof2rc'><filename>.oof2rc</filename></link>">
 <!ENTITY hellip "&#8230;">

@@ -71,9 +71,9 @@
 	        linkend="MenuItem-OOF.Mesh.Field.In_Plane"/> or <xref
 	        linkend="MenuItem-OOF.Mesh.Field.Out_of_Plane"/>.  The
 	        counterpart to generalized plane-strain, <link
-	        linkend="plane-flux">plane-flux</link>, is invoked by
-	        activating the appropriate equation in the <link
-	        linkend="Section-EquationPane">Equation Pane</link>.
+	        linkend="Section-Concepts-Mesh-plane-flux">plane-flux</link>,
+	        is invoked by activating the appropriate equation in the
+	        <link linkend="Section-EquationPane">Equation Pane</link>.
 	      </para>
 	      <para>
 	        A &field; that is in-plane on one &subproblem; in a &mesh;

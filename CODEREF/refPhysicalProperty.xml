@@ -23,7 +23,9 @@
       linkend="Class-FluxProperty"/></classname> or <classname><xref
       linkend="Class-EqnProperty"/></classname> must redefine <link
       linkend="Class-PhysicalProperty-integration_order"><function>integration_order()</function></link>,
-      in either C++ or Python.
+      in either C++ or Python.  This is the only method in the
+      &Property; class hierarchy that <emphasis>must</emphasis> be
+      redefined in subclasses.
     </para>
     <refsect2>
       <title>C++ Synopsis</title>
@@ -55,6 +57,38 @@
           <modifier>const</modifier>
         </methodsynopsis>
       </classsynopsis>
+
+      <refsect3 id="Class-PhysicalProperty-subclasses">
+        <title>C++ Derived Classes</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-FluxProperty"/></classname>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-EqnProperty"/></classname>
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>               <!-- Derived classes -->
+      <refsect3>
+        <title>C++ Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.h</filename>: C++ header
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/property.swg</filename>: SWIG source
+              code
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>               <!-- C++ Source files -->
     </refsect2>                 <!-- C++ Synopsis-->
     
     <refsect2>
@@ -94,6 +128,38 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
           </methodparam>
         </methodsynopsis>
       </classsynopsis>
+      <refsect3>
+        <title>Python Derived Classes</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-PyFluxProperty"/></classname>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <classname><xref linkend="Class-PyEqnProperty"/></classname>
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>                 <!-- Derived classes -->
+      <refsect3>
+        <title>Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/pypropertywrapper.C</filename>: C++
+              code
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <filename>SRC/engine/pypropertywrapper.h</filename>: C++
+              header
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect3>               <!-- Python source files -->
 
     </refsect2>                 <!-- Python Synopsis -->
   </refsynopsisdiv>
@@ -113,7 +179,7 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
   </refsection>                 <!-- Overview -->
   <refsection>
     <title>Methods</title>
-    <refsection id="Class-Property-integration_order">
+    <refsection id="Class-PhysicalProperty-integration_order">
 	  <title>
         <code>int integration_order(const CSubProblem *subproblem, const Element
 	    *element) const</code>
@@ -124,14 +190,24 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
         linkend="Eqn-TimeDivergence"/> to matrix form, it replaces the
         &fields; by an expansion in the &elem;'s <link
         linkend="Section-Concepts-Mesh-Geometry">shape
-        functions</link> 
-        N<subscript>i</subscript>(<emphasis role="bold">x</emphasis>),
+        functions</link>
+        <inlineequation>
+          <alt role="tex">
+            \(N_i({\bf x})\)
+          </alt>
+        </inlineequation>,
         multiplies everything by a test function (which is another
-        shape function, N<subscript>j</subscript>(<emphasis
-        role="bold">x</emphasis>)), and then integrates over the
-        entire mesh (<foreignphrase>i.e,</foreignphrase> over each
-        element).  Divergence terms are integrated by parts, which
-        replaces the test function by its derivative.
+        shape function,
+        <inlineequation>
+          <alt role="tex">
+            \(N_j({\bf x})\)
+          </alt>
+          </inlineequation>),
+
+        and then integrates over the entire mesh
+        (<foreignphrase>i.e,</foreignphrase> over each element).
+        Divergence terms are integrated by parts, which replaces the
+        test function by its derivative.
       </para>
       <para>
         The integration over the elements is done by <ulink
@@ -180,8 +256,7 @@ int StressFreeStrain::integration_order(const CSubProblem*, const Element* el) c
 } </programlisting>
       </para>
       <para>
-        A &Property; that contributes to the <emphasis
-        role="bold">M</emphasis> or <emphasis role="bold">C</emphasis>
+        A &Property; that contributes to the &Mmatrix; or &Cmatrix;
         terms in <xref linkend="Eqn-TimeDivergence"/> will have
         spatial dependence from both the test function and the
         expansion of the &field;, yielding the product of two shape
@@ -203,12 +278,13 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
         or <link
         linkend="Property-Thermal-Conductivity-Isotropic">thermal
         conductivity</link>.  The &flux; is proportional to the
-        gradient of a &field;, and the &field; &#x1D711; can be
+        gradient of a &field;, and the &field; &varphi; can be
         expanded in shape functions.
         Schematically<footnote><simpara>The index
         <emphasis>i</emphasis> stands for a combination of node
         indices and field component indices.  This is just a schematic
         representation.</simpara></footnote>
+
         <equation>
           <alt role="tex">
             \[
@@ -217,20 +293,33 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             \]
           </alt>
         </equation>
+
         where
 
-        <emphasis role="bold">x</emphasis><subscript><emphasis>i</emphasis></subscript>
+        <inlineequation>
+          <alt role="tex">
+            \({\bf x}_i\)
+          </alt>
+        </inlineequation>
 
         is the position of &node; <emphasis>i</emphasis>, and
 
-        &#x1D711;(<emphasis role="bold">x</emphasis><subscript><emphasis>i</emphasis></subscript>),
-
+        <inlineequation>
+          <alt role='tex'>
+            \(\varphi({\bf x}_i)\)
+          </alt>
+        </inlineequation>
+        
         the &field; at &node; <emphasis>i</emphasis>, is a constant.
-       
-
         Taking the divergence, multiplying by a test function
-        N<subscript>j</subscript> and integrating (by parts) over the
-        area yields
+        <inlineequation>
+          <alt role="tex">
+            \(N_j\)
+          </alt>
+        </inlineequation>
+
+        and integrating (by parts) over the area yields
+
         <equation>
           <alt role="tex">
             \[
@@ -243,6 +332,7 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             \]
           </alt>
         </equation>
+        
         The only position dependence comes from the shape functions,
         so the polynomial degree is twice the the degree of the shape
         function derivatives, <code>2*el->dshapefun_degree()</code>.
@@ -289,13 +379,38 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
 
         Taking the divergence and integrating by parts, the last term
         in <xref linkend="Eqn-oopflux"/> will have one factor of
-        &part;N(<emphasis role="bold">x</emphasis>)/&part;<emphasis
-        role="bold">x</emphasis> from the divergence and one factor of
-        N(<emphasis role="bold">x</emphasis>) from the
-        flux. N(<emphasis role="bold">x</emphasis>) is a higher order
-        polynomial than &part;N(<emphasis
-        role="bold">x</emphasis>)/&part;<emphasis
-        role="bold">x</emphasis>, so the degree is higher when the
+
+        <inlineequation>
+          <alt role="tex">
+            \(\partial N({\bf x})/\partial{\bf x}\)
+          </alt>
+        </inlineequation>
+
+        from the divergence and one factor of
+
+        <inlineequation>
+          <alt role="tex">
+            \(N({\bf x})\)
+          </alt>
+        </inlineequation>
+
+        from the flux.
+
+        <inlineequation>
+          <alt role="tex">
+            \(N({\bf x})\)
+          </alt>
+        </inlineequation>
+
+        is a higher order polynomial than
+
+        <inlineequation>
+          <alt role="tex">
+            \(\partial N({\bf x})/\partial{\bf x}\)
+          </alt>
+        </inlineequation>
+
+        so the degree is higher when the
         &field; is out of plane.
         <function>integration_order()</function> should be
         
@@ -318,7 +433,11 @@ int Elasticity::integration_order(const CSubProblem *subp, const Element *el) co
 	      integration, the degree of the shapefunction is sometimes
 	      less than its actual polynomial degree.  For example, the
 	      linear quadrilateral shapefunction
-          <code>(1-x)(1-y)/4</code>
+          <inlineequation>
+            <alt role="tex">
+              \((1-x)(1-y)/4\)
+            </alt>
+          </inlineequation>
 	      can be integrated exactly with a single Gauss point at
 	      (0,0), although its polynomial degree is 2.  For this
 	      function, both <function>shapefun_degree()</function> and
