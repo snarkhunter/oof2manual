@@ -213,7 +213,7 @@
   </xsl:if>
 
   <!-- This is the line that was changed for OOF2 -->
-  <xsl:value-of select='translate($fn, ":", "-")'/>
+  <xsl:value-of select='translate($fn, ": ", "-_")'/>
 
   <!-- You can't add the html.ext here because dbhtml filename= may already -->
   <!-- have added it. It really does have to be handled in the recursive template -->
