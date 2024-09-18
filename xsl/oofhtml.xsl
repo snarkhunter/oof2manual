@@ -4,12 +4,7 @@
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <!-- $RCSfile: oofhtml.xsl,v $ -->
-  <!-- $Revision: 1.23 $ -->
-  <!-- $Author: langer $ -->
-  <!-- $Date: 2006/11/13 16:40:05 $ -->
-
-  <xsl:import href="docbook-xsl-4.5/html/docbook.xsl"/>
+  <xsl:import href="docbook-xsl-4.5/xhtml/docbook.xsl"/>
   <xsl:import href="latex-math/xsl/latex-math.xsl"/>
 
   <!-- Customized templates -->

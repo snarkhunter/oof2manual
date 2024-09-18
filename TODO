@@ -37,3 +37,8 @@ contribute to them.
 Document the Equations and Fluxes in the EXTENSIONS directory.
 Section-Builtin shojld mark them as extensions.
 Mark them as such in the Material Properties list too.
+
+Changing to xhtml in xsl/oofchunk.xsl and xsl/oofhtml.xsl has screwed
+up <classsynopis> and <programoutput> and maybe others.  It looks like
+link and formatting tags within the body of the class or program are
+inserting line breaks that they didn't do with html.

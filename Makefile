@@ -25,9 +25,6 @@
 
 DVI2BITMAP = dvi2bitmap --magnification=5 --scaledown=4 --output-type=gif --font-search=kpathsea
 
-# TEMPDIR used to be called "TMPDIR", but that conflicts with the
-# TMPDIR environment variable that dvi2bitmap uses to communicate with
-# mktexpk if it's not using kpathsea. 
 TEMPDIR = tmpdir
 
 # There's no need to explicitly list all of the xml files in the
@@ -39,16 +36,8 @@ SAXON = ../xsl/java/saxon.jar
 ## and errors.  Is there any point in updating?
 #SAXON = /opt/local/share/java/saxon9he.jar
 
-# # Build the version that we put on our web site.  This has to be
-# # manually copied over.
-# publish: $(TEMPDIR) saxonize.web texify figs
-# 	-mkdir html
-# 	rm -rf html/*
-# 	python2 webwrap.py --from=$(TEMPDIR) --to=html --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
-# 	touch publish
-
-local: $(TEMPDIR) saxonize.web texify figs 
-	python webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
+local: $(TEMPDIR) saxonize.web texify_mathml figs 
+	python webwrap.py --from=$(TEMPDIR) --to=$(OOFWEBDIR)/oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log,.bak
 	touch local
 
 # TODO: Install into /u/WWW/langer/oof/oof2man, so that
@@ -67,7 +56,7 @@ publish-draft: local
 
 # Build the file that users can download to create a local copy of
 # the manual.  
-oof2man.tgz: $(TEMPDIR) saxonize.ext texify figs 
+oof2man.tgz: $(TEMPDIR) saxonize.ext texify_mathml figs 
 	-mkdir oof2man
 	python webwrap.py --from=$(TEMPDIR) --to=oof2man --styledir=STYLE --exclude=.tex,.dvi,.aux,.log
 	tar -czf oof2man.tgz oof2man
@@ -83,6 +72,9 @@ saxonize.ext: oof2_api.xml
 texify:
 	(cd $(TEMPDIR); latex tex-math-inlines.tex && $(DVI2BITMAP) --verbose=quiet --query=bitmaps tex-math-inlines | awk '{printf "img[src=\"%s\"] {margin-bottom:%dpx;}\n",$$2,$$6-$$4}' > inline.css)
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
+
+texify_mathml: saxonize.web
+	python converteqns.py --tempdir=$(TEMPDIR) --equations=tex-math-equations.tex --inlines=tex-math-inlines.tex 
 
 oof2: always
 	(cd build; make -j 10 DESTDIR=~/stow/oof2-py311 install; cd ~/stow; ./switchto oof2-py311)

@@ -3,8 +3,8 @@
 		version="1.0"
                 exclude-result-prefixes="exsl">
 
-<xsl:import href="docbook-xsl-4.5/html/docbook.xsl"/>
-<xsl:include href="docbook-xsl-4.5/html/chunk-common.xsl"/>
+<xsl:import href="docbook-xsl-4.5/xhtml/docbook.xsl"/>
+<xsl:include href="docbook-xsl-4.5/xhtml/chunk-common.xsl"/>
 
 <!-- chunking behavior -->
 <xsl:param name="fast.chunk" select="1"/>
