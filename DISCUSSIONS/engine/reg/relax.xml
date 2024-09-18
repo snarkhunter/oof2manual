@@ -65,7 +65,7 @@ weight of the two terms is given by <varname>alpha</varname>.
 </inlineequation>
 is the stress and
 <inlineequation>
-  <alt role="tex">u</alt>
+  <alt role="tex">\(u\)</alt>
 </inlineequation>
 is the displacement of a
 &node;.  After each step, the driving force is recomputed.  The

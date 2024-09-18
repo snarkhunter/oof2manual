@@ -1933,7 +1933,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       sets <code>done=1</code>.
     </para>
   </refsection>
-</refentry>
+</refentry>                     <!-- ScalarFieldIterator -->
 
 <!-- ============================================================ -->
 
@@ -2014,7 +2014,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       according to the size of the vector.
     </para>
   </refsection>
-</refentry>
+</refentry>                     <!-- VectorFieldIterator -->
 
 <!-- ============================================================ -->
 
@@ -2096,7 +2096,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       according to the size of the vector.
     </para>
   </refsection>
-</refentry>
+</refentry>                     <!-- OutOfPlaneVectorFieldIterator -->
 
 <!-- ============================================================ -->
 
@@ -2143,6 +2143,12 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
           <parameter>j</parameter>
         </methodparam>
       </constructorsynopsis>
+      <methodsynopsis>
+        <type>bool</type>
+        <methodname><link linkend="Class-SymTensorIterator-diagonal">diagonal</link></methodname>
+        <void/>
+        <modifier>const</modifier>
+      </methodsynopsis>
     </classsynopsis>
     
     <classsynopsis language="cpp">
@@ -2203,6 +2209,17 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       <emphasis>yz</emphasis>, and <emphasis>xz</emphasis>, or Voigt
       indices 2, 3, and 4).
     </para>
+    <note>
+      <para>
+        The iterators only iterate over the unique elements of the
+        tensor.  Because the <emphasis>yx</emphasis> element is
+        identical to the <emphasis>xy</emphasis> element, the iterator
+        includes <emphasis>xy</emphasis> but not
+        <emphasis>yx</emphasis>.  Depending on the circumstances, it
+        may be necessary to include factors of 2 to compensate for
+        this.
+      </para>
+    </note>
     <para>
       Like all of the &ComponentIterator; subclasses, new objects are
       created by the <function>begin()</function> and
@@ -2217,8 +2234,21 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       The different constructors differ in how the initial index is
       set.
     </para>
-  </refsection>
-</refentry>
+  </refsection>                 <!-- Descripton -->
+  <refsection>
+    <title>Methods</title>
+    <refsection>
+      <title><code>diagonal()</code></title>
+      <para>
+        <function>diagonal()</function> returns
+        <constant>true</constant> if the iterator is currently
+        pointing to a component on the diagonal of the tensor:
+        <emphasis>xx</emphasis>, <emphasis>yy</emphasis>, or
+        <emphasis>zz</emphasis>.
+      </para>
+    </refsection>               <!-- diagonal -->
+  </refsection>                 <!-- Methods -->
+</refentry>                     <!-- SymTensorIterator -->
 
 <!-- ============================================================ -->
 
@@ -2243,7 +2273,21 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
     </para>
 
   </refsection>
-</refentry>
+</refentry>                     <!-- OutOfPlaneSymTensorIterator -->
+
+<!-- ============================================================ -->
+
+<refentry id="Class-SymTensorIJComponents">
+  <para>
+    TODO.  Include symTensorIJComponents.
+  </para>
+</refentry>                     <!-- SymTensorIJComponents -->
+
+<refentry id="Class-SymTensorIJIterator">
+  <para>
+    TODO. 
+  </para>
+</refentry>                     <!-- SymTensorIJIterator -->
 
 <!-- ============================================================ -->
 <!-- ============================================================ -->

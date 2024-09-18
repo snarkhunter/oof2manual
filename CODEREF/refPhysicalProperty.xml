@@ -289,7 +289,7 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
           <alt role="tex">
             \[
             \sigma({\bf x}) = \mathrm{modulus}\cdot\sum_i
-            {\partial\over\partial\bf x} N_i({\bf x})\varphi({\bf x}_i)
+            \frac\partial{\partial\bf x} N_i({\bf x})\varphi({\bf x}_i)
             \]
           </alt>
         </equation>
@@ -326,8 +326,8 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             \int d{\bf x}\, N_j({\bf x}) \nabla\cdot\sigma({\bf x}) =
             - \mathrm{modulus}\cdot
             \sum_i \int d{\bf x}\,
-            {\partial N_j({\bf x})\over\partial{\bf x}}\,
-            {\partial N_i({\bf x})\over\partial{\bf x}} \varphi({\bf x}_i)
+            \frac{\partial N_j({\bf x})}{\partial{\bf x}}\,
+            \frac{\partial N_i({\bf x})}{\partial{\bf x}} \varphi({\bf x}_i)
             + \mathrm{boundary\ terms}
             \]
           </alt>
@@ -369,8 +369,8 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
             \[
             \sigma({\bf x}) = \mathrm{modulus}\cdot \sum_i
             \left(
-            {\partial N_i({\bf x})\over\partial x}\varphi_x({\bf x}_i) +
-            {\partial N_i({\bf y})\over\partial y}\varphi_y({\bf x}_i) +
+            \frac{\partial N_i({\bf x})}{\partial x}\varphi_x({\bf x}_i) +
+            \frac{\partial N_i({\bf y})}{\partial y}\varphi_y({\bf x}_i) +
             N_i({\bf x})\psi_z({\bf x}_i)
             \right)
             \]

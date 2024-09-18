@@ -76,7 +76,7 @@
           The <xref linkend="RegisteredClass-OutputDestination"/>
           determines where the output goes &emdash; to a file, the
           Message Window, or a Graphics Window.  Different kinds of
-          <clasname>Operation</clasname> require different kinds of
+          <classname>Operation</classname> require different kinds of
           <classname>Destinations</classname>.
         </para>
       </formalpara>
