@@ -186,24 +186,32 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY layer "<link linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
 <!ENTITY layers "<link linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
 
+<!ENTITY Acal "<inlineequation><alt role='tex'>\(\mathcal{A}\)</alt></inlineequation>">
+<!ENTITY Cmatrix "<inlineequation><alt role='tex'>\(\bf C\)</alt></inlineequation>">
+<!ENTITY Kcal "<inlineequation><alt role='tex'>\(\mathcal{K}\)</alt></inlineequation>">
+<!ENTITY Kmatrix "<inlineequation><alt role='tex'>\(\bf K\)</alt></inlineequation>">
+<!ENTITY Mmatrix "<inlineequation><alt role='tex'>\(\bf M\)</alt></inlineequation>">
+<!ENTITY ahat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf a}}\)</alt></inlineequation>">
+<!ENTITY alpha "<inlineequation><alt role='tex'>\(\alpha\)</alt></inlineequation>">
+<!ENTITY beta "<inlineequation><alt role='tex'>\(\beta\)</alt></inlineequation>">
+<!ENTITY bhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf b}}\)</alt></inlineequation>">
+<!ENTITY boldx "<inlineequation><alt role='tex'>\({\bf x}\)</alt></inlineequation>">
+<!ENTITY chat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf c}}\)</alt></inlineequation>">
+<!ENTITY gamma "<inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
+<!ENTITY gradphi "<inlineequation><alt role='tex'>\(\nabla\varphi\)</alt></inlineequation>">
+<!ENTITY nu "<inlineequation><alt role='tex'>\(\nu\)</alt></inlineequation>">
+<!ENTITY phi "<inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
+<!ENTITY psi "<inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
+<!ENTITY sigma "<inlineequation><alt role='tex'>\(\sigma\)</alt></inlineequation>">
+<!ENTITY sigma0 "<inlineequation><alt role='tex'>\(\sigma^0\)</alt></inlineequation>">
+<!ENTITY texi "<inlineequation><alt role='tex'>\(i\)</alt></inlineequation>">
+<!ENTITY texj "<inlineequation><alt role='tex'>\(j\)</alt></inlineequation>">
+<!ENTITY texk "<inlineequation><alt role='tex'>\(k\)</alt></inlineequation>">
+<!ENTITY theta "<inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
+<!ENTITY varphi "<inlineequation><alt role='tex'>\(\varphi\)</alt></inlineequation>">
 <!ENTITY xhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
 <!ENTITY yhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf y}}\)</alt></inlineequation>">
 <!ENTITY zhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf z}}\)</alt></inlineequation>">
-<!ENTITY ahat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf a}}\)</alt></inlineequation>">
-<!ENTITY bhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf b}}\)</alt></inlineequation>">
-<!ENTITY chat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf c}}\)</alt></inlineequation>">
-<!ENTITY alpha "<inlineequation><alt role='tex'>\(\alpha\)</alt></inlineequation>">
-<!ENTITY beta "<inlineequation><alt role='tex'>\(\beta\)</alt></inlineequation>">
-<!ENTITY gamma "<inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
-<!ENTITY sigma "<inlineequation><alt role='tex'>\(\sigma\)</alt></inlineequation>">
-<!ENTITY phi "<inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
-<!ENTITY varphi "<inlineequation><alt role='tex'>\(\varphi\)</alt></inlineequation>">
-<!ENTITY psi "<inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
-<!ENTITY theta "<inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
-<!ENTITY Kmatrix "<inlineequation><alt role='tex'>\(\bf K\)</alt></inlineequation>">
-<!ENTITY Mmatrix "<inlineequation><alt role='tex'>\(\bf M\)</alt></inlineequation>">
-<!ENTITY Cmatrix "<inlineequation><alt role='tex'>\(\bf C\)</alt></inlineequation>">
-<!ENTITY boldx "<emphasis role='bold'>x</emphasis>">
 
 <!ENTITY oof2rc "<link linkend='Section-oof2rc'><filename>.oof2rc</filename></link>">
 <!ENTITY hellip "&#8230;">
