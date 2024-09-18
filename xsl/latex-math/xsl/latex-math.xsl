@@ -315,7 +315,7 @@
         <xsl:when test="$inline != ''">
           <span class="{$inline}mediaobject">
             <!--img src="{$filename}" align="absmiddle"/ -->
-            <img src="{$filename}" >
+            <img src="{$filename}">
                <xsl:attribute name="alt">
                  <xsl:value-of select=".//alt"/>
                </xsl:attribute>

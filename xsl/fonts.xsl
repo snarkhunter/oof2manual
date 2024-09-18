@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <!-- $RCSfile: fonts.xsl,v $ -->
-  <!-- $Revision: 1.3 $ -->
-  <!-- $Author: langer $ -->
-  <!-- $Date: 2005/01/31 21:37:38 $ -->
-
-
   <!-- add some styles to the ones docbook provides.  It's probably
   bad form to rely on the face attribute, since it's an html
   extension. -->
