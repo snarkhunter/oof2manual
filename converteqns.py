@@ -114,6 +114,9 @@ import shutil
 import subprocess
 import sys
 
+# When debugging, set nmax to a small integer to limit the number of
+# equations parsed.
+nmax = None
 debug = False
 
 
@@ -239,9 +242,6 @@ def make_mathml(texstring):
          "--profile=fragment",
          "--noindex",
          "--format=html5",
-         # "--split",
-         # "--splitpath='//ltx:section'",
-         # "--splitnaming=id",
          "-"],
         input=texstring,
         capture_output=True,
@@ -256,7 +256,8 @@ def make_mathml(texstring):
 #=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=#
 
 # Class for html parsers that extract the bits of html we need from
-# the latexmlc output. 
+# the latexmlc output.  The targettag argument gives the tag that the
+# parser is looking for.
 
 class MathMLExtractor(html.parser.HTMLParser):
     def __init__(self, targettag, mathdict):
@@ -335,96 +336,91 @@ class MathMLExtractor(html.parser.HTMLParser):
 # <img> always have "src" attributes, which we can use to distinguish
 # equations from other images.
 
-## TODO: Where is the directory name "equations" set?  
+## TODO: Where is the directory name "equations" set?
 
+# ImageReplacerHTML expects html, not xhtml, with UNclosed <img> tags.
 
-class ImageReplacer(html.parser.HTMLParser):
+class ImageReplacerHTML(html.parser.HTMLParser):
     def __init__(self, filename, mathdict):
         self.filename = filename
         self.mathdict = mathdict
         super().__init__()
-        self.startline = None
+        self.lastline = None
+        # "awfset" is the offset that converts indices as returned by
+        # HTMLParser.getpos() to indices in the lines saved in
+        # self.lines.  Once one substitution is made in self.lines,
+        # the positions of the remaining tags need to be adjusted.
+        # The variable "offset" is already used by HTMLParser, so it
+        # needs to be spelled wrong here.
+        self.awfset = 0
     def feed(self, data):
         self.lines = data.split('\n')
         super().feed(data)
-    # def handle_starttag(self, tag, attrs):
-    #     if tag == "img":
-    #         # See if this <img>'s "src" attribute is an equation gif.
-    #         gifname = None
-    #         for attr, val in attrs:
-    #             if attr == "src":
-    #                 gifname = val
-    #         if gifname == None or not gifname.startswith("equations/"):
-    #             # Not our tag
-    #             return
-    #         lineno, startpos = self.getpos()
-    #         lineno -= 1
-    #         line = self.lines[lineno]
-    #         # Find the end of the <img> tag
-    #         ## NO-- <img> tag isn't closed.  Have to look for ">" and
-    #         ## count intermediate "<"s
-    #         endpos = line.find("/>", startpos+1) 
-    #         assert endpos != -1
-    #         endpos += 2         # one past the closing />
-    #         print("Replacing line {line}", file=sys.stderr)
-    #         self.lines[lineno] = (line[:startpos] + mathdict[gifname] +
-    #                               line[endpos:])
-
-    # def handle_endtag(self, endtag):
-    #     if endtag == "img":
-    #         print(f"{endtag=}")
-    #     if self.startline is not None and tag == "img":
-    #         endline, endoffset = self.getpos()
-    #         endline -= 1
-
-    #         if endline == startline:
-    #             line = self.lines[endline][:]
-    #             self.lines[endline] = line[:self.startoffset] + 
-
-    #         self.startline = None
-
-    ## TODO: Does handle_starttag work with unclosed tags?  As long as
-    ## handle_startendtag isn't going to find the end tag
-    ## automatically, we might as well use html (instead of xhtml) and
-    ## handle_starttag.
-
-    def handle_startendtag(self, tag, attrs):
-        # handle_startendtag handles tags that have no body: <img ... />.
-        # print(f"{self.filename}: {tag}", file=sys.stderr)
+    def handle_starttag(self, tag, attrs):
         if tag == "img":
             # See if this <img>'s "src" attribute is an equation gif.
             gifname = None
             for attr, val in attrs:
                 if attr == "src":
                     gifname = val
+                    break
             if gifname == None or not gifname.startswith("equations/"):
                 # Not our tag
                 return
+            replacement = self.mathdict[gifname]
             lineno, startpos = self.getpos()
-            lineno -= 1
+            lineno -= 1         # HTMLParser starts at line 1, not line 0
             line = self.lines[lineno]
-            # Find the end of the <img> tag
-            endpos = line.find("/>", startpos+1) 
+            # There can be more than one <img> tag on a line.  The
+            # startpos for tags after the first will need to be
+            # adjusted.  getpos() returns indices into the original
+            # unmodified line, but self.lines contains the modified
+            # line.
+            if lineno == self.lastline:
+                # Still in the old line
+                # Convert position in original line to position in
+                # modified line.
+                startpos += self.awfset
+            else:
+                # Starting a new line.
+                self.awfset = 0
+            # Find the end of the <img> tag.  The tag isn't closed
+            # with "/> or "</img>", so just look for ">".  Assume that
+            # it's on the same line, since that seems to be where
+            # docbook always puts it.
+            #
+            # If we use docbook in xhtml mode, it creates correctly
+            # closed <img> tags, and we could use
+            # HTMLParser.handle_startendtag() instead of searching for
+            # the end ">" manually.  This would presumably be more
+            # robust, in case any attributes in the <img> contained
+            # ">".  But xhtml mode produces terrible output for class
+            # synopses and program listings, so we're sticking with
+            # html for now.
+            endpos = line.find(">", startpos)
             assert endpos != -1
-            endpos += 2         # one past the closing />
-            # print("Replacing line {line}", file=sys.stderr)
-            self.lines[lineno] = (line[:startpos] + mathdict[gifname] +
-                                  line[endpos:])
-            # print("New line is", self.lines[lineno], file=sys.stderr)
+            endpos += 1         # one past the closing >
+            replaced = line[startpos:endpos]
+            replacement = self.mathdict[gifname]
+            self.lines[lineno] = (line[:startpos] + replacement + line[endpos:])
+            # Prepare for more <img> tags in this line
+            self.awfset += len(replacement) - len(replaced)
+            self.lastline = lineno
+
 
 def process_html(dirname, mathdict):
     for htmlfilename in os.listdir(dirname):
         basename, suffix = os.path.splitext(htmlfilename)
         if suffix == ".html":
-            #print(f"Processing {htmlfilename}", file=sys.stderr)
+            print(f"======= Processing {htmlfilename}", file=sys.stderr)
             # Make a backup copy of the original file
             shutil.copy(os.path.join(dirname, htmlfilename),
                         os.path.join(dirname, htmlfilename+".bak"))
             
-            htmlfile = open(os.path.join(dirname, htmlfilename), "r")
+            htmlfile = open(os.path.join(dirname, htmlfilename), mode="r")
             htmltext = htmlfile.read()
             htmlfile.close()
-            parser = ImageReplacer(basename, mathdict)
+            parser = ImageReplacerHTML(basename, mathdict)
             parser.feed(htmltext)
             parser.close()
 
@@ -433,30 +429,16 @@ def process_html(dirname, mathdict):
                 print(line, file=resultfile)
             resultfile.close()
     
+def do_undo(dirname):
+    for htmlfilename in os.listdir(dirname):
+        basename, suffix = os.path.splitext(htmlfilename)
+        if suffix == ".bak":
+            os.rename(os.path.join(dirname,htmlfilename),
+                      os.path.join(dirname, basename))
 
 #=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=#
 
-nmax = None
-
-if __name__ == "__main__":
-
-    options = ['tempdir=', 'equations=', 'inlines=']
-    try:
-        (optlist, args) = getopt.getopt(sys.argv[1:], "", options)
-    except getopt.error as message:
-        print(message)
-        sys.exit(1)
-
-    for opt, val in optlist:
-        if opt == '--tempdir':
-            tmpdirname = val
-        elif opt == '--equations':
-            eqnfilename = val
-        elif opt == '--inlines':
-            inlinefilename = val
-        else:
-            assert False, "Unknown option"
-    
+def do_conversion(tmpdirname, eqnfilename, inlinefilename):
 
     eqndict = read_equations(os.path.join(tmpdirname, eqnfilename),
                              nmax=nmax)
@@ -511,5 +493,64 @@ if __name__ == "__main__":
     
     print("Rewriting html files", file=sys.stderr)
     process_html(tmpdirname, mathdict)
-    
-    
+
+#=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=#
+
+def usage():
+    print(
+"""Usage:
+python converteqns.py [options]
+   Options:
+   --tempdir=directory    Directory containing saxon output 
+   --equations=file       The tex file in tempdir containing equations
+   --inlines=file         The tex file in tempdir containing inline equations
+   --undo                 Restore from backup files without processing
+   --help                 Print this
+
+--tempdir is always required.  --equations and --inlines are required
+unless --undo is given.
+   """)
+
+#=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=##=--=#
+
+if __name__ == "__main__":
+
+    options = ['tempdir=', 'equations=', 'inlines=', "undo", "help"]
+    try:
+        (optlist, args) = getopt.getopt(sys.argv[1:], "", options)
+    except getopt.error as message:
+        print(message)
+        sys.exit(1)
+
+    tmpdirname = None
+    eqnfilename = None
+    inlinefilename = None
+    undo = False
+
+    for opt, val in optlist:
+        if opt == '--tempdir':
+            tmpdirname = val
+        elif opt == '--equations':
+            eqnfilename = val
+        elif opt == '--inlines':
+            inlinefilename = val
+        elif opt == '--undo':
+            undo = True
+        elif opt == '--help':
+            usage()
+            sys.exit(0)
+        else:
+            assert False, "Unknown option"
+
+    if tmpdirname is None:
+        usage()
+        sys.exit(0)
+    if not undo and (eqnfilename is None or inlinefilename is None):
+        usage()
+        sys.exit(0)
+
+    if not undo:
+        do_conversion(tmpdirname, eqnfilename, inlinefilename)
+    else:
+        do_undo(tmpdirname)
+
