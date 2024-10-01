@@ -1209,13 +1209,22 @@
 	          \]
 	        </alt>
 	      </equation>
-	      where <inlineequation>
-	      <alt role="tex">\(N_i(r)\)</alt></inlineequation> is the
-	      i<superscript>th</superscript> shapefunction and 
+	      where
+          <inlineequation>
+	        <alt role="tex">\(N_i(r)\)</alt>
+          </inlineequation>
+          is the
+          <inlineequation>
+            <alt role="tex">
+              \(i^\mathrm{th}\)
+            </alt>
+          </inlineequation>
+          shapefunction and 
 	      <inlineequation>
-	        <alt role="tex">\(a_i\)</alt></inlineequation> is its
-	        coefficient.  In finite elements, the shape functions are
-	        defined so that 
+	        <alt role="tex">\(a_i\)</alt>
+          </inlineequation>
+          is its coefficient.  In finite elements, the shape functions
+          are defined so that
 	        <equation>
 	          <alt role="tex">
 	            \[
@@ -1510,12 +1519,15 @@
 	    with <userinput>Displacement_z</userinput>, which is the
 	    triplet of partial derivatives
 	    <inlineequation>
-	      <alt role="tex">\((\partial u_z/\partial x, \partial
-	      u_z/\partial y, \partial u_z/\partial z\))</alt>
+	      <alt role="tex">
+            \( (\partial u_z\!/\!\partial x, \enspace
+            \partial u_z\!/\!\partial y, \enspace
+            \partial u_z\!/\!\partial z)\)
+          </alt>
 	    </inlineequation>,
 	    where
 	    <inlineequation>
-	        <alt role="tex">\(u\)</alt>
+	      <alt role="tex">\(u\)</alt>
 	    </inlineequation>
 	    is the (three dimensional) displacement field.  Then the
 	    generalization of plane-strain simply sets these out-of-plane
