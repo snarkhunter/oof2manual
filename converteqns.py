@@ -93,17 +93,15 @@
 # latexmlmath to generate MathML, and replaces the <img> tags in the
 # html files with it.
 
-## TODO: compile the regexps
-
-## Displayed equations that mistakenly use \(...\) or inline equations
-## that mistakenly use \[...\] or equations of either kind that are
-## missing their delimiters cause odd errors. read_equations or
-## read_inlines will omit the *next* equation.  This script will fail
-## with a KeyError in when looking for an equation in mathdict.
-## Search tex-math-equations.tex or tex-math-inlines.tex for the
-## missing key.  The equation with the incorrect delimiters will be
-## the previous one in the tex file.  Maybe.  TODO: Detect incorrect
-## delimiters somehow?
+# NOTE: Displayed equations that mistakenly use \(...\) or inline
+# equations that mistakenly use \[...\] or equations of either kind
+# that are missing their delimiters cause odd errors. read_equations()
+# or read_inlines() will omit the *next* equation, and then this
+# script will fail with a KeyError in mathdict.  To fix these errors,
+# search tex-math-equations.tex or tex-math-inlines.tex for the
+# missing key.  The equation with the incorrect delimiters will be the
+# previous one in the tex file.  Maybe.  TODO: Detect incorrect
+# delimiters somehow?
 
 
 import getopt
@@ -117,6 +115,7 @@ import sys
 # When debugging, set nmax to a small integer to limit the number of
 # equations parsed.
 nmax = None
+# Setting debug=True creates output files with intermediate steps.
 debug = False
 
 
@@ -412,7 +411,7 @@ def process_html(dirname, mathdict):
     for htmlfilename in os.listdir(dirname):
         basename, suffix = os.path.splitext(htmlfilename)
         if suffix == ".html":
-            print(f"======= Processing {htmlfilename}", file=sys.stderr)
+            print(f"replacing equations in {htmlfilename}", file=sys.stderr)
             # Make a backup copy of the original file
             shutil.copy(os.path.join(dirname, htmlfilename),
                         os.path.join(dirname, htmlfilename+".bak"))

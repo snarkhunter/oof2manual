@@ -326,15 +326,5 @@
 <xsl:variable name="xref.with.number.and.title">0</xsl:variable>
 <xsl:variable name="passivetex.extensions">1</xsl:variable>
 
-<xsl:template name="tex.math.latex.head">
-  <xsl:text>\documentclass[leqno,10pt]{revtex4} &#xA;</xsl:text>
-  <xsl:text>\usepackage{amsmath} &#xA;</xsl:text>
-  <!-- xsl:text>\usepackage{amsfonts} &#xA;</xsl:text -->
-  <xsl:text>\usepackage{concmath} &#xA;</xsl:text>
-
-  <xsl:text>\pagestyle{empty} &#xA;</xsl:text>
-  <xsl:text>\begin{document} &#xA;</xsl:text>
-  <xsl:text>\allowdisplaybreaks &#xA;</xsl:text>
-</xsl:template>
 
 </xsl:stylesheet>
