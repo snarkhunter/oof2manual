@@ -302,20 +302,14 @@ from oof2.SWIG.engine import element</programlisting>
 	    <methodname><link
 		linkend="Class-Element-from_master">from_master</link></methodname>
 	    <methodparam>
-	      <parameter>x</parameter>
-	    </methodparam>
-	    <methodparam>
-	      <parameter>y</parameter>
+	      <parameter>point</parameter>
 	    </methodparam>
 	  </methodsynopsis>
 	  <methodsynopsis>
 	    <methodname><link
 		linkend="Class-Element-to_master">to_master</link></methodname>
 	    <methodparam>
-	      <parameter>x</parameter>
-	    </methodparam>
-	    <methodparam>
-	      <parameter>y</parameter>
+	      <parameter>point</parameter>
 	    </methodparam>
 	  </methodsynopsis>
 	</classsynopsis>
@@ -459,19 +453,17 @@ from oof2.SWIG.engine import element</programlisting>
 	</para>
       </refsection><!-- cornernode_iterator -->
       <refsection id="Class-Element-to_master">
-	<title><code>MasterCoord to_master(const Coord&amp;) const, to_master(x,y)</code></title>
+	<title><code>MasterCoord to_master(const Coord&amp;) const</code></title>
 	<para>
 	  <methodname>to_master</methodname> converts a position in
 	  physical space to a position in the
-	  <classname>Element</classname>'s master coordinate space.
-	  The C++ version takes a <link
+	  <classname>Element</classname>'s master coordinate space.  The
+	  C++ version takes a <link
 	  linkend="Class-Coord"><classname>Coord</classname></link>
-	  argument, but the Python version takes two floats,
-	  <varname>x</varname> and <varname>y</varname>, which allows
-	  it to work equally well with <link
-	  linkend="Class-Point"><classname>Points</classname></link>
-	  and swigged <classname>Coords</classname>.  Both versions
-	  return a <link
+	  argument.  The Python version accepts any indexable object with
+	  at least two components, such as a tuple, list, <link
+	  linkend="Class-Point"><classname>Point</classname></link>, or
+	  <link linkend="Class-Coord"><classname>Coord</classname></link>.  Both versions return a <link
 	  linkend="Class-MasterCoord"><classname>MasterCoord</classname></link>
 	  object.
 	</para>
@@ -481,20 +473,20 @@ from oof2.SWIG.engine import element</programlisting>
 	</para>
       </refsection><!-- to_master -->
       <refsection id="Class-Element-from_master">
-	<title><code>Coord from_master(const MasterCoord&amp;) const, from_master(x,y)</code></title>
+	<title><code>Coord from_master(const MasterCoord&amp;) const</code></title>
 	<para>
-	  <methodname>from_master</methodname> takes a position in
-	  master coordinate space (in the form of a <link
+	  <methodname>from_master</methodname> takes a position in master
+	  coordinate space in the form of a <link
 	  linkend="Class-MasterCoord"><classname>MasterCoord</classname></link>
-	  object in C++ or an
-	  <varname>x</varname>,<varname>y</varname> pair in Python)
-	  and returns the corresponding point in physical space.  The
-	  return value is a <link
-	  linkend="Class-Coord"><classname>Coord</classname></link> in
-	  both languages.
+	  object in C++ or any indexable object in Python, such as a
+	  tuple, list, or <link
+	  linkend="Class-MasterCoord"><classname>MasterCoord</classname></link>.
+	  It returns the corresponding point in physical space in the form
+	  of a <link
+	  linkend="Class-Coord"><classname>Coord</classname></link>.
 	</para>
-      </refsection><!-- from_master -->
-      <refsection id="Class-Element-center">
+  </refsection><!-- from_master -->
+  <refsection id="Class-Element-center">
 	<title><code>MasterCoord center() const</code></title>
 	<para>
 	  <methodname>center</methodname> returns the position of the
@@ -503,15 +495,15 @@ from oof2.SWIG.engine import element</programlisting>
 	  This can be converted to a physical coordinate with <link
 	  linkend="Class-Element-from_master"><methodname>from_master</methodname></link>.
 	</para>
-      </refsection><!-- center -->
-      <refsection id="Class-Element-area">
+  </refsection><!-- center -->
+  <refsection id="Class-Element-area">
 	<title><code>double area() const</code></title>
 	<para>
 	  <methodname>area</methodname> returns the physical area of
 	  the <classname>Element</classname>.
 	</para>
-      </refsection><!-- area -->
-      <refsection id="Class-Element-outputField">
+  </refsection><!-- area -->
+  <refsection id="Class-Element-outputField">
 	<title><code>OutputValue outputField(const Field&amp; field,
 	const MasterPosition&amp; position) const</code></title>
 	<para>
@@ -528,8 +520,8 @@ from oof2.SWIG.engine import element</programlisting>
 	  wrapper, allowing it to be used in the <link
 	  linkend="Class-Output"><classname>Outputs</classname></link>.
 	</para>
-      </refsection><!-- outputField -->
-      <refsection id="Class-Element-outputFieldDeriv">
+  </refsection><!-- outputField -->
+  <refsection id="Class-Element-outputFieldDeriv">
 	<title>
 	  <code>OutputValue outputFieldDeriv(const Field&amp; field,
 	  SpaceIndex* derivative, const MasterPosition&amp;
