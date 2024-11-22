@@ -44,19 +44,19 @@
       desired orientation with respect to the screen. First, rotate
       the axes by &beta; around the &chat; axis.  This defines new axes
       <inlineequation>
-	<alt role="tex">\((\hat{\mathrm{\bf a}}', \hat{\mathrm{\bf b}'}, \hat{\mathrm{\bf c}})\) </alt>
+	<alt role="tex">\((\hat{\mathrm{\bf a'}}, \hat{\mathrm{\bf b'}}, \hat{\mathrm{\bf c}})\) </alt>
       </inlineequation>.
       Next rotate by &alpha; about the 
       <inlineequation>
-	<alt role="tex">\(\hat{\mathrm{\bf b}'}\)</alt>
+	<alt role="tex">\(\hat{\mathrm{\bf b'}}\)</alt>
       </inlineequation>
       axis, defining another coordinate system
       <inlineequation>
-	<alt role="tex">\((\hat{\mathrm{\bf a}}'', \hat{\mathrm{\bf b}'}, \hat{\mathrm{\bf c}}'')\)</alt>
+	<alt role="tex">\((\hat{\mathrm{\bf a''}}, \hat{\mathrm{\bf b'}}, \hat{\mathrm{\bf c''}})\)</alt>
       </inlineequation>.
       Finally, rotate by &gamma; about the
       <inlineequation>
-	<alt role="tex">\(\hat{\mathrm{\bf c}}''\)</alt>
+	<alt role="tex">\(\hat{\mathrm{\bf c''}}\)</alt>
       </inlineequation>
       axis, bringing the axes into agreement with
       <inlineequation>

@@ -29,13 +29,24 @@
   (<foreignphrase>i.e,</foreignphrase> &field; values), to compute
   successive approximations to the solution.  The iteration stops when
   the norm of the residual after the
-  n<superscript><emphasis>th</emphasis></superscript> step,
-  |A<subscript><emphasis>n</emphasis></subscript>|, satisfies
+  <inlineequation>
+    <alt role="tex">
+      \( n^\mathrm{th} \)
+    </alt>
+  </inlineequation>
+  step,
+  <inlineequation>
+    <alt role="tex">
+      \( \left|A_n\right| \)
+    </alt>
+  </inlineequation>, satisfies
+
   <equation>
     <alt role="tex">
-      \[ |A_n| &lt; \epsilon|A_0| + \delta \]
+      \[ |A_n| &lt; \epsilon |A_0| + \delta \]
     </alt>
   </equation>
+
   where <inlineequation><alt
   role="tex">\(\epsilon\)</alt></inlineequation>=<varname>relative_tolerance</varname>
   and <inlineequation><alt
@@ -49,13 +60,16 @@
 </para>
 <para>
   Newton's method relies upon knowing the derivatives of the nonlinear
-  function with respect to the unknowns, <inlineequation><alt
-  role="tex">\( \partial A_i(\phi)/\partial \phi_j
-  \)</alt></inlineequation>.  This information comes from the
-  &material; &properties;, which determine the exact form of the
-  equations being solved.  Nonlinear &properties; that are built into
-  &oof2; provide routines to compute the derivatives, but &properties;
-  defined in &oof2; <link
+  function with respect to the unknowns,
+  <inlineequation>
+    <alt role="tex">
+      \( \partial A_i(\phi)/\partial \phi_j \)
+    </alt>
+  </inlineequation>.
+  This information comes from the &material; &properties;, which
+  determine the exact form of the equations being solved.  Nonlinear
+  &properties; that are built into &oof2; provide routines to compute
+  the derivatives, but &properties; defined in &oof2; <link
   linkend="Chapter-Extending">extensions</link> might not.  In this
   case, <classname>Newton</classname> will compute the derivatives
   numerically.  This will make <classname>Newton</classname> perform

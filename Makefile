@@ -102,6 +102,7 @@ always:
 # by hand.  This is useful when debugging the equation formatting by
 # editing tex-math-*.tex.  Remember that changes in tex-math-*.tex are
 # not permanent.  They'll be overwritten the next time saxon is run.
+## TODO: Rewrite this for latexml.
 equations:
 	(cd $(TEMPDIR); latex tex-math-inlines.tex && $(DVI2BITMAP) --verbose=quiet --query=bitmaps tex-math-inlines | awk '{printf "img[src=\"%s\"] {margin-bottom:%dpx;}\n",$$2,$$6-$$4}' > inline.css)
 	(cd $(TEMPDIR); latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)

@@ -160,15 +160,6 @@
 </para>
 
 <para>
-  arrow_skel0.png: initial 5x5 triangular, 1 refinement by bisection, alpha=0.8
-  arrow_skel1.png: after anneal T=0 delta=5 iterations=20 alpha=0.8
-  arrow_skel2.png: ditto
-  arrow_skel3.png: rationalize alpha=0.5
-  arrow_skel4.png: anneal T=0 delta=1 iterations=20 alpha=0.8
-  arrow_skel5.png: rationalize alpha=0.5
-</para>
-
-<para>
   <xref linkend="Figure-anneal_initial"/> shows a &micro; containing
   three pixel types.  The initial &skel; has been <link
   linkend="RegisteredClass-Refine">refined</link> once, but doesn't do

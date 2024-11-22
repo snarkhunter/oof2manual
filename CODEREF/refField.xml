@@ -403,6 +403,26 @@ from ooflib.SWIG.engine.field import Field</programlisting>
       linkend="Section-ScriptGUI">text mode</link> and the <link
       linkend="Section-Windows-Console">Console Window</link>.
     </para>
+    <para>
+      Several methods are available for computing the values of
+      &Fields; at points within an &FEMesh;.
+      <itemizedlist>
+        <listitem>
+          <code>Field::value(mesh, node, component)</code> returns the
+          value of a component of a &Field; at a &Node;.  The
+          <code>node</code> argument can be an <classname><link
+          linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;</classname>
+          or a &Node; pointer.
+        </listitem>
+        <!-- TODO: Don't list the methods here.  Just mention what
+             they do differently and leave the details for the
+             discussion of each method.  Mention non-virtual
+             methods in derived class that return aggregates.
+             Distinguish methods that return values at nodes from
+             methods that interpolate.  Mention methods that return
+             gradients. -->
+      </itemizedlist>
+    </para>
   </refsection>
   
   <refsection>

@@ -1306,7 +1306,7 @@
 	    shape and position to the actual element.  The mapping nodes
 	    of the master element are mapped to the nodes of the actual
 	    element, and all other points are mapped by using the mapping
-	    nodes' shape functions for interpolation.  Non-linear mapping
+	    nodes' shape functions for interpolation.  Nonlinear mapping
 	    can produce elements with curved edges.)  Elements with the
 	    same number of function and mapping nodes are called
 	    <emphasis>isoparametric</emphasis>.  Elements with more
@@ -1317,13 +1317,13 @@
 	    <note>
 	      <para>
 	        Currently, although &oof2; allows high-order iso- and
-	        superparametric elements with non-linear mapping and
+	        superparametric elements with nonlinear mapping and
 	        curved element edges, it actually doesn't take full
 	        advantage of them.  This is because &mesh; elements are
 	        created from &skel; elements, and &skel; elements all have
 	        straight edges.  The positions of interior nodes are
 	        determined by <emphasis>linear</emphasis> interpolation
-	        between the corner nodes, so the non-linear mapping from
+	        between the corner nodes, so the nonlinear mapping from
 	        master elements to actual elements is effectively linear.
 	      </para>
 	    </note>
