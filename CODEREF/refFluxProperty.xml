@@ -1,4 +1,4 @@
-<!--
+<!-- 
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -6,6 +6,11 @@
   maintenance. However, to facilitate maintenance we ask that before
   distributing modified versions of this software, you first contact
   the authors at oof_manager@nist.gov.
+-->
+
+<!--
+    TODO: Be consistent about whether args have names in the
+    variablelist sections and have links in the the synopsis sections.
 -->
 
 <refentry id="Class-FluxProperty">
@@ -51,7 +56,7 @@
 	      <methodparam>
             <modifier>const</modifier>
 		    <type>MasterPosition&amp;</type>
-		    <parameter>masterpos</parameter>
+		    <parameter>pt</parameter>
 	      </methodparam>
 	    </methodsynopsis>       <!-- begin_point -->
         
@@ -77,7 +82,7 @@
 	      <methodparam>
             <modifier>const</modifier>
 		    <type>MasterPosition&amp;</type>
-		    <parameter>masterpos</parameter>
+		    <parameter>pt</parameter>
 	      </methodparam>
         </methodsynopsis>       <!-- end_point -->
 
@@ -333,27 +338,6 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
 	    </methodsynopsis>       <!-- flux_matrix -->        
 
 	    <methodsynopsis>
-	      <methodname><link linkend="Class-FluxProperty-flux_value">flux_value</link></methodname>
-	      <methodparam>
-	        <parameter>mesh</parameter>
-	      </methodparam>
-	      <methodparam>
-	        <parameter>element</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>flux</parameter>
-	      </methodparam>
-	      <methodparam>
-		    <parameter>position</parameter>
-	      </methodparam>
-          <methodparam>
-            <parameter>time</parameter>
-          </methodparam>
-          <methodparam>
-            <parameter>linsys</parameter>
-          </methodparam>
-	    </methodsynopsis>       <!-- flux_value -->        
-	    <methodsynopsis>
 	      <methodname><link linkend="Class-FluxProperty-flux_offset">flux_offset</link></methodname>
 	      <methodparam>
 	        <parameter>mesh</parameter>
@@ -374,6 +358,28 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
             <parameter>linsys</parameter>
           </methodparam>
 	    </methodsynopsis>       <!-- flux_offset -->        
+
+	    <methodsynopsis>
+	      <methodname><link linkend="Class-FluxProperty-flux_value">flux_value</link></methodname>
+	      <methodparam>
+	        <parameter>mesh</parameter>
+	      </methodparam>
+	      <methodparam>
+	        <parameter>element</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>flux</parameter>
+	      </methodparam>
+	      <methodparam>
+		    <parameter>position</parameter>
+	      </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+	    </methodsynopsis>       <!-- flux_value -->        
 
 	    <methodsynopsis>
 	      <methodname><link linkend="Class-FluxProperty-static_flux_value">static_flux_value</link></methodname>
@@ -439,111 +445,103 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
       linkend="PropertyType-Elasticity"><literal>Elasticity</literal></link>
       contributes to <xref linkend="Flux-Stress"/>, and <link
       linkend="PropertyType-ThermalConductivity"><literal>ThermalConductivity</literal></link>
-      contributes to <xref linkend="Flux-Heat_Flux"/>.
-    </para>
-    <para>
-      A <classname>FluxProperty</classname> can either compute the
-      &Flux; directly:
-      
+      contributes to <xref linkend="Flux-Heat_Flux"/>.  The principal
+      job of the <classname>FluxProperty</classname> is to compute the
+      coefficients of the &fields; and their time derivatives in a
+      linear expansion of a &flux;, &sigma;:
       <equation id="Eqn-flux1">
         <alt role="tex">
           \[
-          \mathrm{flux}({\bf x}) = \sigma({\bf x}, \varphi, \nabla\phi)
-          + {\bf C} \cdot \frac{\partial\varphi}{\partial t}
+          \sigma =
+          \sigma^0({\bf x})
+          + {\cal A} ({\bf x}) \varphi
+          + {\cal K} ({\bf x}) \nabla\varphi
+          + {\cal D} ({\bf x}) \frac{\partial\varphi}{\partial t}
+          + {\cal C} ({\bf x}) \frac{\partial\nabla\varphi}{\partial t}
           \]
         </alt>
       </equation>
-      
-      or compute its linearization:
-      
-      <equation id="Eqn-flux2">
-        <alt role="tex">
-          \[
-          \mathrm{flux}({\bf x}) = {\bf K}({\bf x}, \varphi, \nabla\varphi)
-          \cdot
-          \nabla\varphi
-          + \sigma_0({\bf x}, \varphi, \nabla\phi)
-          + {\bf C} \cdot \frac{\partial\varphi}{\partial t}
-          \]
-        </alt>
-      </equation>
-
-      or both.  Here &varphi; is a &Field; or &Fields;, and &boldx; is
-      a position.  In <xref linkend="Eqn-flux1"/> &sigma; is the part
-      of the &flux; that does not depend on the time derivative of the
-      &Fields;.  In <xref linkend="Eqn-flux2"/> &Kmatrix; is the
-      matrix of coefficients when the flux is expressed as a local
-      linear function of
-      
-      <inlineequation>
-        <alt role="tex">
-          \(\nabla\varphi\)
-        </alt>
-      </inlineequation>
-        
-      and
-      
-      <inlineequation>
-        <alt role="tex">
-          \(\sigma_0\)
-        </alt>
-      </inlineequation>
-
-      is the offset (intercept).
+      Here &varphi; is a &Field; or &Fields;.  &sigma0; is an
+      field-independent offset, to first order. The coefficients are
+      written as functions of position, &boldx;, but &sigma0;, &Acal;
+      and &Kcal; may be nonlinear functions of the fields and their
+      derivatives as well.  A future version of &oof2; may allow
+      nonlinearities in &Ccal; and &Dcal; as well.
     </para>
     <para>
-      Both <xref linkend="Eqn-flux1"/> and <xref linkend="Eqn-flux2"/>
-      allow the &flux; to include a term proportional to the time
-      derivative of the &field;.  &Cmatrix; is a matrix that
-      multiplies the &field; derivatives.
+      A new subclass of <classname>FluxProperty</classname> must
+      redefine some or all of the following four virtual methods:
+      <itemizedlist>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-FluxProperty-flux_matrix"><methodname>FluxProperty::flux_matrix()</methodname></link>
+            computes the linearization of the &flux; at a given point
+            in an &elem;, as a function of the relevant &fields;,
+            their their gradients, and possibly their time
+            derivatives.  That is, it determines the coefficients
+            &Acal;, &Kcal;, &Dcal;, and &Ccal; in Eqn. <xref
+            linkend="Eqn-flux1"/>. 
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-FluxProperty-flux_offset"><methodname>FluxProperty::flux_offset()</methodname></link>
+            computes the value of the &flux; at a given point in an
+            &elem; when the &fields; and their gradients are zero.
+            This is &sigma0; in <xref linkend="Eqn-flux1"/>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-FluxProperty-flux_value"><methodname>FluxProperty::flux_value()</methodname></link>
+            computes the actual value of the &flux; at a given point
+            in an &elem;.  If the &property; is linear in the
+            &fields;, <methodname>flux_value()</methodname> does not
+            need to be redefined, since the &flux; value can be
+            deduced from <methodname>flux_matrix()</methodname> and
+            <methodname>flux_offset()</methodname>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-FluxProperty-static_flux_value"><methodname>static_flux_value()</methodname></link>
+            computes the part of the &flux; value that depends only on
+            the &fields; and not on their time derivatives, if the
+            &flux; depends on the &field; derivatives.
+          </para>
+        </listitem>
+      </itemizedlist>
+      The functions listed above all have a <link
+      linkend="ClassSmallSystem"><classname>SmallSystem</classname>*</link>
+      argument, which represents a small part of the <link
+      linkend="Class-LinearizedSystem"><classname>LinearizedSystem</classname></link>
+      that is currently being built.
+      <classname>SmallSystem</classname> methods handle all of the
+      issues related to matrix indexing, element order, and so forth.
+      The derived <classname>FluxProperty</classname> methods (and the
+      developer) do not need to know anything about what equations are
+      being solved or how they are discretized by the finite element
+      machinery.  Details on all of the functions are provided below.
     </para>
     <para>
-      In <xref linkend="Eqn-flux1"/>, &sigma; is computed by <link
-      linkend="Class-FluxProperty-static_flux_value"><function>static_flux_value()</function></link>.
-      If there is a &Cmatrix; matrix, <link
-      linkend="Class-FluxProperty-flux_value"><function>flux_value()</function></link>
-      must be defined as well.
-    </para>
-    <para>
-      In <xref linkend="Eqn-flux2"/>, &Kmatrix; and &Cmatrix; are
-      computed by <link
-      linkend="Class-FluxProperty-flux_matrix"><function>flux_matrix()</function></link>
-      and
-
-      <inlineequation>
-        <alt role="tex">
-          \(\sigma_0\)
-        </alt>
-      </inlineequation>
-
-      is computed by <link
-      linkend="Class-FluxProperty-flux_offset"><function>flux_offset()</function></link>.
-    </para>
-    <para>
-      Because &oof2; needs to know the matrix of coefficients,
-      &Kmatrix;, in order to solve a set of equations, and needs to
-      know the actual value of the &flux; in order to compute outputs,
-      it actually needs all of the functions mentioned above.
-      However, the default base class implementation of
-      <function>static_flux_value()</function> computes the flux from
-      <function>flux_matrix()</function> and
-      <function>flux_offset()</function>.  The default base class
-      implementation of <function>flux_matrix()</function> computes
-      the matrix by numerically differentiating
-      <function>static_flux_value()</function>.  If there are no
-      &Cmatrix; contributions or &flux; offset, it is sufficient for a
-      subclass to define either
-      <function>static_flux_value()</function> or
-      <function>flux_matrix()</function>. The computation is more
-      efficient if both are defined, and if neither is defined the
-      &flux; will be zero.
+      In addition, two virtual utility functions, <link
+      linkend="Class-FluxProperty-begin_point"><methodname>begin_point()</methodname></link>
+      and <link
+      linkend="Class-FluxProperty-end_point"><methodname>end_point()</methodname></link>
+      can be redefined to facilitate the computations in the other
+      routines.
     </para>
   </refsection>               <!-- FluxProperty Overview -->
   
   <refsection>
     <title>Constructor</title>
     <para>
-      The C++ and Python constructors are the same as the <link
+      The C++ and Python constructors for
+      <classname>FluxProperty</classname> are the same as the <link
       linkend="Class-Property-Constructors">base class
       constructors</link>.
     </para>
@@ -553,17 +551,73 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
     <title>Methods</title>
 
     <refsection id="Class-FluxProperty-begin_point">
-	  <title><code>void begin_point(const FEMesh*, const Element*, const Flux*, const MasterPosition&amp;)</code></title>
+	  <title><code>void begin_point(const FEMesh* mesh, const Element*
+      element, const Flux* flux, const MasterPosition&amp; pt)</code></title>
 	  <para>
         When building the finite element matrices and vectors, &oof2;
         loops over the Gauss points within each &elem;.  At each Gauss
         point it calls all of the <classname>FluxProperty</classname>
         methods that have been redefined in the derived classes,
         starting with <function>begin_point()</function>.  If the
-        other methods share some expensive compuatations, the
+        other methods share some expensive computations, the
         computations can be performed in
         <function>begin_point()</function> and their results cached.
 	  </para>
+      <para>
+        The arguments to <function>begin_point()</function> are
+        <variablelist>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+            <listitem>
+              <para>
+                The <link
+                linkend="Class-FEMesh"><classname>FEMesh</classname></link>
+                currently being solved.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-Element">Element</link>* element</code></term>
+            <listitem>
+              <para>
+                The <link
+                linkend="Class-Element"><classname>Element</classname></link>
+                containing the current point.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link linkend="Class-Flux">Flux</link>*
+            flux</code></term>
+            <listitem>
+              <para>
+                The &flux; that this &Property; computes.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-MasterPosition">MasterPosition</link>&amp;
+            point</code></term>
+            <listitem>
+              <para>
+                The position within the <link
+                linkend="Class-Element"><classname>Element</classname></link>
+                where the &Property; is being evaluated.  The position
+                is given in <link
+                linkend="Class-MasterPosition">master
+                coordinates</link>, which can be converted to physical
+                coordinates by <link
+                linkend="Class-Element-from_master"><function>Element::from_master</function></link>
+                if necessary.
+              </para>
+            </listitem>
+          </varlistentry>
+          
+        </variablelist>
+      </para>
       <para>
         The default implementation of
         <function>begin_point()</function> does nothing.
@@ -582,47 +636,52 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
 	    linkend="Class-Property-begin_point">begin_point</link></methodname>.
 	  </para>
       <para>
+        The arguments for <function>end_point</function> are the same
+        as the arguments for <methodname><link
+        linkend="Class-Property-begin_point">begin_point</link></methodname>.
+      </para>
+      <para>
         The default implementation of <function>end_point()</function>
         does nothing.
       </para>
-    </refsection><!-- end_point -->
-    
+    </refsection>               <!-- end_point -->
     
     <refsection id="Class-FluxProperty-flux_matrix">
-	  <title><code>void flux_matrix(const FEMesh* mesh, const Element* element, const ElementFuncNodeIterator&amp; node, ...)</code></title>
+	  <title>
+        <code>void flux_matrix(const FEMesh* mesh, const Element*
+        element, const ElementFuncNodeIterator&amp; node, ...)</code>
+      </title>
 	  <para>
-	    &oof2; <classname>FluxProperties</classname> that represent
-	    terms in a constitutive equation must define the function
-	    <methodname>Property::flux_matrix()</methodname>.
+	    <classname>FluxProperty</classname> subclasses that represent
+	    the &Acal;, &Kcal;, &Dcal; or &Ccal; terms in the constitutive
+	    equation <xref linkend="Eqn-flux1"/> must redefine the virtual
+	    function <methodname>FluxProperty::flux_matrix()</methodname>.
 	    <methodname>flux_matrix()</methodname> computes a matrix that,
-	    when multiplied by a vector of degrees of freedom, produces a
-	    vector containing the components of a &flux;.  Explaining this
-	    properly requires a brief review of the finite element
-	    machinery.
+	    when multiplied by a vector of degrees of freedom and/or their
+	    time derivatives, produces a vector containing the components
+	    of a &flux;.  Explaining this properly requires a brief review
+	    of the finite element machinery.
 	  </para>
 	  <para>
         <anchor id="fluxmatrix_discussion"/>
 	    Let
 
         <inlineequation>
-	      <alt role="tex">\(\varphi_n({\bf x})\)</alt>
+	      <alt role="tex">\(\varphi_k({\bf x})\)</alt>
 	    </inlineequation>
 
-	    be the <emphasis>n</emphasis><superscript>th</superscript>
-	    component of a field &varphi; at position &boldx;.  If the
-	    field values are known at nodes
-        
+	    be the
+
         <inlineequation>
-	      <alt role="tex">
-            \(\nu\)
-          </alt>
-	    </inlineequation>
+          <alt role="tex">\(k^\mathrm{th}\)</alt>
+        </inlineequation>
 
-	    at positions
+	    component of a field &varphi; at position &boldx;.  If the
+	    field values are known at nodes &nu;, which are at positions
 
 	    <inlineequation>
           <alt role="tex">
-            \(x_\nu\)
+            \({\bf x}_\nu\)
           </alt>
 	    </inlineequation>,
         
@@ -634,11 +693,16 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
           </alt>
 	    </inlineequation>
           
-	    can be used to approximate the field at any point:
+	    can be used to approximate the field at
+	    &boldx;:<footnote><para> We are using the convention that
+	    repeated indices, such as &nu; in <xref
+	    linkend="Eqn-Property-expansion"/> are implicitly summed:
+	    <inlineequation><alt role="tex">\(x_i y_i\equiv \sum_i x_i
+	    y_i\)</alt></inlineequation></para></footnote>
         
 	    <equation id="Eqn-Property-expansion">
 	      <alt role="tex">
-            \[\varphi_n({\bf x}) = \sum_\nu N_\nu({\bf x}) \varphi_{n\nu}\]
+            \[\varphi_k({\bf x}) = N_\nu({\bf x}) \varphi_{k\nu}\]
           </alt>
 	    </equation>
 
@@ -650,405 +714,416 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
           </alt>
 	    </inlineequation>
           
-	    is the shape function that is 1 at node
-
-	    <inlineequation>
-	      <alt role="tex">
-            \(\nu\)
-          </alt>
-	    </inlineequation>
-          
-	    and 0 at all other nodes, and
+	    is the shape function that is 1 at node &nu; and 0 at all
+	    other nodes, and
 
 	    <equation>
 	      <alt role="tex">
-            \(\varphi_{n\nu}\equiv \varphi_n({\bf x_\nu})\)
+            \[\varphi_{k\nu}\equiv \varphi_k({\bf x_\nu})\]
           </alt>
         </equation>
 
-        (the <emphasis>n</emphasis><superscript>th</superscript>
-        component of the field at node
+        is the
 
         <inlineequation>
-          <alt role="tex">
-            \(\nu\)
-          </alt>
-        </inlineequation>).
-          
-        Similarly, the derivative of the field is
+          <alt role="tex">\(k^\mathrm{th}\)</alt>
+        </inlineequation>
 
-        <equation id="Eqn-Property-deriv">
+        component of the field at node &nu;.  Similarly, the gradient
+        of the field is
+
+        <equation id="Eqn-Property-expansion-deriv">
           <alt role="tex">
             \[
-            \frac{\partial\phi_n}{\partial{\bf x}} =
-            \sum_\nu \frac{\partial N_\nu}{\partial{\bf x}} \varphi_{n\nu}
+            \nabla\varphi =
+            \frac{\partial\varphi_k({\bf x})}{\partial{\bf x}} =
+            \frac{\partial N_\nu({\bf x})}{\partial{\bf x}} \varphi_{k\nu}.
             \]
           </alt>
         </equation>
+        
+        Because &oof2; does its computations in 2D, gradients include
+        only <emphasis>x</emphasis> and <emphasis>y</emphasis>
+        derivatives, unless explicitly stated otherwise.
  	  </para>
 	  <para>
- 	    A constitutive relation connects a &field;, &varphi;, or field
-        gradient,
-        <inlineequation>
-          <alt role="tex">
-            \(\nabla\varphi\)
-          </alt>
-        </inlineequation>,
+        Temporarily ignoring the &varphidot; terms, a constitutive
+        relation connects a &field; &varphi; and its gradient,
+        &gradphi;, to a &flux; &sigma;, through moduli &Acal; and
+        &Kcal;, and an offset, &sigma0;:
 
-        and a &flux;, &sigma;, through a modulus.  For now, let's
-        assume that it can be represented as a linear operator,
-        <inlineequation>
-          <alt role="tex">
-            \(\mathcal{K}\)
-          </alt>
-        </inlineequation>
-
-        <equation>
+        <equation id="Eqn-constitutive">
           <alt role="tex">
             \[
-            \sigma = \mathcal{K}({\bf x}) \cdot \nabla\varphi
+            \sigma =
+            \sigma^0 +
+            \mathcal{A} \cdot \varphi +
+            \mathcal{K} \cdot \nabla\varphi.
             \]
           </alt>
         </equation>
 
-        If
-
-        <inlineequation>
-          <alt role="tex">
-            \([\varphi]\)
-          </alt>
-        </inlineequation>
-
-         is a vector containing all of the components of &varphi; at
-         all of the nodes, and
-
-         <inlineequation>
-           <alt role="tex">
-             \([\sigma({\bf x})]\)
-           </alt>
-         </inlineequation>
-
-         is a vector containing all the components of the flux at
-         point &boldx;, then
+        This is the linearization of a more general relation.  &Acal;,
+        &Kcal; and &sigma0; may all be functions of &boldx;, &varphi;,
+        &gradphi;, or time.  (&sigma0; must not be a linear function
+        of &varphi; or &gradphi;, though.)
+      </para>
+      <para>
+        <xref linkend="Eqn-constitutive"/> can be written as a matrix
+        equation:
         
 	    <equation id="Eqn-Property-flux">
 	      <alt role="tex">
 	        \[
-            [\sigma({\bf x})] = \mathcal{K}({\bf x})\cdot [\varphi]
+            \sigma_i =
+            \sigma^0_i + 
+            \mathcal{A}_{ik} \cdot \varphi_k +
+            \mathcal{K}_{ijk} \cdot \nabla_j\varphi_k
             \]
 	      </alt>
 	    </equation>
+        (repeated indices are summed).  The index &texi; is a flux
+        component, &texj; is a space component, and &texk; is a field
+        component.  Inserting <xref linkend="Eqn-Property-expansion"/>
+        and <xref linkend="Eqn-Property-expansion-deriv"/> into <xref
+        linkend="Eqn-Property-flux"/>
 
-      </para>
-      
-      <para>
-	    Inserting <xref linkend="Eqn-Property-expansion"/> into <xref
-	    linkend="Eqn-Property-flux"/>
-
-        <equation>
+        <equation id="Eqn-Property-fluxmtx">
           <alt role="tex">
-            \[
-            [\sigma({\bf x})]_i =
-            \sum_{n\nu} \left(
-              \mathcal{K}_{i,n\nu} \frac{\partial N_\nu({\bf x})}{\partial{\bf x}_n}
-              \right)
-            \varphi_{n\nu}
-            \]
+            \begin{align*}
+            \sigma_i
+            &amp;=
+            \mathcal{A}_{ik} N_\nu({\bf x}) \varphi_{k\nu}
+            +
+            \mathcal{K}_{ijk}
+            \frac{\partial N_\nu}{\partial{\bf x}_j} \varphi_{k\nu}
+            +
+            \sigma^0_i \\
+            &amp;=
+            \left[
+               \mathcal{A}_{ik} N_\nu({\bf x}) +
+               \mathcal{K}_{ijk} \frac{\partial N_\nu}{\partial{\bf x}_j}
+             \right] \varphi_{k\nu} +
+             \sigma^0_i \\
+             \end{align*}
           </alt>
         </equation>
         
-        shows that the vector of flux values is related to the vector
-        of field values by a matrix &Kmatrix;  we call the
-        <emphasis>flux matrix</emphasis>:
+        shows that the vector of flux values &sigma; at &boldx; is
+        related to the vector of field values &varphi; at the nodes by
+        a matrix we call the <emphasis>flux matrix</emphasis>:
 
         <equation id="Eqn-flux-matrix">
           <alt role="tex">
             \[
-            {\bf K}_{i,n\nu} = \mathcal{K}_{i,n\nu}\frac{\partial
-            N_\nu({\bf x})}{\partial{\bf x}_n}
+            {\bf K}_{ik\nu} =
+            \mathcal{A}_{ik}({\bf x})N_\nu + 
+            \mathcal{K}_{ijk}
+            \frac{\partial N_\nu}{\partial{\bf x}_j}
             \]
           </alt>
         </equation>
 
-        The columns of &Kmatrix; correspond to
-	    degrees of freedom 
+        and an offset &sigma0;.  The columns of &Kmatrix; correspond
+        to field values
 
         <inlineequation>
-	      <alt role="tex">\(\varphi_{n\nu}\)</alt>
+	      <alt role="tex">\(\varphi_{k\nu}\)</alt>
         </inlineequation>
 
-        and its rows to components of the flux &sigma;. 
-	  </para>
-
-	  <para>
-	    For example, for <link
-	    linkend="Property-Thermal-Conductivity-Anisotropic-Cubic">thermal
-	    conductivity</link> the heat flux is a vector
-
+        and the rows to flux components
+        
         <inlineequation>
           <alt role="tex">
-            \( J({\bf x}) \)
-          </alt>
-        </inlineequation>
-
-	    <equation>
-	      <alt role="tex">
-	        \begin{align*}
-            J_i
-            &amp;= -\kappa_{ij} \nabla_jT \\
-            &amp;= -\kappa_{ij} \frac{\partial}{\partial{\bf x}_j}
-              (T_\nu N_\nu({\bf x})) \\
-            &amp;= -\left(\kappa_{ij}
-              \frac{\partial N_\nu({\bf x})}{\partial {\bf x}_j}\,
-               \right) T_\nu \\
-            \end{align*} 
+            \(\sigma_i({\bf x})\)
 	      </alt>
+          </inlineequation>.
+
+          &Kmatrix; is a part of what is generally called the
+          <emphasis>stiffness matrix</emphasis>.
+      </para>
+      <para>
+        Computing &Kmatrix; <xref linkend="Eqn-flux-matrix"/> is the
+        purpose of the
+        <function>FluxProperty::flux_matrix()</function> method.  On
+        each call, <function>flux_matrix()</function> must make
+        contributions to &Kmatrix; for all of the components of a
+        given flux, all of the components of the relevant fields
+        &varphi; (and their out-of-plane parts), and one given node
+        &nu;.
+	  </para>
+
+      <para>
+        The <link
+        linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+        object that is passed in to <function>flux_matrix</function>
+        is a container for the various matrices that &Properties;
+        compute.  <function>flux_matrix</function> contributes to
+        &Kmatrix; by calling <link
+        linkend="Class-SmallSystem-stiffness_matrix_element"><methodname>SmallSystem::stiffness_matrix_element()</methodname></link>,
+        as shown in the example <link
+        linkend="example-fluxmatrix">below</link>.
+      </para>
+      <para>
+        Similarly, if the &flux; depends on the time derivative of the
+        &field;, &varphidot;, or its gradient, &gradphidot;, through
+        moduli &Dcal; and &Ccal; respectively, then
+        <function>flux_matrix()</function> must also compute a
+        <emphasis>damping matrix</emphasis>:
+
+        <equation id="Eqn-damping-matrix">
+          <alt role="tex">
+            \[
+            {\bf C}_{ik\nu} =
+            \mathcal{D}_{ik}({\bf x})N_\nu + 
+            \mathcal{C}_{ijk}({\bf x})
+            \frac{\partial N_\nu}{\partial{\bf x}_j}
+            \]
+          </alt>
         </equation>
 
-	    from which we get
+        It stores its results by calling <link
+        linkend="Class-SmallSystem-damping_matrix_element"><methodname>SmallSystem::damping_matrix_element()</methodname></link>.
 
-	    <equation id="Eqn-Property-K">
-	      <alt role="tex">
-            \[
-	        K_{i\nu} = -\kappa_{ij}
-               \frac{\partial N_\nu({\bf x})}{\partial {\bf x}_j}
-	        \]
-	      </alt>
-	    </equation>
+        &oof2; currently does not allow nonlinearities in the time
+        derivative terms, so &Dcal; an &Ccal; cannot depend on the
+        &Fields;, but they can be functions of position.
+      </para>
 
-        Note that there is no <inlineequation><alt
-        role="tex">\(n\)</alt></inlineequation> index because
-        Temperature is a scalar.
-	  </para>
-	  <para>
-	    Actually, <xref linkend="Eqn-Property-K"/> isn't quite
-	    correct, because we ignored the <link
-	    linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
-	    components.  The out-of-plane part of the temperature field
-	    is 
-          
-	    <inlineequation>
-	      <alt role="tex">
-            \(
-	        \partial T/\partial z
-	        \)
-          </alt>
-	    </inlineequation>.
-
-        The part of the flux <inlineequation><alt
-        role="tex">\(J\)</alt></inlineequation> due to the
-        out-of-plane temperature gradient is
-
-	    <equation>
-	        <alt role="tex">
-              \[
-              J_i = -\kappa_{iz} \frac{\partial T}{\partial z}
-	          \]
-            </alt>
-	    </equation>
-	    Since
-
-        <inlineequation>
-            <alt role="tex">
-              \(\partial T/\partial z\)
-            </alt>
-        </inlineequation>
-
-        is a &Field; (an out-of-plane field, in the &oof2; sense &mdash;
-        it's computed at nodes just like in-plane fields are), it can
-        be expanded in terms of shape functions and the field values
-        at nodes, as in <xref linkend="Eqn-Property-expansion"/>.
-        From this we see that the extra terms in &Kmatrix; are:
-          
-	    <equation id="Eqn-Property-Kp">
-	      <alt role="tex">
-            \[
-	        K'_{i\nu} = -\kappa_{iz}N_\nu(r)
-	        \]
-          </alt>
-	    </equation>
-
-	  </para>
-	  <para>
-	    On each call, <function>flux_matrix()</function> must make
-	    contributions to &Kmatrix; for all of the components of a
-	    given flux, all of the components of the relevant fields
-	    &varphi; and their out-of-plane parts), and one given node
-
-	    <inlineequation>
-          <alt role="tex">
-            \(\nu\)
-          </alt>
-         </inlineequation>).
-	  </para>
 	  <para>
 	    It is important to note that it is <emphasis>not</emphasis>
-	    necessary for the <function>flux_matrix()</function>
-	    routine or its author to know anything about the following:
-	    <itemizedlist spacing="compact">
-	      <listitem>
-	        <para>
-		      The topology or number of nodes in the element.
-	        </para>
-	      </listitem>
-	      <listitem>
-	        <para>
-		      How nodal degrees of freedom are mapped into columns
-		      of the flux matrix.
-	        </para>
-	      </listitem>
-	      <listitem>
-	        <para>
-		      How flux components are mapped into rows of the flux matrix.
-	        </para>
-	      </listitem>
-	      <listitem>
-	        <para>
-		      What equations are being solved.
-	        </para>
-	      </listitem>
-	    </itemizedlist>
+	    necessary for the <function>flux_matrix()</function> routine
+	    or its author to know anything about the following:
 	  </para>
+	  <para>
+	    The arguments to <function>flux_matrix()</function> are:
+	    <variablelist>
+	      <varlistentry>
+	        <term><code>const <link linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+	        <listitem>
+		      <para>
+		        The finite element mesh that's being solved.
+		        <function>flux_matrix()</function> probably doesn't
+		        have to use the <varname>mesh</varname> object
+		        directly, but it does need to pass it through to other
+		        functions.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term><code>const <link linkend="Class-Element">Element</link>* element</code></term>
+	        <listitem>
+		      <para>
+		        The finite <link
+		        linkend="Class-Element">element</link> under
+		        consideration.  This shouldn't be explicitly needed
+		        except in cases in which the material parameters
+		        depend on physical space coordinates or in which
+		        history-dependent fields are stored in the element.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term><code>const <link
+	        linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp; node</code></term>
+	        <listitem>
+		      <para>
+		        This is the node &nu; referred to in the discussion
+		        <link linkend="fluxmatrix_discussion">above</link>.
+		        It's passed in in the form of an iterator, which can
+		        iterate over all of the nodes of the element, although
+		        it should be thought of here simply as a way of
+		        accessing the node's indices and shape
+		        functions.<footnote><simpara> It's not possible to use
+		        a <link
+		        linkend="Class-Node"><classname>Node</classname></link>
+		        instead of an <link
+		        linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
+		        here.  <classname>Nodes</classname> are unable to
+		        evaluate shape functions because they don't know which
+		        <link
+		        linkend="Class-Element"><classname>Element</classname></link>
+		        is being computed.
+		        <classname>ElementFuncNodeIterators</classname> know
+		        which <classname>Element</classname> they're looping
+		        over.</simpara></footnote> The node's shape function
+		        and its derivatives can be obtained from <link
+		        linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>ElementFuncNodeIterator::shapefunction</methodname></link>
+		        and <link
+		        linkend="Class-ElementShapeFuncIterator-dshapefunction"><methodname>ElementFuncNodeIterator::dshapefunction</methodname></link>.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term><code>const <link linkend="Class-Flux">Flux</link>*
+	        flux</code></term>
+	        <listitem>
+		      <para>
+		        The &flux; &sigma;.  Properties that contribute to
+		        more than one &flux; need to check this variable to
+		        know which flux they're computing now.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+	      <varlistentry>
+	        <term><code>const <link
+	        linkend="Class-MasterCoord">MasterPosition</link>&amp; position</code></term>
+	        <listitem>
+		      <para>
+		        The flux matrix is evaluated at a physical coordinate
+		        &boldx; (often a Gauss integration point, but not
+		        always).  <varname>position</varname> is the point in
+		        the <link
+		        linkend="Class-Element"><classname>Element</classname></link>'s
+		        master coordinate space<footnote
+		        id="footnote-masterspace"> <simpara> Elements are
+		        first defined in a master coordinate space, where
+		        geometry is easy, and then mapped to their actual
+		        positions in physical space.  The master quadrilateral
+		        is a square of side 2 centered on the origin.  The
+		        master triangle is a right isosceles triangle with
+		        vertices (0,0), (1,0), and (0,1).  A master space
+		        coordinate can be converted to a physical point by
+                calling
+		        <link
+		        linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.</simpara></footnote>
+		        corresponding to &boldx;.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+          <varlistentry>
+            <term><code>double time</code></term>
+            <listitem>
+              <para>
+                The time at which the flux matrix is being evaluated.
+              </para>
+            </listitem>
+          </varlistentry>
+          
+	      <varlistentry>
+	        <term>
+              <code><link linkend="Class-SmallSystem">SmallSystem</link>*
+	          fluxdata</code>
+            </term>
+	        <listitem>
+		      <para>
+		        The <link
+		        linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+		        class stores the portion of the the actual flux matrix
+		        &Kmatrix; and damping matrix &Cmatrix; that are
+		        currently being computed, along with other flux
+		        data.<footnote><para>This data can't be stored
+		        directly in the &Flux; object because one &Flux; is
+		        shared among many &FEMesh;es.  The <link
+		        linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+		        object is local to this computation.</para></footnote>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </para>
+      
+      <refsection id="example-fluxmatrix">
+        <title>Example of <function>flux_matrix()</function></title>
 	    <para>
-	      The arguments to <function>flux_matrix()</function> are:
-	      <variablelist>
-	        <varlistentry>
-	          <term><code>const <link linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
-	          <listitem>
-		        <para>
-		          The finite element mesh that's being solved.
-		          <function>flux_matrix()</function> probably doesn't
-		          have to use the <varname>mesh</varname> object
-		          directly, but it does have to pass it through to
-		          other functions.
-		        </para>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><code>const <link linkend="Class-Element">Element</link>* element</code></term>
-	          <listitem>
-		        <para>
-		          The finite <link
-		          linkend="Class-Element">element</link> under
-		          consideration.  This shouldn't be explicitly needed
-		          except in cases in which the material parameters
-		          depend on physical space coordinates or in which
-		          history-dependent fields are stored in the element.
-		        </para>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><code>const <link
-	          linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp; node</code></term>
-	          <listitem>
-		        <para>
-		          This is the node
+	      For example, for <link
+	      linkend="Property-Thermal-Conductivity-Anisotropic-Cubic">thermal
+	      conductivity</link> the field &varphi; is the temperature T,
+	      and the heat flux is the vector
 
-                  <inlineequation>
-                    <alt role="tex">
-                      \(\nu\)
-                    </alt>
-		          </inlineequation>
+          <inlineequation>
+            <alt role="tex">
+              \({\bf J}\)
+            </alt>
+            </inlineequation>:
 
-		          referred to in the discussion <link
-		          linkend="fluxmatrix_discussion">above</link>.  It's
-		          passed in in the form of an iterator, which can
-		          iterate over all of the nodes of the element,
-		          although it should be thought of here simply as a
-		          way of accessing the node's indices and shape
-		          functions.<footnote><simpara> It's not possible to
-		          use a <link
-		          linkend="Class-Node"><classname>Node</classname></link>
-		          instead of an <link
-		          linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
-		          here.  <classname>Nodes</classname> are unable to
-		          evaluate shape functions because they don't know
-		          which <link
-		          linkend="Class-Element"><classname>Element</classname></link>
-		          is being computed.
-		          <classname>ElementFuncNodeIterators</classname> know
-		          which <classname>Element</classname> they're looping
-		          over.</simpara></footnote>
-                  The node's shape function and its
-		          derivatives can be obtained from <link
-		          linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>ElementFuncNodeIterator::shapefunction</methodname></link>
-		          and <link
-		          linkend="Class-ElementShapeFuncIterator-dshapefunction"><methodname>ElementFuncNodeIterator::dshapefunction</methodname></link>.
-		        </para>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><code>const <link linkend="Class-Flux">Flux</link>*
-	          flux</code></term>
-	          <listitem>
-		        <para>
-		          The &flux; &sigma; referred to in the discussion <link
-		          linkend="fluxmatrix_discussion">above</link>.
-		          Properties that contribute to more than one &flux;
-		          need to check this variable to know which flux
-		          they're computing now.
-		        </para>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><code>const <link
-	          linkend="Class-MasterCoord">MasterPosition</link>&amp; position</code></term>
-	          <listitem>
-		        <para>
-		          The flux matrix is evaluated at a physical
-		          coordinate &boldx; (often a Gauss integration point,
-		          but not always).  <varname>position</varname> is the
-		          point in the <link
-		          linkend="Class-Element"><classname>Element</classname></link>'s
-		          master coordinate space<footnote
-		          id="footnote-masterspace"> <simpara> Elements are
-		          first defined in a master coordinate space, where
-		          geometry is easy, and then mapped to their actual
-		          positions in physical space.  The master
-		          quadrilateral is a square of side 2 centered on the
-		          origin.  The master triangle is a right isosceles
-		          triangle with vertices (0,0), (1,0), and (0,1).  A
-		          master space coordinate can be converted to a
-		          physical point by <link
-		          linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.</simpara></footnote>
-		          corresponding to &boldx;.
-		        </para>
-	          </listitem>
-	        </varlistentry>
+            <equation id="Eqn-ThermalFlux">
+              <alt role="tex">
+                \[
+                {\bf J}_i({\bf x}) = -\kappa_{ij} \nabla_jT({\bf x}) -
+                \kappa_{iz} T_z
+                \]
+              </alt>
+            </equation>
+
+            The <emphasis>z</emphasis> component in <xref
+            linkend="Eqn-ThermalFlux"/> has been separated out
+            because, as explained in <xref
+            linkend="Section-Concepts-Mesh-3D"/>, the
+            <emphasis>z</emphasis> derivatives of &fields; are treated
+            differently from the <emphasis>x</emphasis> and
+            <emphasis>y</emphasis> derivatives in &oof2;.
+
+            <inlineequation>
+              <alt role="tex">
+                \(T_z \equiv \partial T/\partial z \)
+              </alt>
+            </inlineequation>
+
+            is treated as a separate scalar &field;, and is only
+            present if Temperature is in-plane.  Because gradients of
+
+            <inlineequation>
+              <alt role="tex">
+                \(T_z\)
+              </alt>
+            </inlineequation>
+
+            don't appear in <xref linkend="Eqn-ThermalFlux"/>, it is
+            treated as part of the &Acal; term in <xref
+            linkend="Eqn-flux-matrix"/>.
         
-	        <varlistentry>
-	          <term>
-                <code><link linkend="Class-FluxData">SmallSystem</link>*
-	            fluxdata</code>
-              </term>
-	          <listitem>
-		        <para>
-		          The <classname>SmallSystem</classname> class stores
-		          the portion of the the actual flux matrix &Kmatrix;
-		          and other flux data that is currently being
-		          computed.  (This data can't be stored directly in
-		          the &Flux; object because one &Flux; is shared among
-		          many &FEMesh;es.
-		          The <link
-		          linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
-		          object is local to this computation.)  The actual
-		          flux matrix &Kmatrix; can be accessed through the
-		          methods <link
-		          linkend="Class-SmallSystem-stifffness_matrix_element"><methodname>SmallSystem::stiffness_matrix_element()</methodname></link>
-		          <foreignphrase>et al</foreignphrase>.  This
-		          function handles the mapping from node, field, and
-		          flux component indices to actual row and column
-		          indices.
-                </para>
-	          </listitem>
-	        </varlistentry>
-	      </variablelist>
+	        <equation>
+	          <alt role="tex">
+	            \begin{align*}
+                {\bf J}_i
+                &amp;= -\kappa_{ij} \frac{\partial}{\partial{\bf x}_j}
+                (T_\nu N_\nu({\bf x}))
+                -\kappa_{iz}T_{z\nu}N_\nu({\bf x})
+                \\
+                &amp;= -\left(\kappa_{ij}
+                \frac{\partial N_\nu({\bf x})}{\partial {\bf x}_j}\,
+                \right) T_\nu
+                -\left(\kappa_{iz}N_\nu({\bf x})\right) T_{z\nu}
+                \\
+                \end{align*} 
+	          </alt>
+            </equation>
+
+	        from which we get
+            
+	        <equation id="Eqn-Property-K">
+	          <alt role="tex">
+                \[
+	            {\bf K}_{i\nu} = -\kappa_{ij}
+                \frac{\partial N_\nu({\bf x})}{\partial {\bf x}_j}
+	            \]
+	          </alt>
+	        </equation>
+
+            for <inlineequation><alt role="tex">\(T\)</alt></inlineequation>
+            and
+
+            <equation id="Eqn-Property-Kp">
+              <alt role="tex">
+                \[
+                {\bf K}_{z\nu} = -\kappa_{iz}N_\nu({\bf x})
+                \]
+              </alt>
+            </equation>
+
+            for <inlineequation><alt role="tex">\(T_z\)</alt></inlineequation>.
+            
+
+            Note that there is no <inlineequation><alt
+            role="tex">\(k\)</alt></inlineequation> index because
+            Temperature is a scalar.
 	    </para>
-	    <para>
-	      Here is the <methodname>fluxmatrix</methodname> routine for
-	      the <classname>HeatConductivity</classname> class, from
-	      <filename>SRC/engine/property/heatconductivity/heatconductivity.C</filename>
-	      in the &oof2; source code:
+ 	    <para>
+          Here is the <methodname>fluxmatrix</methodname> routine for
+          the <classname>HeatConductivity</classname> class, from
+          <filename>SRC/engine/properties/heatconductivity/heatconductivity.C</filename>
+          in the &oof2; source code:
 	    </para>
 
         <programlisting>
@@ -1090,15 +1165,15 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
             <para>
               We don't really need to do this.  It's a sanity check to
               make sure that we got the &flux; we wanted.
-              <varname>heat_flux</varname> was set in the
-              <classname>HeatConductivity</classname> constructor by
-              calling <code>Flux::getFlux("Heat_Flux")</code> and
-              dynamically casting the result to a
+              <varname>heat_flux</varname> is a protected data member of
+              <classname>HeatConductivity</classname> and was set in
+              the constructor by calling <code><link
+              linkend="Function-getFlux">Flux::getFlux</link>("Heat_Flux")</code>
+              and dynamically casting the result to a
               <classname>VectorFlux*</classname>.  If a Property makes
-              contributions to more than one
-              <classname>Flux</classname>, then a statement like this
-              is used to determine which flux it is being asked to
-              compute.
+              contributions to more than one &Flux; then a statement
+              like this must used to determine which flux it is being
+              asked to compute.
             </para>
           </callout>
           <callout arearefs="flux_matrix-error">
@@ -1140,7 +1215,7 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
           </callout>
           <callout arearefs="flux_matrix-loop">
             <para>
-              Note> that this loop is over all components of the
+              Note that this loop is over all components of the
               &Flux;.  When solving a <link
               linkend="Section-Concepts-Mesh-plane-flux">plane-flux</link>
               problem, the out-of-plane coefficients in &Kmatrix; are
@@ -1200,7 +1275,7 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
 	          This retrieves a reference to the matrix element
 	          coupling the <link
 	          linkend="Section-Concepts-Mesh-3D">out-of-plane</link>
-	          component of the temperature to flux component
+	          part of the Temperature &field; to flux component
 	          <inlineequation><alt
 	          role="tex">\(i\)</alt></inlineequation>.
             </para>
@@ -1211,15 +1286,306 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
             </para>
           </callout>
         </calloutlist>
-	  </refsection><!-- fluxmatrix -->
+      </refsection>             <!--flux_matrix example-->
+    </refsection>               <!-- flux_matrix -->
 
 
-  <!-- fluxrhs moved here from refProperty.xml. TODO Needs to be
-       updated -->
-  
-      <refsection id="Class-Property-fluxrhs">
-	<title><code>void Property::fluxrhs(...) const</code></title>
-	<para>
+    <refsection id="Class-FluxProperty-flux_offset">
+	    <title><code>void flux_offset(const FEMesh* mesh, const Element* element, const Flux* flux, ...) const</code></title>
+	    <para>
+          <methodname>FluxProperty::flux_offset()</methodname>
+          computes the &sigma0; term in <xref linkend="Eqn-flux1"/>.
+          It is the value of the linearized &flux; when the &fields;
+          are zero.  It is similar in purpose to <link
+          linkend="Class-Property-flux_matrix"><methodname>FluxProperty::flux_matrix()</methodname></link>,
+          but generally simpler to implement.
+        </para>
+        <para>
+          Because &sigma0; is not proportional to a &field; or its
+          gradient, <function>flux_offset()</function> does not have
+          to worry about expansions and shape functions.  It just
+          computes the value of &sigma0; and stores it in the given
+          <link
+          linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>.
+        </para>
+        <para>
+          As an example, consider <link
+          linkend="PropertyType-ThermalExpansion">thermal
+          expansion</link>.
+          The flux (stress) is
+
+          <equation id="Eqn-thermal-stress">
+            <alt role="tex">
+              \[
+              \sigma_{ij} = C_{ijkl}(\epsilon_{kl} - \alpha_{kl}(T-T_0)).
+              \]
+            </alt>
+          </equation>
+
+          <inlineequation>
+            <alt role="tex">
+              \(\alpha_{kl}\)
+            </alt>
+          </inlineequation>
+
+          is the thermal expansion coefficient and
+            
+          <inlineequation>
+            <alt role="tex">
+              \(T_0\)
+            </alt>
+          </inlineequation>
+          is the temperature at which the thermal stress vanishes.
+
+          The
+
+          <inlineequation>
+            <alt role="tex">
+              \(C_{ijkl}\alpha_{kl}\,T\)
+            </alt>
+          </inlineequation>
+
+          term in <xref linkend="Eqn-thermal-stress"/> is handled by
+          <methodname>ThermalExpansion::flux_matrix()</methodname>
+          because of its field dependence, but
+
+          <inlineequation>
+            <alt role="tex">
+              \(C_{ijkl}\alpha_{kl}\,T_0\)
+            </alt>
+          </inlineequation>
+          
+          makes a field <emphasis>independent</emphasis> contribution
+          to the flux, and needs to be handled by
+          <function>flux_offset()</function>.
+        </para>
+        <para>
+          The arguments to
+          <methodname>FluxProperty::flux_offset()</methodname> are:
+          <variablelist>
+            <varlistentry>
+              <term><code>const <link linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+              <listitem>
+                <para>
+		          The finite element mesh that's being solved.
+		          <function>flux_offset()</function> probably doesn't
+		          have to use the <varname>mesh</varname> object
+		          directly, but it does have to pass it through to
+		          other functions.
+                </para>
+              </listitem>
+            </varlistentry>
+	        <varlistentry>
+	          <term><code>const <link linkend="Class-Element">Element</link>* element</code></term>
+	          <listitem>
+		        <para>
+		          The finite <link
+		          linkend="Class-Element">element</link> under
+		          consideration.  This shouldn't be explicitly needed
+		          except in cases in which the material parameters
+		          depend on physical space coordinates or in which
+		          history-dependent fields are stored in the element.
+		        </para>
+	          </listitem>
+	        </varlistentry>
+	        <varlistentry>
+	          <term><code>const <link linkend="Class-Flux">Flux</link>*
+	          flux</code></term>
+	          <listitem>
+		        <para>
+		          The &flux; &sigma;.  Properties that contribute to
+		          more than one &flux; need to check this variable to
+		          know which flux they're computing now.
+		        </para>
+	          </listitem>
+	        </varlistentry>
+	        <varlistentry>
+	          <term><code>const <link
+	          linkend="Class-MasterCoord">MasterPosition</link>&amp; position</code></term>
+	          <listitem>
+		        <para>
+		          The flux offset is evaluated at a physical
+		          coordinate &boldx; (often a Gauss integration point,
+		          but not always).  <varname>position</varname> is the
+		          point in the <link
+		          linkend="Class-Element"><classname>Element</classname></link>'s
+		          master coordinate space.<footnoteref
+		          linkend="footnote-masterspace"/>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>double time</code></term>
+              <listitem>
+                <para>
+                  The time at which the flux offset is being evaluated.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <code><link linkend="Class-SmallSystem">SmallSystem</link>*
+                fluxdata</code>
+              </term>
+              <listitem>
+                <para>
+                  The <classname>SmallSystem</classname> class stores
+                  the portion of the finite element matrices and
+                  vectors that are currently being computed.   The
+                  results of the <function>flux_offset()</function>
+                  calculation are stored here.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>       <!-- flux_offset arguments -->
+        </para>
+        <para>
+          Here is the <function>flux_offset</function> routine for the
+          <classname>ThermalExpansion</classname> class, from
+          <filename>SRC/engine/properties/thermalexpansion/thermalexpansion.C</filename>:
+        </para>
+        <programlisting>
+void ThermalExpansion::flux_offset(const FEMesh* mesh,
+				   const Element* element,
+				   const Flux* flux,
+				   const MasterPosition&amp; x,
+				   double time,
+				   SmallSystem* fluxdata) const {
+
+  if(*flux != *stress_flux) { <co id="flux_offset-fluxcheck"/>
+    throw ErrProgrammingError("Unexpected flux.", __FILE__, __LINE__);
+  }
+  const Cijkl modulus = elasticity->cijkl(mesh, element, x); <co id="flux_offset-modulus"/>
+  SymmMatrix3 expten = expansiontensor(mesh, element, x); <co id="flux_offset-alpha"/>
+
+  for(IndexP ij : *flux->components(ALL_INDICES)) { <co id="flux_offset-loop"/>
+    double &amp;offset_el = fluxdata->offset_vector_element(ij); <co id="flux_offset-reference"/>
+    for(SymTensorIndex kl : symTensorIJComponents) { <co id="flux_offset-loop2"/>
+      if(kl.diagonal()) {
+	offset_el -= modulus(ij,kl)*expten[kl]*T0;
+      }
+      else {
+	offset_el -= 2.0*modulus(ij,kl)*expten[kl]*T0;
+      }
+    }
+  }
+}
+        </programlisting>
+        <calloutlist>
+          <callout arearefs="flux_offset-fluxcheck">
+            <para>
+              This is optional here, to check that we got the &Flux;
+              we were expecting.  If a
+              <classname>FluxProperty</classname> contributes to more
+              than one &Flux;, then a statement like this can be used
+              to determine which one is being computed.  The variable
+              <varname>stress_flux</varname> was set by the
+              <classname>ThermalExpansion</classname> constructor by
+              calling <code><link
+              linkend="Function-getFlux">Flux::get_Flux</link>("Stress")</code>
+              and dynamically casting the result to a <code><link
+              linkend="Class-SymmetricTensorFlux">SymmetricTensorFlux</link>*</code>.
+            </para>
+          </callout>
+          <callout arearefs="flux_offset-modulus">
+            <para>
+              This extracts the elastic modulus from the <link
+              linkend="Class-Material"><classname>Material</classname>'s</link>
+              <literal>Elasticity</literal>
+              <classname>Property</classname>.
+              <varname>elasticity</varname> is a variable set in <link
+              linkend="Class-Property-cross_reference"><methodname>ThermalExpansion::cross_reference()</methodname></link>
+              by calling <code><link
+              linkend="Class-Material-fetchProperty">Material::fetchProperty</link>("Elasticity")</code>.
+            </para>
+          </callout>
+          <callout arearefs="flux_offset-alpha">
+            <para>
+              This is <inlineequation><alt
+              role="tex">\(\alpha_{kl}\)</alt></inlineequation> in
+              <xref linkend="Eqn-thermal-stress"/>.
+              <function>expansiontensor()</function> is a virtual
+              function in the <classname>ThermalExpansion</classname>
+              class.  The various isotropic and anisotropic subclasses
+              define <function>expansiontensor()</function> in
+              different ways.
+            </para>
+          </callout>
+          <callout arearefs="flux_offset-loop">
+            <para>
+              This loop is over all components of the stress, even if
+              the problem is being solved in plane stress.  The
+              out-of-plane components are used in the constraint
+              equations.  Looping over components is discussed in
+              <xref linkend="Section-Coding-Indices"/>.
+            </para>
+          </callout>
+          <callout arearefs="flux_offset-reference">
+            <para>
+              <varname>offset_el</varname> is a reference to the
+              <varname>ij</varname> component of &sigma0; in the <link
+              linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+              object.  This value will be incorporated into the global
+              vectors constructed by
+              <classname>SmallSystem</classname>.
+            </para>
+          </callout>
+          <callout arearefs="flux_offset-loop2">
+            <para>
+              This loops over all components of the stress.
+              The line could have been written
+              <programlisting>
+for(IndexP kl : *flux->components(ALL_INDICES)) { ... } </programlisting>
+              but the generic <link
+              linkend="Class-IndexP"><classname>IndexP</classname></link>
+              would have to be cast into a <link
+              linkend="Class-SymTensorIndex"><classname>SymTensorIndex*</classname></link>
+              in order to call <link
+              linkend="Class-SymTensorIndex-diagonal"><methodname>SymTensorIndex::diagonal()</methodname></link>
+              on the next line.<footnote><para>
+              It would look like
+              <programlisting>
+for(IndexP kl : *flux->components(ALL_INDICES)) {
+  const SymTensorIndex* kayell = dynamic_cast&lt;const SymTensorIndex*&gt;(kl.fieldindex());
+  if(kayell->diagonal()) {
+    offset_el -= modulus(ij,kl)*expten[kl]*T0;
+  }
+  else {
+    offset_el -= 2.0*modulus(ij,kl)*expten[kl]*T0;
+  }
+} </programlisting></para></footnote>
+            Using <link
+              linkend="Class-SymTensorIJComponents"><varname>symTensorIJComponents</varname></link>
+              (note the lower-case <quote>s</quote>!) avoids this
+              complication.
+            </para>
+          </callout>
+        </calloutlist>
+      </refsection>             <!-- flux_offset-->
+
+      <refsection id="Class-FluxProperty-flux_value">
+        <title>
+          <code>void flux_value(const FEMesh* mesh, const Element*
+          element, const Flux* flux, ...)</code>
+        </title>
+        <para>
+          <methodname>FluxProperty::flux_value()</methodname> computes
+          the value of a given &flux;, as in <xref
+          linkend="Eqn-flux1"/>.  
+        </para>
+        <para>
+          Is flux_value() ever used other than in
+          Material::find_fluxdata?  No class redefines it.  The base
+          class version just calls static_flux_value().
+        </para>
+      </refsection>
+      
+      <refsection>
+        <title>OLD</title>
+      <para>
+
+          OLD
+          
 	  &oof2; <classname>Properties</classname> that represent
 	  external (generalized) forces or otherwise contribute to the
 	  right hand side of a <link
@@ -1424,9 +1790,9 @@ void ForceDensity::fluxrhs(const FEMesh *mesh, const Element *element,
 	  <classname>ThermalExpansion</classname> property, which is
 	  an example of a flux <emphasis>offset</emphasis>.  It
 	  computes the field-independent term
-	  <equation id="Eqn-thermalexpfluxrhs">
+	  <inlineequation id="Eqn-thermalexpfluxrhs">
 	    <alt role="tex">\(C_{ijkl}\alpha_{kl}T_0\)</alt>
-	  </equation>
+	  </inlineequation>
 	  The original version can be found in
 	  <filename>SRC/engine/property/thermalexpansion/thermalexpansion.C</filename>
 	  in the &oof2; source code.
@@ -1528,7 +1894,7 @@ void ThermalExpansion::cross_reference(Material *mat) {
 	    </para>
 	  </callout>
 	</calloutlist>
-  </refsection><!-- fluxrhs -->
+  </refsection>                 <!-- fluxrhs OLD -->
   
   </refsection>               <!-- FluxProperty Methods-->
   

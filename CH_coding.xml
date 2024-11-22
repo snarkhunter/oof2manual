@@ -568,14 +568,13 @@ conjugatePair("Elasticity",
   <section id="Section-Coding-Material">
     <title>Adding New Material Properties</title>
     <para>
-      Adding new &material; &properties; is the most complicated part
-      of creating an &oof2; extension.  Just to make it simpler, there
-      are two ways of doing it.  &properties; can be written in C++ or
-      they can be written in Python.  Python &properties; are a bit
-      easier to write and install, but will run significantly more
-      slowly.  It may be convenient to develop new &properties; in
-      Python and translate them to C++ after the bugs have been worked
-      out.
+      New &material; &properties; are the most complicated kind of
+      &oof2; extension.  Just to make it simpler, there are two ways
+      of doing it.  &properties; can be written in C++ or they can be
+      written in Python.  Python &properties; are a bit easier to
+      write and install, but will run significantly more slowly.  It
+      may be convenient to develop new &properties; in Python and
+      translate them to C++ after the bugs have been worked out.
     </para>
     <para>
       Whether a &property; is written in C++ or Python, the same code
@@ -584,13 +583,42 @@ conjugatePair("Elasticity",
       ones.
     </para>
     <para>
-      A &property; definition contains a class definition, which is
-      either a C++ subclass of &Property; or a Python subclass of
-      <link
-      linkend="Class-PyPropertyWrapper"><classname>ooflib.SWIG.engine.pypropertywrapper</classname></link>,
-      and a <link
+      A &property; consists of a class definition and a <link
       linkend="Class-PropertyRegistration"><classname>PropertyRegistration</classname></link>
-      object, which contains metadata about the &property;.
+      object.  The registration contains metadata about the &property;
+      and allows it to be found in the user interface.  The class
+      must be a subclass of one of these intermediate base classes:
+      <itemizedlist>
+        <listitem>
+          <para>
+            A <xref linkend="Class-FluxProperty"/> contributes to a
+            &flux;.  For example, <xref
+            linkend="Property-Mechanical-Elasticity-Isotropic"/>
+            contributes to <xref linkend="Flux-Stress"/>. 
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            An <xref linkend="Class-EqnProperty"/> contributes
+            directly to an &equation;.  For example, <xref
+            linkend="Property-Mechanical-MassDensity-ConstantMassDensity"/>
+            provides the mass times acceleration term in the <xref
+            linkend="Equation-Force_Balance"/> equation.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            An <xref linkend="Class-AuxiliaryProperty"/> is neither of
+            the above, but can be used indirectly by other
+            &Properties;.  For example, <xref
+            linkend="Property-Orientation"/> is used by all
+            anisotropic &Properties;.  <xref
+            linkend="Property-Color"/> is used to display &materials;.
+          </para>
+        </listitem>
+      </itemizedlist>
+      See the documentation for each intermediate class for the
+      details.
     </para>
     <para>
       &property; classes perform the following types of tasks (the

@@ -187,6 +187,8 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY layers "<link linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">
 
 <!ENTITY Acal "<inlineequation><alt role='tex'>\(\mathcal{A}\)</alt></inlineequation>">
+<!ENTITY Ccal "<inlineequation><alt role='tex'>\(\mathcal{C}\)</alt></inlineequation>">
+<!ENTITY Dcal "<inlineequation><alt role='tex'>\(\mathcal{D}\)</alt></inlineequation>">
 <!ENTITY Cmatrix "<inlineequation><alt role='tex'>\(\bf C\)</alt></inlineequation>">
 <!ENTITY Kcal "<inlineequation><alt role='tex'>\(\mathcal{K}\)</alt></inlineequation>">
 <!ENTITY Kmatrix "<inlineequation><alt role='tex'>\(\bf K\)</alt></inlineequation>">
@@ -199,6 +201,7 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY chat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf c}}\)</alt></inlineequation>">
 <!ENTITY gamma "<inlineequation><alt role='tex'>\(\gamma\)</alt></inlineequation>">
 <!ENTITY gradphi "<inlineequation><alt role='tex'>\(\nabla\varphi\)</alt></inlineequation>">
+<!ENTITY gradphidot "<inlineequation><alt role='tex'>\(\partial\nabla\varphi/\partial t\)</alt></inlineequation>">
 <!ENTITY nu "<inlineequation><alt role='tex'>\(\nu\)</alt></inlineequation>">
 <!ENTITY phi "<inlineequation><alt role='tex'>\(\phi\)</alt></inlineequation>">
 <!ENTITY psi "<inlineequation><alt role='tex'>\(\psi\)</alt></inlineequation>">
@@ -209,6 +212,7 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY texk "<inlineequation><alt role='tex'>\(k\)</alt></inlineequation>">
 <!ENTITY theta "<inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
 <!ENTITY varphi "<inlineequation><alt role='tex'>\(\varphi\)</alt></inlineequation>">
+<!ENTITY varphidot "<inlineequation><alt role='tex'>\(\partial\varphi/\partial t\)</alt></inlineequation>">
 <!ENTITY xhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
 <!ENTITY yhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf y}}\)</alt></inlineequation>">
 <!ENTITY zhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf z}}\)</alt></inlineequation>">

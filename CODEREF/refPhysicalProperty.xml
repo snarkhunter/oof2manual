@@ -344,9 +344,11 @@ int MassDensityProp::integration_order(const CSubProblem*, const Element* el) co
         <equation>
           <alt role="tex">
             \[
-            \psi({\bf x}) \equiv (\partial\varphi_x/\partial z,\,
-                                  \partial\varphi_y/\partial z,\,
-                                  \partial\varphi_z/\partial z)
+            \psi({\bf x}) \equiv \left(
+            \frac{\partial\varphi_x}{\partial z},\,
+            \frac{\partial\varphi_y}{\partial z},\,
+            \frac{\partial\varphi_z}{\partial z}
+            \right)
             \]
           </alt>
         </equation>

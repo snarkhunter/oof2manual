@@ -24,9 +24,17 @@
   <equation>
     <alt role="tex">
       \[ \dot\epsilon_{ij} = \frac12\left(\frac{\partial \dot u_i}{\partial x_j}
-      + \frac{\partial \dot u_j}{\partial x_i}\right). \]
+      + \frac{\partial \dot u_j}{\partial x_i}\right), \]
     </alt>
   </equation>
+  is the strain rate and
+  <inlineequation>
+    <alt role="tex">
+      \( \dot{u} \)
+    </alt>
+  </inlineequation>
+  is the time derivative of the <xref linkend="Field-Displacement"/>
+  field.
 </para>
 
 <!-- Keep this comment at the end of the file
