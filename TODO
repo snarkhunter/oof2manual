@@ -42,3 +42,11 @@ Changing to xhtml in xsl/oofchunk.xsl and xsl/oofhtml.xsl has screwed
 up <classsynopis> and <programoutput> and maybe others.  It looks like
 link and formatting tags within the body of the class or program are
 inserting line breaks that they didn't do with html.
+
+In reference pages for classes, make the method names <emphasis
+role="bold">bold</emphasis> in the titles for the refsections for the
+methods.
+
+Be consistent about using <function> or <methodname>.  Be consistent
+about whether functions and methods mentioned by name in text have
+"()" appended.

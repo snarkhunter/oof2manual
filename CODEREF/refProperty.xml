@@ -665,7 +665,7 @@ def __init__(self, name, registration, ...):
 	  is more informative.
     </para>
     <refsection id="Class-Property-cross_reference">
-	  <title><code>void cross_reference(Material* material)</code></title>
+	  <title><code>void <emphasis role="bold">cross_reference</emphasis>(Material* material)</code></title>
 	  <para>
 	    <methodname>cross_reference</methodname> is called whenever a
 	    new &property; is added to a &material;.  It gives each
@@ -738,7 +738,7 @@ class AnisotropicThermalExpansion(ThermalExpansion):
     </refsection>               <!-- cross_reference -->
 
     <refsection id="Class-Property-constant_in_space">
-      <title><code>bool constant_in_space() const</code></title>
+      <title><code>bool <emphasis role="bold">constant_in_space</emphasis>() const</code></title>
       <para>
         <function>constant_in_space()</function> should return
         <literal>false</literal> if the <classname>Property</classname>
@@ -756,7 +756,7 @@ class AnisotropicThermalExpansion(ThermalExpansion):
     </refsection>               <!-- constant_in_space -->
 
     <refsection id="Class-Property-precompute">
-	  <title><code>void precompute(FEMesh* mesh)</code></title>
+	  <title><code>void <emphasis role="bold">precompute</emphasis>(FEMesh* mesh)</code></title>
 	  <para>
 	    <function>precompute()</function> is called when a &mesh; is
 	    being solved.  It's called before any other
@@ -783,7 +783,7 @@ class AnisotropicThermalExpansion(ThermalExpansion):
     </refsection>                 <!-- precompute -->
  
     <refsection id="Class-Property-clear_mesh_data">
-      <title><code>void clear_mesh_data(FEMesh* mesh, void* data) const</code></title>
+      <title><code>void <emphasis role="bold">clear_mesh_data</emphasis>(FEMesh* mesh, void* data) const</code></title>
       <para>
         <methodname>clear_mesh_data()</methodname> is called when data
         stored by <link
@@ -802,7 +802,7 @@ void MyProperty::clear_mesh_data(FEMesh* mesh, void* data) const {
     </refsection>
     
     <refsection id="Class-Property-begin_element">
-	  <title><code>void begin_element(const CSubProblem*, const Element*)</code></title>
+	  <title><code>void <emphasis role="bold">begin_element</emphasis>(const CSubProblem*, const Element*)</code></title>
 	  <para>
 	    When building the finite element stiffness matrix
         and other numerical components,
@@ -827,7 +827,7 @@ void MyProperty::clear_mesh_data(FEMesh* mesh, void* data) const {
     </refsection>               <!-- begin_element -->
     
     <refsection id="Class-Property-end_element">
-	  <title><code>void end_element(const CSubProblem*, const Element*)</code></title>
+	  <title><code>void <emphasis role="bold">end_element</emphasis>(const CSubProblem*, const Element*)</code></title>
 	  <para>
 	    <methodname>end_element</methodname> is just like
 	    <methodname><link
@@ -847,7 +847,7 @@ void MyProperty::clear_mesh_data(FEMesh* mesh, void* data) const {
     </refsection>                 <!-- end_element -->
 
     <refsection id="Class-Property-post_process">
-	  <title><code>void post_process(CSubProblem*, const Element*) const</code></title>
+	  <title><code>void <emphasis role="bold">post_process</emphasis>(CSubProblem*, const Element*) const</code></title>
 	  <para>
 	    After solving the finite element equations,
 	    <methodname>post_process</methodname> is called once on each
@@ -867,7 +867,7 @@ void MyProperty::clear_mesh_data(FEMesh* mesh, void* data) const {
     </refsection>                 <!-- post_process -->
 
     <refsection id="Class-Property-is_symmetric">
-	  <title><code>bool is_symmetric_[KCM](const CSubProblem* mesh) const</code></title>
+	  <title><code>bool <emphasis role="bold">is_symmetric_[KCM]</emphasis>(const CSubProblem* mesh) const</code></title>
 	  <para>
 	    <methodname>is_symmetric_X</methodname> indicates whether or
 	    not the finite element matrix constructed from the
@@ -926,7 +926,7 @@ bool ThermalExpansion::is_symmetric_K(const CSubProblem* subproblem) const {
     </refsection>               <!-- is_symmetric -->
     
     <refsection id="Class-Property-output">
-	  <title><code>void output(FEMesh* mesh, const Element* element,
+	  <title><code>void <emphasis role="bold">output</emphasis>(FEMesh* mesh, const Element* element,
       const PropertyOutput* output, const MasterPosition&amp; pos,
       OutputVal *data)</code></title>
 	  <para>
@@ -1322,7 +1322,7 @@ def output(self, mesh, element, output, pos):
       <classname>Property</classname> subclasses.
     </para>
     <refsection id="Class-Property-set_mesh_data">
-      <title><code>void set_mesh_data(const FEMesh* mesh, void *data) const</code></title>
+      <title><code>void <emphasis role="bold">set_mesh_data</emphasis>(const FEMesh* mesh, void *data) const</code></title>
       <para>
         <methodname>set_mesh_data()</methodname> allows a
         <classname>Property</classname> to store arbitrary data in a
@@ -1366,7 +1366,7 @@ void MyProperty::precompute(FEMesh *mesh) {
     </refsection>               <!-- set_mesh_data -->
 
    <refsection id="Class-Property-get_mesh_data">
-      <title><code>void* get_mesh_data(const FEMesh* mesh) const</code></title>
+      <title><code>void* <emphasis role="bold">get_mesh_data</emphasis>(const FEMesh* mesh) const</code></title>
       <para>
         <methodname>get_mesh_data()</methodname> retrieves the data
         stored by <link

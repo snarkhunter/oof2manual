@@ -181,7 +181,7 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
     <title>Methods</title>
     <refsection id="Class-PhysicalProperty-integration_order">
 	  <title>
-        <code>int integration_order(const CSubProblem *subproblem, const Element
+        <code>int <emphasis role="bold">integration_order</emphasis>(const CSubProblem *subproblem, const Element
 	    *element) const</code>
       </title>
       <para>

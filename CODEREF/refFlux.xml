@@ -50,6 +50,11 @@
 	      <void/>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
+        <methodsynopsis>
+          <type>void</type>
+          <methodname><link linkend="Class-Flux-negate">negate</link></methodname>
+          <void/>
+        </methodsynopsis>
 	    <methodsynopsis>
 	      <type>Components*</type>
 	      <methodname><link linkend="Class-Flux-components">components</link></methodname>
@@ -126,6 +131,11 @@ from ooflib.SWIG.engine import Flux</programlisting>
 	      <methodname><link linkend="Class-Flux-divergence_dim">divergence_dim</link></methodname>
 	      <void/>
 	    </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-Flux-negate">negate</link></methodname>
+          <void/>
+        </methodsynopsis>
 	    <methodsynopsis>
 	      <methodname><link
 		                  linkend="Class-Flux-components">components</link></methodname>
@@ -230,7 +240,7 @@ from ooflib.SWIG.engine import Flux</programlisting>
     <refsection id="Class-Flux-ndof">
 	  <title><code>int ndof() const</code></title>
 	  <para>
-	    <methodname>ndof</methodname> returns the number of floating
+	    <function>ndof()</function> returns the number of floating
 	    point numbers required to represent a value of the
 	    <classname>Flux</classname>.
 	  </para>
@@ -238,7 +248,7 @@ from ooflib.SWIG.engine import Flux</programlisting>
     <refsection id="Class-Flux-divergence_dim">
 	  <title><code>int divergence_dim() const</code></title>
 	  <para>
-	    <methodname>divergence_dim</methodname> returns the number of
+	    <function>divergence_dim()</function> returns the number of
 	    <emphasis>in-plane</emphasis> components in the
 	    <classname>Flux</classname>'s divergence.  This is equal to
 	    the number of <link
@@ -247,12 +257,86 @@ from ooflib.SWIG.engine import Flux</programlisting>
 	    equation.
 	  </para>
     </refsection>               <!-- divergence_dim -->
+    <refsection id="Class-Flux-negate">
+      <title>
+        <code>void negate()</code>
+      </title>
+      <para>
+         &oof2; attempts to be generic where possible, making it
+         easier to maintain and extend.  However, sometimes tradition
+         gets in the way.  For example, stress is given by an elastic
+         modulus times a derivative (strain):
+        <equation>
+          <alt role="tex">
+            \[
+            \sigma_{ij} = C_{ijkl} \varepsilon_{kl}
+            \]
+          </alt>
+        </equation>
+        
+        but heat flux
+
+        <inlineequation>
+          <alt role="tex">
+            \( \bf J \)
+          </alt>
+        </inlineequation>
+        
+        is the <emphasis>negative</emphasis>
+        of the thermal conductivity modulus
+
+        <inlineequation>
+          <alt role="tex">
+            \( \kappa \)
+          </alt>
+        </inlineequation>
+
+        times a derivative (temperature gradient):
+          
+        <equation>
+          <alt role="tex">
+            \[
+            {\bf J}_i = -\kappa_{ij}\frac{\partial T}{\partial x_j}.
+            \]
+          </alt>
+        </equation>
+         
+        and the electric displacement (aka electric flux
+        density)
+        
+        <inlineequation>
+          <alt role="tex">
+            \( {\bf D} \)
+          </alt>
+        </inlineequation>
+        
+        also contains a minus sign:
+
+        <equation>
+          <alt role="tex">
+            \[
+            {\bf D}_i =
+            -\epsilon_{ij}\frac{\partial\varphi}{\partial x_j}.
+            \]
+          </alt>
+        </equation>
+
+        &oof2; needs to know when to insert the minus signs into the
+        divergence equations <xref linkend="Eqn-Divergence"/> and
+        <xref linkend="Eqn-TimeDivergence"/>.  This is done by calling
+        <function>Flux::negate()</function> after creating a
+        <classname>Flux</classname>.  If
+        <function>negate()</function> is called, then the &Flux;
+        will be treated like Stress.  If it is not called, it will be
+        treated like the Heat FLux.
+      </para>
+    </refsection>
     <refsection id="Class-Flux-components">
 	  <title>
 	    <code>const Components* components(Planarity planarity) const</code>
 	  </title>
 	  <para>
-	    <methodname>components</methodname> returns a &Components;
+	    <function>components()</function> returns a &Components;
 	    pointer that can be used to loop over and refer to the
 	    components of the <classname>Flux</classname>.  The given
 	    &Planarity; determines whether the iteration should include
@@ -262,7 +346,7 @@ from ooflib.SWIG.engine import Flux</programlisting>
     <refsection id="Class-Flux-divergencecomponents">
 	  <title><code>Components* divergenceComponents() const</code></title>
 	  <para>
-	    <methodname>divergenceComponents</methodname> returns a
+	    <methodname>divergenceComponents()</methodname> returns a
 	    &Components; pointer that can be used to loop over the
 	    in-plane components of the divergence of the
 	    <classname>Flux</classname>.
@@ -271,7 +355,7 @@ from ooflib.SWIG.engine import Flux</programlisting>
     <refsection id="Class-Flux-oop-components">
 	  <title><code>Components* outOfPlaneComponents() const</code></title>
 	  <para>
-	    <methodname>outOfPlaneComponents</methodname> returns a
+	    <methodname>outOfPlaneComponents()</methodname> returns a
 	    &Components; pointer that can be used to loop over the
 	    out-of-plane components of the <classname>Flux</classname>.
 	  </para>
@@ -334,10 +418,7 @@ from ooflib.SWIG.engine import Flux</programlisting>
       </caution>
     </refsection>                 <!-- outOfPlaneComponents -->
     <refsection id="Class-Flux-getIndex">
-      <title><code>getIndex</code></title>
-      <programlisting>
-FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
-
+      <title><code>FieldIndex *getIndex(const std::string&amp; name) const</code></title>
       <para>
         <function>getIndex()</function> returns a &FieldIndex; object,
         given the <varname>name</varname> of the desired index.
@@ -367,8 +448,8 @@ IndexP index = IndexP(flux->getIndex("xx")); </programlisting>
 	    </code>
 	  </title>
 	  <para>
-	    <methodname>output</methodname> is similar to <link
-	    linkend="Class-Field-output"><methodname>Field::output</methodname></link>
+	    <methodname>output()</methodname> is similar to <link
+	    linkend="Class-Field-output"><methodname>Field::output()</methodname></link>
 	    &mdash; it returns the value of the
 	    <classname>Flux</classname> at a given point.  It differs in
 	    that it is computed at an arbitrary point within an &elem;,
@@ -422,7 +503,7 @@ IndexP index = IndexP(flux->getIndex("xx")); </programlisting>
 		        in the element's master coordinate space.  Master
 		        space coordinates can be converted to physical
 		        coordinates by <link
-		        linkend="Class-Element-from_master"><methodname>Element::from_master</methodname></link>.
+		        linkend="Class-Element-from_master"><methodname>Element::from_master()</methodname></link>.
 		      </para>
 	        </listitem>
 	      </varlistentry>
