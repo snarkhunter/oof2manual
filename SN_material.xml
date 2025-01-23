@@ -122,7 +122,7 @@
     </para>
     <para>
 	  Below the Property list is the <link
-	  linkend="MenuItem-OOF.Material.Add_property"><guibutton>Add
+	  linkend="MenuItem-OOF.Material.Add_Property"><guibutton>Add
 	  Property to Material</guibutton></link> button, which adds the
 	  currently selected &property; to the &material; that is
 	  currently selected in the <link
@@ -314,7 +314,7 @@
 	    <listitem>
 	      <para>
 	        The <link
-	        linkend="MenuItem-OOF.Material.Remove_property"><guibutton>Remove
+	        linkend="MenuItem-OOF.Material.Remove_Property"><guibutton>Remove
 	        Property from Material</guibutton></link> removes the
 	        &property; selected in the Material Pane's Property list
 	        from the current &material;.  It does not remove the

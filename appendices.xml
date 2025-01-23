@@ -68,7 +68,7 @@ OOF: File Windows Microstructure PixelGroup PixelSelection Credits Copyright
     <quote><userinput>.</userinput></quote> operator:
     <blockquote>
       <literallayout class="monospaced">&gt;&gt;&gt; OOF.Material
-Material: New Delete Copy Add_property Remove_property Assign Remove
+Material: New Delete Copy Add_Property Remove_Property Assign Remove
 &gt;&gt;&gt;
 </literallayout>
     </blockquote>
