@@ -162,6 +162,8 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY ComponentIterator "<link linkend='Class-ComponentIterator'><classname>ComponentIterator</classname></link>">
 <!ENTITY ComponentIteratorP "<link linkend='Class-ComponentIteratorP'><classname>ComponentIteratorP</classname></link>">
 <!ENTITY DegreeOfFreedom "<link linkend='Class-dof><classname>DegreeOfFreedom</classname></link>">
+<!ENTITY Element "<link linkend='Class-Element'><classname>Element</classname></link>">
+<!ENTITY Elements "<link linkend='Class-Element'><classname>Elements</classname></link>">
 <!ENTITY ElementFuncNodeIterator "<link linkend='Class-ElementFuncNodeIterator'><classname>ElementFuncNodeIterator</classname></link>">
 <!ENTITY Equation "<link linkend='Class-Equation'><classname>Equation</classname></link>">
 <!ENTITY Equations "<link linkend='Class-Equation'><classname>Equations</classname></link>">
@@ -181,7 +183,6 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY Planarity "<link linkend='Class-Planarity'><classname>Planarity</classname></link>">
 <!ENTITY Property "<link linkend='Class-Property'><classname>Property</classname></link>">
 <!ENTITY Properties "<link linkend='Class-Property'><classname>Properties</classname></link>">
-
 
 <!ENTITY layer "<link linkend='Section-Graphics-Layer'><classname>Layer</classname></link>">
 <!ENTITY layers "<link linkend='Section-Graphics-Layer'><classname>Layers</classname></link>">

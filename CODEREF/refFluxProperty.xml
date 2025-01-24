@@ -601,8 +601,13 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
     <title>Methods</title>
 
     <refsection id="Class-FluxProperty-begin_point">
-	  <title><code>void* <emphasis role="bold">begin_point</emphasis>(const FEMesh* mesh, const Element*
-      element, const Flux* flux, const MasterPosition&amp; position, double time) const</code></title>
+	  <title><code>void* begin_point(...) const</code></title>
+      <programlisting>
+void* begin_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
+                  const <link linkend="Class-Element">Element</link>* element,
+                  const <link linkend="Class-Flux">Flux</link>* flux,
+                  const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+                  double time) const </programlisting>
 	  <para>
         When building the finite element matrices and vectors, &oof2;
         loops over the Gauss points within each &elem;.  At each Gauss
@@ -711,10 +716,14 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
     </refsection>               <!-- begin_point -->
   
     <refsection id="Class-FluxProperty-end_point">
-	  <title><code>void <emphasis
-      role="bold">end_point</emphasis>(const FEMesh* mesh, const
-      Element* element, const Flux* flux, const MasterPosition&amp;
-      position, double time, void* data) const</code></title>
+	  <title><code>void end_point(...) const</code></title>
+      <programlisting>
+void end_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
+               const <link linkend="Class-Element">Element</link>* element,
+               const <link linkend="Class-Flux">Flux</link>* flux,
+               const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+               double time,
+               void* data) const </programlisting>
 	  <para>
 	    <function>end_point()</function> is just like <link
 	    linkend="Class-Property-begin_point"><function>begin_point()</function></link>,
@@ -739,10 +748,19 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
     </refsection>               <!-- end_point -->
     
     <refsection id="Class-FluxProperty-flux_matrix">
-	  <title>
-        <code>void <emphasis role="bold">flux_matrix</emphasis>(const FEMesh* mesh, const Element*
-        element, const ElementFuncNodeIterator&amp; node, ...) const</code>
-      </title>
+	  <title><code>void flux_matrix(...) const</code></title>
+      <programlisting>
+void flux_matrix(const <link linkend="Class-FEMesh">FEMesh</link>*
+mesh,
+                 const <link linkend="Class-Element">Element</link>* element,
+                 const <link
+                 linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp; node,
+                 const <link linkend="Class-Flux">Flux</link>* flux,
+                 const <link
+                 linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+                 double time,
+                 void* data,
+                 <link linkend="Class-SmallSystem">SmallSystem</link>* linsys) const </programlisting>
 	  <para>
 	    <classname>FluxProperty</classname> subclasses that represent
 	    the &Acal;, &Kcal;, &Dcal; or &Ccal; terms in the constitutive
@@ -1410,7 +1428,16 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
 
 
     <refsection id="Class-FluxProperty-flux_offset">
-	    <title><code>void <emphasis role="bold">flux_offset</emphasis>(const FEMesh* mesh, const Element* element, const Flux* flux, ...) const</code></title>
+	    <title><code>void flux_offset(...) const</code></title>
+        <programlisting>
+void flux_offset(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
+                 const <link linkend="Class-Element">Element</link>* element,
+                 const <link linkend="Class-Flux">Flux</link>* flux,
+                 const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+                 double time,
+                 void* data,
+                 <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const
+        </programlisting>
 	    <para>
           <methodname>FluxProperty::flux_offset()</methodname>
           computes the &sigma0; term in <xref linkend="Eqn-flux1"/>.
@@ -1425,12 +1452,15 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
           to worry about expansions and shape functions.  It just
           computes the value of &sigma0; and stores it in the given
           <link
-          linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>.
+              linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>.<footnote><para>
+            The values of the flux offset are stored in the <link
+            linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+            as a vector, for all types of &Flux;.  This would be completely
+            invisible to the user, if the name of the
+            <classname>SmallSystem</classname> method for accessing
+            the offset weren't <function>offsetVector()</function>.
+          </para></footnote>
         </para>
-        <para>
-          TODO: Explain that offset is store in SmallSystem as a vector
-        </para>
-        
         <para>
           As an example, consider <link
           linkend="PropertyType-ThermalExpansion">thermal
@@ -1771,10 +1801,15 @@ for(IndexP kl : *flux->components(ALL_INDICES)) {
       </refsection>             <!-- flux_offset-->
 
       <refsection id="Class-FluxProperty-flux_value">
-        <title>
-          <code>void <emphasis role="bold">flux_value</emphasis>(const FEMesh* mesh, const Element*
-          element, const Flux* flux, ...) const</code>
-        </title>
+        <title> <code>void flux_value(...) const</code> </title>
+        <programlisting>
+void flux_value(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
+                const <link linkend="Class-Element">Element</link>* element,
+                const <link linkend="Class-Flux">Flux</link>* flux,
+                const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+                double time,
+                void* data,
+                <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const </programlisting>
         <para>
           <function>flux_value()</function> computes the value of a
           given &flux;, at a given point in an &elem;, as in <xref
@@ -1896,10 +1931,10 @@ for(IndexP kl : *flux->components(ALL_INDICES)) {
 void HeatConductivity::flux_value(
             const FEMesh *mesh,
             const Element *element,
-			const Flux *flux,
+            const Flux *flux,
             const MasterPosition &amp;position,
-			double time,
-            void*,
+            double time,
+            void* data,
             SmallSystem *fluxdata)
   const
 {
@@ -1916,7 +1951,7 @@ void HeatConductivity::flux_value(
                   class.  It was initialized by calling
                   Field::getField() in the
                   <classname>HeatConductivity</classname> constructor. <link
-                  linkend="Class-Field-gradient"><function>Field::gradient</function></link>
+                  linkend="Class-Field-gradient"><function>Field::gradient()</function></link>
                   returns an object containing all the components of a &Field;.
                 </para>
               </callout>
@@ -1946,8 +1981,16 @@ void HeatConductivity::flux_value(
       </refsection>             <!-- flux_value -->
 
       <refsection id="Class-FluxProperty-static_flux_value">
-        <title><code>void <emphasis role="bold">static_flux_value</emphasis>(const FEMesh *mesh, const
-        Element* element, const Flux* flux, ...) const</code></title>
+        <title><code>void static_flux_value(...) const</code></title>
+        <programlisting>
+void static_flux_value(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
+                       const <link linkend="Class-Element">Element</link>* element,
+                       const <link linkend="Class-Flux">Flux</link>* flux,
+                       const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+                       double time,
+                       void* data,
+                       <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const </programlisting>
+
         <para>
           <function>static_flux_value()</function> computes the part
           of the &flux; that depends only on the &fields; and not on
@@ -1955,7 +1998,7 @@ void HeatConductivity::flux_value(
           &flux; depends on the time derivatives of the &fields; and
           is nonlinear.  Its arguments are the same as the arguments
           to <link
-          linkend="Class-FluxProperty-flux_value"><function>flux_value</function></link>.
+          linkend="Class-FluxProperty-flux_value"><function>flux_value()</function></link>.
         </para>
         <para>
           In the base class, <function>static_flux_value()</function>

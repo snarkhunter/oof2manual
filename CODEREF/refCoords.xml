@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refCoords.xml,v $
-  $Revision: 1.2 $
-  $Author: langer $
-  $Date: 2009-10-16 22:11:12 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -132,7 +127,7 @@ bool <link linkend="Class-Coord-cmp">operator!=</link>(const Coord&amp;, const C
 
       </refsect2><!-- C++ Synopsis -->
       <refsect2>
-	<title>Python Synopsis</title>
+	    <title>Python Synopsis</title>
 	<programlisting>
 from oof2.SWIG.common import coord</programlisting>
 	<classsynopsis language="python">
@@ -332,8 +327,9 @@ from oof2.SWIG.common import coord</programlisting>
   </refentry><!-- Coord -->
 
   <refentry id="Class-MasterCoord">
+    <anchor id="Class-MasterPosition"/>
     <refnamediv>
-      <refname>MasterCoord</refname>
+      <refname>MasterPosition and MasterCoord</refname>
       <refpurpose>Position in master coordinate space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>

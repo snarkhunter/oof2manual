@@ -162,7 +162,8 @@
             <parameter>mesh</parameter>
           </methodparam>
 	      <methodparam>
-		    <type>const ElementFuncNodeIterator&amp;</type>
+            <modifier>const</modifier>
+		    <type>ElementFuncNodeIterator&amp;</type>
 		    <parameter>node</parameter>
 	      </methodparam>
 	      <methodparam>
@@ -171,6 +172,66 @@
 	      </methodparam>
 	      <modifier>const</modifier>
 	    </methodsynopsis>
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>double</type>
+          <methodname><link
+                          linkend="Class-Field-value">value</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEmesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Element*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>MasterPosition&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>component</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <type>double</type>
+          <methodname><link
+          linkend="Class-Field-gradient">gradient</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEmesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Element*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>MasterPosition&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>component</parameter>
+          </methodparam>
+          <methodparam>
+            <type>SpaceIndex</type>
+            <parameter>index</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>
         
 	    <methodsynopsis>
 	      <modifier>virtual</modifier>
@@ -408,20 +469,63 @@ from ooflib.SWIG.engine.field import Field</programlisting>
       &Fields; at points within an &FEMesh;.
       <itemizedlist>
         <listitem>
-          <code>Field::value(mesh, node, component)</code> returns the
-          value of a component of a &Field; at a &Node;.  The
-          <code>node</code> argument can be an <classname><link
-          linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;</classname>
-          or a &Node; pointer.
+          <para>
+            Various versions of <function><link
+            linkend="Class-Field-value">Field::value()</link></function>
+            return the value of a component of a &Field; at a given
+            &Node;.
+          </para>
         </listitem>
-        <!-- TODO: Don't list the methods here.  Just mention what
-             they do differently and leave the details for the
-             discussion of each method.  Mention non-virtual
-             methods in derived class that return aggregates.
-             Distinguish methods that return values at nodes from
-             methods that interpolate.  Mention methods that return
-             gradients. -->
+        <listitem>
+          <para>
+            Versions of <function><link
+            linkend="Class-Field-value">Field::value()</link></function>
+            with &Element; and position arguments return the value of
+            a field component interpolated within the given &Element;.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <function><link linkend="Class-Field-value">Field::value()</link></function> returns the
+            value of a &Field; component at an arbitrary position
+            within an &Element;.  <link
+            linkend="Class-ScalarField"><classname>ScalarField</classname></link>
+            has a version that doesn't require a
+            <varname>component</varname> argument.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Each concrete non-scalar subclass of &Field; has a
+            <function>values()</function> method that returns all of
+            the &Field; components at an arbitrary point within an
+            &Element;, and a <function>gradients()</function> method
+            that returns the gradient components.  These non-virtual
+            methods return different types of objects for different
+            types of &Fields;.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            The virtual <function><link
+            linkend="Class-Field-output">Field::output()</link></function>
+            methods return generic <link
+            linkend="Class-Output"><classname>Output</classname></link>
+            objects meant for transferring data and modifying it for
+            output, although they can be useful in other situations.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Various forms of <link
+            linkend="Class-Field-dofoperator"><function>Field::operator()</function></link>
+            return a pointer to the low-level <link
+            linkend="Class-DegreeOfFreedom"><classname>DegreeOfFreedom</classname></link>
+            objects that store &Field; values in an &FEMesh;.
+          </para>
+        </listitem>
       </itemizedlist>
+      See the documentation of each subclass for the details.
     </para>
   </refsection>
   
@@ -431,7 +535,7 @@ from ooflib.SWIG.engine.field import Field</programlisting>
     <refsection id="Class-Field-name">
       <title><code>std::string&amp; name() const</code></title>
 	  <para>
-	    <methodname>name</methodname> returns the name assigned to
+	    <methodname>name()</methodname> returns the name assigned to
 	    the <classname>Field</classname> when it was created.
 	  </para>
     </refsection><!-- name -->
@@ -439,7 +543,7 @@ from ooflib.SWIG.engine.field import Field</programlisting>
     <refsection id="Class-Field-ndof">
 	  <title><code>int ndof() const</code></title>
       <para>
-	    <methodname>ndof</methodname> returns the number of degrees
+	    <methodname>ndof()</methodname> returns the number of degrees
 	    of freedom in the <classname>Field</classname>.  This is the
 	    number of data values that must be allocated to store the
 	    <classname>Field</classname> at each &node; of the &mesh;.
@@ -453,7 +557,7 @@ from ooflib.SWIG.engine.field import Field</programlisting>
     <refsection id="Class-Field-is_defined">
       <title><code>bool is_defined(const CSubProblem* subp) const</code></title>
 	  <para>
-	    <methodname>is_defined</methodname> indicates whether the
+	    <methodname>is_defined()</methodname> indicates whether the
 	    <classname>Field</classname> has been <link
 	    linkend="MenuItem-OOF.Mesh.Field.Define">defined</link> on the
 	    given <link
@@ -466,7 +570,7 @@ from ooflib.SWIG.engine.field import Field</programlisting>
     <refsection id="Class-Field-is_active">
 	  <title><code> bool is_active(const CSubProblem *subp) const</code></title>
 	  <para>
-	    <methodname>is_active</methodname> indicates whether the
+	    <methodname>is_active()</methodname> indicates whether the
 	    <classname>Field</classname> has been <link
 	    linkend="MenuItem-OOF.Mesh.Field.Activate">activated</link> on
 	    the given <link
@@ -476,12 +580,12 @@ from ooflib.SWIG.engine.field import Field</programlisting>
     </refsection><!-- is_active -->
     
     <refsection id="Class-Field-dofoperator">
-	  <title><code>DegreeOfFreedom* operator(...) const</code></title>
+	  <title><code>DegreeOfFreedom* operator()(...) const</code></title>
 	  <programlisting>
 DegreeOfFreedom* operator()(const &FuncNode;*, int component) const;
 DegreeOfFreedom* operator()(const &FuncNode;&amp;, int component) const;
 DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, int component) const;
-DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, const IndexP&amp;) const; </programlisting>
+DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, const <link linkend="Class-IndexP">IndexP</link>&amp;) const; </programlisting>
 	  <para>
 	    This family of methods are all ways of obtaining the value of
 	    a <classname>Field</classname> at a given &FuncNode;.
@@ -497,21 +601,15 @@ DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, const IndexP&a
 	    <classname>Node</classname>.
 	  </para>
 	  <para>
-	    <classname>DegreeOfFreedom</classname>s are low-level,
-	    fairly primitive objects, so these methods cannot be used to
-	    extract aggregate values (such as all of the components of a
-	    multicomponent <classname>Field</classname>).  To do that,
-	    see <link
-	    linkend="Class-Field-output"><methodname>Field::output</methodname></link>.
-	  </para>
-	  <para>
-	    These functions only return <classname>Field</classname>
-	    values at <classname>Nodes</classname>. To get
-	    <classname>Field</classname> values interpolated at an
-	    arbitrary point within an <link
-	    linkend="Class-Element"><classname>Element</classname></link>,
-	    see <link
-	    linkend="Class-Element-outputField"><methodname>Element::outputField</methodname></link>.
+	    <classname>DegreeOfFreedom</classname>s are low-level, fairly
+	    primitive objects, so these methods cannot be used to extract
+	    aggregate values, such as all of the components of a
+	    multicomponent &Field;.  To do that, or to interpolate a
+	    &Field; value at an arbitrary point within an &Element;, see
+	    <link
+	    linkend="Class-Field-value"><function>Field::value()</function></link>
+	    or <link
+	    linkend="Class-Field-output"><methodname>Field::output()</methodname></link>.
 	  </para>
     </refsection><!-- operator() -->
     
@@ -519,11 +617,13 @@ DegreeOfFreedom* operator()(const &ElementFuncNodeIterator;&amp;, const IndexP&a
 	  <title><code>double value(...) const</code></title>
       <programlisting>
 double value(const &FEMesh;*, const &FuncNode;*, int component) const;
-double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int component) const; </programlisting>
+double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int component) const;
+double value(const &FEMesh;*, const &Element;*, const <classname><link
+linkend="Class-MasterPosition">MasterPosition</link></classname>&amp;, const <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>&amp; component) const; </programlisting>
 	  <para>
-	    The <methodname>value</methodname> function is a shortcut for
-	    evaluating a component of a <classname>Field</classname> at a
-        <classname>Node</classname>.  In C++, the given
+	    The first two forms of <methodname>value()</methodname> 
+	    evaluate a component of a &Field; at a &Node;.
+        In C++, the given
 	    <varname>node</varname> must be a &FuncNode; pointer or a
 	    <link
 	    linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
@@ -531,7 +631,32 @@ double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int componen
 	    linkend="Class-Node"><classname>FuncNode</classname></link>
 	    object.
 	  </para>
-    </refsection>
+      <para>
+        The third form of <methodname>value()</methodname> returns the
+        value of a component of a &Field; interpolated at an arbitrary
+        point within an &Element;.  The point is given in the
+        &Element;'s master coordinate space.  (This version is
+        currently only available in C++.)
+      </para>
+    </refsection>               <!-- Field::value() -->
+
+    <refsection id="Class-Field-gradient">
+      <title><code>double gradient(...) const</code></title>
+      <programlisting>
+double gradient(const &FEMesh;*, const &Element;*, const <classname><link linkend="Class-MasterPosition">MasterPosition</link></classname>&amp; position,
+                const <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>&amp; component, <classname><link linkend="Class-SpaceIndex">SpaceIndex</link></classname> direction) const; </programlisting>
+      <para>
+        <function>gradient()</function> returns the gradient in
+        direction <varname>dir</varname> of the given
+        <varname>component</varname> of the &Field; at the given
+        <varname>position</varname> inside an &Element;.  The position
+        is given in the &Element;'s <link
+        linkend="Class-MasterPosition">master coordinate</link> space.
+        The <varname>direction</varname> is 0, 1, or 2, for &xhat;,
+        &yhat;, and &zhat;, respectively.
+      </para>
+    </refsection> <!-- Field::gradient -->
+    
     <refsection id="Class-Field-output">
 	  <title><code>ArithmeticOutputvalue output(...)</code></title>
 	  <programlisting>
@@ -562,7 +687,7 @@ double value(const &FEMesh;*, const &ElementFuncNodeIterator;&amp;, int componen
     <refsection id="Class-Field-components">
       <title><code>Components* components(Planarity planarity) const;</code></title>
       <para>
-        <methodname>components</methodname> returns a container-like
+        <methodname>components()</methodname> returns a container-like
         object that can be iterated over to obtain the indices of a
         <classname>Field</classname>.  The optional
         &Planarity; argument determines which
@@ -990,7 +1115,8 @@ from ooflib.SWIG.engine.field import CompoundField </programlisting>
 	      <type>DegreeOfFreedom*</type>
 	      <methodname><link linkend="Class-ScalarField-dofoperator">operator()</link></methodname>
 	      <methodparam>
-		    <type>const FuncNode*</type>
+            <modifier>const</modifier>
+		    <type>FuncNode*</type>
 		    <parameter>node</parameter>
 	      </methodparam>
 	      <modifier>const</modifier>
@@ -999,7 +1125,8 @@ from ooflib.SWIG.engine.field import CompoundField </programlisting>
 	      <type>DegreeOfFreedom*</type>
 	      <methodname><link linkend="Class-ScalarField-dofoperator">operator()</link></methodname>
 	      <methodparam>
-		    <type>const FuncNode&amp;</type>
+            <modifier>const</modifier>
+		    <type>FuncNode&amp;</type>
 		    <parameter>node</parameter>
 	      </methodparam>
 	      <modifier>const</modifier>
@@ -1012,7 +1139,56 @@ from ooflib.SWIG.engine.field import CompoundField </programlisting>
 		    <parameter>node</parameter>
 	      </methodparam>
 	      <modifier>const</modifier>
-	    </methodsynopsis>
+	    </methodsynopsis>       <!--operator()-->
+
+        <methodsynopsis>
+          <type>double</type>
+          <methodname><link
+                          linkend="Class-ScalarField-value">value</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEMesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Element</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>MasterPosition&amp;</type>
+            <parameter>point</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!--value-->
+
+        <methodsynopsis>
+          <type>double</type>
+          <methodname><link
+                          linkend="Class-ScalarField-gradient">gradient</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FEMesh*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Element</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>MasterPosition&amp;</type>
+            <parameter>point</parameter>
+          </methodparam>
+          <methodparam>
+            <type>SpaceIndex</type>
+            <parameter>direction</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!--gradient-->
+        
         <methodsynopsis>
           <modifier>virtual</modifier>
           <type>FieldIndex*</type>
@@ -1130,7 +1306,54 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
 	    field is a bit silly.  However, there is no Python equivalent
         of these functions.
 	  </para>
-    </refsection>               <!-- operator() -->
+    </refsection>               <!-- ScalarField::operator() -->
+
+    <refsection id="Class-ScalarField-value">
+      <title><code>double value(...) const</code></title>
+      <programlisting>
+double value(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point) const;</programlisting>
+      <para>
+        This version of <function>value()</function> computes the
+        value of a <classname>ScalarField</classname> at the given
+        <varname>point</varname> within the given
+        <varname>element</varname>. It is a non-virtual method,
+        inaccessible from a generic &Field; pointer.  Unlike the
+        <link linkend="Class-Field-value">generic virtual
+        method</link> in the &Field; class, this version does
+        not require a <varname>component</varname> argument.
+      </para>
+    </refsection>               <!-- ScalarField::value -->
+
+    <refsection id="Class-ScalarField-gradient">
+      <title><code>double gradient(...) const</code></title>
+      <programlisting>
+double gradient(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point,
+                <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const;
+      </programlisting>
+      <para>
+        <function>gradient()</function> is like <link
+        linkend="Class-ScalarField-value"><function>value()</function></link>,
+        but it computes the gradient of the &Field; in the given
+        <varname>direction</varname>.
+      </para>
+    </refsection>               <!--ScalarField::gradient-->
+    <refsection>
+      <title><code>double gradient(...) const</code></title>
+      <programlisting>
+double gradient(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const;</programlisting>
+      <para>
+        This version of <function>gradient()</function> computes the
+        gradient of a <classname>ScalarField</classname> in the given
+        <varname>direction</varname> at the given
+        <varname>point</varname> within the given
+        <varname>element</varname>. It is a non-virtual method,
+        inaccessible from a generic &Field; pointer.  Unlike the <link
+        linkend="Class-Field-gradient">generic virtual method</link>
+        in the &Field; class, this version does not require a
+        <varname>component</varname> argument.
+      </para>
+    </refsection>               <!-- ScalarField::gradient -->
+
     <refsection id="Class-ScalarField-getIndex">
       <title>
         <code>FieldIndex *getIndex(const std::string &amp;name) const</code>
@@ -1141,7 +1364,7 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
         linkend="Class-ScalarFieldIndex"><classname>ScalarFieldIndex</classname></link>.
         The <varname>name</varname> argument is ignored.
       </para>
-    </refsection>               <!-- getIndex -->
+    </refsection>               <!-- ScalarField::getIndex -->
   </refsection>                 <!-- Methods -->
 </refentry>                     <!-- Class:ScalarField -->
 
@@ -1188,6 +1411,53 @@ DegreeOfFreedom* operator()(const ElementFuncNodeIterator&amp; node) const; </pr
           </methodparam>
           <modifier>const</modifier>
         </methodsynopsis>       <!-- getIndex -->
+
+        <methodsynopsis> 
+          <type>DoubleVec</type>
+          <methodname><link
+                          linkend="Class-TwoVectorField-values">values</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-FEMesh">FEMesh</link>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-Element">Element</link>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link
+                      linkend="Class-MasterPosition">MasterPosition</link>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- values -->
+        <methodsynopsis> 
+          <type>DoubleVec</type>
+          <methodname><link
+                          linkend="Class-TwoVectorField-gradients">gradients</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-FEMesh">FEMesh</link>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-Element">Element</link>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link
+                      linkend="Class-MasterPosition">MasterPosition</link>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <type><link linkend="Class-SpaceIndex">SpaceIndex</link></type>
+            <parameter>direction</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- gradients -->
 	  </classsynopsis>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
@@ -1288,6 +1558,52 @@ from ooflib.SWIG.engine.field import TwoVectorField </programlisting>
       </para>
     </refsection>               <!-- getIndex -->
 
+    <refsection id="Class-TwoVectorField-values">
+      <title> <code>DoubleVec values(...) const</code> </title>
+      <programlisting>
+<link linkend="Class-DoubleVec">DoubleVec</link> values(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point) const;</programlisting>
+      <para>
+        <function>values()</function> is a non-virtual method that
+        returns all (that is, both) components of a
+        <classname>TwoVectorField</classname> in a vector at the given
+        <varname>point</varname> within the given
+        <varname>element</varname>.
+      </para>
+      <para>
+        To retrieve &Field; values from a generic <code>Field*</code>
+        pointer, either cast the pointer to the derived type and call
+        <function>values()</function>:
+        <programlisting>
+DoubleVec vals = dynamic_cast&lt;const TwoVectorField*&gt;(field)->values(mesh, element, point); </programlisting>
+         or access the components individually via the &Field; base
+         class methods:
+         <programlisting>
+DoubleVec vals(field->ndof());
+for(IndexP i : *field->components())
+  vals[i.integer()] = field->value(mesh, element, point, i);</programlisting>
+      </para>
+    </refsection>               <!-- values -->
+
+    <refsection id="Class-TwoVectorField-gradients">
+      <title><code>DoubleVec gradients(...) const</code></title>
+      <programlisting>
+<link linkend="Class-DoubleVec">DoubleVec</link> gradients(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const; </programlisting>
+
+      <para>
+        <function>gradients()</function> is just like <link
+        linkend="Class-TwoVectorField-values"><function>values()</function></link>,
+        but it returns the components of the gradients in the given
+        <varname>direction</varname>.  That is, <code>gradients(mesh,
+        element, x, j)</code> returns a vector whose
+        <inlineequation><alt
+        role="tex">\(i^\mathrm{th}\)</alt></inlineequation> component
+        is the <inlineequation><alt
+        role="tex">\(j\)</alt></inlineequation>-derivative of the
+        <inlineequation><alt
+        role="tex">\(i^\mathrm{th}\)</alt></inlineequation> component
+        of the <classname>TwoVectorField</classname>.
+      </para>
+    </refsection>               <!-- gradients -->
   </refsection>                 <!-- Methods -->
 </refentry>                     <!-- Class:Field:TwoVectorField -->
 
@@ -1327,6 +1643,53 @@ from ooflib.SWIG.engine.field import TwoVectorField </programlisting>
           </methodparam>
           <modifier>const</modifier>
         </methodsynopsis>       <!-- getIndex -->
+        <methodsynopsis> 
+          <type>DoubleVec</type>
+          <methodname><link
+                          linkend="Class-ThreeVectorField-values">values</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-FEMesh">FEMesh</link>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-Element">Element</link>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link
+                      linkend="Class-MasterPosition">MasterPosition</link>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- values -->
+        <methodsynopsis> 
+          <type>DoubleVec</type>
+          <methodname><link
+                          linkend="Class-ThreeVectorField-gradients">gradients</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-FEMesh">FEMesh</link>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link linkend="Class-Element">Element</link>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><link
+                      linkend="Class-MasterPosition">MasterPosition</link>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <type><link linkend="Class-SpaceIndex">SpaceIndex</link></type>
+            <parameter>direction</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- gradients -->
+        
 	  </classsynopsis>
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
@@ -1407,8 +1770,56 @@ from ooflib.SWIG.engine.field import ThreeVectorField </programlisting>
         <userinput>"z"</userinput>.
       </para>
     </refsection>               <!-- getIndex -->
+    <refsection id="Class-ThreeVectorField-values">
+      <title> <code>DoubleVec values(...) const</code> </title>
+      <programlisting>
+<link linkend="Class-DoubleVec">DoubleVec</link> values(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point) const;</programlisting>
+      <para>
+        <function>values()</function> is a non-virtual method that
+        returns all components of a
+        <classname>ThreeVectorField</classname> in a vector at the
+        given <varname>point</varname> within the given
+        <varname>element</varname>.
+      </para>
+      <para>
+        To retrieve &Field; values from a generic <code>Field*</code>
+        pointer, either cast the pointer to the derived type and call
+        <function>values()</function>:
+        <programlisting>
+DoubleVec vals = dynamic_cast&lt;const ThreeVectorField*&gt;(field)->values(mesh, element, point); </programlisting>
+         or access the components individually via the &Field; base
+         class methods:
+         <programlisting>
+DoubleVec vals(field->ndof());
+for(IndexP i : *field->components())
+  vals[i.integer()] = field->value(mesh, element, point, i);</programlisting>
+      </para>
+    </refsection>               <!-- values -->
+
+    <refsection id="Class-ThreeVectorField-gradients">
+      <title><code>DoubleVec gradients(...) const</code></title>
+      <programlisting>
+<link linkend="Class-DoubleVec">DoubleVec</link> gradients(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const; </programlisting>
+
+      <para>
+        <function>gradients()</function> is just like <link
+        linkend="Class-ThreeVectorField-values"><function>values()</function></link>,
+        but it returns the components of the gradients in the given
+        <varname>direction</varname>.  That is, <code>gradients(mesh,
+        element, x, j)</code> returns a vector whose
+        <inlineequation><alt
+        role="tex">\(i^\mathrm{th}\)</alt></inlineequation> component
+        is the <inlineequation><alt
+        role="tex">\(j\)</alt></inlineequation>-derivative of the
+        <inlineequation><alt
+        role="tex">\(i^\mathrm{th}\)</alt></inlineequation> component
+        of the <classname>ThreeVectorField</classname>.
+      </para>
+    </refsection>               <!-- gradients -->
   </refsection>                 <!-- Methods -->
 </refentry>
+
+<!-- ============================================================ -->
 
 <refentry id="Function-getField">
   <refnamediv>
@@ -1423,7 +1834,7 @@ from ooflib.SWIG.engine.field import ThreeVectorField </programlisting>
       <title>C++</title>
       <programlisting>
 #include "engine/field.h"
-static Field *Field::getField(const std::string &amp;name); </programlisting>
+static Field* Field::getField(const std::string&amp; name); </programlisting>
     </refsect2>
     
     <refsect2>

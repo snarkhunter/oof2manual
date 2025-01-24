@@ -1700,19 +1700,10 @@ conjugatePair("Elasticity",
       <refname>CSubProblem</refname>
       <refpurpose>C++ representation of subproblem</refpurpose>
     </refnamediv>
+    <refsection>
+      <para>TODO</para>
+    </refsection>
   </refentry>
-
-  <!-- ============================================================== -->
-
-  <refentry id="Class-MasterPosition">
-    <refnamediv>
-      <refname>MasterPosition</refname>
-      <refpurpose>A point in an <link
-      linkend="Class-Element"><classname>Element</classname></link>'s master
-      coordinate space</refpurpose>
-    </refnamediv>
-  </refentry>
-
 
 </reference>
 
