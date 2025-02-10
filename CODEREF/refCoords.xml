@@ -327,7 +327,7 @@ from oof2.SWIG.common import coord</programlisting>
   </refentry><!-- Coord -->
 
   <refentry id="Class-MasterCoord">
-    <anchor id="Class-MasterPosition"/>
+    <anchor id="Class-MasterPosition" xreflabel="MasterPosition"/>
     <refnamediv>
       <refname>MasterPosition and MasterCoord</refname>
       <refpurpose>Position in master coordinate space</refpurpose>

@@ -30,6 +30,162 @@
 
         <methodsynopsis>
           <modifier>virtual</modifier>
+          <type>void*</type>
+          <methodname><link linkend="Class-EqnProperty-begin_point">begin_point</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-FEMesh"/>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Element"/>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Equation"/>*</type>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <type>double</type>
+            <parameter>time</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- begin_point -->
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <void/>
+          <methodname><link linkend="Class-EqnProperty-end_point">end_point</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-FEMesh"/>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Element"/>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Equation"/>*</type>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <type>double</type>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <type>void*</type>
+            <parameter>data</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- end_point -->
+        
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <void/>
+          <methodname><link
+                          linkend="Class-EqnProperty-first_deriv_mtx">first_time_deriv_matrix</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-FEMesh"/>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Element"/>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-ElementFuncNodeIterator"/>&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Equation"/>*</type>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <type>double</type>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <type>void*</type>
+            <parameter>data</parameter>
+          </methodparam>
+          <methodparam>
+            <type><xref linkend="Class-SmallSystem"/>*</type>
+            <parameter>linsys</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- first_time_deriv_matrix -->
+
+        <methodsynopsis>
+          <modifier>virtual</modifier>
+          <void/>
+          <methodname><link
+                          linkend="Class-EqnProperty-second_deriv_mtx">second_time_deriv_matrix</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-FEMesh"/>*</type>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Element"/>*</type>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-ElementFuncNodeIterator"/>&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-Equation"/>*</type>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <type>double</type>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <type>void*</type>
+            <parameter>data</parameter>
+          </methodparam>
+          <methodparam>
+            <type><xref linkend="Class-SmallSystem"/>*</type>
+            <parameter>linsys</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- second_time_deriv_matrix -->
+        
+        <methodsynopsis>
+          <modifier>virtual</modifier>
           <void/>
           <methodname><link
                           linkend="Class-EqnProperty-force_value">force_value</link></methodname>
@@ -51,11 +207,15 @@
           <methodparam>
             <modifier>const</modifier>
             <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-            <parameter>pt</parameter>
+            <parameter>position</parameter>
           </methodparam>
           <methodparam>
             <type>double</type>
             <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <type>void*</type>
+            <parameter>data</parameter>
           </methodparam>
           <methodparam>
             <type><xref linkend="Class-SmallSystem"/>*</type>
@@ -68,7 +228,7 @@
           <modifier>virtual</modifier>
           <void/>
           <methodname><link
-                          linkend="Class-EqnProperty-first-deriv-mtx">first_time_deriv_matrix</link></methodname>
+                          linkend="Class-EqnProperty-force_deriv_mtx">force_deriv_matrix</link></methodname>
           <methodparam>
             <modifier>const</modifier>
             <type><xref linkend="Class-FEMesh"/>*</type>
@@ -92,93 +252,15 @@
           <methodparam>
             <modifier>const</modifier>
             <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-            <parameter>pt</parameter>
+            <parameter>position</parameter>
           </methodparam>
           <methodparam>
             <type>double</type>
             <parameter>time</parameter>
           </methodparam>
           <methodparam>
-            <type><xref linkend="Class-SmallSystem"/>*</type>
-            <parameter>linsys</parameter>
-          </methodparam>
-          <modifier>const</modifier>
-        </methodsynopsis>       <!-- first_time_deriv_matrix -->
-
-        <methodsynopsis>
-          <modifier>virtual</modifier>
-          <void/>
-          <methodname><link
-                          linkend="Class-EqnProperty-second-deriv-mtx">second_time_deriv_matrix</link></methodname>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-FEMesh"/>*</type>
-            <parameter>mesh</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-Element"/>*</type>
-            <parameter>element</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-Equation"/>*</type>
-            <parameter>equation</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-ElementFuncNodeIterator"/>&amp;</type>
-            <parameter>node</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-            <parameter>pt</parameter>
-          </methodparam>
-          <methodparam>
-            <type>double</type>
-            <parameter>time</parameter>
-          </methodparam>
-          <methodparam>
-            <type><xref linkend="Class-SmallSystem"/>*</type>
-            <parameter>linsys</parameter>
-          </methodparam>
-          <modifier>const</modifier>
-        </methodsynopsis>       <!-- second_time_deriv_matrix -->
-        
-        <methodsynopsis>
-          <modifier>virtual</modifier>
-          <void/>
-          <methodname><link
-                          linkend="Class-EqnProperty-force_deriv_matrix">force_deriv_matrix</link></methodname>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-FEMesh"/>*</type>
-            <parameter>mesh</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-Element"/>*</type>
-            <parameter>element</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-Equation"/>*</type>
-            <parameter>equation</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-ElementFuncNodeIterator"/>&amp;</type>
-            <parameter>node</parameter>
-          </methodparam>
-          <methodparam>
-            <modifier>const</modifier>
-            <type><xref linkend="Class-MasterPosition"/>&amp;</type>
-            <parameter>pt</parameter>
-          </methodparam>
-          <methodparam>
-            <type>double</type>
-            <parameter>time</parameter>
+            <type>void*</type>
+            <parameter>data</parameter>
           </methodparam>
           <methodparam>
             <type><xref linkend="Class-SmallSystem"/>*</type>
@@ -186,17 +268,828 @@
           </methodparam>
           <modifier>const</modifier>
         </methodsynopsis>       <!-- force_deriv_matrix -->
-
       </classsynopsis>
-    </refsect2>
+    </refsect2>                 <!-- C++ synopis -->
+    
     <refsect2 id="Class-PyEqnProperty" xreflabel="PyEqnProperty">
       <title>Python Synopsis</title>
+      <para>
+        <classname>PyEqnProperty</classname> is a swigged C++ class
+        that is derived (in C++) from
+        <classname>EqnProperty</classname>.  It is used as a base
+        class for <classname>EqnProperties</classname> that are
+        defined in Python.  When the methods listed below are called
+        from C++, they use the Python C API to invoke methods in the
+        Python derived class.
+      </para>
+      <programlisting>
+from ooflib.SWIG.engine import pypropertywrapper </programlisting>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>PyEqnProperty</classname>
+        </ooclass>
+        <ooclass>
+          <classname>EqnProperty</classname>
+        </ooclass>
+
+        <methodsynopsis>
+          <methodname><link linkend="Class-EqnProperty-begin_point">begin_point </link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- begin_point -->
+        
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-EqnProperty-end_point">end_point</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>data</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- end_point -->
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-EqnProperty-first_deriv_mtx">first_time_deriv_matrix</link></methodname>
+
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>data</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- first_time_deriv_matrix -->
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-EqnProperty-second_deriv_mtx">second_time_deriv_matrix</link></methodname>
+
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>data</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- second_time_deriv_matrix -->
+
+        <methodsynopsis>
+          <methodname><link linkend="Class-EqnProperty-force_value">force_value</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>data</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- force_value -->
+
+        <methodsynopsis>
+          <methodname><link linkend="Class-EqnProperty-force_deriv_mtx">force_deriv_matrix</link></methodname>
+          <methodparam>
+            <parameter>mesh</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>element</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>equation</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>position</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>time</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>data</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>linsys</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- force_deriv_matrix -->
+
+      </classsynopsis>
+    </refsect2>                 <!-- Python synopsis -->
+
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.C</filename>: C++ code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.h</filename>: C++ header
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.swg</filename>: SWIG source
+            code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.swg</filename>: Python code
+            included in the SWIG output
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.C</filename>: C++
+            code for <classname>Properties</classname> implemented in
+            Python
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.h</filename>: C++
+            header
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.swg</filename>:
+            SWIG source code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.spy</filename>:
+            Python code inserted into the SWIG output.
+          </simpara>
+        </listitem>
+      </itemizedlist>
     </refsect2>
   </refsynopsisdiv>
 
+  <refsection>
+    <title>Overview</title>
+    <para>
+        An <classname>EqnProperty</classname> is a &Property; that
+        makes a direct contribution to an &Equation; without being
+        part of a &Flux;.  For instance <xref
+        linkend="Property-Mechanical-MassDensity-ConstantMassDensity"/>
+        makes a contribution to the second time derivative in the <xref
+        linkend="Equation-Force_Balance"/>
+        &Equation; but is not part of the <link
+        linkend="Flux-Stress"><constant>Stress</constant></link> &Flux;.
+        Similarly, <xref
+        linkend="Property-Mechanical-Damping-Isotropic"/> makes a
+        contribution to the first time derivative, and <xref
+        linkend="Property-Mechanical-ForceDensity-ConstantForceDensity"/>
+        contributes to the force term.
+    </para>
+    <para>
+      A new subclass of <classname>EqnProperty</classname> must define
+      at least one of following three virtual methods:
+      <itemizedlist>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-EqnProperty-first_deriv_mtx"><code>EqnProperty::first_time_deriv_matrix()</code></link>
+            computes the <classname>Property</classname>'s
+            contribution to the coefficient of the first time
+            derivative in the divergence equation <xref
+            linkend="Eqn-TimeDivergence"/>. 
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-EqnProperty-second_deriv_mtx"><code>EqnProperty::second_time_deriv_matrix()</code></link>
+            computes the <classname>Property</classname>'s
+            contribution to the cooefficient of the second time
+            derivative in the divergence equation Eq. <xref
+            linkend="Eqn-TimeDivergence"/>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <link
+            linkend="Class-EqnProperty-force_value"><code>EqnProperty::force_value()</code></link>
+            computes the <classname>Property</classname>'s direct
+            contribution to the force in Eq. <xref
+            linkend="Eqn-TimeDivergence"/>.
+          </para>
+        </listitem>
+      </itemizedlist>
+      In addition, if <function>force_value()</function> is nonlinear,
+      the new subclass must define:
+      <itemizedlist>
+        <listitem>
+          <para>
+            <link
+                linkend="Class-EqnProperty-force_deriv_mtx"><code>EqnPropertry::force_deriv_matrix()</code></link> 
+            computes the derivative of <code>force_value()</code> with
+            respect to the &field; components.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      The functions listed above all have a <xref
+      linkend="Class-SmallSystem"/>* argument, which represents a
+      small part of the <link
+      linkend="Class-LinearizedSystem"><classname>LinearizedSystem</classname></link>
+      that is currently being built.
+      <classname>SmallSystem</classname> methods handle all of the
+      issues related to matrix indexing, element order, and so forth.
+      The derived <classname>EqnProperty</classname> methods (and the
+      developer) do not need to know anything about what equations are
+      being solved or how they are discretized by the finite element
+      machinery.  Details on all of the functions are provided below.
+    </para>
+    <para>
+      In addition, two virtual utility functions, <link
+      linkend="Class-EqnProperty-begin_point"><classname>begin_point()</classname></link>
+      and <link
+      linkend="Class-EqnProperty-end_point"><classname>end_point()</classname></link>
+      can be redefined to facility passing data between the other
+      routines.
+    </para>
+  </refsection>                 <!-- Overview -->
+
+  <refsection>
+    <title>Constructor</title>
+    <para>
+      The C++ and Python constructors for
+      <classname>EqnProperty</classname> are the same as the <link
+      linkend="Class-Property-Constructors">base class
+      constructors</link>.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Methods</title>
+
+    <refsection id="Class-EqnProperty-begin_point">
+      <title><code>void* begin_point(...) const</code></title>
+      <programlisting>
+void *begin_point(const <xref linkend="Class-FEMesh"/>* mesh,
+                  const <xref linkend="Class-Element"/>* element,
+                  const <xref linkend="Class-Equation"/>* equation,
+                  const <xref linkend="Class-MasterPosition"/>&amp; position,
+                  double time) const </programlisting>
+      <para>
+        When building the finite element matrices and vectors, &oof2;
+        loops over the Gauss points within each &Element;.  At each
+        Gauss point, for each active &Equation;, it calls
+        <classname>EqnProperty</classname> methods for each <xref
+        linkend="Class-Property"/> that contributes the &Equation;,
+        beginning with <function>begin_point()</function>, followed by
+        <link
+        linkend="Class-EqnProperty-first_deriv_mtx"><function>first_time_deriv_matrix()</function></link>,
+        <link
+        linkend="Class-EqnProperty-second_deriv_mtx"><function>second_time_deriv_matrix()</function></link>,
+        <link
+        linkend="Class-EqnProperty-force_deriv_mtx"><function>force_deriv_matrix()</function></link>
+        (for nonlinear properties), and finally <link
+        linkend="Class-EqnProperty-force_value"><function>force_value()</function></link>.
+        To avoid recomputing quantities that are required by more than
+        one of these methods, computations can be done in
+        <function>begin_point()</function> and their results stored in
+        a data structure. <function>begin_point()</function> should
+        return this structure (as a <code>void*</code> pointer in C++
+        or an object in Python). The data structure will be passed
+        through to the other <classname>FluxProperty</classname>
+        methods.  If the data object was allocated in C++,
+        <function>end_point()</function> should delete it.
+      </para>
+      <para>
+        The arguments to <function>begin_point()</function> are:
+        <variablelist>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+            <listitem>
+              <para>
+                The <classname><xref
+                linkend="Class-FEMesh"/></classname> currently being
+                solved.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <xref linkend="Class-Element"/>* element</code></term>
+            <listitem>
+              <para>
+                The <link
+                linkend="Class-Element"><classname>Element</classname></link>
+                containing the current point.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <xref linkend="Class-Equation"/>*</code></term>
+            <listitem>
+              <para>
+                The &Equation; being solved.  If the
+                <classname>EqnProperty</classname> contributes to more
+                than one &Equation;, <function>begin_point</function>
+                will be called once for each &Equation; and this value
+                should be checked to determine which one is current.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <xref
+            linkend="Class-MasterPosition">&amp;
+            position</xref></code></term>
+            <listitem>
+              <para>
+                The position within the <link
+                linkend="Class-Element"><classname>Element</classname></link>
+                where the &Property; is being evaluated.  The position
+                is given in <link
+                linkend="Class-MasterPosition">master
+                coordinates</link>, which can be converted to physical
+                coordinates by <link
+                linkend="Class-Element-from_master"><function>Element::from_master()</function></link>
+                if necessary.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>double time</code></term>
+            <listitem>
+              <para>
+                The time at which the &Property; is being evaluated.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </para>
+      <para>
+        The default implementation of
+        <function>begin_point()</function> simply returns
+        <constant>nullptr</constant> in C++ and
+        <constant>None</constant> in Python.
+      </para>
+    </refsection>               <!-- begin_point -->
+
+    <refsection id="Class-EqnProperty-end_point">
+      <title><code>void end_point(...) const</code></title>
+      <programlisting>
+void end_point(const <xref linkend="Class-FEMesh"/>* mesh,
+               const <xref linkend="Class-Element"/>* element,
+               const <xref linkend="Class-Equation"/>* equation,
+               const <xref linkend="Class-MasterPosition"/>&amp; position,
+               double time,
+               void *data) const </programlisting>
+	  <para>
+	    <function>end_point()</function> is just like <link
+	    linkend="Class-Property-begin_point"><function>begin_point()</function></link>,
+	    except that it's called <emphasis>after</emphasis> &oof2; is
+	    done computing the contribution at a point.  The
+	    <function>end_point()</function> method can be used to clean
+	    up any temporary objects allocated by <link
+	    linkend="Class-Property-begin_point"><methodname>begin_point</methodname></link>.
+	  </para>
+      <para>
+        The arguments for <function>end_point()</function> are the same
+        as the arguments for <methodname><link
+        linkend="Class-Property-begin_point">begin_point()</link></methodname>,
+        with the addition of a <code>void*</code> which points to the
+        data returned by <link
+	    linkend="Class-Property-begin_point"><methodname>begin_point</methodname></link>.
+      </para>
+      <para>
+        The default implementation of <function>end_point()</function>
+        does nothing.
+      </para>
+    </refsection>               <!-- end_point -->
+    
+    <refsection id="Class-EqnProperty-first_deriv_mtx">
+      <title><code>void first_time_deriv_matrix(...)
+      const</code></title>
+      <programlisting>
+void first_time_deriv_matrix(const <xref linkend="Class-FEMesh"/>* mesh,
+                             const <xref linkend="Class-Element"/>* element,
+                             const <xref linkend="Class-ElementFuncNodeIterator"/>&amp; node,
+                             const <xref linkend="Class-Equation"/>* equation,
+                             const <xref linkend="Class-MasterPosition"/>&amp; position,
+                             double time,
+                             void *data,
+                             <xref linkend="Class-SmallSystem"/>* linsys) const </programlisting>
+      <para>
+        <classname>EqnProperty</classname> classes that contribute to
+        &Cmatrix;, the coefficient of the first time derivative of the
+        &fields; in the time-dependent divergence equation <xref
+        linkend="Eqn-TimeDivergence"/>, need to define
+        <function>first_time_deriv_matrix()</function>.  It is analogous
+        to <link
+        linkend="Class-FluxProperty-flux_matrix">()<function>FluxProperty::flux_matrix()</function></link>,
+        but generally much simpler.
+      </para>
+      <para>
+        <anchor id="first-deriv-dicussion"/>
+        As in <link
+        linkend="Class-FluxProperty-flux_matrix"><function>FluxProperty::flux_matrix()</function></link>,
+        the derivation begins by expanding the &field; components in
+        terms of the shape functions:<footnoteref linkend="summation"/>
+
+	    <equation id="Eqn-EqnProperty-expansion">
+	      <alt role="tex">
+            \[\varphi_k({\bf x}) = N_\nu({\bf x}) \varphi_{k\nu}\]
+          </alt>
+	    </equation>
+
+	    where
+          
+	    <inlineequation>
+	      <alt role="tex">
+            \(N_\nu({\bf x})\)
+          </alt>
+	    </inlineequation>
+          
+	    is the shape function that is 1 at node &nu; and 0 at all
+	    other nodes, and
+
+	    <equation>
+	      <alt role="tex">
+            \[\varphi_{k\nu} \equiv \varphi_k({\bf x_\nu})\]
+          </alt>
+        </equation>
+
+        is the
+
+        <inlineequation>
+          <alt role="tex">\(k^\mathrm{th}\)</alt>
+        </inlineequation>
+
+        component of the field at node &nu;. &oof2; stores the
+        values of &phiknu; for all nodes in a vector, where
+        <inlineequation><alt
+                            role="tex">\(k\nu\)</alt></inlineequation>
+        should be understood as a single index.
+      </para>
+      <para>
+        Because &phiknu; is a vector, Equation <xref
+        linkend="Eqn-TimeDivergence"/> is a matrix equation, so the
+        first derivative term is
+
+        <equation>
+          <alt role="tex">
+            \[
+            \left[ {\bf C}\frac{\partial\varphi}{\partial t}({\bf x}) \right]_i
+            = {\bf C}_{ik}\frac{\partial\varphi_k}{\partial t}({\bf x})
+            \]
+          </alt>
+        </equation>
+
+        where &texi; is an equation index.
+
+        Using Eq. <xref linkend="Eqn-EqnProperty-expansion"/>, this becomes
+        
+        <equation id="Eqn-EqnProperty-C">
+          <alt role="tex">
+            \[
+            \left[ {\bf C}\frac{\partial\varphi}{\partial t}({\bf x}) \right]_i
+            = \left[N_\nu({\bf x}){\bf C}_{ik}\right]
+            \frac{\partial\varphi_{k\nu}}{\partial t}
+            \]
+          </alt>
+        </equation>
+
+        The job of <function>first_time_deriv_matrix()</function> is to
+        compute the term the term in square brackets on the right
+        hand side of <xref linkend="Eqn-EqnProperty-C"/>.
+      </para>
+
+      <para>
+        The arguments to <function>first_time_deriv_matrix()</function>
+        are:
+        <variablelist>
+          <varlistentry>
+	        <term><code>const <link linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
+	        <listitem>
+		      <para>
+		        The finite element mesh that's being solved.
+		        <function>first_time_deriv_matrix()</function>
+		        probably doesn't have to use the
+		        <varname>mesh</varname> object directly, but it does
+		        need to pass it through to other functions.
+		      </para>
+	        </listitem>
+          </varlistentry>
+	      <varlistentry>
+	        <term><code>const <link linkend="Class-Element">Element</link>* element</code></term>
+	        <listitem>
+		      <para>
+		        The finite <link
+		        linkend="Class-Element">element</link> under
+		        consideration.  This shouldn't be explicitly needed
+		        except in cases in which the material parameters
+		        depend on physical space coordinates, or if
+		        history-dependent fields are stored in the element.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+
+	      <varlistentry>
+	        <term><code>const <link
+	        linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp; node</code></term>
+	        <listitem>
+		      <para>
+		        This is the node &nu; referred to in the discussion
+		        <link linkend="first-deriv-dicussion">above</link>.
+		        It's passed in in the form of an iterator, which can
+		        iterate over all of the nodes of the element, although
+		        it should be thought of here simply as a way of
+		        accessing the node's indices and shape
+		        functions.<footnoteref linkend="node-as-iterator"/>
+                The node's shape function
+		        and its derivatives can be obtained from <link
+		        linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>ElementFuncNodeIterator::shapefunction()</methodname></link>
+		        and <link
+		        linkend="Class-ElementShapeFuncIterator-dshapefunction"><methodname>ElementFuncNodeIterator::dshapefunction()</methodname></link>.
+		      </para>
+	        </listitem>
+	      </varlistentry>
+          <varlistentry>
+            <term><code>&Equation;* equation</code></term>
+            <listitem>
+              <para>
+                The &Equation; being computed.  Properties that
+                contribute to more than one &Equation; may need to
+                check this variable to know which one they're being
+                asked to compute.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+	        <term><code>const <link
+	        linkend="Class-MasterPosition">MasterPosition</link>&amp; position</code></term>
+	        <listitem>
+		      <para>
+                This is the position &boldx; in <xref
+                linkend="Eqn-EqnProperty-C"/>.
+                <varname>position</varname> is a point in
+                <varname>element</varname>'s <link
+                linkend="Class-Element"><classname>Element</classname></link>'s
+                <link linkend="Class-MasterPosition">master coordinate
+                space</link>.  It is often a Gauss integration point,
+                but not always.  Master coordinates can be converted
+                to physical coordinates by calling <link
+                linkend="Class-Element-from_master"><function>Element::from_master()</function></link>.
+		      </para>
+	        </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>double time</code></term>
+            <listitem>
+              <para>
+                The time at which the flux matrix is being evaluated.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>void* data</code></term>
+            <listitem>
+              <para>
+                The data object, if any, returned by <link linkend="Class-FluxProperty-begin_point"><function>begin_point()</function></link>.
+              </para>
+            </listitem>
+          </varlistentry>
+	      <varlistentry>
+	        <term>
+              <code><link linkend="Class-SmallSystem">SmallSystem</link>*
+	          linsys</code>
+            </term>
+	        <listitem>
+		      <para>
+		        The <link
+		        linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+		        class stores the portion of the the actual &Cmatrix;
+		        that is currently being computed, along with other
+		        data.
+              </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+      </para>
+
+      <refsection id="example-first-deriv">
+        <title>Example of
+        <function>first_time_deriv_matrix()</function></title>
+
+        
+        <para>
+          For example, here is the
+          <function>first_time_deriv_matrix</function> method
+          for the <xref
+          linkend="Property-Mechanical-Damping-Isotropic"/> &Property;
+          in <filename>SRC/engine/properties/damping/damping.h</filename>.
+          The &Property; adds a
+          
+          <equation id="Eqn-damping-term">
+            <alt role="tex">
+              \[ -d\frac{\partial u}{\partial t} \]\
+            </alt>
+          </equation>
+
+          term to the &texx; and &texy; components of the <xref
+          linkend="Field-Displacement"/> &texu; in the <link
+          linkend="Equation-Force_Balance">force balance</link>
+          equation <xref
+          linkend="Eqn-Force_Balance"/>.<footnote><para> The damping
+          is not meant to represent physical damping, because it acts
+          on the velocity in the lab frame, not the strain rate, but
+          it can be useful for numerical stability.</para></footnote>
+        </para>
+        <programlisting>
+void IsotropicDampingProp::first_time_deriv_matrix(
+					   const FEMesh* mesh,
+					   const Element* lmnt,
+					   const ElementFuncNodeIterator&amp; node, <co id="damping-node"/>
+					   const Equation* eqn,
+					   const MasterPosition&amp; mpos,
+					   double time,
+					   void *data, 
+					   SmallSystem *linsys)
+  const
+  {
+  if(*eqn != force_balance) <co id="damping-precompute"/> <co id="damping-check-eqn"/>
+     throw ErrProgrammingError("Unexpected equation.", __FILE__, __LINE__);
+  double shapeFuncVal = node.shapefunction(mpos); <co id="damping-shape"/>
+  for(IndexP ell : *displacement->components(IN_PLANE)) { <coref linkend="damping-precompute"/><co id="damping-disp"/>
+    for(IndexP eqncomp : *eqn->components()) {
+      linsys->damping_matrix_element(eqncomp, displacement, ell, node) <co id="damping-mtx-element"/>
+         += coeff * shapeFuncVal; <co id="damping_constant"/>
+    }
+  }
+}
+
+        </programlisting>
+          
+        <calloutlist>
+          <callout arearefs="damping-node">
+            <para>
+              This is the node &nu; in Eq. <xref
+              linkend="Eqn-EqnProperty-C"/>.
+            </para>
+          </callout>
+          <callout arearefs="damping-precompute">
+            <para>
+              <varname>force_balance</varname> is an <xref
+              linkend="Class-Equation"/>* that is set in
+              <function>IsotropicDamping::precompute</function> by
+              calling <code>Equation::getEquation()</code>.  and
+              stored in the class instance.  Similiarly,
+              <varname>dispacement</varname> is a &Field;* set by
+              calling <code>Field::getField()</code>.  They could just
+              as well have been set in the
+              <classname>IsotropicDampingProp</classname> constructor.
+            </para>
+          </callout>
+          <callout arearefs="damping-check-eqn">
+            <para>
+              This check is optional in this case.  It verifies that
+              the equation <varname>eqn</varname> is actually the
+              <xref linkend="Equation-Force_Balance"/> equation.  If
+              the &Property; contributed to more than one &Equation;,
+              this check would determine which one to compute.
+            </para>
+          </callout>
+          <callout arearefs="damping-shape">
+            <para>
+              
+            </para>
+          </callout>
+        </calloutlist>
+        
+      </refsection>
+      
+    </refsection>               <!-- first_time_deriv_matrix -->
+
+    <refsection id="Class-EqnProperty-second_deriv_mtx">
+      <title><code>void second_time_deriv_matrix(...) const</code></title>
+      <programlisting>
+void second_time_deriv_matrix(const <xref linkend="Class-FEMesh"/>* mesh,
+                              const <xref linkend="Class-Element"/>* element,
+                              const <xref linkend="Class-ElementFuncNodeIterator"/>&amp; node,
+                              const <xref linkend="Class-Equation"/>* equation,
+                              const <xref linkend="Class-MasterPosition"/>&amp; position,
+                              double time,
+                              void *data,
+                              <xref linkend="Class-SmallSystem"/>*
+                              linsys) const </programlisting>
+      <para>
+
+      </para>
+    </refsection> <!-- second_time_deriv_matrix -->
+    
+    <refsection id="Class-EqnProperty-force_value">
+      <title><code>void force_value(...) const</code></title>
+      <programlisting>
+void force_value(const <xref linkend="Class-FEMesh"/>* mesh,
+                 const <xref linkend="Class-Element"/>* element,
+                 const <xref linkend="Class-Equation"/>* equation,
+                 const <xref linkend="Class-MasterPosition"/>&amp; position,
+                 double time,
+                 void* data,
+      <xref linkend="Class-SmallSystem"/>* linsys) const </programlisting>
+      <para>
+
+      </para>
+    </refsection>               <!-- force_value -->
+    <refsection id="Class-EqnProperty-force_deriv_mtx">
+      <title><code>void force_deriv_matrix(...) const</code></title>
+      <programlisting>
+ void force_deriv_matrix(const <xref linkend="Class-FEMesh"/>* mesh,
+                         const <xref linkend="Class-Element"/>* element,
+                         const <xref linkend="Class-ElementFuncNodeIterator"/>&amp; node,
+                         const <xref linkend="Class-Equation"/>* equation,
+				         const <xref linkend="Class-MasterPosition"/>&amp; position,
+				         double time,
+				         void* data, 
+				         <xref linkend="Class-SmallSystem"/>* linsys) const </programlisting>
+      <para>
   <!-- force_deriv_matrix is only called if the solver needs the
        Jacobian. -->
-  
+      </para>
+    </refsection>               <!-- force_deriv_matrix -->
+  </refsection>                 <!-- methods -->
+
 </refentry>                   <!-- EqnProperty -->
 
 <!-- Keep this comment at the end of the file

@@ -211,8 +211,15 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY texi "<inlineequation><alt role='tex'>\(i\)</alt></inlineequation>">
 <!ENTITY texj "<inlineequation><alt role='tex'>\(j\)</alt></inlineequation>">
 <!ENTITY texk "<inlineequation><alt role='tex'>\(k\)</alt></inlineequation>">
+<!ENTITY texu "<inlineequation><alt role='tex'>\(u\)</alt></inlineequation>">
+<!ENTITY texx "<inlineequation><alt role='tex'>\(x\)</alt></inlineequation>">
+<!ENTITY texy "<inlineequation><alt role='tex'>\(y\)</alt></inlineequation>">
+<!ENTITY texz "<inlineequation><alt role='tex'>\(z\)</alt></inlineequation>">
+
 <!ENTITY theta "<inlineequation><alt role='tex'>\(\theta\)</alt></inlineequation>">
-<!ENTITY varphi "<inlineequation><alt role='tex'>\(\varphi\)</alt></inlineequation>">
+<!ENTITY phiknu "<inlineequation><alt role='tex'>\(\varphi_{k\nu}\)</alt></inlineequation>">
+<!ENTITY nu "<inlineequation><alt role='tex'>\(\nu\)</alt></inlineequation>">
+<!ENTITY varphi "<inlineequation><alt role='tex'>\(\varphi\)</alt></inlineequation>" >
 <!ENTITY varphidot "<inlineequation><alt role='tex'>\(\partial\varphi/\partial t\)</alt></inlineequation>">
 <!ENTITY xhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf x}}\)</alt></inlineequation>">
 <!ENTITY yhat "<inlineequation><alt role='tex'>\(\hat{\mathrm{\bf y}}\)</alt></inlineequation>">

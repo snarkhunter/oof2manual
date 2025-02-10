@@ -50,3 +50,6 @@ methods.
 Be consistent about using <function> or <methodname>.  Be consistent
 about whether functions and methods mentioned by name in text have
 "()" appended.
+
+There shouldn't be separate C++ and Python "Source Files" sections in
+class man pages.

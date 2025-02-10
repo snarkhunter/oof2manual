@@ -33,6 +33,7 @@
           <modifier>public</modifier>
           <classname><xref linkend="Class-PhysicalProperty"/></classname>
         </ooclass>
+        
   	    <methodsynopsis>
 	      <modifier>virtual</modifier>
           <type>void*</type>
@@ -40,22 +41,22 @@
 	                      linkend="Class-FluxProperty-begin_point">begin_point</link></methodname>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>FEMesh*</type>
+		    <type><xref linkend="Class-FEMesh"/>*</type>
 		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type><classname><xref linkend="Class-Element"/></classname>*</type>
+		    <type><xref linkend="Class-Element"/></type>
 		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>Flux*</type>
+		    <type><xref linkend="Class-Flux"/>*</type>
 		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>MasterPosition&amp;</type>
+		    <type><xref linkend="Class-MasterPosition"/>&amp;</type>
 		    <parameter>position</parameter>
 	      </methodparam>
           <methodparam>
@@ -71,22 +72,22 @@
 	      <methodname><link linkend="Class-FluxProperty-end_point">end_point</link></methodname>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>FEMesh*</type>
+		    <type><xref linkend="Class-FEMesh"/>*</type>
 		    <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type><classname><xref linkend="Class-Element"/></classname>*</type>
+		    <type><xref linkend="Class-Element"/>*</type>
 		    <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>Flux*</type>
+		    <type><xref linkend="Class-Flux"/>*</type>
 		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>MasterPosition&amp;</type>
+		    <type><xref linkend="Class-MasterPosition"/>&amp;</type>
 		    <parameter>position</parameter>
 	      </methodparam>
           <methodparam>
@@ -106,27 +107,27 @@
 	      <methodname><link linkend="Class-FluxProperty-flux_matrix">flux_matrix</link></methodname>
 	      <methodparam>
             <modifier>const</modifier>
-	        <type>FEMesh*</type>
+	        <type><xref linkend="Class-FEMesh"/>*</type>
 	        <parameter>mesh</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-	        <type><classname><xref linkend="Class-Element"/></classname>*</type>
+	        <type><xref linkend="Class-Element"/>*</type>
 	        <parameter>element</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>ElementFuncNodeIterator&amp;</type>
+		    <type><xref linkend="Class-ElementFuncNodeIterator"/>&amp;</type>
 		    <parameter>node</parameter>
 	      </methodparam>             
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>Flux*</type>
+		    <type><xref linkend="Class-Flux"/>*</type>
 		    <parameter>flux</parameter>
 	      </methodparam>
 	      <methodparam>
             <modifier>const</modifier>
-		    <type>MasterPosition&amp;</type>
+		    <type><xref linkend="Class-MasterPosition"/>&amp;</type>
 		    <parameter>position</parameter>
 	      </methodparam>
           <methodparam>
@@ -261,34 +262,6 @@
           <modifier>const</modifier>
         </methodsynopsis>     <!-- static_flux_value -->
       </classsynopsis>
-      
-      <refsect3>
-        <title>Source Files</title>
-        <itemizedlist spacing="compact">
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/property.C</filename>: C++ code
-            </simpara>
-          </listitem>
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/property.h</filename>: C++ header
-            </simpara>
-          </listitem>
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/property.swg</filename>: SWIG source
-              code
-            </simpara>
-          </listitem>
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/property.swg</filename>: Python code
-              included in the SWIG output
-            </simpara>
-          </listitem>
-        </itemizedlist>
-      </refsect3>               <!-- Source files -->
     </refsect2>                 <!-- C++ FluxProperty Synopsis-->
     
     <refsect2 id="Class-PyFluxProperty" xreflabel="PyFluxProperty">
@@ -455,36 +428,60 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
 	    </methodsynopsis>       <!-- static_flux_value -->        
 
       </classsynopsis>
-      <refsect3>
-        <title>Source Files</title>
-        <itemizedlist spacing="compact">
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/pypropertywrapper.C</filename>: C++
-              code
-            </simpara>
-          </listitem>
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/pypropertywrapper.h</filename>: C++
-              header
-            </simpara>
-          </listitem>
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/pypropertywrapper.swg</filename>:
-              SWIG source code
-            </simpara>
-          </listitem>
-          <listitem>
-            <simpara>
-              <filename>SRC/engine/pypropertywrapper.spy</filename>:
-              Python code inserted into the SWIG output.
-            </simpara>
-          </listitem>
-        </itemizedlist>
-      </refsect3>               <!-- Python source files -->
     </refsect2>                 <!-- Python Synopsis-->
+
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.C</filename>: C++ code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.h</filename>: C++ header
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.swg</filename>: SWIG source
+            code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/property.swg</filename>: Python code
+            included in the SWIG output
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.C</filename>: C++
+            code for <classname>Properties</classname> implemented in
+            Python
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.h</filename>: C++
+            header
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.swg</filename>:
+            SWIG source code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/engine/pypropertywrapper.spy</filename>:
+            Python code inserted into the SWIG output.
+          </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2> 
     
   </refsynopsisdiv>
 
@@ -565,9 +562,9 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
           </para>
         </listitem>
       </itemizedlist>
-      The functions listed above all have a <link
-      linkend="ClassSmallSystem"><classname>SmallSystem</classname>*</link>
-      argument, which represents a small part of the <link
+      The functions listed above all have a <xref
+      linkend="Class-SmallSystem"/>* argument, which represents a
+      small part of the <link
       linkend="Class-LinearizedSystem"><classname>LinearizedSystem</classname></link>
       that is currently being built.
       <classname>SmallSystem</classname> methods handle all of the
@@ -603,10 +600,10 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
     <refsection id="Class-FluxProperty-begin_point">
 	  <title><code>void* begin_point(...) const</code></title>
       <programlisting>
-void* begin_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
-                  const <link linkend="Class-Element">Element</link>* element,
-                  const <link linkend="Class-Flux">Flux</link>* flux,
-                  const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
+void* begin_point(const <xref linkend="Class-FEMesh"/>* mesh,
+                  const <xref linkend="Class-Element"/>* element,
+                  const <xref linkend="Class-Flux"/>* flux,
+                  const <xref linkend="Class-MasterPosition"/>&amp; position,
                   double time) const </programlisting>
 	  <para>
         When building the finite element matrices and vectors, &oof2;
@@ -649,15 +646,14 @@ void* begin_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
             linkend="Class-FEMesh">FEMesh</link>* mesh</code></term>
             <listitem>
               <para>
-                The <link
-                linkend="Class-FEMesh"><classname>FEMesh</classname></link>
-                currently being solved.
+                The <classname><xref
+                linkend="Class-FEMesh"/></classname> currently being
+                solved.
               </para>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><code>const <link
-            linkend="Class-Element">Element</link>* element</code></term>
+            <term><code>const <xref linkend="Class-Element"/>* element</code></term>
             <listitem>
               <para>
                 The <link
@@ -667,8 +663,7 @@ void* begin_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><code>const <link linkend="Class-Flux">Flux</link>*
-            flux</code></term>
+            <term><code>const <xref linkend="Class-Flux"/>* flux</code></term>
             <listitem>
               <para>
                 The &flux; that this &Property; computes.  If the
@@ -704,7 +699,6 @@ void* begin_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
               </para>
             </listitem>
           </varlistentry>
-          
         </variablelist>
       </para>
       <para>
@@ -750,8 +744,7 @@ void end_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
     <refsection id="Class-FluxProperty-flux_matrix">
 	  <title><code>void flux_matrix(...) const</code></title>
       <programlisting>
-void flux_matrix(const <link linkend="Class-FEMesh">FEMesh</link>*
-mesh,
+void flux_matrix(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
                  const <link linkend="Class-Element">Element</link>* element,
                  const <link
                  linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp; node,
@@ -803,8 +796,8 @@ mesh,
           </alt>
 	    </inlineequation>
           
-	    can be used to approximate the field at
-	    &boldx;:<footnote><para> We are using the convention that
+	    can be used to approximate the field at &boldx;:<footnote
+	    id="summation"><para> We are using the convention that
 	    repeated indices, such as &nu; in <xref
 	    linkend="Eqn-Property-expansion"/> are implicitly summed:
 	    <inlineequation><alt role="tex">\(x_i y_i\equiv \sum_i x_i
@@ -1067,8 +1060,8 @@ mesh,
 		        iterate over all of the nodes of the element, although
 		        it should be thought of here simply as a way of
 		        accessing the node's indices and shape
-		        functions.<footnote><simpara> It's not possible to use
-		        a <link
+		        functions.<footnote id="node-as-iterator"><simpara>
+		        It's not possible to use a <link
 		        linkend="Class-Node"><classname>Node</classname></link>
 		        instead of an <link
 		        linkend="Class-ElementFuncNodeIterator"><classname>ElementFuncNodeIterator</classname></link>
@@ -1100,7 +1093,7 @@ mesh,
 	      </varlistentry>
 	      <varlistentry>
 	        <term><code>const <link
-	        linkend="Class-MasterCoord">MasterPosition</link>&amp; position</code></term>
+	        linkend="Class-MasterPosition">MasterPosition</link>&amp; position</code></term>
 	        <listitem>
 		      <para>
                 This is the position &boldx; in <xref
@@ -1436,8 +1429,7 @@ void flux_offset(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
                  const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; position,
                  double time,
                  void* data,
-                 <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const
-        </programlisting>
+                 <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const </programlisting>
 	    <para>
           <methodname>FluxProperty::flux_offset()</methodname>
           computes the &sigma0; term in <xref linkend="Eqn-flux1"/>.
@@ -1626,8 +1618,7 @@ void ThermalExpansion::flux_offset(const FEMesh* mesh,
   const Cijkl modulus = elasticity->cijkl(mesh, element, x); <co id="flux_offset-modulus"/>
   SymmMatrix3 expten = expansiontensor(mesh, element, x); <co id="flux_offset-alpha"/>
   linsys->offsetVector() += modulus*expten*T0; <co id="flux_offset-eqn"/>
-}
-          </programlisting>
+} </programlisting>
           <calloutlist>
             <callout arearefs="flux_offset-data">
               <para>
