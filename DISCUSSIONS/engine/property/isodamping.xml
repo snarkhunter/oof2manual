@@ -15,7 +15,7 @@
   a contribution
   <equation>
     <alt role="tex">
-      \[ -d \frac{\partial u_i}{\partial t} \]
+      \[ d \frac{\partial u_i}{\partial t} \]
     </alt>
   </equation>
   to the <inlineequation><alt
