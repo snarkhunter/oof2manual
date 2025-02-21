@@ -741,8 +741,8 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
             \]
           </alt>
         </equation>
-        The derivation &Mmatrix; is identical, except that the second
-        time derivative is used instead of the first:
+        The derivation for &Mmatrix; is identical, except that the
+        second time derivative is used instead of the first:
         <equation id="Eqn-EqnProperty-M">
           <alt role="tex">
             \[
@@ -756,7 +756,7 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
       </para>
       <para>
         The job of <function>time_deriv_matrices()</function> is to
-        compute the terms the term in square brackets on the right
+        compute the terms in square brackets on the right
         hand sides of <xref linkend="Eqn-EqnProperty-C"/> and <xref
         linkend="Eqn-EqnProperty-M"/>.
       </para>
@@ -863,11 +863,12 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
             </term>
 	        <listitem>
 		      <para>
-		        The <link
-		        linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
-		        class stores the portion of the the actual &Cmatrix;
-		        that is currently being computed, along with other
-		        data.
+                Storage for the portion of the the actual &Cmatrix;
+                and &Mmatrix; that are currently being computed, along
+                with other data.  <link
+                linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>
+                knows how to convert local &Element; and &Node;
+                indices into global &FEMesh; indices.
               </para>
             </listitem>
           </varlistentry>
@@ -905,8 +906,8 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
           on the velocity in the lab frame, not the strain rate, but
           it can be useful for numerical stability.</para></footnote>
         </para>
-        <programlisting>
-void IsotropicDampingProp::first_time_deriv_matrix(
+        <programlisting id="damping-matrix-example">
+void IsotropicDampingProp::time_deriv_matrices(
 					   const FEMesh* mesh,
 					   const Element* element,
 					   const ElementFuncNodeIterator&amp; node, <co id="damping-node"/>
@@ -914,7 +915,7 @@ void IsotropicDampingProp::first_time_deriv_matrix(
 					   const MasterPosition&amp; mpos,
 					   double time,
 					   void *data, 
-					   SmallSystem *linsys)
+					   SmallSystem* linsys)
   const
   {
   if(*eqn != force_balance) <co id="damping-precompute"/> <co id="damping-check-eqn"/>
@@ -922,7 +923,7 @@ void IsotropicDampingProp::first_time_deriv_matrix(
   double shapeFuncVal = node.shapefunction(mpos); <co id="damping-shape"/>
   for(IndexP k : *displacement->components(IN_PLANE)) { <coref linkend="damping-precompute"/><co id="damping-comps"/>
     for(IndexP eqncomp : *eqn->components()) { <co id="damping-eqncomp"/>
-      linsys->damping_matrix_element(eqncomp, displacement, k, node) <co id="damping-mtx-element"/>
+      linsys-><emphasis role="bold">damping_matrix_element</emphasis>(eqncomp, displacement, k, node) <co id="damping-mtx-element"/>
          += coeff * shapeFuncVal; <co id="damping-constant"/>
     }
   }
@@ -938,9 +939,9 @@ void IsotropicDampingProp::first_time_deriv_matrix(
           <callout arearefs="damping-precompute">
             <para>
               <varname>force_balance</varname> is an <xref
-              linkend="Class-Equation"/>* that is set in
-              <function>IsotropicDamping::precompute()</function> by
-              calling <code>Equation::getEquation()</code>.  and
+              linkend="Class-Equation"/>* that is set when
+              <function>IsotropicDamping::precompute()</function> 
+              calls <code>Equation::getEquation()</code>.  It is
               stored in the class instance.  Similiarly,
               <varname>dispacement</varname> is a &Field;* set by
               calling <code>Field::getField()</code>.  They could just
@@ -1003,9 +1004,10 @@ void IsotropicDampingProp::first_time_deriv_matrix(
               that matrix element.
             </para>
             <para>
-              <varname>coeff</varname> is a parameter defined in the
-              &Property;'s <xref linkend="Class-PropertyRegistration"/>
-              and stored in the &Property; by its constructor.
+              <varname>coeff</varname> is the damping coefficient.  It
+              is a parameter defined in the &Property;'s <xref
+              linkend="Class-PropertyRegistration"/> and stored in the
+              &Property; by its constructor.
             </para>
           </callout>
         </calloutlist>
@@ -1022,7 +1024,11 @@ void IsotropicDampingProp::first_time_deriv_matrix(
           linkend="Property-Mechanical-MassDensity-ConstantMassDensity"/>
           &Property; in
           <filename>SRC/engine/properties/massdensity/massdensity.C</filename>.
-          
+          It is essentially the same as the damping example above, but
+          it calls <link
+          linkend="Class-SmallSystem-mass_matrix_element"><function>SmallSystem::mass_matrix_element()</function></link>
+          instead of <link
+          linkend="Class-SmallSystem-damping_matrix_element"><function>SmallSystem::damping_matrix_element()</function></link>.
         </para>
         <programlisting>
 void MassDensityProp::time_deriv_matrices(
@@ -1037,11 +1043,24 @@ void MassDensityProp::time_deriv_matrices(
 {
   double shapeFuncVal = node.shapefunction(mpos);
   for(IndexP component : *eqn->components()) {
-    eqdata->mass_matrix_element(component, disp, component, node) <co id="mass-mtx-element"/>
+    eqdata-><emphasis role="bold">mass_matrix_element</emphasis>(component, disp, component, node) <co id="mass-mtx-element"/>
       += rho_ * shapeFuncVal;
   }
-}
-        </programlisting>
+} </programlisting>
+        <calloutlist>
+          <callout arearefs="mass-matrix-element">
+            <para>
+              <link
+              linkend="Class-SmallSystem-mass_matrix_element"><function>SmallSystem::damping_matrix_element()</function></link>
+              returns a reference to the finite element matrix element
+              that is being computed.  The row is determined by the
+              &Equation; component <varname>eqncomp</varname>, and the
+              column by the <varname>k</varname> component of the
+              <varname>displacement</varname> field at the &Node;
+              <varname>node</varname>.
+            </para>
+          </callout>
+        </calloutlist>
       </refsection>             <!-- example-second-deriv -->
     </refsection>               <!-- time_deriv_matrices -->
 
