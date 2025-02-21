@@ -1004,7 +1004,7 @@ void IsotropicDampingProp::first_time_deriv_matrix(
             </para>
             <para>
               <varname>coeff</varname> is a parameter defined in the
-              &Property's <xref linkend="Class-PropertyRegistration"/>
+              &Property;'s <xref linkend="Class-PropertyRegistration"/>
               and stored in the &Property; by its constructor.
             </para>
           </callout>
@@ -1042,10 +1042,9 @@ void MassDensityProp::time_deriv_matrices(
   }
 }
         </programlisting>
-      
+      </refsection>             <!-- example-second-deriv -->
     </refsection>               <!-- time_deriv_matrices -->
 
-    
     <refsection id="Class-EqnProperty-force_value">
       <title><code>void force_value(...) const</code></title>
       <programlisting>

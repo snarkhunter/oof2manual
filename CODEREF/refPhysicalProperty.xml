@@ -225,10 +225,14 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
         The method <function>integration_order()</function>, which
         must be defined in each
         <classname>PhysicalProperty</classname> class, returns the
-        polynomial degree of the integrand.  The degree depends on the
-        structure of the integrand and on the polynomial degrees of
-        the shape functions and their derivatives.  These can be
-        obtained from <link
+        polynomial degree of the <classname>Property</classname>'s
+        contribution to the integrand. That is, it depends on the
+        terms of the <classname>Property</classname>
+        <emphasis>before</emphasis> it is multiplied by a test
+        function and integrated.  The degree depends on the details of
+        the &Property; and on the polynomial degrees of the shape
+        functions and their derivatives, which can be obtained from
+        <link
         linkend="Class-Element-shapefun_degree"><function>Element::shapefun_degree()</function></link>
         and <link
         linkend="Class-Element-dshapefun_degree"><function>Element::dshapefun_degree()</function></link>.
@@ -236,24 +240,82 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
       <para>
         For example, a <classname>Property</classname> that adds a
         constant to the force term in <xref linkend="Eqn-Divergence"/>
-        or <xref linkend="Eqn-TimeDivergence"/> will have all of its
-        space dependence in the test function, so it should define
+        or <xref linkend="Eqn-TimeDivergence"/> has no dependence on
+        the &Fields; and therefore there are no shape functions in its
+        expansion, so it has order <constant>0</constant>.  It 
+        should define
         <function>integration_order()</function> like this:
         <programlisting>
-int ForceDensity::integration_order(const CSubProblem*, const Element* el) const
+int ForceDensity::integration_order(const CSubProblem*, const Element*) const
 {
-  return el-><emphasis role="bold">shapefun_degree</emphasis>();
+  return <emphasis role="bold">0</emphasis>;
 } </programlisting>
-        A constant term added to the flux in either equation will be
-        integrated by parts, moving a derivative operation from the
-        divergence to the test function. Thus the degree of the
-        integrand is the degree of the derivative of the shape
-        function:
+
+      </para>
+      <para>
+        Sometimes the polynomial order depends on whether the &Field;
+        is <link linkend="Section-Concepts-Mesh-3D">in-plane</link> or
+        <link linkend="Section-Concepts-Mesh-3D">out-of-plane</link>.
+        If the &Property; depends on &Field; gradients, its expansion
+        will include shape function gradients
+
+        <equation>
+          <alt role="tex">
+            \[
+            \frac{\partial\varphi(x)}{\partial x} =
+            \sum_i \varphi_i \frac{\partial N_i(x)}{\partial x}
+            \]
+          </alt>
+        </equation>
+        
+        (see the discussion of
+        <link
+        linkend="Class-FluxProperty-flux_matrix"><function>FluxProperty::flux_matrix()</function></link>,
+        especially Eq. <xref linkend="Eqn-flux-matrix"/>),
+
+        so its polynomial order will depend on the order of the shape
+        function derivatives, as given by <link
+        linkend="Class-Element-dshapefun_degree"><function>Element::dshapefun_degree()</function></link>.
+
+        
+        However, if the relevant &Field; is not <link
+        linkend="Section-Concepts-Mesh-3D">in-plane</link>, &oof2;
+        augments it with the &texz; derivatives of its
+        components,
+        <equation>
+          <alt role="tex">
+            \[
+            \psi_i \equiv \frac{\partial\phi_i}{\partial z}
+            \]
+          </alt>
+        </equation>
+        
+        .  This augmented &field; is already a derivative,
+        so it is expanded in shape functions, not shape function derivatives.
+        so although the &Property; depends on the derivatives 
+
+
+        create terms that include shape function
+        derivatives.  The out-of-plane parts will depend on the shape
+        functions themselves, because &oof2; treats the z-derivatives
+        of out-of-plane components of &Fields; as an auxilliary
+        &Field;.  The derivative of a shape function usually has a
+        lower polynomial order, and
+        <function>integration_order()</function> must return the
+        largest possible order.  Therefore it should check whether or
+        not the relevant &Field; is in-plane or not.  For example,
+        here is the function for the <link 
+        linkend="PropertyType-Elasticity"><classname>Elasticity</classname></link>:
+        
         <programlisting>
-int StressFreeStrain::integration_order(const CSubProblem*, const Element* el) const
+int Elasticity::integration_order(const CSubProblem *subp, const Element *el)
+  const
 {
-  return el-><emphasis role="bold">dshapefun_degree</emphasis>();
-} </programlisting>
+  if(displacement->in_plane(subp))
+    return el-><emphasis role="bold">dshapefun_degree</emphasis>();
+  return el-><emphasis role="bold">shapefun_degree</emphasis>();
+ } </programlisting>
+
       </para>
       <para>
         A &Property; that contributes to the &Mmatrix; or &Cmatrix;
