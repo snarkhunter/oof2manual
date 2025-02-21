@@ -215,11 +215,11 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
         role="external">Gaussian quadrature</ulink>.  To choose the
         appropriate number of Gauss points, it's necessary to know the
         polynomial degree of the integrand in <emphasis>x</emphasis>
-        and <emphasis>y</emphasis>.
-        Generally, higher order polynomials require more points.
-        Choosing an integration order that is too large will slow down
-        the calculation.  Choosing one that is too small could lead to
-        incorrect results.
+        and <emphasis>y</emphasis>.  Generally, higher order
+        polynomials require more points.  Choosing an integration
+        order that is too large will slow down the calculation, but
+        choosing one that is too small could lead to incorrect
+        results.
       </para>
       <para>
         The method <function>integration_order()</function>, which
@@ -227,12 +227,11 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
         <classname>PhysicalProperty</classname> class, returns the
         polynomial degree of the <classname>Property</classname>'s
         contribution to the integrand. That is, it depends on the
-        terms of the <classname>Property</classname>
-        <emphasis>before</emphasis> it is multiplied by a test
-        function and integrated.  The degree depends on the details of
-        the &Property; and on the polynomial degrees of the shape
-        functions and their derivatives, which can be obtained from
-        <link
+        <classname>Property</classname> <emphasis>before</emphasis>
+        multiplying by the test function and integrating.  The degree
+        depends on the details of the &Property; and on the polynomial
+        degrees of the shape functions and their derivatives, which
+        can be obtained from <link
         linkend="Class-Element-shapefun_degree"><function>Element::shapefun_degree()</function></link>
         and <link
         linkend="Class-Element-dshapefun_degree"><function>Element::dshapefun_degree()</function></link>.
@@ -241,10 +240,10 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
         For example, a <classname>Property</classname> that adds a
         constant to the force term in <xref linkend="Eqn-Divergence"/>
         or <xref linkend="Eqn-TimeDivergence"/> has no dependence on
-        the &Fields; and therefore there are no shape functions in its
-        expansion, so it has order <constant>0</constant>.  It 
-        should define
-        <function>integration_order()</function> like this:
+        the &Fields; and therefore has no shape functions in its
+        expansion, so it has order <constant>0</constant>.  It should
+        define <function>integration_order()</function> like this:
+        
         <programlisting>
 int ForceDensity::integration_order(const CSubProblem*, const Element*) const
 {
@@ -256,237 +255,98 @@ int ForceDensity::integration_order(const CSubProblem*, const Element*) const
         Sometimes the polynomial order depends on whether the &Field;
         is <link linkend="Section-Concepts-Mesh-3D">in-plane</link> or
         <link linkend="Section-Concepts-Mesh-3D">out-of-plane</link>.
-        If the &Property; depends on &Field; gradients, its expansion
-        will include shape function gradients
-
+        Remember that &oof2; adds an auxiliary field,
         <equation>
           <alt role="tex">
             \[
-            \frac{\partial\varphi(x)}{\partial x} =
-            \sum_i \varphi_i \frac{\partial N_i(x)}{\partial x}
+            \psi({\bf x}) \equiv \frac{\partial\varphi({\bf x})}{\partial z}
+            \]
+          </alt>
+        </equation>
+        that contains the &texz;-derivative of &Fields; that are not
+        in-plane.  The gradient of such a &Field; is
+
+        <equation id="eqn-physicalpropgrad">
+          <alt role="tex">
+            \[
+            \frac{\partial\varphi({\bf x})}{\partial\bf x}
+            =
+            \frac{\partial\varphi({\bf x})}{\partial x} {\hat{\bf x}} +
+            \frac{\partial\varphi({\bf x})}{\partial y} {\hat{\bf y}} +
+            \psi({\bf x}) {\hat{\bf z}}
+            \]
+          </alt>
+        </equation>
+
+        Both of the fields &varphi; and &psi; are expanded in shape
+        functions
+        <equation>
+          <alt role="tex">
+            \begin{align*}
+            \varphi({\bf x}) &amp;= \sum_\nu N_\nu({\bf x}) \varphi_\nu  \\
+            \psi({\bf x}) &amp;= \sum_\nu N_\nu({\bf x}) \psi_\nu \\
+            \end{align*}
+          </alt>
+        </equation>
+        so the gradient <xref linkend="eqn-physicalpropgrad"/> is
+        <equation>
+          <alt role="tex">
+            \[
+            \frac{\partial\varphi(x)}{\partial\bf x} =
+            \sum_\nu \left[
+            
+            \frac{\partial N_\nu({\bf x})}{\partial x}
+            \varphi_\nu {\hat{\bf x}}
+            +
+            \frac{\partial N_\nu({\bf x})}{\partial y}
+            \varphi_\nu {\hat{\bf y}}
+            +
+            N_\nu({\bf x}) \psi_\nu {\hat{\bf x}}
+            \right].
             \]
           </alt>
         </equation>
         
-        (see the discussion of
-        <link
-        linkend="Class-FluxProperty-flux_matrix"><function>FluxProperty::flux_matrix()</function></link>,
-        especially Eq. <xref linkend="Eqn-flux-matrix"/>),
+        Therefore if the &Field; is in-plane and &psi; is zero, the
+        polynomial degree of the gradient is given by the derivative
+        of the shapefunction, but if the &Field; is out-of-plane, the
+        degree is the degree of the shapefunction itself, because the
+        polynomial degree of a function is higher that the degree of
+        its derivative.
 
-        so its polynomial order will depend on the order of the shape
-        function derivatives, as given by <link
-        linkend="Class-Element-dshapefun_degree"><function>Element::dshapefun_degree()</function></link>.
+      </para>
+      <para>
+        The result of all this is that a &Property; that depends on
+        the gradient of a &Field; will need to check whether or not
+        the &Field; is in-plane.  For example, here is the
+        <function>integration_order()</function> method from
+         <link
+             linkend="PropertyType-Elasticity"><classname>Elasticity</classname></link>:
 
-        
-        However, if the relevant &Field; is not <link
-        linkend="Section-Concepts-Mesh-3D">in-plane</link>, &oof2;
-        augments it with the &texz; derivatives of its
-        components,
-        <equation>
-          <alt role="tex">
-            \[
-            \psi_i \equiv \frac{\partial\phi_i}{\partial z}
-            \]
-          </alt>
-        </equation>
-        
-        .  This augmented &field; is already a derivative,
-        so it is expanded in shape functions, not shape function derivatives.
-        so although the &Property; depends on the derivatives 
-
-
-        create terms that include shape function
-        derivatives.  The out-of-plane parts will depend on the shape
-        functions themselves, because &oof2; treats the z-derivatives
-        of out-of-plane components of &Fields; as an auxilliary
-        &Field;.  The derivative of a shape function usually has a
-        lower polynomial order, and
-        <function>integration_order()</function> must return the
-        largest possible order.  Therefore it should check whether or
-        not the relevant &Field; is in-plane or not.  For example,
-        here is the function for the <link 
-        linkend="PropertyType-Elasticity"><classname>Elasticity</classname></link>:
-        
-        <programlisting>
+         <programlisting>
 int Elasticity::integration_order(const CSubProblem *subp, const Element *el)
   const
 {
-  if(displacement->in_plane(subp))
+  if(displacement->in_plane(subp)) <co id="integration_order_disp"/>
     return el-><emphasis role="bold">dshapefun_degree</emphasis>();
   return el-><emphasis role="bold">shapefun_degree</emphasis>();
  } </programlisting>
 
-      </para>
-      <para>
-        A &Property; that contributes to the &Mmatrix; or &Cmatrix;
-        terms in <xref linkend="Eqn-TimeDivergence"/> will have
-        spatial dependence from both the test function and the
-        expansion of the &field;, yielding the product of two shape
-        functions, so the total polynomial degree is twice the shape
-        function degree:
-        <programlisting>
-int MassDensityProp::integration_order(const CSubProblem*, const Element* el) const {
-   // <lineannotation>The degree of a product is the sum of the degrees of the factors.</lineannotation>
-  return <emphasis role="bold">2</emphasis> * el-><emphasis role="bold">shapefun_degree</emphasis>();
-} </programlisting>
-      </para>
-
-      <para>
-        Sometimes the polynomial degree depends on whether or not a
-        &field; has an <link
-        linkend="Section-Concepts-Mesh-3D">out-of-plane</link> part.
-        Consider <link
-        linkend="Property-Mechanical-Elasticity-Isotropic">elasticity</link>
-        or <link
-        linkend="Property-Thermal-Conductivity-Isotropic">thermal
-        conductivity</link>.  The &flux; is proportional to the
-        gradient of a &field;, and the &field; &varphi; can be
-        expanded in shape functions.
-        Schematically<footnote><simpara>The index
-        <emphasis>i</emphasis> stands for a combination of node
-        indices and field component indices.  This is just a schematic
-        representation.</simpara></footnote>
-
-        <equation>
-          <alt role="tex">
-            \[
-            \sigma({\bf x}) = \mathrm{modulus}\cdot\sum_i
-            \frac\partial{\partial\bf x} N_i({\bf x})\varphi({\bf x}_i)
-            \]
-          </alt>
-        </equation>
-
-        where
-
-        <inlineequation>
-          <alt role="tex">
-            \({\bf x}_i\)
-          </alt>
-        </inlineequation>
-
-        is the position of &node; <emphasis>i</emphasis>, and
-
-        <inlineequation>
-          <alt role='tex'>
-            \(\varphi({\bf x}_i)\)
-          </alt>
-        </inlineequation>
-        
-        the &field; at &node; <emphasis>i</emphasis>, is a constant.
-        Taking the divergence, multiplying by a test function
-        <inlineequation>
-          <alt role="tex">
-            \(N_j\)
-          </alt>
-        </inlineequation>
-
-        and integrating (by parts) over the area yields
-
-        <equation>
-          <alt role="tex">
-            \[
-            \int d{\bf x}\, N_j({\bf x}) \nabla\cdot\sigma({\bf x}) =
-            - \mathrm{modulus}\cdot
-            \sum_i \int d{\bf x}\,
-            \frac{\partial N_j({\bf x})}{\partial{\bf x}}\,
-            \frac{\partial N_i({\bf x})}{\partial{\bf x}} \varphi({\bf x}_i)
-            + \mathrm{boundary\ terms}
-            \]
-          </alt>
-        </equation>
-        
-        The only position dependence comes from the shape functions,
-        so the polynomial degree is twice the the degree of the shape
-        function derivatives, <code>2*el->dshapefun_degree()</code>.
-      </para>
-      <para>
-        However, this isn't quite correct.  If the &field; has an <link
-        linkend="Section-Concepts-Mesh-3D">out-of-plane</link> part,
-        
-        <equation>
-          <alt role="tex">
-            \[
-            \psi({\bf x}) \equiv \left(
-            \frac{\partial\varphi_x}{\partial z},\,
-            \frac{\partial\varphi_y}{\partial z},\,
-            \frac{\partial\varphi_z}{\partial z}
-            \right)
-            \]
-          </alt>
-        </equation>
-        
-        those components also contribute to the flux.  Expanding the
-        out-of-plane &field; in shape functions,
-
-        <equation>
-          <alt role="tex">
-            \[
-            \psi({\bf x}) = \sum_i N_i({\bf x}) \psi({\bf x}_i)
-            \]
-          </alt>
-        </equation>
-
-        the &flux; becomes
-
-        <equation id="Eqn-oopflux">
-          <alt role="tex">
-            \[
-            \sigma({\bf x}) = \mathrm{modulus}\cdot \sum_i
-            \left(
-            \frac{\partial N_i({\bf x})}{\partial x}\varphi_x({\bf x}_i) +
-            \frac{\partial N_i({\bf y})}{\partial y}\varphi_y({\bf x}_i) +
-            N_i({\bf x})\psi_z({\bf x}_i)
-            \right)
-            \]
-          </alt>
-        </equation>
-
-        Taking the divergence and integrating by parts, the last term
-        in <xref linkend="Eqn-oopflux"/> will have one factor of
-
-        <inlineequation>
-          <alt role="tex">
-            \(\partial N({\bf x})/\partial{\bf x}\)
-          </alt>
-        </inlineequation>
-
-        from the divergence and one factor of
-
-        <inlineequation>
-          <alt role="tex">
-            \(N({\bf x})\)
-          </alt>
-        </inlineequation>
-
-        from the flux.
-
-        <inlineequation>
-          <alt role="tex">
-            \(N({\bf x})\)
-          </alt>
-        </inlineequation>
-
-        is a higher order polynomial than
-
-        <inlineequation>
-          <alt role="tex">
-            \(\partial N({\bf x})/\partial{\bf x}\)
-          </alt>
-        </inlineequation>
-
-        so the degree is higher when the
-        &field; is out of plane.
-        <function>integration_order()</function> should be
-        
-        <programlisting>
-int Elasticity::integration_order(const CSubProblem *subp, const Element *el) const
-{
-  if(displacement->in_plane(subp))
-    // <lineannotation>in-plane: two derivatives of N(x)</lineannotation>
-    return 2*el->dshapefun_degree();
-  // <lineannotation>out-of-plane: one N(x) and one derivative of N(x)</lineannotation>  
-  return el->shapefun_degree() + el->dshapefun_degree();
-} </programlisting>
+         <calloutlist>
+           <callout arearefs="integration_order_disp">
+             <para>
+               <varname>displacement</varname> is a <link
+               linkend="Class-TwoVectorField"><classname>TwoVectorField</classname>*</link>
+               stored in the <classname>Elasticity</classname> class,
+               and initialized in the
+               <classname>Elasticity</classname> constructor like
+               this:
+               <programlisting>
+displacement = dynamic_cast&lt;TwoVectorField*&gt;(<link linkend="Function-getField">Field::getField</link>("Displacement")); </programlisting>
+             </para>
+           </callout>
+         </calloutlist>
+         
       </para>
       
 	  <warning>
@@ -502,6 +362,7 @@ int Elasticity::integration_order(const CSubProblem *subp, const Element *el) co
               \((1-x)(1-y)/4\)
             </alt>
           </inlineequation>
+          for a 2&times;2 square centered on the origin
 	      can be integrated exactly with a single Gauss point at
 	      (0,0), although its polynomial degree is 2.  For this
 	      function, both <function>shapefun_degree()</function> and
