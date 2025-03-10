@@ -33,6 +33,11 @@
           <void/>
 		  <modifier>const</modifier>
 	    </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link linkend="Class-FieldIndex-intconversion">
+          operator int</link></methodname>
+          <modifier>const</modifier>
+        </methodsynopsis>
 	    <methodsynopsis>
 		  <modifier>virtual</modifier>
 		  <type>bool</type>
@@ -163,11 +168,11 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex</programlisting>
 	    linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
 	    takes the values <emphasis>xx, yy, zz, yz, xz,
 	    xy</emphasis>, in that order.
-	    <methodname>FieldIndex::integer</methodname> returns the
+	    <methodname>FieldIndex::integer()</methodname> returns the
 	    current value's position in the canonical list. 
 	  </para>
 	  <para>
-	    <methodname>integer</methodname> is used whenever an
+	    <methodname>integer()</methodname> is used whenever an
 	    <classname>FieldIndex</classname> needs to determine a
 	    position in a Python list, C++
 	    <classname>std::vector</classname>, or other linear storage
@@ -177,6 +182,16 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex</programlisting>
 	    &IndexP; objects, for whatever reason.
       </para>
 	</refsection>
+    <refsection>
+      <title><code>operator int() const</code></title>
+      <para>
+        <methodname>operator int</methodname> converts a &FieldIndex;
+        to an integer by calling <link
+        linkend="Class-FieldIndex-integer"><function>FieldIndex::integer()</function></link>.
+        It allows a &FieldIndex; to be used as an argument to a C++
+        function that is expecting a integer.
+      </para>
+    </refsection>
 	<refsection id="Class-FieldIndex-in_plane">
 	  <title><code>virtual bool in_plane() const</code></title>
 	  <para>

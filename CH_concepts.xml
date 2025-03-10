@@ -1588,8 +1588,7 @@
 	      <equation id="Eqn-Divergence">
 	        <alt role="tex">
 	          \[
-	          \nabla\cdot\mathrm{flux} + \mathrm{force}
-	          = 0,
+	          \nabla\cdot\mathrm{flux} = \mathrm{force},
 	          \]
 	        </alt>
 	      </equation>
@@ -1616,7 +1615,7 @@
 	          \[
 	          {\bf M}\frac{\partial^2}{\partial t^2}\mathrm{field}
 	          + {\bf C}\frac{\partial}{\partial t}\mathrm{field}
-	          + \nabla\cdot\mathrm{flux} + \mathrm{force} = 0.
+	          + \nabla\cdot\mathrm{flux} = \mathrm{force}.
 	          \]
 	        </alt>
 	      </equation>
