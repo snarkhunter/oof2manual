@@ -71,6 +71,9 @@
   </refentry><!-- CSubProblem -->
 
   <refentry id="Class-Element">
+    <!-- TODO: Add docs for appendData, setDataByName, setData,
+         getData, getIndexByName, getDataByName, delDataByName,
+         delData, clearData.  Why aren't the del* methods swigged? -->
     <refnamediv>
       <refname>Element</refname>
       <refpurpose>Element class for finite element meshes</refpurpose>

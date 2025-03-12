@@ -701,7 +701,7 @@ def __init__(self, name, registration, ...):
         <literal>Orientation</literal>.  It stores pointers to them in
         the class:
 	    <programlisting>
-class ThermalExpansion : public Property {
+class ThermalExpansion : public FluxProperty {
 protected:
   Elasticity *elasticity;
   ...

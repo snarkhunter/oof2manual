@@ -247,7 +247,9 @@ from ooflib.engine.propertyregistration import PropertyRegistration</programlist
 	              &Property; subclass, a Python class derived from a
 	              swigged C++ &Property; subclass, or a Python class
 	              derived from <link
-	              linkend="Class-PyPropertyWrapper"><classname>PyPropertyWrapper</classname></link>.
+	              linkend="Class-PyFluxProperty"><classname>PyFluxProperty</classname></link>
+	              or from <link
+	              linkend="Class-PyEqnProperty"><classname>PyEqnProperty</classname></link>.
 	              Note that the argument is the actual
 	              <emphasis>class</emphasis>, not an instance of the
 	              class.

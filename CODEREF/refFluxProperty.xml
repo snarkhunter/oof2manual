@@ -720,20 +720,20 @@ void end_point(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
                void* data) const </programlisting>
 	  <para>
 	    <function>end_point()</function> is just like <link
-	    linkend="Class-Property-begin_point"><function>begin_point()</function></link>,
+	    linkend="Class-Property-end_point"><function>begin_point()</function></link>,
 	    except that it's called <emphasis>after</emphasis> &oof2; is
 	    done computing the contribution at a point.  The
 	    <function>end_point()</function> method can be used to clean
 	    up any temporary objects allocated by <link
-	    linkend="Class-Property-begin_point"><methodname>begin_point</methodname></link>.
+	    linkend="Class-Property-end_point"><methodname>begin_point</methodname></link>.
 	  </para>
       <para>
         The arguments for <function>end_point()</function> are the same
         as the arguments for <methodname><link
-        linkend="Class-Property-begin_point">begin_point()</link></methodname>,
+        linkend="Class-Property-end_point">begin_point()</link></methodname>,
         with the addition of a <code>void*</code> which points to the
         data returned by <link
-	    linkend="Class-Property-begin_point"><methodname>begin_point</methodname></link>.
+	    linkend="Class-Property-end_point"><methodname>begin_point</methodname></link>.
       </para>
       <para>
         The default implementation of <function>end_point()</function>
@@ -1279,14 +1279,14 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
      <co id="flux_matrix-fieldcomps"/>
     // in-plane temperature gradient contributions
     linsys->stiffness_matrix_element(i, temperature, nu) -= <co id="flux_matrix-temperature"/> <co id="flux_matrix-mat"/>
-        cond(i.integer(), 0) * dsf0 +  <co id="flux_matrix-K"/>
-        cond(i.integer(), 1) * dsf1;   <coref linkend="flux_matrix-K"/>
+        cond(i, 0) * dsf0 +  <co id="fmtx_indexing"/><co id="flux_matrix-K"/>
+        cond(i, 1) * dsf1;   <coref linkend="fmtx_indexing"/><coref linkend="flux_matrix-K"/>
 
     // out-of-plane temperature gradient contribution
     if(!temperature->in_plane(mesh)) <co id="flux_matrix-oopcheck"/>
       <coref linkend="flux_matrix-fieldcomps"/>
       linsys->stiffness_matrix_element(i, temperature->out_of_plane(), nu) <co id="flux_matrix-oop"/>
-              -= cond(i.integer(), 2) * sf; <co id="flux_matrix-Kp"/>
+              -= cond(i, 2) * sf; <coref linkend="fmtx_indexing"/><co id="flux_matrix-Kp"/>
   }
 } 
         </programlisting>
@@ -1382,6 +1382,14 @@ void HeatConductivity::flux_matrix(const FEMesh  *mesh,
 	          instead of <code>=</code> because a previous call to
 	          <methodname>fluxmatrix</methodname> may already have
 	          addressed this matrix element.
+            </para>
+          </callout>
+          <callout arearefs="fmtx_indexing">
+            <para>
+              Here the <classname>IndexP</classname>,
+              <varname>i</varname>, is implicitly converted to an
+              integer when passed to <link
+              linkend="Class-SymmMatrix3-call"><code>SymmMatrix3::operator(int, int)</code></link>.
             </para>
           </callout>
           <callout arearefs="flux_matrix-K">
