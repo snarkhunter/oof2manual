@@ -61,14 +61,51 @@ OOF_STOW_SUBDIR = $(OOF_STOW_DIR)/$(OOF_DEST_DIR)
 # installed.
 OOF_BIN_DIR ?= $(HOME)/bin
 
+# OOF_INSTALL is the command that copies OOF2 from the staging
+# directory to the final installation location.  It's run in
+# OOF_STOW_DIR and takes one argument, which is OOF_STOW_SUBDIR, the
+# location of the staged files.  It could be as simple as "stow -t /",
+# but it's better to ensure that it first unstows the previously
+# stowed installation.
+
+# This is the switchto script that I use. It lives in $(HOME)/stow.
+# #!/usr/bin/env python3
+# import sys, os
+#
+# stowsubdir = sys.argv[1]
+#
+# laststowfile = ".last_oof_install"
+# lsf = open(laststowfile, 'r')
+# laststow = lsf.readline().rstrip()
+# lsf.close()
+#
+# if laststow != stowsubdir:
+#     if laststow != 'none':
+#         print("Unstowing", laststow)
+#         unstowcmd = "stow -t / -D " + laststow
+#         os.system(unstowcmd)
+#     if stowsubdir != 'none':
+#         print("Stowing", stowsubdir)
+#         stowcmd = "stow -t / " + stowsubdir
+#         os.system(stowcmd)
+#     lsf = open(laststowfile, 'w')
+#     print(stowsubdir, file=lsf)
+#     lsf.close()
+# else:
+#     print("Restowing", stowsubdir)
+#     stowcmd = "stow -R -t / " + stowsubdir
+#     os.system(stowcmd)
+
+OOF_INSTALL ?= ./switchto
+
 # TEMP_DIR is the name of a temporary directory that will be created in
 # this directory.
 TEMP_DIR ?= tmpdir
 
-# To generate the manual by a different version of OOF2
-# without overwriting an existing manual, at a minimum you must
-# change OOF_BUILD_DIR to point to the different OOF2 directory and
-# change WEB_SUBDIR to point to a different installation directory.
+# To generate a second copy of the manual using a different version of
+# OOF2, at a minimum you must change OOF_BUILD_DIR to point to the
+# different OOF2 directory and change WEB_SUBDIR to point to a
+# different installation directory.
 
 # All xml files that are *not* part of the reference section generated
 # by OOF2's xmlmenudump need to be listed in the file xmlfilelist in
@@ -140,7 +177,7 @@ texify_mathml: saxonize.web
 
 
 oof2: always
-	(cd $(OOF_BUILD_DIR); make -j 10 DESTDIR=$(OOF_STOW_SUBDIR) install; cd $(OOF_STOW_DIR); ./switchto $(OOF_DEST_DIR))
+	(cd $(OOF_BUILD_DIR); make -j 10 DESTDIR=$(OOF_STOW_SUBDIR) install; cd $(OOF_STOW_DIR); $(OOF_INSTALL) $(OOF_DEST_DIR))
 
 oof2_api.xml: oof2 xmlfilelist
 	$(OOF_BIN_DIR)/oof2 --autoload --script xmldump.py --quiet --debug
