@@ -1,52 +1,69 @@
-# Makefile for creating readable docs from the xml files.  For this to
-# work, the current directory needs to have a symbolic link called
-# 'bin' that points to the directory where the executable lives and a
-# link called 'build' pointing to the OOF2 build directory.
+# This software was produced by NIST, an agency of the U.S. government,
+# and by statute is not subject to copyright in the United States.
+# Recipients of this software assume all responsibilities associated
+# with its operation, modification and maintenance. However, to
+# facilitate maintenance we ask that before distributing modified
+# versions of this software, you first contact the authors at
+# oof_manager@nist.gov. 
 
-# The following variables must be set in this file:
+# This is the Makefile for creating the OOF2 manual. The manual is
+# built from xml files in this directory, and by xml files generated
+# automatically by OOF2.  It requires a working version of OOF2 that
+# can be run in graphics mode on this computer (ie, it may not work
+# when run remotely).
+
+# "make local" generates html from the xml source files, using the xml
+# tools, and then wraps the html output in NIST boilerplate and puts
+# it in $(WEB_DIR)/$(WEB_SUBDIR).
+
+# "make publish" copies the local output to the CTCMS web server.
+# TODO: Make the server address and target directory settable.
+
+# The following variables must be set in this file.  They can also be
+# overridden on the command line like this:
+#    make WEB_DIR=/somewhere/else local
 
 # WEB_DIR is the base of the *local* web server file system.  For
 # example, on macOS it could be ~/Sites.  If you don't have a local
 # server, set WEB_DIR to any empty writable directory outside of
 # TEMP_DIR.
-WEB_DIR = /Users/langer/Sites
+WEB_DIR ?= $(HOME)/Sites
 
 # WEB_SUBDIR is the subdirectory of WEB_DIR that will contain the html
 # files.  It is also used as a temporary directory when building the
 # manual, as the name of the staging subdirectory in OOFSTOWDIR when
 # building OOF2, and as the filename of the distribution (if a
 # distribution is being built),
-WEB_SUBDIR = oof2man
+WEB_SUBDIR ?= oof2man
 
 # variable names begining with OOF control how to build and run OOF2
 # in order to generate the reference pages.
 
 # OOF_BUILD_DIR is the build directory containing the Makefile generated
 # by cmake.  
-OOF_BUILD_DIR = /Users/langer/FE/OOF2/build-py311
+OOF_BUILD_DIR ?= $(HOME)/FE/OOF2/build-py311
 
 # OOF_STOW_DIR is the directory containing the subdirectory where
 # OOF2 will be staged during installation.
-OOF_STOW_DIR = /Users/langer/stow
+OOF_STOW_DIR ?= $(HOME)/stow
 
 # OOF_DEST_DIR is the subdirectory of OOF_STOW_DIR that will be used as
 # the staging directory.  Setting it to WEB_SUBDIR guarantees that it
 # won't overwrite another staged installation.
-OOF_DEST_DIR = $(WEB_SUBDIR)
+OOF_DEST_DIR ?= $(WEB_SUBDIR)
 #OOF_DEST_DIR = oof2-py311
 
 # OOF_STOW_SUBDIR is the subdirectory of OOF_STOW_DIR where OOF2 will be
-# staged during installation.  It is the intermediate destination
-# (DESTDIR) of the build. 
+# staged during installation. 
 OOF_STOW_SUBDIR = $(OOF_STOW_DIR)/$(OOF_DEST_DIR)
 
-# OOFBINDIR is where the top oof2 executable can be found after it's
+# OOF_BIN_DIR is where the top oof2 executable can be found after it's
 # installed.
-OOFBINDIR = /Users/langer/bin
+OOF_BIN_DIR ?= $(HOME)/bin
 
 # TEMP_DIR is the name of a temporary directory that will be created in
 # this directory.
-TEMP_DIR = tmpdir
+TEMP_DIR ?= tmpdir
 
 # To generate the manual by a different version of OOF2
 # without overwriting an existing manual, at a minimum you must
@@ -60,17 +77,10 @@ TEMP_DIR = tmpdir
 # the "See Also" sections of the reference pages.  If it's wrong, some
 # pages will be less pretty.
 
-# "make local" generates html from the xml source files, using the xml
-# tools, and then wraps the html output in NIST boilerplate and puts
-# it in WEB_DIR/WEB_SUBDIR.
-
-# "make publish" copies the local output to the CTCMS web server.
-
-
-
 # There's no need to explicitly list all of the xml files in the
 # dependencies.  They're included by man_oof2.xml, which depends on
 # oof2_api.xml, and oof2_api.ml is always rebuilt.
+
 
 SAXON = ../xsl/java/saxon.jar
 ## TODO: More up-to-date saxon from MacPorts raises lots of warnings
@@ -133,7 +143,7 @@ oof2: always
 	(cd $(OOF_BUILD_DIR); make -j 10 DESTDIR=$(OOF_STOW_SUBDIR) install; cd $(OOF_STOW_DIR); ./switchto $(OOF_DEST_DIR))
 
 oof2_api.xml: oof2 xmlfilelist
-	$(OOFBINDIR)/oof2 --autoload --script xmldump.py --quiet --debug
+	$(OOF_BIN_DIR)/oof2 --autoload --script xmldump.py --quiet --debug
 	sed s/Graphics_1/Graphics_n/g oof2_api.xml > tmp
 	sed s/Messages_1/Messages_n/g tmp > oof2_api.xml
 	-rm -f tmp
@@ -180,7 +190,7 @@ sandbox.html: sandbox.xml oof2.css
 	(cd sandbox; rm -f *.html; java -jar $(SAXON) ../sandbox.xml ../xsl/oofchunk.xsl)
 	cp -f oof2.css sandbox
 	cp -f templates/*.html sandbox
-	/Library/WebServer/Documents/CSS/ctcmsWeb.py --from=sandbox --to=/Users/langer/Sites/sandbox --machine=localhost
+	/Library/WebServer/Documents/CSS/ctcmsWeb.py --from=sandbox --to=$(HOME)/Sites/sandbox --machine=localhost
 	touch sandbox.html
 
 sandboxtex.html: sandboxtex.xml oof2.css
@@ -190,5 +200,5 @@ sandboxtex.html: sandboxtex.xml oof2.css
 	(cd sandboxtex; latex tex-math-equations.tex && $(DVI2BITMAP) tex-math-equations)
 	#cp -f oof2.css sandboxtex
 	#cp -f templates/*.html sandboxtex
-	#/Library/WebServer/Documents/CSS/ctcmsWeb.py --from=sandboxtex --to=/Users/langer/Sites/sandboxtex --machine=localhost --exclude=.tex,.dvi,.log,.aux
+	#/Library/WebServer/Documents/CSS/ctcmsWeb.py --from=sandboxtex --to=$(HOME)/Sites/sandboxtex --machine=localhost --exclude=.tex,.dvi,.log,.aux
 	touch sandboxtex.html
