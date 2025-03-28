@@ -711,7 +711,9 @@ conjugatePair("Elasticity",
 	        </listitem>
 	        <listitem>
 	          <simpara>
-		        <link linkend="Class-Property-begin_point"><code>Property::begin_point</code></link>
+		        <link
+                    linkend="Class-FluxProperty-begin_point"><code>FluxProperty::begin_point</code></link>
+                and <link linkend="Class-EqnProperty-begin_point"><code>EqnProperty::begin_point</code></link>
 	          </simpara>
 	        </listitem>
 	      </itemizedlist>
@@ -719,6 +721,7 @@ conjugatePair("Elasticity",
 	    <listitem>
 	      <para>
             <anchor id="para-computation"/>
+            <!-- TODO update this -->
 	        <emphasis>Computation.</emphasis> &properties; can make
 	        contributions to the finite element stiffness matrix and
 	        to the right-hand side vector of external
@@ -769,7 +772,10 @@ conjugatePair("Elasticity",
 	      <itemizedlist spacing="compact">
 	        <listitem>
 		      <simpara>
-		  <link linkend="Class-Property-end_point"><code>Property::end_point</code></link>
+		        <link
+                    linkend="Class-FluxProperty-end_point"><code>FluxProperty::end_point</code></link>
+                or
+                <link linkend="Class-EqnProperty-end_point"><code>EqnProperty::end_point</code></link>
 		      </simpara>
 	        </listitem>
 	        <listitem>
