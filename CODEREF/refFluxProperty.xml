@@ -11,6 +11,9 @@
 <!--
     TODO: Be consistent about whether args have names in the
     variablelist sections and have links in the the synopsis sections.
+
+    TODO: Be consistent about typography in the section titles for
+    class methods, across all coding reference files.
 -->
 
 <refentry id="Class-FluxProperty">
@@ -529,6 +532,10 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
             their gradients, and possibly their time derivatives.
             That is, it determines the coefficients &Acal;, &Kcal;,
             &Dcal;, and &Ccal; in Eqn. <xref linkend="Eqn-flux1"/>.
+          </para>
+          <para>
+            &Acal; and &Kcal; are used to compute the Jacobian if the
+            property is nonlinear and the solver requires it.
           </para>
         </listitem>
         <listitem>

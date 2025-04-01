@@ -1580,7 +1580,7 @@ DoubleVec vals = dynamic_cast&lt;const TwoVectorField*&gt;(field)->values(mesh, 
          <programlisting>
 DoubleVec vals(field->ndof());
 for(IndexP i : *field->components())
-  vals[i.integer()] = field->value(mesh, element, point, i);</programlisting>
+  vals[i] = field->value(mesh, element, point, i);</programlisting>
       </para>
     </refsection>               <!-- values -->
 
@@ -1792,7 +1792,7 @@ DoubleVec vals = dynamic_cast&lt;const ThreeVectorField*&gt;(field)->values(mesh
          <programlisting>
 DoubleVec vals(field->ndof());
 for(IndexP i : *field->components())
-  vals[i.integer()] = field->value(mesh, element, point, i);</programlisting>
+  vals[i] = field->value(mesh, element, point, i);</programlisting>
       </para>
     </refsection>               <!-- values -->
 

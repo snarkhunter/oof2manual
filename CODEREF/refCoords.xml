@@ -60,7 +60,7 @@
 	  <methodsynopsis>
 	    <type>double</type>
 	    <methodname><link
-		linkend="Class-Coord-operatorparen">operator()</link></methodname>
+		linkend="Class-Coord-operatorgetitem">operator[]</link></methodname>
 	    <methodparam>
 	      <type>int</type>
 	      <parameter>i</parameter>
@@ -70,7 +70,7 @@
 	  <methodsynopsis>
 	    <type>double&amp;</type>
 	    <methodname><link
-		linkend="Class-Coord-operatorparen">operator()</link></methodname>
+		linkend="Class-Coord-operatorgetitem">operator[]</link></methodname>
 	    <methodparam>
 	      <type>int</type>
 	      <parameter>i</parameter>
@@ -144,7 +144,7 @@ from oof2.SWIG.common import coord</programlisting>
 	  </ooclass>
 	  <methodsynopsis>
 	    <methodname><link
-		linkend="Class-Coord-operatorparen">__getitem__</link></methodname>
+		linkend="Class-Coord-operatorgetitem">__getitem__</link></methodname>
 	    <methodparam>
 	      <parameter>i</parameter>
 	    </methodparam>
@@ -164,7 +164,7 @@ from oof2.SWIG.common import coord</programlisting>
 	    </methodparam>
 	  </methodsynopsis>
 	  <methodsynopsis>
-	    <methodname><link linkend="Class-Coord-cmp">__cmp__</link></methodname>
+	    <methodname><link linkend="Class-Coord-cmp">__lt__</link></methodname>
 	    <methodparam>
 	      <parameter>other</parameter>
 	    </methodparam>
@@ -258,23 +258,20 @@ from oof2.SWIG.common import coord</programlisting>
 	  <inlineequation>
 	    <alt role="tex">\((x, y)\)</alt>
 	  </inlineequation>, as you'd expect.  The default
-	  constructor, <code>Coord(0)</code> creates one at
+	  constructor, <code>Coord()</code> creates one at
  	  <inlineequation>
 	    <alt role="tex">\((0, 0)\)</alt> </inlineequation>.
 	</para>
       </refsection><!-- constructor -->
-      <refsection id="Class-Coord-operatorparen">
-	<title><code>double operator()(int i), __getitem__(i)</code></title>
+      <refsection id="Class-Coord-operatorgetitem">
+	<title><code>double operator[](int i), __getitem__(i)</code></title>
 	<para>
-	  These operators retrieve the x and y components of the
-	  <classname>Coord</classname>.  The C++ version uses
-	  <methodname>operator()</methodname> instead of
-	  <methodname>operator[]</methodname> for historical reasons,
-	  for which we apologize.  The argument <varname>i</varname>
-	  should be <literal>0</literal> for x and
-	  <literal>1</literal> for y.
+	  These operators retrieve the &texx; and &texy; components of the
+	  <classname>Coord</classname>.  The argument <varname>i</varname>
+	  should be <literal>0</literal> for &texx; and <literal>1</literal>
+	  for &texy;.
 	</para>
-      </refsection><!-- operator(), __getitem__ -->
+      </refsection><!-- operator[], __getitem__ -->
       <refsection id="Class-Coord-arithmetic">
 	<title><code>operator+=, operator*, etc.</code></title>
 	<para>
@@ -290,7 +287,7 @@ from oof2.SWIG.common import coord</programlisting>
 	  The cross product of two <classname>Coords</classname>
 	  <varname>a</varname> and <varname>b</varname> can be
 	  computed either by <code>cross(a,b)</code> or by
-	  <varname>a%b</varname>.  Because
+	  <code>a%b</code>.  Because
 	  <classname>Coords</classname> are two dimensional vectors,
 	  the cross product is a scalar, not a vector.  It's
 	  equivalent to the z-component of a three dimensional cross
@@ -313,14 +310,14 @@ from oof2.SWIG.common import coord</programlisting>
 	</para>
       </refsection><!-- norm2 -->
       <refsection id="Class-Coord-cmp">
-	<title><code>operator&lt;, operator==, operator!=, __cmp__</code></title>
+	<title><code>operator&lt;, operator==, operator!=, __lt__</code></title>
 	<para>
 	  The basic comparison operators are available for
 	  <classname>Coords</classname> in C++ and Python.  The C++
 	  <methodname>operator&lt;</methodname> and the Python
-	  <methodname>__cmp__</methodname> are provided mostly so that
+	  <methodname>__lt__</methodname> are provided mostly so that
 	  <classname>Coords</classname> can be used as keys in STL
-	  maps.
+	  maps and Python dictionaries.
 	</para>
       </refsection><!-- cmp -->
     </refsection><!-- Methods -->
@@ -377,7 +374,7 @@ from oof2.SWIG.common import coord</programlisting>
 	  <methodsynopsis>
 	    <type>double</type>
 	    <methodname><link
-		linkend="Class-MasterCoord-operatorparen">operator()</link></methodname>
+		linkend="Class-MasterCoord-operatorgetitem">operator[]</link></methodname>
 	    <methodparam>
 	      <type>int</type>
 	      <parameter>i</parameter>
@@ -387,7 +384,7 @@ from oof2.SWIG.common import coord</programlisting>
 	  <methodsynopsis>
 	    <type>double&amp;</type>
 	    <methodname><link
-		linkend="Class-MasterCoord-operatorparen">operator()</link></methodname>
+		linkend="Class-MasterCoord-operatorgetitem">operator[]</link></methodname>
 	    <methodparam>
 	      <type>int</type>
 	      <parameter>i</parameter>
@@ -463,7 +460,7 @@ from oof2.SWIG.engine import mastercoord</programlisting>
 	  </methodsynopsis>
 	  <methodsynopsis>
 	    <methodname><link
-		linkend="Class-MasterCoord-operatorparen">__getitem__</link></methodname>
+		linkend="Class-MasterCoord-operatorgetitem">__getitem__</link></methodname>
 	    <methodparam>
 	      <parameter>i</parameter>
 	    </methodparam>
@@ -498,7 +495,7 @@ from oof2.SWIG.engine import mastercoord</programlisting>
 	  </methodsynopsis>
 	  <methodsynopsis>
 	    <methodname><link
-		linkend="Class-MasterCoord-cmp">__cmp__</link></methodname>
+		linkend="Class-MasterCoord-cmp">__lt__</link></methodname>
 	    <methodparam>
 	      <parameter>other</parameter>
 	    </methodparam>
@@ -591,8 +588,8 @@ from oof2.SWIG.engine import mastercoord</programlisting>
 	  arguments) puts the point at the origin.
 	</para>
       </refsection><!-- constructor -->
-      <refsection id="Class-MasterCoord-operatorparen">
-	<title><code>double operator()(int i), __getitem__(i)</code></title>
+      <refsection id="Class-MasterCoord-operatorgetitem">
+	<title><code>double operator[](int i), __getitem__(i)</code></title>
 	<para>
 	  The components of a <classname>MasterCoord</classname>
 	  <varname>mc</varname> can be retrieved with
@@ -604,7 +601,7 @@ from oof2.SWIG.engine import mastercoord</programlisting>
 	  <varname>i</varname>=1 for <inlineequation> <alt
 	  role="tex">\(\xi\)</alt> </inlineequation>.
 	</para>
-      </refsection><!-- operatorparen -->
+      </refsection><!-- operatorgetitem -->
       <refsection id="Class-MasterCoord-arithmetic">
 	<title><code>operator+=, operator*, __add__, etc.</code></title>
 	<para>
@@ -646,13 +643,14 @@ from oof2.SWIG.engine import mastercoord</programlisting>
 	</para>
       </refsection><!-- norm2 -->
       <refsection id="Class-MasterCoord-cmp">
-	<title><code>bool operator==, bool operator&lt;, __cmp__</code></title>
+	<title><code>bool operator==, bool operator&lt;, __lt__</code></title>
 	<para>
 	  <classname>MasterCoords</classname> can be compared to each
 	  other in both C++ and Python.
-	  <methodname>operator&lt;</methodname> is provided so that
+	  <methodname>operator&lt;</methodname> and
+      <methodname>__lt__</methodname> are provided so that
 	  <classname>MasterCoords</classname> can be used as keys in
-	  STL maps.
+	  STL maps and Python dictionaries.
 	</para>
       </refsection><!-- cmp -->
     </refsection><!-- Methods -->
@@ -736,13 +734,6 @@ import oof2.common.primitives</programlisting>
 	<methodsynopsis>
 	  <methodname><link
 	      linkend="Class-Point-cross">cross</link></methodname>
-	  <methodparam>
-	    <parameter>other</parameter>
-	  </methodparam>
-	</methodsynopsis>
-	<methodsynopsis>
-	  <methodname><link
-	      linkend="Class-Point-cmp">__cmp__</link></methodname>
 	  <methodparam>
 	    <parameter>other</parameter>
 	  </methodparam>
@@ -844,7 +835,7 @@ import oof2.common.primitives</programlisting>
 	</para>
       </refsection><!-- cross -->
       <refsection id="Class-Point-cmp">
-	<title><code>__cmp__, __eq__, __lt__, etc</code></title>
+	<title><code>__eq__, __lt__, etc</code></title>
 	<para>
 	  The standard comparision operators are defined for
 	  <classname>Points.</classname>  The inequalities establish
@@ -855,7 +846,10 @@ import oof2.common.primitives</programlisting>
 	</para>
       </refsection>
     </refsection><!-- Methods -->
-  </refentry>
+  </refentry>    <!-- Point -->
+
+  <!-- TODO: Add section on SpaceIndex.  Add
+       Coord::operator[](SpaceIndex) -->
 
 </reference>
 

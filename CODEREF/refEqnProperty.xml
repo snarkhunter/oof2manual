@@ -1040,11 +1040,11 @@ void MassDensityProp::time_deriv_matrices(
 				       const FEMesh* mesh,
 				       const Element* element,
 				       const ElementFuncNodeIterator&amp; node,
-				       const Equation *eqn,
+				       const Equation* eqn,
 				       const MasterPosition&amp; mpos,
 				       double time,
-				       void*,
-				       SmallSystem *eqdata) const
+				       void* data,
+				       SmallSystem* eqdata) const
 {
   double shapeFuncVal = node.shapefunction(mpos);
   for(IndexP eqncomp : *eqn->components()) {
@@ -1052,6 +1052,7 @@ void MassDensityProp::time_deriv_matrices(
       += rho_ * shapeFuncVal;
   }
 } </programlisting>
+
         <calloutlist>
           <callout arearefs="mass-mtx-element">
             <para>

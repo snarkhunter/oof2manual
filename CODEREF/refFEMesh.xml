@@ -568,6 +568,7 @@ from oof2.SWIG.engine import element</programlisting>
   </refentry><!-- Element -->
 
   <refentry id="Class-Node">
+    <a id="Class-FuncNode"/>
     <refnamediv>
       <refname>Node, FuncNode</refname>
       <refpurpose>Node classes for finite element meshes</refpurpose>

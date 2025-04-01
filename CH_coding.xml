@@ -128,10 +128,10 @@
       <code>orientationmap</code>.
     </para>
     <para>
-      For example, the Python code defining the <xref
-      linkend="Class-Microstructure"/> in
-      <filename>SRC/common/microstructure.py</filename> can be imported
-      into another Python file with
+      For example, the Python code defining the
+      <classname>Microstructure</classname>
+      <filename>SRC/common/microstructure.py</filename> can be
+      imported into another Python file with
       <programlisting>
 from ooflib.common import microstructure </programlisting>
       and the C++ underpinnings of the class, defined in
@@ -608,11 +608,10 @@ conjugatePair("Elasticity",
         </listitem>
         <listitem>
           <para>
-            An <xref linkend="Class-AuxiliaryProperty"/> is neither of
-            the above, but can be used indirectly by other
-            &Properties;.  For example, <xref
-            linkend="Property-Orientation"/> is used by all
-            anisotropic &Properties;.  <xref
+            An <xref linkend="Class-AuxProperty"/> is neither of the
+            above, but can be used indirectly by other &Properties;.
+            For example, <xref linkend="Property-Orientation"/> is
+            used by all anisotropic &Properties;.  <xref
             linkend="Property-Color"/> is used to display &materials;.
           </para>
         </listitem>
@@ -622,7 +621,8 @@ conjugatePair("Elasticity",
     </para>
     <para>
       &property; classes perform the following types of tasks (the
-      links below each task lead to detailed documentation):
+      links below each task lead to detailed documentation, see the
+      pages for the classes for the full list of methods):
       <itemizedlist>
         <!-- TODO: Fix links.  Some links to go to Property methods
              that are now in PhysicalProperty or more derived classes
@@ -731,13 +731,13 @@ conjugatePair("Elasticity",
 	        <listitem>
 	          <simpara>
 		        <link
-		        linkend="Class-Property-fluxmatrix"><code>Property::fluxmatrix</code></link>
+		        linkend="Class-FluxProperty-flux_matrix"><code>FluxProperty::flux_matrix</code></link>
 	          </simpara>
 	        </listitem>
 	        <listitem>
 	          <simpara>
 		        <link
-		        linkend="Class-Property-fluxrhs"><code>Property::fluxrhs</code></link>
+		        linkend="Class-FluxProperty-flux_offset"><code>FluxProperty::flux_offset</code></link>
 	          </simpara>
 	        </listitem>
 	      </itemizedlist>
@@ -774,7 +774,7 @@ conjugatePair("Elasticity",
 		      <simpara>
 		        <link
                     linkend="Class-FluxProperty-end_point"><code>FluxProperty::end_point</code></link>
-                or
+                and
                 <link linkend="Class-EqnProperty-end_point"><code>EqnProperty::end_point</code></link>
 		      </simpara>
 	        </listitem>

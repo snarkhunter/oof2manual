@@ -59,25 +59,22 @@
   iteration.
 </para>
 <para>
-  Newton's method relies upon knowing the derivatives of the nonlinear
-  function with respect to the unknowns,
+  Newton's method relies upon knowing the Jacobian, which is the
+  derivatives of the nonlinear function with respect to the unknowns,
   <inlineequation>
     <alt role="tex">
       \( \partial A_i(\phi)/\partial \phi_j \)
     </alt>
-  </inlineequation>.
-  This information comes from the &material; &properties;, which
-  determine the exact form of the equations being solved.  Nonlinear
-  &properties; that are built into &oof2; provide routines to compute
-  the derivatives, but &properties; defined in &oof2; <link
-  linkend="Chapter-Extending">extensions</link> might not.  In this
-  case, <classname>Newton</classname> will compute the derivatives
-  numerically.  This will make <classname>Newton</classname> perform
-  more computations on each iteration and quite possibly also require
-  more iterations.  The parameters used for the numerical
-  differentiation may be set by the <xref
-  linkend="MenuItem-OOF.Settings.Solver.Numerical_Differentiation"/>
-  command.
+  </inlineequation>.  This information comes from the &material;
+  &properties;, which determine the exact form of the equations being
+  solved.  <link
+  linkend="Class-EqnProperty"><classname>EqnProperties</classname></link>
+  must define <link
+  linkend="Class-EqnProperty-force_deriv_matrix"><code>EqnProperty::force_deriv_matrix()</code></link>
+  to compute this quantity.  <link
+  linkend="Class-FluxProperty"><classname>FluxProperties</classname></link>
+  must define <link
+  linkend="Class-FluxProperty-flux_matrix"><code>FluxProperty::flux_matrix</code></link>.
 </para>
 
   <!-- Keep this comment at the end of the file
