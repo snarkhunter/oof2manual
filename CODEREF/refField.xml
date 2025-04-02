@@ -227,7 +227,7 @@
             <parameter>component</parameter>
           </methodparam>
           <methodparam>
-            <type>SpaceIndex</type>
+            <type>int</type>
             <parameter>index</parameter>
           </methodparam>
           <modifier>const</modifier>
@@ -644,7 +644,7 @@ linkend="Class-MasterPosition">MasterPosition</link></classname>&amp;, const <cl
       <title><code>double gradient(...) const</code></title>
       <programlisting>
 double gradient(const &FEMesh;*, const &Element;*, const <classname><link linkend="Class-MasterPosition">MasterPosition</link></classname>&amp; position,
-                const <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>&amp; component, <classname><link linkend="Class-SpaceIndex">SpaceIndex</link></classname> direction) const; </programlisting>
+                const <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>&amp; component, int direction) const; </programlisting>
       <para>
         <function>gradient()</function> returns the gradient in
         direction <varname>dir</varname> of the given
@@ -1183,7 +1183,7 @@ from ooflib.SWIG.engine.field import CompoundField </programlisting>
             <parameter>point</parameter>
           </methodparam>
           <methodparam>
-            <type>SpaceIndex</type>
+            <type>int</type>
             <parameter>direction</parameter>
           </methodparam>
           <modifier>const</modifier>
@@ -1328,23 +1328,25 @@ double value(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link
       <title><code>double gradient(...) const</code></title>
       <programlisting>
 double gradient(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point,
-                <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const;
+                int direction) const;
       </programlisting>
       <para>
         <function>gradient()</function> is like <link
         linkend="Class-ScalarField-value"><function>value()</function></link>,
         but it computes the gradient of the &Field; in the given
-        <varname>direction</varname>.
+        <varname>direction</varname>.<footnote id="footnote-xydir"><para>  <code>direction=0</code> is
+        &texx; and <code>direction</code>=1 is &texy;.</para></footnote>
       </para>
     </refsection>               <!--ScalarField::gradient-->
     <refsection>
       <title><code>double gradient(...) const</code></title>
       <programlisting>
-double gradient(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const;</programlisting>
+double gradient(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, int direction) const;</programlisting>
       <para>
         This version of <function>gradient()</function> computes the
         gradient of a <classname>ScalarField</classname> in the given
-        <varname>direction</varname> at the given
+        <varname>direction</varname><footnoteref
+        linkend="footnote-xydir"/> at the given
         <varname>point</varname> within the given
         <varname>element</varname>. It is a non-virtual method,
         inaccessible from a generic &Field; pointer.  Unlike the <link
@@ -1454,7 +1456,7 @@ double gradient(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <l
             <parameter>position</parameter>
           </methodparam>
           <methodparam>
-            <type><link linkend="Class-SpaceIndex">SpaceIndex</link></type>
+            <type>int</type>
             <parameter>direction</parameter>
           </methodparam>
         </methodsynopsis>       <!-- gradients -->
@@ -1587,13 +1589,16 @@ for(IndexP i : *field->components())
     <refsection id="Class-TwoVectorField-gradients">
       <title><code>DoubleVec gradients(...) const</code></title>
       <programlisting>
-<link linkend="Class-DoubleVec">DoubleVec</link> gradients(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const; </programlisting>
+<link linkend="Class-DoubleVec">DoubleVec</link> gradients(const <link
+linkend="Class-FEMesh">FEMesh</link>* mesh, const <link
+linkend="Class-Element">Element</link>* element, const <link
+linkend="Class-MasterPosition">MasterPosition</link>&amp; point, int direction) const; </programlisting>
 
       <para>
         <function>gradients()</function> is just like <link
         linkend="Class-TwoVectorField-values"><function>values()</function></link>,
         but it returns the components of the gradients in the given
-        <varname>direction</varname>.  That is, <code>gradients(mesh,
+        <varname>direction</varname>.<footnoteref linkend="footnote-xydir"/>  That is, <code>gradients(mesh,
         element, x, j)</code> returns a vector whose
         <inlineequation><alt
         role="tex">\(i^\mathrm{th}\)</alt></inlineequation> component
@@ -1685,7 +1690,7 @@ for(IndexP i : *field->components())
             <parameter>position</parameter>
           </methodparam>
           <methodparam>
-            <type><link linkend="Class-SpaceIndex">SpaceIndex</link></type>
+            <type>int</type>
             <parameter>direction</parameter>
           </methodparam>
         </methodsynopsis>       <!-- gradients -->
@@ -1799,13 +1804,17 @@ for(IndexP i : *field->components())
     <refsection id="Class-ThreeVectorField-gradients">
       <title><code>DoubleVec gradients(...) const</code></title>
       <programlisting>
-<link linkend="Class-DoubleVec">DoubleVec</link> gradients(const <link linkend="Class-FEMesh">FEMesh</link>* mesh, const <link linkend="Class-Element">Element</link>* element, const <link linkend="Class-MasterPosition">MasterPosition</link>&amp; point, <link linkend="Class-SpaceIndex">SpaceIndex</link> direction) const; </programlisting>
+<link linkend="Class-DoubleVec">DoubleVec</link> gradients(const <link
+linkend="Class-FEMesh">FEMesh</link>* mesh, const <link
+linkend="Class-Element">Element</link>* element, const <link
+linkend="Class-MasterPosition">MasterPosition</link>&amp; point, int direction) const; </programlisting>
 
       <para>
         <function>gradients()</function> is just like <link
         linkend="Class-ThreeVectorField-values"><function>values()</function></link>,
         but it returns the components of the gradients in the given
-        <varname>direction</varname>.  That is, <code>gradients(mesh,
+        <varname>direction</varname>.<footnoteref
+        linkend="footnote-xydir"/> That is, <code>gradients(mesh,
         element, x, j)</code> returns a vector whose
         <inlineequation><alt
         role="tex">\(i^\mathrm{th}\)</alt></inlineequation> component

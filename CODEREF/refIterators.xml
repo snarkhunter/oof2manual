@@ -2243,11 +2243,11 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
       <constructorsynopsis>
         <methodname>SymTensorIterator</methodname>
         <methodparam>
-          <type>SpaceIndex</type>
+          <type>int</type>
           <parameter>i</parameter>
         </methodparam>
         <methodparam>
-          <type>SpaceIndex</type>
+          <type>int</type>
           <parameter>j</parameter>
         </methodparam>
       </constructorsynopsis>

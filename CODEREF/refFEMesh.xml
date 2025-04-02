@@ -202,7 +202,7 @@
 	      <parameter>field</parameter>
 	    </methodparam>
 	    <methodparam>
-	      <type>SpaceIndex*</type>
+	      <type>int</type>
 	      <parameter>derivative</parameter>
 	    </methodparam>
 	    <methodparam>
@@ -527,7 +527,7 @@ from oof2.SWIG.engine import element</programlisting>
   <refsection id="Class-Element-outputFieldDeriv">
 	<title>
 	  <code>OutputValue outputFieldDeriv(const Field&amp; field,
-	  SpaceIndex* derivative, const MasterPosition&amp;
+	  int derivative, const MasterPosition&amp;
 	  position)</code>
 	</title>
 	<para>
@@ -538,20 +538,11 @@ from oof2.SWIG.engine import element</programlisting>
 	</para>
 	<para>
 	  The <varname>derivative</varname> argument is a
-	  <classname>SpaceIndex</classname> object, which is basically
-	  a fancy integer.<footnote id="footnote-spaceindex">
-	    <para>
-	      The wrapper around the integer provides type
-	      checking. For example, it prevents a shape function
-	      index from being used as a spatial index, although both
-	      are integers. See
-	      <filename>SRC/engine/indextypes.h</filename>.
-	    </para>
-	  </footnote>
+	  <classname>int</classname> object.
 	  <methodname>outputFieldDeriv</methodname> returns the
-	  <emphasis>x</emphasis> derivative if
-	  <code>derivative==0</code> and the <emphasis>y</emphasis>
-	  derivative if <code>derivative==1</code>.
+	  <emphasis>x</emphasis> derivative if <code>derivative==0</code>
+	  and the <emphasis>y</emphasis> derivative if
+	  <code>derivative==1</code>.
 	</para>
       </refsection><!-- outputFieldDeriv -->
       <refsection id="Class-Element-outputFlux">
@@ -895,7 +886,7 @@ for node in element.node_iterator():</programlisting>
 	    <methodname><link
 		linkend="Class-ElementShapeFuncIterator-dshapefunction">dshapefunction</link></methodname>
 	    <methodparam>
-	      <type>SpaceIndex</type>
+	      <type>int</type>
 	      <parameter>derivative</parameter>
 	    </methodparam>
 	    <methodparam>
@@ -910,7 +901,7 @@ for node in element.node_iterator():</programlisting>
 	    <methodname><link
 		linkend="Class-ElementShapeFuncIterator-masterderiv">masterderiv</link></methodname>
 	    <methodparam>
-	      <type>SpaceIndex</type>
+	      <type>int</type>
 	      <parameter>derivative</parameter>
 	    </methodparam>
 	    <methodparam>
@@ -1018,22 +1009,21 @@ from oof2.SWIG.engine import elementnodeiterator</programlisting>
 	</para>
       </refsection><!-- shapefunction -->
       <refsection id="Class-ElementShapeFuncIterator-dshapefunction">
-	<title><code>double dshapefunction(SpaceIndex derivative,
+	<title><code>double dshapefunction(int derivative,
 	    const MasterPosition&amp; position) const</code></title>
 	<para>
 	  <methodname>dshapefunction</methodname> is just like <link
 	  linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>shapefunction</methodname></link>,
 	  but it returns the value of the specified
 	  <varname>derivative</varname> of the shape function.  The
-	  <classname>SpaceIndex</classname> takes the value
+	  <classname>int</classname> takes the value
 	  <literal>0</literal> for <emphasis>x</emphasis> and
 	  <literal>1</literal> for
-	  <emphasis>y</emphasis>.<footnoteref
-	  linkend="footnote-spaceindex"/>
+	  <emphasis>y</emphasis>.
 	</para>
       </refsection><!-- dshapefunction -->
       <refsection id="Class-ElementShapeFuncIterator-masterderiv">
-	<title><code>double masterderiv(SpaceIndex derivative, const
+	<title><code>double masterderiv(int derivative, const
 	    MasterPosition&amp; position) const</code></title>
 	<para>
 	  <methodname>masterderiv</methodname> is just like <link

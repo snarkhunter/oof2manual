@@ -848,9 +848,6 @@ import oof2.common.primitives</programlisting>
     </refsection><!-- Methods -->
   </refentry>    <!-- Point -->
 
-  <!-- TODO: Add section on SpaceIndex.  Add
-       Coord::operator[](SpaceIndex) -->
-
 </reference>
 
 <!-- Keep this comment at the end of the file
