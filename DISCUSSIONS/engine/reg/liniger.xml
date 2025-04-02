@@ -16,7 +16,7 @@
   role="tex">\(\theta=0.878\)</alt></inlineequation>.  This value
   minimizes the error over the whole time interval, at least in some
   simple cases, and tends to reduce unphysical oscillations in the
-  solution.<footnote id="Footnote-ZTliniger">
+  solution.<footnote id="footnote-ZTliniger">
   <simpara>
     O.C. Zienkiewicz and R.L. Taylor, <emphasis>The Finite Element
     Method</emphasis>, Fifth Edition, Volume 1, page 504.</simpara>

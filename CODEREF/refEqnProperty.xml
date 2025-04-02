@@ -677,7 +677,7 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
         As in <link
         linkend="Class-FluxProperty-flux_matrix"><function>FluxProperty::flux_matrix()</function></link>,
         the derivation begins by expanding the &field; components in
-        terms of the shape functions:<footnoteref linkend="summation"/>
+        terms of the shape functions:<footnoteref linkend="footnote-summation"/>
 
 	    <equation id="Eqn-EqnProperty-expansion">
 	      <alt role="tex">
@@ -802,7 +802,7 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
 		        iterate over all of the nodes of the element, although
 		        it should be thought of here simply as a way of
 		        accessing the node's indices and shape
-		        functions.<footnoteref linkend="node-as-iterator"/>
+		        functions.<footnoteref linkend="footnote-node-as-iterator"/>
                 The node's shape function
 		        and its derivatives can be obtained from <link
 		        linkend="Class-ElementShapeFuncIterator-shapefunction"><methodname>ElementFuncNodeIterator::shapefunction()</methodname></link>

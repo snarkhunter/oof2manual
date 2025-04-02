@@ -251,7 +251,7 @@
 	          <para>
 		        Load a Python <link
 		        linkend="MenuItem-OOF.File.LoadStartUp.Script">script</link>.<footnote
-		        id="Footnote:fileoptions">
+		        id="footnote-fileoptions">
 		        <simpara>
 		          This option may be present more than once.  Files
 		          will be loaded in the order in which they are
@@ -269,7 +269,7 @@
 	        <entry>
 	          <para>
                 Load an &image; and create a &micro; from
-	            it.<footnoteref linkend="Footnote:fileoptions"/>
+	            it.<footnoteref linkend="footnote-fileoptions"/>
 		        <footnote>
 		          <simpara>
 		            See <xref
@@ -286,7 +286,7 @@
 	          <para>
 		        Load an &oof2; <link
 		        linkend="MenuItem-OOF.File.LoadStartUp.Data"> data file
-		        </link>.<footnoteref linkend="Footnote:fileoptions"/>
+		        </link>.<footnoteref linkend="footnote-fileoptions"/>
 	          </para>
 	        </entry>
 	      </row>
@@ -300,7 +300,7 @@
 		        Load a Python <link
 		        linkend="Chapter-Extending">extension
 		        module</link>.<footnoteref
-		        linkend="Footnote:fileoptions"/>
+		        linkend="footnote-fileoptions"/>
 	          </para>
 	        </entry>
 	      </row>
@@ -313,7 +313,7 @@
 	          <para>
 		        Add a directory to the Python search path, so that
 		        &oof2; can import modules from it.<footnoteref
-		        linkend="Footnote:fileoptions"/>
+		        linkend="footnote-fileoptions"/>
 	          </para>
 	        </entry>
 	      </row>
@@ -343,7 +343,7 @@
 		        Evaluate the given &oof2; Python command. Any valid
 		        Python expression can be given.  It must be in
 		        quotation marks if it contains spaces.<footnoteref
-		        linkend="Footnote:fileoptions"/>
+		        linkend="footnote-fileoptions"/>
 	          </para>
 	        </entry>
 	      </row>
@@ -556,7 +556,7 @@
 	          <simpara>
 		        Don't use the real file selector widget, which causes
 		        problems when replaying GUI logs.<footnote
-		        id="Footnote:fakefileselector">
+		        id="footnote-fakefileselector">
 		        <simpara>
 		          If neither <userinput>--fakefileselector</userinput>
 		          nor <userinput>--no-fakefileselector</userinput> is
@@ -579,7 +579,7 @@
 	          <para>
 		        Use the real file selector widget, even though it
 		        causes problems when replaying GUI logs.<footnoteref
-		        linkend="Footnote:fakefileselector"/>
+		        linkend="footnote-fakefileselector"/>
 	          </para>
 	        </entry>
 	      </row>

@@ -877,7 +877,7 @@ RegisteredParameter('modifier', SkeletonModifier, tip='use this modifier')</prog
 	    The GUI widget for a <classname>FieldParameter</classname>
 	    is a pull-down menu listing all of the
 	    <classname>Fields</classname> defined on the
-	    &mesh;.<footnote id="Footnote:askmesh">
+	    &mesh;.<footnote id="footnote-askmesh">
 	      <para>
 		Which &mesh;?  The widget looks for a nearby &mesh;
 		<classname>WhoClass</classname> widget and asks it.
@@ -892,7 +892,7 @@ RegisteredParameter('modifier', SkeletonModifier, tip='use this modifier')</prog
 	    linkend="Class-Flux"><classname>Flux</classname></link>
 	    instance. It's GUI widget is a pull-down menu listing all
 	    of the &fluxes; that are currently active on the
-	    &mesh;.<footnoteref linkend="Footnote:askmesh"/>
+	    &mesh;.<footnoteref linkend="footnote-askmesh"/>
 	  </para>
 	</refsection><!-- FluxParameter -->
 	<refsection id="Class-EquationParameter">
@@ -904,7 +904,7 @@ RegisteredParameter('modifier', SkeletonModifier, tip='use this modifier')</prog
 	    linkend="Class-Equation"><classname>Equation</classname></link>
 	    instance.  It's GUI widget is a pull-down menu listing all
 	    of the &equations; that are currently active on the
-	    &mesh;.<footnoteref linkend="Footnote:askmesh"/>
+	    &mesh;.<footnoteref linkend="footnote-askmesh"/>
 	  </para>
 	</refsection><!-- EquationParameter -->
 	<refsection id="Class-FieldIndexParameter">

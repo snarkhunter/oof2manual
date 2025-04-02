@@ -804,8 +804,8 @@ void flux_matrix(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
 	    </inlineequation>
           
 	    can be used to approximate the field at &boldx;:<footnote
-	    id="summation"><para> We are using the convention that
-	    repeated indices, such as &nu; in <xref
+	    id="footnote-summation"><para> We are using the convention
+	    that repeated indices, such as &nu; in <xref
 	    linkend="Eqn-Property-expansion"/> are implicitly summed:
 	    <inlineequation><alt role="tex">\(x_i y_i\equiv \sum_i x_i
 	    y_i\)</alt></inlineequation></para></footnote>
@@ -1067,7 +1067,7 @@ void flux_matrix(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
 		        iterate over all of the nodes of the element, although
 		        it should be thought of here simply as a way of
 		        accessing the node's indices and shape
-		        functions.<footnote id="node-as-iterator"><simpara>
+		        functions.<footnote id="footnote-node-as-iterator"><simpara>
 		        It's not possible to use a <link
 		        linkend="Class-Node"><classname>Node</classname></link>
 		        instead of an <link

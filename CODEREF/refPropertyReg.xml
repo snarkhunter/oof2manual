@@ -803,7 +803,7 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
                 <simpara>
                   Migration coefficient (coefficient of <xref
                   linkend="Field-Voltage"/> gradient)<footnote
-                  id="ext"><simpara>Defined in <link
+                  id="footnote-ext"><simpara>Defined in <link
                   linkend="Section-Extending-Internal"><filename>EXTENSIONS</filename></link>.</simpara></footnote>
                 </simpara>
               </entry>
@@ -856,7 +856,7 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
                 <simpara>
                   Chemical diffusivity (coefficient of the gradient of
                   <xref linkend="Field-Concentration"/>)<footnoteref
-                  linkend="ext"/>
+                  linkend="footnote-ext"/>
                 </simpara>
               </entry>
             </row>
@@ -941,7 +941,7 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
                 <simpara>
                   Coupling between <xref linkend="Field-Voltage"/>
                   and <xref linkend="Field-Concentration"/>.<footnoteref
-                linkend="ext"/>
+                linkend="footnote-ext"/>
                 </simpara>
               </entry>
             </row>
@@ -977,7 +977,7 @@ reg.eqnInfo(equations=[equation.getEquation("Heat_Eqn")],
                   Mobility (coefficient of the first time derivative
                   of <xref
                   linkend="Field-Concentration"/>)<footnoteref
-                  linkend="ext"/>
+                  linkend="footnote-ext"/>
                 </simpara>
               </entry>
             </row>
