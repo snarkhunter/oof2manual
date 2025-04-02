@@ -18,7 +18,7 @@
   multiple &subproblems;, &oof2; iterates over all of the
   &subproblems; at each time step, and stops iterating when it obtains
   results that are consistent with the previous iteration.  This
-  ensures<footnote><simpara>Mabye!</simpara></footnote> that
+  ensures<footnote><simpara>Maybe!</simpara></footnote> that
   interactions with the other subproblems are accounted for correctly.
 </para>
 <para>
