@@ -49,22 +49,15 @@
   </reference>
   &refFEMesh;
   &refOutput;
-  &refMisc;
+  <reference>
+    <title>Miscellaneous Classes and Functions</title>
+    &refDoubleVec;
+    &refErrError;
+    &refLoadFile;
+    &refParameter;
+    &refPyLock;
+  </reference>
 </part>
 
 
 
-<!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("man_oof2.xml" "part")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
--->

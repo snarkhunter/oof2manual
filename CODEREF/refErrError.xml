@@ -1,0 +1,392 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<refentry id="Class-ErrError">
+  <refnamediv>
+	<refname>ErrError</refname>
+	<refpurpose>Classes and functions for handling exceptions</refpurpose>
+  </refnamediv>
+      <refsynopsisdiv>
+	    <title>Synopses</title>
+	    <refsect2>
+	      <title>C++ Synopsis</title>
+	      <programlisting>
+#include "common/ooferror.h" </programlisting>
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname>ErrError</classname>
+	        </ooclass>
+	        <methodsynopsis>
+	          <modifier>virtual</modifier>
+	          <type>std::string</type>
+	          <methodname>pythonequiv</methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <modifier>virtual</modifier>
+	          <type>std::string</type>
+	          <methodname>message</methodname>
+	          <void/>
+	        </methodsynopsis>
+	      </classsynopsis>      <!-- ErrError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <modifier>template &lt;class E&gt;</modifier>
+	          <classname>ErrErrorBase</classname>
+	        </ooclass>
+	        <ooclass>
+	          <modifier>public</modifier>
+	          <classname>ErrError</classname>
+	        </ooclass>
+	      </classsynopsis><!-- ErrErrorBase -->
+	      <para>
+	        The following subclasses are all derived from the
+	        <classname>ErrErrorBase</classname> template, but the base
+	        class has been omitted here for clarity.
+	      </para>
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrProgrammingError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>filename</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <type>int</type>
+		        <parameter>line</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	        <constructorsynopsis>
+	          <methodname>ErrProgrammingError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>filename</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <type>int</type>
+		        <parameter>line</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis>      <!-- ErrProgrammingError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrIndexError">ErrIndexError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrIndexError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis>      <!-- ErrIndexError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrUserError">ErrUserError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrUserError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrUserError -->
+	      <classsynopsis language="cpp">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrSetupError">ErrSetupError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname>ErrSetupError</methodname>
+	          <methodparam>
+		        <type>const std::string&amp;</type>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrSetupError -->
+	    </refsect2><!-- C++ Synopsis -->
+	    <refsect2>
+	      <title>Python Synopsis</title>
+	      <programlisting>
+from oof2.SWIG.common.ooferror import ErrProgrammingError
+from oof2.SWIG.common.ooferror import ErrIndexError
+from oof2.SWIG.common.ooferror import ErrUserError
+from oof2.SWIG.common.ooferror import ErrSetupError </programlisting>
+     	  <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <parameter>filename</parameter>
+	          </methodparam>
+	          <methodparam>
+		        <parameter>line</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis>      <!-- ErrProgrammingError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrPyProgrammingError">ErrPyProgrammingError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrPyProgrammingError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrIndexError">ErrIndexError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrIndexError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrUserError">ErrUserError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrUserError -->
+	      <classsynopsis language="python">
+	        <ooclass>
+	          <classname><link linkend="Class-ErrSetupError">ErrSetupError</link></classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodparam>
+		        <parameter>message</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+	      </classsynopsis><!-- ErrSetupError -->
+	      <programlisting>
+<link linkend="Function-registerErrorClass">registerErrorClass</link>(exc_class)
+</programlisting>
+        </refsect2><!-- Python Synopsis -->
+	    <refsect2>
+	      <title>Source Files</title>
+	      <itemizedlist spacing="compact">
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.h</filename></simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.C</filename></simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.swg</filename></simpara>
+	        </listitem>
+	        <listitem>
+	          <simpara><filename>SRC/common/ooferror.spy</filename></simpara>
+	        </listitem>
+	      </itemizedlist>
+	    </refsect2>
+      </refsynopsisdiv>
+      <refsection>
+	    <title>Description</title>
+	    <para>
+	      &oof2; predefines a number of useful exception classes for
+	      handling errors, and includes a mechanism for adding new
+	      classes.  The mechanism is non-trivial because exceptions
+	      have to be able to pass back and forth between C++ and
+	      Python.
+	    </para>
+	    <refsection>
+	      <title>Predefined Exception Classes</title>
+	      <para>
+	        The following classes are all declared in
+	        <filename>common/ooferror.h</filename>.  The Python
+	        versions can be imported from
+	        <code>oof2.SWIG.common.ooferror</code>.
+	      </para>
+	      <refsection id="Class-ErrProgrammingError">
+	        <title><code>class ErrProgrammingError</code></title>
+	        <para>
+	          This exception indicates that an internal consistency
+	          check failed.  Its constructor arguments are a message,
+	          the name of the source file and the line number of the
+	          code that raised the exception.  In C++, it's easily
+	          called like this:
+	          <programlisting>
+throw ErrProgrammingError("Your message here", __FILE__, __LINE__);</programlisting>
+
+	          In Python, it's easier to use <link
+	          linkend="Class-ErrPyProgrammingError"><classname>ErrPyProgrammingError</classname></link>
+	          instead.
+	        </para>
+	        <para>
+	          Programming errors are usually fatal to the program.
+	        </para>
+	      </refsection><!-- ErrProgrammingError -->
+	      <refsection id="Class-ErrPyProgrammingError">
+	        <title><code>class ErrPyProgrammingError</code></title>
+	        <para>
+	          <classname>ErrPyProgrammingError</classname> is a Python
+	          class derived from <link
+	          linkend="Class-ErrProgrammingError"><classname>ErrProgrammingError</classname></link>.
+	          It automatically sets the filename and line number
+	          parameters by examining the Python traceback stack.  It
+	          should be raised whenever an internal inconsistency is
+	          detected in Python code.
+	        </para>
+	        <para>
+	          Python programming errors are usually fatal to the
+	          program.
+	    </para>
+	  </refsection><!-- ErrPyProgrammingError -->
+	  <refsection id="Class-ErrIndexError">
+	    <title><code>class ErrIndexError</code></title>
+	    <para>
+	      <classname>ErrIndexError</classname> indicates that an
+	      array index is out of range.
+	    </para> 
+	  </refsection><!-- ErrIndexError -->
+	  <refsection id="Class-ErrUserError">
+	    <title><code>class ErrUserError</code></title>
+	    <para>
+	      <classname>ErrUserError</classname> indicates that the user
+	      did something wrong.  The GUI should (and does) prevent most
+	      user errors, but they can still occur if the user loads a
+	      malformed script.  User errors should not be fatal (either
+	      to the user or to the program).
+	    </para>
+	  </refsection><!-- ErrUserError -->
+	  <refsection id="Class-ErrSetupError">
+	    <title><code>class ErrSetupError</code></title>
+	    <para>
+	      An <classname>ErrSetupError</classname> is a particular
+	      variety of <link linkend="Class-ErrUserError">user
+	      error</link> indicating that the finite element system being
+	      solved hasn't been defined properly.
+	    </para>
+	  </refsection>
+	</refsection><!-- Predefined Exception Classes -->
+	<refsection>
+	  <title>Adding New Exception Classes</title>
+	  <para>
+	    In order for exceptions to propagate properly from C++ to
+	    Python and back, all &oof2; exception classes must be derived
+	    from <classname>ErrErrorBase</classname> in the following way:
+	    <programlisting>
+class MyError : public ErrErrorBase&lt;MyError&gt; {
+public:
+  MyError();
+  virtual std::string pythonequiv() const;
+  virtual std::string message() const;
+}; </programlisting>
+	  </para>
+	  <para>
+	    Note that the template parameter is the name of the subclass!
+	  </para>
+	  <para>
+	    The function <methodname>pythonequiv()</methodname> must
+	    return a string that, when evaluated by the Python
+	    interpreter, will create the equivalent exception in
+	    Python. The <classname>MyError</classname> example above would
+	    define it like this:
+	    <programlisting>
+std::string MyError::pythonequiv() const {
+  return "NewError()";
+} </programlisting>
+	  </para>
+	  <para>
+	    The function <methodname>message</methodname> should return a
+	    string indicating what caused the exception.
+	  </para>
+	  <para>
+        <anchor id="Function-registerErrorClass"/>
+	    All new exception subclasses must be swigged, and the Python
+	    function <function>registerErrorClass</function> must be
+	    called with the swigged class as its argument.  (Exception
+	    classes declared in <filename>SRC/common/ooferror.h</filename>
+	    and swigged in <filename>SRC/common/ooferror.swg</filename>
+	    are exempt from this requirement.)  For example, the
+	    <classname>MyError</classname> class above would have a swig
+	    file <filename>myerror.swg</filename> like this:
+	    <programlisting>
+%module myerror
+%include "common/typemaps.swg"
+%extern "common/ooferror.swg"
+%{
+#include "myerror.h"
+%}
+
+class MyError : public ErrError {
+public:
+  MyError();
+  %addmethods {
+    string __repr__() {
+      return self->message();
+    }
+  }
+};
+
+%pragma(python) include="myerror.spy" </programlisting>
+
+	    and <filename>myerror.spy</filename> would contain:
+	    <programlisting>
+from oof2.SWIG.common import ooferror
+ooferror.registerErrorClass(MyError) </programlisting>
+	  </para>
+	  <para>
+	    See <xref linkend="Section-Extending-swig"/> for more on
+	    writing <application>swig</application> input files.
+	  </para>
+	  <para>
+	    For more examples of &oof2; exception classes, see
+	    <filename>SRC/engine/ooferror*</filename>.  (The exceptions
+	    defined there have very specific internal uses and shouldn't
+	    be used in &oof2; extensions, so they aren't discussed here.)
+	    Note that it's not possible to derive new exceptions directly
+	    from <link
+	    linkend="Class-ErrUserError"><classname>ErrUserError</classname></link>
+	    or <link
+	    linkend="Class-ErrProgrammingError"><classname>ErrProgrammingError</classname></link>
+	    because the template parameter would be wrong.  New exceptions
+	    must be derived from the intermediate classes
+	    <classname>ErrUserErrorBase</classname> or
+	    <classname>ErrProgrammingErrorBase</classname>, or directly
+	    from <classname>ErrErrorBase</classname>.
+	  </para>
+	</refsection><!-- Adding New Exception Classes -->
+  </refsection>  <!-- Description -->
+</refentry>      <!-- ErrError -->
+
+
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

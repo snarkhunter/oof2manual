@@ -1,0 +1,159 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<!-- TODO: Delete Function-acquirePylock and replace with a page for
+     Python_Thread_Allow, Python_Thread_Block, and their macros.
+     -->
+
+
+<refentry id="Function-acquirePyLock">
+  <refnamediv>
+	<refname>acquirePyLock</refname>
+	<refpurpose>ensure thread-safe Python API calls</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+	<programlisting>
+#include "common/threadstate.h" </programlisting>
+<funcsynopsis>
+  <!-- TODO: Why is the spacing all messed up in the html? -->
+	  <funcprototype>
+	    <funcdef>
+	      <type>void</type>
+	      <function>acquirePyLock</function>
+	    </funcdef>
+	    <void/>
+	  </funcprototype>
+	</funcsynopsis>
+	<funcsynopsis>
+	  <funcprototype>
+	    <funcdef>
+	      <type>void</type>
+	      <function>releasePyLock</function>
+	    </funcdef>
+	    <void/>
+	  </funcprototype>
+	</funcsynopsis>	
+  	<programlisting>
+#include "common/ooferror.h" </programlisting>
+	<funcsynopsis>
+	  <funcprototype>
+	    <funcdef>
+	      <type>void</type>
+	      <function>pythonErrorRelay</function>
+	    </funcdef>
+	    <void/>
+	  </funcprototype>
+	</funcsynopsis>
+  </refsynopsisdiv>
+  <refsection>
+	<title>Description</title>
+	<para>
+	  The three functions described here are used whenever &oof2;
+	  C++ code calls Python API functions that might invoke the
+	  Python interpreter.  It's often difficult to tell when the
+	  interpreter will be invoked, so it's a good idea to treat
+	  <emphasis>all</emphasis> Python API calls in this way.  See
+	  <ulink url="http://docs.python.org/ext/thinIce.html"
+	         role="external"/> for a relevant discussion (although in a
+	  different context).
+	</para>
+	<para>
+	  Because the Python interpreter is not thread safe, whenever
+	  a C++ function in &oof2; needs to call the Python API, it
+	  must first acquire the Python global interpreter lock by
+	  calling <function>acquirePyLock()</function>.  When it's
+	  through with the Python API calls, it must release the lock
+	  by calling <function>releasePyLock()</function>. 
+	</para>
+	<para>
+	  A function that neglects to call
+	  <function>acquirePyLock()</function> risks crashing the
+	  Python interpreter.  A function that neglects to call
+	  <function>releasePyLock</function> will probably deadlock
+	  the program when the C++ routine finishes.  If running
+	  &oof2; with the <link
+	  linkend="CommandLineArg-unthreaded"><userinput>--unthreaded</userinput></link>
+	  option solves a crashing or deadlocking problem, then check
+	  the code for missing calls to
+	  <function>acquirePyLock</function> and
+	  <function>releasePyLock</function>.
+	</para>
+	<para>
+	  It is important to ensure that
+	  <function>releasePyLock</function> is called even if an
+	  exception is thrown during the Python API calls.  Python API
+	  calls should always occur within a <code>try
+	  ... catch</code> block, like this:
+	  <programlisting>
+#include "common/threadstate.h"
+
+acquirePyLock();
+try {
+  // Call Python API
+}
+catch (...) {
+  releasePyLock();
+  throw;
+ }
+ releasePyLock(); </programlisting>
+	</para>
+	<para>
+	  It's possible that calls to the Python API will raise a
+	  Python exception but <emphasis>not</emphasis> throw a C++
+	  exception.  Generally, if a Python API function returns
+	  <varname>NULL</varname>, an exception has been raised.  The
+	  &oof2; function <function>pythonErrorRelay</function>
+	  ensures that Python exceptions are re-raised in Python when
+	  the C++ function exits.  It should be used like this:
+
+	  <programlisting>
+        #include "common/ooferror.h"
+        #include "common/threadstate.h"
+
+        acquirePyLock();
+        try {
+        PyObject *func, *args; // assume these have been set
+        PyObject *result = PyEval_Call_Object(func, args); // for example 
+        if(result == NULL) 
+        pythonErrorRelay();
+        // do something with result
+        }
+        catch (...) {
+        releasePyLock();
+        throw;
+        }
+      releasePyLock(); </programlisting>	  
+
+	  <function>pythonErrorRelay</function> raises a C++ exception
+	  that will be converted back into a Python exception when
+	  control returns to Python.  The mechanism even works if the
+	  Python exception was caused by a C++ exception that occurred
+	  during a second call back into C++, as long as the original
+	  C++ exception was derived from the &oof2; <link
+	  linkend="Class-ErrError"><classname>ErrError</classname></link>
+	  class.
+	</para>
+  </refsection>
+</refentry>                     <!-- acquirePyLock -->
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
