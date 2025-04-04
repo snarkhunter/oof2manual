@@ -8,154 +8,154 @@
   the authors at oof_manager@nist.gov.
 -->
 
-  <refentry id="Class-DoubleVec">
-    <refnamediv>
-      <refname>DoubleVec</refname>
-      <refpurpose>A vector of double precision numbers</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Synopses</title>
-      <refsect2>
-        <title>C++ Synopsis</title>
-        <programlisting>
+<refentry id="Class-DoubleVec">
+  <refnamediv>
+    <refname>DoubleVec</refname>
+    <refpurpose>A vector of double precision numbers</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <programlisting>
 #include "common/doublevec.h" </programlisting>
-        <classsynopsis language="cpp">
-          <ooclass>
-            <classname>DoubleVec</classname>
-          </ooclass>
-          <constructorsynopsis>
-            <methodname><link linkend="Class-DoubleVec-null-ctor">DoubleVec</link></methodname>
-            <void/>
-          </constructorsynopsis>
-          <constructorsynopsis>
-            <methodname><link linkend="Class-DoubleVec-sizector">DoubleVec</link></methodname>
-            <methodparam>
-              <type>int</type>
-              <parameter>size</parameter>
-            </methodparam>
-            <methodparam>
-              <type>double</type>
-              <parameter>default_val</parameter>
-              <initializer>0</initializer>
-            </methodparam>
-          </constructorsynopsis>
-          <constructorsynopsis>
-            <methodname><link linkend="Class-DoubleVec-copy-move-init">DoubleVec</link></methodname>
-            <methodparam>
-              <modifier>const</modifier>
-              <type>std::initializer_list&lt;double&gt;&amp;</type>
-              <parameter>values</parameter>
-            </methodparam>
-          </constructorsynopsis>
-          <constructorsynopsis>
-            <methodname><link linkend="Class-DoubleVec-copy-move-ctor">DoubleVec</link></methodname>
-            <methodparam>
-              <modifier>const</modifier>
-              <type>DoubleVec&amp;</type>
-              <parameter>other</parameter>
-            </methodparam>
-          </constructorsynopsis>
-          <constructorsynopsis>
-            <methodname>DoubleVec</methodname>
-            <methodparam>
-              <type>DoubleVec&amp;&amp;</type>
-              <parameter>other</parameter>
-            </methodparam>
-          </constructorsynopsis>
-          <methodsynopsis>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>DoubleVec</classname>
+        </ooclass>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-DoubleVec-null-ctor">DoubleVec</link></methodname>
+          <void/>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-DoubleVec-sizector">DoubleVec</link></methodname>
+          <methodparam>
+            <type>int</type>
+            <parameter>size</parameter>
+          </methodparam>
+          <methodparam>
+            <type>double</type>
+            <parameter>default_val</parameter>
+            <initializer>0</initializer>
+          </methodparam>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-DoubleVec-copy-move-init">DoubleVec</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::initializer_list&lt;double&gt;&amp;</type>
+            <parameter>values</parameter>
+          </methodparam>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-DoubleVec-copy-move-ctor">DoubleVec</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
             <type>DoubleVec&amp;</type>
-            <methodname><link
+            <parameter>other</parameter>
+          </methodparam>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname>DoubleVec</methodname>
+          <methodparam>
+            <type>DoubleVec&amp;&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+        </constructorsynopsis>
+        <methodsynopsis>
+          <type>DoubleVec&amp;</type>
+          <methodname><link
                           linkend="Class-DoubleVec-copy-move-ctor">operator=</link></methodname>
           <methodparam>
             <modifier>const</modifier>
             <type>DoubleVec&amp;</type>
             <parameter>other</parameter>
           </methodparam>
-          </methodsynopsis>
-          <methodsynopsis>
-            <void/>
-            <methodname><link linkend="Class-DoubleVec-resize">resize</link></methodname>
-            <methodparam>
-              <type>std::size_t</type>
-              <parameter>size</parameter>
-            </methodparam>
-            <methodparam>
-              <type>double</type>
-              <initializer>0</initializer>
-            </methodparam>
-          </methodsynopsis>
-          <!-- START HERE WITH VECTOR PROPERTY METHODS -->
-        </classsynopsis>
-      </refsect2>                 <!-- C++ synopsis-->
+        </methodsynopsis>
+        <methodsynopsis>
+          <void/>
+          <methodname><link linkend="Class-DoubleVec-resize">resize</link></methodname>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>size</parameter>
+          </methodparam>
+          <methodparam>
+            <type>double</type>
+            <initializer>0</initializer>
+          </methodparam>
+        </methodsynopsis>
+        <!-- START HERE WITH VECTOR PROPERTY METHODS -->
+      </classsynopsis>
+    </refsect2>                 <!-- C++ synopsis-->
 
-      <refsect2>
-        <title>Python Synopsis</title>
-      </refsect2>                 <!-- Python synopsis -->
-    </refsynopsisdiv>
+    <refsect2>
+      <title>Python Synopsis</title>
+    </refsect2>                 <!-- Python synopsis -->
+  </refsynopsisdiv>
 
-    <refsection>
-      <title>Description</title>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>DoubleVec</classname> is the class that &oof2; uses
+      internally for vectors of double precision numbers.  It is
+      basically a wrapper for <ulink
+      url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
+      role="external"><code>Eigen::vectorXd</code></ulink>.  It
+      suppports all the usual arithmetic methods as well as STL style
+      iteration.
+    </para>
+  </refsection>                 <!-- DoubleVec description-->
+  <refsection id="Class-DoubleVec-ctors">
+    <title>Constructors</title>
+    <refsection id="Class-DoubleVec-null-ctor">
+      <title><code>DoubleVec()</code></title>
       <para>
-        <classname>DoubleVec</classname> is the class that &oof2; uses
-        internally for vectors of double precision numbers.  It is
-        basically a wrapper for <ulink
-        url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
-        role="external"><code>Eigen::vectorXd</code></ulink>.  It
-        suppports all the usual arithmetic methods as well as STL
-        style iteration.
+        The default constructor creates a zero length vector.  It will
+        need to resized in order to be useful.
       </para>
-    </refsection>                 <!-- DoubleVec description-->
-    <refsection id="Class-DoubleVec-ctors">
-      <title>Constructors</title>
-      <refsection id="Class-DoubleVec-null-ctor">
-        <title><code>DoubleVec()</code></title>
-        <para>
-          The default constructor creates a zero length vector.  It
-          will need to resized in order to be useful.
-        </para>
-      </refsection>
+    </refsection>
 
-      <refsection id="Class-DoubleVec-sizector">
-        <title><code>DoubleVec(int size, double default_val=0)</code></title>
-        <para>
-          Create a vector of length <varname>size</varname>,
-          initializing each entry to <varname>default_val</varname>.
-          The initial value is <constant>0</constant> if it's not
-          specified.
-        </para>
-      </refsection>
+    <refsection id="Class-DoubleVec-sizector">
+      <title><code>DoubleVec(int size, double default_val=0)</code></title>
+      <para>
+        Create a vector of length <varname>size</varname>,
+        initializing each entry to <varname>default_val</varname>.
+        The initial value is <constant>0</constant> if it's not
+        specified.
+      </para>
+    </refsection>
       
-      <refsection id="Class-DoubleVec-copy-move-ctor">
-        <title>Other Constructors</title>
-        <!-- TODO: align the comments  -->
-        <programlisting>
+    <refsection id="Class-DoubleVec-copy-move-ctor">
+      <title>Other Constructors</title>
+      <!-- TODO: align the comments  -->
+      <programlisting>
 DoubleVec(const DoubleVec&amp;) = default; <lineannotation>// copy constructor</lineannotation>
 DoubleVec(DoubleVec&amp;&amp;) = default; <lineannotation>// move constructor</lineannotation>
 DoubleVec(const std::initializer_list&lt;double&gt;&amp;); <lineannotation>// initialization list constructor</lineannotation>
 DoubleVec&amp; operator=(const DoubleVec&amp;) <lineannotation>// assignment operator</lineannotation> </programlisting>
-        <para>
-          The copy, move, and initialization list constructors, as
-          well as the assignment operator, are inherited from the
-          underlying <ulink
-          url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
-          role="external"><code>Eigen::vectorXd</code></ulink> class.
-        </para>
-      </refsection>               <!-- Copy and move constructors -->
-    </refsection>                 <!-- DoubleVec constructors-->
-    <refsection>
-      <title>Methods</title>
-      <refsection id="Class-DoubleVec-resize">
-        <title>DoubleVec::resize</title>
-        <programlisting>
+      <para>
+        The copy, move, and initialization list constructors, as well
+        as the assignment operator, are inherited from the underlying
+        <ulink
+        url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
+        role="external"><code>Eigen::vectorXd</code></ulink> class.
+      </para>
+    </refsection>               <!-- Copy and move constructors -->
+  </refsection>                 <!-- DoubleVec constructors-->
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-DoubleVec-resize">
+      <title>DoubleVec::resize</title>
+      <programlisting>
 void DoubleVec::resize(size_type size, double value=0) </programlisting>
-        <para>
-          Resize the vector, and set all entries to
-          <varname>value</varname>, which defaults to 0.  The previous
-          contents of the vector will be lost.
-        </para>
-      </refsection>
-    </refsection>                 <!-- DoubleVec methods -->
-  </refentry>                     <!-- class DoubleVec -->
+      <para>
+        Resize the vector, and set all entries to
+        <varname>value</varname>, which defaults to 0.  The previous
+        contents of the vector will be lost.
+      </para>
+    </refsection>
+  </refsection>                 <!-- DoubleVec methods -->
+</refentry>                     <!-- class DoubleVec -->
 
 <!-- Keep this comment at the end of the file
   Local variables:
@@ -166,7 +166,7 @@ void DoubleVec::resize(size_type size, double value=0) </programlisting>
   sgml-always-quote-attributes:t
   sgml-indent-step:2
   sgml-indent-data:t
-  sgml-parent-document:("man_oof2.xml" "part" "reference")
+  sgml-parent-document:("man_oof2.xml" "book" "chapter")
   sgml-exposed-tags:nil
   sgml-local-ecat-files:nil
   End:

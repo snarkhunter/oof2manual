@@ -22,7 +22,7 @@
   &layer; before operating on it, because the scripted versions of
   most commands specify which layer they apply to.  So even though a
   script saved from a GUI session may contain many
-  <guicommand>Select</guicommand> calls, they are harmless and can
+  <guimenuitem>Select</guimenuitem> calls, they are harmless and can
   usually be ignored.
 </para>
 

@@ -1139,8 +1139,8 @@ FieldOutput = output.Output(
 	</para>
 	
 	<programlisting>
-from oof2.common.IO import output
-from oof2.engine.IO import outputClones
+from ooflib.common.IO import output
+from ooflib.engine.IO import outputClones
 output.defineAggregateOutput('Field:Value', outputClones.FieldOutput) </programlisting>
       
 	<para>
@@ -1434,9 +1434,9 @@ param = SomeOtherOutput.resolveAlias('otherinput:field') </programlisting>
 
 	<programlisting>
 from ooflib.SWIG.common import coord
-from oof2.common import primitives
-from oof2.common.IO import output
-from oof2.common.IO import parameter
+from ooflib.common import primitives
+from ooflib.common.IO import output
+from ooflib.common.IO import parameter
 
 def _pointSum(mesh, elements, coords, point1, point2, a, b): <co id="example3-callback"/>
     ans = [a*f+b*s for f,s in zip(point1, point2)] <co id="example3-zip"/>
@@ -1665,7 +1665,7 @@ output.definePositionOutput('enhanced', enhancedPosition) </programlisting>
 	(in <filename>SRC/engine/IO/outputDefs.py</filename>):
 
       <programlisting>
-from oof2.common import enum
+from ooflib.common import enum
 
 class EnergyType(enum.EnumClass("Total", "Elastic", ...)):
    pass </programlisting>
@@ -1745,7 +1745,7 @@ void Elasticity::output(const FEMesh *mesh,
 	<filename>SRC/engine/property/elasticity/iso/iso.spy</filename>:
 
 	<programlisting>
-from oof2.engine import propertyregistration
+from ooflib.engine import propertyregistration
 
 propertyregistration.PropertyRegistration(
     name = "Mechanical:Elasticity:Isotropic",

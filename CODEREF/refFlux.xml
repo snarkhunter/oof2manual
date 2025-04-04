@@ -372,7 +372,7 @@ from ooflib.SWIG.engine import Flux</programlisting>
           locates them in a list that contains only the out-of-plane
           components.  The difference is illustrated by using the
           <link
-          linkend="FieldIndex-integer"><function>FieldIndex::integer()</function></link>
+          linkend="Class-FieldIndex-integer"><function>FieldIndex::integer()</function></link>
           method to examine the list indices of the components.
         </para>
         <para>

@@ -34,8 +34,7 @@
           <modifier>const</modifier>
         </methodsynopsis>
         <methodsynopsis>
-          <methodname><link linkend="Class-FieldIndex-intconversion">
-          operator int</link></methodname>
+          <methodname><link linkend="Class-FieldIndex-intconversion">operator int</link></methodname>
           <modifier>const</modifier>
         </methodsynopsis>
         <methodsynopsis>

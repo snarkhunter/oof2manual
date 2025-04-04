@@ -53,3 +53,6 @@ about whether functions and methods mentioned by name in text have
 
 There shouldn't be separate C++ and Python "Source Files" sections in
 class man pages.
+
+Make the <refpurpose> strings consistent.  Do they have a closing period?
+
