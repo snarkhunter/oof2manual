@@ -21,7 +21,7 @@ OOF.Windows.Graphics.New()
 
 import re
 # Regexp pattern that matches id="idtag" or id='idtag'.  It defines
-# two groups. This first is just the opening quotation mark, which is
+# two groups. The first is just the opening quotation mark, which is
 # in a group so that it can be compared to the closing quotation mark.
 # The second group is the idtag.
 pattern = re.compile(r"""id=(["'])(.+?)\1""") 
@@ -53,4 +53,6 @@ outfile = open('oof2_api.xml', 'w')
 xmlmenudump.xmlmenudump(outfile, xmlids)
 outfile.close()
 
+import sys
+print("Quitting xmldump!", file=sys.stderr)
 OOF.File.Quit()
