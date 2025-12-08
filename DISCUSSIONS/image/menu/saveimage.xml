@@ -10,12 +10,98 @@
 
 <para>
   Save the given &image; to a file.  The file type is determined by
-  the suffix of the given <varname>filename</varname>
-  (<foreignphrase>e.g,</foreignphrase> <userinput>.png</userinput>,
-  <userinput>.gif</userinput>, <userinput>.ppm</userinput>,
-  <foreignphrase>etc.</foreignphrase>).  Any file type supported by
-  the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library is acceptable.
+  the suffix of the given <varname>filename</varname>.  A
+  <userinput>.png</userinput> suffix will create a PNG file, and a
+  <userinput>.pdf</userinput> suffix will create a PDF file,
+  <foreignphrase>etc.</foreignphrase>.  File types supported by the
+  <ulink url="https://pillow.readthedocs.io/en/stable/index.html"
+  role="external">Pillow</ulink> library are acceptable. It is not
+  easy to tell what types can be saved, because it can depend on how
+  the library was built on your computer.  &oof2; will tell you if it
+  failed to save an image, though.
+</para>
+<para>
+  In addition to standard image file types, &oof2; can save images as
+  <ulink url="https://numpy.org" role="external">Numpy</ulink> data
+  files by using the suffixes <userinput>.npy</userinput>
+  (uncompressed) or <userinput>.npz</userinput> (compressed).  These
+  file types have the advantage of storing full precision data.  If
+  you have modified an image in &oof2;, it may contain pixel values
+  that cannot be represented exactly in an image file &emdash; many of
+  the image file types are written with fewer bits per pixel than
+  &oof2; uses internally.<footnote><simpara>&oof2; stores image data
+  as floats.</simpara></footnote> In this case, saving and reloading
+  an image will not reproduce the original data.  If exact
+  reproduction is important, use the <userinput>.npy</userinput> or
+  <userinput>.npz</userinput> suffixes.
+</para>
+<para>
+  If you are saving a grayscale image, some of the file types will
+  economically store just a single channel, but some will store RGB or
+  RGBA data instead, creating a file three or four times larger than
+  necessary (before compression).
+</para>
+<para>
+  Also, note <ulink
+  url="https://pillow.readthedocs.io/en/stable/index.html"
+  role="external">Pillow</ulink> can write more formats that it can
+  read.
+</para>
+<para>
+  Some common and/or useful file formats are:
+  <itemizedlist spacing="compact">
+    <listitem>
+      <formalpara>
+        <title>NPY and NPZ</title>
+        <para>
+          These are Numpy data files that store the full precision of
+          the image data. NPZ files are compressed.  They can be read
+          by &oof2;, but possibly not by other image apps.
+        </para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+        <title>PNG</title>
+        <para>
+          Grayscale PNG files, as saved by &oof2;, contain a single
+          channel of 16 bit values.  Color PNG files contain three
+          channels of 8 bit values.
+        </para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+        <title>PDF</title>
+        <para>
+          PDF files can be saved by &oof2;, but can't be loaded.
+        </para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+        <title>GIF</title>
+        <para>
+          This is a static GIF file, not an animated
+          one.<footnote><simpara>What kids call "gifs" these days are
+          properly called "animated gifs".  The original "gif" was an
+          image compression format for static
+          images.</simpara></footnote> It contains 4 channels of 8 bit
+          data for both color and grayscale images.
+        </para>
+      </formalpara>
+    </listitem>
+    <listitem>
+      <formalpara>
+        <title>TIF and TIFF</title>
+        <para>
+          TIFF files seem to contain full precision data, and are
+          loadable by &oof2;, but can't always be read by other
+          programs. 
+        </para>
+      </formalpara>
+    </listitem>
+  </itemizedlist>
 </para>
 
 <!-- Keep this comment at the end of the file

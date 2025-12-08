@@ -11,16 +11,25 @@
 <para>
   Blur the given <varname>image</varname>.  This can be a useful way
   of reducing noise, at the obvious expense of a loss of resolution.
-  The image is convolved with a Gaussian operator with the given
-  <varname>radius</varname> and standard deviation
-  (<varname>sigma</varname>).  For reasonable results, the
-  <varname>radius</varname> should be larger than
-  <varname>sigma</varname>.  If <varname>radius</varname> is 0, then a
-  suitable radius will be chosen automatically.
+  The image is convolved with a Gaussian operator whose standard
+  deviation is <varname>sigma</varname>.
 </para>
 <para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  The <varname>radius</varname> parameter is the size of the mask used
+  to perform the convolution, in pixels.  The new value of a pixel is
+  the Gaussian weighted average of the pixel values in a
+  <emphasis>square</emphasis> with sides of length <code>2*radius +
+  1</code> in pixel units, centered on the pixel.
+</para>
+<para>
+  In a color image, each RGB channel is blurred separately.
+</para>
+<para>
+  This routine uses <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.gaussian"
+  role="external"><code>skimage.filters.gaussian</code></ulink> from
+  the <ulink url="https://scikit-image.org/">scikit-image</ulink>
+  library. 
 </para>
 <figure id="Figure-BlurImage">
   <title>Blurring an Image</title>
@@ -31,8 +40,8 @@
     <caption>
 	  <para>
 	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
+	    Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+	    of C.-H. Hsueh).  The image is 200&times;200 pixels.
 	  </para>
     </caption>
   </mediaobject>
@@ -43,9 +52,21 @@
     <caption>
 	  <para>
 	    The image after being blurred with
-	    <varname>radius</varname>=0 and
+	    <varname>radius</varname>=5 and
 	    <varname>sigma</varname>=3.0.
 	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/blur2.png" format="PNG"/>
+    </imageobject>
+    <caption>
+      <para>
+        The image after being blurred with
+        <varname>radius</varname>=10
+        and <varname>sigma</varname>=6.0.
+      </para>
     </caption>
   </mediaobject>
 </figure>
