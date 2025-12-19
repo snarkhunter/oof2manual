@@ -233,6 +233,11 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY oof2rc "<link linkend='Section-oof2rc'><filename>.oof2rc</filename></link>">
 <!ENTITY hellip "&#8230;">
 <!ENTITY emdash "&#x2014;">
+
+<!ENTITY skimage "<ulink url='https://scikit-image.org/' role='external'>scikit-image</ulink>">
+
+<!ENTITY automatic "<link linkend='Object-automatic'><userinput>automatic</userinput></link>">
+
 ]>
 
 <!-- The reference pages for all menuitems should refer to the

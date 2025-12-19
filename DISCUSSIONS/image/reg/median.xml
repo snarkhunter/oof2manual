@@ -9,17 +9,17 @@
 -->
 
 <para>
-  Apply a median filter to an &image;.  This replaces the red,
-  green, and blue components of each pixel with the median values of
-  those components in a circle of radius <varname>r</varname>
-  centered on the pixel.  The result is an image with less noise
-  than the original.  The given <varname>radius</varname> is in
-  units of the pixel size.  If <varname>radius</varname>=0, then an
-  optimal radius will be chosen automatically.
+  Reduce noise in an image by apply a median filter.  This replaces
+  the value of each pixel with the median value in a circle of the
+  given <varname>radius</varname> centered on the pixel.  The
+  <varname>radius</varname> is in units of the pixel size.  For a
+  color image, each RGB channel is filtered independently.
 </para>
 <para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  This routine calls the <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.median"
+  role="external"><code>skimage.filters.median</code></ulink> from the
+  &skimage; library.
 </para>
 <figure id="Figure-MedianFilter">
   <title>Applying a Median Filter to an Image</title>
@@ -37,12 +37,23 @@
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/median0.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/median2.png" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>
 	    The result of applying <command>Median</command> with
-	    <varname>radius</varname>=0.
+	    <varname>radius</varname>=2.
+	  </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+	  <imagedata fileref="FIGURES/imageops/median5.png" format="PNG"/>
+    </imageobject>
+    <caption>
+	  <para>
+	    The result of applying <command>Median</command> with
+	    <varname>radius</varname>=5.
 	  </para>
     </caption>
   </mediaobject>

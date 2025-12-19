@@ -10,47 +10,39 @@
 
 <para>
   Enhance intensity differences between the lighter and darker
-  portions of the given &image;.  Set <varname>sharpen</varname> to
-  <userinput>True</userinput> to increase the image contrast and to
-  <userinput>False</userinput> to decrease it.
+  portions of the given &image;.
 </para>
 <para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  In a circle of the given <varname>radius</varname> (in pixel units),
+  around each pixel in the image, the minimum and maximum intensity of
+  all pixels in the circle are computed.  The central pixel's
+  intensity is set to either the minimum or maximum, depending on
+  which is closer to the pixel's original value.  In color images, the
+  RGB channels are handled independently.
+</para>
+<para>
+  This routine is similar to <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.rank.html#skimage.filters.rank.enhance_contrast"
+  role="external"><code>skimage.filters.rank.enhance_contrast</code></ulink>
+  in &skimage;, but it is applied to each RGB channel separately, and
+  does not reduce the color resolution to 8 bits.
 </para>
 <figure id="Figure-Contrast">
   <title>Adjusting Contrast</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/contrast.png" format="PNG"
+                 contentwidth="762px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
-	    of C.-H. Hsueh).
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/contrast1.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of applying <command>Contrast</command> with
-	    <varname>sharpen</varname>=<userinput>True</userinput>.
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/contrast0.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of applying <command>Contrast</command> with
-	    <varname>sharpen</varname>=<userinput>False</userinput>.
+        The top row consists of two unprocessed images, a
+        200&times;200 micrograph of
+        Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+        of C.-H. Hsueh) and a 640&times;375 print by M.C. Escher.  In
+        the bottom row, the contrast has been enhanced with
+        <varname>radius</varname>=5 for the micrograph and
+        <varname>radius</varname>=10 for the print.
 	  </para>
     </caption>
   </mediaobject>

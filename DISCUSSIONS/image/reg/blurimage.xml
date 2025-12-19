@@ -28,8 +28,7 @@
   This routine uses <ulink
   url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.gaussian"
   role="external"><code>skimage.filters.gaussian</code></ulink> from
-  the <ulink url="https://scikit-image.org/">scikit-image</ulink>
-  library. 
+  the &skimage; library.
 </para>
 <figure id="Figure-BlurImage">
   <title>Blurring an Image</title>

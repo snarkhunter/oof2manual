@@ -18,8 +18,10 @@
   pixels.
 </para>
 <para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  This command calls <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.exposure.html#skimage.exposure.rescale_intensity"
+  role="external"><code>skimage.exposure.rescale_intensity</code></ulink>
+  from the &skimage; library.
 </para>
 <figure id="Figure-NormalizeImage">
   <title>Normalizing an Image</title>

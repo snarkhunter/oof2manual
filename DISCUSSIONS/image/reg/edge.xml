@@ -9,14 +9,10 @@
 -->
 
 <para>
-  Find edges in an &image;.  The <varname>radius</varname> parameter
-  sets the size of the convolution filter, in units of the pixel size.
-  Setting it to 0 will cause a suitable value to be chosen
-  automatically.
-</para>
-<para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  Find edges in an &image; using a Sobel filter, via the &skimage;
+  <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.sobel"
+  role="external"><code>sobel</code></ulink> routine.
 </para>
 <figure id="Figure-EdgeDetect">
   <title>Detecting Edges in an Image</title>
@@ -34,27 +30,14 @@
   </mediaobject>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/edge0.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/edges0.png" format="PNG"/>
     </imageobject>
     <caption>
 	  <para>
-	    The result of applying <command>Edge</command> with
-	    <varname>radius</varname>=0
-	    (<foreignphrase>i.e,</foreignphrase> automatic radius selection).
+	    The result of applying <command>Edge</command>.
 	  </para>
     </caption>
   </mediaobject>  
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/edge1.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of applying <command>Edge</command> with
-	    <varname>radius</varname>=1.
-	  </para>
-    </caption>
-  </mediaobject>
 </figure>
 
 <!-- Keep this comment at the end of the file

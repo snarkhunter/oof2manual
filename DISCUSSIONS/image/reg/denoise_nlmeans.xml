@@ -1,0 +1,112 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>NonlocalMeans</classname> can be used as the
+  <varname>method</varname> parameter to the <xref
+  linkend="MenuItem-OOF.Image.Modify.Denoise"/> command.  It calls
+  <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.restoration.html#skimage.restoration.denoise_nl_means"
+  role="external"><code>skimage.restoration.denoise_nl_means</code></ulink>
+  from the &skimage; library.  It works by searching a local region
+  for patches of pixels that are similar (see below), and somehow
+  averaging them.  The <varname>patch_distance</varname> parameter
+  determines the radius of the local region.  The patches are squares
+  with sides of length <varname>patch_size</varname>, or
+  <varname>patch_size+1</varname> if <varname>patch_size</varname> is
+  even.
+</para>
+<para>
+  <varname>h</varname> determines what <quote>similar</quote> means.
+  The &skimage; documentation says <quote>The higher h, the more
+  permissive one is in accepting patches. A higher h results in a
+  smoother image, at the expense of blurring features. For a Gaussian
+  noise of standard deviation sigma, a rule of thumb is to choose the
+  value of h to be sigma or slightly less.</quote>
+</para>
+<para>
+  <varname>sigma</varname> is the standard deviation of the noise in
+  the image, assuming that it's Gaussian.  If the noise is not known,
+  set <varname>sigma</varname> to &automatic;.  The &skimage;
+  documentation says that if a noise value is provided, <quote>a more
+  robust computation of patch weights is computed that takes the
+  expected noise variance into account.</quote>
+</para>
+<figure id="Figure-NLMeans0">
+  <title>
+    A Noisy Image
+  </title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/nlmeans0.png" format="PNG"
+                 contentwidth="457px"/>
+    </imageobject>
+    <caption>
+      <para>
+        The image on the left is a 200&times;200 pixel section of an
+        Escher print.  The image on the right is the same section,
+        with noise added.  The RGB values range from 0 to 1, and the
+        standard deviation of the noise is 0.15.  The norm of the
+        difference, <varname>e</varname>, between the two images is
+        44.1.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+  
+<figure id="Figure-NLMeans">
+  <title>Denoising with <classname>NonlocalMeans</classname></title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/nlmeans.png" format="PNG"
+                 contentwidth="1072px"/>
+    </imageobject>
+    <caption>
+      <para>
+        The results of applying <classname>NonlocalMeans</classname>
+        to the noisy image in <xref linkend="Figure-NLMeans0"/>, with
+        the given values of <varname>patch_size</varname>,
+        <varname>patch_distance</varname>, and
+        <varname>h</varname>. <varname>sigma</varname> was set to
+        &automatic;.
+      </para>
+      <para>
+        Generally, large values of <varname>h</varname> yield smoother
+        images, and small values of <varname>patch_size</varname>
+        preserve more detail.  The results are better for large values
+        of <varname>patch_distance</varname>, at the expense of
+        computation time.
+      </para>
+      <para>
+        The <varname>e</varname> value in each image is the norm of
+        the difference between the denoised image and the original
+        image (without noise).  Smaller values tend to be better
+        reconstructions, but your needs may vary. That is, the norm
+        may not be the best way of measuring error in your situation.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

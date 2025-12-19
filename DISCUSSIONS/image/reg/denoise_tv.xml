@@ -1,0 +1,94 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  <classname>TotalVariation</classname> can be used as the
+  <varname>method</varname> parameter to the <xref
+  linkend="MenuItem-OOF.Image.Modify.Denoise"/> command.  It calls
+  <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.restoration.html#skimage.restoration.denoise_tv_chambolle"
+  role="external"><code>skimage.restoration.denoise_tv_chambolle</code></ulink>
+  from the &skimage; library. It finds an image similar to the
+  original image but with less variation, by minimizing the function
+  <equation id="Eqn-TV">
+    <alt role="tex">
+      \[ \sum_i \left(
+      w \left|\nabla u_i\right| + \frac12(f_i - u_i)^2
+      \right) \]
+    </alt>
+  </equation>
+  where the sum is over pixels &texi;, <inlineequation><alt
+  role='tex'>\(f_i\)</alt></inlineequation> is the value of pixel
+  &texi;, and <inlineequation><alt
+  role="tex">\(u_i\)</alt></inlineequation> is the optimized value of
+  the image at &texi;.  <inlineequation><alt
+  role="tex">\(w\)</alt></inlineequation> is the
+  <varname>weight</varname> parameter.  The <varname>weight</varname>
+  governs the relative importance of smoothness and fidelity (to the
+  original image) in the denoised image.  A large
+  <varname>weight</varname> will produce less noise and also less
+  fidelity.
+</para>
+<para>
+  The parameter <varname>eps</varname> governs how hard the algorithm
+  tries to find an optimal solution.  The algorithm stops when the
+  estimated relative error is less than <varname>eps</varname>, or
+  when it has used more than <varname>max_iterations</varname>
+  iterations.  Smaller values give better solutions and take longer to
+  run.
+</para>
+
+<figure id="Figure-NLMeans">
+  <title>Denoising with <classname>TotalVariation</classname></title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/tv-escher.png" format="PNG"
+                 contentwidth="674px"/>
+    </imageobject>
+    <caption>
+      <para>
+        The top left image is a 200&times;200 pixel subsection of an
+        Escher print.  The top right is the same section, with added
+        noise.  The other three images are the result of <link
+        linkend="MenuItem-OOF.Image.Modify.Denoise">denoising</link>
+        using <varname>TotalVariation</varname> with the given
+        <varname>weight</varname> values.  The <varname>e</varname>
+        value in each image is the norm of the difference between it
+        and the original image.  (The norm may or may not be a useful
+        measure of the effectiveness of the procedure.)
+      </para>
+    </caption>
+  </mediaobject>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/tv-si3n4.png" format="PNG"
+                 contentwidth="674px"/>
+    </imageobject>
+    <caption>
+      The same as the above, but with an actual micrograph, containing
+      more regions with constant intensity.
+    </caption>
+  </mediaobject>
+</figure>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

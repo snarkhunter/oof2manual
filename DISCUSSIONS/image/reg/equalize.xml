@@ -9,36 +9,37 @@
 -->
 
 <para>
-  Apply histogram equalization to an &image;.  This spreads out the
-  distribution of pixel values to increase the contrast in the image.
+  Apply Contrast Limited Adaptive Histogram Equalization to an
+  &image;.  This spreads out the distribution of pixel values to
+  increase the contrast in the image.
 </para>
 <para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  This routine uses <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.exposure.html#skimage.exposure.equalize_adapthist"
+  role="external"><code>skimage.exposure.equalize_adapthist</code></ulink>
+  from the &skimage; library.  The documentation
+  describes it as "An algorithm for local contrast enhancement, that
+  uses histograms computed over different tile regions of the
+  image. Local details can therefore be enhanced even in regions that
+  are darker or lighter than most of the image".  If operating on a
+  color image, the image is converted to HSV, the method is applied to
+  the V channel, and the image is converted back to RGB.
 </para>
 <figure id="Figure-Equalize">
-  <title>Equalizing an Image</title>
+  <title>Equalizing Images</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/equalize.png" format="PNG"
+                 contentwidth="762px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/equalize.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of <command>Equalizing</command> the image.
-	    Details with low contrast are more visible.  (This may not
-	    be desirable for &oof2; analysis of this particular image.)
+        The top row consists of two unprocessed images, a
+        200&times;200 micrograph of
+        Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+        of C.-H. Hsueh) and a 640&times;375 print by M.C. Escher.  The
+        bottom two images are the results of applying the
+        <command>Equalize</command> modifier.
 	  </para>
     </caption>
   </mediaobject>
