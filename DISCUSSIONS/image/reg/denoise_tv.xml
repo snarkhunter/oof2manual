@@ -16,7 +16,9 @@
   url="https://scikit-image.org/docs/stable/api/skimage.restoration.html#skimage.restoration.denoise_tv_chambolle"
   role="external"><code>skimage.restoration.denoise_tv_chambolle</code></ulink>
   from the &skimage; library. It finds an image similar to the
-  original image but with less variation, by minimizing the function
+  original image but with less variation, by finding values
+  <inlineequation><alt role="tex">\(u_i\)</alt></inlineequation>
+  that minimize the function
   <equation id="Eqn-TV">
     <alt role="tex">
       \[ \sum_i \left(

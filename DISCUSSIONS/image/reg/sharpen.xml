@@ -9,50 +9,67 @@
 -->
 
 <para>
-  Sharpen an &image; by convolving it with a Gaussian operator of
-  the given <varname>radius</varname> and standard deviation
-  (<varname>sigma</varname>), specified in units of the pixel
-  size. For reasonable results, <varname>radius</varname> should be
-  larger than <varname>sigma</varname>.  A suitable radius will be
-  chosen automatically if you set <varname>radius</varname> to zero.
+  Sharpen an &image; by enhancing the difference between it and a
+  blurred version of itself, by calling <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.unsharp_mask"
+  role="external"><code>skimage.filters.unsharp_mask</code></ulink>.
 </para>
 <para>
-  This routine comes from the <ulink url="http://www.imagemagick.org"
-  role="external">ImageMagick</ulink> library.
+  <varname>radius</varname> is the standard deviation of the gaussian,
+  in pixel units.  If <varname>radius</varname> is too small, the
+  algorithm may enhance noise in the image. 
+  <varname>amount</varname> is the factor by which
+  the sharp features are enhanced.  Large values may lead to
+  cartoonish images.
 </para>
-<figure id="Figure-SharpenImage">
+<para>
+  If <varname>mode</varname> is <constant>RGB</constant> the
+  sharpening is applied to each of the color channels independently.
+  This can lead to odd color changes as seen in <xref
+  linkend="Figure-Sharpen-RGB"/>.  Setting <varname>mode</varname> to
+  <constant>HSV</constant> sharpens only the
+  <emphasis>value</emphasis> channel in an HSV representation of the
+  image, and does a better job of preserving color, as shown in <xref
+  linkend="Figure-Sharpen-HSV"/>.
+</para>
+
+<figure id="Figure-Sharpen-RGB">
   <title>Sharpening an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/sharpen-rgb.png"
+                 format="PNG"
+                contentwidth="778px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
+        A small section of an Escher print, on the left, and the
+        result of sharpening it with
+        <varname>mode</varname>=<constant>RGB</constant> and the given
+        values of <varname>radius</varname> and
+        <varname>amount</varname>.
+        The colors are badly distorted in the extreme cases.
 	  </para>
     </caption>
   </mediaobject>
+</figure>
+
+<figure id="Figure-Sharpen-HSV">
+  <title>Sharpening an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/sharpen.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/sharpen-hsv.png"
+                 format="PNG"
+                contentwidth="778px"/>
     </imageobject>
     <caption>
 	  <para>
-	    The result of sharpening the image with
-	    <varname>radius</varname>=0 and <varname>sigma</varname>=1.
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/sharpen5.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of sharpening the image with
-	    <varname>radius</varname>=0 and <varname>sigma</varname>=5.
+        A small section of an Escher print, on the left, and the
+        result of sharpening it with
+        <varname>mode</varname>=<constant>HSV</constant> and the given
+        values of <varname>radius</varname> and
+        <varname>amount</varname>.  Colors are preserved better than
+        they are when <varname>mode</varname>=<constant>RGB</constant>.
 	  </para>
     </caption>
   </mediaobject>
