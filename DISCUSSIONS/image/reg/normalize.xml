@@ -9,9 +9,9 @@
 -->
 
 <para>
-  Scale and shift the red, green, and blue pixel components so that
-  the &image; uses the full range of values (zero to one) for each
-  component.  This increases the contrast in the &image;.  <link
+  Scale and shift each pixel so that the image uses the full range of
+  intensity values (zero to one).  This increases the contrast in the
+  &image;.  <link
   linkend="MenuItem-OOF.Image.Modify.Equalize"><command>Equalize</command></link>
   often does a better job than <command>Normalize</command>,
   especially if an &image; contains just a few very dark or very light
@@ -24,27 +24,21 @@
   from the &skimage; library.
 </para>
 <figure id="Figure-NormalizeImage">
-  <title>Normalizing an Image</title>
+  <title>Normalizing Images</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/normalize.png" format="PNG"
+                 contentwidth="764px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/normalize.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The normalized image.  The darks are darker and the whites
-	    are whiter.
+        The top row consists of two unprocessed images, a
+        200&times;200 micrograph of
+        Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+        of C.-H. Hsueh) and a 640&times;375 print by M.C. Escher.  The
+        bottom two images are the results of applying the
+        <command>Normalize</command> modifier.  The dark colors are
+        darker and the bright colors are brighter.
 	  </para>
     </caption>
   </mediaobject>

@@ -9,49 +9,20 @@
 -->
 
 <para>
-  Convert an &image; to black and white, by making each pixel whose
-  equivalent gray value is greater than <varname>T</varname> to
-  white, and each pixel whose gray value is less than
-  <varname>T</varname> to black.
+  <command>Threshold</command> converts an &image; to grayscale, and
+  then converts the grayscale image to black and white, according to
+  the given <varname>method</varname>, which is a object from the
+  <xref linkend="RegisteredClass-ThresholdMethod"/> class.  See the
+  documentation for the <xref
+  linkend="RegisteredClass-ThresholdMethod"/> subclasses for details
+  and examples.
 </para>
-<figure id="Figure-ThresholdImage">
-  <title>Thresholding an Image</title>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/threshold.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The image after being thresholded with
-	    <varname>T</varname>=0.5.
-	  </para>
-    </caption>
-  </mediaobject>
-</figure>
+<para>
+  Previous versions of &oof2; had a <command>ThresholdImage</command>
+  command, which was equivalent to the new
+  <command>Threshold</command> command with <varname>method</varname>
+  set to <xref linkend="RegisteredClass-ManualThreshold"/>.  The old
+  command is still recognized in scripts but cannot be invoked via the
+  GUI.
+</para>
 
-<!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
--->

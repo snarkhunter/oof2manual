@@ -9,29 +9,31 @@
 -->
 
 <para>
-  Compensate for uneven lighting in an &image;.  The average
-  brightness in a circular neighborhood of size
-  <varname>radius</varname> around each pixel is compared to the
-  average brightness of the whole &image;, and the pixel value is
-  scaled by the resulting ratio. The <varname>radius</varname> is
-  specified in units of the pixel size, and should be large compared
-  to the size of the features in the image, but small compared to the
-  size of the image itself.
+  Manual thresholding converts all pixels brighter than
+  <varname>value</varname> to white and all pixels darker than
+  <varname>value</varname> to black.   <varname>value</varname> is a
+  floating point number between 0 (black) and 1 (white).
 </para>
-<figure id="Figure-Reilluminate">
-  <title>Reilluminating an Image</title>
+<para>
+   The &image; is first converted from color to grayscale if
+   necessary.
+</para>
+
+<figure id="Figure-Threshold-Manual">
+  <title>Manually Thresholding an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/reilluminate.png"
-                 format="PNG" contentwidth="944px" />
+      <imagedata fileref="FIGURES/imageops/threshold-manual.png"
+                 format="PNG"
+                 contentwidth="686px"/>
     </imageobject>
     <caption>
-	  <para>
-	    A micrograph of cementite and austenite phases in steel
-	    (courtesy of M. Kral) on top, and the result of reilluminating
-	    it with three different values of <varname>radius</varname>.
-	    The image is 290 &times; 230 pixels.
-	  </para>
+      <para>
+        A section of a micrograph, left, and the results of applying
+        <command>Manual</command> thresholding with three different
+        <varname>value</varname>s.  The micrograph is 92&times;91
+        pixels.
+      </para>
     </caption>
   </mediaobject>
 </figure>

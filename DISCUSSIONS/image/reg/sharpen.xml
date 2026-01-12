@@ -15,11 +15,11 @@
   role="external"><code>skimage.filters.unsharp_mask</code></ulink>.
 </para>
 <para>
-  <varname>radius</varname> is the standard deviation of the gaussian,
-  in pixel units.  If <varname>radius</varname> is too small, the
-  algorithm may enhance noise in the image. 
-  <varname>amount</varname> is the factor by which
-  the sharp features are enhanced.  Large values may lead to
+  <varname>radius</varname> is the standard deviation of the Gaussian
+  used to blur the image, in pixel units.  If
+  <varname>radius</varname> is too small, the algorithm may enhance
+  noise in the image.  <varname>amount</varname> is the factor by
+  which the sharp features are enhanced.  Large values may lead to
   cartoonish images.
 </para>
 <para>

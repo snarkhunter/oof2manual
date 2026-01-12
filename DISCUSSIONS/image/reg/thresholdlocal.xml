@@ -1,0 +1,121 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  Local thresholding computes the average brightness of an &image; in
+  the neighborhood of a pixel, and then sets the pixel to black or
+  white depending on whether it is darker or lighter than the local
+  average, minus a given offset.  This command is a wrapper around the
+  &skimage; method <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.threshold_local"
+  role="external"><code>skimage.filters.threshold_local</code></ulink>.
+</para>
+<para>
+   The &image; is first converted from color to grayscale if
+   necessary.
+</para>
+<para>
+  The <varname>radius</varname> parameter is the radius of the local
+  averaging area, in pixel units.  The area is actually a square with
+  edge length <code>2*radius+1</code>.  Making the
+  <varname>radius</varname> too small can lead to noisy results, as
+  shown in <xref linkend="Figure-Threshold-Local"/>.
+</para>
+<para>
+  The <varname>average</varname> parameter determines how the average
+  is computed within the local area.  If it's set to
+  <constant>gaussian</constant>, a gaussian weighted average will be
+  used, and the standard deviation <varname>sigma</varname> can be
+  specified.  If <varname>sigma</varname>=&automatic;, a deviation is
+  chosen automatically.  Because the gaussian effectively converts the
+  square averaging area to a circle, it can sometimes produce smoother
+  results.
+</para>
+<para>
+  If a non-zero <varname>offset</varname> is provided, it is
+  subtracted from the local threshold value.  That is, if
+  <varname>offset</varname> is <constant>0.1</constant>, pixels whose
+  brightness is greater than the local mean minus
+  <constant>0.1</constant> will be turned white. Note that if the
+  image is more or less smooth and the local radius is small, the
+  local means will tend to be similar to the pixel values, so a very
+  small offset can have a large effect, as shown in <xref
+  linkend="Figure-Threshold-Local-Offset"/>.
+</para>
+
+<figure id="Figure-Threshold-Local">
+  <title>Thresholding an Image with LocalThreshold</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/threshold-local.png"
+                 format="PNG" contentwidth="816px"/>
+    </imageobject>
+    <caption>
+      <para>
+        The 200&times;200 pixel image in the top left is a circle
+        inside a square.  Both shapes are filled with a grayscale
+        gradient, so global thresholding is inadequate for identifying
+        the shapes, as shown in the other images in the top row.  The
+        bottom two rows show the results of using
+        <command>LocalThreshold</command> with two different averaging
+        methods and three different radii. The gaussian averaging was
+        done with <varname>sigma</varname>=&automatic;.
+      </para>
+      <para>
+        The results in the left column were created with
+        <varname>radius</varname>=<constant>10</constant>.  Because
+        this is much smaller than the size of the features in the
+        image, and because the color gradients are linear, for most of
+        the pixels the local average is close to the pixel value, and
+        the result is noise.
+      </para>
+      <para>
+        The results in the center and right columns, with larger
+        <varname>radius</varname>, are less noisy and do a better job
+        of isolating the boundary of the circle.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+<figure id="Figure-Threshold-Local-Offset">
+  <title>Using an offset with LocalThreshold</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/threshold-local-2.png"
+                 format="PNG" contentwidth="712px"/>
+    </imageobject>
+    <caption>
+      <para>
+        The results of using <command>LocalThreshold</command> with a
+        small nonzero <varname>offset</varname> A negative offset
+        increases the number of black pixels.
+        (<varname>average</varname>=<constant>gaussian</constant> and
+        <varname>radius</varname>=<constant>50</constant> here.)
+      </para>
+    </caption>
+  </mediaobject>
+  
+</figure>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->

@@ -1,0 +1,60 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<para>
+  MinimumEntropy thresholding uses Li's Iterative Minimum Cross
+  Entropy method.  It is a wrapper around the &skimage; routine <ulink
+  url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.threshold_li"
+  role="external"><code>skimage.filters.threshold_li</code></ulink>.
+</para>
+<para>
+  The algorithm adjusts the threshold iteratively until the change in
+  one iteration is less than the given <varname>tolerance</varname>.
+  If <varname>tolerance</varname> is set to &automatic;, iteration
+  proceeds until the change is smaller than the minimum difference
+  between intensities in the image.
+</para>
+<para>
+   The &image; is first converted from color to grayscale if
+   necessary.
+</para>
+
+<figure id="Figure-Threshold-MinimumEntropy">
+  <title>Thresholding an Image with MinimumEntropyThreshold</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="FIGURES/imageops/threshold-minimumentropy.png"
+                 format="PNG" contentwidth="344px"/>
+    </imageobject>
+    <caption>
+      <para>
+        A section of a micrograph, left, and the result of applying
+        <command>MinimumEntropy</command> thresholding with
+        <varname>tolerance</varname>=&automatic;.  The micrograph is
+        92&times;91 pixels.
+      </para>
+    </caption>
+  </mediaobject>
+</figure>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../../man_oof2.xml" "book" "chapter" "refentry" "refsect1")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
