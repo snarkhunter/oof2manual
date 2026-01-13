@@ -31,8 +31,7 @@
       <para>
         A section of a micrograph, left, and the results of applying
         <command>Manual</command> thresholding with three different
-        <varname>value</varname>s.  The micrograph is 92&times;91
-        pixels.
+        <varname>value</varname>s.
       </para>
     </caption>
   </mediaobject>

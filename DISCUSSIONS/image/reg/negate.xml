@@ -17,23 +17,14 @@
   <title>Negating an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/negate.png" format="PNG"
+                 contentwidth="442px"/>
     </imageobject>
     <caption>
 	  <para>
 	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/negate.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The negative of the image.
+	    Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+	    of C.-H. Hsueh) on the left, and its negative on the right.
 	  </para>
     </caption>
   </mediaobject>

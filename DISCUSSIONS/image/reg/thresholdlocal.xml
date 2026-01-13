@@ -98,7 +98,13 @@
         small nonzero <varname>offset</varname> A negative offset
         increases the number of black pixels.
         (<varname>average</varname>=<constant>gaussian</constant> and
-        <varname>radius</varname>=<constant>50</constant> here.)
+        <varname>radius</varname>=<constant>50</constant> here.) 
+      </para>
+      <para>
+        The example with the negative <varname>offset</varname> would
+        allow the circular region to be easily selected by <xref
+        linkend="MenuItem-OOF.Graphics_n.Toolbox.Pixel_Select.Burn"/>,
+        something that would be quite difficult on the original image.
       </para>
     </caption>
   </mediaobject>

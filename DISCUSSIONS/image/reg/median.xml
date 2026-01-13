@@ -9,9 +9,9 @@
 -->
 
 <para>
-  Reduce noise in an image by apply a median filter.  This replaces
-  the value of each pixel with the median value in a circle of the
-  given <varname>radius</varname> centered on the pixel.  The
+  Reduce noise in an image with a median filter.  This replaces the
+  value of each pixel with the median value in a circle of the given
+  <varname>radius</varname> centered on the pixel.  The
   <varname>radius</varname> is in units of the pixel size.  For a
   color image, each RGB channel is filtered independently.
 </para>
@@ -25,35 +25,17 @@
   <title>Applying a Median Filter to an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/noise.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/median.png" format="PNG"
+                 contentwidth="890px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh), with noise added.
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/median2.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of applying <command>Median</command> with
-	    <varname>radius</varname>=2.
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/median5.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of applying <command>Median</command> with
-	    <varname>radius</varname>=5.
+	    The leftmost image is a 200&times;200 pixel micrograph of
+	    Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+	    of C.-H. Hsueh).  The second image is the same micrograph with
+	    noise added.  The third and fourth images are the results of
+	    applying <command>MedianFilter</command> to the noisy image,
+	    with the given values of <varname>radius</varname>.
 	  </para>
     </caption>
   </mediaobject>

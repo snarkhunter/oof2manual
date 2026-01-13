@@ -37,8 +37,7 @@
       <para>
         A section of a micrograph, left, and the result of applying
         <command>MinimumEntropy</command> thresholding with
-        <varname>tolerance</varname>=&automatic;.  The micrograph is
-        92&times;91 pixels.
+        <varname>tolerance</varname>=&automatic;. 
       </para>
     </caption>
   </mediaobject>

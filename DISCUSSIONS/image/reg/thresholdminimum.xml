@@ -9,9 +9,9 @@
 -->
 
 <para>
-  Minimum thresholding finds a minimum in a smoothed histogram of
-  brightness values in an &image;, and converts all pixels brighter
-  than the miniumum to white and all pixels darker than it to black.
+  Minimum thresholding finds a minimum in a smoothed histogram of the
+  intensities in an &image;, and converts all pixels brighter than the
+  miniumum to white and all pixels darker than it to black.
 </para>
 <para>
    The &image; is first converted from color to grayscale if
@@ -35,8 +35,7 @@
     <caption>
       <para>
         A section of a micrograph, left, and the result of applying
-        <command>Minimum</command> thresholding.  The micrograph is
-        92&times;91 pixels.
+        <command>Minimum</command> thresholding.
       </para>
     </caption>
   </mediaobject>

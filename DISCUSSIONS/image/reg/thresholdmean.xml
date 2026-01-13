@@ -34,8 +34,7 @@
     <caption>
       <para>
         A section of a micrograph, left, and the result of applying
-        <command>Mean</command> thresholding.  The micrograph is
-        92&times;91 pixels.
+        <command>Mean</command> thresholding.
       </para>
     </caption>
   </mediaobject>

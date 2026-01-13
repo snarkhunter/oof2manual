@@ -34,38 +34,16 @@
   <title>Blurring an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/blur.png" format="PNG"
+                 contentwidth="658px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
-	    of C.-H. Hsueh).  The image is 200&times;200 pixels.
+	    The lefthand image is a 200&times;200 pixels micrograph of
+	    Si<subscript>3</subscript>N<subscript>4</subscript> on the
+	    left,(courtesy of C.-H. Hsueh).  The other two images are the
+	    results of blurring it with the given parameters.
 	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/blur.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The image after being blurred with
-	    <varname>radius</varname>=5 and
-	    <varname>sigma</varname>=3.0.
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="FIGURES/imageops/blur2.png" format="PNG"/>
-    </imageobject>
-    <caption>
-      <para>
-        The image after being blurred with
-        <varname>radius</varname>=10
-        and <varname>sigma</varname>=6.0.
-      </para>
     </caption>
   </mediaobject>
 </figure>

@@ -23,23 +23,15 @@
   <title>Dimming an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/dim.png" format="PNG"
+                 contentwidth="442px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
+	    The lefthand image is a micrograph of
 	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
-	  </para>
-    </caption>
-  </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/dim.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The image after being dimmed with <varname>factor</varname>=0.5.
+	    (courtesy of C.-H. Hsueh).  The righthand image is the result
+        of dimming it with <varname>factor</varname>=0.5.
 	  </para>
     </caption>
   </mediaobject>

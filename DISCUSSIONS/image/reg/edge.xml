@@ -12,32 +12,33 @@
   Find edges in an &image; using a Sobel filter, via the &skimage;
   <ulink
   url="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.sobel"
-  role="external"><code>sobel</code></ulink> routine.
+  role="external"><code>skimage.filters.sobel</code></ulink> routine.
 </para>
 <figure id="Figure-EdgeDetect">
   <title>Detecting Edges in an Image</title>
   <mediaobject>
     <imageobject>
-	  <imagedata fileref="FIGURES/imageops/raw.png" format="PNG"/>
+	  <imagedata fileref="FIGURES/imageops/edge.png" format="PNG"
+                 contentwidth="434px"/>
     </imageobject>
     <caption>
 	  <para>
-	    A micrograph of
-	    Si<subscript>3</subscript>N<subscript>4</subscript>
-	    (courtesy of C.-H. Hsueh).
+        The image on the top left is a micrograph of
+        Si<subscript>3</subscript>N<subscript>4</subscript> (courtesy
+        of C.-H. Hsueh).  The image to its right is the result of
+        applying <command>Edge</command> to it.  In places the edges
+        are not clearly distinguished from the background.
 	  </para>
+      <para>
+        The image on the bottom left is the result of applying the
+        <link
+            linkend="MenuItem-OOF.Image.Modify.Contrast"><command>Contrast</command></link>
+        modifier to the original micrograph, and the image to its
+        right is the result of applying <command>Edge</command> to
+        that.  The edges are much clearer.
+      </para>
     </caption>
   </mediaobject>
-  <mediaobject>
-    <imageobject>
-	  <imagedata fileref="FIGURES/imageops/edges0.png" format="PNG"/>
-    </imageobject>
-    <caption>
-	  <para>
-	    The result of applying <command>Edge</command>.
-	  </para>
-    </caption>
-  </mediaobject>  
 </figure>
 
 <!-- Keep this comment at the end of the file

@@ -34,7 +34,7 @@
 </para>
 
 <figure id="Figure-Sharpen-RGB">
-  <title>Sharpening an Image</title>
+  <title>Sharpening an Image in RGB Mode</title>
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/imageops/sharpen-rgb.png"
@@ -55,7 +55,7 @@
 </figure>
 
 <figure id="Figure-Sharpen-HSV">
-  <title>Sharpening an Image</title>
+  <title>Sharpening an Image in HSV Mode</title>
   <mediaobject>
     <imageobject>
 	  <imagedata fileref="FIGURES/imageops/sharpen-hsv.png"
