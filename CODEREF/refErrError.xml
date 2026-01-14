@@ -122,10 +122,10 @@
 	    <refsect2>
 	      <title>Python Synopsis</title>
 	      <programlisting>
-from oof2.SWIG.common.ooferror import ErrProgrammingError
-from oof2.SWIG.common.ooferror import ErrIndexError
-from oof2.SWIG.common.ooferror import ErrUserError
-from oof2.SWIG.common.ooferror import ErrSetupError </programlisting>
+from ooflib.SWIG.common.ooferror import ErrProgrammingError
+from ooflib.SWIG.common.ooferror import ErrIndexError
+from ooflib.SWIG.common.ooferror import ErrUserError
+from ooflib.SWIG.common.ooferror import ErrSetupError </programlisting>
      	  <classsynopsis language="python">
 	        <ooclass>
 	          <classname><link linkend="Class-ErrProgrammingError">ErrProgrammingError</link></classname>
@@ -219,7 +219,7 @@ from oof2.SWIG.common.ooferror import ErrSetupError </programlisting>
 	        The following classes are all declared in
 	        <filename>common/ooferror.h</filename>.  The Python
 	        versions can be imported from
-	        <code>oof2.SWIG.common.ooferror</code>.
+	        <code>ooflib.SWIG.common.ooferror</code>.
 	      </para>
 	      <refsection id="Class-ErrProgrammingError">
 	        <title><code>class ErrProgrammingError</code></title>
@@ -347,7 +347,7 @@ public:
 
 	    and <filename>myerror.spy</filename> would contain:
 	    <programlisting>
-from oof2.SWIG.common import ooferror
+from ooflib.SWIG.common import ooferror
 ooferror.registerErrorClass(MyError) </programlisting>
 	  </para>
 	  <para>

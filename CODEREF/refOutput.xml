@@ -1,9 +1,4 @@
 <!--
-  $RCSfile: refOutput.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:08 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -828,7 +823,7 @@ param2 = out2.findParam('y:x')</programlisting>
     <refsynopsisdiv>
       <title>Python Synopsis</title>
       <literallayout>
-from oof2.SWIG.engine.IO import propertyoutput
+from ooflib.SWIG.engine.IO import propertyoutput
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>ScalarPropertyOutputRegistration</classname>
@@ -1616,7 +1611,7 @@ SymmMatrix3 <link
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import outputval
+from ooflib.SWIG.engine import outputval
 	</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
@@ -1742,7 +1737,7 @@ from oof2.SWIG.engine import outputval
 	</classsynopsis><!-- VectorOutputVal -->
 
 	<programlisting>
-from oof2.SWIG.engine import symmmatrix </programlisting>
+from ooflib.SWIG.engine import symmmatrix </programlisting>
 
 	<classsynopsis language="python">
 	  <ooclass>
@@ -2216,7 +2211,7 @@ OutputValue <link linkend="Class-OutputValue-arithmetic">operator/</link>(const 
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import outputval</programlisting>
+from ooflib.SWIG.engine import outputval</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>OutputValue</classname>

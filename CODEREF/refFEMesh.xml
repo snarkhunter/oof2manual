@@ -1,9 +1,4 @@
 <!-- 
-  $RCSfile: refFEMesh.xml,v $
-  $Revision: 1.3 $
-  $Author: langer $
-  $Date: 2011-05-06 16:00:08 $
-
   This software was produced by NIST, an agency of the
   U.S. government, and by statute is not subject to copyright in the
   United States.  Recipients of this software assume all
@@ -233,7 +228,7 @@
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import element</programlisting>
+from ooflib.SWIG.engine import element</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>Element</classname>
@@ -645,7 +640,7 @@ from oof2.SWIG.engine import element</programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import elementnodeiterator</programlisting>
+from ooflib.SWIG.engine import elementnodeiterator</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>ElementNodeIterator</classname>
@@ -915,7 +910,7 @@ for node in element.node_iterator():</programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import elementnodeiterator</programlisting>
+from ooflib.SWIG.engine import elementnodeiterator</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>ElementShapeFuncIterator</classname>
@@ -1061,7 +1056,7 @@ from oof2.SWIG.engine import elementnodeiterator</programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import elementnodeiterator</programlisting>
+from ooflib.SWIG.engine import elementnodeiterator</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>ElementMapNodeIterator</classname>
@@ -1151,7 +1146,7 @@ from oof2.SWIG.engine import elementnodeiterator</programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import elementnodeiterator</programlisting>
+from ooflib.SWIG.engine import elementnodeiterator</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>ElementFuncNodeIterator</classname>
@@ -1286,7 +1281,7 @@ from oof2.SWIG.engine import elementnodeiterator</programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import elementnodeiterator</programlisting>
+from ooflib.SWIG.engine import elementnodeiterator</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>ElementCornerNodeIterator</classname>
@@ -1424,7 +1419,7 @@ from oof2.SWIG.engine import elementnodeiterator</programlisting>
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import freedom</programlisting>
+from ooflib.SWIG.engine import freedom</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>DegreeOfFreedom</classname>
@@ -1498,7 +1493,7 @@ from oof2.SWIG.engine import freedom</programlisting>
     <refsynopsisdiv>
 	  <title>Synopsis</title>
 	  <programlisting>
-from oof2.SWIG.engine.conjugate import conjugatePair
+from ooflib.SWIG.engine.conjugate import conjugatePair
       
 conjugatePair(name, equation, eqncomp, field, fieldcomp) </programlisting>
     </refsynopsisdiv>

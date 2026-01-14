@@ -109,7 +109,7 @@ from ooflib.engine.IO.anisocijkl import *
     <refsect2>
 	  <title>Rank 3 Tensor Parameters</title>
 	  <programlisting>
-from oof2.SWIG.engine.rank3tensor import *
+from ooflib.SWIG.engine.rank3tensor import *
 
 <link linkend="Class-Rank3TensorParameter">C1Rank3TensorParameter</link>(name, value=None, default=None, tip=None)
 <link linkend="Class-Rank3TensorParameter">C2Rank3TensorParameter</link>(name, value=None, default=None, tip=None)
@@ -134,7 +134,7 @@ from oof2.SWIG.engine.rank3tensor import *
     <refsect2>
 	  <title>Rank 2 Tensor Parameters</title>
 	  <programlisting>
-from oof2.SWIG.engine.symmmatrix import *
+from ooflib.SWIG.engine.symmmatrix import *
 
 <link linkend="Class-Rank2TensorParameter">SymmMatrix3Parameter</link>(name, value=None, default=None, tip=None)
 <link linkend="Class-Rank2TensorParameter">MonoclinicRank2TensorParameter</link>(name, value=None, default=None, tip=None)
@@ -148,11 +148,11 @@ from oof2.SWIG.engine.symmmatrix import *
     <refsect2>
 	  <title>Miscellaneous Parameters</title>
 	  <programlisting>
-from oof2.SWIG.engine.outputval import *
+from ooflib.SWIG.engine.outputval import *
 
 <link linkend="Class-OutputValParameter">OutputValParameter</link>(name, value=None, default=None, top=None)
 	
-from oof2.SWIG.common.coord import *
+from ooflib.SWIG.common.coord import *
 
 <link linkend="Class-CoordParameter">CoordParameter</link>(name, value=None, default=None, top=None) </programlisting>
     </refsect2>

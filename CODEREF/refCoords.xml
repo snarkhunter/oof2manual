@@ -129,7 +129,7 @@ bool <link linkend="Class-Coord-cmp">operator!=</link>(const Coord&amp;, const C
       <refsect2>
 	    <title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.common import coord</programlisting>
+from ooflib.SWIG.common import coord</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>Position</classname>
@@ -430,7 +430,7 @@ bool <link linkend="Class-MasterCoord-cmp">operator&lt;</link>(const MasterCoord
       <refsect2>
 	<title>Python Synopsis</title>
 	<programlisting>
-from oof2.SWIG.engine import mastercoord</programlisting>
+from ooflib.SWIG.engine import mastercoord</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
 	    <classname>MasterPosition</classname>
