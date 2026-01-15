@@ -23,28 +23,23 @@
         <ooclass>
           <classname>DoubleVec</classname>
         </ooclass>
+
+        <!-- Constructors -->
+
         <constructorsynopsis>
-          <methodname><link linkend="Class-DoubleVec-null-ctor">DoubleVec</link></methodname>
+          <methodname><link linkend="Class-DoubleVec-ctors">DoubleVec</link></methodname>
           <void/>
         </constructorsynopsis>
         <constructorsynopsis>
-          <methodname><link linkend="Class-DoubleVec-sizector">DoubleVec</link></methodname>
+          <methodname><link linkend="Class-DoubleVec-ctors">DoubleVec</link></methodname>
           <methodparam>
             <type>int</type>
             <parameter>size</parameter>
           </methodparam>
           <methodparam>
             <type>double</type>
-            <parameter>default_val</parameter>
+            <parameter>value</parameter>
             <initializer>0</initializer>
-          </methodparam>
-        </constructorsynopsis>
-        <constructorsynopsis>
-          <methodname><link linkend="Class-DoubleVec-copy-move-init">DoubleVec</link></methodname>
-          <methodparam>
-            <modifier>const</modifier>
-            <type>std::initializer_list&lt;double&gt;&amp;</type>
-            <parameter>values</parameter>
           </methodparam>
         </constructorsynopsis>
         <constructorsynopsis>
@@ -56,22 +51,54 @@
           </methodparam>
         </constructorsynopsis>
         <constructorsynopsis>
-          <methodname>DoubleVec</methodname>
+          <methodname><link linkend="Class-DoubleVec-copy-move-ctor">DoubleVec</link></methodname>
           <methodparam>
             <type>DoubleVec&amp;&amp;</type>
             <parameter>other</parameter>
           </methodparam>
         </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link linkend="Class-DoubleVec-copy-move-ctor">DoubleVec</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>std::initializer_list&lt;double&gt;&amp;</type>
+            <parameter>values</parameter>
+          </methodparam>
+        </constructorsynopsis>
+
+        <!--  Assignment and Initialization -->
+        <classsynopsisinfo>
+<code>// Assignment and initialization</code>
+</classsynopsisinfo>
+        
         <methodsynopsis>
           <type>DoubleVec&amp;</type>
           <methodname><link
-                          linkend="Class-DoubleVec-copy-move-ctor">operator=</link></methodname>
+                          linkend="Class-DoubleVec-assignment">operator=</link></methodname>
           <methodparam>
             <modifier>const</modifier>
             <type>DoubleVec&amp;</type>
             <parameter>other</parameter>
           </methodparam>
-        </methodsynopsis>
+        </methodsynopsis>       <!-- operator= -->
+
+        <methodsynopsis>
+          <void/>
+          <methodname><link linkend="Class-DoubleVec-zero">zero</link></methodname>
+          <void/>
+        </methodsynopsis>       <!-- zero -->
+        <methodsynopsis>
+          <void/>
+          <methodname><link linkend="Class-DoubleVec-zero">clear</link></methodname>
+          <void/>
+        </methodsynopsis>       <!-- clear -->
+
+        <methodsynopsis>
+          <void/>
+          <methodname><link linkend="Class-DoubleVec-unit">unit</link></methodname>
+          <void/>
+        </methodsynopsis>       <!-- unit -->
+
         <methodsynopsis>
           <void/>
           <methodname><link linkend="Class-DoubleVec-resize">resize</link></methodname>
@@ -81,16 +108,323 @@
           </methodparam>
           <methodparam>
             <type>double</type>
+            <parameter>value</parameter>
             <initializer>0</initializer>
           </methodparam>
+        </methodsynopsis>       <!-- resize -->
+
+        <!-- Comparison -->
+
+        <classsynopsisinfo>
+<code>// Comparison</code>
+</classsynopsisinfo>
+
+        <methodsynopsis>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-DoubleVec-compare">operator==</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- operator== -->
+
+        <methodsynopsis>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-DoubleVec-compare">operator!=</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- operator!= -->
+        
+        <!-- Data access -->
+
+        <classsynopsisinfo>
+<code>// Data access</code>
+</classsynopsisinfo>
+
+        <methodsynopsis>
+          <type>int</type>
+          <methodname><link linkend="Class-DoubleVec-size">size</link></methodname>
+          <modifier>const</modifier>
         </methodsynopsis>
-        <!-- START HERE WITH VECTOR PROPERTY METHODS -->
-      </classsynopsis>
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link linkend="Class-DoubleVec-getitem">operator[]</link></methodname>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>index</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- operator[] -->
+        
+        <methodsynopsis>
+          <type>double</type>
+          <methodname><link linkend="Class-DoubleVec-getitem">operator[]</link></methodname>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>index</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- operator[] -->
+        
+        <methodsynopsis>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-subvec">subvec</link></methodname>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>start</parameter>
+          </methodparam>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>end</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- subvec -->
+
+        <methodsynopsis>
+          <void/>
+          <methodname><link linkend="Class-DoubleVec-subvec">subvec_copy</link></methodname>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>destination</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>pos</parameter>
+          </methodparam>
+          <methodparam>
+            <type>std::size_t</type>
+            <parameter>size</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- subvec copy -->
+
+        <!-- In-place arithmetic operators -->
+        <classsynopsisinfo>
+<code>// In-place arithmetic operators</code>
+</classsynopsisinfo>
+        <methodsynopsis>
+          <type>DoubleVec&amp;</type>
+          <methodname><link linkend="Class-DoubleVec-inplace">operator+=</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- operator+ -->
+
+        <methodsynopsis>
+          <type>DoubleVec&amp;</type>
+          <methodname><link linkend="Class-DoubleVec-inplace">operator-=</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- operator- -->
+
+        <methodsynopsis>
+          <type>DoubleVec&amp;</type>
+          <methodname><link linkend="Class-DoubleVec-inplace">operator*=</link></methodname>
+          <methodparam>
+            <type>double</type>
+            <parameter>factor</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- operator* -->
+
+        <methodsynopsis>
+          <type>DoubleVec&amp;</type>
+          <methodname><link linkend="Class-DoubleVec-inplace">operator/=</link></methodname>
+          <methodparam>
+            <type>double</type>
+            <parameter>divisor</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- operator/ -->
+
+        <methodsynopsis>
+          <void/>
+          <methodname><link linkend="Class-DoubleVec-inplace">axpy</link></methodname>
+          <methodparam>
+            <type>double</type>
+            <parameter>alpha</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>x</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- axpy -->
+
+        <!-- Not in-place arithmetic operators -->
+
+        <classsynopsisinfo>
+<code>// Non-in-place arithmetic operators</code>          
+</classsynopsisinfo>
+        <methodsynopsis>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-outofplace">operator+</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- not in place operator+ -->
+
+        <methodsynopsis>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-outofplace">operator-</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- not in place operator- -->
+
+        <methodsynopsis>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-outofplace">operator-</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- unary operator- -->
+        
+        <methodsynopsis>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-outofplace">operator*</link></methodname>
+          <methodparam>
+            <type>double</type>
+            <parameter>factor</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- not in place operator* -->
+
+        <methodsynopsis>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-outofplace">operator/</link></methodname>
+          <methodparam>
+            <type>double</type>
+            <parameter>divisor</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- not in place operator/ -->
+
+        <methodsynopsis>
+          <modifier>friend</modifier>
+          <type>DoubleVec</type>
+          <methodname><link linkend="Class-DoubleVec-outofplace">operator*</link></methodname>
+          <methodparam>
+            <type>double</type>
+            <parameter>factor</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>vector</parameter>
+          </methodparam>
+        </methodsynopsis>       <!-- scalar*vector -->
+
+        <!-- dot product  -->
+
+        <methodsynopsis>
+          <type>double</type>
+          <methodname><link linkend="Class-DoubleVec-dot">dot</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- dot -->
+
+        <methodsynopsis>
+          <type>double</type>
+          <methodname><link linkend="Class-DoubleVec-dot">operator*</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>DoubleVec&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopsis>       <!-- vector*vector dot -->
+
+        <methodsynopsis>
+          <type>double</type>
+          <methodname><link linkend="Class-DoubleVec-norm">norm</link></methodname>
+          <void/>
+        </methodsynopsis>       <!-- norm -->
+
+        <!-- iterators -->
+
+        <classsynopsisinfo>
+<code>// iterators</code>
+  <code>typedef Eigen::VectorXd::iterator <link linkend="Class-DoubleVec-iterator">iterator</link>;</code>
+  <code>typedef Eigen::VectorXd::const_iterator <link linkend="Class-DoubleVec-iterator">const_iterator</link>;</code>
+</classsynopsisinfo>
+
+        <methodsynopsis>
+          <type>iterator</type>
+          <methodname><link linkend="Class-DoubleVec-iterator">begin</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>iterator</type>
+          <methodname><link linkend="Class-DoubleVec-iterator">end</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>const_iterator</type>
+          <methodname><link linkend="Class-DoubleVec-iterator">begin</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>const_iterator</type>
+          <methodname><link linkend="Class-DoubleVec-iterator">end</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        
+      </classsynopsis>          <!-- DoubleVec -->
     </refsect2>                 <!-- C++ synopsis-->
 
     <refsect2>
-      <title>Python Synopsis</title>
-    </refsect2>                 <!-- Python synopsis -->
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara>
+            <filename>SRC/common/doublevec.C</filename>: C++ source
+            code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/common/doublevec.h</filename>: C++ header file
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/common/doublevec.swg</filename>: SWIG source code
+          </simpara>
+        </listitem>
+        <listitem>
+          <simpara>
+            <filename>SRC/common/doublvec.spy</filename>: Python code
+            inserted into SWIG output
+          </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>
   </refsynopsisdiv>
 
   <refsection>
@@ -102,56 +436,303 @@
       url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
       role="external"><code>Eigen::vectorXd</code></ulink>.  It
       suppports all the usual arithmetic methods as well as STL style
-      iteration.
+      iteration in C++.
     </para>
+
+    <refsection>
+      <title>Python vs C++</title>
+      <para>
+        A <classname>DoubleVec</classname> can be created in Python or
+        returned from C++ to Python, and bulk operations (like adding
+        two vectors) can be performed from Python.  Element-by-element
+        access is available in Python, but is discouraged, because it
+        is slow.
+      </para>
+      <para>
+        In Python, import <classname>DoubleVec</classname> like this:
+    <programlisting>
+from ooflib.SWIG.common.doublevec import DoubleVec</programlisting>
+
+        The Python class wraps all of the members of the C++ class, and
+        works identically, with the following exceptions:
+        <itemizedlist>
+          <listitem>
+            <para>
+              The null constructor is not provided.  An initial size
+              must be provided.  An initial value is optional:
+            <programlisting>
+vec = doublevec.DoubleVec(10)    # ten zeros
+vac = doublevec.DoubleVec(10, 2) # ten twos
+voc = doublevec.DoubleVec()      # not allowed</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              There are no Python equivalents to the C++ <link
+              linkend="Class-DoubleVec-iterator">iterator
+              methods</link>. This is because accessing indiviual
+              vector elements from Python is inefficient and should be
+              avoided.  <code>__getitem__</code> and
+              <code>__setitem__</code> are provided but should only be
+              used for debugging.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The difference between C++ assignment (copying values)
+              and Python assignment (reassigning references) shows up
+              in a few important ways:
+              <itemizedlist>
+                <listitem>
+                  <para>
+                    To make an independent copy of a DoubleVec, use
+                    the <methodname>clone</methodname> method:
+                    <programlisting>
+vec = DoubleVec(10)
+not_a_copy = vec        # refers to the same data as vec
+is_a_copy = vec.clone() # contains its own copy of vec's data </programlisting>
+                    <code>copy=vec.clone()</code> in Python is the
+                    equivalent of <code>copy=vec</code> in C++.
+                  </para>
+                  <para>
+                    To copy the contents of a
+                    <classname>DoubleVec</classname> to an existing
+                    <classname>DoubleVec</classname>, use the
+                    <methodname>copy_inplace</methodname> method:
+                    <programlisting>
+this = doublevec.DoubleVec(10, 1)
+that = doublevec.DoubleVec(10, 2)
+this.copy_inplace(that) </programlisting>
+                  </para>
+                </listitem>
+                <listitem>
+                  <para>
+                    In Python, the relationship between in-place and
+                    not-in-place arithmetic operators is not the same
+                    as in C++.  In C++, <code>A = A+B</code> and
+                    <code>A += B</code> have the same effect for two
+                    <classname>DoubleVec</classname>s <code>A</code>
+                    and <code>B</code>.  In Python <code>A+=B</code>
+                    adds the contents of <code>B</code> to the vector
+                    <code>A</code>, and all other references to
+                    <code>A</code> will see the new values, just like
+                    they would in C++.  However, in Python <code>A =
+                    A+B</code> creates a new vector <code>A</code>
+                    containing the sum of the old <code>A</code> and
+                    <code>B</code>.  Other references to
+                    <code>A</code> will not see the new values.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </refsection>                 <!-- Python vs C++ -->
   </refsection>                 <!-- DoubleVec description-->
+  
   <refsection id="Class-DoubleVec-ctors">
     <title>Constructors</title>
-    <refsection id="Class-DoubleVec-null-ctor">
-      <title><code>DoubleVec()</code></title>
+
+    <programlisting>
+DoubleVec::DoubleVec(); </programlisting>
       <para>
         The default constructor creates a zero length vector.  It will
         need to resized in order to be useful.
       </para>
-    </refsection>
 
-    <refsection id="Class-DoubleVec-sizector">
-      <title><code>DoubleVec(int size, double default_val=0)</code></title>
+      <programlisting>
+DoubleVec(int size, double value=0); </programlisting>
+
       <para>
         Create a vector of length <varname>size</varname>,
-        initializing each entry to <varname>default_val</varname>.
+        initializing each entry to <varname>value</varname>.
         The initial value is <constant>0</constant> if it's not
         specified.
       </para>
-    </refsection>
-      
-    <refsection id="Class-DoubleVec-copy-move-ctor">
-      <title>Other Constructors</title>
-      <!-- TODO: align the comments  -->
+
+      <anchor id="Class-DoubleVec-copy-move-ctor"/>
       <programlisting>
-DoubleVec(const DoubleVec&amp;) = default; <lineannotation>// copy constructor</lineannotation>
-DoubleVec(DoubleVec&amp;&amp;) = default; <lineannotation>// move constructor</lineannotation>
-DoubleVec(const std::initializer_list&lt;double&gt;&amp;); <lineannotation>// initialization list constructor</lineannotation>
-DoubleVec&amp; operator=(const DoubleVec&amp;) <lineannotation>// assignment operator</lineannotation> </programlisting>
+DoubleVec(const DoubleVec&amp;);                      // copy constructor
+DoubleVec(DoubleVec&amp;&amp;);                           // move constructor
+DoubleVec(const std::initializer_list&lt;double&gt;&amp;);  // initialization list constructor </programlisting>
       <para>
-        The copy, move, and initialization list constructors, as well
-        as the assignment operator, are inherited from the underlying
-        <ulink
+        The copy, move, and initialization list constructors are
+        inherited from the underlying <ulink
         url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
         role="external"><code>Eigen::vectorXd</code></ulink> class.
       </para>
-    </refsection>               <!-- Copy and move constructors -->
-  </refsection>                 <!-- DoubleVec constructors-->
+    </refsection>               <!-- constructors -->
+
   <refsection>
     <title>Methods</title>
-    <refsection id="Class-DoubleVec-resize">
-      <title>DoubleVec::resize</title>
+
+    <refsection id="Class-DoubleVec-assignment">
+      <title>Assignment</title>
       <programlisting>
-void DoubleVec::resize(size_type size, double value=0) </programlisting>
+DoubleVec&amp; operator=(const DoubleVec&amp;) </programlisting>
       <para>
-        Resize the vector, and set all entries to
+        The assignment operator is inherited from the underlying <ulink
+        url="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html"
+        role="external"><code>Eigen::vectorXd</code></ulink> class.
+      </para>
+    </refsection>
+
+    
+    <refsection id="Class-DoubleVec-compare">
+      <title>Comparison</title>
+      <programlisting>
+bool DoubleVec::operator==(const DoubleVec&amp; other) const;
+bool DoubleVec::operator!=(const DoubleVec&amp; other) const; </programlisting>
+      <para>
+        The comparison operators compare each data element individually.
+      </para>
+    </refsection>
+
+    <refsection id="Class-DoubleVec-zero">
+      <title>Initialization</title>
+      <programlisting>
+void DoubleVec::zero();
+void DoubleVec::clear(); </programlisting>
+      <para>
+        Set all vector entries to zero.  The two forms are identical.
+      </para>
+
+      <anchor id="Class-DoubleVec-unit"/>
+      <programlisting>
+void DoubleVec::unit();</programlisting>
+      <para>
+        Set all vector entries to one.
+      </para>
+    
+      <anchor id="Class-DoubleVec-resize"/>
+      <programlisting>
+void DoubleVec::resize(size_type size, double value=0); </programlisting>
+      <para>
+        Resize the vector and set all entries to
         <varname>value</varname>, which defaults to 0.  The previous
         contents of the vector will be lost.
+      </para>
+    </refsection>               <!-- Initialization -->
+
+    <refsection>
+      <title>Data Access</title>
+      <anchor id="Class-DoubleVec-size"/>
+      <programlisting>
+int DoubleVec::size() const; </programlisting>
+       <para>
+         Return the number of components in the vector.
+       </para>
+       <anchor id="Class-DoubleVec-getitem"/>
+      <programlisting>
+double&amp; DoubleVec::operator[](std::size_t index);
+double DoubleVec::operator[](std::size_t index) const;
+double&amp; DoubleVec::operator[](const DoubleVec::iterator&amp;);
+double DoubleVec::operator[](const DoubleVec::const_iterator&amp;) const;
+      </programlisting>
+      <para>
+        Return the contents at location <varname>index</varname>, or a
+        reference to it if the <classname>DoubleVec</classname> is not
+        const.
+      </para>
+    
+      <anchor id="Class-DoubleVec-subvec"/>
+      <programlisting>
+DoubleVec subvec(std::size_t start, std::size_t end) const;
+void subvec_copy(std::size_t destination, const DoubleVec&amp; other,
+                 std::size_t pos, std::size_t size); </programlisting>
+      <para>
+        The first form returns a new <classname>DoubleVec</classname>
+        containing the data from <code>*this</code> from position
+        <varname>start</varname> to <varname>end</varname>.
+      </para>
+      <para>
+        The second form copies data from the given
+        <classname>DoubleVec</classname> <varname>other</varname> to
+        <code>*this</code>.  The data will be extracted from positions
+        <varname>pos</varname> to <code>pos+size</code> in
+        <varname>other</varname>, and will be inserted at positions
+        <varname>destination</varname> to
+        <code>destination+size</code> in <code>*this</code>.
+      </para>
+    </refsection>               <!-- Data access -->
+
+    <refsection id="Class-DoubleVec-inplace">
+      <title>Arithmetic</title>
+      <programlisting>
+DoubleVec&amp; DoubleVec::operator+=(const DoubleVec&amp;);
+DoubleVec&amp; DoubleVec::operator-=(const DoubleVec&amp;);
+DoubleVec&amp; DoubleVec::operator*=(double);
+DoubleVec&amp; DoubleVec::operator/=(double);
+void DoubleVec::axpy(double alpha, const DoubleVec&amp; x); </programlisting>
+      <para>
+        These are the in-place arithmetic operators.
+        <code>axpy()</code> multiplies vector <varname>x</varname> by
+        <varname>alpha</varname> and adds it to <code>*this</code>.
+      </para>
+
+      <anchor id="Class-DoubleVec-outofplace"/>
+      <programlisting>
+DoubleVec DoubleVec::operator+(const DoubleVec&amp; other) const;
+DoubleVec DoubleVec::operator-(const DoubleVec&amp; other) const;
+DoubleVec DoubleVec::operator-() const;
+DoubleVec DoubleVec::operator*(double factor) const;
+DoubleVec operator*(double factor, const DoubleVec&amp; other);
+DoubleVec DoubleVec::operator/(double divisor) const; </programlisting>
+      <para>
+        These out-of-place arithmetic operators return a new object.
+        Scalar multiplication can be done from either the left or the
+        right.
+      </para>
+    </refsection>
+    <refsection id="Class-DoubleVec-dot">
+      <title>Dot Product and Norm</title>
+      <programlisting>
+double DoubleVec::dot(const DoubleVec&amp;) const;
+double DoubleVec::operator*(const DoubleVec&amp;) const; </programlisting>
+      <para>
+        The dot product of two <classname>DoubleVec</classname>s
+        <varname>A</varname> and <varname>B</varname> can be computed
+        either as <code>A.dot(B)</code> or <code>A*B</code>.
+      </para>
+      <anchor id="Class-DoubleVec-norm"/>
+      <programlisting>
+double DoubleVec::norm() const { return data.norm(); } </programlisting>
+      <para>
+        <code>A.norm()</code> is the L2 norm of <varname>A</varname>, or <code>sqrt(A*A)</code>.
+      </para>
+    </refsection>
+    
+    <refsection id="Class-DoubleVec-iterator">
+      <title>Iterators</title>
+      <programlisting>
+DoubleVec::iterator DoubleVec::begin();
+DoubleVec::iterator DoubleVec::end();
+DoubleVec::const_iterator DoubleVec::begin() const;
+DoubleVec::const_iterator DoubleVec::end() const; </programlisting>
+      <para>
+        The iterator classes are typedefs of the Eigen iterators, and
+        can be used like normal STL iterators.  These loops are
+        functionally identical:
+        <programlisting>
+DoubleVec A(10);
+
+// Use a std::size_t (or int) index
+for(std::size_t i=0; i&lt;A.size(); i++)  
+   A[i] = 2;
+
+// Use an iterator as an index
+for(DoubleVec::iterator i=A.begin(); i&lt;A.end(); i++)
+   A[i] = 2;
+
+// Use an iterator as a pointer
+for(DoubleVec::iterator i=A.begin(); i&lt;A.end(); i++)
+   *i = 2;
+
+// Use a range-based loop
+for(double&amp; x : A)
+   x = 2;
+        </programlisting>
       </para>
     </refsection>
   </refsection>                 <!-- DoubleVec methods -->
