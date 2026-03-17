@@ -235,7 +235,7 @@
         
 	    <methodsynopsis>
 	      <modifier>virtual</modifier>
-	      <type>ArithmeticOutputValue</type>
+	      <type>&ArithmeticOutputValue;</type>
 	      <methodname><link
 		                  linkend="Class-Field-output">output</link></methodname>
           <methodparam>
@@ -253,7 +253,7 @@
         
 	    <methodsynopsis>
 	      <modifier>virtual</modifier>
-	      <type>ArithmeticOutputValue</type>
+	      <type>&ArithmeticOutputValue;</type>
 	      <methodname><link
 		                  linkend="Class-Field-output">output</link></methodname>
           <methodparam>

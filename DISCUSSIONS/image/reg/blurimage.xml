@@ -18,8 +18,8 @@
   The <varname>radius</varname> parameter is the size of the mask used
   to perform the convolution, in pixels.  The new value of a pixel is
   the Gaussian weighted average of the pixel values in a
-  <emphasis>square</emphasis> with sides of length <code>2*radius +
-  1</code> in pixel units, centered on the pixel.
+  <emphasis>square</emphasis> with sides of length
+  <code>2*radius+1</code> in pixel units, centered on the pixel.
 </para>
 <para>
   In a color image, each RGB channel is blurred separately.

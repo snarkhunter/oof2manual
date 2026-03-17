@@ -24,11 +24,10 @@
   <para>
     Note that it's the <emphasis>pixel selection</emphasis> that is
     being despeckled, not the &image;.  The term
-    <quote>despeckle</quote> is also used to mean removing noise from
-    an image, and &oof2; does include &image; despeckling with <xref
-    linkend="MenuItem-OOF.Image.Modify.Despeckle"/>.  <xref
-    linkend="MenuItem-OOF.PixelSelection.Despeckle"/> selects pixels,
-    but does not affect &images;.
+    <quote>despeckle</quote> is sometimes also used to mean removing
+    noise from an image.  Prior versions of &oof2; contained an image
+    despeckling tool, but that feature is now supplied by <xref
+    linkend="MenuItem-OOF.Image.Modify.Denoise"/>.
   </para>
 </note>
 

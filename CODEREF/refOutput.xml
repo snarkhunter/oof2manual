@@ -1309,6 +1309,9 @@ defineAggregateOutput(path, output)
 
   <!-- TODO: Use a separate page for each subclass of OutputVal -->
 
+  <!-- TODO: Update to include ArithmeticOutputVal as an intermediate
+       base class -->
+
   <refentry id="Class-OutputVal">
     <refnamediv>
       <refname>OutputVal</refname>
