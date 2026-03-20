@@ -465,6 +465,12 @@ oof2-extension-setup </literallayout>
         </itemizedlist>
       </para>
     </refsection>
+    <!-- TODO: Add sections for each type of template.  Explain the
+         non-const and non-linear templates and how they're derived
+         from special base classes, so they aren't generic examples of
+         properties.
+         Copy from EXTENSION_TEMPLATES/README
+         -->
   </refentry>                 <!-- oof2-extension-setup -->
   
 </reference> 

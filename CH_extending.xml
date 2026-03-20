@@ -8,6 +8,13 @@
   the authors at oof_manager@nist.gov.
 -->
 
+<!--
+    TODO:
+    Delete mentions of OOF2_SWIG_VERSION.
+    
+    
+    -->
+
 <chapter id="Chapter-Extending">
   <title>Extending &oof2;</title>
   <para>
@@ -508,7 +515,7 @@ add_subdirectory("<emphasis role="bold">extension2</emphasis>") </programlisting
               by the project name, set in <xref
               linkend="cmake1-project"/>.  If you want to install
               elsewhere, change or delete
-              <code>/${CMAKE_PROJECT_NAME}</code> here and in the
+              <code>${CMAKE_PROJECT_NAME}</code> here and in the
               subdirectories' <link
               linkend="cmake1a"><filename>CMakeLists.txt</filename></link>
               files.
@@ -736,7 +743,11 @@ swig_sources(
           <listitem>
             <para>
               Build and install &oof2; with the
-              <varname>OOF2_DEV_INSTALL</varname> option.
+              <varname>OOF2_DEV_INSTALL</varname> option.  This will
+              create an executable python script named
+              <filename>oof2-extension-setup</filename> in the
+              <filename>PREFIX/bin</filename> (the same location as
+              the &oof2; executable).
             </para>
           </listitem>
           <listitem>
@@ -985,7 +996,7 @@ swig_sources(
       <para>
         The list below contains all the options.  In each example,
         replace <quote>oofextension</quote> with the name of your
-        extension:
+        extension.
       </para>
       <orderedlist>
         <listitem>

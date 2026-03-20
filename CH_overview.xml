@@ -112,20 +112,18 @@
 	expandable (developers and adventurous users can add new types
 	of physics without creating a separate program).  &oof2; does
 	everything within one program; there is no separation between
-	the mesh generation code and the mesh solution code. Finally,
-	&oof2; will be the basis for <application>OOF3D</application>,
-	which will solve three dimensional microstructures.
+	the mesh generation code and the mesh solution code.
       </para>
 
-      <para>
+      <!-- <para>
         TODO: List of major new features and the versions they
         appeared in.
       </para>
-
+      
       <para>
         TODO: Past participants in the project who aren't listed as
         authors.
-      </para>
+      </para> -->
 
     </section>
   </section>

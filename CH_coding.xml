@@ -337,29 +337,29 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
         <listitem>
           <para>
             The &FieldIndex; base class, which designates a component
-            of a &Field; or other object.  There are different
+            of a &Field; or other object.  <!-- There are different
             subclasses for different kinds of objects (scalars,
-            vectors, tensors, <foreignphrase>etc</foreignphrase>).
+            vectors, tensors, <foreignphrase>etc</foreignphrase>). -->
           </para>
         </listitem>
         <listitem>
           <para>
             A &Components; base class, which is a container that can
-            be iterated over to obtain the &FieldIndexes;.  There are
+            be iterated over to obtain the &FieldIndexes;.  <!-- There are
             different subclasses for different kinds of objects, and
             for different ways of iterating over them (in-plane,
             out-of-plane, <foreignphrase>etc</foreignphrase>).  Each
             indexable class (&Field;, &Flux;,
             <foreignphrase>etc</foreignphrase>) has a virtual function
-            that returns the appropriate type of &Components;.
+            that returns the appropriate type of &Components;. -->
           </para>
         </listitem>
         <listitem>
           <para>
             A &ComponentIterator; base class that is used for
-            iterating over the &Components;.  Different subclasses of
+            iterating over the &Components;.  <!-- Different subclasses of
             &ComponentIterator;s iterate over different types of
-            &Components;.
+            &Components;. -->
           </para>
         </listitem>
         <listitem>
@@ -687,14 +687,13 @@ conjugatePair("Elasticity",
 	        <emphasis>Precomputation.</emphasis> When constructing the
 	        finite element stiffness matrix, the &oof2; program loops
 	        over all &elems; and asks their &materials; to ask their
-	        &properties; to make their contributions to the matrix.
+	        &properties; to make their contributions to the matrix at
+            each Gauss point.
 	        For efficiency, &properties; may want to precompute some
-	        quantities before this process begins.  There are two
-	        possible precomputation points: &elem;- and
-	        &node;-independent computations that are done before
-	        looping over &elems;, and
-	        &elem;-<emphasis>de</emphasis>pendent ones that are done
-	        before looping over &nodes;.
+	        quantities before this process begins.  There are three
+	        possible precomputation points: before looping over
+            &elems;, before looping over &nodes;, and before looping
+            over Gauss points (to integrate shape functions):
 	      </para>
 	      <itemizedlist spacing="compact">
 	        <listitem>
@@ -721,11 +720,12 @@ conjugatePair("Elasticity",
 	    <listitem>
 	      <para>
             <anchor id="para-computation"/>
-            <!-- TODO update this -->
 	        <emphasis>Computation.</emphasis> &properties; can make
-	        contributions to the finite element stiffness matrix and
+	        contributions to the finite element stiffness matrix in
+            various ways: and
 	        to the right-hand side vector of external
-	        <quote>forces</quote>.
+	        <quote>forces</quote>.  There are various ways of doing
+            this, applicable in different situations:
 	      </para>
 	      <itemizedlist spacing="compact">
 	        <listitem>
@@ -740,7 +740,42 @@ conjugatePair("Elasticity",
 		        linkend="Class-FluxProperty-flux_offset"><code>FluxProperty::flux_offset</code></link>
 	          </simpara>
 	        </listitem>
+            <listitem>
+              <simpara>
+                <link
+                    linkend="Class-FluxProperty-flux_value"><code>FluxProperty::flux_value</code></link>
+              </simpara>
+            </listitem>
+            <listitem>
+              <simpara>
+                <link
+                    linkend="Class-FluxProperty-static_flux_value"><code>FluxProperty::static_flux_value</code></link>
+              </simpara>
+            </listitem>
+          </itemizedlist>
+          <para>
+            A &property; can make contributions to the force vector
+            and other quantities (such as mass or damping terms) that
+            appear in the equations but aren't part of a &flux;:
+          </para>
+          <itemizedlist>
+            <listitem>
+              <simpara>
+                <link linkend="Class-EqnProperty-force_deriv_matrix"><code>EqnProperty::force_deriv_matrix</code></link>
+              </simpara>
+            </listitem>
+            <listitem>
+              <simpara>
+                <link linkend="Class-EqnProperty-force_value"><code>EqnProperty::force_value</code></link>
+              </simpara>
+            </listitem>
+            <listitem>
+              <simpara>
+                <link linkend="Class-EqnProperty-time_deriv_matrices"><code>EqnProperty::time_deriv_matrices</code></link>
+              </simpara>
+            </listitem>
 	      </itemizedlist>
+
           <para>
 	        There are also a few functions that &properties; may
 	        define that influence the way they're used or the way a
@@ -765,8 +800,9 @@ conjugatePair("Elasticity",
 	      <para>
 	        <emphasis>Postcomputation.</emphasis> This is just like
 	        <link linkend="para-precomputation">precomputation</link>,
-	        but later.  It can be done either after the <link
+	        but later.  It can be done after the <link
 	        linkend="para-computation">computation</link> on each
+	        Gauss point, each <classname>GaussPoint</classname>, each
 	        &elem;, or after a full solution has been obtained.
 	      </para>
 	      <itemizedlist spacing="compact">

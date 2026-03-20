@@ -41,7 +41,7 @@ WEB_SUBDIR ?= oof2man
 
 # OOF_BUILD_DIR is the build directory containing the Makefile generated
 # by cmake.  
-OOF_BUILD_DIR ?= $(HOME)/FE/OOF2/build-py313
+OOF_BUILD_DIR ?= $(HOME)/FE/OOF2/build-py314
 
 # OOF_STOW_DIR is the directory containing the subdirectory where
 # OOF2 will be staged during installation.
@@ -51,7 +51,7 @@ OOF_STOW_DIR ?= $(HOME)/stow
 # the staging directory.  Setting it to WEB_SUBDIR guarantees that it
 # won't overwrite another staged installation.
 OOF_DEST_DIR ?= $(WEB_SUBDIR)
-#OOF_DEST_DIR = oof2-py313
+#OOF_DEST_DIR = oof2-py314
 
 # OOF_STOW_SUBDIR is the subdirectory of OOF_STOW_DIR where OOF2 will be
 # staged during installation. 

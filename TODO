@@ -56,3 +56,4 @@ class man pages.
 
 Make the <refpurpose> strings consistent.  Do they have a closing period?
 
+Docs for SmallMatrix, SmallTensor3, SmallTensor4.
