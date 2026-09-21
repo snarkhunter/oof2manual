@@ -499,7 +499,7 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
       contributes to <xref linkend="Flux-Heat_Flux"/>.  The principal
       job of the <classname>FluxProperty</classname> is to compute the
       coefficients of the &fields; and their time derivatives in a
-      linear expansion of a &flux;, &sigma; in terms of a &Field; or
+      linear expansion of a &flux;, &sigma;, in terms of a &Field; or
       &Fields;, &varphi;, and its spatial and time derivatives:
       <equation id="Eqn-flux1">
         <alt role="tex">

@@ -8,13 +8,6 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<!--
-    TODO:
-    Delete mentions of OOF2_SWIG_VERSION.
-    
-    
-    -->
-
 <chapter id="Chapter-Extending">
   <title>Extending &oof2;</title>
   <para>
@@ -302,8 +295,7 @@ cmake_minimum_required(VERSION 3.18) # <co id="cmake0-minversion"/>
 
 project(projectname VERSION 0.0.0) # <co id="cmake0-project"/>
 
-set(OOF2_PYTHON3_VERSION 3.11 CACHE STRING "Use this version of Python") # <co id="cmake0-oofversions"/>
-set(OOF2_SWIG_VERSION 4.1 CACHE STRING "Use this version of swig")
+set(OOF2_PYTHON_VERSION 3.11 CACHE STRING "Use this version of Python") # <co id="cmake0-oofversions"/>
 
 include("<emphasis role="bold">PREFIX</emphasis>/share/oof2/tools/oofbuildtools.cmake") # <co id="cmake0-prefix"/>
 
@@ -465,8 +457,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project(<emphasis role="bold">oofextensions</emphasis> VERSION <emphasis role="bold">0.0.0</emphasis>) # <co id="cmake1-project"/>
 
-set(OOF2_PYTHON3_VERSION 3.11 CACHE STRING "Use this version of Python") # <co id="cmake1-pyversion"/>
-set(OOF2_SWIG_VERSION 4.1 CACHE STRING "Use this version of swig")
+set(OOF2_PYTHON_VERSION 3.11 CACHE STRING "Use this version of Python") # <co id="cmake1-pyversion"/>
 
 include("<emphasis role="bold">PREFIX</emphasis>/share/oof2/tools/oofbuildtools.cmake") # <co id="cmake1-prefix"/>
 

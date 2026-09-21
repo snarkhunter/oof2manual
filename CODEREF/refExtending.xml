@@ -276,7 +276,8 @@ swig_sources(
     <refnamediv>
       <refname><application>oof2-extension-setup</application></refname>
       <refpurpose>
-        Generate the infrastructure of the code for an &oof2; extension.
+        Generate the infrastructure of the code for an &oof2; material
+        property extension.
       </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -374,8 +375,7 @@ swig_sources(
         To use <application>oof2-extension-setup</application>, in a
         terminal window cd to the directory where you want the
         extension source code to reside, and type
-        <literallayout role="monospaced">
-oof2-extension-setup </literallayout>
+        <literallayout role="monospaced">oof2-extension-setup </literallayout>
 
         followed by the arguments described above.  A new directory
         will be created with the given module name.  The contents of
@@ -464,13 +464,13 @@ oof2-extension-setup </literallayout>
           </listitem>
         </itemizedlist>
       </para>
-    </refsection>
-    <!-- TODO: Add sections for each type of template.  Explain the
-         non-const and non-linear templates and how they're derived
-         from special base classes, so they aren't generic examples of
-         properties.
-         Copy from EXTENSION_TEMPLATES/README
-         -->
+
+      <para>
+        Follow the instructions in the <filename>README</filename>
+        file describing how to edit the the other files, and how to
+        build and install the extension after you've written the code.
+      </para>
+    </refsection>         <!-- Description for oof2-extension-setup-->
   </refentry>                 <!-- oof2-extension-setup -->
   
 </reference> 

@@ -132,15 +132,15 @@ import oof2.common.IO.output
     <refsection>
       <title>Description</title>
       <para>
-	&oof2; <classname>Output</classname> objects perform simple
-	operations on data derived from a finite element &mesh;.
-	Simple <classname>Output</classname> objects may be combined
-	to perform more complicated operations.  An overview and
-	examples may be found in <xref linkend="Section-Coding-Output"/>.
+	    &oof2; <classname>Output</classname> objects perform simple
+	    operations on data derived from a finite element &mesh;.
+	    Simple <classname>Output</classname> objects may be combined
+	    to perform more complicated operations.  An overview and
+	    examples may be found in <xref linkend="Section-Coding-Output"/>.
       </para>
       <para>
-	The <classname>Output</classname> class is only available in
-	Python.
+	    The <classname>Output</classname> class is only available in
+	    Python.
       </para>
     </refsection>
     <refsection>

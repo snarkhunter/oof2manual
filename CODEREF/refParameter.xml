@@ -879,10 +879,9 @@ modifier') </programlisting>
 	      their <varname>secret</varname> flag set.
 	    </para>
 	    <para>
-          <!-- TODO: Fix this -->
 	      The <guilabel>category</guilabel> menu in the
-	      <guilabel>Displayed Object</guilabel> pane of the NOT THE
-	      LAYEREDITOR is a widget for a
+	      <link linkend="Figure-newlayer">New Graphics
+	      Layer</link> dialog is a widget for a
 	      <classname>WhoClassParameter</classname>.
 	    </para>
 	  </refsection>           <!-- WhoClassParameter -->

@@ -624,9 +624,6 @@ conjugatePair("Elasticity",
       links below each task lead to detailed documentation, see the
       pages for the classes for the full list of methods):
       <itemizedlist>
-        <!-- TODO: Fix links.  Some links to go to Property methods
-             that are now in PhysicalProperty or more derived classes
-        -->
 	    <listitem>
 	      <para>
             <anchor id="para-propertyType"/>

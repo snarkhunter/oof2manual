@@ -68,35 +68,7 @@ OOF_BIN_DIR ?= $(HOME)/bin
 # but it's better to ensure that it first unstows the previously
 # stowed installation.
 
-# This is the switchto script that I use. It lives in $(HOME)/stow.
-# #!/usr/bin/env python3
-# import sys, os
-#
-# stowsubdir = sys.argv[1]
-#
-# laststowfile = ".last_oof_install"
-# lsf = open(laststowfile, 'r')
-# laststow = lsf.readline().rstrip()
-# lsf.close()
-#
-# if laststow != stowsubdir:
-#     if laststow != 'none':
-#         print("Unstowing", laststow)
-#         unstowcmd = "stow -t / -D " + laststow
-#         os.system(unstowcmd)
-#     if stowsubdir != 'none':
-#         print("Stowing", stowsubdir)
-#         stowcmd = "stow -t / " + stowsubdir
-#         os.system(stowcmd)
-#     lsf = open(laststowfile, 'w')
-#     print(stowsubdir, file=lsf)
-#     lsf.close()
-# else:
-#     print("Restowing", stowsubdir)
-#     stowcmd = "stow -R -t / " + stowsubdir
-#     os.system(stowcmd)
-
-OOF_INSTALL ?= ./switchto
+OOF_INSTALL ?= switchto oof2
 
 # TEMP_DIR is the name of a temporary directory that will be created in
 # this directory.

@@ -44,6 +44,15 @@
        </constructorsynopsis>
       </classsynopsis>
     </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2 id="Class-PyAuxProperty" xreflabel="PyAuxProperty">
+      <title>Python Synopsis</title>
+      <para>
+        There are no Python methods for
+        <classname>AuxiliaryProperty</classname> other than those
+        defined in the <link linkend="Class-Property">base
+        class</link> and derived classes.
+      </para>
+    </refsect2>                 <!-- Python Synopsis -->
     <refsect2>
       <title>Source Files</title>
       <itemizedlist spacing="compact">
@@ -66,12 +75,6 @@
         </listitem>
       </itemizedlist>
     </refsect2>                 <!-- C++ Source Files -->
-    <refsect2 id="Class-PyAuxProperty" xreflabel="PyAuxProperty">
-      <title>Python Synopsis</title>
-      <para>
-        TODO
-      </para>
-    </refsect2>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
