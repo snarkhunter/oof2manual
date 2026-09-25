@@ -64,6 +64,7 @@
 <!ENTITY refPropertyReg SYSTEM "CODEREF/refPropertyReg.xml">
 <!ENTITY refPyLock SYSTEM "CODEREF/refPyLock.xml">
 <!ENTITY refPyProperty SYSTEM "CODEREF/refPyProperty.xml">
+<!ENTITY refPythonExportable SYSTEM "CODEREF/refPythonExportable.xml">
 <!ENTITY refgetField SYSTEM "CODEREF/refgetField.xml">
 <!ENTITY appendices SYSTEM "appendices.xml">
 
@@ -168,6 +169,7 @@ links to the general discussions in CH_concepts.xml.
 <!ENTITY ComponentIteratorP "<link linkend='Class-ComponentIteratorP'><classname>ComponentIteratorP</classname></link>">
 <!ENTITY DegreeOfFreedom "<link linkend='Class-dof><classname>DegreeOfFreedom</classname></link>">
 <!ENTITY Element "<link linkend='Class-Element'><classname>Element</classname></link>">
+<!ENTITY ElementData "<link linkend='Class-ElementData'><classname>ElementData</classname></link>">
 <!ENTITY Elements "<link linkend='Class-Element'><classname>Elements</classname></link>">
 <!ENTITY ElementFuncNodeIterator "<link linkend='Class-ElementFuncNodeIterator'><classname>ElementFuncNodeIterator</classname></link>">
 <!ENTITY Equation "<link linkend='Class-Equation'><classname>Equation</classname></link>">

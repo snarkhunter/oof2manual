@@ -1,0 +1,226 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<refentry id="Class-PythonExportable">
+  <refnamediv>
+    <refname>PythonExportable and PythonNative</refname>
+    <refpurpose>C++ base classes for objects exported to Python</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+#include "common/pythonexportable.h
+
+template &lt;class TYPE&gt; class PythonExportable;
+template &lt;class TYPE&gt; class PythonNative; </programlisting>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Overview</title>
+    <para>
+      The <classname>PythonExportable</classname> base class is used to
+      convert base class pointers exported to Python via SWIG into
+      derived class Python objects.
+    </para>
+    <para>
+      Suppose you have a C++ class hierarchy with a base class
+      <classname>MyExportable</classname> and derived classes
+      <classname>Wine</classname> and <classname>Cheese</classname>,
+      all of which are swigged.  If you have a function
+      <code>MyExportable* f()</code> that returns a pointer to an
+      instance of <classname>Wine</classname> or
+      <classname>Cheese</classname>, the SWIG generated Python code
+      won't give you access to the derived parts of
+      <classname>Wine</classname> and <classname>Cheese</classname>.
+      The swigged <code>f()</code> will return a Python
+      <classname>MyExportable</classname>.  This is consistent with
+      the way C++ does things &emdash; using a
+      <classname>MyExportable*</classname> only gives you access to
+      those parts of <classname>Wine</classname> and
+      <classname>Cheese</classname> that are declared in the base
+      class &emdash; but it's inconsistent with Python's approach. In
+      Python there's no such thing as a base class pointer.  All
+      components of all objects are always accessible, if you know
+      they're there. (For example, you might have created a SWIGged
+      derived class object in Python, stored in a C++ list of base
+      class objects, and then retrieved it from that list in Python.
+      You'd expect to have all of the derived class functions
+      available.)
+    </para>
+    <para>
+      The <classname>PythonExportable</classname> and
+      <classname>PythonNative</classname> classes remedy this
+      inconsistency, allowing C++ functions to have polymorphic Python
+      return types.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Source Files</title>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <simpara><filename>SRC/common/pythonexportable.h</filename>:
+        C++ header file</simpara>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>PythonExportable</title>
+    <para>
+      To use <classname>PythonExportable</classname>, you need to do
+      two things:
+      <orderedlist>
+        <listitem>
+          <para>
+            Derive a C++ class hierarchy from the templated base class
+            <classname>PythonExportable</classname>.  The template
+            parameter must be the name of the class derived from
+            <classname>PythonExportable</classname>.  Each derived
+            type must supply a <methodname>classname()</methodname>
+            virtual function that returns the name of the derived
+            class.<footnote><simpara>Intermediate abstract derived
+            classes do not need to define
+            <methodname>classname()</methodname>.</simpara></footnote>
+            <!-- If the C++ derived classes will be swigged and used as
+            base classes for Python classes, then
+            <classname>PythonExportable</classname> must be a
+            <emphasis>virtual</emphasis> base class (see
+            <classname>PythonNative</classname> below). -->
+          </para>
+          <para>
+            For example:
+            <programlisting>
+class MyExportable : public PythonExportable&lt;MyExportable&gt; {
+};
+
+class Wine : public MyExportable {
+public:
+   virtual const std::string&amp; classname() const {
+     static const std::string name("Wine");
+      return name;
+   }
+}
+
+class Cheese : public MyExportable {
+public:
+   virtual const std::string&amp; classname() const {
+      static const std::string name("Cheese");
+      return name;
+   }
+} </programlisting>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            In every swig file containing a function that returns a
+            base class pointer (<code>MyExportable*</code> in these
+            examples), include the line:
+            <programlisting>
+PYTHONEXPORTABLE(MyExportable); </programlisting>
+
+            <code>PYTHONEXPORTABLE</code> is defined in
+            <filename>SRC/common/typemaps.swg</filename>.  It defines
+            a swig typemap for the base class pointer that ensures
+            that a derived class object is returned for any swigged
+            function that returns a base class pointer.  The function
+            would appear in the swig file like:
+            <programlisting>
+MyExportable* f1(); </programlisting>
+
+            <code>PYTHONEXPORTABLE</code> also defines a typemap for
+            the base class name with <code>New</code> prepended.  A
+            function declared in the swig file like:
+            <programlisting>
+NewMyExportable* f2(); </programlisting>
+            will also return a derived class object, but Python will
+            take ownership of it, deleting it when there are no more
+            references to it.
+          </para>
+        </listitem>
+      </orderedlist>
+    </para>
+    <para>
+      Now when <code>f1()</code> or <code>f2()</code> is called from
+      Python, the returned value will be a Python instance of
+      <classname>Wine</classname> or <classname>Cheese</classname>, and
+      not a generic <classname>MyExportable</classname>.
+    </para>
+  </refsection>
+  
+  <refsection>
+    <title>PythonNative</title>
+    <para>
+      If the C++ class hierarchy derived from
+      <classname>PythonExportable</classname> is swigged, and the
+      swigged Python classes are further extended by Python
+      inheritance, then the above mechanism doesn't quite work.  The
+      class which is to be used as a base class for the Python
+      inheritance must be derived <emphasis>virtually</emphasis> from
+      <classname>PythonExportable</classname>.  The derived classes
+      must also be derived from <classname>PythonNative</classname>.
+      <classname>PythonNative</classname> is a template, and must have
+      the same template parameter as
+      <classname>PythonExportable</classname>.  The C++ constructor
+      must have a <classname>PyObject*</classname> argument and pass
+      it to the <classname>PythonNative</classname> constructor.
+    </para>
+    <para>
+      For example, if <classname>Cheese</classname> is swigged and
+      extended in Python, then it needs to have been defined like this
+      in C++:
+      <programlisting>
+class MyExportable : <emphasis role="bold">virtual</emphasis> public PythonExportable&lt;MyExportable&gt; {
+};
+
+class Cheese
+   : public MyExportable, public PythonNative&lt;MyExportable&gt;
+{
+   public:
+   Cheese(PyObject* <emphasis role="bold">self</emphasis>) : PythonNative(self) { ... }
+   const std::string&amp; classname();
+} </programlisting>
+
+      and a Python constructor for the derived class that also passes
+      the pointer:
+      
+      <programlisting>
+class Cheddar(Cheese):
+    def __init__(self):
+       [cheddar specific stuff]
+       Cheese.__init__(self, <emphasis role="bold">self</emphasis>) </programlisting>
+      
+      The second <code>self</code> in the line above is the
+      <code>PyObject* self</code> in the C++
+      <classname>Cheese</classname> constructor.<footnote><simpara>It
+      is possible to hide the second <code>self</code> if desired.
+      See <filename>SRC/engine/pypropertywrapper.spy</filename> for an
+      example.</simpara></footnote>
+    </para>
+    <para>
+      <methodname>classname()</methodname> needs to be defined in the
+      derived C++ class, but if only the Python classes derived from
+      the C++ class are used, <methodname>classname()</methodname>
+      will never be called.
+    </para>
+  </refsection>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+  Local variables:
+  sgml-omittag:t
+  sgml-shorttag:t 
+  sgml-namecase-general:nil
+  sgml-minimize-attributes:nil
+  sgml-always-quote-attributes:t
+  sgml-indent-step:2
+  sgml-indent-data:t
+  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
+  sgml-exposed-tags:nil
+  sgml-local-ecat-files:nil
+  End:
+-->
