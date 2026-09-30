@@ -94,7 +94,7 @@ TEMP_DIR ?= tmpdir
 SAXON = ../xsl/java/saxon.jar
 ## TODO: More up-to-date saxon from MacPorts raises lots of warnings
 ## and errors.  Is there any point in updating?
-#SAXON = /opt/local/share/java/saxon9he.jar
+#SAXON = /opt/local/share/java/saxon-he.jar
 
 local: $(TEMP_DIR) saxonize.web texify_mathml figs 
 	python webwrap.py --from=$(TEMP_DIR) --to=$(WEB_DIR)/$(WEB_SUBDIR) --styledir=STYLE --exclude=.tex,.dvi,.aux,.log,.bak

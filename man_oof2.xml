@@ -1,4 +1,24 @@
-<?xml version='1.0'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Google says to include files like this:
+    <root xmlns:xi="http://w3.org">
+       <xi:include href="filename"/>
+    </root>
+
+Each included file should contain a DOCTYPE line indicating the top element:
+
+ <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+ "dtd/docbook-xml-4.5/docbookx.dtd">
+
+ BUT this isn't working... Emacs can find the dtd, but when the manual
+ is built, the <xi:include ...> does nothing.
+
+If there's more than one top level element in a file, it's necessary to use
+external entities (like I have been).  Get emacs to find the dtd with
+M-x nxml-parent-document-set
+
+-->
+
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" 
 "dtd/docbook-xml-4.5/docbookx.dtd"
  [
@@ -266,6 +286,11 @@ links to the general discussions in CH_concepts.xml.
 
   <part id="Part-using">
     <title>Using OOF2</title>
+    <!--
+        <root xmlns:xi="http://w3.org">
+        <xi:include href="CH_overview.xml"/>
+        </root>
+    -->
     &overview;
     &starting;
     &concepts;

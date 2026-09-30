@@ -1226,7 +1226,7 @@ void ForceDensity::force_value(
         it only needs to be defined if the nonlinear solver needs to
         compute the Jacobian.</para></footnote> It computes the
         derivatives of the force with respect to the &Fields;.  That
-        is, it computes a <xref linkend="Class-SmallMatrix"/>
+        is, it computes a matrix
 
         <equation id="force-deriv-mtx">
           <alt role="tex">

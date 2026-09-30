@@ -66,9 +66,6 @@
   </refentry><!-- CSubProblem -->
 
   <refentry id="Class-Element">
-    <!-- TODO: Add docs for appendData, setDataByName, setData,
-         getData, getIndexByName, getDataByName, delDataByName,
-         delData, clearData.  Why aren't the del* methods swigged? -->
     <refnamediv>
       <refname>Element</refname>
       <refpurpose>Element class for finite element meshes</refpurpose>
@@ -223,6 +220,104 @@
 	    </methodparam>
 	    <modifier>const</modifier>
 	  </methodsynopsis>
+      <!-- ElementData handling methods -->
+      <methodsynopsis>
+        <type>int</type>
+        <methodname><link
+                        linkend="Class-Element-appendData">appendData</link></methodname>
+        <methodparam>
+          <type><link
+                    linkend="Class-ElementData">ElementData*</link></type>
+          <parameter>data</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- appendData -->
+      
+      <methodsynopsis>
+        <void/>
+        <methodname><link
+                        linkend="Class-Element-setData">setData</link></methodname>
+        <methodparam>
+          <type>int</type>
+          <parameter>i</parameter>
+        </methodparam>
+        <methodparam>
+          <type>ElementData*</type>
+          <parameter>data</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- setData -->
+
+      <methodsynopsis>
+        <void/>
+          <methodname><link
+                          linkend="Class-Element-setDataByName">setDataByName</link></methodname>
+        <methodparam>
+          <type>ElementData*</type>
+          <parameter>data</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- setDataByName -->
+
+      <methodsynopsis>
+        <type>ElementData*</type>
+        <methodname><link
+                        linkend="Class-Element-getData">getData</link></methodname>
+        <methodparam>
+          <type>int</type>
+          <parameter>i</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- getData -->
+
+      <methodsynopsis>
+        <type>ElementData*</type>
+        <methodname><link
+                        linkend="Class-Element-getDataByName">getDataByName</link></methodname>
+        <methodparam>
+          <modifier>const</modifier>
+          <type>std::string&amp;</type>
+          <parameter>name</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- getDataByName -->
+      
+      <methodsynopsis>
+        <type>int</type>
+        <methodname><link
+                        linkend="Class-Element-getIndexByName">getIndexByName</link></methodname>
+        <methodparam>
+          <modifier>const</modifier>
+          <type>std::string&amp;</type>
+          <parameter>name</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- getIndexByName -->
+
+      <methodsynopsis>
+        <void/>
+        <methodname><link
+                        linkend="Class-Element-delData">delData</link></methodname>
+        <methodparam>
+          <type>int</type>
+          <parameter>i</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- delData -->
+
+      <methodsynopsis>
+        <void/>
+        <methodname><link
+                        linkend="Class-Element-delDataByName">delDataByName</link></methodname>
+        <methodparam>
+          <type>std::string&amp;</type>
+          <parameter>name</parameter>
+        </methodparam>
+        <modifier>const</modifier>
+      </methodsynopsis>         <!-- delDataByName -->
+
+      <!-- end ElementData handling methods -->
+      
 	</classsynopsis>
       </refsect2><!-- C++ Synopsis -->
       <refsect2>
@@ -310,6 +405,48 @@ from ooflib.SWIG.engine import element</programlisting>
 	      <parameter>point</parameter>
 	    </methodparam>
 	  </methodsynopsis>
+      
+      <methodsynopsis>
+        <methodname><link
+              linkend="Class-Element-appendData">appendData</link></methodname>
+        <methodparam><parameter>data</parameter></methodparam>
+      </methodsynopsis>
+      
+      <methodsynopsis>
+        <methodname><link
+                        linkend="Class-Element-setData">setData</link></methodname>
+        <methodparam><parameter>index</parameter></methodparam>
+        <methodparam><parameter>data</parameter></methodparam>
+      </methodsynopsis>
+      <methodsynopsis>
+        <methodname><link
+                        linkend="Class-Element-setDataByName">setDataByName</link></methodname>
+        <methodparam><parameter>data</parameter></methodparam>
+      </methodsynopsis>
+      
+      <methodsynopsis>
+        <methodname><link
+                        linkend="Class-Element-getData">getData</link></methodname>
+        <methodparam><parameter>index</parameter></methodparam>
+        <methodparam><parameter>data</parameter></methodparam>
+      </methodsynopsis>
+      <methodsynopsis>
+        <methodname><link
+                        linkend="Class-Element-getDataByName">getDataByName</link></methodname>
+        <methodparam><parameter>data</parameter></methodparam>
+      </methodsynopsis>
+      
+      <methodsynopsis>
+        <methodname><link
+                        linkend="Class-Element-delData">delData</link></methodname>
+        <methodparam><parameter>index</parameter></methodparam>
+      </methodsynopsis>
+            <methodsynopsis>
+        <methodname><link
+                        linkend="Class-Element-delDataByName">delDataByName</link></methodname>
+        <methodparam><parameter>name</parameter></methodparam>
+      </methodsynopsis>
+      
 	</classsynopsis>
       </refsect2><!-- Python Synopsis -->
       <refsect2>
@@ -327,7 +464,7 @@ from ooflib.SWIG.engine import element</programlisting>
 	  <listitem>
 	    <simpara>
 	      <filename>SRC/engine/element.swg</filename>:
-	      <application>swig</application> source code.
+	      <application>swig</application> source code
 	    </simpara>
 	  </listitem>
 	</itemizedlist>
@@ -549,13 +686,347 @@ from ooflib.SWIG.engine import element</programlisting>
 	  except that it computes the value of a <link
 	  linkend="Class-Flux"><classname>Flux</classname></link>.
 	</para>
-      </refsection><!-- outputFlux -->
-    </refsection><!-- Methods -->
-  </refentry><!-- Element -->
+  </refsection><!-- outputFlux -->
+</refsection>
+
+<refsection id="Class-Element-ElementData">
+  <title>Element Methods for Handling ElementData</title>
+  <para>
+    New &Properties; and other extension code can assign data to
+    individual &Elements; using the &ElementData; class and the
+    &Element; methods listed here.
+  </para>
+  
+
+  <refsection id="Class-Element-appendData">
+    <title>
+      <code>int appendData(ElementData *data) const</code>
+    </title>
+    <para>
+      Attach the given &ElementData; object to this &Element;, and
+      return its index.  It can be retrieved later using <link
+      linkend="Class-Element-getData"><code>Element::getData(index)</code></link>.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!-- Element::appendData -->
+  <refsection id="Class-Element-setDataByName">
+    <title>
+      <code>void setDataByName(ElementData* data) const</code>
+    </title>
+    <para>
+      Attach the given &ElementData; object to the &Element;,
+      identifying it by the name that the data was given when it was
+      constructed.  If the &Element; already contains an &ElementData;
+      with the same name, the pointer to the existing data will be
+      overwritten.  If no data with the given name exists, the new
+      data will be appended.
+    </para>
+    <para>
+      Note that this never deletes the old data, it just overwrites
+      the pointer to it.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!-- Element::setDataByName -->
+  <refsection id="Class-Element-setData">
+    <title>
+      <code>void setData(int index, ElementData* data) const</code>
+    </title>
+    <para>
+      Replace the &ElementData; at the given index with the given
+      data.  It is an error if the index does not exist.  This is more
+      efficient than <link
+      linkend="Class-Element-setDataByName"><methodname>Element::setDataByName</methodname></link>,
+      but more error prone.  Use <link
+      linkend="Class-Element-getIndexByName"><methodname>Element::getIndexByName</methodname></link>
+      to retrieve an unknown index.
+    </para>
+    <para>
+      Note that this never deletes the old data, it just overwrites
+      the pointer to it.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!--Element::setData -->
+  <refsection id="Class-Element-getDataByName">
+    <title>
+      <code>ElementData* getDataByName(const std::string&amp; name) const</code>
+    </title>
+    <para>
+      Retrieve the &ElementData; with the given name.  A null pointer
+      is returned if no such data exists in the &Element;.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!-- Element::getDataByName -->
+  <refsection id="Class-Element-getData">
+    <title>
+      <code>ElementData* getData(int index) const</code>
+    </title>
+    <para>
+      Retrieve the &ElementData; with the given index. This is more
+      efficient than <link
+      linkend="Class-Element-getDataByName"><methodname>getDataByName</methodname></link>
+      but more error prone.  No error checking is done to ensure that
+      the index exists.  Use <link
+      linkend="Class-Element-getIndexByName"><methodname>Element::getIndexByName</methodname></link>
+      to retrieve an unknown index.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!-- Element::getData -->
+  <refsection id="Class-Element-delDataByName">
+    <title>
+      <code>void delDataByName(const std::string&amp; name) const</code>
+    </title>
+    <para>
+      Remove the &ElementData; with the given name.  It is an error if
+      the data doesn't exist in the &Element;.  This does not actually
+      delete the &ElementData; object &emdash; it just removes the
+      pointer from the &Element;. This can change the index of other
+      &ElementData; objects stored in the &Element;.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!-- Element::delDataByName -->
+  <refsection id="Class-Element-delData">
+    <title>
+      <code>void delData(int index) const</code>
+    </title>
+    <para>
+      Delete the &ElementData; at the given index.  It is an error if
+      there is no data there.  This does not actually delete the
+      &ElementData; object &emdash; it just removes the pointer from
+      the &Element;.  This can change the index of other &ElementData;
+      objects stored in the &Element;.
+    </para>
+    <para>
+      See the <link linkend="Class-ElementData-note">note</link> about
+      <classname>ElementData</classname> reference counting in Python.
+    </para>
+  </refsection>                 <!-- Element::delData -->
+  <refsection id="Class-Element-getIndexByName">
+    <title>
+      <code>int getIndexByName(const std::string&amp; name)
+      const</code>
+    </title>
+    <para>
+      Return the index of the &ElementData; with the given name.  The
+      returned index can be use in subsequent calls to <link
+      linkend="Class-Element-setData"><methodname>setData</methodname></link>,
+      <link
+      linkend="Class-Element-getData"><methodname>getData</methodname></link>,
+      and <link
+      linkend="Class-Element-delData"><methodname>delData</methodname></link>,
+      as long as there have been no intervening calls to <link
+      linkend="Class-Element-delData"><methodname>delData</methodname></link>
+      or <link
+      linkend="Class-Element-delDataByName"><methodname>delDataByName</methodname></link>
+      If there is no data with the given name,
+      <methodname>getIndexByName</methodname> returns -1.
+    </para>
+  </refsection>                 <!-- Element::getIndexByName -->
+    
+</refsection> <!-- Element methods for ElementData -->
+
+</refentry><!-- Element -->
+
+  <refentry id="Class-ElementData">
+    <refnamediv>
+      <refname>ElementData</refname>
+      <refpurpose>Additional data that can be assigned to an
+      Element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+        <title>C++ Synopsis</title>
+        <programlisting>
+#include "engine/element.h" </programlisting>
+        <classsynopsis language="cpp">
+          <ooclass>
+            <classname>ElementData</classname>
+          </ooclass>
+          <constructorsynopsis>
+            <methodname><link linkend="Class-ElementData-ctor">ElementData</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>std::string&amp;</type>
+              <parameter>name</parameter>
+            </methodparam>
+          </constructorsynopsis>
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <methodname><link
+                            linkend="Class-PythonExportable-classname">classname</link></methodname>
+            <modifier>= 0</modifier>
+          </methodsynopsis>
+          <methodsynopsis>
+            <modifier>const</modifier>
+            <type>std::string&amp;</type>
+            <methodname><link
+                            linkend="Class-ElementData-name">name</link></methodname>
+            <void/>
+            <modifier>const</modifier>
+          </methodsynopsis>
+        </classsynopsis>
+      </refsect2>               <!-- C++ Synopsis -->
+      <refsect2>
+        <title>Python Synopsis</title>
+        <programlisting>
+from ooflib.SWIG.engine.element import ElementData</programlisting>
+        <classsynopsis language="python">
+          <ooclass>
+            <classname>ElementData</classname>
+          </ooclass>
+          <methodsynopsis>
+            <methodname><link linkend="Class-ElementData-name">name</link></methodname>
+            <void/>
+          </methodsynopsis>
+        </classsynopsis>
+      </refsect2>               <!-- Python Synopsis -->
+      <refsect2>
+        <title>Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara><filename>SRC/engine/element.C</filename>: C++
+            source code</simpara>
+          </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/element.h</filename>: C++ header file
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/element.swg</filename>:
+	          <application>swig</application> source code.
+	        </simpara>
+	      </listitem>
+        </itemizedlist>
+      </refsect2>               <!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+        <classname>ElementData</classname> is an abstract base class
+        for data that can be stored in an &Element;.  A &Property; or
+        other &oof2; extension can define a subclass of
+        <classname>ElementData</classname>, and use it to store and
+        retrieve arbitrary data from an &Element;.  The data object is
+        given a name in its constructor argument and can be retrieved
+        by passing that name to <link
+        linkend="Class-Element-getDataByName"><methodname>Element::getDataByName</methodname></link>.
+        Names must be unique, but uniqueness is not checked.
+      </para>
+      
+      <para>
+        Derived classes must redefine
+        <methodname>classname</methodname>, which is used when
+        converting a C++ pointer to a Python object.  See <link
+        linkend="Class-PythonExportable"><classname>PythonExportable</classname></link>.
+      </para>
+      <para>
+        <code>ElementData::name()</code> returns the name assigned to
+        an <classname>ElementData</classname> object in its
+        constructor. 
+      </para>
+      <para>
+        Other than <methodname>name</methodname> and
+        <methodname>classname</methodname>, all of the functionality
+        of an <classname>ElementData</classname> must be provided by
+        the derived class.
+      </para>
+
+      <note id="Class-ElementData-note">
+        <para>
+          This class is not quite complete in &oof2; 2.4.0.  In
+          particular, if an instance of a subclass of
+          <classname>ElementData</classname> is created in Python and
+          stored in an &Element;, the &Element; does not do the proper
+          reference counting, and Python may destroy the instance if
+          a separate reference to it is not retained.
+        </para>
+      </note>
+
+      <para>
+        For more infomation on using
+        <classname>ElementData</classname>, see
+        <itemizedlist>
+          <listitem>
+            <link
+                linkend="Class-Element-appendData"><methodname>Element::appendData</methodname></link>
+            &emdash; add an <classname>ElementData</classname> object.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-setDataByName"><methodname>Element::setDataByName</methodname></link>
+            &emdash; add or replace an
+            <classname>ElementData</classname> object with the given name.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-setData"><methodname>Element::setData</methodname></link>
+            &emdash; replace data at a given index.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-getData"><methodname>Element::getData</methodname></link>
+            &emdash; retrieve data at a given index.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-getDataByName"><methodname>Element::getDataByName</methodname></link>
+            &emdash; retrieve data with a given name.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-getIndexByName"><methodname>Element::getIndexByName</methodname></link>
+            &emdash; retrieve the index of the data with the given name.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-delData"><methodname>Element::delData</methodname></link>
+            &emdash; delete the data with the given index.
+          </listitem>
+          <listitem>
+            <link
+                linkend="Class-Element-delDataByName"><methodname>Element::delDataByName</methodname></link>
+            &emdash; delete the data with the given name.
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        While the &Element; methods for handling
+        <classname>ElementData</classname> objects are available in
+        Python, and <classname>ElementData</classname> subclasses can
+        be defined in Python, currently the OOF2 infrastructure does not
+        handle reference counting correctly for them.  It's safer to define,
+        construct, use, and delete <classname>ElementData</classname>
+        objects only in C++.  If it's necessary to use a Python
+        subclass of <classname>ElementData</classname>, make sure to
+        retain a reference to all instances of it in Python.
+      </para>
+    </refsection>               <!-- Description -->
+  </refentry>                   <!-- ElementData -->
 
   <refentry id="Class-Node">
-    <a id="Class-FuncNode"/>
-    <refnamediv>
+    <refnamediv id="Class-FuncNode">
       <refname>Node, FuncNode</refname>
       <refpurpose>Node classes for finite element meshes</refpurpose>
     </refnamediv>
@@ -823,7 +1294,7 @@ while not nodeiter.end():
 	</para>
       </refsection><!-- mastercoord -->
       <refsection id="Class-ElementNodeIterator-getitem">
-	<title>__getitem__(dummy)</title>
+	<title><code>__getitem__(dummy)</code></title>
 	<para>
 	  <varname>__getitem__</varname> is defined for the Python
 	  verison of <classname>ElementNodeIterator</classname> so
@@ -1674,12 +2145,801 @@ conjugatePair("Elasticity",
     <refnamediv>
       <refname>SmallSystem</refname>
       <refpurpose>
-        A small part of the linear system constructed by &Properties;
+        A small part of the system of matrices constructed by &Properties;
       </refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+        <title>C++ Synopsis</title>
+        <programlisting>
+#include "engine/smallsystem.h"
+        </programlisting>
+        <classsynopsis language="cpp">
+          <ooclass>
+            <classname>SmallSystem</classname>
+          </ooclass>
+
+          <!-- SmallSystem::stiffness_matrix_element synopsis -->
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-stiffness_matrix_element">stiffness_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>j</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-stiffness_matrix_element">stiffness_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>j</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-stiffness_matrix_element">stiffness_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-stiffness_matrix_element">stiffness_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          <!-- end SmallSystem::stiffness_matrix_element -->
+
+          <!-- SmallSystem::force_deriv_matrix_element synopsis -->
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-force_deriv_matrix_element">force_deriv_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>j</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-force_deriv_matrix_element">force_deriv_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>j</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-force_deriv_matrix_element">force_deriv_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-force_deriv_matrix_element">force_deriv_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          <!-- end SmallSystem::force_deriv_matrix_element -->
+          
+          <!-- SmallSystem::damping_matrix_element synopsis -->
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-damping_matrix_element">damping_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>j</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-damping_matrix_element">damping_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>j</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-damping_matrix_element">damping_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-SmallSystem-damping_matrix_element">damping_matrix_element</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>i</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>Field*</type>
+              <parameter>field</parameter>
+            </methodparam>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ElementFuncNodeIterator&amp;</type>
+              <parameter>node</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          <!-- end SmallSystem::damping_matrix_element -->
+
+          <!-- SmallSystem::flux_vector_element -->
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link linkend="Class-SmallSystem-flux_vector_element">flux_vector_element</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>index</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link linkend="Class-SmallSystem-flux_vector_element">flux_vector_element</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>index</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          <!-- SmallSystem::flux_vector_element -->
+
+          <!-- SmallSystem::force_vector_element -->
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link linkend="Class-SmallSystem-force_vector_element">force_vector_element</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>index</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link linkend="Class-SmallSystem-force_vector_element">force_vector_element</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>index</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          <!-- SmallSystem::force_vector_element -->
+
+          <!-- SmallSystem::offset_vector_element -->
+          <methodsynopsis>
+            <type>double&amp;</type>
+            <methodname><link linkend="Class-SmallSystem-offset_vector_element">offset_vector_element</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>index</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <methodsynopsis>
+            <type>double</type>
+            <methodname><link linkend="Class-SmallSystem-offset_vector_element">offset_vector_element</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>index</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+          <!-- SmallSystem::offset_vector_element -->
+          
+        </classsynopsis>        <!-- SmallSystem C++ -->
+      </refsect2>               <!-- SmallSystem C++ Synopsis -->
+      
+      <refsect2>
+        <title>Python Synopsis</title>
+
+      </refsect2>               <!-- SmallSystem Python Synopsis-->
+
+      <refsect2>
+        <title>Source Files</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara><filename>SRC/engine/smallsystem.C</filename>:
+            C++ source code</simpara>
+          </listitem>
+          <listitem>
+            <simpara><filename>SRC/engine/smallsystem.h</filename>:
+            C++ header file</simpara>
+          </listitem>
+          <listitem>
+            <simpara><filename>SRC/engine/smallsystem.swg</filename>:
+            <application>swig</application> source code</simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect2>
+      
+    </refsynopsisdiv>
     <refsection>
-      <para>TODO</para>
-    </refsection>
+      <title>Description</title>
+      <para>
+        A <classname>SmallSystem</classname> object represents a small
+        part of the linearized system that is constructed by the
+        material &Properties; when the finite element matrices are
+        built.  The job of the <classname>SmallSystem</classname> is
+        to convert the local &Field;, &Flux;, and &Equation; indices
+        into global indices, which are positions in the matrices and
+        vectors containing all of the degrees of freedom of the full
+        mesh.  Generally, <classname>SmallSystem</classname>s appear
+        in expressions like
+<programlisting>
+smallsystem(i, field, j, node) += value; </programlisting>
+
+        where the function call on the left hand side of the
+        assignment statement returns a reference to the location where
+        the right hand side should be stored.
+      </para>
+      <para>
+        After the <classname>SmallSystem</classname>'s values are set
+        by the &Properties;, the
+      </para>
+    </refsection>               <!-- SmallSystem description -->
+    
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-SmallSystem-stiffness_matrix_element">
+        <title><code>stiffness_matrix_element</code></title>
+        <para>
+          <methodname>stiffness_matrix_element</methodname> is used to
+          make a <link
+          linkend="Class-FluxProperty"><classname>FluxProperty</classname>'s</link>
+          contribution to a finite element stiffness matrix. It is
+          called by the <link
+          linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link>
+          method of the &Property;.  See <link
+          linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link>
+          for the full explanation and an example.
+        </para>
+        <para>
+          There are four variations of
+          <methodname>stiffness_matrix_element</methodname>, for const
+          and non-const stiffness matrices, and scalar and non-scalar
+          &Fields;:
+          <programlisting>
+double&amp; stiffness_matrix_element(
+   const FieldIndex&amp; fluxcomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node);
+double stiffness_matrix_element(
+   const FieldIndex&amp; fluxcomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node) const;
+double&amp; stiffness_matrix_element(
+   const FieldIndex&amp; fluxcomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node);
+double stiffness_matrix_element(
+   const FieldIndex&amp; fluxcomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node) const; </programlisting>
+
+          The arguments are:
+          <variablelist>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link> fluxcomp</code></term>
+              <listitem>
+                <para>
+                  The component of the &Flux; being computed, obtained
+                  by iterating over the components in
+                  <methodname>flux_matrix</methodname>. 
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const &Field;* field</code></term>
+              <listitem>
+                <para>
+                  The &Field; making the contribution to the &Flux;.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link>
+              fieldcomp</code>
+              </term>
+              <listitem>
+                <para>
+                  The component of the &Field;.  This argument should
+                  be omitted if the &Field; is a <link
+                  linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>const <link
+              linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+              node</term>
+              <listitem>
+                <para>
+                  A pointer to the current &Node; of the &Element;
+                  being examined.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </para>
+      </refsection> <!--SmallSystem::stiffness_matrix_element -->
+
+      <!-- SmallSystem::force_deriv_matrix_element -->
+      <refsection id="Class-SmallSystem-force_deriv_matrix_element">
+        <title><code>force_deriv_matrix_element</code></title>
+        <para>
+          <methodname>force_deriv_matrix_element</methodname> is used
+          to make an nonlinear <link
+          linkend="Class-EqnProperty"><classname>EqnProperty</classname>'s</link>
+          contribution to force derivatives.  It is called by <link
+          linkend="Class-EqnProperty-force_deriv_matrix"><methodname>force_deriv_matrix</methodname></link>
+          of the &Property;. See <link
+          linkend="Class-EqnProperty-force_deriv_matrix"><methodname>force_deriv_matrix</methodname></link>
+          for the details and an example.
+        </para>
+        <para>
+          There are four variations of
+          <methodname>force_deriv_matrix_element</methodname>>, for const
+          and non-const stiffness matrices, and scalar and non-scalar
+          &Fields;:
+          <programlisting>
+double&amp; force_deriv_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node);
+double force_deriv_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node) const;
+double&amp; force_deriv_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node);
+double force_deriv_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node) const; </programlisting>
+
+          The arguments are:
+          <variablelist>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link> eqncomp</code></term>
+              <listitem>
+                <para>
+                  The component of the &Equation; being computed, obtained
+                  by iterating over the components in
+                  <methodname>force_deriv_matrix</methodname>. 
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const &Field;* field</code></term>
+              <listitem>
+                <para>
+                  The &Field; making the contribution to the &Equation;.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link>
+              fieldcomp</code>
+              </term>
+              <listitem>
+                <para>
+                  The component of the &Field;.  This argument should
+                  be omitted if the &Field; is a <link
+                  linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>const <link
+              linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+              node</term>
+              <listitem>
+                <para>
+                  A pointer to the current &Node; of the &Element;
+                  being examined.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>          
+        </para>
+      </refsection>      <!-- SmallSystem::force_deriv_matrix_element -->
+
+      <!-- SmallSystem::damping_matrix_element -->
+      <refsection id="Class-SmallSystem-damping_matrix_element">
+        <title><code>damping_matrix_element</code></title>
+
+        <para>
+          <methodname>damping_matrix_element</methodname> is called by
+          both <link
+          linkend="Class-EqnProperty"><classname>EqnProperty</classname>s</link>
+          and <link
+          linkend="Class-FluxProperty"><classname>FluxProperty</classname>s</link>.
+          It's used by an <link
+          linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>'s
+          <link
+          linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+          method to make contributions to a the matrix that multiplies
+          the time derivatives of the &Fields; (Eqn. <xref
+          linkend="Eqn-EqnProperty-C"/>) in a force balance equation.
+          See <link
+          linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+          for more details and an example.
+        </para>
+        <para>
+          <methodname>damping_matrix_element</methodname> is also used
+          by a <link
+          linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>'s
+          <link
+              linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link> method
+          to make contributions to the matrix
+          <inlineequation>
+            <alt role="tex">
+              \({\bf C}_{ik\nu}\)
+            </alt>
+          </inlineequation> that multiplies time derivatives of the
+          fields in Eqn. <xref linkend="Eqn-damping-matrix"/>.  See <link
+          linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link>
+          for more details and an example.
+        </para>
+        <para>
+          There are four variations of
+          <methodname>damping_matrix_element</methodname>, for const
+          and non-const matrices, and scalar and non-scalar &Fields;:
+          <programlisting>
+double&amp; damping_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node);
+double damping_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node) const;
+double&amp; damping_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node);
+double damping_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node) const; </programlisting>
+
+          The arguments are:
+          <variablelist>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link> eqncomp</code></term>
+              <listitem>
+                <para>
+                  The component of the &Equation; being computed, obtained
+                  by iterating over the components in
+                  <methodname>time_deriv_matrices</methodname>. 
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const &Field;* field</code></term>
+              <listitem>
+                <para>
+                  The &Field; making the contribution to the &Equation;.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link>
+              fieldcomp</code>
+              </term>
+              <listitem>
+                <para>
+                  The component of the &Field;.  This argument should
+                  be omitted if the &Field; is a <link
+                  linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>const <link
+              linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+              node</term>
+              <listitem>
+                <para>
+                  A pointer to the current &Node; of the &Element;
+                  being examined.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>          
+        </para>
+      </refsection>      <!-- SmallSystem::damping_matrix_element -->
+      
+      <!-- SmallSystem::mass_matrix_element -->
+      <refsection id="Class-SmallSystem-mass_matrix_element">
+        <title><code>mass_matrix_element</code></title>
+        <para>
+          <methodname>mass_matrix_element</methodname> is called by
+          an <link
+          linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>
+          to make contributions to a mass matrix, from its <link
+          linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+          method.  The mass matrix multiplies the time derivatives
+          of the &Fields; in a force balance equation.  See <link
+          linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+          for more details and an example.
+        </para>
+        <para>
+          There are four variations of
+          <methodname>mass_matrix_element</methodname>, for const
+          and non-const stiffness matrices, and scalar and non-scalar
+          &Fields;:
+          <programlisting>
+double&amp; mass_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node);
+double mass_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const FieldIndex&amp; fieldcomp,
+   const ElementFuncNodeIterator&amp; node) const;
+double&amp; mass_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node);
+double mass_matrix_element(
+   const FieldIndex&amp; eqncomp,
+   const Field* field,
+   const ElementFuncNodeIterator&amp; node) const; </programlisting>
+
+          The arguments are:
+          <variablelist>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link> eqncomp</code></term>
+              <listitem>
+                <para>
+                  The component of the &Equation; being computed, obtained
+                  by iterating over the components in
+                  <methodname>time_deriv_matrices</methodname>. 
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const &Field;* field</code></term>
+              <listitem>
+                <para>
+                  The &Field; making the contribution to the &Equation;.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><code>const <link
+              linkend="Class-FieldIndex">FieldIndex&amp;</link>
+              fieldcomp</code>
+              </term>
+              <listitem>
+                <para>
+                  The component of the &Field;.  This argument should
+                  be omitted if the &Field; is a <link
+                  linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>const <link
+              linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+              node</term>
+              <listitem>
+                <para>
+                  A pointer to the current &Node; of the &Element;
+                  being examined.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>          
+        </para>
+      </refsection>      <!-- SmallSystem::mass_matrix_element -->
+    </refsection>        <!-- SmallSystem methods -->
   </refentry>
   
   <!-- ============================================================== -->

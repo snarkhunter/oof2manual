@@ -520,11 +520,11 @@ from ooflib.SWIG.engine.fieldindex import ScalarFieldIndex</programlisting>
           <classname><link linkend="Class-FieldIndex">FieldIndex</link></classname>
         </ooclass>
         <constructorsynopsis>
-          <methodname><link linkend="Class-VectorFieldIndex-ctor">VectoFieldIndex</link></methodname>
+          <methodname><link linkend="Class-VectorFieldIndex-ctor">VectorFieldIndex</link></methodname>
           <void/>
         </constructorsynopsis>
         <constructorsynopsis>
-          <methodname><link linkend="Class-VectorFieldIndex-ctor">VectoFieldIndex</link></methodname>
+          <methodname><link linkend="Class-VectorFieldIndex-ctor">VectorFieldIndex</link></methodname>
           <methodparam>
             <type>int</type>
             <parameter>i</parameter>

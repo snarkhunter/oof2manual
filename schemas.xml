@@ -1,4 +1,7 @@
-<?xml version='1.0'?>
-<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
-  <uri pattern="*.xml" uri="dtd/rnc/docbook.rnc"/>
-</locatingRules>
+<namespace ns="http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
+           uri="dtd/rnc/docbook.rnc"/>
+<!--
+    <?xml version='1.0'?>
+    <locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+    <uri pattern="*.xml" uri="dtd/rnc/docbook.rnc"/>
+</locatingRules> -->
