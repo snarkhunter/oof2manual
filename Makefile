@@ -106,12 +106,12 @@ local: $(TEMP_DIR) saxonize.web texify_mathml figs
 
 publish: local
 	rsync -vrt --delete-excluded -e ssh --rsync-path=/usr/bin/rsync $(WEB_DIR)/$(WEB_SUBDIR)/* genie.nist.gov:/u/WWW/langer/$(WEB_SUBDIR)
-	ssh genie.nist.gov /usr/site/bin/updatewww
+	ssh genie.nist.gov /site/x86/bin/updatewww
 	touch publish
 
 publish-draft: local
 	rsync -vrt --delete-excluded -e ssh --rsync-path=/usr/bin/rsync $(WEB_DIR)/$(WEB_SUBDIR)/* genie.nist.gov:/u/WWW/langer/$(WEB_SUBDIR)-draft
-	ssh genie.nist.gov /usr/site/bin/updatewww
+	ssh genie.nist.gov /site/x86/bin/updatewww
 	touch publish-draft
 
 # Build the file that users can download to create a local copy of
