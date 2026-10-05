@@ -544,7 +544,7 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
             linkend="Class-FluxProperty-flux_offset"><methodname>FluxProperty::flux_offset()</methodname></link>
             computes the value of the &flux; at a given point in an
             &elem; when the &fields; and their gradients are zero.
-            This is &sigma0; in <xref linkend="Eqn-flux1"/>.
+            This is &sigma0; in Eqn. <xref linkend="Eqn-flux1"/>.
           </para>
         </listitem>
         <listitem>
@@ -1447,7 +1447,7 @@ void flux_offset(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
                  <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const </programlisting>
 	    <para>
           <methodname>FluxProperty::flux_offset()</methodname>
-          computes the &sigma0; term in <xref linkend="Eqn-flux1"/>.
+          computes the &sigma0; term in Eqn. <xref linkend="Eqn-flux1"/>.
           It is the value of the linearized &flux; when the &fields;
           are zero.  It is similar in purpose to <link
           linkend="Class-Property-flux_matrix"><methodname>FluxProperty::flux_matrix()</methodname></link>,
@@ -1738,8 +1738,7 @@ void ThermalExpansion::flux_offset(const FEMesh* mesh,
       }
     }
   }
-}
-          </programlisting>
+} </programlisting>
           <calloutlist>
             <callout arearefs="flux_offset-loop">
               <para>
@@ -1818,9 +1817,9 @@ void flux_value(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
                 <link linkend="Class-SmallSystem">SmallSystem</link> *linysys) const </programlisting>
         <para>
           <function>flux_value()</function> computes the value of a
-          given &flux;, at a given point in an &elem;, as in <xref
-          linkend="Eqn-flux1"/>.  It is used when solving nonlinear
-          equations and when computing flux-dependent <link
+          given &flux;, at a given point in an &elem;, as in
+          Eqn. <xref linkend="Eqn-flux1"/>.  It is used when solving
+          nonlinear equations and when computing flux-dependent <link
           linkend="Section-Output"><classname>Outputs</classname></link>.
         </para>
         <para>
@@ -1829,14 +1828,14 @@ void flux_value(const <link linkend="Class-FEMesh">FEMesh</link>* mesh,
           linkend="Class-FluxProperty-flux_matrix"><function>flux_property()</function></link>,
           <link
           linkend="Class-FluxProperty-flux_offset"><function>flux_offset()</function></link>,
-          and the &field; values to evaluate <xref
+          and the &field; values to evaluate Eqn. <xref
           linkend="Eqn-flux1"/>.  A subclass of
           <classname>FluxProperty</classname> should redefine
           <function>flux_value()</function> if for some reason it is
           faster or more accurate to compute the &flux; directly than
-          it is to use <xref linkend="Eqn-flux1"/>.  If the &flux; is
-          a nonlinear function of the &fields;, it should always
-          define <function>flux_value()</function>.
+          it is to use Eqn. <xref linkend="Eqn-flux1"/>.  If the
+          &flux; is a nonlinear function of the &fields;, it should
+          always define <function>flux_value()</function>.
         </para>
         <para>
           The arguments to <function>flux_value()</function> are:
@@ -1972,7 +1971,7 @@ void HeatConductivity::flux_value(
               </callout>
               <callout arearefs="flux_value-result">
                 <para>
-                  <function>SmallSystem::fluxVector()</function>
+                  <function><link linkend="Class-SmallSystem-fluxValue">SmallSystem::fluxVector()</link></function>
                   returns a reference to the &Flux; components stored
                   in the <link
                   linkend="Class-SmallSystem"><classname>SmallSystem</classname></link>.
