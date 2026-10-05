@@ -1,0 +1,986 @@
+<!-- 
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+
+<refentry id="Class-SmallSystem">
+  <refnamediv>
+    <refname>SmallSystem</refname>
+    <refpurpose>
+      A small part of the system of matrices constructed by &Properties;
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <programlisting>
+        #include "engine/smallsystem.h"
+      </programlisting>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>SmallSystem</classname>
+        </ooclass>
+
+        <!-- SmallSystem::stiffness_matrix_element synopsis -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-stiffness_matrix_element">stiffness_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>flux_component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>j</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-stiffness_matrix_element">stiffness_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>flux_component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <!-- end SmallSystem::stiffness_matrix_element -->
+
+        <!-- SmallSystem::damping_matrix_element synopsis -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-damping_matrix_element">damping_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>j</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-damping_matrix_element">damping_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <!-- end SmallSystem::damping_matrix_element -->
+
+        <!-- SmallSystem::mass_matrix_element synopsis -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-mass_matrix_element">mass_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>eqn_component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>j</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-mass_matrix_element">mass_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>eqn_component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <!-- end SmallSystem::mass_matrix_element -->
+        
+        <!-- SmallSystem::force_deriv_matrix_element synopsis -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-force_deriv_matrix_element">force_deriv_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>eqn_component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>j</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link
+                          linkend="Class-SmallSystem-force_deriv_matrix_element">force_deriv_matrix_element</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>FieldIndex&amp;</type>
+            <parameter>eqn_component</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>Field*</type>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>ElementFuncNodeIterator&amp;</type>
+            <parameter>node</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <!-- end SmallSystem::force_deriv_matrix_element -->
+        
+        
+        <!-- SmallSystem::flux_vector_element -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link linkend="Class-SmallSystem-fluxVector">flux_vector_element</link></methodname>
+          <methodparam>
+            <type>int</type>
+            <parameter>index</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type><link linkend="Class-DoubleVec">DoubleVec&amp;</link></type>
+          <methodname><link linkend="Class-SmallSystem-fluxVector">fluxVector</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <!-- SmallSystem::flux_vector_element -->
+
+        <!-- SmallSystem::force_vector_element -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link linkend="Class-SmallSystem-forceVector">force_vector_element</link> </methodname>
+          <methodparam>
+            <type>int</type>
+            <parameter>index</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type><link linkend="Class-DoubleVec">DoubleVec&amp;</link></type>
+          <methodname><link linkend="Class-SmallSystem-forceVector">forceVector</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <!-- SmallSystem::force_vector_element -->
+
+        <!-- SmallSystem::offset_vector_element -->
+        <methodsynopsis>
+          <type>double&amp;</type>
+          <methodname><link linkend="Class-SmallSystem-offsetVector">offset_vector_element</link></methodname>
+          <methodparam>
+            <type>int</type>
+            <parameter>index</parameter>
+          </methodparam>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type><link linkend="Class-DoubleVec">DoubleVec&amp;</link></type>
+          <methodname><link
+                          linkend="Class-SmallSystem-offsetVector">offsetVector</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <!-- SmallSystem::offset_vector_element -->
+        
+      </classsynopsis>        <!-- SmallSystem C++ -->
+    </refsect2>               <!-- SmallSystem C++ Synopsis -->
+    
+    <refsect2>
+      <title>Python Synopsis</title>
+      <programlisting>
+from ooflib.SWIG.engine import smallsystem</programlisting>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>SmallSystem</classname>
+        </ooclass>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-stiffness_matrix_element">add_stiffness_matrix_element</link></methodname>
+          <methodparam>
+            <parameter>flux_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node_iterator</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-damping_matrix_element">add_damping_matrix_element</link></methodname>
+          <methodparam>
+            <parameter>flux_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node_iterator</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-mass_matrix_element">add_mass_matrix_element</link></methodname>
+          <methodparam>
+            <parameter>eqn_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node_iterator</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-force_deriv_matrix_element">add_force_deriv_matrix_element</link></methodname>
+          <methodparam>
+            <parameter>flux_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>node_iterator</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-fluxVector">add_flux_vector_element</link></methodname>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-forceVector">add_force_vector_element</link></methodname>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+        
+        <methodsynopsis>
+          <methodname><link
+                          linkend="Class-SmallSystem-offsetVector">add_offset_vector_element</link></methodname>
+          <methodparam>
+            <parameter>field_component</parameter>
+          </methodparam>
+          <methodparam>
+            <parameter>increment</parameter>
+          </methodparam>
+        </methodsynopsis>
+
+      </classsynopsis>          <!-- SmallSystem Python -->
+    </refsect2>               <!-- SmallSystem Python Synopsis-->
+
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara><filename>SRC/engine/smallsystem.C</filename>:
+          C++ source code</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/smallsystem.h</filename>:
+          C++ header file</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/smallsystem.swg</filename>:
+          <application>swig</application> source code</simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>
+    
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      A <classname>SmallSystem</classname> object represents a small
+      part of the linearized system that is constructed when the
+      finite element matrices are built.  The
+      <classname>SmallSystem</classname> facilitates the insertion of
+      information calculated by a &Property; into the finite element
+      vectors and matrices. An &Equation; or &Flux; creates a
+      <classname>SmallSystem</classname>, passes it to a &Property;,
+      and then uses the values from the
+      <classname>SmallSystem</classname> to fill in the global finite
+      element vectors and matrices.  The &Property; needs to know only
+      local information, such as the current &Element; and &Node; and
+      &Field; and &Flux; components.
+    </para>
+    <para>
+      Generally, in C++ <classname>SmallSystem</classname>s appear in
+      expressions like
+
+      <programlisting>
+smallsystem-><emphasis role="bold">method</emphasis>(i, field, j, node) += floating_point_value; </programlisting>
+
+      or
+
+      <programlisting>
+smallsystem-><emphasis role="bold">method</emphasis>() += object; </programlisting>
+
+      where <methodname>method</methodname> is one of the methods
+      described below.  <methodname>method</methodname> returns a
+      reference to the object in which the right hand side value
+      should be stored.  Note that the line
+      <emphasis>increments</emphasis> the referenced value, and does
+      not simply set it.  Another &Property; may have already
+      contributed to the values being computed, and its data should
+      not be overwritten.
+    </para>
+    <para>
+      In Python, the syntax is different.  Instead of
+      <programlisting>
+smallsystem->stiffness_matrix_element(i, displacement, j, node) += <emphasis role="bold">value</emphasis>; </programlisting>
+      for example, use
+      <programlisting>
+smallsystem.<emphasis role="bold">add</emphasis>_stiffness_matrix_element(i, displacement, j, node, <emphasis role="bold">value</emphasis>);</programlisting>
+      
+    </para>
+  </refsection>               <!-- SmallSystem description -->
+  
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-SmallSystem-stiffness_matrix_element">
+      <title><code>stiffness_matrix_element</code> and <code>add_stiffness_matrix_element</code></title>
+      <para>
+        <methodname>stiffness_matrix_element</methodname> is used to
+        make a <link
+        linkend="Class-FluxProperty"><classname>FluxProperty</classname>'s</link>
+        contribution to a finite element stiffness matrix. It is
+        called by the <link
+        linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link>
+        method of the &Property;.  See <link
+        linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link>
+        for the full explanation and an example.
+      </para>
+      <para>
+        There are two C++ variations of
+        <methodname>stiffness_matrix_element</methodname> for scalar and non-scalar
+        &Fields;:
+        <programlisting>
+double&amp; stiffness_matrix_element(const FieldIndex&amp; flux_component,
+                                     const Field* field,
+                                     const FieldIndex&amp; field_component,
+                                     const ElementFuncNodeIterator&amp; node);
+double&amp; stiffness_matrix_element(const FieldIndex&amp; flux_component,
+                                     const Field* field,
+                                     const ElementFuncNodeIterator&amp; node); </programlisting>
+
+        The arguments are:
+        <variablelist>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link> flux_component</code></term>
+            <listitem>
+              <para>
+                The component of the &Flux; being computed. 
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const &Field;* field</code></term>
+            <listitem>
+              <para>
+                The &Field; making the contribution to the &Flux;.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link>
+            field_component</code>
+            </term>
+            <listitem>
+              <para>
+                The component of the &Field;.  This argument should
+                be omitted if the &Field; is a <link
+                linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>const <link
+            linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+            node</term>
+            <listitem>
+              <para>
+                A pointer to the current &Node; of the &Element;
+                being examined.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_stiffness_matrix_element(i, field, j, node, increment) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->stiffness_matrix_element(i, field, j, node) += increment; </programlisting>
+        in C++.
+      </para>
+    </refsection> <!--SmallSystem::stiffness_matrix_element -->
+
+    <!-- SmallSystem::damping_matrix_element -->
+    <refsection id="Class-SmallSystem-damping_matrix_element">
+      <title><code>damping_matrix_element</code> and
+      <code>add_damping_matrix_element</code></title>
+
+      <para>
+        <methodname>damping_matrix_element</methodname> is called by
+        both <link
+        linkend="Class-EqnProperty"><classname>EqnProperty</classname>s</link>
+        and <link
+        linkend="Class-FluxProperty"><classname>FluxProperty</classname>s</link>.
+        It's used by an <link
+        linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>'s
+        <link
+            linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+        method to make contributions to a the matrix that multiplies
+        the time derivatives of the &Fields; (Eqn. <xref
+        linkend="Eqn-EqnProperty-C"/>) in a force balance equation.
+        See <link
+        linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+        for more details and an example.
+      </para>
+      <para>
+        <methodname>damping_matrix_element</methodname> is also used
+        by a <link
+        linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>'s
+        <link
+            linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link> method
+        to make contributions to the matrix
+        <inlineequation>
+          <alt role="tex">
+            \({\bf C}_{ik\nu}\)
+          </alt>
+          </inlineequation> that multiplies time derivatives of the
+          fields in Eqn. <xref linkend="Eqn-damping-matrix"/>.  See <link
+          linkend="Class-FluxProperty-flux_matrix"><methodname>flux_matrix</methodname></link>
+          for more details and an example.
+      </para>
+      <para>
+        There are two variations of
+        <methodname>damping_matrix_element</methodname>, for scalar
+        and non-scalar &Fields;:
+        <programlisting>
+double&amp; damping_matrix_element(const FieldIndex&amp; component,
+                                   const Field* field,
+                                   const FieldIndex&amp; field_component,
+                                   const ElementFuncNodeIterator&amp; node);
+double&amp; damping_matrix_element(const FieldIndex&amp; component,
+                                   const Field* field,
+                                   const ElementFuncNodeIterator&amp; node); </programlisting>
+
+        The arguments are:
+        <variablelist>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link> component</code></term>
+            <listitem>
+              <para>
+                If being used in an <link
+                linkend="Class-EqnProperty"><classname>EqnProperty</classname>s</link>,
+                <varname>component</varname> is the index of a
+                component of the &Equation;.  If being used in a <link
+                linkend="Class-FluxProperty"><classname>FluxProperty</classname>s</link>,
+                it's the index of a component of the &Flux;.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const &Field;* field</code></term>
+            <listitem>
+              <para>
+                The &Field; making the contribution to the &Equation;.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link>
+            field_component</code>
+            </term>
+            <listitem>
+              <para>
+                The component of the &Field;.  This argument should
+                be omitted if the &Field; is a <link
+                linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>const <link
+            linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+            node</term>
+            <listitem>
+              <para>
+                A pointer to the current &Node; of the &Element;
+                being examined.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>          
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_damping_matrix_element(i, field, j, node, increment) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->damping_matrix_element(i, field, j, node) += increment; </programlisting>
+        in C++.
+      </para>
+    </refsection>      <!-- SmallSystem::damping_matrix_element -->
+    
+    <!-- SmallSystem::mass_matrix_element -->
+    <refsection id="Class-SmallSystem-mass_matrix_element">
+      <title><code>mass_matrix_element</code> and <code>add_mass_matrix_element</code></title>
+      <para>
+        <methodname>mass_matrix_element</methodname> is called by an
+        <link
+        linkend="Class-EqnProperty"><classname>EqnProperty</classname></link>
+        to make contributions to a mass matrix, from its <link
+        linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+        method.  The mass matrix multiplies the second time
+        derivatives of the &Fields; in a force balance equation.  See
+        <link
+        linkend="Class-EqnProperty-time_deriv_matrices"><methodname>time_deriv_matrices</methodname></link>
+        for more details and an example.
+      </para>
+      <para>
+        There are two variations of
+        <methodname>mass_matrix_element</methodname>, forscalar and
+        non-scalar &Fields;:
+        
+        <programlisting>
+double&amp; mass_matrix_element(const FieldIndex&amp; eqncomp,
+                                const Field* field,
+                                const FieldIndex&amp; field_component,
+                                const ElementFuncNodeIterator&amp; node);
+double&amp; mass_matrix_element(const FieldIndex&amp; eqncomp,
+                                const Field* field,
+                                const ElementFuncNodeIterator&amp; node); </programlisting>
+
+        The arguments are:
+        <variablelist>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link> eqncomp</code></term>
+            <listitem>
+              <para>
+                The component of the &Equation; being computed, obtained
+                by iterating over the components in
+                <methodname>time_deriv_matrices</methodname>. 
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const &Field;* field</code></term>
+            <listitem>
+              <para>
+                The &Field; making the contribution to the &Equation;.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link>
+            field_component</code>
+            </term>
+            <listitem>
+              <para>
+                The component of the &Field;.  This argument should
+                be omitted if the &Field; is a <link
+                linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>const <link
+            linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+            node</term>
+            <listitem>
+              <para>
+                A pointer to the current &Node; of the &Element;
+                being examined.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>          
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_mass_matrix_element(i, eqn, j, node, increment) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->mass_matrix_element(i, eqn, j, node) += increment; </programlisting>
+        in C++.
+      </para>
+    </refsection>      <!-- SmallSystem::mass_matrix_element -->
+
+    <!-- SmallSystem::force_deriv_matrix_element -->
+    <refsection id="Class-SmallSystem-force_deriv_matrix_element">
+      <title><code>force_deriv_matrix_element</code> and <code>add_force_deriv_matrix_element</code></title>
+      <para>
+        <methodname>force_deriv_matrix_element</methodname> is used
+        to make an nonlinear <link
+        linkend="Class-EqnProperty"><classname>EqnProperty</classname>'s</link>
+        contribution to force derivatives.  It is called by <link
+        linkend="Class-EqnProperty-force_deriv_matrix"><methodname>force_deriv_matrix</methodname></link>
+        of the &Property;. See <link
+        linkend="Class-EqnProperty-force_deriv_matrix"><methodname>force_deriv_matrix</methodname></link>
+        for the details and an example.
+      </para>
+      <para>
+        There are two variations of
+        <methodname>force_deriv_matrix_element</methodname>, for const
+        and non-const stiffness matrices, and scalar and non-scalar
+        &Fields;:
+        <programlisting>
+double&amp; force_deriv_matrix_element(const FieldIndex&amp; eqncomp,
+                                       const Field* field,
+                                       const FieldIndex&amp; field_component,
+                                       const ElementFuncNodeIterator&amp; node);
+double&amp; force_deriv_matrix_element(const FieldIndex&amp; eqncomp,
+                                       const Field* field,
+                                       const ElementFuncNodeIterator&amp; node); </programlisting>
+
+        The arguments are:
+        <variablelist>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link> eqncomp</code></term>
+            <listitem>
+              <para>
+                The component of the &Equation; being computed. 
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const &Field;* field</code></term>
+            <listitem>
+              <para>
+                The &Field; making the contribution to the &Equation;.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>const <link
+            linkend="Class-FieldIndex">FieldIndex&amp;</link>
+            field_component</code>
+            </term>
+            <listitem>
+              <para>
+                The component of the &Field;.  This argument should
+                be omitted if the &Field; is a <link
+                linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>const <link
+            linkend="Class-ElementFuncNodeIterator">ElementFuncNodeIterator</link>&amp;
+            node</term>
+            <listitem>
+              <para>
+                A pointer to the current &Node; of the &Element;
+                being examined.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>          
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_force_deriv_matrix_element(i, eqn, j, node, increment) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->force_deriv_matrix_element(i, eqn, j, node) += increment; </programlisting>
+        in C++.
+      </para>
+    </refsection>      <!-- SmallSystem::force_deriv_matrix_element -->
+
+    <refsection id="Class-SmallSystem-fluxVector">
+      <title>
+        <code>fluxVector</code>, <code>flux_vector_element</code>, and
+        <code>add_flux_vector-element</code>
+      </title>
+      <para>
+        <methodname>fluxVector</methodname> and
+        <methodname>flux_vector_element</methodname> can called by
+        <link
+            linkend="Class-FluxProperty-flux_value"><methodname>FluxProperty::flux_value</methodname></link>
+        to get access to the components of a &Flux; either as a
+        vector or individually.  Use
+        <methodname>fluxVector</methodname> to set all components at
+        once:
+        <programlisting>
+smallsystem->fluxVector() += vector_of_values;
+        </programlisting>
+        or <methodname>flux_vector_element</methodname> to set one
+        at at time:
+        <programlisting>
+for(auto index: flux.components())
+    smallsystem->flux_vector_element(index) += value; </programlisting>
+
+        See <link
+        linkend="Class-FluxProperty-flux_value"><methodname>FluxProperty::flux_value</methodname></link>
+        for more details and an example.
+      </para>
+      <para>
+        <methodname>fluxVector</methodname> takes no arguments.
+        The argument to <methodname>flux_vector_element</methodname>
+        can be either an integer index or a &FieldIndex; indicating
+        which &Flux; component is being set.  The &Flux; values are
+        stored as a vector even if the &Flux; is a tensor, but the
+        &FieldIndex; class knows how to find the correct integer
+        index, so use &FieldIndex; when in doubt.
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_flux_vector-element(i, value) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->flux_vector-element(i) += value; </programlisting>
+        in C++.
+      </para>
+      
+    </refsection>             <!-- SmallSystem::fluxVector -->
+
+    <refsection id="Class-SmallSystem-forceVector">
+      <title>
+        <code>forceVector</code>, <code>force_vector_element</code>,
+        and <code>add_force_vector-element</code>
+      </title>
+      <para>
+        <methodname>forceVector</methodname> and
+        <methodname>force_vector_element</methodname> can be called by
+        <link
+        linkend="Class-EqnProperty-force_value"><code>EqnProperty::force_value</code></link>
+        to make contributions to the force term in Eq. <xref
+        linkend="Eqn-TimeDivergence"/>.
+        Use <methodname>forceVector</methodname> to set all
+        components<footnote><simpara>There is one force component for
+        each component of the &Equation;.</simpara></footnote> at once:
+        <programlisting>
+smallsystem->forceVector() += vector_of_values; </programlisting>
+        or <methodname>force_vector_element</methodname> to set one
+        at at time:
+        <programlisting>
+for(auto index: *equation->components())
+    smallsystem->forceVector(index) += value; </programlisting>
+        See <link
+        linkend="Class-EqnProperty-force_value"><code>EqnProperty::force_value</code></link>
+        for an example.
+      </para>
+      <para>
+        <methodname>forceVector</methodname> takes no arguments.
+        The argument to <methodname>force_vector_element</methodname>
+        can be either an integer index or a &FieldIndex; indicating
+        which force component is being set.  The force values are
+        stored as a vector even if the force is a tensor, but the
+        &FieldIndex; class knows how to find the correct integer
+        index, so use &FieldIndex; when in doubt.
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_force_vector-element(i, value) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->force_vector-element(i) += value; </programlisting>
+        in C++.
+      </para>
+    </refsection>               <!-- SmallSystem::forceVector -->
+
+    <refsection id="Class-SmallSystem-offsetVector">
+      <title>
+        <code>offsetVector</code>, <code>offset_vector_element</code>,
+        and <code>add_offset_vector-element</code>
+      </title>
+      <para>
+        A <link
+        linkend="Class-FluxProperty"><classname>FluxProperty</classname></link>
+        that computes a &Flux; whose linearization includes a
+        field-independent part (&sigma0; in Eqn. <xref
+        linkend="Eqn-flux1"/>) will define <link
+        linkend="Class-FluxProperty-flux_offset"><code>FluxProperty::flux_offset</code></link>
+        to compute the constant.
+        <methodname>flux_offset</methodname> should call
+        <code>SmallSystem::offsetVector</code> or
+        <code>SmallSystem::offset_vector_element</code> to store the
+        offset.  Use <methodname>offsetVector</methodname> to set
+        all the components at once:
+        
+        <programlisting>
+smallsystem->offsetVector() += vector_of_values; </programlisting>
+        or <methodname>offset_vector_element()</methodname> to store one
+        at a time:
+        
+        <programlisting>
+for(auto index: *flux->components())
+    smallsystem->offset_vector_element(index) += value; </programlisting>
+      </para>
+      <para>
+        <methodname>offsetValue</methodname> takes no arguments.
+        The argument to
+        <methodname>offset_vector_element</methodname> can be either
+        an integer index or a &FieldIndex; indicating which flux
+        component is being set.  The flux values are stored as a
+        vector even if the flux is a tensor, but the &FieldIndex;
+        class knows how to find the correct integer index, so use
+        &FieldIndex; when in doubt.
+      </para>
+      <para>
+        For more details and an example, see <link
+        linkend="Class-FluxProperty-flux_offset"><methodname>FluxProperty::flux_offset</methodname></link>.
+      </para>
+      <para>
+        In Python,
+        <programlisting>
+smallsystem.add_offset_vector-element(i, value) </programlisting>
+        is equivalent to calling
+        <programlisting>
+smallsystem->offset_vector-element(i) += value; </programlisting>
+        in C++.
+      </para>
+    </refsection>               <!-- SmallSystem::offsetVector -->
+    
+  </refsection>        <!-- SmallSystem methods -->
+</refentry>
