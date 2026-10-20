@@ -897,6 +897,7 @@ conjugatePair("Elasticity",
 	</imageobject>
 	<caption>
 	  <para>
+        <!-- TODO: Update the image and caption. -->
 	    Two output widgets, from the NOT THE LAYEREDITOR window.  The
 	    top widget, labelled <literal>what</literal>, lists scalar
 	    outputs and determines what will be plotted in the
@@ -928,7 +929,11 @@ conjugatePair("Elasticity",
       their behavior.  <classname>Output</classname> parameters use
       the same <link
       linkend="Class-Parameter"><classname>Parameter</classname></link>
-      classes that are used in <link
+      classes that are used in
+      <link
+          linkend="Class-OOFMenuItem"><classname>OOFMenuItems</classname></link>
+      and 
+      <link
       linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>.
     </para>
     <para>
@@ -986,16 +991,17 @@ conjugatePair("Elasticity",
 	<listitem>
 	  <para>
 	    If any of the inputs have parameters that are
-	    <emphasis>not</emphasis> specified in advance, these need
-	    to given aliases so that they can be used in scripts and
-	    the GUI.  See <link
-	    linkend="Class-Output-aliasParam"><methodname>Output.aliasParam</methodname></link> for the details.
+	    <emphasis>not</emphasis> specified in advance, these need to
+	    be given aliases so that they can be used in scripts and the
+	    GUI.  See <link
+	    linkend="Class-Output-aliasParam"><methodname>Output.aliasParam</methodname></link>
+	    for the details.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    If the <classname>Output </classname> is to appear in the
-	    GUI, it must be registered by calling <link
+	    If the <classname>Output</classname> is to appear as an
+	    option in the GUI, it must be registered by calling <link
 	    linkend="Function-definePositionOutput"><function>definePositionOutput</function></link>,
 	    <link
 	    linkend="Function-definePositionOutput"><function>defineScalarOutput</function></link>,

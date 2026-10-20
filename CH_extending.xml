@@ -9,20 +9,7 @@
 -->
 
 <chapter id="Chapter-Extending">
-  <title>Extending &oof2;</title>
-  <para>
-    &oof2; is meant to be easily extended to include new physics.
-    Users with a bit of programming experience can add new &fields;,
-    &fluxes;, &equations;, and especially &material; &properties;.
-    Adding new &fields; and &fluxes; is easy, but is not of much use
-    unless new &properties; are added that use the &fields; and
-    &fluxes;.  Adding &properties; is more complicated, but the
-    individual steps are more-or-less straightforward.  Adding
-    &equations; is easy if the new equations fit the form of the
-    existing <classname>Equation</classname> classes.  Writing new
-    <classname>Equation</classname> classes can be tricky, but should
-    not be commonly required.
-  </para>
+  <title>Extension Overview</title>
   <para>
     <xref linkend="Chapter-Extending"/> describes the
     <emphasis>structure</emphasis> of extensions to &oof2;.  <xref

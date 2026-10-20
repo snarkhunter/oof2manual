@@ -286,7 +286,7 @@ links to the general discussions in CH_concepts.xml.
   </bookinfo>
 
   <part id="Part-using">
-    <title>Using OOF2</title>
+    <title>Using &oof2;</title>
     <!--
         <root xmlns:xi="http://w3.org">
         <xi:include href="CH_overview.xml"/>
@@ -301,7 +301,7 @@ links to the general discussions in CH_concepts.xml.
   </part>
 
   <part>
-    <title>OOF2 Command Reference</title>
+    <title>&oof2; Command Reference</title>
     <partintro>
       <para>
         This section contains the reference pages for the &oof2;
@@ -314,7 +314,7 @@ links to the general discussions in CH_concepts.xml.
   </part>
 
   <part id="part-extending">
-    <title>OOF2 Programmer's Reference</title>
+    <title>Extending &oof2;</title>
     <partintro>
       <para>
         &oof2; is meant to be easily extended to include new physics.

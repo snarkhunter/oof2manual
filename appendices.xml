@@ -153,6 +153,8 @@ OOF.Material.New(name='pbj')
 </appendix>			<!--TextMode-->
 
 <appendix id="Appendix-WhatsNew2.1">
+  <!-- TODO: Get rid of this Appendix. First make sure that everything
+       in it is covered elsewhere, if necessary. -->
   <title>What's New in &oof2; 2.1</title>
   <para>
     This appendix contains the <quote>Getting Started with OOF2
@@ -952,6 +954,8 @@ OOF.Material.New(name='pbj')
 </appendix>			<!--WhatsNew2.1-->
 
 <appendix id="Appendix-Changes">
+  <!-- TODO: Get rid of this Appendix. First make sure that everything
+       in it is covered elsewhere, if necessary. -->
   <title>Changes to the API</title>
   <para>
     This appendix lists changes to the program that are relevant for
