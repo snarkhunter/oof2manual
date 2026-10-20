@@ -8,8 +8,9 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<reference>
+<section role="reference">
   <title>Indices and Iterators</title>
+
 <refentry id="Class-FieldIndex">
   <refnamediv>
     <refname>FieldIndex</refname>
@@ -952,8 +953,7 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex</programlisting>
       <programlisting>
 SymTensorIndex();
 SymTensorIndex(int i);
-SymTensorIndex(int i, int j);
-      </programlisting>
+SymTensorIndex(int i, int j);</programlisting>
     </refsection>
     <refsection>
       <title>Python</title>
@@ -1587,11 +1587,13 @@ for index in field.components():
             <link linkend="Class-SymTensorIterator"><classname>SymTensorOutOfPlaneIterator</classname></link>
           </simpara>
         </listitem>
+        <!--
         <listitem>
           <simpara>
             <link linkend="Class-OIterator"><classname>OIterator</classname></link>
           </simpara>
         </listitem>
+        -->
         <listitem>
           <simpara>
             <link linkend="Class-ListOutputValIterator"><classname>ListOutputValIterator</classname></link>
@@ -1968,7 +1970,7 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
   <refnamediv>
     <refname>ScalarFieldIterator</refname>
     <refpurpose>
-      Iterate over a the components of <link linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
+      Iterate over the components of <link linkend="Class-ScalarField"><classname>ScalarField</classname></link>.
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -2384,16 +2386,358 @@ for(ComponentIteratorP cp=field.components().begin(); cp!=field.components.end()
 
 <!-- ============================================================ -->
 
+<!--
+<refentry id="Class-OIterator">
+  <refnamediv>
+    <refname>OIterator</refname>
+    <refpurpose>
+      Template for iterating over the components of a <link
+      linkend="Class-COrientation"><classname>COrientation</classname></link>
+    </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <classname>OIterator</classname> is a templated subclass of
+      &ComponentIterator; used to iterate over the constructor
+      arguments of a subclass of <link
+      linkend="Class-COrientation"><classname>COrientation</classname></link>.
+      The template argument is the <classname>COrientation</classname>
+      subclass.
+    </para>
+  </refsection>
+</refentry>
+-->
+
+<!-- ============================================================ -->
+
 <refentry id="Class-SymTensorIJComponents">
-  <para>
-    TODO.  Include symTensorIJComponents.
-  </para>
+  <refnamediv>
+    <refname>SymTensorIJComponents</refname>
+    <refpurpose>
+      Generate the indices of a symmetric 3&times;3 tensor.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopses</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <programlisting>
+#include "engine/fieldindex.h"
+extern const SymTensorIJComponents symTensorIJComponents; </programlisting>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>SymTensorIJComponents</classname>
+        </ooclass>
+        <methodsynopsis>
+          <type>SymTensorIJIterator</type>
+          <methodname>begin</methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>SymTensorIJIterator</type>
+          <methodname>end</methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>
+    <refsect2>
+      <title>Python Synopsis</title>
+      <programlisting>
+from ooflib.SWIG.engine.fieldindex import symTensorIJComponents
+      </programlisting>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>SymTensorIJComponents</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname>__iter__</methodname>
+          <void/>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.h</filename>:
+          C++ header</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.C</filename>:
+          C++ source code</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.swg</filename>:
+          SWIG source code</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.spy</filename>:
+          Python code included in the SWIG output. </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>                 <!-- Source files -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      It is occasionally necessary to iterate over the indices of a
+      symmetric 3&times;3 tensor (<link
+      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>)
+      without referring to a particular tensor object.
+      <classname>SymTensorIJComponents</classname> is a class that
+      provides access to the indices when it is iterated over.  The
+      indices are objects in the <link
+      linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>
+      derived class, not simply pointers to the <link
+      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
+      base class or the objects in the generic <link
+      linkend="Class-IndexP"><classname>IndexP</classname></link>
+      wrapper class.
+    </para>
+    <para>
+      For convenience, a single static instance of
+      <classname>SymTensorIJComponents</classname>, called
+      <code>symTensorIJComponents</code> (with a lowercase initial
+      's') is defined in <filename>fieldindex.h</filename>.
+    </para>
+    <para>
+      In C++m], <classname>SymTensorIJComponents</classname> has
+      <methodname>begin()</methodname> and
+      <methodname>end()</methodname> methods which return <link
+      linkend="Class-SymTensorIJIterator"><classname>SymTensorIJIterator</classname></link>
+      objects.  This allows an instance of the class to be iterated
+      over like an STL container, either like this:
+      <programlisting>
+for(SymTensorIndex ij : <b>symTensorIJComponents</b>)
+{
+    ...
+} </programlisting>
+        or like this:
+        <programlisting>
+for(SymTensorIJIterator iter=<b>symTensorIJComponents</b>.begin();
+    iter != symTensorIJComponents.end(); ++iter)
+{
+    // *iter is a SymTensorIndex
+    ...
+}</programlisting>
+    </para>
+    <para>
+      In Python, <classname>SymTensorIJComponents</classname> can be
+      iterated over like a normal Python iterable object:
+      <programlisting>
+from ooflib.SWIG.engine.fieldindex import symTensorIJComponents
+
+for ij in <b>symTensorIJComponents</b>:
+    # ij is a SymTensorIndex
+    ... </programlisting>
+
+    For example,
+      <programlisting>
+>>> for s in symTensorIJComponents:
+>>>    print(s)
+SymTensorIndex(0,0)
+SymTensorIndex(1,1)
+SymTensorIndex(2,2)
+SymTensorIndex(1,2)
+SymTensorIndex(0,2)
+SymTensorIndex(0,1) </programlisting>
+    </para>
+  </refsection>
 </refentry>                     <!-- SymTensorIJComponents -->
 
 <refentry id="Class-SymTensorIJIterator">
-  <para>
-    TODO. 
-  </para>
+  <refnamediv>
+    <refname>SymTensorIJIterator</refname>
+    <refpurpose>Iterate over components of a 3&times;3 tensor</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Synopsis</title>
+    <refsect2>
+      <title>C++ Synopsis</title>
+      <programlisting>
+#include "engine/fieldindex.h </programlisting>
+      <classsynopsis language="cpp">
+        <ooclass>
+          <classname>SymTensorIJIterator</classname>
+        </ooclass>
+        <constructorsynopsis>
+          <methodname><link
+                          linkend="Class-SymTensorIJIterator-ctor">SymTensorIJIterator</link></methodname>
+          <void/>
+        </constructorsynopsis>
+        <constructorsynopsis>
+          <methodname><link
+                          linkend="Class-SymTensorIJIterator-ctor">SymTensorIJIterator</link></methodname>
+          <methodparam>
+            <type>int</type>
+            <parameter>index</parameter>
+          </methodparam>
+        </constructorsynopsis>
+        <methodsynopsis>
+          <type>SymTensorIndex</type>
+          <methodname><link
+                          linkend="Class-SymTensorIJIterator-star">operator*</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>FieldIndex*</type>
+          <methodname><link
+                          linkend="Class-SymTensorIJIterator-fieldindex">fieldindex</link></methodname>
+          <void/>
+          <modifier>const</modifier>
+        </methodsynopsis>
+        <methodsynopsis>
+          <type>SymTensorIJIterator&amp;</type>
+          <methodname><link linkend="Class-SymTensorIJIterator-incr">operator++</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopis>
+          <type>bool</type>
+          <methodname><link
+                          linkend="Class-SymTensorIJIterator-ne">operator!=</link></methodname>
+          <methodparam>
+            <modifier>const</modifier>
+            <type>SymTensorIJIterator&amp;</type>
+            <parameter>other</parameter>
+          </methodparam>
+          <modifier>const</modifier>
+        </methodsynopis>
+      </classsynopsis>
+    </refsect2>                 <!-- C++ Synopsis -->
+    <refsect2>
+      <title>Python Synopsis</title>
+      <programlisting>
+from ooflib.SWIG.engine fieldindex import SymTensorIJIterator</programlisting>
+      <classsynopsis language="python">
+        <ooclass>
+          <classname>SymTensorIJIterator</classname>
+        </ooclass>
+        <methodsynopsis>
+          <methodname><link linkend="Class-SymTensorIJIterator-fieldindex">fieldindex</link></methodname>
+          <void/>
+        </methodsynopsis>
+        <methodsynopsis>
+          <methodname><link linkend="Class-SymTensorIJIterator-incr">increment</link></methodname>
+          <void/>
+        </methodsynopsis>
+      </classsynopsis>
+    </refsect2>
+    <refsect2>
+      <title>Source Files</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.h</filename>:
+          C++ header</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.C</filename>:
+          C++ source code</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.swg</filename>:
+          SWIG source code</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.spy</filename>:
+          Python code included in the SWIG output. </simpara>
+        </listitem>
+      </itemizedlist>
+    </refsect2>                 <!-- Source files -->
+  </refsynopsisdiv>
+  <refsection>
+    <title>Discussion</title>
+    <para>
+      <classname>SymTensorIJIterator</classname> is used by <link
+      linkend="Class-SymTensorIJComponents"><classname>SymTensorIJComponents</classname></link>
+      to iterate over the component indices of an unspecified
+      3&times;3 tensor.  It is <emphasis>not</emphasis> the same as
+      the <link
+      linkend="Class-SymTensorIterator"><classname>SymTensorIterator</classname></link>
+      that is used when iterating over a <link
+      linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+      or <link
+      linkend="Class-SymmetricTensorFlux"><classname>SymmetricTensorFlux</classname></link>
+      object.  The difference is that
+      <classname>SymTensorIterator</classname> is part of the
+      machinery that iterates over components of generic &Fluxes;,
+      where the type of &Flux; isn't
+      known. <classname>SymTensorIJIterator</classname> can be used
+      when you know you need tensor indices, but don't necessarily
+      have a &Flux; to loop over.
+    </para>
+    <para>
+      The normal usage of <classname>SymTensorIJIterator</classname>
+      is described in <link
+      linkend="Class-SymTensorIJComponents"><classname>SymTensorIJComponents</classname></link>.
+      It should not be necessary to explicitly refer to any members of
+      the class other than those illustrated there.  In particular, if
+      you loop over the components of a tensor using
+      <programlisting>
+for ij in symTensorComponents:
+    ... </programlisting>
+      you will be using a <classname>SymTensorIJIterator</classname>
+      but will never see it.
+    </para>
+  </refsection>                 <!-- SymTensorIJIterator Discussion -->
+  <refsection id="Class-SymTensorIJIterator-ctor">
+    <title>Constructors</title>
+    <programlisting>
+SymTensorIJIterator::SymTensorIJIterator();
+SymTensorIJIterator::SymTensorIJIterator(int v); </programlisting>
+    <para>
+      <classname>SymTensorIJIterators</classname> are usually created
+      by iterating over a <link
+      linkend="Class-SymTensorIJComponents"><classname>SymTensorIJComponents</classname></link>
+      object, so the constructor does not need to be called
+      explicitly.  In fact, there is no explicit Python constructor.
+    </para>
+    <para>
+      In C++, the default <classname>SymTensorIJIterator</classname>
+      constructor, with no arguments, creates an iterator that starts
+      with the first component (<link
+      linkend="table-voigt">Voigt</link> index 0).  A
+      <classname>SymTensorIJIterator</classname> constructed with an
+      <type>int</type> argument starts at the given <link
+      linkend="table-voigt">Voigt</link> index.
+    </para>
+    <para>
+      The constructor is not defined in Python.  To create an instance
+      of the iterator, use <code>iter(symTensorIJComponents)</code>.
+    </para>
+  </refsection>               <!-- constructor -->
+  <refsection>
+    <title>Methods</title>
+    <refsection id="Class-SymTensorIJIterator-operator*">
+      <title><code>SymTensorIndex operator*() const</code></title>
+      <para>
+        In C++, use operator* to dereference the iterator and obtain
+        the <link
+        linkend="SymTensorIndex"><classname>SymTensorIndex</classname></link>
+        that the iterator points to.
+      </para>
+    </refsection>               <!-- SymTensorIJIterator::operator*-->
+    <refsection id="Class-SymTensorIJIterator-fieldindex">
+      <title><code>FieldIndex *fieldindex() const</code></title>
+      <para>
+        Return a pointer to a newly allocated <link
+        linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
+        at the iterator's location.  In C++ the caller is responsible
+        for deleting the returned object.
+      </para>
+    </refsection>               <!-- SymTensorIJIterator::fieldindex -->
+    <refsection id="Class-SymTensorIJIterator-incr">
+      <title><code>SymTensorIJIterator&amp; operator++()</code></title>
+      <para>
+        In C++, <code>operator++</code> increments the iterator.  In
+        Python, <code>increment()</code> is called inside the
+        generator function that performs the iteration.
+      </para>
+    </refsection>               <!-- SymTensorIJIterator::operator++ -->
+  </refsection>                 <!-- SymTensorIJIterator Methods -->
 </refentry>                     <!-- SymTensorIJIterator -->
 
 <!-- ============================================================ -->
@@ -2452,7 +2796,8 @@ planarity.ALL_INDICES </programlisting>
     </para>
   </refsection>
 </refentry> <!-- Planarity -->
-</reference>
+
+</section>
 
 <!-- Keep this comment at the end of the file
   Local variables:
