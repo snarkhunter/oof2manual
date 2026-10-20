@@ -8,9 +8,9 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<reference>
-  <title>Mesh Classes and Functions</title>
-  
+<section role="reference">
+  <title>Meshes and Mesh Components</title>
+ 
   <refentry id="Class-FEMesh">
     <refnamediv>
       <refname>FEMesh</refname>
@@ -19,24 +19,25 @@
     <refsynopsisdiv>
       <programlisting>
 #include "engine/femesh.h"</programlisting>
+
       <classsynopsis language="cpp">
-	<ooclass>
-	  <classname>FEMesh</classname>
-	</ooclass>
+	    <ooclass>
+	      <classname>FEMesh</classname>
+	    </ooclass>
       </classsynopsis>
     </refsynopsisdiv>
     <refsection>
       <title>Description</title>
       <para>
-	<classname>FEMesh</classname> is a C++ class that holds all
-	the data for a finite element &mesh;.  Authors of &oof2;
-	extensions should not need to use any of the methods in the
-	class directly, but extension functions will often need to
-	pass an <classname>FEMesh</classname> argument on to other
-	functions.
+	    <classname>FEMesh</classname> is a C++ class that holds all
+	    the data for a finite element &mesh;.  Authors of &oof2;
+	    extensions should not need to use any of the methods in the
+	    class directly, but extension functions will often need to
+	    pass an <classname>FEMesh</classname> argument on to other
+	    functions.
       </para>
     </refsection>
-  </refentry><!-- FEMesh -->
+  </refentry>                   <!-- FEMesh -->
 
   <refentry id="Class-CSubProblem">
     <refnamediv>
@@ -46,24 +47,26 @@
     <refsynopsisdiv>
       <programlisting>
 #include "engine/csubproblem.h"</programlisting>
+
       <classsynopsis language="cpp">
-	<ooclass>
-	  <classname>CSubProblem</classname>
-	</ooclass>
+	    <ooclass>
+	      <classname>CSubProblem</classname>
+	    </ooclass>
       </classsynopsis>
     </refsynopsisdiv>
     <refsection>
       <title>Description</title>
       <para>
-	<classname>CSubProblem</classname> is a C++ class that holds
-	all the data for defining and solving a &subproblem; on a
-	finite element &mesh;.  Authors of &oof2; extensions should
-	not need to use any of the methods in the class directly, but
-	extension functions will often need to pass an
-	<classname>FEMesh</classname> argument on to other functions.
+	    <classname>CSubProblem</classname> is a C++ class that holds
+	    all the data for defining and solving a &subproblem; on a
+	    finite element &mesh;.  Authors of &oof2; extensions should
+	    not need to use any of the methods in the class directly, but
+	    extension functions will often need to pass an
+	    <classname>CSubProblem</classname> argument on to other
+	    functions.
       </para>
     </refsection>
-  </refentry><!-- CSubProblem -->
+  </refentry>                   <!-- CSubProblem -->
 
   <refentry id="Class-Element">
     <refnamediv>
@@ -2143,21 +2146,9 @@ conjugatePair("Elasticity",
 
   &refSmallSystem;
   
-
-  
   <!-- ============================================================== -->
 
-  <refentry id="Class-CSubProblem">
-    <refnamediv>
-      <refname>CSubProblem</refname>
-      <refpurpose>C++ representation of subproblem</refpurpose>
-    </refnamediv>
-    <refsection>
-      <para>TODO</para>
-    </refsection>
-  </refentry>
-
-</reference>
+</section>
 
 <!-- Keep this comment at the end of the file
   Local variables:

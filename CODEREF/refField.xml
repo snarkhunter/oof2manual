@@ -8,8 +8,6 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<reference>
-  <title>Field Classes and Functions</title>
 <refentry id="Class-Field">
   <refnamediv>
     <refname>Field</refname>
@@ -1917,7 +1915,6 @@ ScalarField *T = dynamic_cast&lt;ScalarField*&gt;(getField("Temperature")); </pr
   </refsection>
 </refentry>                     <!-- getField -->
 
-</reference>
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

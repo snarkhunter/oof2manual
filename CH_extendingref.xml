@@ -8,57 +8,83 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<part>
-  <title>OOF2 Extending Reference</title>
-  <partintro>
-    <para>
-      This section contains the reference pages for the classes and
-      functions that can be used when programming &oof2; extensions,
-      and which are described in general in <xref
-      linkend="part-extending"/>.  Both the C++ and Python interfaces
-      are documented, when appropriate.  In general, only functions
-      that are relevant to building &oof2; extensions are listed, and
-      base class functions are not listed again in the derived
-      classes.
-    </para>
-    <para>
-      Both C++ and Python interfaces are listed at the top of each
-      reference page.  If the Description section mentions only the
-      C++ syntax, assume that the Python syntax is derived in a
-      straightforward way from the C++ syntax.  In cases where there
-      is a big difference between the C++ and Python interfaces for a
-      class or function, it will be discussed explicitly.
-    </para>
-  </partintro>
-  &refExtending;
+
+<chapter id="Chapter-ExtendingRef">
+  <title>OOF2 Class and Function Reference</title>
+
+  <!-- TODO: There's a hack in oofhtml.xsl that disables TOCs for
+       sections.
+
+       Without the hack, links in the TOC for this chapter do not
+       work.  Except for the first section (which appears on the same
+       page as the TOC) the links are going to non-existent files.
+       Files aren't being generated for the subsections; the
+       subsections consist only of their own TOCs, which appear at the
+       bottom of this page.
+
+       The links in the top level menu are broken too.
+
+       This may be a problem in oofchunk.xsl, which (I think)
+       determines what's written to a separate file, or in
+       oofhtml.xsl, which modifies how TOCs are built.
+
+       BUT Even with the hack, the "Next" button on the last reference
+       page in each subsection isn't working.  It still goes to a
+       nonexistent file (for the next subsection?).
+  -->
+  
+  <para>
+    This section contains the reference pages for the classes and
+    functions that can be used when programming &oof2; extensions, and
+    which are described in general in <xref
+    linkend="Chapter-Extending"/>.  Both the C++ and Python interfaces
+    are documented, when appropriate.  In general, only functions that
+    are relevant to building &oof2; extensions are listed, and base
+    class functions are not listed again in the derived classes.
+  </para>
+  <para>
+    Both C++ and Python interfaces are listed at the top of each
+    reference page.  If the Description section mentions only the C++
+    syntax, assume that the Python syntax is derived in a
+    straightforward way from the C++ syntax.  In cases where there is
+    a big difference between the C++ and Python interfaces for a class
+    or function, it will be discussed explicitly.
+  </para>
+
   &refCoords;
-  &refField;
-  &refFlux;
-  &refEquation;
+
+  <section role="reference">
+    <title>Fields, Fluxes, and Equations</title>
+    &refField;
+    &refFlux;
+    &refEquation;
+  </section>
+
+  &refFEMesh; 
   &refIterators;
-  <reference>
-    <title>Property and Material Classes</title>
+
+  <section role="reference">
+    <title>Materials and Properties</title>
+    &refMaterial;
     &refPropertyReg;
     &refProperty;
     &refPhysicalProperty;
     &refFluxProperty;
     &refEqnProperty;
     &refAuxProperty;
-    <!-- &refPyProperty; -->
-    &refMaterial;
-  </reference>
-  &refFEMesh;
+    &refPyProperty; 
+  </section>
+
   &refOutput;
-  <reference>
-    <title>Miscellaneous Classes and Functions</title>
+
+  <section role="reference">
+    <title>Miscellaneous Classes</title>
     &refDoubleVec;
     &refErrError;
     &refLoadFile;
     &refParameter;
     &refPyLock;
     &refPythonExportable;
-  </reference>
-</part>
-
-
-
+  </section>
+  
+</chapter>

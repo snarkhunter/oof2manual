@@ -19,7 +19,7 @@
     appendix  toc,title
     article/appendix  nop
     article   toc,title
-    book      toc,title,figure
+    book      toc,title
     chapter   toc,title
     part      toc,title
     preface   toc,title
@@ -74,6 +74,13 @@
   <xsl:template match="section[@role='Submenus']" mode="toc"/>
   <xsl:template match="section[@role='CommandListing']" mode="toc"/>
   <xsl:template match="refentry[@role='MenuItem']" mode="toc"/>
+  <!-- This is a hack, I think. Without it, the links to subsections
+       in CH_extendingref.xml go to separate files, instead of to the
+       subsection TOCs that are on that chapter's top page.  See the
+       comment in CH_extendingref.xml. I don't understand how this
+       interacts with the role=reference section template above. -->
+  <xsl:template match="section[@role='reference']" mode="toc"/>
+
 
   <!-- This makes equation titles appear as "(1.1)" instead of
        "Equation 1.1. Title" -->
@@ -317,6 +324,13 @@
     </div>
   </xsl:template>
 
+  <!-- save some typing by defining <b> for bold -->
+  <xsl:template match="b">
+    <emphasis role="bold">
+      <xsl:apply-templates/>
+    </emphasis>
+  </xsl:template>
+
   <!-- items copied directly from latex-math/custom-math.xsl -->
 <xsl:variable name="tex.math.in.alt">latex</xsl:variable>
 <xsl:variable name="tex.math.delims">0</xsl:variable>
@@ -325,6 +339,8 @@
 <xsl:variable name="post.spacing.paras">0</xsl:variable>
 <xsl:variable name="xref.with.number.and.title">0</xsl:variable>
 <xsl:variable name="passivetex.extensions">1</xsl:variable>
+
+
 
 
 </xsl:stylesheet>

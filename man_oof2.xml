@@ -314,12 +314,37 @@ links to the general discussions in CH_concepts.xml.
   </part>
 
   <part id="part-extending">
-    <title>Extending OOF2</title>
+    <title>OOF2 Programmer's Reference</title>
+    <partintro>
+      <para>
+        &oof2; is meant to be easily extended to include new physics.
+        Users with a bit of programming experience can add new
+        &fields;, &fluxes;, &equations;, and especially &material;
+        &properties;.  Adding new &fields; and &fluxes; is easy, but
+        is not of much use unless new &properties; are added that use
+        the &fields; and &fluxes;.  Adding &properties; is more
+        complicated, but the individual steps are more-or-less
+        straightforward.  Adding &equations; is easy if the new
+        equations fit the form of the existing
+        <classname>Equation</classname> classes.  Writing new
+        <classname>Equation</classname> classes can be tricky, but
+        should not be commonly required.
+      </para>
+      <para>
+        <xref linkend="Chapter-Extending"/> contains general
+        information about the mechanics of writing extensions for
+        &oof2;, such as what goes into which files, and how to build
+        and load extensions.  <xref linkend="Chapter-Coding"/>
+        contains more specific instructions about the contents of the
+        files, and <xref linkend="Chapter-ExtendingRef"/> contains
+        reference pages for each of the relevant &oof2; classes.
+      </para>
+    </partintro>
     &extending;
     &coding;
+    &extendingref;
   </part>
 
-  &extendingref;                <!-- Reference pages for extending -->
   &appendices;
 
   

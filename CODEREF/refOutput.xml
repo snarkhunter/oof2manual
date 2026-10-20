@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<reference>
+<section role="reference">
   <title>Output Classes and Functions</title>
   
   <refentry id="Class-Output">
@@ -1501,7 +1501,8 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
 	<programlisting>
 #include "engine/symmmatrix.h"
 </programlisting>
-
+<!-- TODO: Should SymmMatrix3 be documented elsewhere? Is it used
+     outside of the Output context?  -->
 	<classsynopsis language="cpp">
 	  <ooclass>
 	    <classname>SymmMatrix3</classname>
@@ -2681,7 +2682,7 @@ from ooflib.SWIG.engine import outputval</programlisting>
   </refentry>
 -->
 
-</reference>
+</section>
 
 <!-- Keep this comment at the end of the file
   Local variables:

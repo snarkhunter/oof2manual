@@ -8,9 +8,12 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<reference>
+<section role="reference">
   <title>Points and Coordinates</title>
-  
+  <para>
+    Classes that describe positions in space in various coordinate
+    systems.
+  </para>
   <refentry id="Class-Coord">
     <refnamediv>
       <refname>Coord</refname>
@@ -848,8 +851,7 @@ import oof2.common.primitives</programlisting>
     </refsection><!-- Methods -->
   </refentry>    <!-- Point -->
 
-</reference>
-
+</section>
 <!-- Keep this comment at the end of the file
   Local variables:
   sgml-omittag:t

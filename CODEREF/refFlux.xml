@@ -8,11 +8,6 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<!-- TODO: Each Flux class should link to its Components class -->
-
-<reference>
-  <title>Flux Classes and Functions</title>
-
 <refentry id="Class-Flux">
   <refnamediv>
     <refname>Flux</refname>
@@ -867,18 +862,9 @@ VectorFlux *hf = dynamic_cast&lt;VectorFlux*&gt;(getField("Heat_Flux")); </progr
     </para>
   </refsection>
 </refentry>                     <!-- getFlux -->
-</reference>
-  <!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
+
+<!-- Keep this comment at the end of the file
+Local variables:
+nxml-parent-document: "../man_oof2.xml"
+End:
 -->

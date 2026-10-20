@@ -8,9 +8,6 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<reference>
-  <title>Equation Classes and Functions</title>
-  
 <refentry id="Class-Equation">
   <refnamediv>
     <refname>Equation</refname>
@@ -683,7 +680,6 @@ DivergenceEquation *eq = dynamic_cast&lt;DivergenceEquation*&gt;(getEquation("Fo
     </para>
   </refsection>
 </refentry>                     <!-- getEquation -->
-</reference>
 
 <!-- Keep this comment at the end of the file
   Local variables:
