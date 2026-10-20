@@ -885,29 +885,7 @@ conjugatePair("Elasticity",
 	  </para>
 	</listitem>
       </itemizedlist>
-      <xref linkend="Figure-outputwidgets"/> shows how scalar and
-      position outputs appear in the GUI.
     </para>
-    <figure id="Figure-outputwidgets">
-      <title>Output Widgets</title>
-      <mediaobject>
-	<imageobject>
-	  <imagedata fileref="FIGURES/widgets/outputwidgets.png"
-	    format="PNG"/>
-	</imageobject>
-	<caption>
-	  <para>
-        <!-- TODO: Update the image and caption. -->
-	    Two output widgets, from the NOT THE LAYEREDITOR window.  The
-	    top widget, labelled <literal>what</literal>, lists scalar
-	    outputs and determines what will be plotted in the
-	    graphics window.  The lower widget, labelled
-	    <literal>where</literal>, lists position outputs, which
-	    are two dimensional vectors.
-	  </para>
-	</caption>
-      </mediaobject>
-    </figure>
     <para>
       Under the hood, the scalar, aggregate, and position outputs are
       built by combining <link
@@ -1218,9 +1196,9 @@ ComponentOutput = output.Output(
     name = "component",
     callback = _component,
     otype = types.FloatType, <co id="example2-otype"/>
-	inputs = [outputval.<link linkend="Class-OutputValParameter">OutputValParameter</link>('field')], <co id="example2-input"/>
-	params = [meshparameters.<link
-	  linkend="Class-FieldIndexParameter">FieldIndexParameter</link>('component')] <co id="example2-param"/>
+    inputs = [outputval.<link linkend="Class-OutputValParameter">OutputValParameter</link>('field')], <co id="example2-input"/>
+    params = [meshparameters.<link
+       linkend="Class-FieldIndexParameter">FieldIndexParameter</link>('component')] <co id="example2-param"/>
     ) </programlisting>
 
 	<calloutlist>
@@ -1721,16 +1699,16 @@ propertyoutput.ScalarPropertyOutputRegistration(
    parameters=[enum.EnumParameter("etype", EnergyType, default="Total")]
 ) </programlisting>
 
-	The string <literal>"Energy"</literal> is the name by which
-	the output will be known both in the user interface and in the
+	The string <literal>"Energy"</literal> is the name by which the
+	output will be known both in the user interface and in the
 	<classname>Property</classname> code.  The parameter name
-	<literal>"etype"</literal> will also appear in the user
-	interface and the code.  It's important that the parameter
-	does <emphasis>not</emphasis> have an assigned value!  The
-	Output mechanism assumes that parameters with values are not
-	going to be set by the user.  Instead, the parameter has its
-	<varname>default</varname> set, which provides a value to be
-	displayed in the GUI, without actually fixing the
+	<literal>"etype"</literal> will also appear in the user interface
+	and the code.  It's important that the parameter does
+	<emphasis>not</emphasis> have an assigned value!  The Output
+	mechanism assumes that parameters with values are not going to be
+	set by the user.  Instead, the parameter has its
+	<varname>default</varname> set, which provides an initial value to
+	be displayed in the GUI, without actually fixing the
 	<classname>Parameter</classname>'s value.
       </para>
       <para>
@@ -1811,12 +1789,6 @@ propertyregistration.PropertyRegistration(
       </para>
     </section>                  <!-- PropertyOutputs -->
     
-    <section id="Section-Coding-OrientationMapFormats">
-      <title>Orientation Map Formats</title>
-      <para>
-	TODO: Write this section.
-      </para>
-    </section>
   </section>                    <!-- Adding New Outputs -->
 
 </chapter>
