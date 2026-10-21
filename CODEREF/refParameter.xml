@@ -161,7 +161,7 @@ from ooflib.SWIG.common.coord import *
   <refsection>
     <title>Description</title>
     <para>
-	  &oof2; menu items and <link
+	  &oof2; <link linkend="MenuItem-OOF">menu items</link> and <link
 	  linkend="Class-Output"><classname>Outputs</classname></link> are
 	  both objects that describe a process in which the user enters
 	  some values and an action is performed.  A <link
@@ -264,7 +264,7 @@ params=[StringParameter(name='filename', tip='Write to this file'),
               will be initialized with the value
               <varname>default</varname>.  This argument is optional
               in the base class, and defaults to
-              <constant>None</constant>. It <emphasis>mustg</emphasis>
+              <constant>None</constant>. It <emphasis>must</emphasis>
               be provided in any derived class whose widget can't
               display <constant>None</constant>.
             </para>
@@ -279,11 +279,12 @@ params=[StringParameter(name='filename', tip='Write to this file'),
               in the manual whenever a list of
               <classname>Parameters</classname> is displayed, as in
               the reference pages for menu items.  It is optional, but
-              highly recommended.<footnote><para>If no tip string is
-              really desired, setting <varname>tip</varname> to
-              <code>emptyTipString</code> will prevent a warning from
-              appearing the manual. <code>emptyTipString</code> is
-              defined in the <code>ooflib.common.IO.parameter</code>
+              highly recommended.<footnote><para>If it's really
+              necessary to have no tip string, setting
+              <varname>tip</varname> to <code>emptyTipString</code>
+              will prevent a warning from appearing the
+              manual. <code>emptyTipString</code> is defined in the
+              <code>ooflib.common.IO.parameter</code>
               module.</para></footnote>
             </para>
           </listitem>
@@ -299,7 +300,16 @@ params=[StringParameter(name='filename', tip='Write to this file'),
 	  in &oof2; are listed here.  Some &oof2; modules create very
 	  specialized <classname>Parameters</classname> that aren't useful
 	  elsewhere.  The classes listed here hopefully suffice for &oof2;
-	  extensions.
+	  extensions.  For more subclasses, see
+	  <filename>SRC/common/IO/parameter.py</filename> in the &oof2;
+      source directory.
+    </para>
+    <para>
+      Screenshots are included below of the GUI widgets for some of
+      the <classname>Parameter</classname> subclasses.  The actual
+      appearance of the widgets depends on the current <link
+      linkend="MenuItem-OOF.Settings.Theme">theme</link>, and possibly
+      on your hardware and operating system.
     </para>
 
     <refsection>
@@ -315,12 +325,8 @@ params=[StringParameter(name='filename', tip='Write to this file'),
 	        <title><classname>BooleanParameter</classname> Widget</title>
 	        <mediaobject>
 		      <imageobject>
-		        <imagedata fileref="FIGURES/widgets/boolean.png"
-		                   format="PNG"/>
-		      </imageobject>
-		      <imageobject>
-		        <imagedata fileref="FIGURES/widgets/boolean.eps"
-		                   format="EPS"/>
+		        <imagedata fileref="FIGURES/widgets/booleans.png"
+                           contentwidth="209px" format="PNG"/>
 		      </imageobject>
 		      <caption>
 		        <para>
@@ -331,16 +337,8 @@ params=[StringParameter(name='filename', tip='Write to this file'),
 	        </mediaobject>
 	      </figure>
 	    </para>
-	  </refsection> <!-- BooleanParameter -->
-        
-	  <refsection id="Class-StringParameter">
-	    <title><code>StringParameter(name, value=None, default=None, tip=None)</code></title>
-	    <para>
-	      A <classname>StringParameter</classname>'s value is a
-	      character string.  Its GUI widget is an unadorned text entry
-	      box.
-	      </para>
-	  </refsection>
+	  </refsection>             <!-- BooleanParameter -->
+      
 	  <refsection id="Class-FloatParameter">
 	    <title><code>FloatParameter(name, value=None, default=0.0, tip=None)</code></title>
 	    <para>
@@ -360,8 +358,33 @@ params=[StringParameter(name='filename', tip='Write to this file'),
 	      integer can be entered, or anything that Python can evaluate
 	      to form an integer.
 	    </para>
-	  </refsection><!-- IntParameter -->
-        
+	  </refsection>             <!-- IntParameter -->
+
+	  <refsection id="Class-StringParameter">
+	    <title><code>StringParameter(name, value=None, default=None, tip=None)</code></title>
+	    <para>
+	      A <classname>StringParameter</classname>'s value is a
+	      character string.  Its GUI widget is an unadorned text entry
+	      box.
+	      </para>
+	    </refsection>           <!-- StringParameter -->
+
+      <refsection id="Class-RestrictedStringParameter">
+        <title><code>RestrictedStringParameter(name, pattern,
+        value=None, default=None, tip=None)</code></title>
+        <para>
+          The <classname>RestrictedStringParameter</classname>
+          is just like the <link
+          linkend="Class-StringParameter"><classname>StringParameter</classname></link>,
+          but it only accepts values that match the given
+          <varname>pattern</varname>, which must be a regular
+          expression. See the <ulink
+          url="https://docs.python.org/3/library/re.html"
+          role="external">Python documentation</ulink> for information
+          about regular expressions.
+        </para>
+      </refsection>             <!-- RestrictedStringParameter -->
+      
 	  <refsection id="Class-EnumParameter">
 	    <title><code>EnumParameter(name, enumclass, value=None,
 	    default=None, tip=None)</code></title>
@@ -407,24 +430,22 @@ TriSkeleton(arrangement='moderate') </programlisting>
 	      <title><classname>EnumParameter</classname> Widget</title>
 	      <mediaobject>
 	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/enum.png"
+		      <imagedata fileref="FIGURES/widgets/enums.png"
+                         contentwidth="279px"
 		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/enum.eps"
-		                 format="EPS"/>
 	        </imageobject>
 	        <caption>
 		      <para>
-		        An <classname>EnumParameter</classname> widget,
+		        An <classname>EnumParameter</classname> widget for an
+                <xref linkend="Enum-Arrangement"/> Enum,
 		        displaying its current value (left) and choosing a new
 		        value (right).
 		      </para>
 	        </caption>
 	      </mediaobject>
 	    </figure>
-	  </refsection><!-- EnumParameter -->
-    </refsection><!-- Basic Parameters -->
+	  </refsection>             <!-- EnumParameter -->
+    </refsection>               <!-- Basic Parameters -->
 
     <refsection>
 	  <title>Range Parameters</title>
@@ -451,17 +472,15 @@ TriSkeleton(arrangement='moderate') </programlisting>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/widgets/intrange.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/intrange.eps"
-		                 format="EPS"/>
+                         contentwidth="193px" format="PNG"/>
 	        </imageobject>
 	        <caption>
 		      <para>
 		        The widget for an
 		        <classname>IntRangeParameter</classname>, with the
 		        slider on the left and a text entry box on the right.
+                This slider's range is from <literal>4</literal> to
+                <literal>8</literal>. 
 		      </para>
 	        </caption>
 	      </mediaobject>
@@ -484,24 +503,30 @@ TriSkeleton(arrangement='moderate') </programlisting>
 	      The GUI widget for a
 	      <classname>FloatRangeParameter</classname> is a slider with
 	      a label.  The label shows the numeric value, and can also be
-	      edited directly to change the slider position.
+	      edited directly to change the slider position.  
 	    </para>
 	    <figure id="Figure-floatrangewidget">
 	      <title><classname>FloatRangeParameter</classname> Widget</title>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/widgets/floatrange.png"
+                         contentwidth="239px"
 		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/floatrange.eps"
-		                   format="EPS"/>
 	        </imageobject>
 	        <caption>
 		      <para>
 		        The widget for an
 		        <classname>FloatRangeParameter</classname>, with the
 		        slider on the left and a text entry box on the right.
+                This widget's range is from <literal>0</literal> to
+                <literal>10</literal>, with <code>step=0.1</code>.
+                The displayed value is not a multiple of
+                <varname>step</varname> because
+                <varname>step</varname> is not used when the mouse
+                drags the slider
+                or when a value is typed into
+                the box.  It's applies only to mouse clicks on the
+                slider or arrow keypresses.
 		      </para>
 	        </caption>
 	      </mediaobject>
@@ -517,13 +542,13 @@ TriSkeleton(arrangement='moderate') </programlisting>
 	    <para>
 	      <link
 	      linkend="Section-RegisteredClasses"><classname>RegisteredClasses</classname></link>
-	      are &oof2; objects that can be constructed from
+	      represent &oof2; objects that can be constructed from
 	      <classname>Registrations</classname>.
 	      <classname>Registrations</classname> are closely related to
 	      <link
 	      linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>,
 	      but are more general.  They contain information describing
-	      how to create an instance of the
+	      how to create an instance of a subclass of
 	      <classname>RegisteredClass</classname>.
 	    </para>
 	    <para>
@@ -548,12 +573,11 @@ TriSkeleton(arrangement='moderate') </programlisting>
 	      <classname>RegisteredParameter</classname> constructor
 	      specifies the <classname>RegisteredClass</classname> base
 	      class.  For example, a <classname>Parameter</classname>
-	      whose value is an instance of the
-	      <classname>SkeletonModifier</classname> class would be
-	      created like this:
+	      whose value is an instance of the <link
+	      linkend="Class-SkeletonModifier"><classname>SkeletonModifier</classname></link>
+	      class would be created like this:
 	      <programlisting>
-RegisteredParameter('modifier', SkeletonModifier, tip='use this
-modifier') </programlisting>
+RegisteredParameter('modifier', SkeletonModifier, tip='use this modifier') </programlisting>
 	    </para>
 	    <para>
 	      The GUI widget for a
@@ -569,11 +593,7 @@ modifier') </programlisting>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/widgets/rcf.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/rcf.eps"
-		                 format="EPS"/>
+                         contentwidth="578px" format="PNG"/>
 	        </imageobject>
 	        <caption>
 		      <para>
@@ -600,17 +620,15 @@ modifier') </programlisting>
 	      <emphasis>representations</emphasis> of the same thing,
 	      rather than different things that happen to be in the same
 	      category.  For example, <xref
-	      linkend="RegisteredClass-OpaqueColor"/> is a
+	      linkend="RegisteredClass-TranslucentColor"/> is a
 	      <classname>ConvertibleRegisteredClass</classname>, since the
 	      different representations (<xref
-	      linkend="RegisteredClass-RGBColor"/>, <xref
-	      linkend="RegisteredClass-HSVColor"/>,
+	      linkend="RegisteredClass-RGBAColor"/>, <xref
+	      linkend="RegisteredClass-HSVAColor"/>,
 	      <foreignphrase>etc</foreignphrase>.) all create color
 	      objects that can be converted into one another.  The
 	      different <xref linkend="RegisteredClass-SkeletonModifier"/>
-	      subclasses discussed <link
-	      linkend="Class-RegisteredParameter">above</link>, however,
-	      cannot be converted into one another.
+	      subclasses, however, cannot be converted into one another.
 	    </para>
 	    <para>
 	      A <classname>ConvertibleRegisteredParameter</classname> is a
@@ -632,23 +650,23 @@ modifier') </programlisting>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/widgets/convertible.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/convertible.eps"
-		                 format="EPS"/>
+                         contentwidth="791px" format="PNG"/>
 	        </imageobject>
 	        <caption>
 		      <para>
 		        An example of a
 		        <classname>ConvertibleRegisteredParameter</classname>
-		        widget. A color is displayed in RGB format (top) and
-		        HSV format (bottom).  The pull-down menu is used to
-		        switch between them (middle). This widget is not quite
-		        a generic
-		        <classname>ConvertibleRegisteredParameter</classname>
-		        widget. It's been enhanced with the color swatches at
-		        the bottom.
+		        widget. A color is displayed in RGBA format (left) and
+		        HSVA format (right).  The pull-down menu is used to
+		        switch between them (middle).
+              </para>
+              <para>
+                This widget is not quite a generic
+                <classname>ConvertibleRegisteredParameter</classname>
+                widget. It's been enhanced with the color swatches at
+                the bottom, which show the original color on the left
+                and the new color on the right, both superimposed on a
+                white and black triangles to demonstrate opacity.
 		      </para>
 	        </caption>
 	      </mediaobject>
@@ -671,11 +689,8 @@ modifier') </programlisting>
 	      <title><classname>RegisteredListParameter</classname> widget</title>
 	      <mediaobject>
 	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/reglist.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/reglist.eps" format="EPS"/>
+		      <imagedata fileref="FIGURES/widgets/reglistparam.png"
+                         contentwidth="326px" format="PNG"/>
 	        </imageobject>
 	        <caption>
 		      <para>
@@ -693,20 +708,17 @@ modifier') </programlisting>
 
     <refsection>
 	  <title>Automatic Parameters</title>
-        <!-- TODO: Rewrite this section and its subsections -->
 	  <para>
 	    Automatic parameters are <classname>Parameters</classname>
-	    that can take the value <varname>automatic</varname> as well
-	    as other values which depend on the
-	    <classname>Parameter</classname> type.<footnote><para>
-	    <varname>automatic</varname> is an object defined in the
+	    that can take the value &automatic; as well as other values
+	    which depend on the <classname>Parameter</classname>
+	    type.<footnote><para> &automatic; is an object defined in the
 	    module <code>ooflib.common.IO.automatic</code> and imported
 	    into the &oof2; environment in which all scripts are run.
 	    </para></footnote>
       
-        When a parameter is set to <varname>automatic</varname>, the
-        program is supposed to choose some sensible default value
-        for it.
+        When a parameter is set to &automatic;, the program is
+        supposed to choose some sensible default value for it.
 	  </para>
 	  <para>
 	    For example, when creating a &micro; from an &image; with
@@ -718,90 +730,34 @@ modifier') </programlisting>
 	    The callback function for that menu item makes assumptions
 	    about the size and/or aspect ratio of the pixels if either
 	    <varname>height</varname> or <varname>width</varname> are set
-	    to <varname>automatic</varname>.
+	    to &automatic;.
 	  </para>
 	  <para>
-	    In the GUI, automatic parameters have a checkbox that sets
-	    them to <varname>automatic</varname> and a text entry box in
-	    which other values can be entered.
+        All types of automatic parameters use the same basic widget,
+        which is discussed on the <link
+        linkend="Object-automatic">page describing the
+        <varname>automatic</varname></link> object.
 	  </para>
     
-	  <refsection id="Class-AutoNumericParameter">
-	    <title><code>AutoNumericParameter(name, value=None, default=None,
+	  <refsection id="Class-AutoFloatParameter">
+	    <title><code>AutoFloatParameter(name, value=None, default=None,
 	    tip=None</code></title>
 	    <para>
-	      The <classname>AutoNumericParameter</classname> can bet set
-	      to any numeric value (integer or floating point), or to the
-	      special variable <varname>automatic</varname>.
+	      The <classname>AutoFloatParameter</classname> can bet set to
+	      a floating point number, or to the special variable
+	      &automatic;.  Actually, it also accepts integers.
 	    </para>
-	    <figure id="Figure-autonumericwidget">
-	      <title><classname>AutoNumericParameter</classname> widget</title>
-	      <mediaobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/autonumeric.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/autonumeric.eps"
-		                 format="EPS"/>
-	        </imageobject>
-	        <caption>
-		      <para>
-		        Two <classname>AutoNumericParameter</classname>
-		        widgets.  The lower one is set to
-		        <literal>automatic</literal>.
-		      </para>
-	        </caption>
-	      </mediaobject>
-	    </figure>
-	  </refsection>           <!-- AutoNumericParameter -->
+	  </refsection>           <!-- AutoFloatParameter -->
         
 	  <refsection id="Class-AutoIntParameter">
 	    <title><code>AutoIntParameter(name, value=None,
 	    default=None, tip=None)</code></title>
 	    <para>
 	      The <classname>AutoIntParameter</classname> can be set to an
-	      integer or to the special variable
-	      <varname>automatic</varname>.
+	      integer or to the special variable &automatic;.
 	    </para>
-	    <figure id="Figure-autointwidget">
-	      <title><classname>AutoIntParameter</classname> widget</title>
-	      <mediaobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/autoint.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/autoint.eps"
-		                 format="EPS"/>
-	        </imageobject>
-	        <caption>
-		      <para>
-		        An <classname>AutoIntParameter</classname> widget,
-		        set to <literal>automatic</literal> on the left and
-		        to 2 on the right.
-		      </para>
-	        </caption>
-	      </mediaobject>
-	    </figure>
 	  </refsection>           <!-- AutoIntParameter -->
         
-	  <refsection id="Class-AutomaticNameParameter">
-	    <title><code>AutomaticNameParameter(name, resolver,
-	    value=None, default=None, tip=None)</code></title>
-	    <para>
-	      The <classname>AutomaticNameParameter</classname> can be set
-	      to either a string or the object
-	      <varname>automatic</varname>.  When asked for its value,
-	      however, it always returns a string, which is generated from
-	      the raw input by calling the provided
-	      <varname>resolver</varname> function.  The arguments to the
-	      resolver are the parameter and the raw input.  The resolver
-	      can use the boolean function
-	      <methodname>AutomaticNameParameter.automatic()</methodname>
-	      to see if the raw input was <varname>automatic</varname>.
-	    </para>
-	  </refsection>           <!-- AutomaticNameParameter -->
     </refsection>             <!-- Automatic Parameters -->
       
     <refsection>
@@ -826,6 +782,12 @@ modifier') </programlisting>
 	    <classname>ActiveAreaContext</classname> are
 	    <classname>WhoClasses</classname> as well.
 	  </para>
+      <para>
+        <classname>WhoParameter</classname> and related
+        <classname>Parameter</classname> subclasses are defined in
+        <filename>SRC/common/whoville.py</filename> in the &oof2;
+        source code.
+      </para>
 	  <refsection id="Class-WhoParameter">
 	    <title><code>WhoParameter(name, whoclass, value=None,
 	    default=None, tip=None)</code></title>
@@ -875,30 +837,42 @@ modifier') </programlisting>
 	      <varname>name</varname> of any
 	      <classname>WhoClass</classname> that meets the specified
 	      <varname>condition</varname>.  The default behavior is to
-	      allow any<classname>WhoClasses</classname> that don't have
+	      allow any <classname>WhoClasses</classname> that don't have
 	      their <varname>secret</varname> flag set.
 	    </para>
+        <para>
+          <varname>condition</varname> should be a function with a
+          single argument, a <classname>WhoClass</classname>
+          instance. It should return <constant>True</constant> if the
+          <classname>WhoClass</classname> is an acceptable value and
+          <constant>False</constant> otherwise.
+        </para>
 	    <para>
-	      The <guilabel>category</guilabel> menu in the
-	      <link linkend="Figure-newlayer">New Graphics
-	      Layer</link> dialog is a widget for a
-	      <classname>WhoClassParameter</classname>.
+	      The <guilabel>category</guilabel> menu in the <link
+	      linkend="Figure-newlayer">New Graphics Layer</link> dialog
+	      is a widget for a <classname>WhoClassParameter</classname>.
 	    </para>
 	  </refsection>           <!-- WhoClassParameter -->
     </refsection>             <!-- Who Parameters -->
       
     <refsection>
 	  <title>Mesh Object Parameters</title>
+      <para>
+        <classname>Parameters</classname> whose values are things
+        defined on &meshes; are defined in
+        <filename>SRC/engine/IO/meshparameters.py</filename>.
+      </para>
 	  <refsection id="Class-FieldParameter">
 	    <title><code>FieldParameter(name, value=None, default=None,
 	    tip=None, outofplane=0)</code></title>
 	    <para>
 	      A <classname>FieldParameter</classname>'s value is a <link
 	      linkend="Class-Field"><classname>Field</classname></link>
-	      instance.  If <varname>outofplane</varname> is 0, then the
-	      field must be a <link
+	      instance.  If <varname>outofplane</varname> is
+	      <constant>False</constant>, then the field must be a <link
 	      linkend="Class-CompoundField"><classname>CompoundField</classname></link>,
-	      but if <varname>outofplane</varname> is 1, all types of
+	      but if <varname>outofplane</varname> is
+	      <constant>True</constant>, all types of
 	      <classname>Field</classname> are allowed.
 	    </para>
 	    <para>
@@ -945,6 +919,16 @@ modifier') </programlisting>
     
     <refsection>
 	  <title>Tensor Parameters</title>
+        <para>
+          The <classname>Parameter</classname> subclasses whose values
+          are tensors are defined in
+          <filename>SRC/engine/IO/isocijkl.py</filename> and
+          <filename>SRC/engine/IO/anisocijkl.py</filename> (rank 4),
+          <filename>SRC/engine/rank3tensor.spy</filename> (rank 3),
+          and <filename>SRC/engine/symmmatrix.spy</filename> (rank 2).
+          Sorry about the inconsistent file names.
+        </para>
+
 	  <refsection id="Class-CijklParameter">
 	    <title>Rank 4 Tensor Parameters</title>
 	    <para>
@@ -969,23 +953,18 @@ modifier') </programlisting>
 	      to two.  Entries in the matrix that are constrained to be
 	      zero by symmetry are uneditable, and entries that depend on
 	      other entries update themselves when their dependent entries
-	      change.  In addition, the widgets for
+	      change.  The widgets for
 	      <classname>IsotropicCijklParameter</classname> and
-	      <classname>CubicCijklParameter</classname> have pull-down
-	      menus for selecting a representation.
+	      <classname>CubicCijklParameter</classname> also have
+	      pull-down menus for selecting simpler representations.
 	    </para>
 	    <figure id="Figure-rank4widget">
 	      <title>Rank 4 Tensor Parameter Widget</title>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata
-		          fileref="FIGURES/widgets/hexagonalcijkl.png"
-		          format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata
-		          fileref="FIGURES/widgets/hexagonalcijkl.eps"
-		          format="EPS"/>
+		          fileref="FIGURES/widgets/hexcijkl.png"
+                  contentwidth="539px" format="PNG"/>
 	        </imageobject>
 	        <caption>
 		      <para>
@@ -997,6 +976,7 @@ modifier') </programlisting>
 	        </caption>
 	      </mediaobject>
 	    </figure>
+
 	  </refsection>           <!-- Rank 4 Tensor Parameters -->
       
 	  <refsection id="Class-Rank3TensorParameter">
@@ -1004,7 +984,7 @@ modifier') </programlisting>
 	    <para>
 	      The rank 3 tensor <classname>Parameter</classname> classes,
 	      all called
-	      <classname>SomethingRank4TensorParameter</classname>, have
+	      <classname>SomethingRank3TensorParameter</classname>, have
 	      values that are restricted to rank 3 tensors of a particular
 	      symmetry, indicated by the <classname>Parameter</classname>
 	      name.  See <xref linkend="Object-Rank 3 Tensors"/>.
@@ -1020,11 +1000,7 @@ modifier') </programlisting>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/widgets/rank3.png"
-		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/rank3.eps"
-		                 format="EPS"/>
+                         contentwidth="534px" format="PNG"/>
 	        </imageobject>
 	        <caption>
 		      <para>
@@ -1065,11 +1041,8 @@ modifier') </programlisting>
 	      <mediaobject>
 	        <imageobject>
 		      <imagedata fileref="FIGURES/widgets/rank2.png"
+                         contentwidth="299px"
 		                 format="PNG"/>
-	        </imageobject>
-	        <imageobject>
-		      <imagedata fileref="FIGURES/widgets/rank2.eps"
-		                 format="EPS"/>
 	        </imageobject>
 	        <caption>
 		      <para>
