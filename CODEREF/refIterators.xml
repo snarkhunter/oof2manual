@@ -113,10 +113,6 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex</programlisting>
           <simpara><filename>SRC/engine/fieldindex.swg</filename>:
           SWIG source code</simpara>
         </listitem>
-        <listitem>
-          <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-          Python code included in the SWIG output</simpara>
-        </listitem>
       </itemizedlist>
     </refsect2>                 <!-- Source Files -->
   </refsynopsisdiv>
@@ -300,10 +296,6 @@ from ooflib.SWIG.engine.fieldindex import FieldIndex</programlisting>
         <listitem>
           <simpara><filename>SRC/engine/fieldindex.swg</filename>:
           SWIG source code</simpara>
-        </listitem>
-        <listitem>
-          <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-          Python code included in the SWIG output</simpara>
         </listitem>
       </itemizedlist>
     </refsect2>                 <!-- Source Files -->
@@ -874,6 +866,10 @@ from ooflib.SWIG.engine.fieldindex import SymTensorIndex</programlisting>
         <listitem>
           <simpara><filename>SRC/engine/fieldindex.swg</filename>:
           SWIG source code</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>SRC/engine/fieldindex.spy</filename>:
+          Python code included in the SWIG output</simpara>
         </listitem>
       </itemizedlist>
     </refsect2>                 <!-- Source Files -->
@@ -1496,8 +1492,6 @@ for index in field.components():
 </refentry>                     <!-- Components -->
 
 <!-- ============================================================ -->
-
-<!-- TODO: Add source files sections -->
 
 <refentry id="Class-ComponentIterator">
   <refnamediv>
@@ -2640,10 +2634,6 @@ from ooflib.SWIG.engine fieldindex import SymTensorIJIterator</programlisting>
         <listitem>
           <simpara><filename>SRC/engine/fieldindex.swg</filename>:
           SWIG source code</simpara>
-        </listitem>
-        <listitem>
-          <simpara><filename>SRC/engine/fieldindex.spy</filename>:
-          Python code included in the SWIG output. </simpara>
         </listitem>
       </itemizedlist>
     </refsect2>                 <!-- Source files -->

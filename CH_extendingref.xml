@@ -28,9 +28,10 @@
        determines what's written to a separate file, or in
        oofhtml.xsl, which modifies how TOCs are built.
 
-       BUT Even with the hack, the "Next" button on the last reference
+       BUT Even with the hack, the "Next" button on the last refentry
        page in each subsection isn't working.  It still goes to a
-       nonexistent file (for the next subsection?).
+       nonexistent file (for the next subsection?).  Also, the "Up"
+       buttons don't work on any of the refentry pages.
   -->
   
   <para>
