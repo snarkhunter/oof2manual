@@ -4,17 +4,15 @@
 %common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
                 exclude-result-prefixes="xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: inline.xsl 8811 2010-08-09 20:24:45Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -29,6 +27,30 @@
   </xsl:param>
   <xsl:param name="linkend" select="$node/@linkend"/>
   <xsl:param name="xhref" select="$node/@xlink:href"/>
+
+  <!-- check for nested links, which are undefined in the output -->
+  <xsl:if test="($linkend or $xhref) and $node/ancestor::*[@xlink:href or @linkend]">
+    <xsl:message>
+      <xsl:text>WARNING: nested link may be undefined in output: </xsl:text>
+      <xsl:text>&lt;</xsl:text>
+      <xsl:value-of select="name($node)"/>
+      <xsl:text> </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$linkend">
+          <xsl:text>@linkend = '</xsl:text>
+          <xsl:value-of select="$linkend"/>
+          <xsl:text>'&gt;</xsl:text>
+        </xsl:when>
+        <xsl:when test="$xhref">
+          <xsl:text>@xlink:href = '</xsl:text>
+          <xsl:value-of select="$xhref"/>
+          <xsl:text>'&gt;</xsl:text>
+        </xsl:when>
+      </xsl:choose>
+      <xsl:text> nested inside parent element </xsl:text>
+      <xsl:value-of select="name($node/parent::*)"/>
+    </xsl:message>
+  </xsl:if>
 
   <xsl:choose>
     <xsl:when test="$xhref
@@ -92,6 +114,7 @@
 
             <xsl:otherwise>
               <fo:basic-link internal-destination="{$idref}">
+                <xsl:apply-templates select="." mode="simple.xlink.properties"/>
                 <xsl:copy-of select="$content"/>
               </fo:basic-link>
             </xsl:otherwise>
@@ -101,6 +124,7 @@
         <!-- otherwise it's a URI -->
         <xsl:otherwise>
           <fo:basic-link external-destination="url({$xhref})">
+            <xsl:apply-templates select="." mode="simple.xlink.properties"/>
             <xsl:copy-of select="$content"/>
           </fo:basic-link>
           <!-- * Call the template for determining whether the URL for this -->
@@ -132,6 +156,7 @@
 
         <xsl:otherwise>
           <fo:basic-link internal-destination="{$linkend}">
+            <xsl:apply-templates select="." mode="simple.xlink.properties"/>
             <xsl:copy-of select="$content"/>
           </fo:basic-link>
         </xsl:otherwise>
@@ -142,15 +167,47 @@
       <xsl:copy-of select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
 
+<xsl:template name="inline.sansseq">
+  <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content" select="$content"/>
+    </xsl:call-template>
+  </xsl:param>
+
+  <fo:inline font-family="{$sans.font.family}">
+    <xsl:choose>
+      <xsl:when test="@dir">
+        <fo:inline>
+          <xsl:attribute name="direction">
+            <xsl:choose>
+              <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+              <xsl:otherwise>rtl</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:copy-of select="$contentwithlink"/>
+        </fo:inline>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$contentwithlink"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.charseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -163,23 +220,26 @@
             <xsl:otherwise>rtl</xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
-        <xsl:copy-of select="$content"/>
+        <xsl:copy-of select="$contentwithlink"/>
       </fo:inline>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:copy-of select="$content"/>
+      <xsl:copy-of select="$contentwithlink"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
 
   <fo:inline xsl:use-attribute-sets="monospace.properties">
     <xsl:call-template name="anchor"/>
@@ -191,16 +251,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.boldseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -213,16 +275,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.italicseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -236,16 +300,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -259,16 +325,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -282,16 +350,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.superscriptseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -313,16 +383,18 @@
         <xsl:attribute name="baseline-shift">super</xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.subscriptseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -344,7 +416,7 @@
         <xsl:attribute name="baseline-shift">sub</xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
@@ -480,14 +552,14 @@
 
 <xsl:template match="function/parameter" priority="2">
   <xsl:call-template name="inline.italicmonoseq"/>
-  <xsl:if test="following-sibling::*">
+  <xsl:if test="$function.parens != 0 and following-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="function/replaceable" priority="2">
   <xsl:call-template name="inline.italicmonoseq"/>
-  <xsl:if test="following-sibling::*">
+  <xsl:if test="$function.parens != 0 and following-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
 </xsl:template>
@@ -529,7 +601,21 @@
 </xsl:template>
 
 <xsl:template match="keycap">
-  <xsl:call-template name="inline.boldseq"/>
+  <xsl:choose>
+    <xsl:when test="@function and normalize-space(.) = ''">
+      <xsl:call-template name="inline.boldseq">
+        <xsl:with-param name="content">
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="context" select="'keycap'"/>
+            <xsl:with-param name="name" select="@function"/>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="inline.boldseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="keycode">
@@ -642,14 +728,6 @@
 </xsl:template>
 
 <xsl:template match="emphasis">
-  <xsl:variable name="depth">
-    <xsl:call-template name="dot.count">
-      <xsl:with-param name="string">
-        <xsl:number level="multiple"/>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="@role='bold' or @role='strong'">
       <xsl:call-template name="inline.boldseq"/>
@@ -665,6 +743,11 @@
       </fo:inline>
     </xsl:when>
     <xsl:otherwise>
+      <!-- How many regular emphasis ancestors does this element have -->
+      <xsl:variable name="depth" select="count(ancestor::emphasis
+	[not(contains(' bold strong underline strikethrough ', concat(' ', @role, ' ')))]
+	)"/>
+
       <xsl:choose>
         <xsl:when test="$depth mod 2 = 1">
           <fo:inline font-style="normal">
@@ -866,7 +949,7 @@
 
           <fo:basic-link internal-destination="{$termid}"
                          xsl:use-attribute-sets="xref.properties">
-            <xsl:call-template name="inline.charseq"/>
+            <xsl:call-template name="inline.italicseq"/>
           </fo:basic-link>
         </xsl:otherwise>
       </xsl:choose>
@@ -1069,8 +1152,9 @@
   <xsl:variable name="mm.separator">
     <xsl:choose>
       <xsl:when test="($fop.extensions != 0 or $fop1.extensions != 0 ) and
-                contains($menuchoice.menu.separator, '&#x2192;')">
-        <fo:inline font-family="Symbol">
+                contains($menuchoice.menu.separator, '&#x2192;') and
+                $symbol.font.family != ''">
+        <fo:inline font-size=".75em" font-family="{$symbol.font.family}">
           <xsl:copy-of select="$menuchoice.menu.separator"/>
         </fo:inline>
       </xsl:when>
@@ -1282,6 +1366,19 @@
 
 <xsl:template match="beginpage">
   <!-- does nothing; this *is not* markup to force a page break. -->
+</xsl:template>
+
+<xsl:template match="*" mode="simple.xlink.properties">
+  <!-- Placeholder template to apply properties to links made from
+       elements other than xref, link, and olink.
+       This template should generate attributes only, as it is
+       applied right after the opening <fo:basic-link> tag.
+       -->
+  <!-- for example
+  <xsl:attribute name="color">blue</xsl:attribute>
+  -->
+  <!-- Since this is a mode, you can create different
+       templates with different properties for different linking elements -->
 </xsl:template>
 
 </xsl:stylesheet>

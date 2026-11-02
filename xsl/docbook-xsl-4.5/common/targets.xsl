@@ -1,16 +1,14 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="doc exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: targets.xsl 8366 2009-03-21 07:49:16Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -227,6 +225,10 @@ document output.
 </xsl:template>
 
 <xsl:template match="article" mode="olink.mode">
+  <xsl:call-template name="div"/>
+</xsl:template>
+
+<xsl:template match="topic" mode="olink.mode">
   <xsl:call-template name="div"/>
 </xsl:template>
 

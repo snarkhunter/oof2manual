@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:saxon="http://icl.com/saxon"
-                exclude-result-prefixes="saxon"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:saxon="http://icl.com/saxon"
+                exclude-result-prefixes="saxon d"
                 version="1.0">
 
 <!-- Should be base URI for imagedata and so on fixed? -->
@@ -80,6 +81,17 @@
   </xsl:variable>
   <xsl:variable name="os.ok" select="not(@os) or not($profile.os) or
                                      $os.content != '' or @os = ''"/>
+
+  <xsl:variable name="outputformat.content">
+    <xsl:if test="@outputformat">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.outputformat"/>
+        <xsl:with-param name="b" select="@outputformat"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="outputformat.ok" select="not(@outputformat) or not($profile.outputformat) or
+                                     $outputformat.content != '' or @outputformat = ''"/>
 
   <xsl:variable name="revision.content">
     <xsl:if test="@revision">
@@ -190,6 +202,7 @@
                 $conformance.ok and 
                 $lang.ok and 
                 $os.ok and 
+                $outputformat.ok and
                 $revision.ok and 
                 $revisionflag.ok and 
                 $role.ok and 
@@ -226,7 +239,13 @@
   <xsl:param name="sep" select="$profile.separator"/>
   <xsl:variable name="head" select="substring-before(concat($a, $sep), $sep)"/>
   <xsl:variable name="tail" select="substring-after($a, $sep)"/>
-  <xsl:if test="contains(concat($sep, $b, $sep), concat($sep, $head, $sep))">1</xsl:if>
+<!-- <xsl:message> -->
+<!-- a="<xsl:value-of select="$a"/>" -->
+<!-- a="<xsl:value-of select="normalize-space($a)"/>" -->
+<!-- head="<xsl:value-of select="$head"/>" -->
+<!-- tail="<xsl:value-of select="$tail"/>" -->
+<!-- </xsl:message> -->
+  <xsl:if test="contains(concat($sep, $b, $sep), concat($sep, $head, $sep)) or normalize-space($a) = '' ">1</xsl:if>
   <xsl:if test="$tail">
     <xsl:call-template name="cross.compare">
       <xsl:with-param name="a" select="$tail"/>

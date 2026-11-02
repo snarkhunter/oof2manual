@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="ASCII"?>
-<book version="5.0">
+<?xml version="1.0" encoding="ASCII"?><book version="5.0">
   <info>
     <title>Manpages Parameter Reference</title>
     <releaseinfo role="meta">
-      $Id: param.xweb 8235 2009-02-09 16:22:14Z xmldoc $
     </releaseinfo>
     <author>
       <orgname>The DocBook Project</orgname>
     </author>
     <copyright>
-      <year>2005-2007</year>
+      <year>2005-2011</year>
       <holder>The DocBook Project</holder>
     </copyright>
     <abstract>
@@ -860,8 +858,8 @@ URL for each link, the endnotes list includes the contents of the
 link. The list thus includes only non-empty<footnote>
 
 <para>A &#8220;non-empty&#8221; link is one that looks like
-this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
-an &#8220;empty link&#8221; is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/&gt;</literallayout>
+this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
+an &#8220;empty link&#8221; is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"/&gt;</literallayout>
 </para></footnote> links.
 
 Empty links are never included, and never numbered. They are simply
@@ -931,8 +929,8 @@ for example, <literal>REFERENCES</literal>.</para>
 <para>If the value of <parameter>man.endnotes.are.numbered</parameter> is
 non-zero (the default), then for each non-empty<footnote>
 <para>A &#8220;non-empty&#8221; notesource is one that looks like
-this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
-an &#8220;empty&#8221; notesource is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/&gt;</literallayout>
+this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
+an &#8220;empty&#8221; notesource is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"/&gt;</literallayout>
 </para></footnote> &#8220;notesource&#8221;:
 
 <itemizedlist>
@@ -1142,7 +1140,7 @@ are passed through "as is".</para>
 <para>For converting certain Unicode symbols and special characters in
 UTF-8 or UTF-16 encoded XML source to appropriate groff/roff
 equivalents in man-page output, the DocBook XSL Stylesheets
-distribution includes a <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">roff character map</link> that is compliant with the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
+distribution includes a <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">roff character map</link> that is compliant with the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
 map</link> format as detailed in the XSLT 2.0 specification. The map
 contains more than 800 character mappings and can be considered the
 standard roff character map for the distribution.</para>
@@ -1251,7 +1249,7 @@ parameter (if the source is in English).</para>
 <para>For converting certain Unicode symbols and special characters in
 UTF-8 or UTF-16 encoded XML source to appropriate groff/roff
 equivalents in man-page output, the DocBook XSL Stylesheets
-distribution includes a <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">roff character map</link> that is compliant with the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
+distribution includes a <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">roff character map</link> that is compliant with the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
 map</link> format as detailed in the XSLT 2.0 specification. The map
 contains more than 800 character mappings and can be considered the
 standard roff character map for the distribution.</para>
@@ -1343,7 +1341,7 @@ is a string representing an XPath expression that matches attribute
 names and values for <tag namespace="http://docbook.sf.net/xmlns/unichar/1.0">output-character</tag>
 elements in the character map.</para>
 
-<para>The attributes supported in the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">standard roff character map included in the distribution</link> are:
+<para>The attributes supported in the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">standard roff character map included in the distribution</link> are:
 <variablelist>
   <varlistentry>
     <term>character</term>
@@ -1437,7 +1435,7 @@ include in it just the characters you want to use, and so you will
 most likely also want to set the value of
 <parameter>man.charmap.use.subset</parameter> to zero.</para>
 <para>You can create a
-custom character map by making a copy of the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">standard roff character map</link> provided in the distribution, and
+custom character map by making a copy of the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">standard roff character map</link> provided in the distribution, and
 then adding to, changing, and/or deleting from that.</para>
 
 <caution>
@@ -3141,11 +3139,9 @@ simply for the purpose of increasing reability of the source.</para>
 &lt;!-- This file is generated from param.xweb --&gt;
 
 &lt;!-- ********************************************************************
-     $Id: param.xweb 8235 2009-02-09 16:22:14Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** --&gt;

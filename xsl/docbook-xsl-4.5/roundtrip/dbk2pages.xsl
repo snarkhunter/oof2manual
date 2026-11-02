@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:sfa="http://developer.apple.com/namespaces/sfa"
+    xmlns:sfa="http://developer.apple.com/namespaces/sfa"
   xmlns:sf="http://developer.apple.com/namespaces/sf"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:sl="http://developer.apple.com/namespaces/sl"
@@ -14,16 +14,14 @@
   <xsl:output method="xml" indent='yes' encoding='ascii'/>
 
   <!-- ********************************************************************
-       $Id: dbk2pages.xsl 7701 2008-02-22 06:07:31Z balls $
-       ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
-       See ../README or http://docbook.sf.net/release/xsl/current/ for
+       See ../README or http://cdn.docbook.org/release/xsl/current/ for
        copyright and other information.
 
        ******************************************************************** -->
 
-  <xsl:include href='../VERSION'/>
+  <xsl:include href='../VERSION.xsl'/>
   <xsl:include href='param.xsl'/>
 
   <xsl:variable name='templatedoc' select='document($pages.template)'/>

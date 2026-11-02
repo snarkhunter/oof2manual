@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="ASCII"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- This file is generated from param.xweb -->
 
 <!-- ********************************************************************
-     $Id: param.xweb 8543 2009-12-02 06:05:24Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -28,6 +25,7 @@
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="text-align">center</xsl:attribute>
 </xsl:attribute-set>
+<xsl:param name="activate.external.olinks" select="1"/>
 <xsl:param name="admon.graphics.extension">.png</xsl:param>
 <xsl:param name="admon.graphics" select="0"/>
 <xsl:param name="admon.graphics.path">images/</xsl:param>
@@ -39,6 +37,7 @@
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
 </xsl:attribute-set>
+<xsl:param name="base.dir"/>
 <xsl:attribute-set name="graphical.admonition.properties">
   <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
   <xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
@@ -58,9 +57,6 @@
 <xsl:param name="appendix.autolabel">A</xsl:param>
 <xsl:param name="arbortext.extensions" select="0"/>
 <xsl:attribute-set name="article.appendix.title.properties" use-attribute-sets="section.title.properties                          section.title.level1.properties">
-  <xsl:attribute name="margin-{$direction.align.start}">
-    <xsl:value-of select="$title.margin.left"/>
-  </xsl:attribute>
 </xsl:attribute-set>
 <xsl:param name="author.othername.in.middle" select="1"/>
 <xsl:param name="autotoc.label.separator">. </xsl:param>
@@ -70,7 +66,7 @@
   <xsl:attribute name="start-indent">0.5in</xsl:attribute>
   <xsl:attribute name="text-indent">-0.5in</xsl:attribute>
 </xsl:attribute-set>
-<xsl:param name="bibliography.collection">http://docbook.sourceforge.net/release/bibliography/bibliography.xml</xsl:param>
+<xsl:param name="bibliography.collection">http://cdn.docbook.org/release/xsl/bibliography/bibliography.xml</xsl:param>
 
 <xsl:param name="bibliography.numbered" select="0"/>
 <xsl:param name="bibliography.style">normal</xsl:param>
@@ -98,6 +94,15 @@
 <xsl:param name="body.end.indent">0pt</xsl:param>
 <xsl:param name="bookmarks.collapse" select="1"/>
 <xsl:param name="bridgehead.in.toc" select="0"/>
+<xsl:attribute-set name="calloutlist.properties">
+  <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
+  <xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
+  <xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
+  <xsl:attribute name="provisional-distance-between-starts">2.2em</xsl:attribute>
+  <xsl:attribute name="provisional-label-separation">0.2em</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="callout.properties">
+</xsl:attribute-set>
 <xsl:param name="callout.defaultcolumn">60</xsl:param>
 
 <xsl:param name="callout.graphics.extension">.svg</xsl:param>
@@ -112,6 +117,7 @@
 <xsl:param name="callout.unicode.start.character">10102</xsl:param>
 <xsl:param name="callouts.extension" select="1"/>
 <xsl:param name="chapter.autolabel" select="1"/>
+<xsl:param name="chunk.quietly" select="0"/>
 <xsl:param name="collect.xref.targets">no</xsl:param>
 <xsl:param name="column.count.back" select="1"/>
 <xsl:param name="column.count.body" select="1"/>
@@ -182,7 +188,9 @@
   <xsl:attribute name="text-align">end</xsl:attribute>
   <xsl:attribute name="display-align">center</xsl:attribute>
 </xsl:attribute-set>
-<xsl:attribute-set name="example.properties" use-attribute-sets="formal.object.properties"/>
+<xsl:attribute-set name="example.properties" use-attribute-sets="formal.object.properties">
+    <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
+</xsl:attribute-set>
 <xsl:param name="exsl.node.set.available"> 
   <xsl:choose>
     <xsl:when xmlns:exsl="http://exslt.org/common" exsl:foo="" test="function-available('exsl:node-set') or                        contains(system-property('xsl:vendor'),                          'Apache Software Foundation')">1</xsl:when>
@@ -225,6 +233,7 @@
   <xsl:attribute name="font-style">normal</xsl:attribute>
   <xsl:attribute name="text-align"><xsl:value-of select="$alignment"/></xsl:attribute>
   <xsl:attribute name="start-indent">0pt</xsl:attribute>
+  <xsl:attribute name="end-indent">0pt</xsl:attribute>
   <xsl:attribute name="text-indent">0pt</xsl:attribute>
   <xsl:attribute name="hyphenate"><xsl:value-of select="$hyphenate"/></xsl:attribute>
   <xsl:attribute name="wrap-option">wrap</xsl:attribute>
@@ -237,6 +246,7 @@
 </xsl:attribute-set>
 <xsl:param name="fop.extensions" select="0"/>
 <xsl:param name="fop1.extensions" select="0"/>
+<xsl:param name="force.blank.pages" select="1"/>
 <xsl:attribute-set name="formal.object.properties">
   <xsl:attribute name="space-before.minimum">0.5em</xsl:attribute>
   <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
@@ -269,6 +279,7 @@ task before
 <xsl:param name="funcsynopsis.decoration" select="1"/>
 <xsl:param name="funcsynopsis.style">kr</xsl:param>
 <xsl:param name="function.parens" select="0"/>
+<xsl:param name="generate.consistent.ids" select="0"/>
 <xsl:param name="generate.index" select="1"/>
 <xsl:param name="generate.section.toc.level" select="0"/>
 
@@ -380,6 +391,7 @@ set       toc,title
 <xsl:param name="index.term.separator"/>
 <xsl:param name="insert.link.page.number">no</xsl:param>
 <xsl:param name="insert.xref.page.number">no</xsl:param>
+<xsl:param name="insert.xref.page.number.para">yes</xsl:param>
 <xsl:attribute-set name="itemizedlist.properties" use-attribute-sets="list.block.properties">
 </xsl:attribute-set>
 <xsl:attribute-set name="itemizedlist.label.properties">
@@ -431,7 +443,7 @@ set       toc,title
 <xsl:param name="margin.note.float.type">none</xsl:param>
 <xsl:param name="margin.note.width">1in</xsl:param>
 <xsl:param name="marker.section.level">2</xsl:param>
-<xsl:param name="menuchoice.menu.separator"> &#8594; </xsl:param>
+<xsl:param name="menuchoice.menu.separator"> → </xsl:param>
 <xsl:param name="menuchoice.separator">+</xsl:param>
 <xsl:param name="monospace.font.family">monospace</xsl:param>
 <xsl:attribute-set name="monospace.properties">
@@ -481,6 +493,8 @@ set       toc,title
     <xsl:when test="$paper.type = 'A4landscape'">210mm</xsl:when>
     <xsl:when test="$paper.type = 'USletter'">11in</xsl:when>
     <xsl:when test="$paper.type = 'USlandscape'">8.5in</xsl:when>
+    <xsl:when test="$paper.type = 'USlegal'">14in</xsl:when>
+    <xsl:when test="$paper.type = 'USlegallandscape'">8.5in</xsl:when>
     <xsl:when test="$paper.type = '4A0'">2378mm</xsl:when>
     <xsl:when test="$paper.type = '2A0'">1682mm</xsl:when>
     <xsl:when test="$paper.type = 'A0'">1189mm</xsl:when>
@@ -547,6 +561,9 @@ set       toc,title
 <xsl:param name="page.width.portrait">
   <xsl:choose>
     <xsl:when test="$paper.type = 'USletter'">8.5in</xsl:when>
+    <xsl:when test="$paper.type = 'USlandscape'">11in</xsl:when>
+    <xsl:when test="$paper.type = 'USlegal'">8.5in</xsl:when>
+    <xsl:when test="$paper.type = 'USlegallandscape'">14in</xsl:when>
     <xsl:when test="$paper.type = '4A0'">1682mm</xsl:when>
     <xsl:when test="$paper.type = '2A0'">1189mm</xsl:when>
     <xsl:when test="$paper.type = 'A0'">841mm</xsl:when>
@@ -605,6 +622,7 @@ set       toc,title
 <xsl:param name="profile.conformance"/>
 <xsl:param name="profile.lang"/>
 <xsl:param name="profile.os"/>
+<xsl:param name="profile.outputformat"/>
 <xsl:param name="profile.revision"/>
 <xsl:param name="profile.revisionflag"/>
 <xsl:param name="profile.role"/>
@@ -659,7 +677,7 @@ set       toc,title
 </xsl:attribute-set>
 <xsl:attribute-set name="qanda.title.properties">
   <xsl:attribute name="font-family">
-    <xsl:value-of select="$title.font.family"/>
+    <xsl:value-of select="$title.fontset"/>
   </xsl:attribute>
   <xsl:attribute name="font-weight">bold</xsl:attribute>
   <!-- font size is calculated dynamically by qanda.heading template -->
@@ -673,7 +691,7 @@ set       toc,title
 <xsl:param name="refentry.pagebreak" select="1"/>
 <xsl:attribute-set name="refentry.title.properties">
   <xsl:attribute name="font-family">
-    <xsl:value-of select="$title.font.family"/>
+    <xsl:value-of select="$title.fontset"/>
   </xsl:attribute>
   <xsl:attribute name="font-size">18pt</xsl:attribute>
   <xsl:attribute name="font-weight">bold</xsl:attribute>
@@ -764,7 +782,7 @@ set       toc,title
 </xsl:attribute-set>
 <xsl:attribute-set name="section.title.properties">
   <xsl:attribute name="font-family">
-    <xsl:value-of select="$title.font.family"/>
+    <xsl:value-of select="$title.fontset"/>
   </xsl:attribute>
   <xsl:attribute name="font-weight">bold</xsl:attribute>
   <!-- font size is calculated dynamically by section.heading template -->
@@ -831,7 +849,12 @@ set       toc,title
 
 <xsl:param name="table.cell.border.color">black</xsl:param>
 <xsl:param name="table.cell.border.style">solid</xsl:param>
-<xsl:param name="table.cell.border.thickness">0.5pt</xsl:param>
+<xsl:param name="table.cell.border.thickness">
+  <xsl:choose>
+    <xsl:when test="contains($stylesheet.result.type,'html')">1px</xsl:when>
+    <xsl:otherwise>0.5pt</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 <xsl:attribute-set name="table.cell.padding">
   <xsl:attribute name="padding-start">2pt</xsl:attribute>
   <xsl:attribute name="padding-end">2pt</xsl:attribute>
@@ -851,7 +874,12 @@ set       toc,title
 
 <xsl:param name="table.frame.border.color">black</xsl:param>
 <xsl:param name="table.frame.border.style">solid</xsl:param>
-<xsl:param name="table.frame.border.thickness">0.5pt</xsl:param>
+<xsl:param name="table.frame.border.thickness">
+  <xsl:choose>
+    <xsl:when test="contains($stylesheet.result.type,'html')">1px</xsl:when>
+    <xsl:otherwise>0.5pt</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 <xsl:attribute-set name="table.properties" use-attribute-sets="formal.object.properties">
   <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
 </xsl:attribute-set>
@@ -860,8 +888,14 @@ set       toc,title
   <xsl:attribute name="border-before-width.conditionality">retain</xsl:attribute>
   <xsl:attribute name="border-collapse">collapse</xsl:attribute>
 </xsl:attribute-set>
+<xsl:attribute-set name="table.caption.properties">
+  <xsl:attribute name="keep-together.within-column">always</xsl:attribute>
+</xsl:attribute-set>
  <xsl:param name="target.database.document">olinkdb.xml</xsl:param>
 <xsl:param name="targets.filename">target.db</xsl:param>
+<xsl:attribute-set name="task.properties" use-attribute-sets="formal.object.properties">
+    <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
+</xsl:attribute-set>
 <xsl:param name="textdata.default.encoding"/>
 <xsl:param name="tex.math.delims" select="1"/>
 <xsl:param name="tex.math.in.alt"/>
@@ -881,6 +915,13 @@ set       toc,title
   <xsl:attribute name="text-align">start</xsl:attribute>
   <xsl:attribute name="end-indent"><xsl:value-of select="concat($toc.indent.width, 'pt')"/></xsl:attribute>
   <xsl:attribute name="last-line-end-indent"><xsl:value-of select="concat('-', $toc.indent.width, 'pt')"/></xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="toc.leader.properties">
+  <xsl:attribute name="leader-pattern">dots</xsl:attribute>
+  <xsl:attribute name="leader-pattern-width">3pt</xsl:attribute>
+  <xsl:attribute name="leader-alignment">reference-area</xsl:attribute>
+  <xsl:attribute name="padding-left">3pt</xsl:attribute>
+  <xsl:attribute name="padding-right">3pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="toc.margin.properties">
   <xsl:attribute name="space-before.minimum">0.5em</xsl:attribute>
@@ -942,5 +983,62 @@ set       toc,title
 </xsl:attribute-set>
 <xsl:param name="xref.title-page.separator"><xsl:text> </xsl:text></xsl:param>
 <xsl:param name="xref.with.number.and.title" select="1"/>
+<xsl:param name="region.inner.extent">0in</xsl:param>
+<xsl:param name="region.outer.extent">0in</xsl:param>
+<xsl:param name="body.margin.inner">0in</xsl:param>
+<xsl:param name="body.margin.outer">0in</xsl:param>
+<xsl:param name="side.region.precedence">false</xsl:param>
+<xsl:attribute-set name="inner.region.content.properties">
+</xsl:attribute-set>
+<xsl:attribute-set name="outer.region.content.properties">
+</xsl:attribute-set>
+<xsl:attribute-set name="region.inner.properties">
+  <xsl:attribute name="border-width">0</xsl:attribute>
+  <xsl:attribute name="padding">0</xsl:attribute>
+  <xsl:attribute name="reference-orientation">90</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="region.outer.properties">
+  <xsl:attribute name="border-width">0</xsl:attribute>
+  <xsl:attribute name="padding">0</xsl:attribute>
+  <xsl:attribute name="reference-orientation">90</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="para.properties" use-attribute-sets="normal.para.spacing">
+</xsl:attribute-set>
+    <xsl:param name="mark.optional.procedure.steps">1</xsl:param>
+  
+<xsl:param name="xsl1.1.bookmarks">
+  <xsl:choose>
+    <xsl:when test="$fop1.extensions != 0">1</xsl:when>
+    <xsl:when test="$xep.extensions != 0">1</xsl:when>
+    <xsl:when test="$axf.extensions != 0">1</xsl:when>
+    <xsl:otherwise>0</xsl:otherwise>
+  </xsl:choose></xsl:param>
+<xsl:param name="show.bookmarks" select="1"/>
+<xsl:param name="autolink.index.see" select="1"/>
+<xsl:attribute-set name="publishers.properties">
+  <xsl:attribute name="space-before">1em</xsl:attribute>
+  <xsl:attribute name="space-after">1em</xsl:attribute>
+  <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="drama.properties" use-attribute-sets="publishers.properties"/>
+<xsl:attribute-set name="poetry.properties" use-attribute-sets="publishers.properties"/>
+<xsl:attribute-set name="stagedir.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+  <xsl:attribute name="font-style">italic</xsl:attribute>
+  <xsl:attribute name="space-before">1em</xsl:attribute>
+  <xsl:attribute name="space-after">1em</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="linegroup.properties">
+  <xsl:attribute name="provisional-distance-between-starts">20%</xsl:attribute>
+  <xsl:attribute name="provisional-label-separation">.3em</xsl:attribute>
+  <xsl:attribute name="space-before">.5em</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="speaker.properties"/>
+<xsl:attribute-set name="line.properties"/>
+<xsl:attribute-set name="inlinestagedir.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+  <xsl:attribute name="font-style">italic</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="dialogue.properties" use-attribute-sets="publishers.properties"/>
 
 </xsl:stylesheet>

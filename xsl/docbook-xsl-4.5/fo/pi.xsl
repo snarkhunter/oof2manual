@@ -1,25 +1,22 @@
 <?xml version='1.0'?>
 <xsl:stylesheet
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+    xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   exclude-result-prefixes="doc xlink"
   version='1.0'>
 
 <!-- ********************************************************************
-     $Id: pi.xsl 8487 2009-07-14 21:43:36Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
 <doc:reference xmlns=""><info><title>FO Processing Instruction Reference</title>
     <releaseinfo role="meta">
-      $Id: pi.xsl 8487 2009-07-14 21:43:36Z bobstayton $
     </releaseinfo>
   </info>
 
@@ -147,6 +144,35 @@
   <xsl:call-template name="dbfo-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
     <xsl:with-param name="attribute" select="'float-type'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbfo_font-size" xmlns="">
+  <refpurpose>Specifies “font-size” for block verbatim elements</refpurpose>
+  <refdescription>
+    <para>Use the <tag class="xmlpi">dbfo font-size</tag> PI as a child of a
+      verbatim element (<tag>screen</tag>, <tag>programlisting</tag>, or
+      <tag>synopsis</tag>) to specify the “font-size”.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfo font-size="SIZE"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>font-size="SIZE"</term>
+        <listitem>
+          <para>Specifies the font size (usually in points)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  
+</doc:pi>
+<xsl:template name="pi.dbfo_font-size">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbfo-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
+    <xsl:with-param name="attribute" select="'font-size'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -964,11 +990,15 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$fop1.extensions != 0">
-      <!-- Doesn't work in fop -->
-    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
+    </xsl:when>
+    <xsl:when test="$fop1.extensions != 0">
+      <!-- fop1 does not need space adjustment because
+           space-after.precedence="force" does not work -->
+      <fo:block space-after="0pt" space-before="0em">
+        <xsl:copy-of select="$spacer"/>
+      </fo:block>
     </xsl:when>
     <xsl:when test="$pi-before != '' and
       not(following-sibling::listitem) and
@@ -982,6 +1012,26 @@
         xsl:use-attribute-sets="normal.para.spacing">
         <xsl:copy-of select="$spacer"/>
       </fo:block>
+    </xsl:when>
+    <xsl:when test="following-sibling::note or
+      following-sibling::warning or
+      following-sibling::caution or
+      following-sibling::important or
+      following-sibling::tip">
+      <xsl:choose>
+        <xsl:when test="$admon.graphics = 0">
+          <fo:block space-after="0pt" 
+            xsl:use-attribute-sets="nongraphical.admonition.properties">
+            <xsl:copy-of select="$spacer"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block space-after="0pt" 
+            xsl:use-attribute-sets="graphical.admonition.properties">
+            <xsl:copy-of select="$spacer"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:when test="following-sibling::table or
       following-sibling::figure or
@@ -1014,7 +1064,9 @@
       following-sibling::step">
       <fo:list-item space-after="0pt" 
         xsl:use-attribute-sets="informal.object.properties">
-        <fo:list-item-label/>
+        <fo:list-item-label>
+          <fo:block line-height="0pt"/>
+        </fo:list-item-label>
         <fo:list-item-body start-indent="0pt" end-indent="0pt">
           <xsl:copy-of select="$spacer"/>
         </fo:list-item-body>
@@ -1039,9 +1091,6 @@
   </xsl:choose>
 
   <xsl:choose>
-    <xsl:when test="$fop1.extensions != 0">
-      <!-- Doesn't work in fop -->
-    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
     </xsl:when>
@@ -1051,8 +1100,12 @@
         space-before="-{$height}"
         space-after="0pt"
         space-after.precedence="force">
-        <fo:list-item-label/>
-        <fo:list-item-body start-indent="0pt" end-indent="0pt"/>
+        <fo:list-item-label>
+          <fo:block line-height="0pt"/>
+        </fo:list-item-label>
+        <fo:list-item-body start-indent="0pt" end-indent="0pt">
+          <fo:block line-height="0pt"/>
+        </fo:list-item-body>
       </fo:list-item>
     </xsl:when>
     <xsl:otherwise>

@@ -1,14 +1,9 @@
-<?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" xmlns:set="http://exslt.org/sets" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="exsl set" version="1.0">
+<?xml version="1.0" encoding="ASCII"?><!--This file was created automatically by html2xhtml--><!--from the HTML stylesheets.--><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" xmlns:set="http://exslt.org/sets" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="exsl set" version="1.0">
 
 <!-- ********************************************************************
-     $Id: html-rtf.xsl 8345 2009-03-16 06:44:07Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -222,7 +217,7 @@
   <xsl:variable name="text" select="translate(., ' ', '&#160;')"/>
 
   <xsl:choose>
-    <xsl:when test="not(contains($text, '&#10;'))">
+    <xsl:when test="not(contains($text, '&#xA;'))">
       <xsl:value-of select="$text"/>
     </xsl:when>
 
@@ -253,7 +248,7 @@
   <xsl:param name="text" select="''"/>
 
   <xsl:choose>
-    <xsl:when test="not(contains($text, '&#10;'))">
+    <xsl:when test="not(contains($text, '&#xA;'))">
       <xsl:value-of select="$text"/>
     </xsl:when>
 

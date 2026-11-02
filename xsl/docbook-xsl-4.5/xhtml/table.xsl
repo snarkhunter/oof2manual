@@ -1,16 +1,11 @@
-<?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:doc="http://nwalsh.com/xsl/documentation/1.0" xmlns:stbl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Table" xmlns:xtbl="xalan://com.nwalsh.xalan.Table" xmlns:lxslt="http://xml.apache.org/xslt" xmlns:ptbl="http://nwalsh.com/xslt/ext/xsltproc/python/Table" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="doc stbl xtbl lxslt ptbl" version="1.0">
+<?xml version="1.0" encoding="ASCII"?><!--This file was created automatically by html2xhtml--><!--from the HTML stylesheets.--><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:doc="http://nwalsh.com/xsl/documentation/1.0" xmlns:stbl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Table" xmlns:xtbl="xalan://com.nwalsh.xalan.Table" xmlns:lxslt="http://xml.apache.org/xslt" xmlns:ptbl="http://nwalsh.com/xslt/ext/xsltproc/python/Table" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="doc stbl xtbl lxslt ptbl" version="1.0">
 
 <xsl:include href="../common/table.xsl"/>
 
 <!-- ********************************************************************
-     $Id: table.xsl 8813 2010-08-09 21:18:23Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -147,6 +142,9 @@
   </xsl:variable>
 
   <table>
+    <!-- common attributes should come from parent table, not tgroup -->
+    <xsl:apply-templates select=".." mode="common.html.attributes"/>
+
     <xsl:choose>
       <!-- If there's a textobject/phrase for the table summary, use it -->
       <xsl:when test="../textobject/phrase">
@@ -592,6 +590,7 @@
   </xsl:variable>
 
   <tr>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="tr.attributes">
       <xsl:with-param name="rownum">
         <xsl:number from="tgroup" count="row"/>
@@ -680,17 +679,6 @@
 
   <xsl:param name="spans"/>
 
-  <xsl:variable name="cellgi">
-    <xsl:choose>
-      <xsl:when test="ancestor::thead">th</xsl:when>
-      <xsl:when test="ancestor::tfoot">th</xsl:when>
-      <xsl:when test="ancestor::tbody and                        (ancestor::table[@rowheader = 'firstcol'] or                       ancestor::informaltable[@rowheader = 'firstcol']) and                       ancestor-or-self::entry[1][count(preceding-sibling::entry) = 0]">
-        <xsl:text>th</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>td</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:variable name="empty.cell" select="count(node()) = 0"/>
 
   <xsl:variable name="named.colnum">
@@ -724,6 +712,17 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="cellgi">
+    <xsl:choose>
+      <xsl:when test="ancestor::thead">th</xsl:when>
+      <xsl:when test="ancestor::tfoot">th</xsl:when>
+      <xsl:when test="ancestor::tbody and                       (ancestor::table[@rowheader = 'firstcol'] or                       ancestor::informaltable[@rowheader = 'firstcol']) and                       $entry.colnum = 1">
+        <xsl:text>th</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>td</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="rowsep">
     <xsl:choose>
       <!-- If this is the last row, rowsep never applies. -->
@@ -733,7 +732,8 @@
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row                           or ancestor-or-self::thead/following-sibling::tbody                           or ancestor-or-self::tbody/preceding-sibling::tfoot)">
         <xsl:value-of select="0"/>
       </xsl:when>
-      <xsl:when test="@morerows and not(@morerows &lt;                   count(ancestor-or-self::row[1]/following-sibling::row))">
+      <!-- not last row with @morerows (thead is not last row) -->
+      <xsl:when test="not(ancestor::thead) and @morerows and not(@morerows &lt;                  count(ancestor-or-self::row[1]/following-sibling::row))">
         <xsl:value-of select="0"/>
       </xsl:when>
       <xsl:otherwise>
@@ -816,6 +816,7 @@
       </xsl:variable>
 
       <xsl:element name="{$cellgi}" namespace="http://www.w3.org/1999/xhtml">
+        <xsl:call-template name="id.attribute"/>
         <xsl:if test="$bgcolor != ''">
           <xsl:attribute name="bgcolor">
             <xsl:value-of select="$bgcolor"/>
@@ -823,11 +824,18 @@
         </xsl:if>
 
         <xsl:call-template name="locale.html.attributes"/>
-        <xsl:if test="$entry.propagates.style != 0 and @role">
-          <xsl:apply-templates select="." mode="class.attribute">
-            <xsl:with-param name="class" select="@role"/>
-          </xsl:apply-templates>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="$entry.propagates.style != 0 and @role">
+            <xsl:apply-templates select="." mode="class.attribute">
+              <xsl:with-param name="class" select="@role"/>
+            </xsl:apply-templates>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="class.attribute">
+              <xsl:with-param name="class" select="''"/>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
 
         <xsl:if test="$show.revisionflag and @revisionflag">
           <xsl:attribute name="class">

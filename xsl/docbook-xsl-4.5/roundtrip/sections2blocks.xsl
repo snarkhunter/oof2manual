@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform" xmlns:dbk="http://docbook.org/ns/docbook" xmlns:rnd="http://docbook.org/ns/docbook/roundtrip" version="1.0">
+<axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform"
+		 xmlns:dbk="http://docbook.org/ns/docbook"
+		 xmlns:rnd="http://docbook.org/ns/docbook/roundtrip"
+		 version="1.0">
 <!--====================================-->
 <!--=                                  =-->
 <!--=   DO NOT EDIT THIS STYLESHEET    =-->
@@ -7,14 +10,6 @@
 <!--= This stylesheet is generated     =-->
 <!--= by makeSubsections.xsl and a     =-->
 <!--= mapping specification.           =-->
-<!--=                                  =-->
-<!--= Revision history:                =-->
-<!--=  1.1 2007-01-10 SRB              =-->
-<!--=   Output DocBook 5.0.            =-->
-<!--=  1.0 2005-11-08 SRB              =-->
-<!--=   Initial version.               =-->
-<!--=                                  =-->
-<!--= $Id: sections2blocks.xsl 8107 2008-08-17 22:39:58Z balls $ =-->
 <!--=                                  =-->
 <!--====================================-->
   <axsl:output indent="yes"/>

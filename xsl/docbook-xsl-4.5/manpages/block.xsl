@@ -1,15 +1,13 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                		xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: block.xsl 8703 2010-07-06 20:57:06Z nwalsh $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -139,6 +137,7 @@
       and not(substring(local-name(..),
       string-length(local-name(..))-7) = 'synopsis')
       and not(ancestor::*[local-name() = 'refsynopsisdiv'])
+      and not(ancestor::*[local-name() = 'term'])
       ">
       <xsl:text>Yes</xsl:text>
     </xsl:if>

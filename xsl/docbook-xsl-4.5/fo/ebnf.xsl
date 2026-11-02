@@ -1,16 +1,14 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 exclude-result-prefixes="doc"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: ebnf.xsl 6910 2007-06-28 23:23:30Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -18,7 +16,6 @@
 <doc:reference xmlns="">
 <referenceinfo>
 <releaseinfo role="meta">
-$Id: ebnf.xsl 6910 2007-06-28 23:23:30Z xmldoc $
 </releaseinfo>
 <author><surname>Walsh</surname>
 <firstname>Norman</firstname></author>
@@ -99,7 +96,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     <fo:table-cell>
       <fo:block text-align="start">
         <xsl:text>[</xsl:text>
-        <xsl:number count="production" level="any"/>
+        <xsl:apply-templates select="." mode="label.markup"/>
         <xsl:text>]</xsl:text>
       </fo:block>
     </fo:table-cell>

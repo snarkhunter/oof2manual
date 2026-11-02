@@ -1,20 +1,15 @@
-<?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<!-- This file is generated from param.xweb -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
+<?xml version="1.0" encoding="ASCII"?><!--This file was created automatically by html2xhtml--><!--from the HTML stylesheets.--><!-- This file is generated from param.xweb --><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
 
 <!-- ********************************************************************
-     $Id: param.xweb 8552 2009-12-07 17:45:26Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
 <xsl:param name="abstract.notitle.enabled" select="0"/>
+<xsl:param name="activate.external.olinks" select="1"/>
 <xsl:param name="admon.graphics.extension">.png</xsl:param>
 <xsl:param name="admon.graphics" select="0"/>
 <xsl:param name="admon.graphics.path">images/</xsl:param>
@@ -67,20 +62,21 @@ div.annotation-close { position: absolute;
                      }
 </xsl:param>
 <xsl:param name="annotation.graphic.close">
-http://docbook.sourceforge.net/release/images/annot-close.png</xsl:param>
-<xsl:param name="annotation.graphic.open">http://docbook.sourceforge.net/release/images/annot-open.png</xsl:param>
+http://cdn.docbook.org/release/xsl/images/annot-close.png</xsl:param>
+<xsl:param name="annotation.graphic.open">http://cdn.docbook.org/release/xsl/images/annot-open.png</xsl:param>
 
 <xsl:param name="annotation.js">
-<xsl:text>http://docbook.sourceforge.net/release/script/AnchorPosition.js http://docbook.sourceforge.net/release/script/PopupWindow.js</xsl:text></xsl:param>
+<xsl:text>http://cdn.docbook.org/release/xsl/script/AnchorPosition.js http://cdn.docbook.org/release/xsl/script/PopupWindow.js</xsl:text></xsl:param>
 
 <xsl:param name="annotation.support" select="0"/>
 <xsl:param name="appendix.autolabel">A</xsl:param>
 <xsl:param name="author.othername.in.middle" select="1"/>
 <xsl:param name="autotoc.label.in.hyperlink" select="1"/>
 <xsl:param name="autotoc.label.separator">. </xsl:param>
+<xsl:param name="autolink.index.see" select="1"/>
 <xsl:param name="base.dir"/>
 <xsl:param name="biblioentry.item.separator">. </xsl:param>
-<xsl:param name="bibliography.collection">http://docbook.sourceforge.net/release/bibliography/bibliography.xml</xsl:param>
+<xsl:param name="bibliography.collection">http://cdn.docbook.org/release/xsl/bibliography/bibliography.xml</xsl:param>
 
 <xsl:param name="bibliography.numbered" select="0"/>
 <xsl:param name="bibliography.style">normal</xsl:param>
@@ -107,6 +103,7 @@ http://docbook.sourceforge.net/release/images/annot-close.png</xsl:param>
 <xsl:param name="chunk.toc"/>
 <xsl:param name="chunk.tocs.and.lots" select="0"/>
 <xsl:param name="chunk.tocs.and.lots.has.title" select="1"/>
+<xsl:param name="chunked.filename.prefix"/>
 <xsl:param name="citerefentry.link" select="0"/>
 <xsl:param name="collect.xref.targets">no</xsl:param>
 <xsl:param name="component.label.includes.part.label" select="0"/>
@@ -165,6 +162,7 @@ task before
 <xsl:param name="funcsynopsis.decoration" select="1"/>
 <xsl:param name="funcsynopsis.style">kr</xsl:param>
 <xsl:param name="function.parens" select="0"/>
+<xsl:param name="generate.consistent.ids" select="0"/>
 <xsl:param name="generate.css.header" select="0"/>
 <xsl:param name="generate.id.attributes" select="0"/>
 <xsl:param name="generate.index" select="1"/>
@@ -215,6 +213,8 @@ set       toc,title
 <xsl:param name="html.head.legalnotice.link.types">copyright</xsl:param>
 <xsl:param name="html.longdesc" select="1"/>
 <xsl:param name="html.longdesc.link" select="$html.longdesc"/>
+<xsl:param name="html.script"/>
+<xsl:param name="html.script.type">text/javascript</xsl:param>
 <xsl:param name="html.stylesheet"/>
 <xsl:param name="html.stylesheet.type">text/css</xsl:param>
 <xsl:param name="htmlhelp.alias.file">alias.h</xsl:param>
@@ -281,6 +281,7 @@ set       toc,title
 <xsl:param name="insert.olink.page.number">no</xsl:param>
 <xsl:param name="insert.olink.pdf.frag" select="0"/>
 <xsl:param name="insert.xref.page.number">no</xsl:param>
+<xsl:param name="insert.xref.page.number.para">yes</xsl:param>
 <xsl:param name="javahelp.encoding">iso-8859-1</xsl:param>
 <xsl:param name="keep.relative.image.uris" select="1"/>
 
@@ -315,15 +316,10 @@ set       toc,title
 <xsl:param name="olink.base.uri"/>
 <xsl:param name="olink.debug" select="0"/>
 <xsl:param name="olink.doctitle">no</xsl:param> 
-<xsl:param name="olink.fragid">fragid=</xsl:param>
 <xsl:param name="olink.lang.fallback.sequence"/>
-<xsl:param name="olink.outline.ext">.olink</xsl:param>
 <xsl:attribute-set name="olink.properties">
   <xsl:attribute name="show-destination">replace</xsl:attribute>
 </xsl:attribute-set>
-<xsl:param name="olink.pubid">pubid</xsl:param>
-  <xsl:param name="olink.resolver">/cgi-bin/olink</xsl:param>
-<xsl:param name="olink.sysid">sysid</xsl:param>
 <xsl:param name="othercredit.like.author.enabled">0</xsl:param>
 <xsl:param name="para.propagates.style" select="1"/>
 <xsl:param name="part.autolabel">I</xsl:param>
@@ -342,6 +338,7 @@ set       toc,title
 <xsl:param name="profile.conformance"/>
 <xsl:param name="profile.lang"/>
 <xsl:param name="profile.os"/>
+<xsl:param name="profile.outputformat"/>
 <xsl:param name="profile.revision"/>
 <xsl:param name="profile.revisionflag"/>
 <xsl:param name="profile.role"/>
@@ -389,13 +386,23 @@ set       toc,title
 <xsl:param name="table.cell.border.color"/>
 
 <xsl:param name="table.cell.border.style">solid</xsl:param>
-<xsl:param name="table.cell.border.thickness">0.5pt</xsl:param>
+<xsl:param name="table.cell.border.thickness">
+  <xsl:choose>
+    <xsl:when test="contains($stylesheet.result.type,'html')">1px</xsl:when>
+    <xsl:otherwise>0.5pt</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 <xsl:param name="table.footnote.number.format">a</xsl:param>
 <xsl:param name="table.footnote.number.symbols"/>
 <xsl:param name="table.frame.border.color"/>
 
 <xsl:param name="table.frame.border.style">solid</xsl:param>
-<xsl:param name="table.frame.border.thickness">0.5pt</xsl:param>
+<xsl:param name="table.frame.border.thickness">
+  <xsl:choose>
+    <xsl:when test="contains($stylesheet.result.type,'html')">1px</xsl:when>
+    <xsl:otherwise>0.5pt</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 <xsl:param name="tablecolumns.extension" select="1"/>
  <xsl:param name="target.database.document">olinkdb.xml</xsl:param>
 <xsl:param name="targets.filename">target.db</xsl:param>
@@ -418,6 +425,14 @@ set       toc,title
 <xsl:param name="variablelist.as.table" select="0"/>
 <xsl:param name="variablelist.term.break.after">0</xsl:param>
 <xsl:param name="variablelist.term.separator">, </xsl:param>
+<xsl:param name="webhelp.autolabel">0</xsl:param>
+<xsl:param name="webhelp.base.dir">docs</xsl:param>
+<xsl:param name="webhelp.common.dir">../common/</xsl:param>
+<xsl:param name="webhelp.default.topic">index.html</xsl:param>
+<xsl:param name="webhelp.include.search.tab">1</xsl:param>
+<xsl:param name="webhelp.indexer.language">en</xsl:param>
+<xsl:param name="webhelp.start.filename">index.html</xsl:param>
+<xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
 <xsl:param name="writing.mode">
   <xsl:call-template name="gentext">
     <xsl:with-param name="key">writing-mode</xsl:with-param>
@@ -432,5 +447,6 @@ set       toc,title
 <xsl:param name="xref.label-title.separator">: </xsl:param>
 <xsl:param name="xref.title-page.separator"><xsl:text> </xsl:text></xsl:param>
 <xsl:param name="xref.with.number.and.title" select="1"/>
+<xsl:param name="link.to.self.for.mediaobject" select="0"/>
 
 </xsl:stylesheet>

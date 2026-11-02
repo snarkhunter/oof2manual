@@ -31,16 +31,14 @@
   <xsl:output method="xml" indent='yes'/>
 
   <!-- ********************************************************************
-       $Id: dbk2ooo.xsl 7701 2008-02-22 06:07:31Z balls $
-       ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
-       See ../README or http://docbook.sf.net/release/xsl/current/ for
+       See ../README or http://cdn.docbook.org/release/xsl/current/ for
        copyright and other information.
 
        ******************************************************************** -->
 
-  <xsl:include href='../VERSION'/>
+  <xsl:include href='../VERSION.xsl'/>
 
   <xsl:template match="/" name='ooo.top'>
     <xsl:param name='doc' select='/'/>

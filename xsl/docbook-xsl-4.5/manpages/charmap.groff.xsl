@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:u="http://docbook.sf.net/xmlns/unichar/1.0"
+                		xmlns:u="http://docbook.sf.net/xmlns/unichar/1.0"
                 exclude-result-prefixes="u">
 
 <!-- ********************************************************************
-     $Id: charmap.groff.xsl 7806 2008-03-04 03:27:47Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->

@@ -1,8 +1,6 @@
-<?xml version="1.0"?>
-
-<reference><info><title>manpages Processing Instruction Reference</title>
+<?xml version="1.0" encoding="UTF-8"?>
+<reference xmlns:xlink="http://www.w3.org/1999/xlink"><info><title>manpages Processing Instruction Reference</title>
     <releaseinfo role="meta">
-      $Id: pi.xsl 7644 2008-01-16 11:04:07Z xmldoc $
     </releaseinfo>
   </info>
   <partintro xml:id="partintro">
@@ -24,7 +22,7 @@
 
   </partintro>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dbman_funcsynopsis-style">
+<refentry xml:id="dbman_funcsynopsis-style">
 <refnamediv>
 <refname>dbman_funcsynopsis-style</refname>
 <refpurpose>Specifies presentation style for a funcsynopsis.</refpurpose>
@@ -67,4 +65,3 @@
 
   </refsect1></refentry>
 </reference>
-

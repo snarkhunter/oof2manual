@@ -1,14 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: fo.xsl 8287 2009-03-06 23:53:33Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -48,8 +46,11 @@
     </xsl:when>
     <xsl:when test="$fop1.extensions != 0 and
                     starts-with($writing.mode, 'rl')">
-      <xsl:message>WARNING: FOP does not support right-to-left writing-mode</xsl:message>
-      <xsl:text>lr-tb</xsl:text>
+      <xsl:message>
+        <xsl:text>WARNING: FOP 1.0 does not support right-to-left writing-mode; </xsl:text>
+        <xsl:text>FOP 1.1 has limited support for right-to-left writing-mode.</xsl:text>
+      </xsl:message>
+      <xsl:text>rl-tb</xsl:text>
     </xsl:when>
     <xsl:when test="starts-with($writing.mode, 'lr')">lr-tb</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'rl')">rl-tb</xsl:when>
@@ -93,11 +94,11 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$dingbat.font.family = ''">
+    <xsl:when test="$dingbat.fontset = ''">
       <xsl:copy-of select="$symbol"/>
     </xsl:when>
     <xsl:otherwise>
-      <fo:inline font-family="{$dingbat.font.family}">
+      <fo:inline font-family="{$dingbat.fontset}">
         <xsl:copy-of select="$symbol"/>
       </fo:inline>
     </xsl:otherwise>

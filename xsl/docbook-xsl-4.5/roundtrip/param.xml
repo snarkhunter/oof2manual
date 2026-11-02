@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="ASCII"?>
-<book version="5.0">
+<?xml version="1.0" encoding="ASCII"?><book version="5.0">
   <info>
     <title>Roundtrip Parameter Reference</title>
     <releaseinfo role="meta">
-      $Id: param.xweb 7042 2007-07-17 04:28:48Z xmldoc $
     </releaseinfo>
     <author>
       <personname>
@@ -12,10 +10,8 @@
       </personname>
     </author>
     <copyright>
-      <year>2007</year>
-      <year>2006</year>
-      <year>2005</year>
-      <year>2004</year>
+      <year>2004-2011</year>
+     
       <holder>Steve Ball</holder>
     </copyright>
     <abstract>
@@ -88,11 +84,9 @@
 &lt;!-- This file is generated from param.xweb --&gt;
 
 &lt;!-- ********************************************************************
-     $Id: param.xweb 7042 2007-07-17 04:28:48Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** --&gt;

@@ -1,15 +1,13 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: sections.xsl 6910 2007-06-28 23:23:30Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -113,7 +111,7 @@
   </xsl:variable>
 
   <xsl:if test="contains($toc.params, 'toc')
-                and (count(ancestor::section)+1) &lt;= 
+                and (count(ancestor::section)+1) &lt;=
 		$generate.section.toc.level">
     <xsl:call-template name="section.toc">
       <xsl:with-param name="toc.title.p" 
@@ -198,7 +196,7 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')
-                    and (count(ancestor::section)+1) &lt;= 
+                    and (count(ancestor::section)+1) &lt;=
 		    $generate.section.toc.level">
         <xsl:call-template name="section.toc">
           <xsl:with-param name="toc.title.p" 
@@ -294,15 +292,9 @@
       </xsl:apply-templates>
     </xsl:variable>
 
-    <xsl:if test="$passivetex.extensions != 0">
-      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
-                      fotex-bookmark-level="{$level + 2}" 
-                      fotex-bookmark-label="{$id}">
-        <xsl:value-of select="$marker.title"/>
-      </fotex:bookmark>
-    </xsl:if>
-
-    <xsl:if test="$axf.extensions != 0">
+    <xsl:if test="$axf.extensions != 0 and 
+                  $xsl1.1.bookmarks = 0 and 
+                  $show.bookmarks != 0">
       <xsl:attribute name="axf:outline-level">
         <xsl:value-of select="count(ancestor::*)-1"/>
       </xsl:attribute>

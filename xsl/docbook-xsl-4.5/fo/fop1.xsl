@@ -1,36 +1,29 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fox="http://xmlgraphics.apache.org/fop/extensions"
+                		xmlns:fox="http://xmlgraphics.apache.org/fop/extensions"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: fop1.xsl 8913 2010-10-01 04:44:57Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
-<!-- ==================================================================== -->
 
-<xsl:variable name="bookmarks.state">
-  <xsl:choose>
-    <xsl:when test="$bookmarks.collapse != 0">hide</xsl:when>
-    <xsl:otherwise>show</xsl:otherwise>
-  </xsl:choose>
-</xsl:variable>
+<!-- ==================================================================== -->
 
 <xsl:template match="*" mode="fop1.outline">
   <xsl:apply-templates select="*" mode="fop1.outline"/>
 </xsl:template>
 
 <xsl:template match="set|book|part|reference|
-                     preface|chapter|appendix|article
+                     preface|chapter|appendix|article|topic
                      |glossary|bibliography|index|setindex
-                     |refentry
+                     |refentry|refsynopsisdiv
+                     |refsect1|refsect2|refsect3|refsection
                      |sect1|sect2|sect3|sect4|sect5|section"
               mode="fop1.outline">
 
@@ -45,14 +38,14 @@
   <!-- If the object is a set or book, generate a bookmark for the toc -->
 
   <xsl:choose>
-    <xsl:when test="self::index and $generate.index = 0"/>	
+    <xsl:when test="self::index and $generate.index = 0"/>
     <xsl:when test="parent::*">
       <fo:bookmark internal-destination="{$id}">
 	<xsl:attribute name="starting-state">
 	  <xsl:value-of select="$bookmarks.state"/>
 	</xsl:attribute>
         <fo:bookmark-title>
-          <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
         </fo:bookmark-title>
         <xsl:apply-templates select="*" mode="fop1.outline"/>
       </fo:bookmark>
@@ -63,7 +56,7 @@
 	  <xsl:value-of select="$bookmarks.state"/>
 	</xsl:attribute>
         <fo:bookmark-title>
-          <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
         </fo:bookmark-title>
       </fo:bookmark>
 
@@ -74,9 +67,10 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')
-                    and (book|part|reference|preface|chapter|appendix|article
+                    and (book|part|reference|preface|chapter|appendix|article|topic
                          |glossary|bibliography|index|setindex
-                         |refentry
+                         |refentry|refsynopsisdiv
+                         |refsect1|refsect2|refsect3|refsection
                          |sect1|sect2|sect3|sect4|sect5|section)">
         <fo:bookmark internal-destination="toc...{$id}">
           <fo:bookmark-title>
@@ -95,40 +89,22 @@
 </xsl:template>
 
 <xsl:template match="*" mode="fop1.foxdest">
-  <xsl:apply-templates select="*" mode="fop1.foxdest"/>
-</xsl:template>
-
-<xsl:template match="set|book|part|reference|
-                     preface|chapter|appendix|article
-                     |glossary|bibliography|index|setindex
-                     |refentry
-                     |sect1|sect2|sect3|sect4|sect5|section"
-              mode="fop1.foxdest">
   <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
+    <xsl:value-of select="(@id|@xml:id)[1]"/>
   </xsl:variable>
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="object.title.markup"/>
-  </xsl:variable>
-  <!--xsl:if test="$id != ''">
-    <fox:destination internal-destination="{$id}"/>
-  </xsl:if-->
-
-  <!-- Put the root element bookmark at the same level as its children -->
-  <!-- If the object is a set or book, generate a bookmark for the toc -->
-
   <xsl:choose>
-    <xsl:when test="self::index and $generate.index = 0"/>	
-    <xsl:when test="parent::*">
+    <xsl:when test="self::index and $generate.index = 0"/>
+    <!-- ID on the footnote is not passed to the output FO -->
+    <xsl:when test="not(self::footnote) and $id != ''">
       <fox:destination internal-destination="{$id}"/>
-        <xsl:apply-templates select="*" mode="fop1.foxdest"/>
+      <xsl:apply-templates select="*" mode="fop1.foxdest"/>
     </xsl:when>
     <xsl:otherwise>
-      <fox:destination internal-destination="{$id}"/>
       <xsl:apply-templates select="*" mode="fop1.foxdest"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
 <!-- Metadata support ("Document Properties" in Adobe Reader) -->
 <xsl:template name="fop1-document-information">
   <xsl:variable name="authors" select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
@@ -137,7 +113,9 @@
     <xsl:apply-templates select="/*[1]" mode="label.markup"/>
     <xsl:apply-templates select="/*[1]" mode="title.markup"/>
     <xsl:variable name="subtitle">
-      <xsl:apply-templates select="/*[1]" mode="subtitle.markup"/>
+      <xsl:apply-templates select="/*[1]" mode="subtitle.markup">
+        <xsl:with-param name="verbose" select="0"/>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:if test="$subtitle !=''">
       <xsl:text> - </xsl:text>
@@ -167,6 +145,9 @@
                 </xsl:when>
                 <xsl:when test="$authors[self::corpauthor]">
                   <xsl:value-of select="$authors"/>
+                </xsl:when>
+                <xsl:when test="$authors[orgname]">
+                  <xsl:value-of select="$authors/orgname"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:call-template name="person.name">

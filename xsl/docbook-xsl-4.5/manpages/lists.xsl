@@ -1,13 +1,11 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version='1.0'>
+                		version='1.0'>
 
 <!-- ********************************************************************
-     $Id: lists.xsl 8530 2009-11-02 02:38:47Z dleidert $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -32,7 +30,8 @@
 
 <xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
   simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-  remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  remark[ancestor::listitem or ancestor::step or ancestor::glossdef]"
+  priority="1">
   <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:if test="following-sibling::*[1][
@@ -52,6 +51,7 @@
 </xsl:template>
 
 <xsl:template match="variablelist|glosslist">
+  <xsl:text>&#10;</xsl:text>
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:call-template name="bold">
@@ -69,7 +69,15 @@
     <xsl:variable name="content">
       <xsl:apply-templates/>
     </xsl:variable>
-    <xsl:value-of select="normalize-space($content)"/>
+    <xsl:choose>
+      <!-- don't normalize verbatim synopsis -->
+      <xsl:when test="child::synopsis">
+        <xsl:value-of select="$content"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="normalize-space($content)"/>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>
@@ -175,6 +183,16 @@
   <xsl:call-template name="roff-if-end"/>
   <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="orderedlist/listitem/title|
+                     procedure/step/title">
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select=".."/>
+  </xsl:call-template>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.PP&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="orderedlist/listitem|procedure/step">

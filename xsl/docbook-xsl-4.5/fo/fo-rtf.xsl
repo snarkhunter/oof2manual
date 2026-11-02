@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 exclude-result-prefixes="exsl set"
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: fo-rtf.xsl 6910 2007-06-28 23:23:30Z xmldoc $
-     ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
-     See ../README or http://docbook.sf.net/ for copyright
+     See ../README or http://cdn.docbook.org/release/xsl for copyright
      copyright and other information.
 
      ******************************************************************** -->

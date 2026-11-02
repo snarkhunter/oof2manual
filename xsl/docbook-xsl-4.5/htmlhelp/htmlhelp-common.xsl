@@ -3,7 +3,7 @@
 <!ENTITY lf '<xsl:text xmlns:xsl="http://www.w3.org/1999/XSL/Transform">&#xA;</xsl:text>'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+    xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
   xmlns:exsl="http://exslt.org/common"
   xmlns:set="http://exslt.org/sets"
   xmlns:h="urn:x-hex"
@@ -11,10 +11,6 @@
   xmlns:db="http://docbook.org/ns/docbook"
   version="1.0"
   exclude-result-prefixes="doc exsl set h db ng">
-
-<!-- ********************************************************************
-     $Id: htmlhelp-common.xsl 8400 2009-04-08 07:44:54Z bobstayton $
-     ******************************************************************** -->
 
 <!-- ==================================================================== -->
 <!-- Customizations of standard HTML stylesheet parameters -->
@@ -34,6 +30,17 @@
 
 <!-- ==================================================================== -->
 
+<!-- To use the same namespace-adjusted nodeset everywhere, it should
+be created as a global variable here.
+Used by docbook.xsl, chunk-common.xsl, chunktoc.xsl, and
+chunk-code.xsl; and in $chunk.hierarchy used in chunkfast.xsl -->
+<xsl:variable name="no.namespace">
+  <xsl:if test="$exsl.node.set.available != 0 and 
+                namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+      <xsl:apply-templates select="/*" mode="stripNS"/>
+  </xsl:if>
+</xsl:variable>
+
 <xsl:template match="/">
 
   <!-- * Get a title for current doc so that we let the user -->
@@ -42,11 +49,9 @@
     <xsl:call-template name="get.doc.title"/>
   </xsl:variable>
   <xsl:choose>
-    <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-         toss the namespace and continue.  Use the docbook5 namespaced
-         stylesheets for DocBook5 if you don't want to use this feature.-->
-    <xsl:when test="$exsl.node.set.available != 0
-                    and (*/self::ng:* or */self::db:*)">
+    <!-- fix namespace if necessary -->
+    <xsl:when test="$exsl.node.set.available != 0 and 
+                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$doc.title"/>
@@ -57,66 +62,71 @@
           <xsl:text>stripped namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:variable name="nons">
-        <xsl:apply-templates mode="stripNS"/>
-      </xsl:variable>
-      <xsl:call-template name="log.message">
-        <xsl:with-param name="level">Note</xsl:with-param>
-        <xsl:with-param name="source" select="$doc.title"/>
-        <xsl:with-param name="context-desc">
-          <xsl:text>namesp. cut</xsl:text>
-        </xsl:with-param>
-        <xsl:with-param name="message">
-          <xsl:text>processing stripped document</xsl:text>
+      <!-- DEBUG: uncomment to save namespace-fixed document.
+      <xsl:message>Saving namespace-fixed document.</xsl:message>
+      <xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="'namespace-fixed.debug.xml'"/>
+        <xsl:with-param name="method" select="'xml'"/>
+        <xsl:with-param name="content">
+          <xsl:copy-of select="exsl:node-set($no.namespace)"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:apply-templates select="exsl:node-set($nons)"/>
+      -->
+      <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
     </xsl:when>
+    <!-- Can't process unless namespace fixed with exsl node-set()-->
+    <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+      <xsl:message terminate="yes">
+        <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+        <xsl:text> cannot proceed.</xsl:text>
+      </xsl:message>
+    </xsl:when>
+
     <xsl:otherwise>
-  <xsl:if test="$htmlhelp.only != 1">
-    <xsl:choose>
-      <xsl:when test="$rootid != ''">
+      <xsl:if test="$htmlhelp.only != 1">
         <xsl:choose>
-          <xsl:when test="count(key('id',$rootid)) = 0">
-            <xsl:message terminate="yes">
-              <xsl:text>ID '</xsl:text>
-              <xsl:value-of select="$rootid"/>
-              <xsl:text>' not found in document.</xsl:text>
-            </xsl:message>
+          <xsl:when test="$rootid != ''">
+            <xsl:choose>
+              <xsl:when test="count(key('id',$rootid)) = 0">
+                <xsl:message terminate="yes">
+                  <xsl:text>ID '</xsl:text>
+                  <xsl:value-of select="$rootid"/>
+                  <xsl:text>' not found in document.</xsl:text>
+                </xsl:message>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message>Formatting from <xsl:value-of select="$rootid"/></xsl:message>
+                <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:message>Formatting from <xsl:value-of select="$rootid"/></xsl:message>
-            <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
+            <xsl:if test="$collect.xref.targets = 'yes' or
+                          $collect.xref.targets = 'only'">
+              <xsl:apply-templates select="/" mode="collect.targets"/>
+            </xsl:if>
+            <xsl:if test="$collect.xref.targets != 'only'">
+              <xsl:apply-templates select="/" mode="process.root"/>
+            </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="$collect.xref.targets = 'yes' or
-                      $collect.xref.targets = 'only'">
-          <xsl:apply-templates select="/" mode="collect.targets"/>
+      </xsl:if>
+    
+    
+      <xsl:if test="$collect.xref.targets != 'only'">
+        <xsl:call-template name="hhp"/>
+        <xsl:call-template name="hhc"/>
+        <xsl:if test="($rootid = '' and //processing-instruction('dbhh')) or
+                      ($rootid != '' and key('id',$rootid)//processing-instruction('dbhh'))">
+          <xsl:call-template name="hh-map"/>
+          <xsl:call-template name="hh-alias"/>
         </xsl:if>
-        <xsl:if test="$collect.xref.targets != 'only'">
-          <xsl:apply-templates select="/" mode="process.root"/>
+        <xsl:if test="$htmlhelp.generate.index">
+          <xsl:call-template name="hhk"/>
         </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
-
-
-  <xsl:if test="$collect.xref.targets != 'only'">
-    <xsl:call-template name="hhp"/>
-    <xsl:call-template name="hhc"/>
-    <xsl:if test="($rootid = '' and //processing-instruction('dbhh')) or
-                  ($rootid != '' and key('id',$rootid)//processing-instruction('dbhh'))">
-      <xsl:call-template name="hh-map"/>
-      <xsl:call-template name="hh-alias"/>
-    </xsl:if>
-    <xsl:if test="$htmlhelp.generate.index">
-      <xsl:call-template name="hhk"/>
-    </xsl:if>
-  </xsl:if>
-</xsl:otherwise>
-</xsl:choose>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -125,7 +135,7 @@
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$htmlhelp.hhp"/>
     </xsl:with-param>
@@ -170,7 +180,7 @@
       <xsl:call-template name="make-relative-filename">
         <xsl:with-param name="base.dir">
           <xsl:if test="$manifest.in.base.dir = 0">
-            <xsl:value-of select="$base.dir"/>
+            <xsl:value-of select="$chunk.base.dir"/>
           </xsl:if>
         </xsl:with-param>
         <xsl:with-param name="base.name">
@@ -533,7 +543,7 @@ Enhanced decompilation=</xsl:text>
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$htmlhelp.hhc"/>
     </xsl:with-param>
@@ -811,7 +821,7 @@ Enhanced decompilation=</xsl:text>
       </xsl:if>
 
       <xsl:if test="tertiary">
-        <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and 
+        <xsl:if test="not(//indexterm[normalize-space(primary)=$primary and
                                       normalize-space(secondary)=$secondary and not(tertiary)])">
           <xsl:call-template name="write.indexterm">
             <xsl:with-param name="text" select="concat($primary, ', ', $secondary)"/>
@@ -849,7 +859,7 @@ Enhanced decompilation=</xsl:text>
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$htmlhelp.hhk"/>
     </xsl:with-param>
@@ -976,7 +986,7 @@ Enhanced decompilation=</xsl:text>
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$htmlhelp.map.file"/>
     </xsl:with-param>
@@ -1026,7 +1036,7 @@ Enhanced decompilation=</xsl:text>
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$htmlhelp.alias.file"/>
     </xsl:with-param>

@@ -1,19 +1,15 @@
-<?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" xmlns="http://www.w3.org/1999/xhtml" version="1.0" exclude-result-prefixes="exsl">
+<?xml version="1.0" encoding="ASCII"?><!--This file was created automatically by html2xhtml--><!--from the HTML stylesheets.--><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:exsl="http://exslt.org/common" xmlns="http://www.w3.org/1999/xhtml" version="1.0" exclude-result-prefixes="exsl">
 
 <!-- ********************************************************************
-     $Id: chunk.xsl 6910 2007-06-28 23:23:30Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
+
 
 <!-- First import the non-chunking templates that format elements
      within each chunk file. In a customization, you should
@@ -22,7 +18,7 @@
      customizes any presentation templates. Then your chunking
      customization should import mydocbook.xsl instead of
      docbook.xsl.  -->
-<xsl:import href="docbook.xsl"/>
+<xsl:import href="docbook-no-doctype.xsl"/>
 
 <!-- chunk-common.xsl contains all the named templates for chunking.
      In a customization file, you import chunk-common.xsl, then

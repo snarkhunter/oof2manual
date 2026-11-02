@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                exclude-result-prefixes="fo"
+                exclude-result-prefixes="fo d"
                 version="1.0">
 
 <xsl:include href="../lib/lib.xsl"/>
@@ -61,13 +62,25 @@
   <xslo:include href="../profiling/profile-mode.xsl"/>
   <xslo:variable name="profiled-content">
     <xslo:choose>
-      <xslo:when test="*/self::ng:* or */self::db:*">
-        <xslo:message>Note: namesp. cut : stripped namespace before processing</xslo:message>
-        <xslo:variable name="stripped-content">
-          <xslo:apply-templates select="/" mode="stripNS"/>
+
+      <xslo:when test="$exsl.node.set.available != 0 and 
+                    namespace-uri(/*) != 'http://docbook.org/ns/docbook'">
+        <xslo:variable name="with.namespace">
+          <xslo:apply-templates select="/*" mode="addNS"/>
         </xslo:variable>
-        <xslo:message>Note: namesp. cut : processing stripped document</xslo:message>
-        <xslo:apply-templates select="exslt:node-set($stripped-content)" mode="profile"/>
+        <xslo:call-template name="log.message">
+          <xslo:with-param name="level">Note</xslo:with-param>
+          <xslo:with-param name="source">
+            <xslo:call-template name="get.doc.title"/>
+          </xslo:with-param>
+          <xslo:with-param name="context-desc">
+            <xslo:text>namesp. add</xslo:text>
+          </xslo:with-param>
+          <xslo:with-param name="message">
+            <xslo:text>added namespace before processing</xslo:text>
+          </xslo:with-param>
+        </xslo:call-template>
+        <xslo:apply-templates select="exslt:node-set($with.namespace)" mode="profile"/>
       </xslo:when>
       <xslo:otherwise>
         <xslo:apply-templates select="/" mode="profile"/>
@@ -116,7 +129,7 @@
             <xsl:call-template name="string.subst">
               <xsl:with-param name="string" select="."/>
               <xsl:with-param name="target">key('id',$rootid)</xsl:with-param>
-              <xsl:with-param name="replacement">$profiled-nodes//*[@id=$rootid]</xsl:with-param>
+              <xsl:with-param name="replacement">$profiled-nodes//*[@id=$rootid or @xml:id=$rootid]</xsl:with-param>
             </xsl:call-template>
           </xsl:attribute>
         </xsl:when>
@@ -139,7 +152,8 @@
 </xsl:template>
 
 <!-- DB5 namespace stripping is already done  -->
-<xsl:template match="xsl:when[contains(@test, 'self::db')]" mode="correct">
+<xsl:template match="xsl:when[contains(@test, 'namespace-uri')
+                          and contains(@test, 'http://docbook.org/ns/docbook')]" mode="correct">
   <xsl:copy>
     <xsl:attribute name="test">false()</xsl:attribute>
   </xsl:copy>
@@ -156,4 +170,9 @@
   <xsl:copy/>
 </xsl:template>
 
+<xsl:template match="xsl:include[@href = 'chunk-code.xsl']">
+  <xsl:copy>
+    <xsl:attribute name="href">profile-chunk-code.xsl</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
 </xsl:stylesheet>

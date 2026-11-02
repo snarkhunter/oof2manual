@@ -1,11 +1,9 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-
-  xmlns:sfa="http://developer.apple.com/namespaces/sfa"
+    xmlns:sfa="http://developer.apple.com/namespaces/sfa"
   xmlns:sf="http://developer.apple.com/namespaces/sf"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:appsl="http://developer.apple.com/namespaces/sl"
-
   xmlns:dbk='http://docbook.org/ns/docbook'
   xmlns:rnd='http://docbook.org/ns/docbook/roundtrip'
   exclude-result-prefixes='sfa sf xsi appsl'>
@@ -13,8 +11,6 @@
   <xsl:output method="xml" indent='yes'/>
 
   <!-- ********************************************************************
-       $Id: pages2normalise.xsl 7637 2008-01-09 20:48:30Z balls $
-       ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
        See ../README or http://nwalsh.com/docbook/xsl/ for copyright

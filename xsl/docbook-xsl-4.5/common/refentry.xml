@@ -1,10 +1,8 @@
-<?xml version="1.0"?>
-
-<reference xml:id="refentry">
+<?xml version="1.0" encoding="UTF-8"?>
+<reference xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="refentry">
   <info>
     <title>Common » Refentry Metadata Template Reference</title>
     <releaseinfo role="meta">
-      $Id: refentry.xsl 7867 2008-03-07 09:54:25Z xmldoc $
     </releaseinfo>
   </info>
   
@@ -26,7 +24,7 @@
     </note>
   </partintro>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.metadata">
+<refentry xml:id="template.get.refentry.metadata">
 <refnamediv>
 <refname>get.refentry.metadata</refname>
 <refpurpose>Gathers metadata from a refentry and its ancestors</refpurpose>
@@ -167,7 +165,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.title">
+<refentry xml:id="template.get.refentry.title">
 <refnamediv>
 <refname>get.refentry.title</refname>
 <refpurpose>Gets title metadata for a refentry</refpurpose>
@@ -205,7 +203,7 @@
 <para>Returns a <tag>title</tag> node.</para>
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.section">
+<refentry xml:id="template.get.refentry.section">
 <refnamediv>
 <refname>get.refentry.section</refname>
 <refpurpose>Gets section metadata for a refentry</refpurpose>
@@ -254,7 +252,7 @@
 <para>Returns a string representing a section number.</para>
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.date">
+<refentry xml:id="template.get.refentry.date">
 <refnamediv>
 <refname>get.refentry.date</refname>
 <refpurpose>Gets date metadata for a refentry</refpurpose>
@@ -309,7 +307,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.source">
+<refentry xml:id="template.get.refentry.source">
 <refnamediv>
 <refname>get.refentry.source</refname>
 <refpurpose>Gets source metadata for a refentry</refpurpose>
@@ -440,7 +438,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.source.name">
+<refentry xml:id="template.get.refentry.source.name">
 <refnamediv>
 <refname>get.refentry.source.name</refname>
 <refpurpose>Gets source-name metadata for a refentry</refpurpose>
@@ -499,7 +497,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.version">
+<refentry xml:id="template.get.refentry.version">
 <refnamediv>
 <refname>get.refentry.version</refname>
 <refpurpose>Gets version metadata for a refentry</refpurpose>
@@ -558,7 +556,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.manual">
+<refentry xml:id="template.get.refentry.manual">
 <refnamediv>
 <refname>get.refentry.manual</refname>
 <refpurpose>Gets source metadata for a refentry</refpurpose>
@@ -676,7 +674,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.get.refentry.metadata.prefs">
+<refentry xml:id="template.get.refentry.metadata.prefs">
 <refnamediv>
 <refname>get.refentry.metadata.prefs</refname>
 <refpurpose>Gets user preferences for refentry metadata gathering</refpurpose>
@@ -713,7 +711,7 @@
 
   </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.set.refentry.metadata">
+<refentry xml:id="template.set.refentry.metadata">
 <refnamediv>
 <refname>set.refentry.metadata</refname>
 <refpurpose>Sets content of a refentry metadata item</refpurpose>
@@ -778,4 +776,3 @@
 <para>Returns formatted contents of a selected source element.</para>
 </refsect1></refentry>
 </reference>
-

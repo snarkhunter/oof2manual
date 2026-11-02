@@ -1,12 +1,8 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version='1.0'>
-
-<!-- ********************************************************************
-     $Id: axf.xsl 6483 2007-01-08 18:00:22Z bobstayton $
-     ******************************************************************** -->
 
 <xsl:template name="axf-document-information">
 
@@ -24,6 +20,9 @@
           </xsl:when>
           <xsl:when test="$authors[self::corpauthor]">
             <xsl:value-of select="$authors"/>
+          </xsl:when>
+           <xsl:when test="$authors[orgname]">
+            <xsl:value-of select="$authors/orgname"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="person.name">

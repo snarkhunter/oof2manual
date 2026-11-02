@@ -1,14 +1,12 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:doc='http://docbook.org/ns/docbook'
+    xmlns:doc='http://docbook.org/ns/docbook'
   exclude-result-prefixes='doc'>
 
   <!-- ********************************************************************
-       $Id: dbk2wp.xsl 8047 2008-06-10 12:46:53Z balls $
-       ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
-       See ../README or http://docbook.sf.net/release/xsl/current/ for
+       See ../README or http://cdn.docbook.org/release/xsl/current/ for
        copyright and other information.
 
        ******************************************************************** -->
@@ -20,7 +18,7 @@
 
     -->
 
-  <xsl:include href='../VERSION'/>
+  <xsl:include href='../VERSION.xsl'/>
 
   <!-- doc:docprop.author mode is for creating document metadata -->
 

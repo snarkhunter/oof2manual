@@ -1,14 +1,9 @@
-<?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
+<?xml version="1.0" encoding="ASCII"?><!--This file was created automatically by html2xhtml--><!--from the HTML stylesheets.--><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns="http://www.w3.org/1999/xhtml" version="1.0">
 
 <!-- ********************************************************************
-     $Id: toc.xsl 8421 2009-05-04 07:49:49Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -79,10 +74,11 @@
       <xsl:when test="* and $process.source.toc != 0">
         <div>
           <xsl:apply-templates select="." mode="common.html.attributes"/>
-          <xsl:apply-templates select="title"/> 
+          <xsl:call-template name="id.attribute"/>
+          <xsl:apply-templates select="title"/>
           <dl>
             <xsl:apply-templates select="." mode="common.html.attributes"/>
-            <xsl:apply-templates select="*[not(self::title)]"/> 
+            <xsl:apply-templates select="*[not(self::title)]"/>
           </dl>
         </div>
         <xsl:call-template name="component.toc.separator"/>
@@ -117,10 +113,11 @@
       <xsl:when test="* and $process.source.toc != 0">
         <div>
           <xsl:apply-templates select="." mode="common.html.attributes"/>
-          <xsl:apply-templates select="title"/> 
+          <xsl:call-template name="id.attribute"/>
+          <xsl:apply-templates select="title"/>
           <dl>
             <xsl:apply-templates select="." mode="common.html.attributes"/>
-            <xsl:apply-templates select="*[not(self::title)]"/> 
+            <xsl:apply-templates select="*[not(self::title)]"/>
           </dl>
         </div>
         <xsl:call-template name="section.toc.separator"/>
@@ -228,21 +225,21 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="toc/title">
+<xsl:template match="toc/title | tocdiv/title">
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
-<xsl:template match="toc/subtitle">
+<xsl:template match="toc/subtitle | tocdiv/subtitle">
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
-<xsl:template match="toc/titleabbrev">
+<xsl:template match="toc/titleabbrev | tocdiv/titleabbrev">
 </xsl:template>
 
 <!-- ==================================================================== -->

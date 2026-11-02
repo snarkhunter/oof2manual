@@ -1,17 +1,19 @@
 <?xml version='1.0'?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
+<!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
+ ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:dyn="http://exslt.org/dynamic"
                 xmlns:saxon="http://icl.com/saxon"
                 exclude-result-prefixes="doc dyn saxon"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: common.xsl 8784 2010-07-28 12:32:54Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -20,7 +22,6 @@
   <info>
     <title>Common » Base Template Reference</title>
     <releaseinfo role="meta">
-      $Id: common.xsl 8784 2010-07-28 12:32:54Z mzjn $
     </releaseinfo>
   </info>
   <!-- * yes, partintro is a valid child of a reference... -->
@@ -43,7 +44,7 @@
 abstract affiliation anchor answer appendix area areaset areaspec
 artheader article audiodata audioobject author authorblurb authorgroup
 beginpage bibliodiv biblioentry bibliography biblioset blockquote book
-bookbiblio bookinfo callout calloutlist caption caution chapter
+bookinfo callout calloutlist caption caution chapter
 citerefentry cmdsynopsis co collab colophon colspec confgroup
 copyright dedication docinfo editor entrytbl epigraph equation
 example figure footnote footnoteref formalpara funcprototype
@@ -64,7 +65,7 @@ sectioninfo seglistitem segmentedlist seriesinfo set setindex setinfo
 shortcut sidebar simplelist simplesect spanspec step subject
 subjectset substeps synopfragment table tbody textobject tfoot tgroup
 thead tip toc tocchap toclevel1 toclevel2 toclevel3 toclevel4
-toclevel5 tocpart varargs variablelist varlistentry videodata
+toclevel5 tocpart topic varargs variablelist varlistentry videodata
 videoobject void warning subjectset
 
 classsynopsis
@@ -458,6 +459,13 @@ Defaults to the context node.</para>
     <xsl:when test="$object/@xml:id">
       <xsl:value-of select="$object/@xml:id"/>
     </xsl:when>
+    <xsl:when test="$generate.consistent.ids != 0">
+      <!-- Make $object the current node -->
+      <xsl:for-each select="$object">
+        <xsl:text>id-</xsl:text>
+        <xsl:number level="multiple" count="*"/>
+      </xsl:for-each>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="generate-id($object)"/>
     </xsl:otherwise>
@@ -468,7 +476,7 @@ Defaults to the context node.</para>
   <!-- Formats a personal name. Handles corpauthor as a special case. -->
   <xsl:param name="node" select="."/>
 
-  <xsl:variable name="style">
+  <xsl:param name="style">
     <xsl:choose>
       <xsl:when test="$node/@role">
         <xsl:value-of select="$node/@role"/>
@@ -480,7 +488,7 @@ Defaults to the context node.</para>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:variable>
+  </xsl:param>
 
   <xsl:choose>
     <!-- the personname element is a specialcase -->
@@ -646,19 +654,19 @@ Defaults to the context node.</para>
      documentation for DocBook V3.0
 -->
 
-<xsl:variable name="arg.choice.opt.open.str">[</xsl:variable>
-<xsl:variable name="arg.choice.opt.close.str">]</xsl:variable>
-<xsl:variable name="arg.choice.req.open.str">{</xsl:variable>
-<xsl:variable name="arg.choice.req.close.str">}</xsl:variable>
-<xsl:variable name="arg.choice.plain.open.str"><xsl:text> </xsl:text></xsl:variable>
-<xsl:variable name="arg.choice.plain.close.str"><xsl:text> </xsl:text></xsl:variable>
-<xsl:variable name="arg.choice.def.open.str">[</xsl:variable>
-<xsl:variable name="arg.choice.def.close.str">]</xsl:variable>
-<xsl:variable name="arg.rep.repeat.str">...</xsl:variable>
-<xsl:variable name="arg.rep.norepeat.str"></xsl:variable>
-<xsl:variable name="arg.rep.def.str"></xsl:variable>
-<xsl:variable name="arg.or.sep"> | </xsl:variable>
-<xsl:variable name="cmdsynopsis.hanging.indent">4pi</xsl:variable>
+<xsl:param name="arg.choice.opt.open.str">[</xsl:param>
+<xsl:param name="arg.choice.opt.close.str">]</xsl:param>
+<xsl:param name="arg.choice.req.open.str">{</xsl:param>
+<xsl:param name="arg.choice.req.close.str">}</xsl:param>
+<xsl:param name="arg.choice.plain.open.str"><xsl:text> </xsl:text></xsl:param>
+<xsl:param name="arg.choice.plain.close.str"><xsl:text> </xsl:text></xsl:param>
+<xsl:param name="arg.choice.def.open.str">[</xsl:param>
+<xsl:param name="arg.choice.def.close.str">]</xsl:param>
+<xsl:param name="arg.rep.repeat.str">...</xsl:param>
+<xsl:param name="arg.rep.norepeat.str"></xsl:param>
+<xsl:param name="arg.rep.def.str"></xsl:param>
+<xsl:param name="arg.or.sep"> | </xsl:param>
+<xsl:param name="cmdsynopsis.hanging.indent">4pi</xsl:param>
 
 <!-- ====================================================================== -->
 
@@ -962,6 +970,20 @@ recursive process.</para>
     
         <xsl:variable name="useobject">
           <xsl:choose>
+            <!-- select videoobject or audioobject before textobject -->
+            <xsl:when test="local-name($object) = 'videoobject'">
+              <xsl:text>1</xsl:text> 
+            </xsl:when>
+            <xsl:when test="local-name($object) = 'audioobject'">
+              <xsl:text>1</xsl:text> 
+            </xsl:when>
+            <!-- skip textobject if also video, audio, or image out of order -->
+            <xsl:when test="local-name($object) = 'textobject' and
+                            ../imageobject or
+                            ../audioobject or
+                            ../videoobject">
+              <xsl:text>0</xsl:text> 
+            </xsl:when>
             <!-- The phrase is used only when contains TeX Math and output is FO -->
             <xsl:when test="local-name($object)='textobject' and $object/phrase
                             and $object/@role='tex' and $stylesheet.result.type = 'fo'
@@ -985,7 +1007,7 @@ recursive process.</para>
             </xsl:when>
             <!-- don't use graphic when output is FO, TeX Math is used 
                  and there is math in alt element -->
-            <xsl:when test="$object/ancestor::equation and 
+            <xsl:when test="$object/ancestor::equation and
                             $object/ancestor::equation/alt[@role='tex']
                             and $stylesheet.result.type = 'fo'
                             and $tex.math.in.alt != ''">
@@ -1196,7 +1218,7 @@ the ID is not unique.</para>
     <xsl:if test="count($targets)=0">
       <xsl:message>
         <xsl:text>Error: no ID for constraint linkend: </xsl:text>
-        <xsl:value-of select="$linkend"/>
+        <xsl:value-of select="concat('&quot;', $linkend, '&quot;')"/>
         <xsl:text>.</xsl:text>
       </xsl:message>
       <!--
@@ -1326,8 +1348,10 @@ pointed to by the link is one of the elements listed in
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="prevlist"
-        select="$list/preceding::orderedlist[1]"/>
+      <!-- match on previous list at same nesting level -->
+      <xsl:variable name="prevlist" 
+       select="$list/preceding::orderedlist
+                [count($list/ancestor::orderedlist) = count(ancestor::orderedlist)][1]"/>
       <xsl:choose>
         <xsl:when test="count($prevlist) = 0">2</xsl:when>
         <xsl:otherwise>
@@ -2036,4 +2060,66 @@ engine does not support it.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+
+<doc:template name="graphic.format.content-type" xmlns="">
+  <refpurpose>Returns mimetype for media format</refpurpose>
+  <refdescription id="graphic.format.content-type-desc">
+    <para>This takes as input a 'format' param and returns
+    a mimetype string.  It uses an xsl:choose after first
+    converting the input to all uppercase.</para>
+  </refdescription>
+</doc:template>
+<xsl:template name="graphic.format.content-type">
+  <xsl:param name="format"/>
+  <xsl:variable name="upperformat" select="translate($format,&lowercase;,&uppercase;)"/>
+  <xsl:choose>
+    <xsl:when test="$upperformat = ''"></xsl:when>
+    <xsl:when test="$upperformat = 'linespecific'"></xsl:when>
+    <xsl:when test="$upperformat = 'PS'">application/postscript</xsl:when>
+    <xsl:when test="$upperformat = 'PDF'">application/pdf</xsl:when>
+    <xsl:when test="$upperformat = 'PNG'">image/png</xsl:when>
+    <xsl:when test="$upperformat = 'SVG'">image/svg+xml</xsl:when>
+    <xsl:when test="$upperformat = 'JPG'">image/jpeg</xsl:when>
+    <xsl:when test="$upperformat = 'JPEG'">image/jpeg</xsl:when>
+    <xsl:when test="$upperformat = 'GIF'">image/gif</xsl:when>
+    <xsl:when test="$upperformat = 'GIF87A'">image/gif</xsl:when>
+    <xsl:when test="$upperformat = 'GIF89A'">image/gif</xsl:when>
+    <xsl:when test="$upperformat = 'ACC'">audio/acc</xsl:when>
+    <xsl:when test="$upperformat = 'MPG'">audio/mpeg</xsl:when>
+    <xsl:when test="$upperformat = 'MP1'">audio/mpeg</xsl:when>
+    <xsl:when test="$upperformat = 'MP2'">audio/mpeg</xsl:when>
+    <xsl:when test="$upperformat = 'MP3'">audio/mpeg</xsl:when>
+    <xsl:when test="$upperformat = 'M4A'">audio/mp4</xsl:when>
+    <xsl:when test="$upperformat = 'MPEG'">audio/mpeg</xsl:when>
+    <xsl:when test="$upperformat = 'WAV'">audio/wav</xsl:when>
+    <xsl:when test="$upperformat = 'MP4'">video/mp4</xsl:when>
+    <xsl:when test="$upperformat = 'M4V'">video/mp4</xsl:when>
+    <xsl:when test="$upperformat = 'OGV'">video/ogg</xsl:when>
+    <xsl:when test="$upperformat = 'OGG'">video/ogg</xsl:when>
+    <xsl:when test="$upperformat = 'WEBM'">video/webm</xsl:when>
+    <xsl:otherwise>
+        <xsl:value-of select="concat('image/', $upperformat)"/> 
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="xrefstyle">
+  <xsl:param name="referrer" select="."/>
+  <xsl:param name="target"/>
+  <xsl:param name="olink.key"/>
+
+  <!-- normally uses the @xrefstyle attribute in xref, but could
+       be customized based on the target element type -->
+  <xsl:choose>
+    <xsl:when test="@role and not(@xrefstyle) 
+                    and $use.role.as.xrefstyle != 0">
+      <xsl:value-of select="@role"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="@xrefstyle"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>

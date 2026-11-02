@@ -1,5 +1,5 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:saxon="http://icl.com/saxon"
+                		xmlns:saxon="http://icl.com/saxon"
                 xmlns:lxslt="http://xml.apache.org/xslt"
                 xmlns:redirect="http://xml.apache.org/xalan/redirect"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
@@ -8,11 +8,9 @@
                 extension-element-prefixes="saxon redirect lxslt">
 
 <!-- ********************************************************************
-     $Id: oldchunker.xsl 6910 2007-06-28 23:23:30Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->

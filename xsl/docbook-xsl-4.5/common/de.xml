@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de" english-language-name="German">
+<?xml version="1.0" encoding="utf-8"?><l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de" english-language-name="German">
 
 <!-- * This file is generated automatically. -->
 <!-- * To submit changes to this file upstream (to the DocBook Project) -->
@@ -15,7 +14,7 @@
 <!-- ******************************************************************** -->
 
 <!-- This file is part of the XSL DocBook Stylesheet distribution. -->
-<!-- See ../README or http://docbook.sf.net/release/xsl/current/ for -->
+<!-- See ../README or http://cdn.docbook.org/release/xsl/current/ for -->
 <!-- copyright and other information. -->
 
 <!-- ******************************************************************** -->
@@ -53,6 +52,10 @@
 <l:gentext key="copyright" text="Copyright"/>
 <l:gentext key="Dedication" text="Widmung"/>
 <l:gentext key="dedication" text="Widmung"/>
+<l:gentext key="Dialogue" text="Dialogue" lang="en"/>
+<l:gentext key="dialogue" text="Dialogue" lang="en"/>
+<l:gentext key="Drama" text="Drama" lang="en"/>
+<l:gentext key="drama" text="Drama" lang="en"/>
 <l:gentext key="Edition" text="Ausgabe"/>
 <l:gentext key="edition" text="Ausgabe"/>
 <l:gentext key="Editor" text="Editor" lang="en"/>
@@ -88,6 +91,8 @@
 <l:gentext key="note" text="Anmerkung"/>
 <l:gentext key="Part" text="Teil"/>
 <l:gentext key="part" text="Teil"/>
+<l:gentext key="Poetry" text="Poetry" lang="en"/>
+<l:gentext key="poetry" text="Poetry" lang="en"/>
 <l:gentext key="Preface" text="Vorwort"/>
 <l:gentext key="preface" text="Vorwort"/>
 <l:gentext key="Procedure" text="Prozedur"/>
@@ -149,7 +154,9 @@
 <l:gentext key="warning" text="Warnung"/>
 <l:gentext key="WARNING" text="WARNUNG"/>
 <l:gentext key="and" text="und"/>
+<l:gentext key="or" text="oder"/>
 <l:gentext key="by" text="von"/>
+<l:gentext key="optional-step" text="(Optional) "/>
 <l:gentext key="Edited" text="Herausgegeben"/>
 <l:gentext key="edited" text="Herausgegeben"/>
 <l:gentext key="Editedby" text="Herausgegeben von"/>
@@ -170,6 +177,8 @@
 <l:gentext key="unexpectedelementname" text="Unerwarteter Elementname"/>
 <l:gentext key="unsupported" text="wird nicht unterstützt"/>
 <l:gentext key="xrefto" text="xref auf"/>
+<l:gentext key="video-unsupported" text="Your browser does not support the video tag" lang="en"/>
+<l:gentext key="audio-unsupported" text="Your browser does not support the audio tag" lang="en"/>
 <l:gentext key="Authors" text="Autoren"/>
 <l:gentext key="copyeditor" text="Korrekteur"/>
 <l:gentext key="graphicdesigner" text="Grafikgestalter"/>
@@ -215,6 +224,41 @@
 <l:gentext key="hyphenation-character" text="-"/>
 <l:gentext key="hyphenation-push-character-count" text="2"/>
 <l:gentext key="hyphenation-remain-character-count" text="3"/>
+<l:context name="keycap"><l:template name="alt" text="Alt"/>
+<l:template name="backspace" text="&lt;—"/>
+<l:template name="command" text="⌘"/>
+<l:template name="control" text="Strg"/>
+<l:template name="delete" text="Entf"/>
+<l:template name="down" text="↓"/>
+<l:template name="end" text="Ende"/>
+<l:template name="enter" text="Eingabetaste"/>
+<l:template name="escape" text="Esc"/>
+<l:template name="home" text="Pos1"/>
+<l:template name="insert" text="Einfg"/>
+<l:template name="left" text="←"/>
+<l:template name="meta" text="Meta"/>
+<l:template name="option" text="⌥"/>
+<l:template name="pagedown" text="Bild ↓"/>
+<l:template name="pageup" text="Bild ↑"/>
+<l:template name="right" text="→"/>
+<l:template name="shift" text="Shift"/>
+<l:template name="space" text="Space"/>
+<l:template name="tab" text="→|"/>
+<l:template name="up" text="↑"/>
+</l:context>
+<l:context name="webhelp"><l:template name="Search" text="Suchen"/>
+<l:template name="Enter_a_term_and_click" text="Geben Sie einen Begriff ein und wählen Sie "/>
+<l:template name="Go" text="Go"/>
+<l:template name="to_perform_a_search" text=", um eine Suche durchzuführen."/>
+<l:template name="txt_filesfound" text="Ergebnisse"/>
+<l:template name="txt_enter_at_least_1_char" text="Sie müssen mindestens ein Zeichen eingeben."/>
+<l:template name="txt_browser_not_supported" text="JavaScript ist in Ihrem Browser abgeschaltet. Bitte schalten Sie JavaScript an, damit diese Seiten vollständig dargestellt werden."/>
+<l:template name="txt_please_wait" text="Bitte warten Sie. Die Suche ist im Gange ..."/>
+<l:template name="txt_results_for" text="Ergebnisse für: "/>
+<l:template name="TableofContents" text="Inhalt"/>
+<l:template name="HighlightButton" text="Markierte Suchergebnisse ein/ausschalten"/>
+<l:template name="Your_search_returned_no_results" text="Ihre Suche erbrachte kein Ergebnis."/>
+</l:context>
 <l:context name="styles"><l:template name="person-name" text="first-last"/>
 </l:context>
 <l:context name="title"><l:template name="abstract" text="%t"/>
@@ -281,6 +325,7 @@
 <l:template name="refsect3" text="%t"/>
 <l:template name="refsynopsisdiv" text="%t"/>
 <l:template name="refsynopsisdivinfo" text="%t"/>
+<l:template name="screenshot" text="%t" lang="en"/>
 <l:template name="segmentedlist" text="%t"/>
 <l:template name="set" text="%t"/>
 <l:template name="setindex" text="%t"/>
@@ -308,7 +353,11 @@
 <l:template name="sect5" text="%t"/>
 <l:template name="section" text="%t"/>
 <l:template name="simplesect" text="%t"/>
+<l:template name="topic" text="%t" lang="en"/>
 <l:template name="part" text="%t" lang="en"/>
+<l:template name="dialogue" text="%t" lang="en"/>
+<l:template name="drama" text="%t" lang="en"/>
+<l:template name="poetry" text="%t" lang="en"/>
 </l:context>
 <l:context name="title-numbered"><l:template name="appendix" text="Anhang %n. %t"/>
 <l:template name="article/appendix" text="%n. %t"/>
@@ -322,6 +371,7 @@
 <l:template name="sect5" text="%n. %t"/>
 <l:template name="section" text="%n. %t"/>
 <l:template name="simplesect" text="%n. %t"/>
+<l:template name="topic" text="%t" lang="en"/>
 </l:context>
 <l:context name="subtitle"><l:template name="appendix" text="%s"/>
 <l:template name="acknowledgements" text="%s" lang="en"/>
@@ -361,7 +411,11 @@
 <l:template name="setindex" text="%s"/>
 <l:template name="sidebar" text="%s"/>
 <l:template name="simplesect" text="%s"/>
+<l:template name="topic" text="%t" lang="en"/>
 <l:template name="toc" text="%s"/>
+<l:template name="dialogue" text="%s" lang="en"/>
+<l:template name="drama" text="%s" lang="en"/>
+<l:template name="poetry" text="%s" lang="en"/>
 </l:context>
 <l:context name="xref"><l:template name="abstract" text="%t"/>
 <l:template name="acknowledgements" text="%t" lang="en"/>
@@ -415,6 +469,7 @@
 <l:template name="question" text="F: %n"/>
 <l:template name="reference" text="%t"/>
 <l:template name="refsynopsisdiv" text="%t"/>
+<l:template name="screenshot" text="%t" lang="en"/>
 <l:template name="segmentedlist" text="%t"/>
 <l:template name="set" text="%t"/>
 <l:template name="setindex" text="%t"/>
@@ -434,6 +489,10 @@
 <l:template name="docnamelong" text=" in the document titled %o" lang="en"/>
 <l:template name="pageabbrev" text="(S. %p)"/>
 <l:template name="Page" text="Seite %p"/>
+<l:template name="topic" text="%t" lang="en"/>
+<l:template name="dialogue" text="%t" lang="en"/>
+<l:template name="drama" text="%t" lang="en"/>
+<l:template name="poetry" text="%t" lang="en"/>
 <l:template name="bridgehead" text="„%t“"/>
 <l:template name="refsection" text="„%t“"/>
 <l:template name="refsect1" text="„%t“"/>

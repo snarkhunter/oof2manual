@@ -4,7 +4,7 @@
 %common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 xmlns:i="urn:cz-kosek:functions:index"
@@ -16,11 +16,9 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: autoidx-kosek.xsl 8725 2010-07-15 08:08:04Z kosek $
-     ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
-     See ../README or http://docbook.sf.net/ for copyright
+     See ../README or http://cdn.docbook.org/release/xsl/ for copyright
      copyright and other information.
 
      ******************************************************************** -->

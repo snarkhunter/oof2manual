@@ -1,5 +1,5 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:saxon="http://icl.com/saxon"
+                		xmlns:saxon="http://icl.com/saxon"
                 xmlns:lxslt="http://xml.apache.org/xslt"
                 xmlns:redirect="http://xml.apache.org/xalan/redirect"
                 xmlns:exsl="http://exslt.org/common"
@@ -9,11 +9,9 @@
                 extension-element-prefixes="saxon redirect lxslt exsl">
 
 <!-- ********************************************************************
-     $Id: chunker.xsl 8526 2009-10-14 18:59:40Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -33,7 +31,21 @@
 <xsl:param name="chunker.output.doctype-system" select="''"/>
 <xsl:param name="chunker.output.media-type" select="''"/>
 <xsl:param name="chunker.output.cdata-section-elements" select="''"/>
-<xsl:param name="chunker.output.quiet" select="0"/>
+
+<!-- Make sure base.dir has a trailing slash. -->
+<!-- This is an internal-only variable. Customize $base.dir instead. -->
+<xsl:variable name="chunk.base.dir">
+  <xsl:choose>
+    <xsl:when test="string-length($base.dir) = 0"></xsl:when>
+    <!-- make sure to add trailing slash if omitted by user -->
+    <xsl:when test="substring($base.dir, string-length($base.dir), 1) = '/'">
+      <xsl:value-of select="$base.dir"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat($base.dir, '/')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
 
 <xsl:param name="saxon.character.representation" select="'entity;decimal'"/>
 
@@ -43,15 +55,6 @@
   <xsl:param name="base.dir" select="'./'"/>
   <xsl:param name="base.name" select="''"/>
 
-  <xsl:if test="refentry">
-    <xsl:message>
-      <xsl:text>make-relative-filename: base.dir=</xsl:text>
-      <xsl:value-of select="$base.dir"/>
-      <xsl:text> base.name=</xsl:text>
-      <xsl:value-of select="$base.name"/>
-    </xsl:message>
-  </xsl:if>
-  
   <xsl:choose>
     <!-- put Saxon first to work around a bug in libxslt -->
     <xsl:when test="element-available('saxon:output')">
@@ -84,7 +87,7 @@
 
 <xsl:template name="write.chunk">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="quiet" select="$chunker.output.quiet"/>
+  <xsl:param name="quiet" select="$chunk.quietly"/>
   <xsl:param name="suppress-context-node-name" select="0"/>
   <xsl:param name="message-prolog"/>
   <xsl:param name="message-epilog"/>
@@ -382,7 +385,7 @@
 
 <xsl:template name="write.chunk.with.doctype">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="quiet" select="$chunker.output.quiet"/>
+  <xsl:param name="quiet" select="$chunk.quietly"/>
 
   <xsl:param name="method" select="$chunker.output.method"/>
   <xsl:param name="encoding" select="$chunker.output.encoding"/>
@@ -416,7 +419,7 @@
 
 <xsl:template name="write.text.chunk">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="quiet" select="$chunker.output.quiet"/>
+  <xsl:param name="quiet" select="$chunk.quietly"/>
   <xsl:param name="suppress-context-node-name" select="0"/>
   <xsl:param name="message-prolog"/>
   <xsl:param name="message-epilog"/>
@@ -434,7 +437,7 @@
     <xsl:with-param name="method" select="$method"/>
     <xsl:with-param name="encoding" select="$encoding"/>
     <xsl:with-param name="indent" select="'no'"/>
-    <xsl:with-param name="omit-xml-declaration" select="'no'"/>
+    <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
     <xsl:with-param name="standalone" select="'no'"/>
     <xsl:with-param name="doctype-public"/>
     <xsl:with-param name="doctype-system"/>

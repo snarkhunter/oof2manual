@@ -4,17 +4,15 @@
 %common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
                 exclude-result-prefixes="xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: glossary.xsl 8591 2010-02-27 20:42:27Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -744,15 +742,15 @@ GlossEntry ::=
           <xsl:when test="$glossentry.show.acronym = 'primary'">
             <xsl:choose>
               <xsl:when test="acronym|abbrev">
-                <xsl:apply-templates select="acronym|abbrev" 
+                <xsl:apply-templates select="acronym|abbrev"
                                      mode="glossary.as.list"/>
                 <xsl:text> (</xsl:text>
-                <xsl:apply-templates select="glossterm" 
+                <xsl:apply-templates select="glossterm"
                                      mode="glossary.as.list"/>
                 <xsl:text>)</xsl:text>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:apply-templates select="glossterm" 
+                <xsl:apply-templates select="glossterm"
                                      mode="glossary.as.list"/>
               </xsl:otherwise>
             </xsl:choose>
@@ -763,7 +761,7 @@ GlossEntry ::=
 
             <xsl:if test="acronym|abbrev">
               <xsl:text> (</xsl:text>
-              <xsl:apply-templates select="acronym|abbrev" 
+              <xsl:apply-templates select="acronym|abbrev"
                                    mode="glossary.as.list"/>
               <xsl:text>)</xsl:text>
             </xsl:if>

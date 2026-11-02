@@ -10,11 +10,9 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: stripns.xsl 8728 2010-07-15 14:37:33Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -168,6 +166,11 @@
 	  <xsl:copy-of select="@*[not(name(.) = 'xml:id')
 			       and not(name(.) = 'version')
 			       and not(local-name(.) = 'href')]"/>
+          <xsl:if test="@xml:id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="@xml:id"/>
+            </xsl:attribute>
+          </xsl:if>
 	  <xsl:apply-templates mode="stripNS"/>
 	</sgmltag>
       </ulink>
@@ -175,7 +178,12 @@
     <xsl:otherwise>
       <sgmltag>
 	<xsl:copy-of select="@*[not(name(.) = 'xml:id')
-			     and not(name(.) = 'version')]"/>
+                                and not(name(.) = 'version')]"/>
+          <xsl:if test="@xml:id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="@xml:id"/>
+            </xsl:attribute>
+          </xsl:if>
 	<xsl:apply-templates mode="stripNS"/>
       </sgmltag>
     </xsl:otherwise>
@@ -199,6 +207,11 @@
       <xsl:copy-of select="@*[not(name(.) = 'xml:id')
 			   and not(name(.) = 'version')
 			   and not(local-name(.) = 'href')]"/>
+      <xsl:if test="@xml:id">
+        <xsl:attribute name="id">
+          <xsl:value-of select="@xml:id"/>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates mode="stripNS"/>
     </citetitle>
   </ulink>
@@ -210,6 +223,11 @@
 			 and not(name(.) = 'version')
 			 and not(name(.) = 'linkend')
 			 and not(local-name(.) = 'href')]"/>
+    <xsl:if test="@xml:id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:attribute>
+    </xsl:if>
       <xsl:apply-templates mode="stripNS"/>
   </citetitle>
 </xsl:template>

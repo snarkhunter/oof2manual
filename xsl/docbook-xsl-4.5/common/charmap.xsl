@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:dyn="http://exslt.org/dynamic"
                 xmlns:saxon="http://icl.com/saxon"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -8,11 +8,9 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: charmap.xsl 7266 2007-08-22 11:58:42Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -20,7 +18,6 @@
   <info>
     <title>Common » Character-Map Template Reference</title>
     <releaseinfo role="meta">
-      $Id: charmap.xsl 7266 2007-08-22 11:58:42Z xmldoc $
     </releaseinfo>
   </info>
   <!-- * yes, partintro is a valid child of a reference... -->

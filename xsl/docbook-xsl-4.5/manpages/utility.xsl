@@ -1,17 +1,15 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                		xmlns:exsl="http://exslt.org/common"
                 xmlns:dyn="http://exslt.org/dynamic"
                 xmlns:saxon="http://icl.com/saxon"
                 exclude-result-prefixes="exsl dyn saxon"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: utility.xsl 8236 2009-02-09 17:44:52Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -63,8 +61,11 @@
   </xsl:template>
 
   <xsl:template name="inline.monoseq">
+    <xsl:param name="content">
+      <xsl:apply-templates/>
+    </xsl:param>
     <xsl:call-template name="code-inline-start"/>
-    <xsl:apply-templates/>
+    <xsl:copy-of select="$content"/>
     <xsl:call-template name="code-inline-end"/>
   </xsl:template>
 
@@ -286,6 +287,7 @@
                     self::address or
                     self::literallayout or
                     self::programlisting or
+                    self::synopsis or
                     self::screen or
                     self::table or
                     self::informaltable
@@ -301,10 +303,16 @@
                     or following-sibling::node()[1][self::comment()]
                     or following-sibling::node()[1][self::processing-instruction()]
                     ">
-            <xsl:if test="normalize-space($content) != ''
-                          or concat(normalize-space($content), ' ') = ' '">
-              <xsl:text>&#10;</xsl:text>
-            </xsl:if>
+            <xsl:choose>
+              <xsl:when test="normalize-space($content) != ''">
+                <xsl:text>&#10;</xsl:text>
+              </xsl:when>
+              <!-- whitespace node adds line break space only if not first -->
+              <xsl:when test="concat(normalize-space($content), ' ') = ' '
+                              and preceding-sibling::node()">
+                <xsl:text>&#10;</xsl:text>
+              </xsl:when>
+            </xsl:choose>
           </xsl:if>
         </xsl:when>
         <xsl:otherwise>

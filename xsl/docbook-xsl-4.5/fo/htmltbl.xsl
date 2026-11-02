@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: htmltbl.xsl 8392 2009-04-01 08:47:55Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -35,7 +33,7 @@
   <fo:table xsl:use-attribute-sets="table.table.properties">
     <xsl:choose>
       <xsl:when test="$fop.extensions != 0 or
-                      $passivetex.extensions != 0">
+                      $fop1.extensions != 0">
         <xsl:attribute name="table-layout">fixed</xsl:attribute>
       </xsl:when>
     </xsl:choose>
@@ -229,7 +227,7 @@
         </xsl:attribute>
       </xsl:if>
     </xsl:when>
-    <xsl:when test="$rules = 'groups' and ancestor::thead 
+    <xsl:when test="$rules = 'groups' and ancestor::thead
                     and not(parent::tr/following-sibling::tr)">
       <xsl:attribute name="border-start-style">none</xsl:attribute>
       <xsl:attribute name="border-end-style">none</xsl:attribute>
@@ -244,7 +242,7 @@
         <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
-    <xsl:when test="$rules = 'groups' and ancestor::tfoot 
+    <xsl:when test="$rules = 'groups' and ancestor::tfoot
                     and not(parent::tr/preceding-sibling::tr)">
       <xsl:attribute name="border-start-style">none</xsl:attribute>
       <xsl:attribute name="border-end-style">none</xsl:attribute>

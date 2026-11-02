@@ -1,14 +1,9 @@
-<?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xlink suwl" version="1.0">
+<?xml version="1.0" encoding="ASCII"?><!--This file was created automatically by html2xhtml--><!--from the HTML stylesheets.--><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xlink suwl" version="1.0">
 
 <!-- ********************************************************************
-     $Id: inline.xsl 8811 2010-08-09 20:24:45Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -23,6 +18,30 @@
   </xsl:param>
   <xsl:param name="linkend" select="$node/@linkend"/>
   <xsl:param name="xhref" select="$node/@xlink:href"/>
+
+  <!-- check for nested links, which are undefined in the output -->
+  <xsl:if test="($linkend or $xhref) and $node/ancestor::*[@xlink:href or @linkend]">
+    <xsl:message>
+      <xsl:text>WARNING: nested link may be undefined in output: </xsl:text>
+      <xsl:text>&lt;</xsl:text>
+      <xsl:value-of select="name($node)"/>
+      <xsl:text> </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$linkend">
+          <xsl:text>@linkend = '</xsl:text>
+          <xsl:value-of select="$linkend"/>
+          <xsl:text>'&gt;</xsl:text>
+        </xsl:when>
+        <xsl:when test="$xhref">
+          <xsl:text>@xlink:href = '</xsl:text>
+          <xsl:value-of select="$xhref"/>
+          <xsl:text>'&gt;</xsl:text>
+        </xsl:when>
+      </xsl:choose>
+      <xsl:text> nested inside parent element </xsl:text>
+      <xsl:value-of select="name($node/parent::*)"/>
+    </xsl:message>
+  </xsl:if>
 
   <!-- Support for @xlink:show -->
   <xsl:variable name="target.show">
@@ -91,6 +110,11 @@
               <xsl:otherwise>
                 <a>
                   <xsl:apply-templates select="." mode="common.html.attributes"/>
+                  <!-- id attribute goes on the element calling
+                  simple.xlink, not on the anchor element, so
+                  this is commented out:
+                  <xsl:call-template name="id.attribute"/>
+                  -->
 
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
@@ -126,6 +150,7 @@
           <xsl:otherwise>
             <a>
               <xsl:apply-templates select="." mode="common.html.attributes"/>
+              <xsl:call-template name="id.attribute"/>
               <xsl:attribute name="href">
                 <xsl:value-of select="$xhref"/>
               </xsl:attribute>
@@ -165,6 +190,7 @@
 
         <a>
           <xsl:apply-templates select="." mode="common.html.attributes"/>
+          <xsl:call-template name="id.attribute"/>
           <xsl:attribute name="href">
             <xsl:call-template name="href.target">
               <xsl:with-param name="object" select="$target"/>
@@ -195,65 +221,73 @@
 
 <xsl:template name="inline.charseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <!-- * if you want output from the inline.charseq template wrapped in -->
   <!-- * something other than a Span, call the template with some value -->
   <!-- * for the 'wrapper-name' param -->
   <xsl:param name="wrapper-name">span</xsl:param>
   <xsl:element name="{$wrapper-name}" namespace="http://www.w3.org/1999/xhtml">
-    <xsl:attribute name="class">
-      <xsl:value-of select="local-name(.)"/>
-    </xsl:attribute>
-    <xsl:call-template name="dir"/>
+    <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="generate.html.title"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
     <xsl:call-template name="apply-annotations"/>
   </xsl:element>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <code>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
     <xsl:call-template name="apply-annotations"/>
   </code>
 </xsl:template>
 
 <xsl:template name="inline.boldseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
 
     <!-- don't put <strong> inside figure, example, or table titles -->
     <xsl:choose>
       <xsl:when test="local-name(..) = 'title'                       and (local-name(../..) = 'figure'                       or local-name(../..) = 'example'                       or local-name(../..) = 'table')">
-        <xsl:copy-of select="$content"/>
+        <xsl:copy-of select="$contentwithlink"/>
       </xsl:when>
       <xsl:otherwise>
         <strong>
-          <xsl:copy-of select="$content"/>
+          <xsl:copy-of select="$contentwithlink"/>
         </strong>
       </xsl:otherwise>
     </xsl:choose>
@@ -263,46 +297,55 @@
 
 <xsl:template name="inline.italicseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <em>
     <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
     <xsl:call-template name="apply-annotations"/>
   </em>
 </xsl:template>
 
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <!-- don't put <strong> inside figure, example, or table titles -->
   <!-- or other titles that may already be represented with <strong>'s. -->
   <xsl:choose>
     <xsl:when test="local-name(..) = 'title'                     and (local-name(../..) = 'figure'                          or local-name(../..) = 'example'                          or local-name(../..) = 'table'                          or local-name(../..) = 'formalpara')">
       <code>
         <xsl:call-template name="common.html.attributes"/>
-        <xsl:copy-of select="$content"/>
+        <xsl:call-template name="id.attribute"/>
+        <xsl:copy-of select="$contentwithlink"/>
         <xsl:call-template name="apply-annotations"/>
       </code>
     </xsl:when>
     <xsl:otherwise>
       <strong>
         <xsl:call-template name="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
         <code>
           <xsl:call-template name="generate.html.title"/>
           <xsl:call-template name="dir"/>
-          <xsl:copy-of select="$content"/>
+          <xsl:copy-of select="$contentwithlink"/>
         </code>
         <xsl:call-template name="apply-annotations"/>
       </strong>
@@ -312,19 +355,23 @@
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <em>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <code>
       <xsl:call-template name="generate.html.title"/>
       <xsl:call-template name="dir"/>
-      <xsl:copy-of select="$content"/>
+      <xsl:copy-of select="$contentwithlink"/>
       <xsl:call-template name="apply-annotations"/>
     </code>
   </em>
@@ -332,34 +379,42 @@
 
 <xsl:template name="inline.superscriptseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <sup>
     <xsl:call-template name="generate.html.title"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="dir"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
     <xsl:call-template name="apply-annotations"/>
   </sup>
 </xsl:template>
 
 <xsl:template name="inline.subscriptseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
   <sub>
     <xsl:call-template name="generate.html.title"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="dir"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
     <xsl:call-template name="apply-annotations"/>
   </sub>
 </xsl:template>
@@ -369,52 +424,61 @@
 
 <xsl:template match="author">
   <xsl:param name="content">
+    <xsl:call-template name="person.name"/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
 <xsl:template match="editor">
   <xsl:param name="content">
+    <xsl:call-template name="person.name"/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
 <xsl:template match="othercredit">
   <xsl:param name="content">
+    <xsl:call-template name="person.name"/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
@@ -522,14 +586,14 @@
 
 <xsl:template match="function/parameter" priority="2">
   <xsl:call-template name="inline.italicmonoseq"/>
-  <xsl:if test="following-sibling::*">
+  <xsl:if test="$function.parens != 0 and following-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="function/replaceable" priority="2">
   <xsl:call-template name="inline.italicmonoseq"/>
-  <xsl:if test="following-sibling::*">
+  <xsl:if test="$function.parens != 0 and following-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
 </xsl:template>
@@ -571,7 +635,21 @@
 </xsl:template>
 
 <xsl:template match="keycap">
-  <xsl:call-template name="inline.boldseq"/>
+  <xsl:choose>
+    <xsl:when test="@function and normalize-space(.) = ''">
+      <xsl:call-template name="inline.boldseq">
+        <xsl:with-param name="content">
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="context" select="'keycap'"/>
+            <xsl:with-param name="name" select="@function"/>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="inline.boldseq"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="keycode">
@@ -714,6 +792,7 @@
 
 <xsl:template match="emphasis">
   <span>
+    <xsl:call-template name="id.attribute"/>
     <xsl:choose>
       <!-- We don't want empty @class values, so do not propagate empty @roles -->
       <xsl:when test="@role  and                       normalize-space(@role) != '' and                       $emphasis.propagates.style != 0">
@@ -767,13 +846,19 @@
 
 <xsl:template match="phrase">
   <span>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="locale.html.attributes"/>
     <!-- We don't want empty @class values, so do not propagate empty @roles -->
-    <xsl:if test="@role and                    normalize-space(@role) != '' and                   $phrase.propagates.style != 0">
-      <xsl:apply-templates select="." mode="class.attribute">
-        <xsl:with-param name="class" select="@role"/>
-      </xsl:apply-templates>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@role and                       normalize-space(@role) != '' and                      $phrase.propagates.style != 0">
+        <xsl:apply-templates select="." mode="class.attribute">
+          <xsl:with-param name="class" select="@role"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="." mode="class.attribute"/>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:call-template name="dir"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
@@ -795,7 +880,6 @@
   </xsl:variable>
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:call-template name="anchor"/>
     <xsl:choose>
       <xsl:when test="$depth mod 2 = 0">
         <xsl:call-template name="gentext.startquote"/>
@@ -880,11 +964,6 @@
         <xsl:when test="$target">
           <a>
             <xsl:apply-templates select="." mode="common.html.attributes"/>
-            <xsl:if test="@id or @xml:id">
-              <xsl:attribute name="id">
-                <xsl:value-of select="(@id|@xml:id)[1]"/>
-              </xsl:attribute>
-            </xsl:if>
 
             <xsl:attribute name="href">
               <xsl:call-template name="href.target">
@@ -1132,6 +1211,7 @@
       </xsl:if>
       <a>
         <xsl:apply-templates select="." mode="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
         <xsl:attribute name="href">
           <xsl:text>mailto:</xsl:text>
           <xsl:value-of select="."/>
@@ -1240,6 +1320,7 @@
 
         <xsl:choose>
           <xsl:when test="$bibliography.numbered != 0">
+            <xsl:call-template name="id.attribute"/>
             <xsl:apply-templates select="$target" mode="citation"/>
           </xsl:when>
           <xsl:otherwise>
@@ -1294,7 +1375,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="comment[parent::answer|parent::appendix|parent::article|parent::bibliodiv|&#10;                                parent::bibliography|parent::blockquote|parent::caution|parent::chapter|&#10;                                parent::glossary|parent::glossdiv|parent::important|parent::index|&#10;                                parent::indexdiv|parent::listitem|parent::note|parent::orderedlist|&#10;                                parent::partintro|parent::preface|parent::procedure|parent::qandadiv|&#10;                                parent::qandaset|parent::question|parent::refentry|parent::refnamediv|&#10;                                parent::refsect1|parent::refsect2|parent::refsect3|parent::refsection|&#10;                                parent::refsynopsisdiv|parent::sect1|parent::sect2|parent::sect3|parent::sect4|&#10;                                parent::sect5|parent::section|parent::setindex|parent::sidebar|&#10;                                parent::simplesect|parent::taskprerequisites|parent::taskrelated|&#10;                                parent::tasksummary|parent::warning]|remark[parent::answer|parent::appendix|parent::article|parent::bibliodiv|&#10;                                parent::bibliography|parent::blockquote|parent::caution|parent::chapter|&#10;                                parent::glossary|parent::glossdiv|parent::important|parent::index|&#10;                                parent::indexdiv|parent::listitem|parent::note|parent::orderedlist|&#10;                                parent::partintro|parent::preface|parent::procedure|parent::qandadiv|&#10;                                parent::qandaset|parent::question|parent::refentry|parent::refnamediv|&#10;                                parent::refsect1|parent::refsect2|parent::refsect3|parent::refsection|&#10;                                parent::refsynopsisdiv|parent::sect1|parent::sect2|parent::sect3|parent::sect4|&#10;                                parent::sect5|parent::section|parent::setindex|parent::sidebar|&#10;                                parent::simplesect|parent::taskprerequisites|parent::taskrelated|&#10;                                parent::tasksummary|parent::warning]">
+<xsl:template match="comment[parent::answer|parent::appendix|parent::article|parent::bibliodiv|                                 parent::bibliography|parent::blockquote|parent::caution|parent::chapter|                                 parent::glossary|parent::glossdiv|parent::important|parent::index|                                 parent::indexdiv|parent::listitem|parent::note|parent::orderedlist|                                 parent::partintro|parent::preface|parent::procedure|parent::qandadiv|                                 parent::qandaset|parent::question|parent::refentry|parent::refnamediv|                                 parent::refsect1|parent::refsect2|parent::refsect3|parent::refsection|                                 parent::refsynopsisdiv|parent::sect1|parent::sect2|parent::sect3|parent::sect4|                                 parent::sect5|parent::section|parent::setindex|parent::sidebar|                                 parent::simplesect|parent::taskprerequisites|parent::taskrelated|                                 parent::tasksummary|parent::warning|parent::topic]|remark[parent::answer|parent::appendix|parent::article|parent::bibliodiv|                                 parent::bibliography|parent::blockquote|parent::caution|parent::chapter|                                 parent::glossary|parent::glossdiv|parent::important|parent::index|                                 parent::indexdiv|parent::listitem|parent::note|parent::orderedlist|                                 parent::partintro|parent::preface|parent::procedure|parent::qandadiv|                                 parent::qandaset|parent::question|parent::refentry|parent::refnamediv|                                 parent::refsect1|parent::refsect2|parent::refsect3|parent::refsection|                                 parent::refsynopsisdiv|parent::sect1|parent::sect2|parent::sect3|parent::sect4|                                 parent::sect5|parent::section|parent::setindex|parent::sidebar|                                 parent::simplesect|parent::taskprerequisites|parent::taskrelated|                                 parent::tasksummary|parent::warning|parent::topic]">
   <xsl:if test="$show.comments != 0">
     <p class="remark"><em><xsl:call-template name="inline.charseq"/></em></p>
   </xsl:if>
@@ -1340,35 +1421,41 @@
 
 <xsl:template match="person">
   <xsl:param name="content">
+    <xsl:apply-templates select="personname"/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates select="personname"/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
 <xsl:template match="personname">
   <xsl:param name="content">
+    <xsl:call-template name="person.name"/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
@@ -1376,69 +1463,81 @@
 
 <xsl:template match="org">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
 <xsl:template match="orgname">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
 <xsl:template match="orgdiv">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 
 <xsl:template match="affiliation">
   <xsl:param name="content">
+    <xsl:call-template name="person.name"/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
     <xsl:call-template name="apply-annotations"/>
   </xsl:param>
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </span>
 </xsl:template>
 

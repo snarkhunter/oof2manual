@@ -1,15 +1,13 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: division.xsl 8320 2009-03-12 17:43:44Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -24,20 +22,16 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="title">
-    <xsl:apply-templates select="$node" mode="object.title.markup"/>
+    <xsl:apply-templates select="$node" mode="object.title.markup">
+      <xsl:with-param name="allow-anchors" select="1"/>
+    </xsl:apply-templates>
   </xsl:variable>
-
-  <xsl:if test="$passivetex.extensions != 0">
-    <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex"
-                    fotex-bookmark-level="1"
-                    fotex-bookmark-label="{$id}">
-      <xsl:value-of select="$title"/>
-    </fotex:bookmark>
-  </xsl:if>
 
   <fo:block keep-with-next.within-column="always"
             hyphenate="false">
-    <xsl:if test="$axf.extensions != 0">
+    <xsl:if test="$axf.extensions != 0 and 
+                  $xsl1.1.bookmarks = 0 and 
+                  $show.bookmarks != 0">
       <xsl:attribute name="axf:outline-level">
         <xsl:choose>
           <xsl:when test="count($node/ancestor::*) > 0">
@@ -331,7 +325,7 @@
       <xsl:with-param name="content">
         <xsl:call-template name="list.of.titles">
           <xsl:with-param name="titles" select="'table'"/>
-          <xsl:with-param name="nodes" select=".//table"/>
+          <xsl:with-param name="nodes" select=".//table[not(@tocentry = 0)]"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
@@ -499,14 +493,14 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="nodes" select="reference|
-                                     preface|
-                                     chapter|
-                                     appendix|
-                                     article|
-                                     bibliography|
-                                     glossary|
-                                     index"/>
+  <xsl:variable name="nodes" select="$part/reference|
+                                     $part/preface|
+                                     $part/chapter|
+                                     $part/appendix|
+                                     $part/article|
+                                     $part/bibliography|
+                                     $part/glossary|
+                                     $part/index"/>
 
   <xsl:if test="count($nodes) &gt; 0 and contains($toc.params, 'toc')">
     <fo:page-sequence hyphenate="{$hyphenate}"
@@ -608,5 +602,6 @@
   <xsl:number from="book" count="part" format="I."/>
 </xsl:template>
 
+<!-- ==================================================================== -->
 </xsl:stylesheet>
 

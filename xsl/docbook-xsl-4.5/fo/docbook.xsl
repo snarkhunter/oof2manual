@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                		xmlns:exsl="http://exslt.org/common"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
@@ -13,18 +13,17 @@
 <xsl:output method="xml" indent="no"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl 8913 2010-10-01 04:44:57Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
 
-<xsl:include href="../VERSION"/>
+
+<xsl:include href="../VERSION.xsl"/>
 <xsl:include href="param.xsl"/>
 <xsl:include href="../lib/lib.xsl"/>
 <xsl:include href="../common/l10n.xsl"/>
@@ -76,11 +75,11 @@
 <xsl:include href="ebnf.xsl"/>
 <xsl:include href="../html/chunker.xsl"/>
 <xsl:include href="annotations.xsl"/>
+<xsl:include href="publishers.xsl"/>
 <xsl:include href="../common/stripns.xsl"/>
 
 <xsl:include href="fop.xsl"/>
 <xsl:include href="fop1.xsl"/>
-<xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
 <xsl:include href="axf.xsl"/>
 <xsl:include href="ptc.xsl"/>
@@ -128,11 +127,13 @@
     <xsl:call-template name="get.doc.title"/>
   </xsl:variable>
   <xsl:choose>
-    <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-         toss the namespace and continue.  Use the docbook5 namespaced
-         stylesheets for DocBook5 if you don't want to use this feature.-->
-    <xsl:when test="$exsl.node.set.available != 0
-                    and (*/self::ng:* or */self::db:*)">
+    <!-- fix namespace if necessary -->
+    <xsl:when test="$exsl.node.set.available != 0 and 
+                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+      <xsl:variable name="no.namespace">
+        <xsl:apply-templates select="/*" mode="stripNS"/>
+      </xsl:variable>
+
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$doc.title"/>
@@ -143,23 +144,20 @@
           <xsl:text>stripped namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:variable name="nons">
-        <xsl:apply-templates mode="stripNS"/>
-      </xsl:variable>
-      <xsl:call-template name="log.message">
-        <xsl:with-param name="level">Note</xsl:with-param>
-        <xsl:with-param name="source" select="$doc.title"/>
-        <xsl:with-param name="context-desc">
-          <xsl:text>namesp. cut</xsl:text>
-        </xsl:with-param>
-        <xsl:with-param name="message">
-          <xsl:text>processing stripped document</xsl:text>
+      <!-- DEBUG: uncomment to save namespace-fixed document.
+      <xsl:message>Saving namespace-fixed document.</xsl:message>
+      <xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="'namespace-fixed.debug.xml'"/>
+        <xsl:with-param name="method" select="'xml'"/>
+        <xsl:with-param name="content">
+          <xsl:copy-of select="exsl:node-set($no.namespace)"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:apply-templates select="exsl:node-set($nons)"/>
+      -->
+      <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
     </xsl:when>
-    <!-- Can't process unless namespace removed -->
-    <xsl:when test="*/self::ng:* or */self::db:*">
+    <!-- Can't process unless namespace fixed with exsl node-set()-->
+    <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
       <xsl:message terminate="yes">
         <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
         <xsl:text> cannot proceed.</xsl:text>
@@ -238,8 +236,9 @@
 
   <xsl:variable name="title">
     <xsl:choose>
-      <xsl:when test="$document.element/title[1]">
-        <xsl:value-of select="$document.element/title[1]"/>
+      <xsl:when test="$document.element/title | $document.element/info/title">
+        <xsl:value-of 
+             select="($document.element/title | $document.element/info/title)[1]"/>
       </xsl:when>
       <xsl:otherwise>[could not find document title]</xsl:otherwise>
     </xsl:choose>
@@ -268,50 +267,158 @@
 
     <xsl:call-template name="setup.pagemasters"/>
 
-    <xsl:if test="$fop.extensions != 0">
-      <xsl:apply-templates select="$document.element" mode="fop.outline"/>
-    </xsl:if>
-
     <xsl:if test="$fop1.extensions != 0">
       <xsl:call-template name="fop1-document-information"/>
-      <xsl:variable name="bookmarks">
-        <xsl:apply-templates select="$document.element" 
-                             mode="fop1.outline"/>
-      </xsl:variable>
-      <xsl:if test="string($bookmarks) != ''">
-        <fo:bookmark-tree>
-          <xsl:copy-of select="$bookmarks"/>
-        </fo:bookmark-tree>
-      </xsl:if>
-      <xsl:apply-templates select="$document.element" 
-                           mode="fop1.foxdest"/>
+      <xsl:apply-templates select="$document.element" mode="fop1.foxdest"/>
     </xsl:if>
 
-    <xsl:if test="$xep.extensions != 0">
-      <xsl:variable name="bookmarks">
-        <xsl:apply-templates select="$document.element" mode="xep.outline"/>
-      </xsl:variable>
-      <xsl:if test="string($bookmarks) != ''">
-        <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
-          <xsl:copy-of select="$bookmarks"/>
-        </rx:outline>
-      </xsl:if>
-    </xsl:if>
-
-    <xsl:if test="$arbortext.extensions != 0 and $ati.xsl11.bookmarks != 0">
-      <xsl:variable name="bookmarks">
-        <xsl:apply-templates select="$document.element"
-                             mode="ati.xsl11.bookmarks"/>
-      </xsl:variable>
-      <xsl:if test="string($bookmarks) != ''">
-        <fo:bookmark-tree>
-          <xsl:copy-of select="$bookmarks"/>
-        </fo:bookmark-tree>
-      </xsl:if>
-    </xsl:if>
+    <!-- generate bookmark tree -->
+    <xsl:call-template name="generate.bookmarks"/>
 
     <xsl:apply-templates select="$document.element"/>
   </fo:root>
+</xsl:template>
+
+<xsl:template name="generate.bookmarks">
+  <xsl:variable name="document.element" select="self::*"/>
+  <xsl:choose>
+    <xsl:when test="$show.bookmarks = 0">
+      <!-- omit bookmarks  -->
+    </xsl:when>
+    <xsl:when test="$xsl1.1.bookmarks != 0">
+      <!-- use standard bookmark elements -->
+      <xsl:variable name="bookmarks">
+        <xsl:apply-templates select="$document.element" 
+                             mode="bookmark"/>
+      </xsl:variable>
+      <xsl:if test="string($bookmarks) != ''">
+        <fo:bookmark-tree>
+          <xsl:copy-of select="$bookmarks"/>
+        </fo:bookmark-tree>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <!-- pre FOP 1.0 -->
+        <xsl:when test="$fop.extensions != 0">
+          <xsl:apply-templates select="$document.element" mode="fop.outline"/>
+        </xsl:when>
+    
+        <!-- FOP 1.0 -->
+        <xsl:when test="$fop1.extensions != 0">
+          <xsl:variable name="bookmarks">
+            <xsl:apply-templates select="$document.element" 
+                                 mode="fop1.outline"/>
+          </xsl:variable>
+          <xsl:if test="string($bookmarks) != ''">
+            <fo:bookmark-tree>
+              <xsl:copy-of select="$bookmarks"/>
+            </fo:bookmark-tree>
+          </xsl:if>
+        </xsl:when>
+  
+        <!-- RenderX XEP 4.6 and earlier -->
+        <xsl:when test="$xep.extensions != 0">
+          <xsl:variable name="bookmarks">
+            <xsl:apply-templates select="$document.element" mode="xep.outline"/>
+          </xsl:variable>
+          <xsl:if test="string($bookmarks) != ''">
+            <rx:outline xmlns:rx="http://www.renderx.com/XSL/Extensions">
+              <xsl:copy-of select="$bookmarks"/>
+            </rx:outline>
+          </xsl:if>
+        </xsl:when>
+  
+        <!-- PTC Arbortext -->
+        <xsl:when test="$arbortext.extensions != 0">
+          <xsl:variable name="bookmarks">
+            <xsl:apply-templates select="$document.element"
+                                 mode="ati.xsl11.bookmarks"/>
+          </xsl:variable>
+          <xsl:if test="string($bookmarks) != ''">
+            <fo:bookmark-tree>
+              <xsl:copy-of select="$bookmarks"/>
+            </fo:bookmark-tree>
+          </xsl:if>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:variable name="bookmarks.state">
+  <xsl:choose>
+    <xsl:when test="$bookmarks.collapse != 0">hide</xsl:when>
+    <xsl:otherwise>show</xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
+<xsl:template match="*" mode="bookmark">
+  <xsl:apply-templates select="*" mode="bookmark"/>
+</xsl:template>
+
+<xsl:template match="set|book|part|reference|
+                     preface|chapter|appendix|article|topic
+                     |glossary|bibliography|index|setindex
+                     |refentry
+                     |sect1|sect2|sect3|sect4|sect5|section"
+              mode="bookmark">
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <xsl:variable name="bookmark-label">
+    <xsl:apply-templates select="." mode="object.title.markup"/>
+  </xsl:variable>
+
+  <!-- Put the root element bookmark at the same level as its children -->
+  <!-- If the object is a set or book, generate a bookmark for the toc -->
+
+  <xsl:choose>
+    <xsl:when test="self::index and $generate.index = 0"/>
+    <xsl:when test="parent::*">
+      <fo:bookmark internal-destination="{$id}">
+        <xsl:attribute name="starting-state">
+          <xsl:value-of select="$bookmarks.state"/>
+        </xsl:attribute>
+        <fo:bookmark-title>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
+        </fo:bookmark-title>
+        <xsl:apply-templates select="*" mode="bookmark"/>
+      </fo:bookmark>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:bookmark internal-destination="{$id}">
+        <xsl:attribute name="starting-state">
+          <xsl:value-of select="$bookmarks.state"/>
+        </xsl:attribute>
+        <fo:bookmark-title>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
+        </fo:bookmark-title>
+      </fo:bookmark>
+
+      <xsl:variable name="toc.params">
+        <xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:if test="contains($toc.params, 'toc')
+                    and (book|part|reference|preface|chapter|appendix|article|topic
+                         |glossary|bibliography|index|setindex
+                         |refentry
+                         |sect1|sect2|sect3|sect4|sect5|section)">
+        <fo:bookmark internal-destination="toc...{$id}">
+          <fo:bookmark-title>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:call-template>
+          </fo:bookmark-title>
+        </fo:bookmark>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="bookmark"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="root.messages">

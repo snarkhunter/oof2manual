@@ -1,14 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: qandaset.xsl 8350 2009-03-17 07:24:29Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -259,11 +257,16 @@
 
   <fo:list-item id="{$entry.id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
-        <xsl:if test="string-length($label.content) &gt; 0">
-			<fo:block font-weight="bold">
-			  <xsl:copy-of select="$label.content"/>          
-			</fo:block>
-        </xsl:if>
+      <xsl:choose>
+        <xsl:when test="string-length($label.content) &gt; 0">
+          <fo:block font-weight="bold">
+            <xsl:copy-of select="$label.content"/>          
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block/>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <xsl:choose>
@@ -302,12 +305,12 @@
     <fo:list-item-label id="{$id}" end-indent="label-end()">
       <xsl:choose>
         <xsl:when test="string-length($answer.label) &gt; 0">
-			<fo:block font-weight="bold">
-			  <xsl:copy-of select="$answer.label"/>
-			</fo:block>
+          <fo:block font-weight="bold">
+            <xsl:copy-of select="$answer.label"/>
+          </fo:block>
         </xsl:when>
         <xsl:otherwise>
-			<fo:block/>
+          <fo:block/>
         </xsl:otherwise>
       </xsl:choose>
     </fo:list-item-label>

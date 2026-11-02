@@ -1,12 +1,10 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: xep.xsl 7531 2007-10-17 18:06:49Z dcramer $
-     ********************************************************************
      (c) Stephane Bline Peregrine Systems 2001
      Implementation of xep extensions:
        * Pdf bookmarks (based on the XEP 2.5 implementation)
@@ -32,6 +30,9 @@
           </xsl:when>
           <xsl:when test="$authors[self::corpauthor]">
             <xsl:value-of select="$authors"/>
+          </xsl:when>
+          <xsl:when test="$authors[orgname]">
+            <xsl:value-of select="$authors/orgname"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="person.name">
@@ -109,7 +110,7 @@
 </xsl:template>
 
 <xsl:template match="set|book|part|reference|preface|chapter|appendix|article
-                     |glossary|bibliography|index|setindex
+                     |glossary|bibliography|index|setindex|topic
                      |refentry|refsynopsisdiv
                      |refsect1|refsect2|refsect3|refsection
                      |sect1|sect2|sect3|sect4|sect5|section"
@@ -124,9 +125,12 @@
   <!-- Put the root element bookmark at the same level as its children -->
   <!-- If the object is a set or book, generate a bookmark for the toc -->
   <xsl:choose>
-    <xsl:when test="self::index and $generate.index = 0"/>	
+    <xsl:when test="self::index and $generate.index = 0"/>
     <xsl:when test="parent::*">
       <rx:bookmark internal-destination="{$id}">
+        <xsl:attribute name="starting-state">
+          <xsl:value-of select="$bookmarks.state"/>
+        </xsl:attribute>
         <rx:bookmark-label>
           <xsl:value-of select="normalize-space($bookmark-label)"/>
         </rx:bookmark-label>
@@ -136,6 +140,9 @@
     <xsl:otherwise>
       <xsl:if test="$bookmark-label != ''">
         <rx:bookmark internal-destination="{$id}">
+          <xsl:attribute name="starting-state">
+            <xsl:value-of select="$bookmarks.state"/>
+          </xsl:attribute>
           <rx:bookmark-label>
             <xsl:value-of select="normalize-space($bookmark-label)"/>
           </rx:bookmark-label>
@@ -149,7 +156,7 @@
       </xsl:variable>
       <xsl:if test="contains($toc.params, 'toc')
                     and set|book|part|reference|section|sect1|refentry
-                        |article|bibliography|glossary|chapter
+                        |article|topic|bibliography|glossary|chapter
                         |appendix">
         <rx:bookmark internal-destination="toc...{$id}">
           <rx:bookmark-label>

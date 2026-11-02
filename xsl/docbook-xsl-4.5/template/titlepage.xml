@@ -1,12 +1,10 @@
-<?xml version="1.0"?>
-
-<reference xml:id="template"><?dbhtml dir="template"?><?dbhtml filename="index.html"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<reference xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template"><?dbhtml dir="template"?><?dbhtml filename="index.html"?>
   
   
   <info>
     <title>Titlepage Template Stylesheet Reference</title>
     <releaseinfo role="meta">
-      $Id: titlepage.xsl 7058 2007-07-17 13:59:29Z xmldoc $
     </releaseinfo>
   </info>
   <partintro xml:id="intro_partintro">
@@ -22,7 +20,77 @@
 
   </partintro>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="templates">
+<refentry xml:id="template.get.namespace.prefix">
+<refnamediv>
+<refname>get.namespace.prefix</refname>
+<refpurpose>Obtain namespace prefix for an element identified by a string containing qualified name</refpurpose>
+</refnamediv>
+<refsynopsisdiv>
+<synopsis>&lt;xsl:template name="get.namespace.prefix"&gt;
+&lt;xsl:param name="element.name"/&gt;
+  ...
+&lt;/xsl:template&gt;</synopsis>
+</refsynopsisdiv>
+<refsect1><title>Description</title>
+
+<para>This template interprets a string containing a qualified name of an element
+and returns the namespace prefix, if any.</para>
+
+
+<para>Element name could be an XPath expression starting with the element name; this
+template will first determine if the occurrence of a colon is preceded by a valid
+NCName, assuming only ASCII characters.</para>
+
+</refsect1></refentry>
+
+<refentry xml:id="template.get.namespace.uri">
+<refnamediv>
+<refname>get.namespace.uri</refname>
+<refpurpose>Obtain URI for an element identified by a string containing qualified name</refpurpose>
+</refnamediv>
+<refsynopsisdiv>
+<synopsis>&lt;xsl:template name="get.namespace.uri"&gt;
+&lt;xsl:param name="element.name"/&gt;
+&lt;xsl:param name="reference.node" select="."/&gt;
+&lt;xsl:param name="missing.namespace.warning" select="not(/t:templates/@t:missing-namespace-ok = 'yes')"/&gt;
+  ...
+&lt;/xsl:template&gt;</synopsis>
+</refsynopsisdiv>
+<refsect1><title>Description</title>
+
+<para>This template interprets a string containing a qualified name of an element
+and returns the namespace URI for that element, looking for namespace prefixes
+starting from a reference node.</para>
+
+</refsect1></refentry>
+
+<refentry xml:id="template.output.wrapper">
+<refnamediv>
+<refname>output.wrapper</refname>
+<refpurpose>Output the wrapper element</refpurpose>
+</refnamediv>
+<refsynopsisdiv>
+<synopsis>&lt;xsl:template name="output.wrapper"&gt;
+&lt;xsl:param name="wrapper" select="ancestor-or-self::t:titlepage[@t:wrapper]"/&gt;
+&lt;xsl:param name="attr.copy.from" select="."/&gt;
+&lt;xsl:param name="attr.sets" select="''"/&gt;
+&lt;xsl:param name="content"/&gt;
+  ...
+&lt;/xsl:template&gt;</synopsis>
+</refsynopsisdiv>
+<refsect1><title>Description</title>
+
+<para>This template locates the namespace for the defined wrapper element
+and output it within that namespace. The content of the element is passed
+via the content argument.</para>
+
+
+<para>The attribute sets to use for the wrapper element and the element to
+copy non-template attributes from are also passed as arguments.</para>
+
+</refsect1></refentry>
+
+<refentry xml:id="templates">
 <refnamediv>
 <refname>t:templates</refname>
 <refpurpose>Construct a stylesheet for the templates provided</refpurpose>
@@ -42,9 +110,16 @@ set of templates. This template creates an appropriate
 <literal>base-stylesheet</literal> attribute, an
 <literal>xsl:import</literal> statement is constructed for it.</para>
 
+
+
+<para>If the <literal>t:templates</literal> element has a
+<literal>copy-namespaces</literal> attribute, it is interpreted as a
+space-separated list of namespace prefixes to be copied from the template
+to the resulting stylesheet. Default namespace is always copied.</para>
+
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="star">
+<refentry xml:id="star">
 <refnamediv>
 <refname>xsl:*</refname>
 <refpurpose>Copy xsl: elements straight through</refpurpose>
@@ -59,7 +134,7 @@ straight through into the result tree.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="titlepage">
+<refentry xml:id="titlepage">
 <refnamediv>
 <refname>t:titlepage</refname>
 <refpurpose>Create the templates necessary to construct a title page</refpurpose>
@@ -132,23 +207,7 @@ and <quote>verso</quote> sides of the title page.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="attr_star_in_copy.literal.atts">
-<refnamediv>
-<refname>@* (in copy.literal.atts mode)</refname>
-<refpurpose>Copy t:titlepage attributes</refpurpose>
-</refnamediv>
-<refsynopsisdiv>
-<synopsis>&lt;xsl:template match="@*" mode="copy.literal.atts"/&gt;</synopsis>
-</refsynopsisdiv>
-<refsect1><title>Description</title>
-
-<para>This template copies all of the <quote>other</quote> attributes
-from a <literal>t:titlepage</literal> element onto the specified
-wrapper.</para>
-
-</refsect1></refentry>
-
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="titlepage-content">
+<refentry xml:id="titlepage-content">
 <refnamediv>
 <refname>t:titlepage-content</refname>
 <refpurpose>Create templates for the content of one side of a title page</refpurpose>
@@ -266,7 +325,7 @@ you'll have to construct the templates by hand.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="titlepage-separator">
+<refentry xml:id="titlepage-separator">
 <refnamediv>
 <refname>t:titlepage-separator</refname>
 <refpurpose>Create templates for the separator</refpurpose>
@@ -282,7 +341,7 @@ element.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="titlepage-before">
+<refentry xml:id="titlepage-before">
 <refnamediv>
 <refname>t:titlepage-before</refname>
 <refpurpose>Create templates for what precedes a title page</refpurpose>
@@ -298,7 +357,7 @@ side.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="star_in_copy">
+<refentry xml:id="star_in_copy">
 <refnamediv>
 <refname>* (in copy mode)</refname>
 <refpurpose>Copy elements</refpurpose>
@@ -313,7 +372,7 @@ straight through into the result tree.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="attr_star_in_copy">
+<refentry xml:id="attr_star_in_copy">
 <refnamediv>
 <refname>@* (in copy mode)</refname>
 <refpurpose>Copy attributes</refpurpose>
@@ -328,7 +387,7 @@ straight through into the result tree.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="attr_star_in_document.order">
+<refentry xml:id="attr_star_in_document.order">
 <refnamediv>
 <refname>* (in document.order mode)</refname>
 <refpurpose>Create rules to process titlepage elements in document order</refpurpose>
@@ -359,7 +418,7 @@ names.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="star_in_document.order">
+<refentry xml:id="star_in_document.order">
 <refnamediv>
 <refname>* (in document.order mode)</refname>
 <refpurpose>Create rules to process titlepage elements in stylesheet order</refpurpose>
@@ -390,7 +449,7 @@ names.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="star_in_titlepage.specialrules">
+<refentry xml:id="star_in_titlepage.specialrules">
 <refnamediv>
 <refname>* (in titlepage.specialrules mode)</refname>
 <refpurpose>Create templates for special rules</refpurpose>
@@ -407,7 +466,7 @@ processing. At present, that's just <literal>t:or</literal> elements.
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="star_in_titlepage.subrules">
+<refentry xml:id="star_in_titlepage.subrules">
 <refnamediv>
 <refname>* (in titlepage.subrules mode)</refname>
 <refpurpose>Create template for individual special rules</refpurpose>
@@ -423,7 +482,7 @@ template elements.
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="or">
+<refentry xml:id="or">
 <refnamediv>
 <refname>t:or</refname>
 <refpurpose>Process the t:or special rule</refpurpose>
@@ -437,7 +496,7 @@ template elements.
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="or_in_titlepage.subrules">
+<refentry xml:id="or_in_titlepage.subrules">
 <refnamediv>
 <refname>t:or (in titlepage.subrules mode)</refname>
 <refpurpose>Process the t:or special rule in
@@ -453,7 +512,7 @@ reprocess this node in the normal mode.</para>
 
 </refsect1></refentry>
 
-<refentry xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="template.element-or-list">
+<refentry xml:id="template.element-or-list">
 <refnamediv>
 <refname>element-or-list</refname>
 <refpurpose>Construct the "or-list" used in the select attribute for
@@ -475,4 +534,3 @@ text of the select attribute.</para>
 
 </refsect1></refentry>
 </reference>
-

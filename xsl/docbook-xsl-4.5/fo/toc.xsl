@@ -1,14 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: toc.xsl 8323 2009-03-12 22:52:17Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -167,9 +165,11 @@
 </xsl:template>
 
 <xsl:template match="tocentry|lotentry|tocdiv|tocfront|tocback">
-  <fo:block text-align-last="justify"
-            end-indent="2pc"
+  <fo:block end-indent="2pc"
             last-line-end-indent="-2pc">
+    <xsl:if test="@linkend or @pagenum">
+      <xsl:attribute name="text-align-last">justify</xsl:attribute>
+    </xsl:if>
     <fo:inline keep-with-next.within-line="always">
       <xsl:choose>
         <xsl:when test="@linkend">
@@ -186,10 +186,7 @@
     <xsl:choose>
       <xsl:when test="@linkend">
         <fo:inline keep-together.within-line="always">
-          <xsl:text> </xsl:text>
-          <fo:leader leader-pattern="dots"
-                     keep-with-next.within-line="always"/>
-          <xsl:text> </xsl:text>
+          <fo:leader xsl:use-attribute-sets="toc.leader.properties"/>
           <fo:basic-link internal-destination="{@linkend}">
             <xsl:choose>
               <xsl:when test="@pagenum">
@@ -204,38 +201,27 @@
       </xsl:when>
       <xsl:when test="@pagenum">
         <fo:inline keep-together.within-line="always">
-          <xsl:text> </xsl:text>
-          <fo:leader leader-pattern="dots"
-                     keep-with-next.within-line="always"/>
-          <xsl:text> </xsl:text>
+          <fo:leader xsl:use-attribute-sets="toc.leader.properties"/>
           <xsl:value-of select="@pagenum"/>
         </fo:inline>
       </xsl:when>
-      <xsl:otherwise>
-        <!-- just the leaders, what else can I do? -->
-        <fo:inline keep-together.within-line="always">
-          <xsl:text> </xsl:text>
-          <fo:leader leader-pattern="space"
-                     keep-with-next.within-line="always"/>
-        </fo:inline>
-      </xsl:otherwise>
     </xsl:choose>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="toc/title">
+<xsl:template match="toc/title | tocdiv/title">
   <fo:block font-weight="bold">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="toc/subtitle">
+<xsl:template match="toc/subtitle | tocdiv/subtitle">
   <fo:block font-weight="bold">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="toc/titleabbrev">
+<xsl:template match="toc/titleabbrev |tocdiv/titleabbrev">
 </xsl:template>
 
 <!-- ==================================================================== -->

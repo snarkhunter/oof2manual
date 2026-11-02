@@ -1,14 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: biblio.xsl 7467 2007-09-27 16:10:31Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -327,7 +325,7 @@
   </fo:inline>
 </xsl:template>
 
-<xsl:template match="artheader|articleinfo|article/info" 
+<xsl:template match="artheader|articleinfo|article/info"
               mode="bibliography.mode">
   <fo:inline>
     <xsl:apply-templates mode="bibliography.mode"/>
@@ -344,8 +342,15 @@
 
 <xsl:template match="author" mode="bibliography.mode">
   <fo:inline>
-    <xsl:call-template name="person.name"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
+    <xsl:choose>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname" mode="bibliography.mode"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name"/>
+        <xsl:value-of select="$biblioentry.item.separator"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:inline>
 </xsl:template>
 
@@ -388,11 +393,16 @@
 
 <xsl:template match="biblioset" mode="bibliography.mode">
   <fo:inline>
+    <xsl:if test="@id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="@id"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates mode="bibliography.mode"/>
   </fo:inline>
 </xsl:template>
 
-<xsl:template match="biblioset/title|biblioset/citetitle" 
+<xsl:template match="biblioset/title|biblioset/citetitle"
               mode="bibliography.mode">
   <xsl:variable name="relation" select="../@relation"/>
   <xsl:choose>
@@ -411,13 +421,6 @@
 </xsl:template>
 
 <!-- ================================================== -->
-
-<xsl:template match="bookbiblio" mode="bibliography.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
-  </fo:inline>
-</xsl:template>
 
 <xsl:template match="citetitle" mode="bibliography.mode">
   <fo:inline>
@@ -849,7 +852,14 @@
 
 <xsl:template match="author" mode="bibliomixed.mode">
   <fo:inline>
-    <xsl:call-template name="person.name"/>
+    <xsl:choose>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname" mode="bibliomixed.mode"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:inline>
 </xsl:template>
 

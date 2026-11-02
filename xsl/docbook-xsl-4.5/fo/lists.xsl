@@ -1,14 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: lists.xsl 8761 2010-07-21 18:58:53Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -136,17 +134,9 @@
       </fo:block>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
-      <xsl:choose>
-        <!-- * work around broken passivetex list-item-body rendering -->
-        <xsl:when test="$passivetex.extensions = '1'">
-          <xsl:apply-templates/>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:block>
-            <xsl:apply-templates/>
-          </fo:block>
-        </xsl:otherwise>
-      </xsl:choose>
+      <fo:block>
+        <xsl:apply-templates/>
+      </fo:block>
     </fo:list-item-body>
   </xsl:variable>
 
@@ -316,20 +306,20 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="listitem/*[1][local-name()='para' or 
-                                   local-name()='simpara' or 
+<xsl:template match="listitem/*[1][local-name()='para' or
+                                   local-name()='simpara' or
                                    local-name()='formalpara']
-                     |glossdef/*[1][local-name()='para' or 
-                                   local-name()='simpara' or 
+                     |glossdef/*[1][local-name()='para' or
+                                   local-name()='simpara' or
                                    local-name()='formalpara']
-                     |step/*[1][local-name()='para' or 
-                                   local-name()='simpara' or 
+                     |step/*[1][local-name()='para' or
+                                   local-name()='simpara' or
                                    local-name()='formalpara']
-                     |callout/*[1][local-name()='para' or 
-                                   local-name()='simpara' or 
+                     |callout/*[1][local-name()='para' or
+                                   local-name()='simpara' or
                                    local-name()='formalpara']"
               priority="2">
-  <fo:block>
+  <fo:block xsl:use-attribute-sets="para.properties">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
@@ -385,15 +375,7 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="@termlength"/>
-            <xsl:choose>
-              <!-- workaround for passivetex lack of support for non-constant expressions -->
-              <xsl:when test="$passivetex.extensions != 0">
-                <xsl:text>em</xsl:text>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:text>em * 0.60</xsl:text>
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:text>em * 0.60</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -402,15 +384,7 @@
           <xsl:with-param name="terms" select="varlistentry/term"/>
           <xsl:with-param name="maxlength" select="$variablelist.max.termlength"/>
         </xsl:call-template>
-        <xsl:choose>
-          <!-- workaround for passivetex lack of support for non-constant expressions -->
-          <xsl:when test="$passivetex.extensions != 0">
-            <xsl:text>em</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>em * 0.60</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:text>em * 0.60</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -424,17 +398,9 @@
 
   <xsl:variable name="label-separation">1em</xsl:variable>
   <xsl:variable name="distance-between-starts">
-    <xsl:choose>
-      <!-- workaround for passivetex lack of support for non-constant expressions -->
-      <xsl:when test="$passivetex.extensions != 0">
-        <xsl:value-of select="$termlength"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$termlength"/>
-        <xsl:text>+</xsl:text>
-        <xsl:value-of select="$label-separation"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="$termlength"/>
+    <xsl:text>+</xsl:text>
+    <xsl:value-of select="$label-separation"/>
   </xsl:variable>
 
   <xsl:if test="title">
@@ -626,6 +592,7 @@
 
 <xsl:template match="varlistentry/term">
   <fo:inline>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content">
         <xsl:apply-templates/>
@@ -983,7 +950,7 @@
                         |processing-instruction()[preceding-sibling::step]"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="procedure.properties list.block.spacing">
-    <xsl:if test="./title and $placement = 'before'">
+    <xsl:if test="(title or blockinfo/title or info/title) and $placement = 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
       <xsl:call-template name="formal.object.heading"/>
@@ -997,7 +964,7 @@
       <xsl:apply-templates select="$steps"/>
     </fo:list-block>
 
-    <xsl:if test="./title and $placement != 'before'">
+    <xsl:if test="(title or blockinfo/title or info/title) and $placement != 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
       <xsl:call-template name="formal.object.heading"/>
@@ -1095,6 +1062,31 @@
   </fo:block>
 </xsl:template>
 
+<!-- Add (Optional) when the step is optional -->
+<xsl:template match="step[@performance = 'optional']/*[1][self::para]" priority="3">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+  <fo:block xsl:use-attribute-sets="para.properties">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
+    <xsl:call-template name="anchor"/>
+    <xsl:if test="$mark.optional.procedure.steps != 0">
+      <xsl:call-template name="optional.step.marker"/>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template name="optional.step.marker">
+  <fo:inline>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key">optional-step</xsl:with-param>
+    </xsl:call-template>
+  </fo:inline>
+</xsl:template>
 <!-- ==================================================================== -->
 
 <xsl:template match="segmentedlist">
@@ -1195,8 +1187,9 @@
 <xsl:template match="segmentedlist" mode="seglist-table">
   <xsl:apply-templates select="title" mode="list.title.mode" />
   <fo:table table-layout="fixed">
-    <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
-    <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
+    <xsl:call-template name="segmentedlist.table.columns">
+      <xsl:with-param name="cols" select="count(segtitle)"/>
+    </xsl:call-template>
     <fo:table-header start-indent="0pt" end-indent="0pt">
       <fo:table-row>
         <xsl:apply-templates select="segtitle" mode="seglist-table"/>
@@ -1206,6 +1199,20 @@
       <xsl:apply-templates select="seglistitem" mode="seglist-table"/>
     </fo:table-body>
   </fo:table>
+</xsl:template>
+
+<xsl:template name="segmentedlist.table.columns">
+  <xsl:param name="cols" select="1"/>
+  <xsl:param name="curcol" select="1"/>
+
+  <fo:table-column column-number="{$curcol}"
+                   column-width="proportional-column-width(1)"/>
+  <xsl:if test="$curcol &lt; $cols">
+    <xsl:call-template name="segmentedlist.table.columns">
+      <xsl:with-param name="cols" select="$cols"/>
+      <xsl:with-param name="curcol" select="$curcol+1"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="segtitle" mode="seglist-table">
@@ -1248,7 +1255,7 @@
             text-align="{$alignment}">
     <!-- The above restores alignment altered by image align attribute -->
     <xsl:if test="title|info/title">
-      <xsl:apply-templates select="(title|info/title)[1]" 
+      <xsl:apply-templates select="(title|info/title)[1]"
                            mode="list.title.mode"/>
     </xsl:if>
 
@@ -1258,14 +1265,10 @@
                    |comment()[not(preceding-sibling::callout)]
                    |processing-instruction()[not(preceding-sibling::callout)]"/>
 
-    <fo:list-block space-before.optimum="1em"
-                   space-before.minimum="0.8em"
-                   space-before.maximum="1.2em"
-                   provisional-distance-between-starts="2.2em"
-                   provisional-label-separation="0.2em">
+    <fo:list-block xsl:use-attribute-sets="calloutlist.properties">
 
       <xsl:if test="$pi-label-width != ''">
-              <xsl:attribute name="provisional-distance-between-starts">
+        <xsl:attribute name="provisional-distance-between-starts">
           <xsl:value-of select="$pi-label-width"/>
         </xsl:attribute>
       </xsl:if>
@@ -1287,7 +1290,7 @@
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
-  <fo:list-item id="{$id}">
+  <fo:list-item id="{$id}" xsl:use-attribute-sets="callout.properties">
     <xsl:if test="$keep.together != ''">
       <xsl:attribute name="keep-together.within-column"><xsl:value-of
                       select="$keep.together"/></xsl:attribute>
@@ -1341,7 +1344,9 @@
       <xsl:text>: ???</xsl:text>
     </xsl:when>
     <xsl:when test="local-name($target)='co'">
-      <xsl:apply-templates select="$target" mode="callout-bug"/>
+      <fo:basic-link internal-destination="{$arearef}">
+        <xsl:apply-templates select="$target" mode="callout-bug"/>
+      </fo:basic-link>
     </xsl:when>
     <xsl:when test="local-name($target)='areaset'">
       <xsl:call-template name="callout-bug">

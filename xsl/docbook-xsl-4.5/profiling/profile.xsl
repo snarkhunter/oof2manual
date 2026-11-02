@@ -1,5 +1,5 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version="1.0">
+                		version="1.0">
 
 <!-- Include common profiling stylesheet -->
 <xsl:import href="profile-mode.xsl"/>
@@ -28,6 +28,7 @@
 <xsl:param name="profile.conformance" select="''"/>
 <xsl:param name="profile.lang" select="''"/>
 <xsl:param name="profile.os" select="''"/>
+<xsl:param name="profile.outputformat" select="''"/>
 <xsl:param name="profile.revision" select="''"/>
 <xsl:param name="profile.revisionflag" select="''"/>
 <xsl:param name="profile.role" select="''"/>

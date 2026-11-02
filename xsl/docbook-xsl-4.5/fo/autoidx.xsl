@@ -4,8 +4,9 @@
 %common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
+                xmlns:xlink='http://www.w3.org/1999/xlink'
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 xmlns:exslt="http://exslt.org/common"
                 extension-element-prefixes="exslt"
@@ -13,11 +14,9 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: autoidx.xsl 8399 2009-04-08 07:37:42Z bobstayton $
-     ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
-     See ../README or http://docbook.sf.net/ for copyright
+     See ../README or http://cdn.docbook.org/release/xsl/ for copyright
      copyright and other information.
 
      ******************************************************************** -->
@@ -39,6 +38,10 @@
 <xsl:key name="primary"
          match="indexterm"
          use="&primary;"/>
+
+<xsl:key name="primaryonly"
+         match="indexterm"
+         use="normalize-space(primary)"/>
 
 <xsl:key name="secondary"
          match="indexterm"
@@ -290,6 +293,11 @@
   </xsl:variable>
 
   <fo:block>
+    <xsl:if test="$autolink.index.see != 0">
+      <xsl:attribute name="id">
+        <xsl:value-of select="concat('ientry-', generate-id())"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
     </xsl:if>
@@ -323,7 +331,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="page-number-citations">
-          <xsl:for-each select="$refs[not(see) 
+          <xsl:for-each select="$refs[not(see)
                                 and not(secondary)]">
             <xsl:apply-templates select="." mode="reference">
               <xsl:with-param name="scope" select="$scope"/>
@@ -334,16 +342,7 @@
           </xsl:for-each>
         </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="$passivetex.extensions != '0'">
-            <fotex:sort xmlns:fotex="http://www.tug.org/fotex">
-              <xsl:copy-of select="$page-number-citations"/>
-            </fotex:sort>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$page-number-citations"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$page-number-citations"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -450,7 +449,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="page-number-citations">
-          <xsl:for-each select="$refs[not(see) 
+          <xsl:for-each select="$refs[not(see)
                                 and not(tertiary)]">
             <xsl:apply-templates select="." mode="reference">
               <xsl:with-param name="scope" select="$scope"/>
@@ -461,16 +460,7 @@
           </xsl:for-each>
         </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="$passivetex.extensions != '0'">
-            <fotex:sort xmlns:fotex="http://www.tug.org/fotex">
-              <xsl:copy-of select="$page-number-citations"/>
-            </fotex:sort>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$page-number-citations"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$page-number-citations"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -495,7 +485,7 @@
           <xsl:with-param name="type" select="$type"/>
           <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
-      <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]" 
+      <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]"
                            mode="index-tertiary">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
@@ -591,16 +581,7 @@
           </xsl:for-each>
         </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="$passivetex.extensions != '0'">
-            <fotex:sort xmlns:fotex="http://www.tug.org/fotex">
-              <xsl:copy-of select="$page-number-citations"/>
-            </fotex:sort>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$page-number-citations"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$page-number-citations"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -733,9 +714,7 @@
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
 
-      <xsl:if test="$passivetex.extensions = '0'">
-        <xsl:copy-of select="$number.separator"/>
-      </xsl:if>
+      <xsl:copy-of select="$number.separator"/>
       <xsl:call-template name="reference">
         <xsl:with-param name="zones" select="substring-after($zones, ' ')"/>
         <xsl:with-param name="scope" select="$scope"/>
@@ -788,19 +767,62 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-see">
-   <xsl:param name="scope" select="."/>
+  <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
 
-   <fo:inline>
-     <xsl:text> (</xsl:text>
-     <xsl:call-template name="gentext">
-       <xsl:with-param name="key" select="'see'"/>
-     </xsl:call-template>
-     <xsl:text> </xsl:text>
-     <xsl:value-of select="see"/>
-     <xsl:text>)</xsl:text>
-   </fo:inline>
+  <xsl:variable name="see" select="normalize-space(see)"/>
+
+  <!-- can only link to primary, which should appear before comma
+  in see "primary, secondary" entry -->
+  <xsl:variable name="seeprimary">
+    <xsl:choose>
+      <xsl:when test="contains($see, ',')">
+        <xsl:value-of select="substring-before($see, ',')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$see"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable> 
+
+  <xsl:variable name="seetarget" select="key('primaryonly', $seeprimary)[1]"/>
+
+  <xsl:variable name="linkend">
+    <xsl:if test="$seetarget">
+      <xsl:value-of select="concat('ientry-', generate-id($seetarget))"/>
+    </xsl:if>
+  </xsl:variable>
+  
+  <fo:inline>
+    <xsl:text> (</xsl:text>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'see'"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:choose>
+      <!-- manual links have precedence -->
+      <xsl:when test="see/@linkend or see/@xlink:href">
+        <xsl:call-template name="simple.xlink">
+          <xsl:with-param name="node" select="see"/>
+          <xsl:with-param name="content" select="$see"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$autolink.index.see = 0">
+         <xsl:value-of select="$see"/>
+      </xsl:when>
+      <xsl:when test="$seetarget">
+        <fo:basic-link internal-destination="{$linkend}"
+                       xsl:use-attribute-sets="xref.properties">
+          <xsl:value-of select="$see"/>
+        </fo:basic-link>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$see"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>)</xsl:text>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-seealso">
@@ -810,15 +832,60 @@
 
   <xsl:for-each select="seealso">
     <xsl:sort select="translate(., &lowercase;, &uppercase;)"/>
+
+    <xsl:variable name="seealso" select="normalize-space(.)"/>
+
+    <!-- can only link to primary, which should appear before comma
+    in seealso "primary, secondary" entry -->
+    <xsl:variable name="seealsoprimary">
+      <xsl:choose>
+        <xsl:when test="contains($seealso, ',')">
+          <xsl:value-of select="substring-before($seealso, ',')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$seealso"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable> 
+
+    <xsl:variable name="seealsotarget" select="key('primaryonly', $seealsoprimary)[1]"/>
+
+    <xsl:variable name="linkend">
+      <xsl:if test="$seealsotarget">
+        <xsl:value-of select="concat('ientry-', generate-id($seealsotarget))"/>
+      </xsl:if>
+    </xsl:variable>
+
     <fo:block>
       <xsl:text>(</xsl:text>
       <xsl:call-template name="gentext">
         <xsl:with-param name="key" select="'seealso'"/>
       </xsl:call-template>
       <xsl:text> </xsl:text>
-      <xsl:value-of select="."/>
+      <xsl:choose>
+        <!-- manual links have precedence -->
+        <xsl:when test="@linkend or @xlink:href">
+          <xsl:call-template name="simple.xlink">
+            <xsl:with-param name="node" select="."/>
+            <xsl:with-param name="content" select="$seealso"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="$autolink.index.see = 0">
+          <xsl:value-of select="$seealso"/>
+        </xsl:when>
+        <xsl:when test="$seealsotarget">
+          <fo:basic-link internal-destination="{$linkend}"
+                         xsl:use-attribute-sets="xref.properties">
+            <xsl:value-of select="$seealso"/>
+          </fo:basic-link>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$seealso"/>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text>)</xsl:text>
     </fo:block>
+
   </xsl:for-each>
 
 </xsl:template>
@@ -964,7 +1031,7 @@
       <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
 
-    <xsl:apply-templates select="$refs[secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[&scope;][1]) = 1]" 
+    <xsl:apply-templates select="$refs[secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[&scope;][1]) = 1]"
                          mode="index-secondary-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -1017,7 +1084,7 @@
       <xsl:with-param name="type" select="$type"/>
       <xsl:sort select="translate(seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]" 
+    <xsl:apply-templates select="$refs[tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]"
                          mode="index-tertiary-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -1145,7 +1212,7 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:text>&lt;phrase fole="pageno"&gt;</xsl:text>
+      <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
       <xsl:if test="$target[1]/@id or $target[1]/@xml:id">
         <xsl:text>&lt;link linkend="</xsl:text>
         <xsl:value-of select="$id"/>

@@ -1,14 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                		xmlns:exsl="http://exslt.org/common"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: inline.xsl 7897 2008-03-10 15:46:03Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -189,13 +187,9 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<!-- * indexterm instances produce groff comments like this: -->
-<!-- * .\" primary: secondary: tertiary -->
-<xsl:template match="indexterm">
-  <xsl:text>.\" </xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>&#10;</xsl:text>
-</xsl:template>
+<!-- * indexterm instances are omitted from output since there 
+is no nroff markup to handle them. -->
+<xsl:template match="indexterm"/>
 
 <xsl:template match="primary">
   <xsl:value-of select="normalize-space(.)"/>
@@ -206,14 +200,8 @@
   <xsl:value-of select="normalize-space(.)"/>
 </xsl:template>
 
-<!-- * non-empty remark instances produce groff comments -->
-<xsl:template match="remark">
-  <xsl:variable name="content" select="normalize-space(.)"/>
-  <xsl:if test="not($content = '')">
-    <xsl:text>.\" </xsl:text>
-    <xsl:value-of select="$content"/>
-    <xsl:text>&#10;</xsl:text>
-  </xsl:if>
-</xsl:template>
+<!-- * remark instances are omitted from output since they
+can mess up whitespace management. -->
+<xsl:template match="remark"/>
 
 </xsl:stylesheet>

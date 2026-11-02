@@ -1,15 +1,13 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 exclude-result-prefixes="doc"
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: table.xsl 8392 2009-04-01 08:47:55Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -488,11 +486,11 @@ or 0 (the empty string)</para>
 <xsl:template name="tabstyle">
   <xsl:param name="node" select="."/>
 
-  <xsl:variable name="tgroup" select="$node/tgroup[1] | 
+  <xsl:variable name="tgroup" select="$node/tgroup[1] |
                                       $node/ancestor-or-self::tgroup[1]"/>
 
   <xsl:variable name="table" 
-                select="($node/ancestor-or-self::table | 
+                select="($node/ancestor-or-self::table |
                          $node/ancestor-or-self::informaltable)[last()]"/>
 
   <xsl:variable name="tabstyle">

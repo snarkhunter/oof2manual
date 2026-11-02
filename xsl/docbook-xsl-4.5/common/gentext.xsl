@@ -1,15 +1,13 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 exclude-result-prefixes="doc"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: gentext.xsl 8769 2010-07-26 17:38:32Z mzjn $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -90,7 +88,7 @@
 </xsl:template>
 
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5|simplesect
-                     |bridgehead"
+                     |bridgehead|topic"
               mode="object.title.template">
   <xsl:variable name="is.numbered">
     <xsl:call-template name="label.this.section"/>
@@ -116,8 +114,9 @@
 </xsl:template>
 
 <xsl:template match="procedure" mode="object.title.template">
+  <xsl:variable name="title" select="title|blockinfo/title|info/title"/>
   <xsl:choose>
-    <xsl:when test="$formal.procedures != 0 and title">
+    <xsl:when test="$formal.procedures != 0 and $title">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'title'"/>
         <xsl:with-param name="name">
@@ -154,7 +153,7 @@
   <xsl:value-of select="'0'"/>
 </xsl:template>
 
-<xsl:template match="section|sect1|sect2|sect3|sect4|sect5" 
+<xsl:template match="section|sect1|sect2|sect3|sect4|sect5"
               mode="is.autonumber">
   <xsl:call-template name="label.this.section"/>
 </xsl:template>
@@ -196,7 +195,8 @@
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="is.autonumber">
-  <xsl:value-of select="$section.autolabel"/>
+  <!-- bridgeheads are not numbered -->
+  <xsl:text>0</xsl:text>
 </xsl:template>
 
 <xsl:template match="procedure" mode="is.autonumber">
@@ -476,6 +476,12 @@
                 <xsl:when test="$title != ''">
                   <xsl:copy-of select="$title"/>
                 </xsl:when>
+                <xsl:when test="$purpose = 'xref'">
+                  <xsl:apply-templates select="." mode="titleabbrev.markup">
+                    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+                    <xsl:with-param name="verbose" select="$verbose"/>
+                  </xsl:apply-templates>
+                </xsl:when>
                 <xsl:otherwise>
                   <xsl:apply-templates select="." mode="title.markup">
                     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
@@ -627,6 +633,13 @@
   </xsl:param>
   <xsl:param name="target.elem" select="local-name(.)"/>
 
+  <!-- Referrer's local name, if any -->
+  <xsl:variable name="referrer.local.name">
+    <xsl:if test="$referrer">
+      <xsl:value-of select="local-name($referrer)"/>
+    </xsl:if>
+  </xsl:variable>
+
   <!-- parse xrefstyle to get parts -->
   <xsl:variable name="parts"
       select="substring-after(normalize-space($xrefstyle), 'select:')"/>
@@ -659,11 +672,11 @@
   <xsl:variable name="pagetype">
     <xsl:choose>
       <xsl:when test="$insert.olink.page.number = 'no' and
-                      local-name($referrer) = 'olink'">
+                      $referrer.local.name = 'olink'">
         <!-- suppress page numbers -->
       </xsl:when>
       <xsl:when test="$insert.xref.page.number = 'no' and
-                      local-name($referrer) != 'olink'">
+                      $referrer.local.name != 'olink'">
         <!-- suppress page numbers -->
       </xsl:when>
       <xsl:when test="contains($parts, 'nopage')">
@@ -688,7 +701,7 @@
     <xsl:choose>
       <xsl:when test="($olink.doctitle = 0 or
                        $olink.doctitle = 'no') and
-                      local-name($referrer) = 'olink'">
+                       $referrer.local.name = 'olink'">
         <!-- suppress docname -->
       </xsl:when>
       <xsl:when test="contains($parts, 'nodocname')">
@@ -709,7 +722,7 @@
         <xsl:call-template name="gentext">
           <xsl:with-param name="key">
             <xsl:choose>
-              <xsl:when test="local-name($referrer) = 'olink'">
+              <xsl:when test="$referrer.local.name = 'olink'">
                 <xsl:value-of select="$target.elem"/>
               </xsl:when>
               <xsl:otherwise>
@@ -727,7 +740,7 @@
           <xsl:with-param name="context" select="'xref-number'"/>
           <xsl:with-param name="name">
             <xsl:choose>
-              <xsl:when test="local-name($referrer) = 'olink'">
+              <xsl:when test="$referrer.local.name = 'olink'">
                 <xsl:value-of select="$target.elem"/>
               </xsl:when>
               <xsl:otherwise>
@@ -777,7 +790,7 @@
   
   <!-- special case: use regular xref template if just turning off page -->
   <xsl:if test="($pagetype = 'nopage' or $docnametype = 'nodocname')
-                  and local-name($referrer) != 'olink'
+                  and $referrer.local.name != 'olink'
                   and $labeltype = '' 
                   and $titletype = ''">
     <xsl:apply-templates select="." mode="object.xref.template">
@@ -815,7 +828,7 @@
   </xsl:if>
 
   <!-- Add reference to other document title -->
-  <xsl:if test="$docnametype != '' and local-name($referrer) = 'olink'">
+  <xsl:if test="$docnametype != '' and $referrer.local.name = 'olink'">
     <!-- Any separator should be in the gentext template -->
     <xsl:choose>
       <xsl:when test="$docnametype = 'docnamelong'">

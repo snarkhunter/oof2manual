@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
                 xmlns:stbl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Table"
                 xmlns:xtbl="com.nwalsh.xalan.Table"
@@ -13,11 +13,9 @@
 <xsl:include href="../common/table.xsl"/>
 
 <!-- ********************************************************************
-     $Id: table.xsl 8814 2010-08-09 21:19:53Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -27,7 +25,6 @@
   <info>
     <title>Formatting Object Table Reference</title>
     <releaseinfo role="meta">
-      $Id: table.xsl 8814 2010-08-09 21:19:53Z bobstayton $
     </releaseinfo>
   </info>
   <partintro xml:id="partintro">
@@ -103,6 +100,9 @@
     </xsl:for-each>
 
   </xsl:for-each>
+
+  <xsl:apply-templates select="caption"/>
+
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -170,6 +170,11 @@
     <xsl:otherwise>
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="informaltable.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column">
+            <xsl:value-of select="$keep.together"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$table.layout"/>
         <xsl:call-template name="table.footnote.block"/>
       </fo:block>
@@ -194,8 +199,7 @@
   <xsl:param name="table.block"/>
   <xsl:choose>
     <xsl:when test="@orient='land' and 
-                    $fop.extensions = 0 and 
-                    $passivetex.extensions = 0" >
+                    $fop.extensions = 0" >
       <fo:block-container reference-orientation="90"
             padding="6pt"
             xsl:use-attribute-sets="list.block.spacing">
@@ -505,8 +509,7 @@
                 select=".//colspec[contains(@colwidth, '*')]"/>
   <xsl:if test="count($prop-columns) != 0 or
                 $fop.extensions != 0 or
-                $fop1.extensions != 0 or
-                $passivetex.extensions != 0">
+                $fop1.extensions != 0">
     <xsl:attribute name="table-layout">fixed</xsl:attribute>
   </xsl:if>
  
@@ -639,8 +642,7 @@
         <xsl:choose>
           <!-- These processors don't support table-layout="auto" -->
           <xsl:when test="$fop.extensions != 0 or
-                          $fop1.extensions != 0 or
-                          $passivetex.extensions != 0">
+                          $fop1.extensions != 0">
             <xsl:text>100%</xsl:text>
           </xsl:when>
           <!-- Proportional columns imply 100% width -->
@@ -669,7 +671,7 @@
   <fo:table-header start-indent="0pt" end-indent="0pt">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|ro/entrytbl/@morerows">
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
         <xsl:apply-templates select="row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
@@ -699,7 +701,7 @@
   <fo:table-footer start-indent="0pt" end-indent="0pt">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|ro/entrytbl/@morerows">
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
         <xsl:apply-templates select="row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
@@ -729,7 +731,7 @@
   <fo:table-body start-indent="0pt" end-indent="0pt">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|ro/entrytbl/@morerows">
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
         <xsl:apply-templates select="row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
@@ -792,6 +794,7 @@
               <xsl:with-param name="spans" select="$spans"/>
             </xsl:call-template>
           </xsl:with-param>
+          <xsl:with-param name="browserows" select="$browserows"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:otherwise>
@@ -1129,7 +1132,7 @@
 -->
 
         <xsl:choose>
-          <xsl:when test="$fop.extensions = 0 and $passivetex.extensions = 0
+          <xsl:when test="$fop.extensions = 0
                           and $orientation != ''">
             <fo:block-container reference-orientation="{$orientation}">
               <xsl:if test="$rotated-width != ''">
@@ -1275,7 +1278,7 @@
       <xsl:attribute name="font-weight">bold</xsl:attribute>
     </xsl:when>
     <!-- Make row headers bold too -->
-    <xsl:when test="ancestor::tbody and 
+    <xsl:when test="ancestor::tbody and
                     (ancestor::table[@rowheader = 'firstcol'] or
                     ancestor::informaltable[@rowheader = 'firstcol']) and
                     ancestor-or-self::entry[1][count(preceding-sibling::entry) = 0]">
@@ -1422,6 +1425,7 @@
 
       <xsl:variable name="colspec.colwidth">
         <xsl:choose>
+          <xsl:when test="normalize-space($colspec/@colwidth)='*'">1*</xsl:when>
           <xsl:when test="$colspec/@colwidth">
             <xsl:value-of select="$colspec/@colwidth"/>
           </xsl:when>
@@ -1674,6 +1678,12 @@ proportional-column-width() function.</para>
     <xsl:when test="$units = '' and $width != ''">pt</xsl:when>
     <xsl:otherwise><xsl:value-of select="$units"/></xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="table/caption">
+  <fo:block xsl:use-attribute-sets="table.caption.properties">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 <!-- ==================================================================== -->

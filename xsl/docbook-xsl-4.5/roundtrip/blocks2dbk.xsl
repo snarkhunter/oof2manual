@@ -11,12 +11,11 @@
 %ext;
 ]>
 <xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:dbk='http://docbook.org/ns/docbook'
-  xmlns:rnd='http://docbook.org/ns/docbook/roundtrip'
-  xmlns:xlink='http://www.w3.org/1999/xlink'>
+		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:dbk='http://docbook.org/ns/docbook'
+		xmlns:rnd='http://docbook.org/ns/docbook/roundtrip'
+		xmlns:xlink='http://www.w3.org/1999/xlink'>
 
-  <!-- $Id: blocks2dbk.xsl 8137 2008-10-09 03:37:56Z balls $ -->
   <!-- Stylesheet to convert word processing docs to DocBook -->
   <!-- This stylesheet processes the output of sections2blocks.xsl -->
 

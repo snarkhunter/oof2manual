@@ -1,17 +1,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                		xmlns:exsl="http://exslt.org/common"
                 xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
-                xmlns:ng="http://docbook.org/docbook-ng"
-                xmlns:db="http://docbook.org/ns/docbook"
                 version="1.0"
-                exclude-result-prefixes="exsl cf ng db">
+                exclude-result-prefixes="exsl cf">
 
 <!-- ********************************************************************
-     $Id: chunk-common.xsl 8551 2009-12-07 06:03:50Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -29,15 +25,27 @@
 <xsl:variable name="chunk.hierarchy">
   <xsl:if test="$chunk.fast != 0">
     <xsl:choose>
+      <!-- Do we need to fix namespace? -->
+      <xsl:when test="$exsl.node.set.available != 0 and 
+                    namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+        <xsl:if test="$chunk.quietly = 0">
+          <xsl:message>Computing chunks...</xsl:message>
+        </xsl:if>
+        <xsl:apply-templates mode="find.chunks" select="exsl:node-set($no.namespace)"/>
+      </xsl:when>
       <xsl:when test="$exsl.node.set.available != 0">
-        <xsl:message>Computing chunks...</xsl:message>
+        <xsl:if test="$chunk.quietly = 0">
+          <xsl:message>Computing chunks...</xsl:message>
+        </xsl:if>
         <xsl:apply-templates select="/*" mode="find.chunks"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>
-          <xsl:text>Fast chunking requires exsl:node-set(). </xsl:text>
-          <xsl:text>Using "slow" chunking.</xsl:text>
-        </xsl:message>
+        <xsl:if test="$chunk.quietly = 0">
+          <xsl:message>
+            <xsl:text>Fast chunking requires exsl:node-set(). </xsl:text>
+            <xsl:text>Using "slow" chunking.</xsl:text>
+          </xsl:message>
+        </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
@@ -110,14 +118,6 @@
     <xsl:apply-imports/>
   </xsl:param>
 
-  <xsl:message>
-    <xsl:text>process-chunk </xsl:text>
-    <xsl:value-of select="name()"/>
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="@id"/>
-    <xsl:text>: base.dir=</xsl:text> <xsl:value-of select="$base.dir"/>
-  </xsl:message>
-  
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
   </xsl:variable>
@@ -132,30 +132,16 @@
     <xsl:message>
       <xsl:text>Error </xsl:text>
       <xsl:value-of select="name(.)"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="@id"/>
       <xsl:text> is not a chunk!</xsl:text>
     </xsl:message>
   </xsl:if>
 
-  <!-- Where does base.dir come from? It's not a global var or param.-->
   <xsl:variable name="filename">
-    <xsl:message>process-chunk: calling make-relative-filename 1</xsl:message>
     <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
       <xsl:with-param name="base.name" select="$chunkfn"/>
     </xsl:call-template>
   </xsl:variable>
-
-  <xsl:message>
-    <xsl:text>process-chunk: </xsl:text>
-    <xsl:value-of select="name()"/>
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="@id"/>
-    <xsl:text> base.dir=</xsl:text> <xsl:value-of select="$base.dir"/>
-    <xsl:text> base.name=</xsl:text> <xsl:value-of select="$chunkfn"/>
-    <xsl:text> filename=</xsl:text> <xsl:value-of select="$filename"/>
-  </xsl:message>
 
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename" select="$filename"/>
@@ -182,7 +168,7 @@
        http://nagoya.apache.org/bugzilla/show_bug.cgi?id=6063 -->
 
   <xsl:variable name="prev-v1"
-     select="(ancestor::sect1[$chunk.section.depth &gt; 0 
+     select="(ancestor::sect1[$chunk.section.depth &gt; 0
 	                           and not(ancestor::*/processing-instruction('dbhtml')[normalize-space(.) ='stop-chunking'])
                                and preceding-sibling::sect1][1]
 
@@ -262,6 +248,7 @@
              |preceding::refentry[1]
              |preceding::colophon[1]
              |preceding::article[1]
+             |preceding::topic[1]
              |preceding::bibliography[parent::article or parent::book or parent::part][1]
              |preceding::glossary[parent::article or parent::book or parent::part][1]
              |preceding::index[$generate.index != 0]
@@ -275,6 +262,7 @@
              |ancestor::part[1]
              |ancestor::reference[1]
              |ancestor::article[1]
+             |ancestor::topic[1]
              |$prev-v1
              |$prev-v2)[last()]"/>
 
@@ -311,7 +299,7 @@
 
              |following::section[$chunk.section.depth &gt; count(ancestor::section)
   	                             and not(ancestor::*/processing-instruction('dbhtml')[normalize-space(.) ='stop-chunking'])
-                                 and preceding-sibling::section 
+                                 and preceding-sibling::section
                                  and not(ancestor::section[not(preceding-sibling::section)])][1])[1]"/>
 
   <xsl:variable name="next-v2"
@@ -364,12 +352,14 @@
              |following::index[$generate.index != 0]
                                [parent::article or parent::book or parent::part][1]
              |following::article[1]
+             |following::topic[1]
              |following::setindex[$generate.index != 0][1]
              |descendant::book[1]
              |descendant::preface[1]
              |descendant::chapter[1]
              |descendant::appendix[1]
              |descendant::article[1]
+             |descendant::topic[1]
              |descendant::bibliography[parent::article or parent::book or parent::part][1]
              |descendant::glossary[parent::article or parent::book or parent::part][1]
              |descendant::index[$generate.index != 0]
@@ -420,6 +410,7 @@
              |preceding::refentry[1]
              |preceding::colophon[1]
              |preceding::article[1]
+             |preceding::topic[1]
              |preceding::bibliography[parent::article or parent::book or parent::part][1]
              |preceding::glossary[parent::article or parent::book or parent::part][1]
              |preceding::index[$generate.index != 0]
@@ -433,6 +424,7 @@
              |ancestor::part[1]
              |ancestor::reference[1]
              |ancestor::article[1]
+             |ancestor::topic[1]
              |$prev-v1
              |$prev-v2)[last()]"/>
 
@@ -467,12 +459,14 @@
              |following::index[$generate.index != 0]
                                [parent::article or parent::book][1]
              |following::article[1]
+             |following::topic[1]
              |following::setindex[$generate.index != 0][1]
              |descendant::book[1]
              |descendant::preface[1]
              |descendant::chapter[1]
              |descendant::appendix[1]
              |descendant::article[1]
+             |descendant::topic[1]
              |descendant::bibliography[parent::article or parent::book][1]
              |descendant::glossary[parent::article or parent::book or parent::part][1]
              |descendant::index[$generate.index != 0]
@@ -535,7 +529,7 @@
             <xsl:with-param name="lot">
               <xsl:call-template name="list.of.titles">
                 <xsl:with-param name="titles" select="'table'"/>
-                <xsl:with-param name="nodes" select=".//table"/>
+                <xsl:with-param name="nodes" select=".//table[not(@tocentry = 0)]"/>
               </xsl:call-template>
             </xsl:with-param>
           </xsl:call-template>
@@ -543,7 +537,7 @@
         <xsl:otherwise>
           <xsl:call-template name="list.of.titles">
             <xsl:with-param name="titles" select="'table'"/>
-            <xsl:with-param name="nodes" select=".//table"/>
+            <xsl:with-param name="nodes" select=".//table[not(@tocentry = 0)]"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -622,9 +616,10 @@
         <xsl:call-template name="write.chunk">
           <xsl:with-param name="filename">
             <xsl:call-template name="make-relative-filename">
-              <xsl:with-param name="base.dir" select="$base.dir"/>
+              <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
               <xsl:with-param name="base.name">
                 <xsl:call-template name="dbhtml-dir"/>
+                <xsl:value-of select="$chunked.filename.prefix"/>
                 <xsl:apply-templates select="." mode="recursive-chunk-filename">
                   <xsl:with-param name="recursive" select="true()"/>
                 </xsl:apply-templates>
@@ -665,7 +660,7 @@
   <xsl:if test="string($lot) != ''">
     <xsl:variable name="filename">
       <xsl:call-template name="make-relative-filename">
-        <xsl:with-param name="base.dir" select="$base.dir"/>
+        <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
         <xsl:with-param name="base.name">
           <xsl:call-template name="dbhtml-dir"/>
           <xsl:value-of select="$type"/>
@@ -677,6 +672,7 @@
 
     <xsl:variable name="href">
       <xsl:call-template name="make-relative-filename">
+        <xsl:with-param name="base.dir" select="''"/>
         <xsl:with-param name="base.name">
           <xsl:call-template name="dbhtml-dir"/>
           <xsl:value-of select="$type"/>
@@ -886,8 +882,28 @@
   <!-- Only bother to do this if there's at least one non-table footnote -->
   <xsl:if test="$fcount &gt; 0">
     <div class="footnotes">
+      <xsl:call-template name="footnotes.attributes"/>
       <br/>
-      <hr width="100" align="{$direction.align.start}"/>
+      <hr>
+        <xsl:choose>
+          <xsl:when test="$make.clean.html != 0">
+            <xsl:attribute name="class">footnote-hr</xsl:attribute>
+          </xsl:when>
+          <xsl:when test="$css.decoration != 0">
+            <xsl:attribute name="style">
+              <xsl:value-of select="concat('width:100; text-align:',
+                                            $direction.align.start,
+                                            ';',
+					    'margin-', $direction.align.start, ': 0')"/>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:attribute name="width">100</xsl:attribute>
+            <xsl:attribute name="align"><xsl:value-of 
+                      select="$direction.align.start"/></xsl:attribute>
+          </xsl:otherwise>
+        </xsl:choose>
+      </hr>
       <xsl:call-template name="process.footnotes.in.this.chunk">
         <xsl:with-param name="node" select="."/>
         <xsl:with-param name="footnotes" select="$footnotes"/>
@@ -948,6 +964,7 @@
        section          if position()>1 && depth < chunk.section.depth
        set
        setindex
+       topic
                                                                             -->
   <!-- ==================================================================== -->
 
@@ -1024,6 +1041,7 @@
     <xsl:when test="local-name($node)='chapter'">1</xsl:when>
     <xsl:when test="local-name($node)='appendix'">1</xsl:when>
     <xsl:when test="local-name($node)='article'">1</xsl:when>
+    <xsl:when test="local-name($node)='topic'">1</xsl:when>
     <xsl:when test="local-name($node)='part'">1</xsl:when>
     <xsl:when test="local-name($node)='reference'">1</xsl:when>
     <xsl:when test="local-name($node)='refentry'">1</xsl:when>
@@ -1270,7 +1288,7 @@
               <xsl:variable name="currentdoc.key" >
                 <xsl:for-each select="$target.database" >
                   <xsl:value-of select="key('targetdoc-key',
-                                        $current.docid)/@targetdoc" />
+                                        $current.docid)[1]/@targetdoc" />
                 </xsl:for-each>
               </xsl:variable>
               <xsl:choose>
@@ -1278,32 +1296,36 @@
                   <xsl:for-each select="$target.database" >
                     <xsl:call-template name="targetpath" >
                       <xsl:with-param name="dirnode" 
-                          select="key('targetdoc-key', $current.docid)/parent::dir"/>
+                          select="key('targetdoc-key', $current.docid)[1]/parent::dir"/>
                       <xsl:with-param name="targetdoc" select="$targetdoc"/>
                     </xsl:call-template>
-                  </xsl:for-each >
+                  </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:message>
-                    <xsl:text>Olink error: cannot compute relative </xsl:text>
-                    <xsl:text>sitemap path because $current.docid '</xsl:text>
-                    <xsl:value-of select="$current.docid"/>
-                    <xsl:text>' not found in target database.</xsl:text>
-                  </xsl:message>
+                  <xsl:call-template name="olink.error">
+                    <xsl:with-param name="message">
+                      <xsl:text>cannot compute relative </xsl:text>
+                      <xsl:text>sitemap path because $current.docid '</xsl:text>
+                      <xsl:value-of select="$current.docid"/>
+                      <xsl:text>' not found in target database.</xsl:text>
+                    </xsl:with-param>
+                  </xsl:call-template>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message>
-                <xsl:text>Olink warning: cannot compute relative </xsl:text>
-                <xsl:text>sitemap path without $current.docid parameter</xsl:text>
-              </xsl:message>
+              <xsl:call-template name="olink.error">
+                <xsl:with-param name="message">
+                  <xsl:text>cannot compute relative </xsl:text>
+                  <xsl:text>sitemap path without $current.docid parameter</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose> 
           <!-- In either case, add baseuri from its document entry-->
           <xsl:variable name="docbaseuri">
             <xsl:for-each select="$target.database" >
-              <xsl:value-of select="key('targetdoc-key', $targetdoc)/@baseuri" />
+              <xsl:value-of select="key('targetdoc-key', $targetdoc)[1]/@baseuri" />
             </xsl:for-each>
           </xsl:variable>
           <xsl:if test="$docbaseuri != ''" >
@@ -1315,7 +1337,7 @@
           <!-- Just use any baseuri from its document entry -->
           <xsl:variable name="docbaseuri">
             <xsl:for-each select="$target.database" >
-              <xsl:value-of select="key('targetdoc-key', $targetdoc)/@baseuri" />
+              <xsl:value-of select="key('targetdoc-key', $targetdoc)[1]/@baseuri" />
             </xsl:for-each>
           </xsl:variable>
           <xsl:if test="$docbaseuri != ''" >
@@ -1325,24 +1347,41 @@
       </xsl:choose>
     </xsl:variable>
   
-    <!-- Form the href information -->
-    <xsl:if test="not(contains($baseuri, ':'))">
-      <!-- if not an absolute uri, add upward path from olink chunk -->
-      <xsl:value-of select="$upward.from.path"/>
-    </xsl:if>
+    <!-- Is this olink to be active? -->
+    <xsl:variable name="active.olink">
+      <xsl:choose>
+        <xsl:when test="$activate.external.olinks = 0">
+          <xsl:choose>
+            <xsl:when test="$current.docid = ''">1</xsl:when>
+            <xsl:when test="$targetdoc = ''">1</xsl:when>
+            <xsl:when test="$targetdoc = $current.docid">1</xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>1</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
-    <xsl:if test="$baseuri != ''">
-      <xsl:value-of select="$baseuri"/>
-      <xsl:if test="substring($target.href,1,1) != '#'">
-        <!--xsl:text>/</xsl:text-->
+    <xsl:if test="$active.olink != 0">
+      <!-- Form the href information -->
+      <xsl:if test="not(contains($baseuri, ':'))">
+        <!-- if not an absolute uri, add upward path from olink chunk -->
+        <xsl:value-of select="$upward.from.path"/>
       </xsl:if>
-    </xsl:if>
-    <!-- optionally turn off frag for PDF references -->
-    <xsl:if test="not($insert.olink.pdf.frag = 0 and
-          translate(substring($baseuri, string-length($baseuri) - 3),
-                    'PDF', 'pdf') = '.pdf'
-          and starts-with($target.href, '#') )">
-      <xsl:value-of select="$target.href"/>
+  
+      <xsl:if test="$baseuri != ''">
+        <xsl:value-of select="$baseuri"/>
+        <xsl:if test="substring($target.href,1,1) != '#'">
+          <!--xsl:text>/</xsl:text-->
+        </xsl:if>
+      </xsl:if>
+      <!-- optionally turn off frag for PDF references -->
+      <xsl:if test="not($insert.olink.pdf.frag = 0 and
+            translate(substring($baseuri, string-length($baseuri) - 3),
+                      'PDF', 'pdf') = '.pdf'
+            and starts-with($target.href, '#') )">
+        <xsl:value-of select="$target.href"/>
+      </xsl:if>
     </xsl:if>
   </xsl:if>
 </xsl:template>
@@ -1377,7 +1416,8 @@
     <xsl:call-template name="system.head.content"/>
     <xsl:call-template name="head.content"/>
 
-    <xsl:if test="$home">
+    <!-- home link not valid in HTML5 -->
+    <xsl:if test="$home and $div.element != 'section'">
       <link rel="home">
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
@@ -1391,7 +1431,8 @@
       </link>
     </xsl:if>
 
-    <xsl:if test="$up">
+    <!-- up link not valid in HTML5 -->
+    <xsl:if test="$up and $div.element != 'section'">
       <link rel="up">
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
@@ -1702,6 +1743,7 @@
                 <xsl:if test="$chunk.tocs.and.lots != 0 and $nav.context != 'toc'">
                   <a accesskey="t">
                     <xsl:attribute name="href">
+                      <xsl:value-of select="$chunked.filename.prefix"/>
                       <xsl:apply-templates select="/*[1]"
                                            mode="recursive-chunk-filename">
                         <xsl:with-param name="recursive" select="true()"/>
@@ -1852,6 +1894,7 @@
   <xsl:call-template name="user.preroot"/>
 
   <html>
+    <xsl:call-template name="root.attributes"/>
     <xsl:call-template name="html.head">
       <xsl:with-param name="prev" select="$prev"/>
       <xsl:with-param name="next" select="$next"/>
@@ -1859,7 +1902,12 @@
 
     <body>
       <xsl:call-template name="body.attributes"/>
-      <xsl:call-template name="user.header.navigation"/>
+
+      <xsl:call-template name="user.header.navigation">
+        <xsl:with-param name="prev" select="$prev"/>
+        <xsl:with-param name="next" select="$next"/>
+        <xsl:with-param name="nav.context" select="$nav.context"/>
+      </xsl:call-template>
 
       <xsl:call-template name="header.navigation">
         <xsl:with-param name="prev" select="$prev"/>
@@ -1879,7 +1927,11 @@
         <xsl:with-param name="nav.context" select="$nav.context"/>
       </xsl:call-template>
 
-      <xsl:call-template name="user.footer.navigation"/>
+      <xsl:call-template name="user.footer.navigation">
+        <xsl:with-param name="prev" select="$prev"/>
+        <xsl:with-param name="next" select="$next"/>
+        <xsl:with-param name="nav.context" select="$nav.context"/>
+      </xsl:call-template>
     </body>
   </html>
   <xsl:value-of select="$chunk.append"/>
@@ -1891,7 +1943,7 @@
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$manifest"/>
     </xsl:with-param>

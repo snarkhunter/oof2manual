@@ -1,13 +1,11 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version='1.0'>
+                		version='1.0'>
 
 <!-- ********************************************************************
-     $Id: index.xsl 8421 2009-05-04 07:49:49Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -26,11 +24,9 @@
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div>
       <xsl:apply-templates select="." mode="common.html.attributes"/>
-      <xsl:if test="$generate.id.attributes != 0">
-        <xsl:attribute name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
 
       <xsl:call-template name="index.titlepage"/>
       <xsl:choose>
@@ -81,11 +77,9 @@
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div>
       <xsl:apply-templates select="." mode="common.html.attributes"/>
-      <xsl:if test="$generate.id.attributes != 0">
-        <xsl:attribute name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
 
       <xsl:call-template name="setindex.titlepage"/>
       <xsl:apply-templates/>
@@ -116,12 +110,7 @@
 
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
-
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="*[not(self::indexentry)]"/>
     <dl>
@@ -135,6 +124,13 @@
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </h3>
+</xsl:template>
+
+<xsl:template match="indexdiv/subtitle">
+  <h4>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:apply-templates/>
+  </h4>
 </xsl:template>
 
 <!-- ==================================================================== -->

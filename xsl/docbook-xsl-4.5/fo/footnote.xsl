@@ -1,17 +1,15 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="exsl xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: footnote.xsl 8359 2009-03-20 18:42:06Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -117,7 +115,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
         <!-- * non-zero -->
         <!-- FIXME: list in @from is probably not complete -->
         <xsl:number level="any" 
-                    from="chapter|appendix|preface|article|refentry|bibliography" 
+                    from="chapter|appendix|preface|article|refentry|bibliography"
                     count="footnote[not(@label)][not(ancestor::table) and not(ancestor::informaltable)]
                     |ulink[$ulink.footnotes != 0][node()][@url != .][not(ancestor::footnote)][$ulink.show != 0]
                     |*[node()][@xlink:href][not(@xlink:href = .)][not(starts-with(@xlink:href,'#'))]

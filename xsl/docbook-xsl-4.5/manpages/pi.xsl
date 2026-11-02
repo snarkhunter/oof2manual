@@ -1,23 +1,20 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                		xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="doc"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: pi.xsl 7644 2008-01-16 11:04:07Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
 
 <doc:reference xmlns=""><info><title>manpages Processing Instruction Reference</title>
     <releaseinfo role="meta">
-      $Id: pi.xsl 7644 2008-01-16 11:04:07Z xmldoc $
     </releaseinfo>
   </info>
   <partintro xml:id="partintro">

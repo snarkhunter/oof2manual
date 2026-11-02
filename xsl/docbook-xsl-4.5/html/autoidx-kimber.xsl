@@ -9,16 +9,14 @@
 
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:k="http://www.isogen.com/functions/com.isogen.saxoni18n.Saxoni18nService"
+                		xmlns:k="http://www.isogen.com/functions/com.isogen.saxoni18n.Saxoni18nService"
                 exclude-result-prefixes="k"
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: autoidx-kimber.xsl 8729 2010-07-15 16:43:56Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->

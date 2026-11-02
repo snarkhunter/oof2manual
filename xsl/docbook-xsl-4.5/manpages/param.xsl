@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="ASCII"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- This file is generated from param.xweb -->
 
 <!-- ********************************************************************
-     $Id: param.xweb 8235 2009-02-09 16:22:14Z xmldoc $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -91,50 +88,50 @@ or
 <xsl:param name="man.string.subst.map">
 
   <!-- * remove no-break marker at beginning of line (stylesheet artifact) --> 
-  <substitution oldstring="&#9618;&#9600;" newstring="&#9618;"/>
+  <substitution oldstring="▒▀" newstring="▒"/>
   <!-- * replace U+2580 no-break marker (stylesheet-added) w/ no-break space -->
-  <substitution oldstring="&#9600;" newstring="\ "/>
+  <substitution oldstring="▀" newstring="\ "/>
 
   <!-- ==================================================================== -->
 
   <!-- * squeeze multiple newlines before a roff request  -->
-  <substitution oldstring="&#10;&#10;." newstring="&#10;."/>
+  <substitution oldstring="&#xA;&#xA;." newstring="&#xA;."/>
   <!-- * remove any .sp instances that directly precede a .PP  -->
-  <substitution oldstring=".sp&#10;.PP" newstring=".PP"/>
+  <substitution oldstring=".sp&#xA;.PP" newstring=".PP"/>
   <!-- * remove any .sp instances that directly follow a .PP  -->
-  <substitution oldstring=".sp&#10;.sp" newstring=".sp"/>
+  <substitution oldstring=".sp&#xA;.sp" newstring=".sp"/>
   <!-- * squeeze multiple .sp instances into a single .sp-->
-  <substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
+  <substitution oldstring=".PP&#xA;.sp" newstring=".PP"/>
   <!-- * squeeze multiple newlines after start of no-fill (verbatim) env. -->
-  <substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>
+  <substitution oldstring=".nf&#xA;&#xA;" newstring=".nf&#xA;"/>
   <!-- * squeeze multiple newlines after REstoring margin -->
-  <substitution oldstring=".RE&#10;&#10;" newstring=".RE&#10;"/>
+  <substitution oldstring=".RE&#xA;&#xA;" newstring=".RE&#xA;"/>
   <!-- * U+2591 is a marker we add before and after every Parameter in -->
   <!-- * Funcprototype output -->
-  <substitution oldstring="&#9617;" newstring=" "/>
+  <substitution oldstring="░" newstring=" "/>
   <!-- * U+2592 is a marker we add for the newline before output of <sbr>; -->
-  <substitution oldstring="&#9618;" newstring="&#10;"/>
+  <substitution oldstring="▒" newstring="&#xA;"/>
   <!-- * -->
   <!-- * Now deal with some other characters that are added by the -->
   <!-- * stylesheets during processing. -->
   <!-- * -->
   <!-- * bullet -->
-  <substitution oldstring="&#8226;" newstring="\(bu"/>
+  <substitution oldstring="•" newstring="\(bu"/>
   <!-- * left double quote -->
-  <substitution oldstring="&#8220;" newstring="\(lq"/>
+  <substitution oldstring="“" newstring="\(lq"/>
   <!-- * right double quote -->
-  <substitution oldstring="&#8221;" newstring="\(rq"/>
+  <substitution oldstring="”" newstring="\(rq"/>
   <!-- * left single quote -->
-  <substitution oldstring="&#8216;" newstring="\(oq"/>
+  <substitution oldstring="‘" newstring="\(oq"/>
   <!-- * right single quote -->
-  <substitution oldstring="&#8217;" newstring="\(cq"/>
+  <substitution oldstring="’" newstring="\(cq"/>
   <!-- * copyright sign -->
-  <substitution oldstring="&#169;" newstring="\(co"/>
+  <substitution oldstring="©" newstring="\(co"/>
   <!-- * registered sign -->
-  <substitution oldstring="&#174;" newstring="\(rg"/>
+  <substitution oldstring="®" newstring="\(rg"/>
   <!-- * ...servicemark... -->
   <!-- * There is no groff equivalent for it. -->
-  <substitution oldstring="&#8480;" newstring="(SM)"/>
+  <substitution oldstring="℠" newstring="(SM)"/>
   <!-- * ...trademark... -->
   <!-- * We don't do "\(tm" because for console output, -->
   <!-- * groff just renders that as "tm"; that is: -->
@@ -144,7 +141,7 @@ or
   <!-- * So we just make it to "(TM)" instead; thus: -->
   <!-- * -->
   <!-- *   Product&#x2122; -> Product(TM) -->
-  <substitution oldstring="&#8482;" newstring="(TM)"/>
+  <substitution oldstring="™" newstring="(TM)"/>
 
 </xsl:param>
 <xsl:param name="man.string.subst.map.local.post"/>

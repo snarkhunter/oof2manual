@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+    xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
   xmlns:v="urn:schemas-microsoft-com:vml"
   xmlns:w10="urn:schemas-microsoft-com:office:word"
   xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core"
@@ -20,8 +20,6 @@
   <xsl:output method='xml' indent="yes"/>
 
   <!-- ********************************************************************
-       $Id: wordml2normalise.xsl 8105 2008-08-15 01:29:11Z balls $
-       ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
        See ../README or http://nwalsh.com/docbook/xsl/ for copyright
