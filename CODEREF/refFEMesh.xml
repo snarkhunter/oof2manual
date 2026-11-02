@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference">
+<section role="reference" id="Section-FEMesh">
   <title>Meshes and Mesh Components</title>
  
   <refentry id="Class-FEMesh">

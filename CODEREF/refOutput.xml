@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference">
+<section role="reference" id="Ref-Section-Output">
   <title>Output Classes and Functions</title>
   
   <refentry id="Class-Output">

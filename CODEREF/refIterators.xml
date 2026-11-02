@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference">
+<section role="reference" id="Ref-Section-Iterators">
   <title>Indices and Iterators</title>
 
 <refentry id="Class-FieldIndex">

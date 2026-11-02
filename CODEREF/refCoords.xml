@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference">
+<section role="reference" id="Ref-Section-Points-and-Coords">
   <title>Points and Coordinates</title>
   <para>
     Classes that describe positions in space in various coordinate
@@ -852,17 +852,3 @@ import oof2.common.primitives</programlisting>
   </refentry>    <!-- Point -->
 
 </section>
-<!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-parent-document:("../man_oof2.xml" "book" "chapter")
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
--->
