@@ -54,9 +54,9 @@
 
   &refCoords;
 
-  <section role="reference">
+  <section role="reference" id="Ref-Section-Fields-etc">
     <title>Fields, Fluxes, and Equations</title>
-    &refField;
+    &refField;                  <!-- contains multiple refentry items-->
     &refFlux;
     &refEquation;
   </section>
@@ -64,7 +64,7 @@
   &refFEMesh; 
   &refIterators;
 
-  <section role="reference">
+  <section role="reference" id="Ref-Section-Materials">
     <title>Materials and Properties</title>
     &refMaterial;
     &refPropertyReg;
@@ -78,7 +78,7 @@
 
   &refOutput;
 
-  <section role="reference">
+  <section role="reference" id="Ref-Section-Misc">
     <title>Miscellaneous Classes</title>
     &refDoubleVec;
     &refErrError;

@@ -110,6 +110,14 @@
     <xsl:apply-imports/>
   </xsl:param>
 
+  <xsl:message>
+    <xsl:text>process-chunk </xsl:text>
+    <xsl:value-of select="name()"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="@id"/>
+    <xsl:text>: base.dir=</xsl:text> <xsl:value-of select="$base.dir"/>
+  </xsl:message>
+  
   <xsl:variable name="ischunk">
     <xsl:call-template name="chunk"/>
   </xsl:variable>
@@ -124,16 +132,30 @@
     <xsl:message>
       <xsl:text>Error </xsl:text>
       <xsl:value-of select="name(.)"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="@id"/>
       <xsl:text> is not a chunk!</xsl:text>
     </xsl:message>
   </xsl:if>
 
+  <!-- Where does base.dir come from? It's not a global var or param.-->
   <xsl:variable name="filename">
+    <xsl:message>process-chunk: calling make-relative-filename 1</xsl:message>
     <xsl:call-template name="make-relative-filename">
       <xsl:with-param name="base.dir" select="$base.dir"/>
       <xsl:with-param name="base.name" select="$chunkfn"/>
     </xsl:call-template>
   </xsl:variable>
+
+  <xsl:message>
+    <xsl:text>process-chunk: </xsl:text>
+    <xsl:value-of select="name()"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="@id"/>
+    <xsl:text> base.dir=</xsl:text> <xsl:value-of select="$base.dir"/>
+    <xsl:text> base.name=</xsl:text> <xsl:value-of select="$chunkfn"/>
+    <xsl:text> filename=</xsl:text> <xsl:value-of select="$filename"/>
+  </xsl:message>
 
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename" select="$filename"/>

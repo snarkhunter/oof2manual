@@ -596,6 +596,7 @@
                      |book/bibliography|article/bibliography|part/bibliography
                      |colophon"
               mode="enumerate-files">
+  <xsl:message>chunk-code.xsl: Calling make-relative-filename 1</xsl:message>
   <xsl:variable name="ischunk"><xsl:call-template name="chunk"/></xsl:variable>
   <xsl:if test="$ischunk='1'">
     <xsl:call-template name="make-relative-filename">

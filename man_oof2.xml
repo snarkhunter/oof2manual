@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- Google says to include files like this:
-    <root xmlns:xi="http://w3.org">
-       <xi:include href="filename"/>
-    </root>
-
-Each included file should contain a DOCTYPE line indicating the top element:
-
- <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
- "dtd/docbook-xml-4.5/docbookx.dtd">
-
- BUT this isn't working... Emacs can find the dtd, but when the manual
- is built, the <xi:include ...> does nothing.
-
-If there's more than one top level element in a file, it's necessary to use
-external entities (like I have been).  Get emacs to find the dtd with
-M-x nxml-parent-document-set
-
--->
-
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" 
-"dtd/docbook-xml-4.5/docbookx.dtd"
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"file:dtd/docbook-xml-4.5/docbookx.dtd"
  [
+
 <!ENTITY % local.smallcptr.char.mix "|link">
 
 <!ENTITY overview SYSTEM "CH_overview.xml">
@@ -263,8 +244,38 @@ links to the general discussions in CH_concepts.xml.
 
 ]>
 
-<!-- The reference pages for all menuitems should refer to the
-     appropriate page of GUI documentation.
+<!-- Google says to include files like this:
+    <root xmlns:xi="http://w3.org">
+       <xi:include href="filename"/>
+    </root>
+
+Each included file should contain a DOCTYPE line indicating the top element:
+
+ <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+ "dtd/docbook-xml-4.5/docbookx.dtd">
+
+ BUT this isn't working... Emacs can find the dtd, but when the manual
+ is built, the <xi:include ...> does nothing.
+
+If there's more than one top level element in a file, it's necessary to use
+external entities (like I have been).  Get emacs to find the dtd with
+M-x nxml-parent-document-set
+
+-->
+
+
+
+
+<!-- TODOs
+
+The reference pages for all menuitems should refer to the
+appropriate page of GUI documentation.
+
+Change all Table:xyzpdq ids to Table-xyzpdq.  The colon isn't legal apparently.
+
+Check that the Up button on a main Chapter page is working correctly.
+At the moment it's going to a Part I TOC, which has no Up button,.
+
 -->
 
 <book>
@@ -349,17 +360,3 @@ links to the general discussions in CH_concepts.xml.
 
   
 </book>
-
-<!-- Keep this comment at the end of the file
-  Local variables:
-  sgml-omittag:t
-  sgml-shorttag:t 
-  sgml-namecase-general:nil
-  sgml-minimize-attributes:nil
-  sgml-always-quote-attributes:t
-  sgml-indent-step:2
-  sgml-indent-data:t
-  sgml-exposed-tags:nil
-  sgml-local-ecat-files:nil
-  End:
--->

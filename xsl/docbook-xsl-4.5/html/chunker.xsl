@@ -43,6 +43,15 @@
   <xsl:param name="base.dir" select="'./'"/>
   <xsl:param name="base.name" select="''"/>
 
+  <xsl:if test="refentry">
+    <xsl:message>
+      <xsl:text>make-relative-filename: base.dir=</xsl:text>
+      <xsl:value-of select="$base.dir"/>
+      <xsl:text> base.name=</xsl:text>
+      <xsl:value-of select="$base.name"/>
+    </xsl:message>
+  </xsl:if>
+  
   <xsl:choose>
     <!-- put Saxon first to work around a bug in libxslt -->
     <xsl:when test="element-available('saxon:output')">
