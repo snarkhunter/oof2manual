@@ -26,7 +26,6 @@
   <xsl:param name="use.id.as.filename" select="1"/>
   <xsl:param name="chunk.section.depth" select="5"/>
 
-
   <!-- number sections, and include chapter number in section number -->
   <xsl:param name="section.autolabel" select="1"/>
   <xsl:param name="section.label.includes.component.label" select="1"/>
@@ -90,18 +89,18 @@
   <!-- Reduce the size of tables of contents by limiting their depth. -->
   <xsl:param name="toc.section.depth">1</xsl:param>
 
-  <!-- === -->
+  <!-- =================================== -->
 
-  <!-- Sections with role="reference" and their subsections are all
-       chunks.  It doesn't seem to be possible to modify the chunk
-       template without copying all of it here.  The original is in
-       chunk-common.xsl.
+  <!-- Redefine the "chunk" template so that sections with
+       role="reference" and their subsections are all chunks.  It
+       doesn't seem to be possible to modify the template without
+       copying all of it here.  The original is in chunk-common.xsl.
   -->
+
   <xsl:template name="chunk">
     <xsl:param name="node" select="."/>
     <!-- returns 1 if $node is a chunk -->
 
-    <!-- ==================================================================== -->
     <!-- What's a chunk?
 
          The root element
@@ -121,39 +120,28 @@
          section          if position()>1 && depth < chunk.section.depth
          set
          setindex
+         topic
     -->
-    <!-- ==================================================================== -->
-
-    <!--
-        <xsl:message>
-        <xsl:text>chunk: </xsl:text>
-        <xsl:value-of select="name($node)"/>
-        <xsl:text>(</xsl:text>
-        <xsl:value-of select="$node/@id"/>
-        <xsl:text>)</xsl:text>
-        <xsl:text> csd: </xsl:text>
-        <xsl:value-of select="$chunk.section.depth"/>
-        <xsl:text> cfs: </xsl:text>
-        <xsl:value-of select="$chunk.first.sections"/>
-        <xsl:text> ps: </xsl:text>
-        <xsl:value-of select="count($node/parent::section)"/>
-        <xsl:text> prs: </xsl:text>
-        <xsl:value-of select="count($node/preceding-sibling::section)"/>
-        </xsl:message>
-    -->
+    
+    <!-- =========================================== -->
 
     <xsl:choose>
-      <xsl:when test="$node/ancestor-or-self::section[@role='reference']">
-        1
-      </xsl:when>
 	  <xsl:when test="$node/parent::*/processing-instruction('dbhtml')[normalize-space(.) = 'stop-chunking']">0</xsl:when>
       <xsl:when test="not($node/parent::*)">1</xsl:when>
+
+      <!-- This "xsl:when" element is added for OOF2.  The rest of the
+           "chunk" template is unchanged. -->
+      
+      <xsl:when
+          test="$node/self::section and $node/ancestor-or-self::section[@role='reference']">
+        <xsl:text>1</xsl:text>
+      </xsl:when>
 
       <xsl:when test="local-name($node) = 'sect1'
                       and $chunk.section.depth &gt;= 1
                       and ($chunk.first.sections != 0
                       or count($node/preceding-sibling::sect1) &gt; 0)">
-        1
+        <xsl:text>1</xsl:text>
       </xsl:when>
       <xsl:when test="local-name($node) = 'sect2'
                       and $chunk.section.depth &gt;= 2
@@ -187,7 +175,6 @@
           <xsl:with-param name="node" select="$node/parent::*"/>
         </xsl:call-template>
       </xsl:when>
-      
       <xsl:when test="local-name($node) = 'section'
                       and $chunk.section.depth &gt;= count($node/ancestor::section)+1
                       and ($chunk.first.sections != 0
@@ -201,6 +188,7 @@
       <xsl:when test="local-name($node)='chapter'">1</xsl:when>
       <xsl:when test="local-name($node)='appendix'">1</xsl:when>
       <xsl:when test="local-name($node)='article'">1</xsl:when>
+      <xsl:when test="local-name($node)='topic'">1</xsl:when>
       <xsl:when test="local-name($node)='part'">1</xsl:when>
       <xsl:when test="local-name($node)='reference'">1</xsl:when>
       <xsl:when test="local-name($node)='refentry'">1</xsl:when>
@@ -227,176 +215,130 @@
                       and $generate.legalnotice.link != 0">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
-  </xsl:template>                 <!-- chunk -->
+  </xsl:template>               <!-- chunk -->
 
   <!-- === -->
 
-  <!-- Sections with role='reference' build a toc for themselves and
-       all subsections.  The original is in sections.xsl. -->
-  <xsl:template
-      match="section[ancestor-or-self::*[@role='reference']]"
-      priority="2">
-    <xsl:comment>section role=reference</xsl:comment>
-    <div class="{name(.)}">
-      <xsl:call-template name="common.html.attributes">
-        <xsl:with-param name="inherit" select="1"/>
+  <!-- cbunk-filename is changed to ensure that names don't contain
+       spaces or colons, which can occur is some automatically
+       generated oof names.  The original is in chunk-code.xsl. -->
+
+  <xsl:template match="*" mode="chunk-filename" priority="3">
+    <!-- returns the filename of a chunk -->
+    <xsl:variable name="ischunk">
+      <xsl:call-template name="chunk"/>
+    </xsl:variable>
+
+    <xsl:variable name="fn">
+      <xsl:apply-templates select="." mode="recursive-chunk-filename"/>
+    </xsl:variable>
+
+    <xsl:if test="$fn != ''">
+      <xsl:call-template name="dbhtml-dir"/>
+    </xsl:if>
+
+    <xsl:value-of select='translate($fn, ": ", "-_")'/>
+  </xsl:template>
+
+  <!-- === -->
+
+  <!-- Version of the section template from chunk-code.xsl modified
+       to always be a chunk for reference sections and subsections.
+  -->
+  <xsl:template match="section[ancestor-or-self::*[@role='reference']]">
+    <xsl:variable name="depth" select="count(ancestor::section)+1"/>
+    <!-- process-chunk-element is defined in chunk-common.xsl. -->
+    <xsl:call-template name="process-chunk-element"/>
+  </xsl:template>
+
+  <!-- TODO: It would be nice to redefine the template in sections.xsl
+       that actually produces the code for a section, so that it
+       writes the toc for all sections that have a @role=reference
+       ancestor whether or not the depth is less than
+       generate.section.toc.level. But if that redefinition goes in
+       this file, it conflicts with the template above.  So a new
+       section template is defined in the docbook files, and if those
+       files are upgraded, the template will be lost.   For future
+       reference, here it is:
+  -->
+<!-- <xsl:template match="section[ancestor-or-self::*[@role='reference']]">
+  <xsl:variable name="depth" select="count(ancestor::section)+1"/>
+
+  <xsl:call-template name="id.warning"/>
+
+  <xsl:element name="{$div.element}">
+    <xsl:call-template name="common.html.attributes">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+    <xsl:call-template name="section.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
       </xsl:call-template>
-      <xsl:call-template name="section.titlepage"/>
-      
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
+    </xsl:variable>
+
+    <xsl:call-template name="section.toc">
+      <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+    </xsl:call-template>
+    <xsl:call-template name="section.toc.separator"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="process.chunk.footnotes"/>
+  </xsl:element>
+</xsl:template>        -->
+
   
-      <!-- Build the toc unconditionally -->
-      <xsl:call-template name="section.toc">
-        <xsl:with-param name="toc-title" select="'In this reference section:'"/>
-      </xsl:call-template>
-      <xsl:call-template name="section.toc.separator"/>
-
-      <xsl:comment>section role=reference calling apply-templates</xsl:comment>
-      <xsl:apply-templates/>
-      <xsl:comment>section role=reference back from apply-templates</xsl:comment>
-      <xsl:call-template name="process.chunk.footnotes"/>
-    </div>
-    <xsl:comment>end section role=reference</xsl:comment>
-  </xsl:template>               <!-- section -->
-
-  <!-- ==== -->
-
-  <!-- file names for <refentry> elements in role=reference sections
-       aren't being created correctly.  Maybe docbook expects them to
-       be inside <reference> elements (although putting <refentry>s in
-       a <section> doesn't violate the dtd.)  The original version of
-       this template is in chunk-code.xsl. -->
-
-  <xsl:template match="refentry" mode="chunk-filename">
-    <xsl:param name="base.dir" select="'./'"/>
-    <xsl:param name="base.name" select="''"/>
-    <xsl:comment>refentry chunk-filename</xsl:comment>
-    <!-- <xsl:message>
-      <xsl:text>refentry chunk-filename: </xsl:text>
-      <xsl:value-of select="name()"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="@id"/>
-      <xsl:if test="$base.dir">
-        <xsl:text> base.dir=</xsl:text>
-        <xsl:value-of select="$base.dir"/>
-      </xsl:if>
-    </xsl:message> -->
-
-    <xsl:variable name="dirname">
-      <xsl:choose>
-      <xsl:when test="$base.dir">
-        <xsl:value-of select="$base.dir"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>./</xsl:text>
-      </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:variable name="filename">
-      <xsl:choose>
-        <xsl:when test="$base.name">
-          <xsl:value-of select="$base.name"/>
-        </xsl:when>
-        <xsl:when test="$use.id.as.filename != 0 and @id">
-          <xsl:value-of select="@id"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>refentry-</xsl:text>
-          <xsl:number level="any" count="refentry"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <!-- <xsl:message>
-      <xsl:text>    </xsl:text>
-      <xsl:value-of select="concat($dirname, $filename, '.html')"/>
-    </xsl:message> -->
-
-    <xsl:value-of select="concat($dirname, $filename)"/>
-    <xsl:comment>end refentry chunk-filename</xsl:comment>
-  </xsl:template>      <!-- match="refentry" mode="chunk-filename" -->
-
-  <!-- <xsl:template name="make-relative-filename" match="refentry">
-    <xsl:param name="base.dir" select="'./'"/>
-    <xsl:param name="base.name" select="''"/>
-    <xsl:comment>make-relative-filename match=refentry"</xsl:comment>
-    <xsl:variable name="dirname">
-      <xsl:choose>
-      <xsl:when test="$base.dir">
-        <xsl:value-of select="$base.dir"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>./</xsl:text>
-      </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="filename">
-      <xsl:choose>
-        <xsl:when test="$base.name">
-          <xsl:value-of select="$base.name"/>
-        </xsl:when>
-        <xsl:when test="$use.id.as.filename != 0 and @id">
-          <xsl:value-of select="@id"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>refentry-</xsl:text>
-          <xsl:number level="any" count="refentry"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <!-\- The following line prints the file name in the html output,
-         which means that this template is being applied outside of a
-         variable or param template, I think. -\->
-    <xsl:value-of select="concat($dirname, $filename)"/>
-    <xsl:comment>make-relative-filename match=refentry done"</xsl:comment>
-  </xsl:template> -->
- 
   <!-- =========================================== -->
   
   <!-- new version of chunk-element-content that leaves out everything
        but the content of the body tag, because the ctcms wrapper
        expects just the body content.  The original version is in
-       chunk-common.xsl. -->
-  <xsl:template name="chunk-element-content" priority="1">
+       chunk-common.xsl.
+
+       The original calls user.head.content, user.header.navigation,
+       etc, that have to be redefined to be useful.  I'm just deleted
+       the calls here.
+  -->
+  
+  <xsl:template name="chunk-element-content">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
     <xsl:param name="nav.context"/>
     <xsl:param name="content">
       <xsl:apply-imports/>
     </xsl:param>
-  
+
     <xsl:call-template name="user.preroot"/>
-  
-    <xsl:call-template name="body.attributes"/>
-    <xsl:call-template name="user.header.navigation"/>
-  
+
+    <!-- <xsl:call-template name="body.attributes"/> -->
+
+    <xsl:call-template name="user.header.navigation">
+      <xsl:with-param name="prev" select="$prev"/>
+      <xsl:with-param name="next" select="$next"/>
+      <xsl:with-param name="nav.context" select="$nav.context"/>
+    </xsl:call-template>
+
     <xsl:call-template name="header.navigation">
       <xsl:with-param name="prev" select="$prev"/>
       <xsl:with-param name="next" select="$next"/>
       <xsl:with-param name="nav.context" select="$nav.context"/>
     </xsl:call-template>
-  
-    <xsl:call-template name="user.header.content"/>
-    
+
     <xsl:copy-of select="$content"/>
-  
-    <xsl:call-template name="user.footer.content"/>
-    
+
     <xsl:call-template name="footer.navigation">
       <xsl:with-param name="prev" select="$prev"/>
       <xsl:with-param name="next" select="$next"/>
       <xsl:with-param name="nav.context" select="$nav.context"/>
     </xsl:call-template>
-    <xsl:call-template name="user.footer.navigation"/>
-  </xsl:template>             <!--chunk-element-content -->
 
+    <xsl:value-of select="$chunk.append"/>
+  </xsl:template>               <!-- chunk-element-content -->
 
-  <!-- ======================================= -->
+   <!-- ======================================= -->
 
   <!-- Equation Stuff -->
 

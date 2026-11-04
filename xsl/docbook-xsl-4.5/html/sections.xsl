@@ -44,6 +44,42 @@
   </xsl:element>
 </xsl:template>
 
+<!-- Modification for OOF2 Manual: always include the toc for a
+     reference section.
+
+     This template can't be added in oofchunk.xsl because a template
+     with the same match is already defined there.  I don't understand
+     what determines when this one or that one is called.
+-->
+<xsl:template match="section[ancestor-or-self::*[@role='reference']]">
+  <xsl:variable name="depth" select="count(ancestor::section)+1"/>
+
+  <xsl:call-template name="id.warning"/>
+
+  <xsl:element name="{$div.element}">
+    <xsl:call-template name="common.html.attributes">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+    <xsl:call-template name="section.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:call-template name="section.toc">
+      <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+    </xsl:call-template>
+    <xsl:call-template name="section.toc.separator"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="process.chunk.footnotes"/>
+  </xsl:element>
+</xsl:template>
+
 <xsl:template name="section.title">
   <!-- the context node should be the title of a section when called -->
   <xsl:variable name="section" select="(ancestor::section
