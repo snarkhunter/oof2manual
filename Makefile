@@ -12,6 +12,10 @@
 # can be run in graphics mode on this computer (ie, it may not work
 # when run remotely).
 
+# NOTE: Run "make oof2_api.xml" first if the OOF2 code has changed in
+# a way that affects the manual..  It's not run automatically because
+# it's slow and I don't know how to run in only when needed. 
+
 # "make local" generates html from the xml source files, using the xml
 # tools, and then wraps the html output in NIST boilerplate and puts
 # it in $(WEB_DIR)/$(WEB_SUBDIR).
@@ -96,6 +100,8 @@ SAXON = ../xsl/java/saxon.jar
 ## and errors.  Is there any point in updating?
 #SAXON = /opt/local/share/java/saxon-he.jar
 
+## TODO: Try xsltproc instead of saxon.
+
 local: $(TEMP_DIR) saxonize.web texify_mathml figs 
 	python webwrap.py --from=$(TEMP_DIR) --to=$(WEB_DIR)/$(WEB_SUBDIR) --styledir=STYLE --exclude=.tex,.dvi,.aux,.log,.bak
 	touch local
@@ -122,11 +128,11 @@ oof2man.tgz: $(TEMP_DIR) saxonize.ext texify_mathml figs
 	tar -czf $(WEB_SUBDIR).tgz $(WEB_SUBDIR)
 	-rm -rf $(WEB_SUBDIR)
 
-saxonize.web: oof2_api.xml
+saxonize.web: #oof2_api.xml
 	mkdir $(TEMP_DIR)/equations
 	(cd $(TEMP_DIR); rm -f *.html; java -jar $(SAXON) ../man_oof2.xml ../xsl/oofchunk.xsl nist.exit.script=1)
 
-saxonize.ext: oof2_api.xml
+saxonize.ext: #oof2_api.xml
 	(cd $(TEMP_DIR); rm -f *.html; java -jar $(SAXON) ../man_oof2.xml ../xsl/oofchunk.xsl)
 
 
