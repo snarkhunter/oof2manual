@@ -12,28 +12,6 @@
 <chapter id="Chapter-ExtendingRef">
   <title>&oof2; Class and Function Reference</title>
 
-  <!-- TODO: There's a hack in oofhtml.xsl that disables TOCs for
-       sections.
-
-       Without the hack, links in the TOC for this chapter do not
-       work.  Except for the first section (which appears on the same
-       page as the TOC) the links are going to non-existent files.
-       Files aren't being generated for the subsections; the
-       subsections consist only of their own TOCs, which appear at the
-       bottom of this page.
-
-       The links in the top level menu are broken too.
-
-       This may be a problem in oofchunk.xsl, which (I think)
-       determines what's written to a separate file, or in
-       oofhtml.xsl, which modifies how TOCs are built.
-
-       BUT Even with the hack, the "Next" button on the last refentry
-       page in each subsection isn't working.  It still goes to a
-       nonexistent file (for the next subsection?).  Also, the "Up"
-       buttons don't work on any of the refentry pages.
-  -->
-  
   <para>
     This section contains the reference pages for the classes and
     functions that can be used when programming &oof2; extensions, and
@@ -60,10 +38,10 @@
     &refFlux;
     &refEquation;
   </section>
-
+  
   &refFEMesh; 
   &refIterators;
-
+  
   <section role="reference" id="Ref-Section-Materials">
     <title>Materials and Properties</title>
     &refMaterial;
@@ -75,9 +53,9 @@
     &refAuxProperty;
     &refPyProperty; 
   </section>
-
+  
   &refOutput;
-
+  
   <section role="reference" id="Ref-Section-Misc">
     <title>Miscellaneous Classes</title>
     &refDoubleVec;
