@@ -263,25 +263,10 @@ M-x nxml-parent-document-set
 
 -->
 
-
-
-
-<!-- TODOs
-
-The reference pages for all menuitems should refer to the
-appropriate page of GUI documentation.
-
-Change all Table:xyzpdq ids to Table-xyzpdq.  The colon isn't legal apparently.
-
-Check that the Up button on a main Chapter page is working correctly.
-At the moment it's going to a Part I TOC, which has no Up button,.
-
--->
-
 <book>
   <bookinfo>
     <title>The OOF2 Manual</title>
-    <subtitle>Revision 5.0.0 for OOF2 Version 2.3.4</subtitle>
+    <subtitle>Revision 5.0.0 for OOF2 Version 2.4.0</subtitle>
     <author>
       <firstname>Stephen A.</firstname><surname>Langer</surname>
     </author>
