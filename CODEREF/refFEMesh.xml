@@ -8,8 +8,13 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference" id="Section-FEMesh">
+<section role="toc-always" id="Section-FEMesh">
   <title>Meshes and Mesh Components</title>
+
+  <para>
+    Classes that define and manipulate the various parts of a finite
+    element &mesh;.
+  </para>
  
   <refentry id="Class-FEMesh">
     <refnamediv>

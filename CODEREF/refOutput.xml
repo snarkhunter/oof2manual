@@ -8,8 +8,12 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference" id="Ref-Section-Output">
+<section role="toc-always" id="Ref-Section-Output">
   <title>Output Classes and Functions</title>
+  <para>
+    Classes for defining quanities that can be measured on a finite
+    element mesh, and plotted or printed at the end of a calculation.
+  </para>
   
   <refentry id="Class-Output">
     <refnamediv>

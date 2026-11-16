@@ -8,8 +8,14 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference" id="Ref-Section-Iterators">
+<section role="toc-always" id="Ref-Section-Iterators">
   <title>Indices and Iterators</title>
+  <para>
+    Classes for selecting components of &Fields;, &Fluxes;, and
+    &Equations;, and iterating over them.  There are generic methods
+    for looping over the components of a &Field; (or &Flux; or
+    &Equation;) even if the subclass is unknown.
+  </para>
 
 <refentry id="Class-FieldIndex">
   <refnamediv>
@@ -35,7 +41,9 @@
           <modifier>const</modifier>
         </methodsynopsis>
         <methodsynopsis>
-          <methodname><link linkend="Class-FieldIndex-intconversion">operator int</link></methodname>
+          <methodname><link linkend="Class-FieldIndex-intconversion">operator
+          int</link></methodname>
+          <void/>
           <modifier>const</modifier>
         </methodsynopsis>
         <methodsynopsis>

@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<section role="reference" id="Ref-Section-Points-and-Coords">
+<section role="toc-always" id="Ref-Section-Points-and-Coords">
   <title>Points and Coordinates</title>
   <para>
     Classes that describe positions in space in various coordinate

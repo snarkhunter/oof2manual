@@ -10,7 +10,7 @@
 
 
 <chapter id="Chapter-ExtendingRef">
-  <title>&oof2; Class and Function Reference</title>
+  <title>&oof2; Programmer Reference</title>
 
   <para>
     This section contains the reference pages for the classes and
@@ -32,9 +32,13 @@
 
   &refCoords;
 
-  <section role="reference" id="Ref-Section-Fields-etc">
+  <section role="toc-always" id="Ref-Section-Fields-etc">
     <title>Fields, Fluxes, and Equations</title>
-    &refField;                  <!-- contains multiple refentry items-->
+    <para>
+      Classes that define various kinds of &fields;, &fluxes;, and
+      &equations;.
+    </para>
+    &refField;  
     &refFlux;
     &refEquation;
   </section>
@@ -42,8 +46,12 @@
   &refFEMesh; 
   &refIterators;
   
-  <section role="reference" id="Ref-Section-Materials">
+  <section role="toc-always" id="Ref-Section-Materials">
     <title>Materials and Properties</title>
+    <para>
+      Classes that define the various kinds of &properties; used in
+      &materials;.
+    </para>
     &refMaterial;
     &refPropertyReg;
     &refProperty;
@@ -56,7 +64,7 @@
   
   &refOutput;
   
-  <section role="reference" id="Ref-Section-Misc">
+  <section role="toc-always" id="Ref-Section-Misc">
     <title>Miscellaneous Classes</title>
     &refDoubleVec;
     &refErrError;
