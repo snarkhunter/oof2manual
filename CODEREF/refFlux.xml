@@ -863,8 +863,3 @@ VectorFlux *hf = dynamic_cast&lt;VectorFlux*&gt;(getField("Heat_Flux")); </progr
   </refsection>
 </refentry>                     <!-- getFlux -->
 
-<!-- Keep this comment at the end of the file
-Local variables:
-nxml-parent-document: "../man_oof2.xml"
-End:
--->
