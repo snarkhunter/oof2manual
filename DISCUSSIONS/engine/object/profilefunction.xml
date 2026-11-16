@@ -8,7 +8,7 @@
   the authors at oof_manager@nist.gov.
 -->
 
-<refentry id="Object-ProfileFunction">
+<refentry id="Object-ProfileFunction" xreflabel="ProfileFunction">
   <refnamediv>
     <refname>
       ProfileFunctionX, ProfileFunctionXT
