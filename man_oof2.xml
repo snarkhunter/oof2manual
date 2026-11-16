@@ -249,19 +249,18 @@ links to the general discussions in CH_concepts.xml.
        <xi:include href="filename"/>
     </root>
 
-Each included file should contain a DOCTYPE line indicating the top element:
+    Each included file should contain a DOCTYPE line indicating the top element:
 
- <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
- "dtd/docbook-xml-4.5/docbookx.dtd">
+    <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "dtd/docbook-xml-4.5/docbookx.dtd">
 
- BUT this isn't working... Emacs can find the dtd, but when the manual
- is built, the <xi:include ...> does nothing.
+    BUT this isn't working... Emacs can find the dtd, but when the manual
+    is built, the <xi:include ...> does nothing.
 
-If there's more than one top level element in a file, it's necessary to use
-external entities (like I have been).  Get emacs to find the dtd with
-M-x nxml-parent-document-set
-
--->
+    If there's more than one top level element in a file, it's necessary to use
+    external entities (like I have been).  Get emacs to find the dtd with
+    M-x nxml-parent-document-set
+    -->
 
 <book>
   <bookinfo>
@@ -296,6 +295,20 @@ M-x nxml-parent-document-set
     &windows;
   </part>
 
+  <!-- TODO: Rearrange the parts.  It doesn't make sense to have only
+       a single chapter in Part II, and it creates a silly extra TOC
+       page.
+
+       Perhaps
+       Part I: The Basics
+           Overview, Getting Started, OOF2 Concepts
+       Part II: Using OOF2
+            Task Pages, Graphics Window
+       Part III: Reference
+            Turn current secdtions into chapters? 
+       Part IV:
+            Extending
+  -->
   <part>
     <title>&oof2; Command Reference</title>
     <partintro>
