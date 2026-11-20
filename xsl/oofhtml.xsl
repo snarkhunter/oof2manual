@@ -383,16 +383,13 @@
     </pre>
   </xsl:template>
 
-  <!-- =========================================== -->
-    
-  <!-- save some typing by defining <b> for bold -->
-  
-  <xsl:template match="b">
-    <emphasis role="bold">
-      <xsl:apply-templates/>
-    </emphasis>
+  <!-- Eliminate the extra comma in C++ derived class synopses. -->
+  <xsl:template match="ooclass" mode="cpp">
+    <xsl:if test="position() &gt; 1">
+      <xsl:text>, </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates mode="cpp"/>
   </xsl:template>
-
   
 </xsl:stylesheet>
 
