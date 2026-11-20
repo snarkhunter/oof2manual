@@ -165,6 +165,7 @@ with capital letters, which distinguishes them from entities defining
 links to the general discussions in CH_concepts.xml.
 -->
 
+<!ENTITY ArithmeticOutputVal "<link linkend='Class-ArithmeticOutputVal'><classname>ArithmeticOutputVal</classname></link>">
 <!ENTITY ArithmeticOutputValue "<link linkend='Class-ArithmeticOutputValue'><classname>ArithmeticOutputValue</classname></link>">
 <!ENTITY Components "<link linkend='Class-Components'><classname>Components</classname></link>">
 <!ENTITY ComponentIterator "<link linkend='Class-ComponentIterator'><classname>ComponentIterator</classname></link>">

@@ -1,0 +1,1812 @@
+<!--
+  This software was produced by NIST, an agency of the
+  U.S. government, and by statute is not subject to copyright in the
+  United States.  Recipients of this software assume all
+  responsibilities associated with its operation, modification and
+  maintenance. However, to facilitate maintenance we ask that before
+  distributing modified versions of this software, you first contact
+  the authors at oof_manager@nist.gov.
+-->
+
+<section role="toc-always" id="Ref-Section-OutputVal">
+  <title>OutputVal and OutputValue Classes</title>
+  <para>
+    <classname>OutputVal</classname> and its derived classes describe
+    the quantities computed by <link
+    linkend="Class-Output"><classname>Outputs</classname></link>.
+    <classname>OutputValue</classname> and its subclasses handle
+    reference counting for <classname>OutputVals</classname>.
+  </para>
+
+  <refentry id="Class-OutputVal">
+    <refnamediv>
+      <refname>OutputVal</refname>
+      <refpurpose>Wrappers for Output data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <refsect2>
+	    <title>C++ Synopsis</title>
+        <!-- TODO: add print() ? -->
+	    <programlisting>
+#include "engine/outputval.h"</programlisting>
+
+        <classsynopsis language="cpp">
+	      <ooclass>
+	        <classname>OutputVal</classname>
+	      </ooclass>
+          <ooclass>
+            <classname><link linkend="Class-PythonExportable">PythonExportable</link></classname>
+          </ooclass>
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <modifier>const</modifier>
+            <type>OutputVal&amp;</type>
+            <methodname><link linkend="Class-OutputVal-assign">operator=</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>OutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+          </methodsynopsis>
+
+	      <methodsynopsis>
+	        <type><link linkend="Class-IndexP">IndexP</link></type>
+	        <methodname><link linkend="Class-OutputVal-getIndex">getIndex</link></methodname>
+	        <methodparam>
+	          <type>const std::string&amp;</type>
+	          <parameter>str</parameter>
+	        </methodparam>
+	        <modifier>const = 0</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type><link linkend="Class-Components">Components*</link></type>
+	        <methodname><link linkend="Class-OutputVal-components">components</link></methodname>
+	        <void/>
+	        <modifier>const = 0</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>std::vector&lt;double&gt;*</type>
+	        <methodname><link linkend="Class-OutputVal-value_list">value_list</link></methodname>
+	        <void/>
+	        <modifier>const = 0</modifier>
+	      </methodsynopsis>
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>unsigned int</type>
+            <methodname><link
+                            linkend="Class-OutputVal-dim">dim</link></methodname>
+            <void/>
+            <modifier>const = 0</modifier>
+          </methodsynopsis>
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>OutputVal*</type>
+            <methodname><link linkend="Class-OutputVal-clone">clone</link></methodname>
+          <void/>
+          <modifier>const = 0</modifier>
+          </methodsynopsis>
+	    </classsynopsis>
+      </refsect2>               <!-- OutputVal C++ Synopsis -->
+      <refsect2>
+	    <title>Python Synopsis</title>
+	    <programlisting>
+from ooflib.SWIG.engine import outputval </programlisting>
+	    <classsynopsis language="python">
+	      <ooclass>
+	        <classname>OutputVal</classname>
+	      </ooclass>
+	      <methodsynopsis>
+	        <methodname><link linkend="Class-OutputVal-components">components</link></methodname>
+	        <methodparam>
+	          <parameter>index</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link
+		                    linkend="Class-OutputVal-getIndex">getIndex</link></methodname>
+	        <methodparam>
+	          <parameter>str</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link linkend="Class-OutputVal-value_list">value_list</link></methodname>
+            <void/>
+	      </methodsynopsis>
+          <methodsynopsis>
+            <methodname><link
+                            linkend="Class-OutputVal-dim">dim</link></methodname>
+            <void/>
+          </methodsynopsis>
+          <methodsynopsis>
+            <methodname><link
+                            linkend="Class-OutputVal-clone">clone</link></methodname>
+            <void/>
+          </methodsynopsis>
+
+            
+	    </classsynopsis> 
+      </refsect2>               <!-- OutputVal Python Synopsis -->
+      <refsect2>
+	    <title>Source Files</title>
+	    <itemizedlist spacing="compact">
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.C</filename>: C++ source
+	          code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.h</filename>: C++ header
+	          files
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.swg</filename>: SWIG
+	          source code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.spy</filename>: Python
+	          code included in the SWIG output
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
+      </refsect2>                   <!-- OutputVal Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	    The <classname>OutputVal</classname> classes are used to ferry
+	    values from the finite element mesh out to the Python <link
+	    linkend="Section-Coding-Output">output</link> machinery. The
+	    classes give the output machinery the ability to decide what
+	    further processing is possible
+	    (<foreignphrase>e.g</foreignphrase>, computing components or
+	    invariants).  The <classname>OutputVal</classname> subclasses
+	    are wrappers for the actual datatypes (floats, tensors,
+	    <foreignphrase>etc</foreignphrase>).  The <link
+	    linkend="Class-OutputValue"><classname>OutputValue</classname></link>
+	    class provides a generic reference-counted wrapper for all of
+	    the <classname>OutputVal</classname> subclasses.
+      </para>
+      <para>
+        The concrete <classname>OutputVal</classname> subclasses are
+        split into two varieties according to two intermediate
+        classes:
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <classname><link
+              linkend="Class-ArithmeticOutputVal">ArithmeticOutputVal</link></classname>
+              subclasses describe outputs that can be manipulated
+              numerically and statistically, such as the components of
+              &Fields; and &Fluxes;, or values that can be computed
+              from them.
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <classname><link
+              linkend="Class-NonArithmeticOutputVal">NonArithmeticOutputVal</link></classname>
+              subclasses describe all outputs that don't fit in other
+              class.  This includes things like the values of an
+              modulus, or components of color.  It is technically
+              possible to perform arithmetic with those quantities,
+              but not meaningful.
+            </simpara>
+          </listitem>
+        </itemizedlist>
+        
+	    There are three subclasses of
+	    <link linkend="Class-ArithmeticOutputVal"><classname>ArithmeticOutputVal</classname></link>:
+	    <itemizedlist spacing="compact">
+	      <listitem>
+	        <simpara>
+	          <classname><link
+	          linkend="Class-ScalarOutputVal">ScalarOutputVal</link></classname>
+	          for scalar quantities.
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <classname><link
+	          linkend="Class-VectorOutputVal">VectorOutputVal</link></classname>
+	          for vector quantities.
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <link
+	          linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+	          for symmetric 3&times;3 tensor quantities.
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
+      </para>
+    </refsection>               <!-- Description -->
+    <refsection>
+      <title>Methods</title>
+
+      <refsection id="Class-OutputVal-assign">
+        <title>Assignment operator</title>
+        <programlisting>
+virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlisting>
+        <para>
+          The assignment operator copies the value of
+          <varname>other</varname> to the current object.  It is an
+          error if the concrete derived class of
+          <varname>other</varname> not the same as the class of
+          <varname>this</varname>. 
+        </para>
+        <para>
+          The methods defined in the subclasses have a covariant
+          return type, returning a reference to the subclass, not to
+          &OutputVal;.  The concrete subclasses also define a
+          non-virtual assigment operator that takes a subclass
+          instance argument.
+        </para>
+      </refsection>
+
+      <refsection id="Class-OutputVal-value_list">
+	    <title><code>std::vector&lt;double&gt;* value_list() const</code></title>
+	    <para>
+	      <methodname>value_list</methodname> returns a flat list of
+	      the components of the <classname>OutputVal</classname>, as
+	      floating point numbers.  For
+	      <classname>SymmMatrix3</classname> objects,
+	      <methodname>value_list</methodname> returns the six
+	      independent components in <link
+	      linkend="table-voigt">Voigt</link> order.
+	    </para>
+	    <para>
+	      When used in C++, <methodname>value_list</methodname>
+	      returns a pointer to a vector that must be explicitly
+	      deallocated.
+	    </para>
+      </refsection>             <!-- OutputVal::value_list -->
+      <refsection id="Class-OutputVal-getIndex">
+	    <title><code>IndexP getIndex(const std::string&amp; str)</code></title>
+	    <para>
+	      <methodname>getIndex</methodname> converts the standard
+	      string representation of the name of a component to an <link
+	      linkend="Class-IndexP"><classname>IndexP</classname></link>
+	      object, which can be used to access components.  The form of
+	      the string depends on the <classname>OutputVal</classname>
+	      subclass.
+	    </para>
+	    <para>
+          TODO: Move this paragraph to subclasses.
+	      For <classname>SymmMatrix3</classname> objects, the argument
+	      <varname>str</varname> must be a two character string made
+	      up of only <literal>'x'</literal>, <literal>'y'</literal>,
+	      and <literal>'z'</literal>.  For
+	      <classname>VectorOutputVals</classname>,
+	      <varname>str</varname> must be exactly
+	      <literal>"x"</literal>, <literal>"y"</literal>, or
+	      <literal>"z"</literal>.  For
+	      <classname>ScalarOutputVals</classname>,
+	      <varname>str</varname> is ignored.
+	    </para>
+      </refsection>             <!-- OutputVal::getIndex -->
+      <refsection id="Class-OutputVal-components">
+	    <title><code>Components* components() const</code></title>
+	    <para>
+	      <methodname>components</methodname> returns an <link
+	      linkend="Class-Components">Components</link> object suitable
+	      for iterating over the components of the
+	      <classname>OutputVal</classname>.  See <xref
+	      linkend="Ref-Section-Iterators"/> for more information about
+	      iterating over components.
+	    </para>
+      </refsection>             <!-- OutputVal::components -->
+      <refsection id="Class-OutputVal-dim">
+        <title><code>int dim() const</code></title>
+        <para>
+          <methodname>dim</methodname> returns the number of
+          components in the <classname>OutputVal</classname>.  It's 1
+          for scalars, something for vectors, and 6 for symmetric
+          3&times;3 tensors.
+        </para>
+      </refsection>             <!-- OutputVal::dim -->
+      <refsection id="Class-OutputVal-clone">
+        <title><code>OutputVal* clone() const</code></title>
+        <para>
+          Create a copy of the <classname>OutputVal</classname>.  In
+          C++ it is the caller's responsibility to delete the copy, if
+          the reference counting wrapper <xref
+          linkend="Class-OutputValue"/> is not used.
+        </para>
+      </refsection>             <!-- OutputVal::clone -->
+    </refsection>               <!-- OutputVal methods -->
+  </refentry>                   <!-- OutputVal -->
+
+  <!-- ================================ -->
+
+  <refentry id="Class-ArithmeticOutputVal">
+    <refnamediv>
+      <refname>ArithmeticOutputVal</refname>
+      <refpurpose>
+        An output quantity that supports arithmetic operations
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+        These synopses only list methods that are not described in the
+        base class.  See &OutputVal; for the base class methods.
+      </para>
+      <refsect2>
+        <title>C++ Synopsis</title>
+        <programlisting>
+#include "engine/outputval.h" </programlisting>
+        <classsynopsis language="cpp">
+          <ooclass>
+            <classname>ArithmeticOutputVal</classname>
+          </ooclass>
+          <ooclass>
+            <modifier>public</modifier>
+            <classname><link
+                           linkend="Class-OutputVal">OutputVal</link></classname>
+          </ooclass>
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-getitem">operator[]</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>index</parameter>
+            </methodparam>
+            <modifier>const = 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::operator[] const-->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>double&amp;</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-getitem">operator[]</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>FieldIndex&amp;</type>
+              <parameter>index</parameter>
+            </methodparam>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::operator[]-->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>ArithmeticOutputVal&amp;</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-arithmetic">operator+=</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ArithmeticOutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::operator+= -->
+          
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>ArithmeticOutputVal&amp;</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-arithmetic">operator-=</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ArithmeticOutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::operator-= -->
+          
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>ArithmeticOutputVal&amp;</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-arithmetic">operator*=</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>double</type>
+              <parameter>factor</parameter>
+            </methodparam>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::operator*= -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>ArithmeticOutputVal&amp;</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-arithmetic">operator/=</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>double</type>
+              <parameter>factor</parameter>
+            </methodparam>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::operator/= -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-component_ops">component_pow</link></methodname>
+            <methodparam>
+              <type>int</type>
+              <parameter>p</parameter>
+            </methodparam>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::component_pow -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-component_ops">component_square</link></methodname>
+            <void/>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::component_square -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <void/>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-component_ops">component_sqrt</link></methodname>
+            <void/>
+            <modifier>= 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::component_sqrt -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>double</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-mag">magnitude</link></methodname>
+            <void/>
+            <modifier>const = 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::magnitude -->
+
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>ArithmeticOutputVal*</type>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-zero">zero</link></methodname>
+            <void/>
+            <modifier>const = 0</modifier>
+          </methodsynopsis>
+          
+          <methodsynopsis>
+            <modifier>virtual</modifier>
+            <type>ArithmeticOutputVal*</type>
+            <methodname><link linkend="Class-ArithmeticOV-one">one</link></methodname>
+            <void/>
+            <modifier>const = 0</modifier>
+          </methodsynopsis>       <!-- ArithmeticOutputVal::one -->
+        </classsynopsis>
+      </refsect2>               <!-- C++ synopsis-->
+      <refsect2>
+        <title>Python Synopsis</title>
+        <programlisting>
+from ooflib.SWIG.engine.outputval import OutputVal, ArithmeticOutputVal </programlisting>
+        <classsynopsis language="python">
+          <ooclass>
+            <classname>ArithmeticOutputVal</classname>
+          </ooclass>
+          <ooclass>
+            <classname><link linkend="Class-OutputVal">OutputVal</link></classname>
+          </ooclass>
+          <methodsynopsis>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-getitem">__getitem__</link></methodname>
+            <methodparam>
+              <parameter>index</parameter>
+            </methodparam>
+          </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link
+		                    linkend="Class-OutputVal-arithmetic">__add__</link></methodname>
+	        <methodparam>
+	          <parameter>other</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link
+		                    linkend="Class-OutputVal-arithmetic">__sub__</link></methodname>
+	        <methodparam>
+	          <parameter>other</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link
+		                    linkend="Class-OutputVal-arithmetic">__mul__</link></methodname>
+	        <methodparam>
+	          <parameter>other</parameter>
+	    </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link
+		                    linkend="Class-OutputVal-arithmetic">__div__</link></methodname>
+	        <methodparam>
+	          <parameter>other</parameter>
+	        </methodparam>
+	      </methodsynopsis>          
+          <methodsynopsis>
+            <void/>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-component_ops">component_pow</link></methodname>
+            <methodparam>
+              <parameter>exponent</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <methodsynopsis>
+            <void/>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-component_ops">component_square</link></methodname>
+            <void/>
+          </methodsynopsis>
+          <methodsynopsis>
+            <void/>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-component_ops">component_sqrt</link></methodname>
+            <void/>
+          </methodsynopsis>
+          <methodsynopsis>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-zero">zero</link></methodname>
+            <void/>
+          </methodsynopsis>          
+          <methodsynopsis>
+            <methodname><link
+                            linkend="Class-ArithmeticOV-one">one</link></methodname>
+            <void/>
+          </methodsynopsis>          
+        </classsynopsis>        <!-- Python Synopsis-->
+      </refsect2>
+      <refsect2>
+	    <title>Source Files</title>
+	    <itemizedlist spacing="compact">
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.C</filename>: C++ source
+	          code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.h</filename>: C++ header
+	          files
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.swg</filename>: SWIG
+	          source code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.spy</filename>: Python
+	          code included in the SWIG output
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
+      </refsect2>
+      <refsect2>
+        <title>Derived Classes</title>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <simpara>
+              <link
+                  linkend="Class-ScalarOutputVal"><classname>ScalarOutputVal</classname></link>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <link
+                  linkend="Class-VectorOutputVal"><classname>VectorOutputVal</classname></link>
+            </simpara>
+          </listitem>
+          <listitem>
+            <simpara>
+              <link
+                  linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+            </simpara>
+          </listitem>
+        </itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+        <classname>ArithmeticOutputVal</classname> is an abstract
+        class derived from <link
+        linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+        representing numerical <link
+        linkend="Class-Output"><classname>Outputs</classname></link>
+        on which arithmetic can be performed.
+      </para>
+      <para>
+        The derived classes of
+        <classname>ArithmeticOutputVal</classname> are <link
+        linkend="Class-ScalarOutputVal"><classname>ScalarOutputVal</classname></link>,
+        <link
+        linkend="Class-VectorOutputVal"><classname>VectorOutputVal</classname></link>,
+        and <link
+        linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link><footnote><simpara><classname>SymmMatrix3</classname>
+        does double duty elsewhere, so it doesn't have
+        <quote>OutputVal</quote> in its name.</simpara></footnote>.
+      </para>
+    </refsection>
+    
+    <refsection>
+      <title>Methods</title>
+
+      <refsection id="Class-ArithmeticOV-getitem">
+	    <title>Direct component access</title>
+        <programlisting>
+double operator[](const <link linkend="Class-FieldIndex">FieldIndex&amp;</link> index) const;
+double&amp; operator[](const <link linkend="Class-FieldIndex">FieldIndex&amp;</link> index); </programlisting>
+        <programlisting>
+def __getitem__(self, index) </programlisting>
+          
+	    <para>
+	      <code>operator[]</code> (in C++) and
+	      <code>__getitem__</code> (in Python) retrieve a component of
+	      the data wrapped by the <classname>OutputVal</classname>.
+	      The argument must be a <link
+	      linkend="Class-FieldIndex"><classname>FieldIndex</classname></link>
+	      of the appropriate type, or (in C++) a generic <link
+	      linkend="Class-IndexP"><classname>IndexP</classname></link>
+	      wrapper for it.
+	    </para>
+      </refsection>
+      
+      <refsection id="Class-ArithmeticOV-arithmetic">
+	    <title>Arithmetic operators</title>
+        <programlisting language="cpp">
+ArithmeticOutputVal&amp; operator+=(const ArithmeticOutputVal&amp; other);
+ArithmeticOutputVal&amp; operator-=(const ArithmeticOutputVal&amp; other);
+ArithmeticOutputVal&amp; operator*=(double factor);
+ArithmeticOutputVal&amp; operator/=(double factor); </programlisting>
+        <programlisting language="python">
+def __add__(self, other)
+def __sub__(self, other)
+def __mul__(self, factor)
+def __rmul__(self, factor)
+def __truediv(self, factor)
+def __rtruediv__(self, factor) </programlisting>
+        <para>
+	      Arithmetic operations on
+	      <classname>ArithmeticOutputVals</classname> are allowed
+	      where they make sense, both in C++ and Python.  In
+	      particular, it's possible to add or subtract two
+	      <classname>ArithmeticOutputVals</classname> of the same
+	      type, and it's possible to multiply or divide an
+	      <classname>ArithmeticOutputVal</classname> by a floating
+	      point number.
+	    </para>
+        <para>
+          The C++ methods defined here are the operators that
+          modify the object in-place:
+          <programlisting>
+ArithmeticOutputVal&amp; a;
+ArithmeticOutputVal&amp; b;
+a += b;
+b *= 123.; </programlisting>
+
+          Non-member binary operators that return a new
+          <classname>ArithmeticOutputVal</classname> are defined only
+          for the concrete derived classes and for the reference
+          counted &ArithmeticOutputValue; wrapper.
+        </para>
+	    <para>
+	      Note that in many cases it's not necessary or desirable to
+	      do arithmetic with <classname>ArithmeticOutputVal</classname>
+	      objects.  The point of
+	      <classname>ArithmeticOutputVals</classname> is to provide a
+	      generic wrapper (via virtual functions in the base class) to
+	      different kinds of output data.  In any
+	      <emphasis>non-generic</emphasis> situation, in which the
+	      type of the data is known, it's better to do the arithmetic
+	      on the underlying data directly, and then create a new
+	      <classname>ArithmeticOutputVal</classname> (of the
+	      appropriate flavor) to hold the result.
+	    </para>
+      </refsection>             <!-- arithmetic operators -->
+
+      <refsection id="Class-ArithmeticOV-component_ops">
+	    <title>Component by component operations</title>
+        <programlisting>
+void component_pow(int);
+void component_square();
+void component_sqrt(); </programlisting>
+        <programlisting>
+def component_pow(self, int)
+def component_square(self)
+def component_sqrt(self) </programlisting>
+	    <para>
+	      These functions operate on the components of an
+	      <classname>OutputVal</classname>.  They operate
+	      <emphasis>in-place</emphasis>. That is,
+	      <code>obj.component_square()</code> changes
+	      <varname>obj</varname> itself.  It doesn't return a new
+	      object.
+	    </para>
+      </refsection>             <!-- component_ops -->
+
+      <refsection id="Class-ArithmeticOV-mag">
+        <title>Magnitude</title>
+        <programlisting>
+double magnitude() const; </programlisting>
+        <para>
+          <code>magnitude()</code> returns the magnitude of the
+          <classname>ArithmeticOutputVal</classname>.
+        </para>
+      </refsection>
+      
+      <refsection id="Class-ArithmeticOV-zero">
+        <title>Zero</title>
+        <programlisting>
+ArithmeticOutputVal* zero() const; </programlisting>
+        <para>
+          <code>zero()</code> returns a new instance of the
+          <classname>ArithmeticOutputVal</classname> subclass with all
+          of its components set to <constant>0</constant>.  In C++ it
+          is the caller's responsibility to delete the copy, if the
+          reference counting wrapper &ArithmeticOutputValue; is not
+          used.
+        </para>
+        <para>
+          <methodname>zero</methodname> is used to initiate integrals
+          and other recursive numerical operations.
+        </para>
+      </refsection>
+
+      <refsection id="Class-ArithmeticOV-one">
+        <title>One</title>
+        <programlisting>
+ArithmeticOutputVal* one() const; </programlisting>
+        <para>
+          <code>one()</code> returns a new instance of the
+          <classname>ArithmeticOutputVal</classname> subclass with all
+          of its components set to <constant>1</constant>.  In C++ it
+          is the caller's responsibility to delete the copy, if the
+          reference counting wrapper &ArithmeticOutputValue; is not
+          used.
+        </para>
+        <para>
+          <methodname>one</methodname> is used in some integrals and
+          statistical analyses.
+        </para>
+      </refsection>             <!--ArithmeticOutputVal::one-->
+      
+    </refsection>               <!--ArithmeticOutputVal Methods-->
+  </refentry>                   <!--ArithmeticOutputVal-->
+
+  <!-- ================================ -->
+
+  <refentry id="Class-ScalarOutputVal">
+    <refnamediv>
+      <refname>ScalarOutputVal</refname>
+      <refpurpose>Wrapper for scalar Output data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <para>
+        These synopses only list methods that are not described in the
+        base classes, or need additional explanation here.  See
+        &OutputVal; and &ArithmeticOutputVal; for the base class
+        methods.
+      </para>
+
+      <refsect2>
+        <title>C++ Synopsis</title>
+	    <classsynopsis language="cpp">
+	      <ooclass>
+	        <classname>ScalarOutputVal</classname>
+	      </ooclass>
+	      <ooclass>
+	        <modifier>public</modifier>
+	        <classname><link linkend="Class-ArithmeticOutputVal">ArithmeticOutputVal</link></classname>
+	      </ooclass>
+
+          <!-- ScalarOutputVal constructors -->
+          <constructorsynopsis>
+            <methodname><link
+                            linkend="Class-ScalarOutputVal-constructor">ScalarOutputVal</link></methodname>
+            <void/>
+          </constructorsynopsis>
+	      <constructorsynopsis>
+	        <methodname><link
+		                    linkend="Class-ScalarOutputVal-constructor">ScalarOutputVal</link></methodname>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>x</parameter>
+	        </methodparam>
+	      </constructorsynopsis>
+          <constructorsynopsis>
+	        <methodname><link
+		                    linkend="Class-ScalarOutputVal-constructor">ScalarOutputVal</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ScalarOutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+          </constructorsynopsis>
+
+          <!-- ScalarOutputVal assignment operators -->
+          <methodsynopsis>
+            <modifier>const</modifier>
+            <type>ScalarOutputVal&amp;</type>
+            <methodname><link linkend="Class-ScalarOutputVal-assign">operator=</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ScalarOutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <methodsynopsis>
+            <modifier>const</modifier>
+            <type>ScalarOutputVal&amp;</type>
+            <methodname><link linkend="Class-ScalarOutputVal-assign">operator=</link></methodname>            
+            <methodparam>
+              <modifier>const</modifier>
+              <type>OutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+          </methodsynopsis>
+
+          <!-- ScalarOutputVal::getIndex -->
+          <methodsynopsis>
+            <type><link linkend="Class-IndexP">IndexP</link></type>
+            <methodname><link
+                            linkend="Class-ScalarOutputVal-getIndex">getIndex</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>std::string&amp;</type>
+              <parameter>str</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+
+          <!-- ScalarOutput::value -->
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-ScalarOutputVal-value">value</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double&amp;</type>
+	        <methodname><link linkend="Class-ScalarOutputVal-value">value</link></methodname>
+	        <void/>
+	      </methodsynopsis>
+
+          <!-- ScalarOutput::operator< -->
+          <methodsynopsis>
+            <type>bool</type>
+            <methodname><link
+                            linkend="Class-ScalarOutputVal-lt">operator&lt;</link></methodname>
+            <methodparam>
+              <modifier>const</modifier>
+              <type>ScalarOutputVal&amp;</type>
+              <parameter>other</parameter>
+            </methodparam>
+            <modifier>const</modifier>
+          </methodsynopsis>
+	    </classsynopsis>            <!-- ScalarOutputVal C++ Synopsis -->
+
+        <!-- binary operators -->
+	    <programlisting language="cpp">
+ScalarOutputVal <link linkend="Class-ScalarOutputVal-arithmetic">operator+</link>(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
+ScalarOutputVal <link linkend="Class-ScalarOutputVal-arithmetic">operator-</link>(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
+ScalarOutputVal <link linkend="Class-ScalarOutputVal-arithmetic">operator*</link>(const ScalarOutputVal&amp;, double);
+ScalarOutputVal <link linkend="Class-ScalarOutputVal-arithmetic">operator*</link>(double, const ScalarOutputVal&amp;);
+ScalarOutputVal <link
+linkend="Class-ScalarOutputVal-arithmetic">operator/</link>(ScalarOutputVal&amp;, double); </programlisting>
+      </refsect2>                   <!--C++ Synopsis-->
+
+      <refsect2>
+        <title>Python Synopsis</title>
+    	<classsynopsis language="python">
+	      <ooclass>
+	        <classname>ScalarOutputVal</classname>
+	      </ooclass>
+	      <ooclass>
+	        <classname>OutputVal</classname>
+	      </ooclass>
+	      <constructorsynopsis>
+	        <methodname><link
+		                    linkend="Class-ScalarOutputVal-constructor">__init__</link></methodname>
+	        <methodparam>
+	          <parameter>x</parameter>
+	        </methodparam>
+	      </constructorsynopsis>
+
+          <methodsynopsis>
+            <methodname><link linkend="Class-ScalarOutputVal-getIndex">getIndex</link></methodname>
+            <methodparam>
+              <parameter>unused</parameter>
+            </methodparam>
+          </methodsynopsis>
+	      <methodsynopsis>
+	        <methodname><link linkend="Class-ScalarOutputVal-value">value</link></methodname>
+	        <void/>
+	      </methodsynopsis>
+          <methodsynopsis>
+            <methodname><link
+                            linkend="Class-ScalarOutput-rdiv">__rtruediv__</link></methodname>
+            <methodparam>
+              <parameter>factor</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <methodsynopsis>
+            <methodname><link linkend="Class-ScalarOutputVal-lt">__lt__</link></methodname>
+            <methodparam>
+              <parameter>other</parameter>
+            </methodparam>
+          </methodsynopsis>
+          <!-- Omitting ScalarOutputVal::expandRange -->
+	    </classsynopsis>
+      </refsect2>
+      <refsect2>
+	    <title>Source Files</title>
+	    <itemizedlist spacing="compact">
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.C</filename>: C++ source
+	          code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.h</filename>: C++ header
+	          files
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.swg</filename>: SWIG
+	          source code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.spy</filename>: Python
+	          code included in the SWIG output
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
+      </refsect2>
+    </refsynopsisdiv>
+    
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-ScalarOutputVal-constructor">
+        <title>Constructors</title>
+        <programlisting language="cpp">
+ScalarOutputVal();
+ScalarOutputVal(double x);
+ScalarOutputVal(const ScalarOutputVal&amp; other); </programlisting>
+        <programlisting language="python">
+def __init__(self, x) </programlisting>
+	    <para>
+          In Python, <classname>ScalarOutputVals</classname> are
+          constructed from a single floating point number, its initial
+          value.  In addition, in C++ the constructor with no
+          arguments is equvialent to
+          <code>ScalarOutputVal(0.0)</code>, and the copy constructor
+          copies the value from another
+          <classname>ScalarOutputVal</classname>.
+	    </para>
+      </refsection>
+      <refsection id="Class-ScalarOutputVal-assign">
+        <title>Assignment</title>
+        <programlisting language="cpp">
+const ScalarOutputVal&amp; operator=(const ScalarOutputVal&amp; other);
+const ScalarOutputVal&amp; operator=(const OutputVal&amp; other); </programlisting>
+        <para>
+          The first form shown above, with a
+          <classname>ScalarOutputVal</classname> argument, is a
+          non-virtual method.  The second is the concrete
+          implementation of the virtual assignment operator declared
+          in the &OutputVal; base class.  Both do what you would
+          expect, copying the value from <varname>other</varname> to
+          <varname>*this</varname>. 
+        </para>
+      </refsection>
+
+      <refsection id="Class-ScalarOutputVal-getIndex">
+        <title>getIndex</title>
+        <programlisting language="cpp">
+          <link linkend="Class-FieldIndex">FieldIndex</link>*
+getIndex(const std::string&amp;) const; </programlisting>
+        <programlisting>
+def getIndex(dummy) </programlisting>
+        <para>
+          Generically, <methodname>getIndex</methodname> converts the
+          customary string representation of an index into a
+          &FieldIndex;.  For a <classname>ScalarOutputVal</classname>,
+          the only &FieldIndex; is <xref
+          linkend="Class-ScalarFieldIndex"/> so
+          <methodname>getIndex</methodname> return that and ignores
+          its argument.  The argument still needs to be provided,
+          though, and needs to a <type>std::string</type> in C++ or a
+          string in Python.
+        </para>
+      </refsection>
+      
+      <refsection id="Class-ScalarOutputVal-value">
+        <title>Value</title>
+	    <programlisting language="cpp">
+double value() const;
+double&amp; value(); </programlisting>
+        <programlisting language="python">
+def value(self)</programlisting>
+        <para>
+          Return the value wrapped by the
+          <classname>ScalarOutputVal</classname>.
+          <methodname>value()</methodname> is equivalent to the
+          generic function
+          <code>OutputVal::operator[](IndexP&amp;)</code>, but more
+          efficient.
+	    </para>
+        <para>
+          In C++, a new value can be assigned to an existing
+          <classname>ScalarOutputVal</classname> like this:
+          <programlisting language="cpp">
+ScalarOutputVal v;
+v.value() = 3; </programlisting>
+          In Python, the assignment operator can be used:
+          <programlisting language="python">
+v = ScalarOutputVal(3) </programlisting>
+          but beware that this doesn't change the value of whatever
+          <varname>c</varname> referred to before the assignment.
+        </para>
+
+      </refsection>             <!-- ScalarOutputVal::value -->
+
+      <refsection id="Class-ScalarOutput-lt">
+        <title>Less than</title>
+        <programlisting>
+bool operator&lt;(const ScalarOutputVal&amp; other) const; </programlisting>
+        <programlisting>
+def __lt__(self, other) </programlisting>
+          <para>
+            The less-than operator for
+            <classname>ScalarOutputVals</classname> compares their
+            values.
+          </para>
+      </refsection>
+
+      <refsection id="Class-ScalarOutputVal-arithmetic">
+        <title>Arithmetic operators</title>
+        <programlisting>
+ScalarOutputVal operator+(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
+ScalarOutputVal operator-(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
+ScalarOutputVal operator*(const ScalarOutputVal&amp;, double);
+ScalarOutputVal operator*(double, const ScalarOutputVal&amp;);
+ScalarOutputVal operator/(ScalarOutputVal&amp;, double);
+ScalarOutputVal operator/(double, ScalarOutputVal&amp;); 
+        </programlisting>
+        <programlisting language="python">
+def __rtruediv__(self, factor) </programlisting>
+        <para>
+          In C++ the arithmetic operators defined in
+          &ArithmeticOutputVal; are augmented with the binary
+          operators listed above.  They all do what you would expect.
+        </para>
+        <para>
+          In Python, the binary operators are defined in the base
+          class, with the exception of <methodname>__rtruediv__</methodname>>.
+          It's defined here so that
+          <programlisting language="python">
+x = ScalarOutputVal(2.)
+y = 1/x </programlisting>
+          is legal.  <methodname>__rtruediv__</methodname> is not
+          defined for any other subclasses of &ArithmeticOutputVal;.
+        </para>
+      </refsection>
+                  
+    </refsection>               <!-- ScalarOutputVal methods -->
+  </refentry>
+
+  <!-- ================================ -->
+
+  <refentry id="Class-VectorOutputVal">
+    <refnamediv>
+      <refname>VectorOutputVal</refname>
+      <refpurpose>Wrapper for vector Output data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <refsect2>
+        <title>C++ Synopsis</title>
+	    <classsynopsis language="cpp">
+	      <ooclass>
+	        <classname>VectorOutputVal</classname>
+	      </ooclass>
+	      <ooclass>
+	        <modifier>public</modifier>
+	        <classname>OutputVal</classname>
+	      </ooclass>
+	      <constructorsynopsis>
+	        <methodname><link
+		                    linkend="Class-VectorOutputVal-constructor">VectorOutputVal</link></methodname>
+	        <methodparam>
+	          <type>int</type>
+	          <parameter>n</parameter>
+	        </methodparam>
+	      </constructorsynopsis>
+	      <methodsynopsis>
+	        <type>int</type>
+	        <methodname><link linkend="Class-VectorOutputVal-size">size</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link
+		                    linkend="Class-VectorOutputVal-magnitude">magnitude</link></methodname>
+            <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	    </classsynopsis>
+        <programlisting>
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator+</link>(const VectorOutputVal&amp;, const VectorOutputVal&amp;);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator-</link>(const VectorOutputVal&amp;, const VectorOutputVal&amp;);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(const VectorOutputVal&amp;, double);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(double, const VectorOutputVal&amp;);
+VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(VectorOutputVal&amp;, double); </programlisting>
+
+      </refsect2>               <!-- VectorOutputVal C++ Synopsis -->
+      <refsect2>
+        <title>Python Synopsis</title>
+        <classsynopsis language="python">
+	      <ooclass>
+	        <classname>VectorOutputVal</classname>
+	      </ooclass>
+	      <ooclass>
+	        <classname>OutputVal</classname>
+	      </ooclass>
+	      <constructorsynopsis>
+	        <methodname><link
+		                    linkend="Class-VectorOutputVal-constructor">__init__</link></methodname>
+	        <methodparam>
+	          <parameter>n</parameter>
+	        </methodparam>
+	      </constructorsynopsis>
+	      <methodsynopsis>
+	        <methodname><link linkend="Class-VectorOutputVal-size">size</link></methodname>
+	        <void/>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-VectorOutputVal-getitem">operator[]</link></methodname>
+	        <methodparam>
+	          <type>int</type>
+	          <parameter>i</parameter>
+	          <modifier>const</modifier>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double&amp;</type>
+	        <methodname><link linkend="Class-VectorOutputVal-getitem">operator[]</link></methodname>
+	        <methodparam>
+	          <type>int</type>
+	          <parameter>i</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	    </classsynopsis>
+      </refsect2>             <!-- VectorOutputVal Python Synopsis -->
+<refsect2>
+	    <title>Source Files</title>
+	    <itemizedlist spacing="compact">
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.C</filename>,
+	          <filename>SRC/engine/symmmatrix.C</filename>: C++ source
+	          code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.h</filename>,
+	          <filename>SRC/engine/symmmatrix.h</filename>: C++ header
+	          files
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.swg</filename>,
+	          <filename>SRC/engine/symmmatrix.swg</filename>: SWIG
+	          source code
+	        </simpara>
+	      </listitem>
+	      <listitem>
+	        <simpara>
+	          <filename>SRC/engine/outputval.spy</filename>,
+	          <filename>SRC/engine/symmmatrix.spy</filename>: Python
+	          code included in the SWIG output
+	        </simpara>
+	      </listitem>
+	    </itemizedlist>
+      </refsect2>      
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+        TODO
+      </para>
+    </refsection>
+    <refsection>
+      <title>Methods</title>
+      <para>
+	    Methods that <classname>VectorOutputVal</classname> has in
+	    common with other <classname>OutputVals</classname> are
+	    discussed in <xref linkend="Class-ArithmeticOV"/> and <xref
+	    linkend="Class-OutputVal"/>.
+      </para>
+      <refsection id="Class-VectorOutputVal-constructor">
+	    <title><code>VectorOutputVal(int n)</code></title>
+	    <para>
+	      The integer argument to the
+	      <classname>VectorOutputVal</classname> constructor specifies
+	      the number of components of the vector.  The components are
+	      initialized to zero.
+	    </para>
+      </refsection>
+      <refsection id="Class-VectorOutputVal-size">
+	    <title><code>int size() const</code></title>
+	    <para>
+	      <methodname>size()</methodname> returns the length (number
+	      of components) of the vector.
+	    </para>
+      </refsection><!-- VectorOutputVal::size -->
+      <refsection id="Class-VectorOutputVal-magnitude">
+	    <title><code>double magnitude() const</code></title>
+	    <para>
+	      <methodname>magnitude</methodname> returns the length
+	      (L<subscript>2</subscript> norm) of the vector.
+	    </para>
+      </refsection><!-- VectorOutputVal:magnitude -->
+      <refsection id="Class-VectorOutputVal-getitem">
+	    <title><code>double operator[](int i) const, double&amp;
+	    operator[](int i)</code></title>
+	    <para>
+	      <methodname>VectorOutputVal::operator[](int)</methodname> is
+	      a shortcut for the generic function
+	      <methodname>OutputVal::operator[](IndexP&amp;)</methodname>.
+	    </para>
+      </refsection>
+    </refsection>
+  </refentry>                     <!--VectorOutputVal-->
+
+  <!-- ================================ -->
+
+  <!-- TODO: Should SymmMatrix3 be documented elsewhere? Where is it
+       used outside of the Output context?  -->
+
+  <refentry id="Class-SymmMatrix3">
+    <refnamediv>
+      <refname>SymmMatrix3</refname>
+      <refpurpose>
+        A symmetric 3&times;3 matrix output value
+      </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <refsect2>
+        <title>C++ Synopsis</title>
+        <programlisting>
+#include "engine/symmmatrix.h"
+        </programlisting>
+	    <classsynopsis language="cpp">
+	      <ooclass>
+	        <classname>SymmMatrix3</classname>
+	      </ooclass>
+	      <ooclass>
+	        <modifier>public</modifier>
+	        <classname>OutputVal</classname>
+	      </ooclass>
+	      <ooclass>
+	        <modifier>public</modifier>
+	        <classname>SymmMatrix</classname>
+	      </ooclass>
+	      <constructorsynopsis>
+	        <methodname><link linkend="Class-SymmMatrix3-constructor">SymmMatrix3</link></methodname>
+	        <void/>
+	      </constructorsynopsis>
+	      <constructorsynopsis>
+	        <methodname><link linkend="Class-SymmMatrix3-constructor">SymmMatrix3</link></methodname>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>xx</parameter>
+	        </methodparam>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>yy</parameter>
+	        </methodparam>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>zz</parameter>
+	        </methodparam>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>yz</parameter>
+	        </methodparam>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>xz</parameter>
+	        </methodparam>
+	        <methodparam>
+	          <type>double</type>
+	          <parameter>xy</parameter>
+	        </methodparam>
+	      </constructorsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-SymmMatrix3-getitem">operator[]</link></methodname>
+	        <methodparam>
+	          <type>const <link linkend="Class-SymTensorIndex">SymTensorIndex</link>&amp;</type>
+	          <parameter>index</parameter>
+	        </methodparam>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double&amp;</type>
+	        <methodname><link linkend="Class-SymmMatrix3-getitem">operator[]</link></methodname>
+	        <methodparam>
+	          <type>const <link linkend="Class-SymTensorIndex">SymTensorIndex</link>&amp;</type>
+	          <parameter>index</parameter>
+	        </methodparam>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-SymmMatrix3-trace">trace</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-SymmMatrix3-determinant">determinant</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link
+		                    linkend="Class-SymmMatrix3-secondInvariant">secondInvariant</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-SymmMatrix3-eigenvalues">maxEigenvalue</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-SymmMatrix3-eigenvalues">midEigenvalue</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	      <methodsynopsis>
+	        <type>double</type>
+	        <methodname><link linkend="Class-SymmMatrix3-eigenvalues">minEigenvalue</link></methodname>
+	        <void/>
+	        <modifier>const</modifier>
+	      </methodsynopsis>
+	    </classsynopsis>        <!-- SymmMatrix3 C++ Synopsis-->
+        
+	    <programlisting>
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator+</link>(const SymmMatrix3&amp;, const SymmMatrix3&amp;);
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator-</link>(const SymmMatrix3&amp;, const SymmMatrix3&amp;);
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator*</link>(const SymmMatrix3&amp;, double);
+SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator*</link>(double, const SymmMatrix3&amp;);
+SymmMatrix3 <link
+	    linkend="Class-OutputVal-arithmetic">operator/</link>(SymmMatrix3&amp;, double); </programlisting>
+        </refsect2>
+        <refsect2>
+          <title>Python Synopsis</title>
+          	<programlisting>
+from ooflib.SWIG.engine import symmmatrix </programlisting>
+
+          <classsynopsis language="python">
+	        <ooclass>
+	          <classname>SymmMatrix3</classname>
+	        </ooclass>
+	        <ooclass>
+	          <classname>OutputVal</classname>
+	        </ooclass>
+	        <ooclass>
+	          <classname>SymmMatrix</classname>
+	        </ooclass>
+	        <constructorsynopsis>
+	          <methodname><link linkend="Class-SymmMatrix3-constructor">__init__</link></methodname>
+	          <methodparam>
+	            <parameter>xx</parameter>
+	          </methodparam>
+	          <methodparam>
+	            <parameter>yy</parameter>
+	          </methodparam>
+	          <methodparam>
+	            <parameter>zz</parameter>
+	          </methodparam>
+	          <methodparam>
+	            <parameter>yz</parameter>
+	          </methodparam>
+	          <methodparam>
+	            <parameter>xz</parameter>
+	          </methodparam>
+	          <methodparam>
+	            <parameter>xy</parameter>
+	          </methodparam>
+	        </constructorsynopsis>
+
+	        <methodsynopsis>
+	          <methodname><link linkend="Class-SymmMatrix3-trace">trace</link></methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <methodname><link linkend="Class-SymmMatrix3-determinant">determinant</link></methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <methodname><link
+		                      linkend="Class-SymmMatrix3-secondInvariant">secondInvariant</link></methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <methodname><link linkend="Class-SymmMatrix3-eigenvalues">maxEigenvalue</link></methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <methodname><link linkend="Class-SymmMatrix3-eigenvalues">midEigenvalue</link></methodname>
+	          <void/>
+	        </methodsynopsis>
+	        <methodsynopsis>
+	          <methodname><link linkend="Class-SymmMatrix3-eigenvalues">minEigenvalue</link></methodname>
+	          <void/>
+	        </methodsynopsis>
+	      </classsynopsis>
+        </refsect2>
+      </refsynopsisdiv>
+      <refsection>
+        <title>Description</title>
+        <para>
+          TODO
+        </para>
+      </refsection>
+      <refsection>
+        <title>SymmMatrix3 Methods</title>
+        <para>
+	      Methods that <classname>SymmMatrix3</classname> has in
+	      common with other <classname>OutputVals</classname> are
+	      discussed in <xref linkend="Class-ArithmeticOV"/> and <xref
+	      linkend="Class-OutputVal"/>.
+        </para>
+        <refsection id="Class-SymmMatrix3-constructor">
+	      <title><code>SymmMatrix3(), SymmMatrix3(double...)</code></title>
+	      <para>
+	        In C++, there are two constructors for the
+	        <classname>SymmMatrix3</classname> class.  The version
+	        with no arguments creates a
+	        <classname>SymmMatrix3</classname> with all components set
+	        to zero.  In the second version, all of the components are
+	        specified by the arguments, in <link
+	        linkend="table-voigt">Voigt</link> order.
+	      </para>
+	      <para>
+	        In Python, all of the arguments to the
+	        <classname>SymmMatrix3</classname> constructor are
+	        optional, with the missing ones defaulting to zero.  It's
+	        best to use keyword arguments, like this:
+	        <programlisting>
+tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
+	        If keywords aren't used, then the arguments must be in <link
+	        linkend="table-voigt">Voigt</link> order.
+	      </para>
+        </refsection>
+        <refsection id="Class-SymmMatrix3-getitem">
+	      <title><code>double operator[](const SymTensorIndex&amp;)
+	      const, double&amp; operator[](const SymTensorIndex&amp;)</code></title>
+	      <para>
+	        <methodname>SymmMatrix3::operator[](const
+	        SymTensorIndex&amp;)</methodname> is a shortcut for the
+	        generic function
+	        <methodname>OutputVal::operator[](IndexP&amp;)</methodname>.
+	      </para>
+        </refsection>           <!-- SymmMatrix3::getitem -->
+        <refsection id="Class-SymmMatrix3-trace">
+	      <title><code>double trace() const</code></title>
+	      <para>
+	        <methodname>trace</methodname> returns the sum of the
+	        diagonal entries of the <classname>SymmMatrix3</classname>
+	        object.
+	      </para>
+        </refsection>           <!-- SymmMatrix3::trace -->
+        <refsection id="Class-SymmMatrix3-determinant">
+	      <title><code>double determinant() const</code></title>
+	      <para>
+	        <methodname>determinant</methodname> returns the determinant
+	        of the <classname>SymmMatrix3</classname> object.
+	      </para>
+        </refsection>           <!-- SymmMatrix3:determinant -->
+        <refsection id="Class-SymmMatrix3-secondInvariant">
+	      <title><code>double secondInvariant() const</code></title>
+	      <para>
+	        The <methodname>secondInvariant</methodname> of a
+	        <classname>SymmMatrix3</classname> <inlineequation>
+	        <alt role="tex">\(\sigma\)</alt></inlineequation> is
+	        <informalequation>
+	          <alt role="tex">\[
+	          \sigma_{xx}\sigma_{zz} + \sigma_{xx}\sigma_{yy} +
+	          \sigma_{yy}\sigma_{zz} - \sigma_{xy}^2 - \sigma_{xz}^2 -
+	          \sigma_{yz}^2
+	          \]</alt>
+	        </informalequation>
+	      </para>
+        </refsection>           <!-- SymmMatrix3::secondInvariant -->
+        <refsection id="Class-SymmMatrix3-eigenvalues">
+	      <title><code>double minEigenvalue() const, double
+	      midEigenvalue() const, double maxEigenvalue() const</code></title>
+	      <para>
+	        These functions return the eigenvalues of the
+	        <classname>SymmMatrix3</classname> object. It's guaranteed
+	        that <code>minEigenvalue() &lt;= midEigenvalue() &lt;=
+	        maxEigenvalue()</code>.
+	      </para>
+        </refsection>           <!-- SymmMatrix3::eigenvalues -->
+      </refsection>
+    </refentry>                 <!-- Symmmatrix3 -->
+
+  <!-- ================================ -->
+  
+  <refentry id="Class-NonArithmeticOutputVal">
+    <refnamediv>
+      <refname>NonArithmeticOutputVal</refname>
+      <refpurpose>
+        An output quantity that does not support arithmetic operations.
+      </refpurpose>
+    </refnamediv>
+    TODO
+  </refentry>                   <!-- NonArithmeticOutputVal -->
+
+  <refentry id="Class-OutputValue">
+    <refnamediv>
+      <refname>OutputValue</refname>
+      <refpurpose>Wrapper for OutputVal classes</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Synopses</title>
+      <refsect2>
+	<title>C++ Synopsis</title>
+	<programlisting>
+#include "engine/outputval.h"</programlisting>
+	<classsynopsis language="cpp">
+	  <ooclass>
+	    <classname>OutputValue</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <type>const OutputVal&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-valueRef">valueRef</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputVal*</type>
+	    <methodname><link linkend="Class-OutputValue-valuePtr">valuePtr</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>OutputValue*</type>
+	    <methodname><link
+		linkend="Class-OutputValue-valueClone">valueClone</link></methodname>
+	    <void/>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputValue&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-arithmetic">operator+=</link></methodname>
+	    <methodparam>
+	      <type>const OutputValue&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputValue&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-arithmetic">operator-=</link></methodname>
+	    <methodparam>
+	      <type>const OutputValue&amp;</type>
+	      <parameter>other</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>const OutputValue&amp;</type>
+	    <methodname><link linkend="Class-OutputValue-arithmetic">operator*=</link></methodname>
+	    <methodparam>
+	      <type>double</type>
+	      <parameter>x</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double</type>
+	    <methodname><link
+		linkend="Class-OutputValue-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link
+		  linkend="Class-IndexP">IndexP&amp;</link></type>
+	      <parameter>index</parameter>
+	    </methodparam>
+	    <modifier>const</modifier>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <type>double&amp;</type>
+	    <methodname><link
+		linkend="Class-OutputValue-getitem">operator[]</link></methodname>
+	    <methodparam>
+	      <type>const <link
+		  linkend="Class-IndexP">IndexP&amp;</link></type>
+	      <parameter>index</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+	<programlisting>
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator+</link>(const OutputValue &amp;a, const OutputValue &amp;b);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator-</link>(const OutputValue &amp;a, const OutputValue &amp;b);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator*</link>(double x, const OutputValue &amp;ov);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator*</link>(const OutputValue &amp;ov, double x);
+OutputValue <link linkend="Class-OutputValue-arithmetic">operator/</link>(const OutputValue &amp;ov, double x); </programlisting>
+      </refsect2><!-- C++ Synopsis -->
+      <refsect2>
+	<title>Python Synopsis</title>
+	<programlisting>
+from ooflib.SWIG.engine import outputval</programlisting>
+	<classsynopsis language="python">
+	  <ooclass>
+	    <classname>OutputValue</classname>
+	  </ooclass>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputValue-valuePtr">valuePtr</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputValue-valueClone">valueClone</link></methodname>
+	    <void/>
+	  </methodsynopsis>
+	  <methodsynopsis>
+	    <methodname><link
+		linkend="Class-OutputValue-getitem">__getitem__</link></methodname>
+	    <methodparam>
+	      <parameter>index</parameter>
+	    </methodparam>
+	  </methodsynopsis>
+	</classsynopsis>
+      </refsect2><!-- Python Synopsis -->
+      <refsect2>
+	<title>Source Files</title>
+	<itemizedlist spacing="compact">
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.C</filename>: C++ source
+	      code
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.h</filename>: C++ header
+	      file
+	    </simpara>
+	  </listitem>
+	  <listitem>
+	    <simpara>
+	      <filename>SRC/engine/outputval.swg</filename>: SWIG
+	      source code
+	    </simpara>
+	  </listitem>
+	</itemizedlist>
+      </refsect2><!-- Source Files -->
+    </refsynopsisdiv>
+    <refsection>
+      <title>Description</title>
+      <para>
+	The <classname>OuputValue</classname> class is a reference
+	counting wrapper for the various <link
+	linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	classes.  That means that an
+	<classname>OutputValue</classname> contains a pointer to an
+	<link
+	linkend="Class-OutputVal"><classname>OutputVal</classname></link>,
+	and takes care of deleting the
+	<classname>OutputVal</classname> when no more
+	<classname>OutputValues</classname> are using it.
+      </para>
+      <para>
+	<classname>OutputValues</classname> should not be created
+	explicitly, except by functions like <link
+	linkend="Class-Field-output"><classname>Field::output</classname></link>.
+	They should never be created in Python at all, since that
+	confuses the reference counting.
+      </para>
+    </refsection><!-- Description -->
+    <refsection>
+      <title>Methods</title>
+      <refsection id="Class-OutputValue-valueRef">
+	<title><code>const OutputVal&amp; valueRef() const</code></title>
+	<para>
+	  <methodname>valueRef</methodname> returns a reference to the
+	  <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>
+	  wrapped inside the <classname>OutputValue</classname>.  This
+	  call does <emphasis>not</emphasis> increment the reference
+	  count of the <classname>OutputVal</classname>, so the
+	  programmer must ensure that the returned
+	  <classname>OutputVal</classname> reference does not outlive
+	  the <classname>OutputValue</classname> object.
+	</para>
+      </refsection><!-- valueRef -->
+      <refsection id="Class-OutputValue-valuePtr">
+	<title><code>const OutputVal* valuePtr() const</code></title>
+	<para>
+	  <methodname>valuePtr</methodname> is just like <link
+	  linkend="Class-OutputValue-valueRef">valueRef</link>, except
+	  that it returns a pointer instead of a reference. This can
+	  be more convenient in some situations.
+	</para>
+      </refsection><!-- valuePtr -->
+      <refsection id="Class-OutputValue-valueClone">
+	<title><code>OutputVal *valueClone() const</code></title>
+	<para>
+	  <methodname>valueClone</methodname> is like <link
+	  linkend="Class-OutputValue-valuePtr"><methodname>valuePtr</methodname></link>
+	  and <link
+	  linkend="Class-OutputValue-valueRef"><methodname>valueRef</methodname></link>,
+	  except that it returns a pointer to a new
+	  <emphasis>copy</emphasis> of the underlying <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+	  It is the programmers responsibility to ensure that the
+	  pointer is eventually deallocated.
+	  <methodname>valueClone</methodname> should be use in
+	  situations in which the <classname>OutputValue</classname>
+	  might be deallocated before the program is finished with the
+	  <classname>OutputVal</classname>.
+	</para>
+      </refsection>
+      <refsection id="Class-OutputValue-arithmetic">
+	<title><code>const OutputValue&amp; operator+=(const OutputValue&amp;)</code>
+	  <foreignphrase>etc.</foreignphrase></title>
+	<para>
+	  The majority of the arithmetic operators available for <link
+	  linkend="Class-OutputVal"><classname>OutputVals</classname></link>
+	  are also available for <classname>OutputValues</classname>,
+	  but only in C++.  (The restriction to C++ is because
+	  <classname>OutputValues</classname> are converted to
+	  <classname>OutputVals</classname> by
+	  <application>swig</application> typemaps when being passed
+	  from C++ to Python, at least in all of the cases in which
+	  they're used in <link
+	  linkend="Class-Output"><classname>Outputs</classname></link>.)
+	</para>
+      </refsection><!-- arithmetic -->
+      <refsection id="Class-OutputValue-getitem">
+	<title><code>double operator[](IndexP&amp;), __getitem__(i)</code></title>
+	<para>
+	  The C++ <methodname>operator[]</methodname> and the Python
+	  <methodname>__getitem__</methodname> return a component of
+	  the <classname>OutputValue</classname>'s underlying <link
+	  linkend="Class-OutputVal"><classname>OutputVal</classname></link>,
+	  given an <link
+	  linkend="Class-IndexP"><classname>IndexP</classname></link>
+	  of the right variety.
+	</para>
+      </refsection><!-- getitem -->
+    </refsection><!-- Methods -->
+  </refentry>    <!-- OutputValue -->  
+</section>

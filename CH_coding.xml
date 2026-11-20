@@ -129,8 +129,8 @@
     </para>
     <para>
       For example, the Python code defining the
-      <classname>Microstructure</classname>
-      <filename>SRC/common/microstructure.py</filename> can be
+      <classname>Microstructure</classname>,
+      <filename>SRC/common/microstructure.py</filename>, can be
       imported into another Python file with
       <programlisting>
 from ooflib.common import microstructure </programlisting>
@@ -861,7 +861,7 @@ conjugatePair("Elasticity",
       linkend="Section-Tasks-Analysis">Analysis Page</link>.
     </para>
     <para>
-      The outputs that the user sees come in three flavors:
+      The outputs that the user sees come in four flavors:
       <itemizedlist spacing="compact">
 	<listitem>
 	  <para>
@@ -884,6 +884,15 @@ conjugatePair("Elasticity",
 	    in contour plots.
 	  </para>
 	</listitem>
+    <listitem>
+      <para>
+        <emphasis>Non-Arithmetic</emphasis> outputs are quantities
+        that could be plotted, but for which numerical calculations
+        don't really make sense, such as the parameters for a material
+        &Property;.  You might still want to save these values in a
+        data file along with the computed outputs.
+      </para>
+    </listitem>
       </itemizedlist>
     </para>
     <para>
@@ -907,10 +916,7 @@ conjugatePair("Elasticity",
       their behavior.  <classname>Output</classname> parameters use
       the same <link
       linkend="Class-Parameter"><classname>Parameter</classname></link>
-      classes that are used in
-      <link
-          linkend="Class-OOFMenuItem"><classname>OOFMenuItems</classname></link>
-      and 
+      classes that are used in menu items and 
       <link
       linkend="Class-PropertyRegistration"><classname>PropertyRegistrations</classname></link>.
     </para>
@@ -1037,15 +1043,13 @@ FieldOutput = output.Output(
 	  <callout arearefs="example1-callback">
 	    <para>
 	      This is the callback function.  All callbacks have
-	      <varname>mesh</varname>, <varname>elements</varname>,
-	      and <varname>coords</varname> arguments.
-	      <varname>elements</varname> is a list of the mesh <link
-	      linkend="Class-Element"><classname>Elements</classname></link>
+	      <varname>mesh</varname>, <varname>elements</varname>, and
+	      <varname>coords</varname> arguments.
+	      <varname>elements</varname> is a list of the mesh &Element;
 	      within which the output is to be computed.
 	      <varname>coords</varname> is a list of lists of <link
 	      linkend="Class-MasterCoord"><classname>MasterCoords</classname></link>
-	      specifying the computation points within each
-	      <classname>Element</classname>.
+	      specifying the computation points within each &Element;.
 	    </para>
 	    <para>
 	      Any additional callback arguments are either inputs or
@@ -1066,24 +1070,23 @@ FieldOutput = output.Output(
 	  </callout>
 	  <callout arearefs="example1-zip">
 	    <para>
-	      The <code>zip</code> call here matches up each
-	      <classname>Element</classname> to the list of
-	      coordinates at which the output should be evaluated
-	      within the <classname>Element</classname>.
-	      <varname>element</varname> is an
-	      <classname>Element</classname>, and
-	      <varname>ecoords</varname> is a list of <link
+	      The <code>zip</code> call here matches up each &Element; to
+	      the list of coordinates at which the output should be
+	      evaluated within the &Element;.  <varname>element</varname>
+	      is an &Element;, and <varname>ecoords</varname> is a list of
+	      <link
 	      linkend="Class-MasterCoord"><classname>MasterCoords</classname></link>.
 	    </para>
 	  </callout>
 	  <callout arearefs="example1-eoF">
 	    <para>
-	      <methodname>Element:outputFields</methodname>
-	      returns a list of <classname>OutputVals</classname>
-	      containing <classname>Field</classname> values at the
-	      specified points within the given
-	      <classname>Element</classname>.  The list is appended to
-	      results already obtained.
+	      <methodname>Element:outputFields</methodname> returns a list
+	      of <link
+	      linkend="Class-OutputVal"><classname>OutputVals</classname></link>
+	      containing <link
+	      linkend="Class-Field"><classname>Field</classname></link>
+	      values at the specified points within the given &Element;.
+	      The list is appended to results already obtained.
 	    </para>
 	  </callout>
 	<callout arearefs="example1-name">
