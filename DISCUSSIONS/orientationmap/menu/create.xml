@@ -23,7 +23,7 @@
   <para>
     Different file formats are handled by different subclasses of
     <link
-    linkend="Class-OrientMapReader"><classname>OrientMapReader</classname></link>.
+    linkend="RegisteredClass-OrientMapReader"><classname>OrientMapReader</classname></link>.
     The <varname>reader</varname> parameter must be set to the
     appropriate type.
   </para>

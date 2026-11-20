@@ -10,7 +10,7 @@
 
 <para>
   <command>Color</command> is the one property that has no physical
-  signifigance in &oof2;. It merely provides a color for displaying a
+  significance in &oof2;. It merely provides a color for displaying a
   &material; in the <link linkend="Chapter-Graphics">Graphics
   window</link>.  The <link
   linkend="RegisteredClass-DisplayMethod"><classname>DisplayMethods</classname></link>

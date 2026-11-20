@@ -230,29 +230,31 @@ from ooflib.SWIG.common import coord</programlisting>
       </para>
     </refsection><!-- Description -->
     <refsection>
-      <title>Methods</title>
+      <title>Position Methods</title>
       <refsection id="Class-Position-position">
-	<title><code>virtual Coord position() const</code></title>
-	<para>
-	  <methodname>position</methodname> is the only function in
-	  the <classname>Position</classname> base class.  It
-	  effectively converts any <classname>Position</classname>
-	  object to a <classname>Coord</classname>.  It's useful when
-	  a routine needs to operate on generic
-	  <classname>Position</classname> objects, but still wants to
-	  perform arithmetic with them.<footnote>
-	    <simpara>
-	      <classname>GaussPoints</classname>, which are derived
-	      from <classname>Positions</classname>, represent special
-	      fixed points inside an <classname>Element</classname>,
-	      so it doesn't really make sense to do arithmetic with
-	      them.  Therefore there are no arithmetic operations
-	      defined in the <classname>Position</classname> base
-	      class.
-	    </simpara>
-	  </footnote>
-	</para>
-      </refsection><!-- position -->
+	    <title><code>virtual Coord position() const</code></title>
+	    <para>
+	      <methodname>position</methodname> is the only function in
+	      the <classname>Position</classname> base class.  It
+	      effectively converts any <classname>Position</classname>
+	      object to a <classname>Coord</classname>.  It's useful when
+	      a routine needs to operate on generic
+	      <classname>Position</classname> objects, but still wants to
+	      perform arithmetic with them.<footnote>
+	      <simpara>
+	        <classname>GaussPoints</classname>, which are derived from
+	        <classname>Positions</classname>, represent special fixed
+	        points inside an <classname>Element</classname>, so it
+	        doesn't really make sense to do arithmetic with them.
+	        Therefore there are no arithmetic operations defined in
+	        the <classname>Position</classname> base class.
+	      </simpara>
+	    </footnote>
+	    </para>
+      </refsection>                 <!-- Position::position -->
+    </refsection>                   <!-- Position methods -->
+    <refsection>
+      <title>Coord Methods</title>
       <refsection id="Class-Coord-constructor">
 	<title><code>Coord(), Coord(double x, double y)</code></title>
 	<para>

@@ -11,10 +11,11 @@
 <section role="toc-always" id="Ref-Section-Iterators">
   <title>Indices and Iterators</title>
   <para>
-    Classes for selecting components of &Fields;, &Fluxes;, and
-    &Equations;, and iterating over them.  There are generic methods
-    for looping over the components of a &Field; (or &Flux; or
-    &Equation;) even if the subclass is unknown.
+    Classes for selecting components of &Fields;, &Fluxes;,
+    &Equations;, and &OutputVals; and iterating over them.  There are
+    generic methods for looping over the components of a &Field; (or
+    &Flux; or &Equation; or &OutputVal;) even if the subclass is
+    unknown.
   </para>
 
 <refentry id="Class-FieldIndex">
@@ -2513,13 +2514,13 @@ from ooflib.SWIG.engine.fieldindex import symTensorIJComponents
       objects.  This allows an instance of the class to be iterated
       over like an STL container, either like this:
       <programlisting>
-for(SymTensorIndex ij : <b>symTensorIJComponents</b>)
+for(SymTensorIndex ij : <emphasis role="bold">symTensorIJComponents</emphasis>)
 {
     ...
 } </programlisting>
         or like this:
         <programlisting>
-for(SymTensorIJIterator iter=<b>symTensorIJComponents</b>.begin();
+for(SymTensorIJIterator iter=<emphasis role="bold">symTensorIJComponents</emphasis>.begin();
     iter != symTensorIJComponents.end(); ++iter)
 {
     // *iter is a SymTensorIndex
@@ -2532,7 +2533,7 @@ for(SymTensorIJIterator iter=<b>symTensorIJComponents</b>.begin();
       <programlisting>
 from ooflib.SWIG.engine.fieldindex import symTensorIJComponents
 
-for ij in <b>symTensorIJComponents</b>:
+for ij in <emphasis role="bold">symTensorIJComponents</emphasis>:
     # ij is a SymTensorIndex
     ... </programlisting>
 
