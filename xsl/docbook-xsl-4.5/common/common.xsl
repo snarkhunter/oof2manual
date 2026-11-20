@@ -1217,7 +1217,7 @@ the ID is not unique.</para>
 
     <xsl:if test="count($targets)=0">
       <xsl:message>
-        <xsl:text>Error: no ID for constraint linkend: </xsl:text>
+        <xsl:text>DOCBOOK Error: no ID for constraint linkend: </xsl:text>
         <xsl:value-of select="concat('&quot;', $linkend, '&quot;')"/>
         <xsl:text>.</xsl:text>
       </xsl:message>
@@ -1259,7 +1259,7 @@ pointed to by the link is one of the elements listed in
     <xsl:if test="count($target) &gt; 0">
       <xsl:if test="not(contains(concat(' ', $element-list, ' '), local-name($target)))">
         <xsl:message>
-          <xsl:text>Error: linkend (</xsl:text>
+          <xsl:text>DOCBOOK Error: linkend (</xsl:text>
           <xsl:value-of select="$linkend"/>
           <xsl:text>) points to "</xsl:text>
           <xsl:value-of select="local-name($target)"/>

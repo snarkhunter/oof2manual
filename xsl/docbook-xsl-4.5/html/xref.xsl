@@ -111,7 +111,7 @@
 
       <xsl:otherwise>
         <xsl:message>
-          <xsl:text>ERROR: xref linking to </xsl:text>
+          <xsl:text>DOCBOOK ERROR: xref linking to </xsl:text>
           <xsl:value-of select="@linkend|@xlink:href"/>
           <xsl:text> has no generated link text.</xsl:text>
         </xsl:message>

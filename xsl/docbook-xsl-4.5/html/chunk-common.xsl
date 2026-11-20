@@ -130,7 +130,7 @@
 
   <xsl:if test="$ischunk='0'">
     <xsl:message>
-      <xsl:text>Error </xsl:text>
+      <xsl:text>DOCBOOK Error </xsl:text>
       <xsl:value-of select="name(.)"/>
       <xsl:text> is not a chunk!</xsl:text>
     </xsl:message>
