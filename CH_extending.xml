@@ -640,7 +640,7 @@ swig_sources(
           the code in a new directory if you prefer.  Just make sure
           that <filename>CMakeLists.txt</filename> in the extension's
           top directory includes the new directory via a
-          <code>add_subdirectory</code> call.:</simpara></footnote>
+          <code>add_subdirectory</code> call.</simpara></footnote>
         </para>
         <example>
           <title id="cmake1b"> </title>
@@ -1265,5 +1265,304 @@ add_subdirectory(subdirectoryname) # <co id="cmake2-subdir"/>
       </para>
     </section>                  <!-- Loading Internal Extensions -->
   </section>                    <!--Internal Extensions-->
+
+  <!--============================================================-->
+
+  <section role='toc-always'>
+    <title>Extension Utilities</title>
+    <para>
+      This section discusses tools that simplify the construction of
+      &oof2; extensions.
+    </para>
+
+    <!-- ======================= -->
+    
+    <refentry id="swig_sources">
+      <refnamediv>
+        <refname>swig_sources</refname>
+        <refpurpose>
+          List swig source files.
+        </refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+        <title>Synopsis</title>
+        <programlisting>
+include("oofbuildtools.cmake")
+swig_sources(
+  SWIGFILES ...
+  SWIGDEST ...
+  SOURCES ...
+  SCRIPTS ...
+  LIBRARIES ...
+  CFLAGS ...
+  INCLUDE_DIRECTORIES ...
+  TARGET_SFX ...
+) </programlisting>
+        
+      </refsynopsisdiv>
+      <refsection>
+        <title>Discussion</title>
+        <para>
+          <function>swig_sources</function> is a CMake function
+          defined in <filename>oofbuildtools.cmake</filename>.  It is
+          used within the <filename>CMakeLists.txt</filename> files in
+          source directories to specify which swig source files will
+          be compiled, and how.  The files are assumed to have a <link
+          linkend="Extending-swig-suffix"><filename>.swg</filename></link>
+          suffix.
+        </para>
+        <para>
+          The parameters <varname>SWIGFILES</varname> and
+          <varname>SWIGDEST</varname> are required.  The others can be
+          omitted if they're not needed.  The dots in the listing
+          above should be replaced by character strings, with spaces
+          or newlines between words.
+        </para>
+        <para>
+          If different swig files require
+          different values of the parameters, they should use separate
+          calls to <function>swig_sources</function>.
+        </para>
+        <para>
+          The arguments are:
+          <variablelist>
+            <varlistentry>
+              <term><varname>SWIGFILES</varname></term>
+              <listitem>
+                <para>
+                   A list of the swig files in the dire ctory.  The
+                   files are assumed to have a
+                   <filename>.swg</filename> suffix, which should
+                   <emphasis role="bold">not</emphasis> be included.
+                   For example:
+                  <programlisting>
+SWIGFILES file1 file2 </programlisting>
+                   will include <filename>file1.swg</filename> and
+                   <filename>file2.swg</filename>.
+                   <emphasis>(Required)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>SWIGDEST</varname></term>
+              <listitem>
+                <para>
+                  The directory in which the generated python files
+                  and shared library should be
+                  installed. <emphasis>(Required)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>SOURCES</varname></term>
+              <listitem>
+                <para>
+                  A list of C++ files to compile and link with the
+                  swig output.  You can't use this if
+                  <varname>SWIGFILES</varname> contains more than one
+                  file.  In that case, compile the C++ files into a
+                  library separately, and include it in the
+                  <varname>LIBRARIES</varname>
+                  argument. <emphasis>(Optional)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>SCRIPTS</varname></term>
+              <listitem>
+                <para>
+                  A list of python files to install into
+                  <varname>SWIGDEST</varname>.  These will be copied
+                  verbatim. <emphasis>(Optional)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>LIBRARIES</varname></term>
+              <listitem>
+                <para>
+                  A list of libraries to link
+                  to. <emphasis>(Optional)</emphasis>
+                  </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>CFLAGS</varname></term>
+              <listitem>
+                <para>
+                  Additional flags to pass to the C++ compiler, beyond
+                  those that CMake uses
+                  automatically. <emphasis>(Optional)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>INCLUDE_DIRECTORIES</varname></term>
+              <listitem>
+                <para>
+                  A list of directories in which to search for include
+                  swig and C++ files. <emphasis>(Optional)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>TARGET_SFX</varname></term>
+              <listitem>
+                <para>
+                  A string that will be appended to the name of each
+                  swig file to create a CMake target name.  Normally,
+                  the CMake target name is the name of the swig file
+                  being processed.  CMake requires that all target
+                  names in a project are unique.  If you have two
+                  subdirectories both of which contain a swig file
+                  with the same name, CMake will raise an error, even
+                  if the output files go to different locations.
+                </para>
+                <para>
+                  To work around this problem, set
+                  <varname>TARGET_SFX</varname> when calling
+                  <function>swig_sources</function>.  The given suffix
+                  will be appended to the name of the target.  It
+                  won't appear in the name of any scripts or libraries
+                  created by CMake.  The suffix can be any
+                  reasonable<footnote><simpara>Meaning ascii letters
+                  and digits, plus periods, underscores, plus signs
+                  and minus signs.</simpara></footnote> string of
+                  characters, as long as it's unique.
+                  <emphasis>(Optional)</emphasis>
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </para>
+      </refsection>
+    </refentry>                 <!-- swig_sources -->
+
+    <!-- ======================= -->
+        
+    <refentry id="oof2-extension-setup">
+      <refnamediv>
+        <refname>oof2-extension-setup</refname>
+        <refpurpose>Set up templates for building
+        extensions</refpurpose>
+      </refnamediv>
+      <refsynopsisdiv>
+        <title>Synopsis</title>
+        <programlisting>
+oof2-extension-setup --template &lt;template-name&gt; --module &lt;new-module-name&gt; --class &lt;new-class-name&gt; [--sequenceno &lt;number&gt;] [--force]
+oof2-extension-setup --list     <lineannotation>List available templates</lineannotation>
+oof2-extension-setup --help     <lineannotation>Print this message</lineannotation>
+
+Short options are -t, -m, -c, -s, -f, -l, and -h. </programlisting>
+      </refsynopsisdiv>
+      <refsection>
+        <title>Discussion</title>
+        <para>
+          <function>oof2-extension-setup</function> is an executable
+          script that creates files that can be edited to create some
+          kinds of <link linkend="Section-Extending-External">external
+          &oof2; extensions</link>.  It customizes source files and
+          CMake files for the selected extension type and copies them
+          into a directory where they can be edited and built.  The
+          files contain comments indicating what changes the extension
+          developer will need to make.
+        </para>
+        <para>
+          See <xref linkend="Section-Installing-Templates"/> for an
+          overview of creating extensions from the templates, and
+          <xref linkend="Section-Running-External"/> for various ways
+          of using them.
+        </para>
+      </refsection>
+      <refsection>
+        <title>Arguments</title>
+        <variablelist>
+          <varlistentry>
+            <term><code>--template_name=tname</code> or <code>-t tname</code></term>
+            <listitem>
+              <para>
+                <varname>tname</varname> is the name of the template
+                to use. The available templates can be found by
+                running <code>oof2-extension-setup --list</code>.
+                <emphasis>(Required)</emphasis>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>--module=mname</code> or <code>-m mname</code></term>
+            <listitem>
+              <para>
+                <varname>mname</varname> is the name of the Python
+                module to create.  The extension will be loadable via
+                this name in a Python <code>import</code> statement or
+                in any of the <link
+                linkend="Section-Running-External">other ways of
+                importing</link> an external &oof2;
+                extension. <emphasis>(Required)</emphasis>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>--class=cname</code> or <code>-c cname</code></term>
+            <listitem>
+              <para>
+                <varname>cname</varname> is the name of the Python
+                class to create within the module.  If creating a new
+                &property;, it will appear with this name in the <link
+                linkend="Section-Materials-Property">Property</link>
+                pane in the <link
+                linkend="Section-Tasks-Materials">Materials</link>
+                page. <emphasis>(Required)</emphasis>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>--sequenceno=number</code> or <code>-s
+            number</code></term>
+            <listitem>
+              <para>
+                <varname>sequenceno</varname> controls where a newly
+                defined &property; will appear in the list of other
+                &properties; of the same type in the <link
+                linkend="Section-Materials-Property">Property</link>
+                pane.  <emphasis>(Optional)</emphasis>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>--force</code> or <code>-f</code></term>
+            <listitem>
+              <para>
+                <function>oof2-extension-setup</function> will not
+                normally overwrite existing files.  If
+                <varname>--force</varname> is used, it will overwrite
+                them.  <emphasis>(Optional)</emphasis>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>--list</code> or <code>-l</code></term>
+            <listitem>
+              <para>
+                List the available templates and quit.  No files will
+                be created, even if the required options are provided.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><code>--help</code> or <code>-h</code></term>
+            <listitem>
+              <para>
+                Print a short version of this help file, and quit. No
+                files will be created, even if the required options
+                are provided.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </refsection>
+    </refentry>                 <!-- oof2-extension-setup -->
+    
+  </section>                    <!-- Extension Utilities -->
 
 </chapter>
