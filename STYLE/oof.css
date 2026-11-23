@@ -389,15 +389,33 @@ div.calloutlist table td {
  *   border-bottom: black 1px solid;
  * } */
 
+
+pre.programlisting.python {
+    background-color: #ffe4c4;
+    text-align: left;
+}
+
+pre.classsynopsis.python {
+    background-color: #ffe4c4;
+}
+
+pre.classsynopsis.cpp {
+    background-color: #ffdddd;
+
+pre.programlisting.cpp {
+    background-color: #ffdddd;
+    /* text-align: left; */
+}
+
 pre.classsynopsis {
-  background-color: LemonChiffon;
+    background-color: red /* LemonChiffon; */
 }
 
 pre.programlisting { 
-  background-color: LemonChiffon;
-#  background-color: #ffe4c4;
+    background-color: red; /* LemonChiffon; */
   text-align: left;
 }
+
 
 .equation {
   margin-top: 20px;

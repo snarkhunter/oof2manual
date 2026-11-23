@@ -347,9 +347,12 @@
     </span>
   </xsl:template>
 
-  <!-- Modified classsynopsis template that writes "class" before the name -->
+  <!-- Modified classsynopsis template that writes "class" before the
+       name and includes the language in the <pre> tag's class.
+
+       The python version is pysynop.xsl. -->
   <xsl:template match="classsynopsis" mode="cpp">
-    <pre class="{name(.)}">
+    <pre class="{normalize-space(concat(name(.), ' ', @language))}">
       <xsl:text>class </xsl:text> <!-- this line added by SAL -->
       <xsl:apply-templates select="ooclass[1]" mode="cpp"/>
       <xsl:if test="ooclass[position() &gt; 1]">
@@ -390,7 +393,12 @@
     </xsl:if>
     <xsl:apply-templates mode="cpp"/>
   </xsl:template>
-  
+
+  <!-- Include the language in a programlisting's "class" -->
+  <xsl:template match="programlisting[@language]" mode="class.value">
+    <xsl:value-of select="concat('programlisting ', @language)"/>
+  </xsl:template>
+
 </xsl:stylesheet>
 
   

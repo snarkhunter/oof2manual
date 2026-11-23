@@ -63,7 +63,7 @@
 
 
   <xsl:template match="classsynopsis" mode="python" priority="1">
-    <pre class="{name(.)}">
+    <pre class="{normalize-space(concat(name(.), ' python'))}">
       <xsl:text>class </xsl:text>
       <xsl:apply-templates select="ooclass[1]" mode="python"/>
       <xsl:if test="ooclass[position() &gt; 1]">
