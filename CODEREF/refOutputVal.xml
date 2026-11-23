@@ -27,7 +27,7 @@
       <refsect2>
 	    <title>C++ Synopsis</title>
         <!-- TODO: add print() ? -->
-	    <programlisting>
+	    <programlisting language="cpp">
 #include "engine/outputval.h"</programlisting>
 
         <classsynopsis language="cpp">
@@ -90,7 +90,7 @@
       </refsect2>               <!-- OutputVal C++ Synopsis -->
       <refsect2>
 	    <title>Python Synopsis</title>
-	    <programlisting>
+	    <programlisting language="python">
 from ooflib.SWIG.engine import outputval </programlisting>
 	    <classsynopsis language="python">
 	      <ooclass>
@@ -233,7 +233,7 @@ from ooflib.SWIG.engine import outputval </programlisting>
 
       <refsection id="Class-OutputVal-assign">
         <title>Assignment operator</title>
-        <programlisting>
+        <programlisting language="cpp">
 virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlisting>
         <para>
           The assignment operator copies the value of
@@ -341,7 +341,7 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
       </para>
       <refsect2>
         <title>C++ Synopsis</title>
-        <programlisting>
+        <programlisting language="cpp">
 #include "engine/outputval.h" </programlisting>
         <classsynopsis language="cpp">
           <ooclass>
@@ -490,7 +490,7 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
       </refsect2>               <!-- C++ synopsis-->
       <refsect2>
         <title>Python Synopsis</title>
-        <programlisting>
+        <programlisting language="python">
 from ooflib.SWIG.engine.outputval import OutputVal, ArithmeticOutputVal </programlisting>
         <classsynopsis language="python">
           <ooclass>
@@ -613,32 +613,25 @@ from ooflib.SWIG.engine.outputval import OutputVal, ArithmeticOutputVal </progra
           <listitem>
             <simpara>
               <link
-                  linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link>
+              linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link><footnote><simpara><classname>SymmMatrix3</classname>
+              does double duty elsewhere, so it doesn't have
+              <quote>OutputVal</quote> in its
+              name.</simpara></footnote>
             </simpara>
           </listitem>
         </itemizedlist>
       </refsect2>
     </refsynopsisdiv>
+
     <refsection>
       <title>Description</title>
       <para>
         <classname>ArithmeticOutputVal</classname> is an abstract
         class derived from <link
-        linkend="Class-OutputVal"><classname>OutputVal</classname></link>
-        representing numerical <link
+        linkend="Class-OutputVal"><classname>OutputVal</classname></link>.
+        It is used as a base class for numerical <link
         linkend="Class-Output"><classname>Outputs</classname></link>
         on which arithmetic can be performed.
-      </para>
-      <para>
-        The derived classes of
-        <classname>ArithmeticOutputVal</classname> are <link
-        linkend="Class-ScalarOutputVal"><classname>ScalarOutputVal</classname></link>,
-        <link
-        linkend="Class-VectorOutputVal"><classname>VectorOutputVal</classname></link>,
-        and <link
-        linkend="Class-SymmMatrix3"><classname>SymmMatrix3</classname></link><footnote><simpara><classname>SymmMatrix3</classname>
-        does double duty elsewhere, so it doesn't have
-        <quote>OutputVal</quote> in its name.</simpara></footnote>.
       </para>
     </refsection>
     
@@ -647,10 +640,10 @@ from ooflib.SWIG.engine.outputval import OutputVal, ArithmeticOutputVal </progra
 
       <refsection id="Class-ArithmeticOV-getitem">
 	    <title>Direct component access</title>
-        <programlisting>
+        <programlisting language="cpp">
 double operator[](const <link linkend="Class-FieldIndex">FieldIndex&amp;</link> index) const;
 double&amp; operator[](const <link linkend="Class-FieldIndex">FieldIndex&amp;</link> index); </programlisting>
-        <programlisting>
+        <programlisting language="python">
 def __getitem__(self, index) </programlisting>
           
 	    <para>
@@ -692,7 +685,7 @@ def __rtruediv__(self, factor) </programlisting>
         <para>
           The C++ methods defined here are the operators that
           modify the object in-place:
-          <programlisting>
+          <programlisting language="cpp">
 ArithmeticOutputVal&amp; a;
 ArithmeticOutputVal&amp; b;
 a += b;
@@ -720,11 +713,11 @@ b *= 123.; </programlisting>
 
       <refsection id="Class-ArithmeticOV-component_ops">
 	    <title>Component by component operations</title>
-        <programlisting>
+        <programlisting language="cpp">
 void component_pow(int);
 void component_square();
 void component_sqrt(); </programlisting>
-        <programlisting>
+        <programlisting language="python">
 def component_pow(self, int)
 def component_square(self)
 def component_sqrt(self) </programlisting>
@@ -740,7 +733,7 @@ def component_sqrt(self) </programlisting>
 
       <refsection id="Class-ArithmeticOV-mag">
         <title>Magnitude</title>
-        <programlisting>
+        <programlisting language="cpp">
 double magnitude() const; </programlisting>
         <para>
           <code>magnitude()</code> returns the magnitude of the
@@ -750,7 +743,7 @@ double magnitude() const; </programlisting>
       
       <refsection id="Class-ArithmeticOV-zero">
         <title>Zero</title>
-        <programlisting>
+        <programlisting language="cpp">
 ArithmeticOutputVal* zero() const; </programlisting>
         <para>
           <code>zero()</code> returns a new instance of the
@@ -768,7 +761,7 @@ ArithmeticOutputVal* zero() const; </programlisting>
 
       <refsection id="Class-ArithmeticOV-one">
         <title>One</title>
-        <programlisting>
+        <programlisting language="cpp">
 ArithmeticOutputVal* one() const; </programlisting>
         <para>
           <code>one()</code> returns a new instance of the
@@ -983,6 +976,19 @@ linkend="Class-ScalarOutputVal-arithmetic">operator/</link>(ScalarOutputVal&amp;
 	    </itemizedlist>
       </refsect2>
     </refsynopsisdiv>
+
+    <refsection>
+      <title>Description</title>
+      <para>
+        <classname>ScalarOutputVal</classname> is a concrete subclass
+        of &OutputVal; and &ArithmeticOutputVal;.  It is used by <link
+        linkend="Class-Output"><classname>Outputs</classname></link>
+        that compute scalar quantities.  Each
+        <classname>ScalarOutputVal</classname> wreps a single floating
+        point number in a way that allows generic output methods to
+        operate on it.
+      </para>
+    </refsection>
     
     <refsection>
       <title>Methods</title>
@@ -1023,9 +1029,8 @@ const ScalarOutputVal&amp; operator=(const OutputVal&amp; other); </programlisti
       <refsection id="Class-ScalarOutputVal-getIndex">
         <title>getIndex</title>
         <programlisting language="cpp">
-          <link linkend="Class-FieldIndex">FieldIndex</link>*
-getIndex(const std::string&amp;) const; </programlisting>
-        <programlisting>
+<link linkend="Class-FieldIndex">FieldIndex</link>* getIndex(const std::string&amp;) const; </programlisting>
+        <programlisting language="python">
 def getIndex(dummy) </programlisting>
         <para>
           Generically, <methodname>getIndex</methodname> converts the
@@ -1072,9 +1077,9 @@ v = ScalarOutputVal(3) </programlisting>
 
       <refsection id="Class-ScalarOutput-lt">
         <title>Less than</title>
-        <programlisting>
+        <programlisting language="cpp">
 bool operator&lt;(const ScalarOutputVal&amp; other) const; </programlisting>
-        <programlisting>
+        <programlisting language="python">
 def __lt__(self, other) </programlisting>
           <para>
             The less-than operator for
@@ -1085,14 +1090,13 @@ def __lt__(self, other) </programlisting>
 
       <refsection id="Class-ScalarOutputVal-arithmetic">
         <title>Arithmetic operators</title>
-        <programlisting>
+        <programlisting language="cpp">
 ScalarOutputVal operator+(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
 ScalarOutputVal operator-(const ScalarOutputVal&amp;, const ScalarOutputVal&amp;);
 ScalarOutputVal operator*(const ScalarOutputVal&amp;, double);
 ScalarOutputVal operator*(double, const ScalarOutputVal&amp;);
 ScalarOutputVal operator/(ScalarOutputVal&amp;, double);
-ScalarOutputVal operator/(double, ScalarOutputVal&amp;); 
-        </programlisting>
+ScalarOutputVal operator/(double, ScalarOutputVal&amp;); </programlisting>
         <programlisting language="python">
 def __rtruediv__(self, factor) </programlisting>
         <para>
@@ -1102,7 +1106,7 @@ def __rtruediv__(self, factor) </programlisting>
         </para>
         <para>
           In Python, the binary operators are defined in the base
-          class, with the exception of <methodname>__rtruediv__</methodname>>.
+          class, with the exception of <methodname>__rtruediv__</methodname>.
           It's defined here so that
           <programlisting language="python">
 x = ScalarOutputVal(2.)
@@ -1155,7 +1159,7 @@ y = 1/x </programlisting>
 	        <modifier>const</modifier>
 	      </methodsynopsis>
 	    </classsynopsis>
-        <programlisting>
+        <programlisting language="cpp">
 VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator+</link>(const VectorOutputVal&amp;, const VectorOutputVal&amp;);
 VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator-</link>(const VectorOutputVal&amp;, const VectorOutputVal&amp;);
 VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator*</link>(const VectorOutputVal&amp;, double);
@@ -1300,7 +1304,7 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
     <refsynopsisdiv>
       <refsect2>
         <title>C++ Synopsis</title>
-        <programlisting>
+        <programlisting language="cpp">
 #include "engine/symmmatrix.h"
         </programlisting>
 	    <classsynopsis language="cpp">
@@ -1402,7 +1406,7 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
 	      </methodsynopsis>
 	    </classsynopsis>        <!-- SymmMatrix3 C++ Synopsis-->
         
-	    <programlisting>
+	    <programlisting language="cpp">
 SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator+</link>(const SymmMatrix3&amp;, const SymmMatrix3&amp;);
 SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator-</link>(const SymmMatrix3&amp;, const SymmMatrix3&amp;);
 SymmMatrix3 <link linkend="Class-OutputVal-arithmetic">operator*</link>(const SymmMatrix3&amp;, double);
@@ -1412,7 +1416,7 @@ SymmMatrix3 <link
         </refsect2>
         <refsect2>
           <title>Python Synopsis</title>
-          	<programlisting>
+          	<programlisting language="python">
 from ooflib.SWIG.engine import symmmatrix </programlisting>
 
           <classsynopsis language="python">
@@ -1505,7 +1509,7 @@ from ooflib.SWIG.engine import symmmatrix </programlisting>
 	        <classname>SymmMatrix3</classname> constructor are
 	        optional, with the missing ones defaulting to zero.  It's
 	        best to use keyword arguments, like this:
-	        <programlisting>
+	        <programlisting language="python">
 tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
 	        If keywords aren't used, then the arguments must be in <link
 	        linkend="table-voigt">Voigt</link> order.
@@ -1573,7 +1577,10 @@ tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
         An output quantity that does not support arithmetic operations.
       </refpurpose>
     </refnamediv>
-    TODO
+    <refsection>
+      <title>TODO</title>
+      <para>TODO</para>
+    </refsection>
   </refentry>                   <!-- NonArithmeticOutputVal -->
 
   <refentry id="Class-OutputValue">
@@ -1585,7 +1592,7 @@ tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
       <title>Synopses</title>
       <refsect2>
 	<title>C++ Synopsis</title>
-	<programlisting>
+	<programlisting language="cpp">
 #include "engine/outputval.h"</programlisting>
 	<classsynopsis language="cpp">
 	  <ooclass>
@@ -1656,7 +1663,7 @@ tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
 	    </methodparam>
 	  </methodsynopsis>
 	</classsynopsis>
-	<programlisting>
+	<programlisting language="cpp">
 OutputValue <link linkend="Class-OutputValue-arithmetic">operator+</link>(const OutputValue &amp;a, const OutputValue &amp;b);
 OutputValue <link linkend="Class-OutputValue-arithmetic">operator-</link>(const OutputValue &amp;a, const OutputValue &amp;b);
 OutputValue <link linkend="Class-OutputValue-arithmetic">operator*</link>(double x, const OutputValue &amp;ov);
@@ -1665,7 +1672,7 @@ OutputValue <link linkend="Class-OutputValue-arithmetic">operator/</link>(const 
       </refsect2><!-- C++ Synopsis -->
       <refsect2>
 	<title>Python Synopsis</title>
-	<programlisting>
+	<programlisting language="python">
 from ooflib.SWIG.engine import outputval</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
