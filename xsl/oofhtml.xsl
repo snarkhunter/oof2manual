@@ -349,11 +349,11 @@
 
   <!-- Modified classsynopsis template that writes "class" before the
        name and includes the language in the <pre> tag's class.
-
-       The python version is pysynop.xsl. -->
+       The python version is pysynop.xsl.
+  -->
   <xsl:template match="classsynopsis" mode="cpp">
     <pre class="{normalize-space(concat(name(.), ' ', @language))}">
-      <xsl:text>class </xsl:text> <!-- this line added by SAL -->
+      <xsl:text>class </xsl:text> <!-- this line added for OOF2 -->
       <xsl:apply-templates select="ooclass[1]" mode="cpp"/>
       <xsl:if test="ooclass[position() &gt; 1]">
         <xsl:text>: </xsl:text>
@@ -394,11 +394,19 @@
     <xsl:apply-templates mode="cpp"/>
   </xsl:template>
 
-  <!-- Include the language in a programlisting's "class" -->
+  <!-- Modify <programlisting> and <code> so that they add the
+       programming language to the "class" attribute in the html
+       output.  Then they can be colored according to language by css.
+       <classsynopsis> needs to do this differently.
+  -->
   <xsl:template match="programlisting[@language]" mode="class.value">
     <xsl:value-of select="concat('programlisting ', @language)"/>
   </xsl:template>
 
+  <xsl:template match="code[@language]" mode="class.value">
+    <xsl:value-of select="concat('code ', @language)"/>
+  </xsl:template>
+  
 </xsl:stylesheet>
 
   

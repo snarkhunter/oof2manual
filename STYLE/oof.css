@@ -389,6 +389,11 @@ div.calloutlist table td {
  *   border-bottom: black 1px solid;
  * } */
 
+/* Assign colors to code blocks according to language.  oofhtml.xsl
+   and pysynop.xsl contain xsl <programlisting>, <classsynopsis>, and
+   <code> templates that add the language to the attributes of html
+   <pre> and <code> tags.
+*/
 
 pre.programlisting.python {
     background-color: #ffe4c4;
@@ -399,22 +404,32 @@ pre.classsynopsis.python {
     background-color: #ffe4c4;
 }
 
-pre.classsynopsis.cpp {
-    background-color: #ffdddd;
+code.code.python {
+    background-color: #ffe4c4;
+}
 
 pre.programlisting.cpp {
     background-color: #ffdddd;
-    /* text-align: left; */
+    text-align: left;
+}
+
+pre.classsynopsis.cpp {
+    background-color: #ffdddd;
+}
+
+code.code.cpp {
+    background-color: #ffdddd;
 }
 
 pre.classsynopsis {
-    background-color: red /* LemonChiffon; */
+    background-color: LemonChiffon; 
 }
 
 pre.programlisting { 
-    background-color: red; /* LemonChiffon; */
-  text-align: left;
+    background-color: LemonChiffon;
+    text-align: left;
 }
+
 
 
 .equation {
