@@ -252,7 +252,8 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
       </refsection>
 
       <refsection id="Class-OutputVal-value_list">
-	    <title><code>std::vector&lt;double&gt;* value_list() const</code></title>
+        <title>Values</title>
+	    <programlisting language="cpp">std::vector&lt;double&gt;* value_list() const;</programlisting>
 	    <para>
 	      <methodname>value_list</methodname> returns a flat list of
 	      the components of the <classname>OutputVal</classname>, as
@@ -268,8 +269,10 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
 	      deallocated.
 	    </para>
       </refsection>             <!-- OutputVal::value_list -->
+      
       <refsection id="Class-OutputVal-getIndex">
-	    <title><code>IndexP getIndex(const std::string&amp; str)</code></title>
+        <title>Index</title>
+	    <programlisting language="cpp">IndexP getIndex(const std::string&amp; str)</programlisting>
 	    <para>
 	      <methodname>getIndex</methodname> converts the standard
 	      string representation of the name of a component to an <link
@@ -292,8 +295,10 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
 	      <varname>str</varname> is ignored.
 	    </para>
       </refsection>             <!-- OutputVal::getIndex -->
+      
       <refsection id="Class-OutputVal-components">
-	    <title><code>Components* components() const</code></title>
+        <title>Components</title>
+	    <programlisting language="cpp">Components* components() const</programlisting>
 	    <para>
 	      <methodname>components</methodname> returns an <link
 	      linkend="Class-Components">Components</link> object suitable
@@ -303,8 +308,10 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
 	      iterating over components.
 	    </para>
       </refsection>             <!-- OutputVal::components -->
+      
       <refsection id="Class-OutputVal-dim">
-        <title><code>int dim() const</code></title>
+        <title>Dimension</title>
+        <programlisting language="cpp">int dim() const</programlisting>
         <para>
           <methodname>dim</methodname> returns the number of
           components in the <classname>OutputVal</classname>.  It's 1
@@ -313,7 +320,8 @@ virtual const OutputVal&amp; operator=(const OutputVal&amp; other); </programlis
         </para>
       </refsection>             <!-- OutputVal::dim -->
       <refsection id="Class-OutputVal-clone">
-        <title><code>OutputVal* clone() const</code></title>
+        <title>Clone</title>
+        <programlisting language="cpp">OutputVal* clone() const</programlisting>
         <para>
           Create a copy of the <classname>OutputVal</classname>.  In
           C++ it is the caller's responsibility to delete the copy, if
@@ -1206,34 +1214,30 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
 	      </methodsynopsis>
 	    </classsynopsis>
       </refsect2>             <!-- VectorOutputVal Python Synopsis -->
-<refsect2>
+      <refsect2>
 	    <title>Source Files</title>
 	    <itemizedlist spacing="compact">
 	      <listitem>
 	        <simpara>
-	          <filename>SRC/engine/outputval.C</filename>,
-	          <filename>SRC/engine/symmmatrix.C</filename>: C++ source
+	          <filename>SRC/engine/outputval.C</filename>: C++ source
 	          code
 	        </simpara>
 	      </listitem>
 	      <listitem>
 	        <simpara>
-	          <filename>SRC/engine/outputval.h</filename>,
-	          <filename>SRC/engine/symmmatrix.h</filename>: C++ header
+	          <filename>SRC/engine/outputval.h</filename>: C++ header
 	          files
 	        </simpara>
 	      </listitem>
 	      <listitem>
 	        <simpara>
-	          <filename>SRC/engine/outputval.swg</filename>,
-	          <filename>SRC/engine/symmmatrix.swg</filename>: SWIG
+	          <filename>SRC/engine/outputval.swg</filename>: SWIG
 	          source code
 	        </simpara>
 	      </listitem>
 	      <listitem>
 	        <simpara>
-	          <filename>SRC/engine/outputval.spy</filename>,
-	          <filename>SRC/engine/symmmatrix.spy</filename>: Python
+	          <filename>SRC/engine/outputval.spy</filename>: Python
 	          code included in the SWIG output
 	        </simpara>
 	      </listitem>
@@ -1243,7 +1247,13 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
     <refsection>
       <title>Description</title>
       <para>
-        TODO
+        <classname>VectorOutputVal</classname> is a concrete subclass
+        of &OutputVal; and &ArithmeticOutputVal; that is used by <link
+        linkend="Class-Output"><classname>Outputs</classname></link>;
+        that compute floating-point vector quantities.  The size of
+        the vector is variable.  Each
+        <classname>VectorOutputVal</classname> wraps a single vector
+        in a way that allows generic output methods to operate on it.
       </para>
     </refsection>
     <refsection>
@@ -1251,11 +1261,11 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
       <para>
 	    Methods that <classname>VectorOutputVal</classname> has in
 	    common with other <classname>OutputVals</classname> are
-	    discussed in <xref linkend="Class-ArithmeticOV"/> and <xref
-	    linkend="Class-OutputVal"/>.
+	    discussed in &OutputVal; and &ArithmeticOutputVal;.
       </para>
       <refsection id="Class-VectorOutputVal-constructor">
-	    <title><code>VectorOutputVal(int n)</code></title>
+        <title>Constructor</title>
+	    <programlisting language="cpp"><code>VectorOutputVal(int n);</code></programlisting>
 	    <para>
 	      The integer argument to the
 	      <classname>VectorOutputVal</classname> constructor specifies
@@ -1264,22 +1274,26 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
 	    </para>
       </refsection>
       <refsection id="Class-VectorOutputVal-size">
-	    <title><code>int size() const</code></title>
+        <title>Size</title>
+	    <programlisting language="cpp">int size() const;</programlisting>
 	    <para>
 	      <methodname>size()</methodname> returns the length (number
 	      of components) of the vector.
 	    </para>
       </refsection><!-- VectorOutputVal::size -->
       <refsection id="Class-VectorOutputVal-magnitude">
-	    <title><code>double magnitude() const</code></title>
+        <title>Magnitude</title>
+	    <programlisting language="cpp">double magnitude() const;</programlisting>
 	    <para>
 	      <methodname>magnitude</methodname> returns the length
 	      (L<subscript>2</subscript> norm) of the vector.
 	    </para>
       </refsection><!-- VectorOutputVal:magnitude -->
       <refsection id="Class-VectorOutputVal-getitem">
-	    <title><code>double operator[](int i) const, double&amp;
-	    operator[](int i)</code></title>
+        <title>Direct component access</title>
+	    <programlisting language="cpp">
+double operator[](int i) const;
+double&amp; operator[](int i);</programlisting>
 	    <para>
 	      <methodname>VectorOutputVal::operator[](int)</methodname> is
 	      a shortcut for the generic function
@@ -1291,8 +1305,10 @@ VectorOutputVal <link linkend="Class-OutputVal-arithmetic">operator/</link>(Vect
 
   <!-- ================================ -->
 
-  <!-- TODO: Should SymmMatrix3 be documented elsewhere? Where is it
-       used outside of the Output context?  -->
+  <!-- TODO: Should SymmMatrix3 be documented elsewhere?
+       Also used to represent stress and strain internally and as a
+       modulus for HeatConductivity et al.
+  -->
 
   <refentry id="Class-SymmMatrix3">
     <refnamediv>
@@ -1494,7 +1510,12 @@ from ooflib.SWIG.engine import symmmatrix </programlisting>
 	      linkend="Class-OutputVal"/>.
         </para>
         <refsection id="Class-SymmMatrix3-constructor">
-	      <title><code>SymmMatrix3(), SymmMatrix3(double...)</code></title>
+          <title>Constructors</title>
+	      <programlisting language="cpp">
+SymmMatrix3();
+SymmMatrix3(double xx, double yy, double zz, double yz, double xz, double xy); </programlisting>
+          <programlisting language="python">
+def __init__(self, xx, yy, zz, yz, xz, xy) </programlisting>
 	      <para>
 	        In C++, there are two constructors for the
 	        <classname>SymmMatrix3</classname> class.  The version
@@ -1516,17 +1537,26 @@ tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
 	      </para>
         </refsection>
         <refsection id="Class-SymmMatrix3-getitem">
-	      <title><code>double operator[](const SymTensorIndex&amp;)
-	      const, double&amp; operator[](const SymTensorIndex&amp;)</code></title>
+          <title>Direct component access</title>
+	      <programlisting language="cpp">
+double operator[](const SymTensorIndex&amp;) const;
+double&amp; operator[](const SymTensorIndex&amp;);</programlisting>
+          <programlisting language="python">
+def __getitem__(self, ij) </programlisting>
 	      <para>
 	        <methodname>SymmMatrix3::operator[](const
 	        SymTensorIndex&amp;)</methodname> is a shortcut for the
 	        generic function
 	        <methodname>OutputVal::operator[](IndexP&amp;)</methodname>.
 	      </para>
+          <para>
+            In Python, the <varname>ij</varname> argument is a <link
+            linkend="Class-SymTensorIndex"><classname>SymTensorIndex</classname></link>.
+          </para>
         </refsection>           <!-- SymmMatrix3::getitem -->
         <refsection id="Class-SymmMatrix3-trace">
-	      <title><code>double trace() const</code></title>
+          <title>Trace</title>
+	      <programlisting language="cpp">double trace() const;</programlisting>
 	      <para>
 	        <methodname>trace</methodname> returns the sum of the
 	        diagonal entries of the <classname>SymmMatrix3</classname>
@@ -1534,14 +1564,16 @@ tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
 	      </para>
         </refsection>           <!-- SymmMatrix3::trace -->
         <refsection id="Class-SymmMatrix3-determinant">
-	      <title><code>double determinant() const</code></title>
+	      <title>Determinant</title>
+	      <programlisting language="cpp">double determinant() const;</programlisting>
 	      <para>
 	        <methodname>determinant</methodname> returns the determinant
 	        of the <classname>SymmMatrix3</classname> object.
 	      </para>
         </refsection>           <!-- SymmMatrix3:determinant -->
         <refsection id="Class-SymmMatrix3-secondInvariant">
-	      <title><code>double secondInvariant() const</code></title>
+	      <title>Second invariant</title>
+	      <programlisting language="cpp">double secondInvariant() const;</programlisting>
 	      <para>
 	        The <methodname>secondInvariant</methodname> of a
 	        <classname>SymmMatrix3</classname> <inlineequation>
@@ -1556,8 +1588,11 @@ tensor = SymmMatrix3(xy=1.23, xz=4.56) </programlisting>
 	      </para>
         </refsection>           <!-- SymmMatrix3::secondInvariant -->
         <refsection id="Class-SymmMatrix3-eigenvalues">
-	      <title><code>double minEigenvalue() const, double
-	      midEigenvalue() const, double maxEigenvalue() const</code></title>
+          <title>Eigenvalues</title>
+	      <programlisting language="cpp">
+double minEigenvalue() const;
+double midEigenvalue() const;
+double maxEigenvalue() const; </programlisting>
 	      <para>
 	        These functions return the eigenvalues of the
 	        <classname>SymmMatrix3</classname> object. It's guaranteed
@@ -1724,7 +1759,7 @@ from ooflib.SWIG.engine import outputval</programlisting>
     <refsection>
       <title>Description</title>
       <para>
-	The <classname>OuputValue</classname> class is a reference
+	The <classname>OutputValue</classname> class is a reference
 	counting wrapper for the various <link
 	linkend="Class-OutputVal"><classname>OutputVal</classname></link>
 	classes.  That means that an
