@@ -21,7 +21,7 @@
     <refsect2>
 	  <title>C++ Synopsis</title>
 
-	  <programlisting>
+	  <programlisting language="cpp">
 #include "engine/equation.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
@@ -84,7 +84,7 @@
     </refsect2>                 <!-- C++ Synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine.equation import Equation</programlisting>
 
 	  <classsynopsis language="python">
@@ -184,11 +184,11 @@ from ooflib.SWIG.engine.equation import Equation</programlisting>
       <classname>Equation</classname> is created, a reference to it is
       kept in the main &oof2; namespace with the name of the
       &Equation;:
-      <literallayout class="monospaced">
+      <programlisting language="python">
 >>> from ooflib.SWIG.engine.equation import PlaneFluxEquation
 >>> eq = PlaneFluxEquation("StressEq", Stress, 3)   # creates variable StressEq
 >>> StressEq is eq
-True </literallayout>
+True </programlisting>
     </para>
     <para>
 	  Creating an <classname>Equation</classname> object does
@@ -254,13 +254,13 @@ True </literallayout>
 	  </para>
       <para>
         For example, in C++ you can write
-        <programlisting>
+        <programlisting language="cpp">
 Equation *eqn = Equation::getEquation("Force_Balance");
 for(IndexP index : *eqn->components()) {
    ... <lineannotation>Do something with IndexP index</lineannotation>
 } </programlisting>
         or in Python:
-        <programlisting>
+        <programlisting language="python">
 from ooflib.SWIG.engine.equation import getEquation
 for index in getEquation("Force_Balance").components():
    ... <lineannotation>Do something with FieldIndex index</lineannotation> </programlisting>
@@ -274,7 +274,7 @@ for index in getEquation("Force_Balance").components():
 
     <refsection id="Class-Equation-getIndex">
       <title><code>getIndex</code></title>
-      <programlisting>
+      <programlisting language="cpp">
 FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
 
       <para>
@@ -295,7 +295,7 @@ FieldIndex* getIndex(std::string&amp; name) const; </programlisting>
         In C++ the returned value is a pointer to a newly allocated
         object.  The caller is responsible for deleting it.  An easy
         way to do that is to wrap it in an &IndexP;:
-        <programlisting>
+        <programlisting language="cpp">
 Equation *eqn = ...;
 IndexP index = IndexP(eqn->getIndex("x")); </programlisting>
       </para>
@@ -328,7 +328,7 @@ IndexP index = IndexP(eqn->getIndex("x")); </programlisting>
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-      <programlisting>
+      <programlisting language="cpp">
 #include "engine/equation.h"</programlisting>
 	  <classsynopsis language="cpp">
 	    <ooclass>
@@ -341,7 +341,7 @@ IndexP index = IndexP(eqn->getIndex("x")); </programlisting>
     </refsect2><!-- C++ synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine.equation import DivergenceEquation </programlisting>
       <classsynopsis language="python">
 	    <ooclass>
@@ -474,7 +474,7 @@ from ooflib.SWIG.engine.equation import DivergenceEquation </programlisting>
     </para>
     <refsect2>
 	  <title>C++ Synopsis</title>
-      <programlisting>
+      <programlisting language="cpp">
 #include "engine/equation.h"</programlisting>
       <classsynopsis language="cpp">
 	    <ooclass>
@@ -487,7 +487,7 @@ from ooflib.SWIG.engine.equation import DivergenceEquation </programlisting>
     </refsect2><!-- C++ synopsis -->
     <refsect2>
 	  <title>Python Synopsis</title>
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine.equation import PlaneFluxEquation</programlisting>
 	  <classsynopsis language="python">
 	    <ooclass>
@@ -612,13 +612,13 @@ from ooflib.SWIG.engine.equation import PlaneFluxEquation</programlisting>
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <programlisting>
+      <programlisting language="cpp">
 #include "engine/equation.h"
 static Equation* Equation::getEquation(const std::string&amp; name);</programlisting>
     </refsect2>
     <refsect2>
       <title>Python Synopsis</title>
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine import equation
 eq = equation.getEquation(name)</programlisting>
     </refsect2>
@@ -663,14 +663,14 @@ eq = equation.getEquation(name)</programlisting>
       <function>getEquation</function> returns a previously created
       &Equation; object.  In C++ it returns a pointer to the base class,
       which may be cast to the derived class:
-      <programlisting>
+      <programlisting language="cpp">
 DivergenceEquation *eq = dynamic_cast&lt;DivergenceEquation*&gt;(getEquation("Force_Balance")); </programlisting>
       In Python, it returns a reference to an object
       of the appropriate derived class:
-      <literallayout class="monospaced">
+      <programlisting language="python">
 >>> eq = getEquation("Force_Balace")
 >>> type(eq)
-&lt;class 'ooflib.SWIG.engine.equation.DivergenceEquation&gt;</literallayout>
+&lt;class 'ooflib.SWIG.engine.equation.DivergenceEquation&gt;</programlisting>
 
       <function>getEquation</function> is defined in the main &oof2;
       namespace so that it can be used freely in <link

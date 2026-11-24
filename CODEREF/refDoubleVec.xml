@@ -17,7 +17,7 @@
     <title>Synopses</title>
     <refsect2>
       <title>C++ Synopsis</title>
-      <programlisting>
+      <programlisting language="cpp">
 #include "common/doublevec.h" </programlisting>
       <classsynopsis language="cpp">
         <ooclass>
@@ -534,14 +534,14 @@ this.copy_inplace(that) </programlisting>
   <refsection id="Class-DoubleVec-ctors">
     <title>Constructors</title>
 
-    <programlisting>
+    <programlisting language="cpp">
 DoubleVec::DoubleVec(); </programlisting>
       <para>
         The default constructor creates a zero length vector.  It will
         need to resized in order to be useful.
       </para>
 
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec(int size, double value=0); </programlisting>
 
       <para>
@@ -552,7 +552,7 @@ DoubleVec(int size, double value=0); </programlisting>
       </para>
 
       <anchor id="Class-DoubleVec-copy-move-ctor"/>
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec(const DoubleVec&amp;);                      // copy constructor
 DoubleVec(DoubleVec&amp;&amp;);                           // move constructor
 DoubleVec(const std::initializer_list&lt;double&gt;&amp;);  // initialization list constructor </programlisting>
@@ -569,7 +569,7 @@ DoubleVec(const std::initializer_list&lt;double&gt;&amp;);  // initialization li
 
     <refsection id="Class-DoubleVec-assignment">
       <title>Assignment</title>
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec&amp; operator=(const DoubleVec&amp;) </programlisting>
       <para>
         The assignment operator is inherited from the underlying <ulink
@@ -581,7 +581,7 @@ DoubleVec&amp; operator=(const DoubleVec&amp;) </programlisting>
     
     <refsection id="Class-DoubleVec-compare">
       <title>Comparison</title>
-      <programlisting>
+      <programlisting language="cpp">
 bool DoubleVec::operator==(const DoubleVec&amp; other) const;
 bool DoubleVec::operator!=(const DoubleVec&amp; other) const; </programlisting>
       <para>
@@ -591,7 +591,7 @@ bool DoubleVec::operator!=(const DoubleVec&amp; other) const; </programlisting>
 
     <refsection id="Class-DoubleVec-zero">
       <title>Initialization</title>
-      <programlisting>
+      <programlisting language="cpp">
 void DoubleVec::zero();
 void DoubleVec::clear(); </programlisting>
       <para>
@@ -599,14 +599,14 @@ void DoubleVec::clear(); </programlisting>
       </para>
 
       <anchor id="Class-DoubleVec-unit"/>
-      <programlisting>
+      <programlisting language="cpp">
 void DoubleVec::unit();</programlisting>
       <para>
         Set all vector entries to one.
       </para>
     
       <anchor id="Class-DoubleVec-resize"/>
-      <programlisting>
+      <programlisting language="cpp">
 void DoubleVec::resize(size_type size, double value=0); </programlisting>
       <para>
         Resize the vector and set all entries to
@@ -618,18 +618,17 @@ void DoubleVec::resize(size_type size, double value=0); </programlisting>
     <refsection>
       <title>Data Access</title>
       <anchor id="Class-DoubleVec-size"/>
-      <programlisting>
+      <programlisting language="cpp">
 int DoubleVec::size() const; </programlisting>
        <para>
          Return the number of components in the vector.
        </para>
        <anchor id="Class-DoubleVec-getitem"/>
-      <programlisting>
+      <programlisting language="cpp">
 double&amp; DoubleVec::operator[](std::size_t index);
 double DoubleVec::operator[](std::size_t index) const;
 double&amp; DoubleVec::operator[](const DoubleVec::iterator&amp;);
-double DoubleVec::operator[](const DoubleVec::const_iterator&amp;) const;
-      </programlisting>
+double DoubleVec::operator[](const DoubleVec::const_iterator&amp;) const; </programlisting>
       <para>
         Return the contents at location <varname>index</varname>, or a
         reference to it if the <classname>DoubleVec</classname> is not
@@ -637,7 +636,7 @@ double DoubleVec::operator[](const DoubleVec::const_iterator&amp;) const;
       </para>
     
       <anchor id="Class-DoubleVec-subvec"/>
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec subvec(std::size_t start, std::size_t end) const;
 void subvec_copy(std::size_t destination, const DoubleVec&amp; other,
                  std::size_t pos, std::size_t size); </programlisting>
@@ -659,7 +658,7 @@ void subvec_copy(std::size_t destination, const DoubleVec&amp; other,
 
     <refsection id="Class-DoubleVec-inplace">
       <title>Arithmetic</title>
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec&amp; DoubleVec::operator+=(const DoubleVec&amp;);
 DoubleVec&amp; DoubleVec::operator-=(const DoubleVec&amp;);
 DoubleVec&amp; DoubleVec::operator*=(double);
@@ -672,7 +671,7 @@ void DoubleVec::axpy(double alpha, const DoubleVec&amp; x); </programlisting>
       </para>
 
       <anchor id="Class-DoubleVec-outofplace"/>
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec DoubleVec::operator+(const DoubleVec&amp; other) const;
 DoubleVec DoubleVec::operator-(const DoubleVec&amp; other) const;
 DoubleVec DoubleVec::operator-() const;
@@ -687,7 +686,7 @@ DoubleVec DoubleVec::operator/(double divisor) const; </programlisting>
     </refsection>
     <refsection id="Class-DoubleVec-dot">
       <title>Dot Product and Norm</title>
-      <programlisting>
+      <programlisting language="cpp">
 double DoubleVec::dot(const DoubleVec&amp;) const;
 double DoubleVec::operator*(const DoubleVec&amp;) const; </programlisting>
       <para>
@@ -696,7 +695,7 @@ double DoubleVec::operator*(const DoubleVec&amp;) const; </programlisting>
         either as <code>A.dot(B)</code> or <code>A*B</code>.
       </para>
       <anchor id="Class-DoubleVec-norm"/>
-      <programlisting>
+      <programlisting language="cpp">
 double DoubleVec::norm() const { return data.norm(); } </programlisting>
       <para>
         <code>A.norm()</code> is the L2 norm of <varname>A</varname>, or <code>sqrt(A*A)</code>.
@@ -705,7 +704,7 @@ double DoubleVec::norm() const { return data.norm(); } </programlisting>
     
     <refsection id="Class-DoubleVec-iterator">
       <title>Iterators</title>
-      <programlisting>
+      <programlisting language="cpp">
 DoubleVec::iterator DoubleVec::begin();
 DoubleVec::iterator DoubleVec::end();
 DoubleVec::const_iterator DoubleVec::begin() const;
@@ -714,7 +713,7 @@ DoubleVec::const_iterator DoubleVec::end() const; </programlisting>
         The iterator classes are typedefs of the Eigen iterators, and
         can be used like normal STL iterators.  These loops are
         functionally identical:
-        <programlisting>
+        <programlisting language="cpp">
 DoubleVec A(10);
 
 // Use a std::size_t (or int) index
@@ -731,8 +730,7 @@ for(DoubleVec::iterator i=A.begin(); i&lt;A.end(); i++)
 
 // Use a range-based loop
 for(double&amp; x : A)
-   x = 2;
-        </programlisting>
+   x = 2; </programlisting>
       </para>
     </refsection>
   </refsection>                 <!-- DoubleVec methods -->

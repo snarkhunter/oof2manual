@@ -109,7 +109,7 @@
       linkend="Property-Orientation"/> named
       <quote><literal>orient</literal></quote>, it can be retrieved
       like this:
-      <programlisting>
+      <programlisting language="python">
 >>> mat = getMaterial("material")
 >>> prop = mat.fetchProperty("Orientation")
 >>> prop.name()        <lineannotation># name() is a base class method</lineannotation>

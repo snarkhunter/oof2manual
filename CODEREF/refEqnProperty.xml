@@ -237,7 +237,7 @@
         from C++, they use the Python C API to invoke methods in the
         Python derived class.
       </para>
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine import pypropertywrapper </programlisting>
       <classsynopsis language="python">
         <ooclass>
@@ -517,7 +517,7 @@ from ooflib.SWIG.engine import pypropertywrapper </programlisting>
 
     <refsection id="Class-EqnProperty-begin_point">
       <title><code>void* begin_point(...) const</code></title>
-      <programlisting>
+      <programlisting language="cpp">
 void *begin_point(const <xref linkend="Class-FEMesh"/>* mesh,
                   const <xref linkend="Class-Element"/>* element,
                   const <xref linkend="Class-Equation"/>* equation,
@@ -620,7 +620,7 @@ void *begin_point(const <xref linkend="Class-FEMesh"/>* mesh,
 
     <refsection id="Class-EqnProperty-end_point">
       <title><code>void end_point(...) const</code></title>
-      <programlisting>
+      <programlisting language="cpp">
 void end_point(const <xref linkend="Class-FEMesh"/>* mesh,
                const <xref linkend="Class-Element"/>* element,
                const <xref linkend="Class-Equation"/>* equation,
@@ -653,7 +653,7 @@ void end_point(const <xref linkend="Class-FEMesh"/>* mesh,
     <refsection id="Class-EqnProperty-time_deriv_matrices">
       <title><code>void time_deriv_matrices(...)
       const</code></title>
-      <programlisting>
+      <programlisting language="cpp">
 void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
                          const <xref linkend="Class-Element"/>* element,
                          const <xref linkend="Class-ElementFuncNodeIterator"/>&amp; node,
@@ -907,7 +907,7 @@ void time_deriv_matrices(const <xref linkend="Class-FEMesh"/>* mesh,
           velocity in the lab frame, not the strain rate, but it can
           be useful to provide numerical stability.</para></footnote>
         </para>
-        <programlisting id="damping-matrix-example">
+        <programlisting language="cpp" id="damping-matrix-example">
 void IsotropicDampingProp::time_deriv_matrices(
 					   const FEMesh* mesh,
 					   const Element* element,
@@ -1035,7 +1035,7 @@ void IsotropicDampingProp::time_deriv_matrices(
           instead of <link
           linkend="Class-SmallSystem-damping_matrix_element"><function>SmallSystem::damping_matrix_element()</function></link>.
         </para>
-        <programlisting>
+        <programlisting language="cpp">
 void MassDensityProp::time_deriv_matrices(
 				       const FEMesh* mesh,
 				       const Element* element,
@@ -1073,7 +1073,7 @@ void MassDensityProp::time_deriv_matrices(
 
     <refsection id="Class-EqnProperty-force_value">
       <title><code>void force_value(...) const</code></title>
-      <programlisting>
+      <programlisting language="cpp">
 void force_value(const <xref linkend="Class-FEMesh"/>* mesh,
                  const <xref linkend="Class-Element"/>* element,
                  const <xref linkend="Class-Equation"/>* equation,
@@ -1180,7 +1180,7 @@ void force_value(const <xref linkend="Class-FEMesh"/>* mesh,
           stored in the &Property; as a <xref
           linkend="Class-DoubleVec"/> <varname>g</varname>.
         </para>
-        <programlisting>
+        <programlisting language="cpp">
 void ForceDensity::force_value(
                        const FEMesh *mesh,
                        const Element *element,
@@ -1208,7 +1208,7 @@ void ForceDensity::force_value(
     
     <refsection id="Class-EqnProperty-force_deriv_matrix">
       <title><code>void force_deriv_matrix(...) const</code></title>
-      <programlisting>
+      <programlisting language="cpp">
  void force_deriv_matrix(const <xref linkend="Class-FEMesh"/>* mesh,
                          const <xref linkend="Class-Element"/>* element,
                          const <xref linkend="Class-ElementFuncNodeIterator"/>&amp; node,
@@ -1261,7 +1261,7 @@ void ForceDensity::force_value(
           <function>force_deriv_matrix()</function> in a &Property;
           that depends nonlinearly on the <xref
           linkend="Field-Displacement"/> &Field;:
-          <programlisting>
+          <programlisting language="cpp">
 void NonlinearForceDensity::force_deriv_matrix(const FEMesh *mesh,
 					       const Element *element,
 					       const ElementFuncNodeIterator &amp;node,
@@ -1289,7 +1289,7 @@ void NonlinearForceDensity::force_deriv_matrix(const FEMesh *mesh,
                 <varname>displacement</varname> is a <xref
                 linkend="Class-TwoVectorField"/> that was set in the
                 &Property;'s constructor like this:
-                <programlisting>
+                <programlisting language="cpp">
 displacement = dynamic_cast&lt;TwoVectorField*&gt;(Field::getField("Displacement")); </programlisting>
               </para>
             </callout>

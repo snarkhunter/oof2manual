@@ -17,13 +17,13 @@
   <refentry id="Class-Coord">
     <refnamediv>
       <refname>Coord</refname>
-      <refpurpose>Coordinate classes</refpurpose>
+      <refpurpose>Position in space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
       <title>Synopses</title>
       <refsect2>
 	<title>C++ Synopsis</title>
-	<programlisting>
+	<programlisting language="cpp">
 #include "common/coord.h"</programlisting>
 	<classsynopsis language="cpp">
 	  <ooclass>
@@ -113,7 +113,7 @@
 	  </methodsynopsis>
 	</classsynopsis>
 
-	<programlisting>
+	<programlisting language="cpp">
 Coord <link linkend="Class-Coord-arithmetic">operator+</link>(const Coord&amp;, const Coord&amp;)
 Coord <link linkend="Class-Coord-arithmetic">operator-</link>(const Coord&amp;, const Coord&amp;)
 Coord <link linkend="Class-Coord-arithmetic">operator*</link>(const Coord&amp;, double)
@@ -131,7 +131,7 @@ bool <link linkend="Class-Coord-cmp">operator!=</link>(const Coord&amp;, const C
       </refsect2><!-- C++ Synopsis -->
       <refsect2>
 	    <title>Python Synopsis</title>
-	<programlisting>
+	<programlisting language="python">
 from ooflib.SWIG.common import coord</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
@@ -338,7 +338,7 @@ from ooflib.SWIG.common import coord</programlisting>
       <title>Synopses</title>
       <refsect2>
 	<title>C++ Synopsis</title>
-	<programlisting>
+	<programlisting language="cpp">
 #include "engine/mastercoord.h"</programlisting>
 	<classsynopsis language="cpp">
 	  <ooclass>
@@ -415,7 +415,7 @@ from ooflib.SWIG.common import coord</programlisting>
 	  </methodsynopsis>
 	</classsynopsis>
 
-	<programlisting>
+	<programlisting language="cpp">
 MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator+</link>(const MasterCoord&amp;, const MasterCoord&amp;)
 MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator-</link>(const MasterCoord&amp;, const MasterCoord&amp;)
 MasterCoord <link linkend="Class-MasterCoord-arithmetic">operator*</link>(double, const MasterCoord&amp;)
@@ -434,7 +434,7 @@ bool <link linkend="Class-MasterCoord-cmp">operator&lt;</link>(const MasterCoord
       </refsect2><!-- C++ Synopsis -->
       <refsect2>
 	<title>Python Synopsis</title>
-	<programlisting>
+	<programlisting language="python">
 from ooflib.SWIG.engine import mastercoord</programlisting>
 	<classsynopsis language="python">
 	  <ooclass>
@@ -668,7 +668,7 @@ from ooflib.SWIG.engine import mastercoord</programlisting>
     </refnamediv>
     <refsynopsisdiv>
       <title>Python Synopsis</title>
-      <programlisting>
+      <programlisting language="python">
 import oof2.common.primitives</programlisting>
       <classsynopsis language="python">
 	<ooclass>

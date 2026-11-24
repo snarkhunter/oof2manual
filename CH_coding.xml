@@ -132,13 +132,13 @@
       <classname>Microstructure</classname>,
       <filename>SRC/common/microstructure.py</filename>, can be
       imported into another Python file with
-      <programlisting>
+      <programlisting language="python">
 from ooflib.common import microstructure </programlisting>
       and the C++ underpinnings of the class, defined in
       <filename>SRC/common/cmicrostructure.C</filename> and wrapped by
       <filename>SRC/common/cmicrostructure.swg</filename>, can be
       imported with
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.common import cmicrostructure </programlisting>
     </para>
   </section>
@@ -202,7 +202,7 @@ from ooflib.SWIG.common import cmicrostructure </programlisting>
       &Equations; are C++ classes, but they should only be
       instantiated by calling their swigged Python
       constructors. </para></footnote> For example:
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine import field
 Temperature = field.ScalarField("Temperature") </programlisting>
     </para>
@@ -226,7 +226,7 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       function.  Within the script that created the &Field;, the
       &Field; can of course be referred to via a local variable
       referring to the new object:
-      <programlisting>
+      <programlisting language="python">
 <emphasis role="bold">gee</emphasis> = field.TwoVectorField("<emphasis role="bold">gee</emphasis>")</programlisting>
       It is acceptable for the local variable name to be the same as
       the global variable name.
@@ -294,7 +294,7 @@ Temperature = field.ScalarField("Temperature") </programlisting>
       for the thermal conductivity &material; &property;, which is
       discussed <link linkend="Section-Coding-Material">later</link>).
 
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine.field import ScalarField
 from ooflib.SWIG.engine.flux import VectorFlux
 from ooflib.SWIG.engine.equation import DivergenceEquation, PlaneFluxEquation
@@ -409,7 +409,7 @@ HeatOutOfPlane = PlaneFluxEquation('Plane_Heat_Flux', Heat_Flux, 1) </programlis
       over indexes.  For example, you can print the indices of the
       components of the Temperature and Displacement &Fields; like this:
 
-      <programlisting>
+      <programlisting language="cpp">
 Field *temperature = Field::getField("Temperature");
 Components* comps = temperature->components();
 for(ComponentIteratorP ip = comps->begin(); ip!=comps->end(); ++ip)
@@ -422,7 +422,7 @@ for(ComponentIteratorP ip = comps->begin(); ip!=comps->end(); ++ip)
 
       or, more compactly, using range based for loops like this:
 
-      <programlisting>
+      <programlisting language="cpp">
 for(IndexP i : *Field::getField("Temperature")->components())
    std::cerr &lt;&lt; i &lt;&lt; std::endl;
 
@@ -441,7 +441,7 @@ IndexP(VectorFieldIndex(1))   <lineannotation>[The second component of Displacem
      For example, in Python you can print the indices of the
      components of the temperature and displacement &Fields; like
      this:
-     <programlisting>
+     <programlisting language="python">
 for i in Temperature.components():
    print(i)
 for i in Displacement.components():
@@ -513,7 +513,7 @@ VectorFieldIndex(1)    <lineannotation>[The second component of Displacement]</l
       &Fields; and &Equations;, call
       <function>conjugatePair</function> like this:
 
-      <programlisting>
+      <programlisting language="python">
 from ooflib.SWIG.engine.conjugate import conjugatePair
 conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
 
@@ -530,7 +530,7 @@ conjugatePair(proptype, equation, eqncomp, field, fieldcomp) </programlisting>
       equation (<code>import</code> statements have been omitted for
       conciseness):
 
-      <programlisting>
+      <programlisting language="python">
 equation = getEquation('Force_Balance')
 field = getField('Displacement')
 conjugatePair("Elasticity",
@@ -1025,7 +1025,7 @@ conjugatePair("Elasticity",
 	  <filename>SRC/engine/IO/outputClones.py</filename>.
 	</para>
 
-	<programlisting>
+	<programlisting language="python">
 def _field(mesh, elements, coords, field): <co id="example1-callback"/>
     ans = [] <co id="example1-ans"/>
     for element, ecoords in zip(elements, coords): <co id="example1-zip"/>
@@ -1158,7 +1158,7 @@ FieldOutput = output.Output(
 	  the following lines:
 	</para>
 	
-	<programlisting>
+	<programlisting language="python">
 from ooflib.common.IO import output
 from ooflib.engine.IO import outputClones
 output.defineAggregateOutput('Field:Value', outputClones.FieldOutput) </programlisting>
@@ -1186,7 +1186,7 @@ output.defineAggregateOutput('Field:Value', outputClones.FieldOutput) </programl
 	  an input, but doesn't read data from the mesh.
 	</para>
 
-      <programlisting>
+      <programlisting language="python">
 def _component(mesh, elements, coords, field, component): <co id="example2-callback"/>
     if field: <co id="example2-if"/>
         comp = field[0].getIndex(component) <co id="example2-convert"/>
@@ -1304,7 +1304,7 @@ ComponentOutput = output.Output(
 	  </footnote>
 	</para>
       
-      <programlisting>
+      <programlisting language="python">
 FieldCompOutput = ComponentOutput.clone(name="field component") </programlisting>
 
 	<para>
@@ -1313,7 +1313,7 @@ FieldCompOutput = ComponentOutput.clone(name="field component") </programlisting
 	  <varname>FieldCompOutput</varname>:
 	</para>
 
-      <programlisting>
+      <programlisting language="python">
 FieldCompOutput.connect("field", FieldOutput) </programlisting>
 
 	<para>
@@ -1339,7 +1339,7 @@ FieldCompOutput.connect("field", FieldOutput) </programlisting>
 	  linkend="Class-Output-findParam"><methodname>findParam</methodname></link>
 	  method, <foreignphrase>e.g</foreignphrase>:
 
-	  <programlisting>
+	  <programlisting language="python">
 FieldCompOutput.findParam('component').value = 'x' </programlisting>
 
 	  Setting a parameter's value like this gives it a permanent
@@ -1363,7 +1363,7 @@ FieldCompOutput.findParam('component').value = 'x' </programlisting>
 	  the parameter in the call to
 	  <methodname>findParam</methodname>:
 
-	  <programlisting>
+	  <programlisting language="python">
 FieldCompOutput.findParam('field:field').value = Displacement </programlisting>
 
 	  Here the first <literal>field</literal> is the name of the
@@ -1384,7 +1384,7 @@ FieldCompOutput.findParam('field:field').value = Displacement </programlisting>
 	  assigns a new name to an <classname>Output</classname>
 	  parameter, like this:
 	  
-	  <programlisting>
+	  <programlisting language="python">
 FieldCompOutput.aliasParam('field:field', 'field') </programlisting>
 
 	  Now <varname>FieldCompOutput</varname> has a parameter
@@ -1407,7 +1407,7 @@ FieldCompOutput.aliasParam('field:field', 'field') </programlisting>
 	  find an alias, it looks for a parameter, so the following
 	  three function calls are equivalent:
 
-	  <programlisting>
+	  <programlisting language="python">
 param = FieldCompOutput.resolveAlias('field')
 param = FieldCompOutput.resolveAlias('field:field')
 param = FieldCompOutput.findParam('field:field') </programlisting>
@@ -1422,13 +1422,13 @@ param = FieldCompOutput.findParam('field:field') </programlisting>
 	  <varname>FieldCompOutput</varname> were to be used as an
 	  input to another <classname>Output</classname>, like this:
 
-	  <programlisting>
+	  <programlisting language="python">
 SomeOtherOutput.connect('otherinput', FieldCompOutput) </programlisting>
 
 	  then the <varname>'field'</varname> parameter could be
 	  accessed by
 
-	  <programlisting>
+	  <programlisting language="python">
 param = SomeOtherOutput.resolveAlias('otherinput:field') </programlisting>
 
 	  using the alias still stored in
@@ -1452,7 +1452,7 @@ param = SomeOtherOutput.resolveAlias('otherinput:field') </programlisting>
 	  together.
 	</para>
 
-	<programlisting>
+	<programlisting language="python">
 from ooflib.SWIG.common import coord
 from ooflib.common import primitives
 from ooflib.common.IO import output
@@ -1539,7 +1539,7 @@ PointSumOutput = output.Output(
 	  looks like this:
 	</para>
 	
-	<programlisting>
+	<programlisting language="python">
 enhancedPosition = outputClones.PointSumOutput.clone(
     name='enhanced position',
     params=dict(b=1), <co id="example3-params2"/>
@@ -1621,7 +1621,7 @@ enhancedPosition.aliasParam('a', 'factor', default=1.0, <co id="example3-alias"/
 	  enhancement factor to 1.0:
 	</para>
 
-	<programlisting>
+	<programlisting language="python">
 actualPosition = enhancedPosition.clone(
     name='actual position',
     params=dict(factor=1.0),
@@ -1634,7 +1634,7 @@ actualPosition = enhancedPosition.clone(
 	  linkend="Function-definePositionOutput"><function>definePositionOutput</function></link>:
 	</para>
 
-	<programlisting>
+	<programlisting language="python">
 output.definePositionOutput('actual', actualPosition)
 output.definePositionOutput('enhanced', enhancedPosition) </programlisting>
 
@@ -1684,7 +1684,7 @@ output.definePositionOutput('enhanced', enhancedPosition) </programlisting>
 	class is created to distinguish the different types of energy
 	(in <filename>SRC/engine/IO/outputDefs.py</filename>):
 
-      <programlisting>
+      <programlisting language="python">
 from ooflib.common import enum
 
 class EnergyType(enum.EnumClass("Total", "Elastic", ...)):
@@ -1694,7 +1694,7 @@ class EnergyType(enum.EnumClass("Total", "Elastic", ...)):
 	linkend="Class-PropertyOutputRegistration"><classname>ScalarPropertyOutputRegistration</classname></link>,
 	because energy is a scalar quantity:
 
-	<programlisting>
+	<programlisting language="python">
 from ooflib.SWIG.engine.IO import propertyoutput
 
 propertyoutput.ScalarPropertyOutputRegistration(
@@ -1723,7 +1723,7 @@ propertyoutput.ScalarPropertyOutputRegistration(
 	<methodname>output</methodname> function looks like this (in
 	<filename>SRC/engine/property/elasticity/elasticity.C</filename>):
 
-	<programlisting>
+	<programlisting language="cpp">
 void Elasticity::output(const FEMesh *mesh,
 			const Element *element,
 			const PropertyOutput *output,
@@ -1764,7 +1764,7 @@ void Elasticity::output(const FEMesh *mesh,
 	for isotropic elasticity, from
 	<filename>SRC/engine/property/elasticity/iso/iso.spy</filename>:
 
-	<programlisting>
+	<programlisting language="python">
 from ooflib.engine import propertyregistration
 
 propertyregistration.PropertyRegistration(
